@@ -21,11 +21,14 @@ Route::middleware('guest')->group(function () {
         // Route::GET('/password/reset/{token}', 'AdminAuth\ResetPasswordController@showResetForm')->name('password.reset');
         // Route::GET('/check/email', 'AdminAuth\LoginController@checkEmail')->name('check.email');
 });
+Route::prefix('admumb')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('login');
    
 
 });
+});
+
 
 require __DIR__ . '/auth.php';
