@@ -6,7 +6,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admumb')->group(function () {
 Route::middleware('guest:admin')->group(function () {
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('login', [LoginController::class, 'login']);
@@ -15,7 +14,7 @@ Route::middleware('guest:admin')->group(function () {
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
-});
+    Route::get('/duty-types', [AdminController::class, 'showDutyTypes'])->name('showDutyTypes');
 });
 
 

@@ -13,7 +13,7 @@ class AdminController extends Controller
     {
         // dd('i m at login auth');
 
-        // Auth::logout();
+        Auth::logout();
         return [
             'guard',
             new Middleware('admin', except: ['logout']),
