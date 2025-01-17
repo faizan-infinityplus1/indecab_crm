@@ -102,15 +102,14 @@
                                         </button>
                                     </div>
                                 </form>
-                                <div class="mt-5 text-muted text-left">
+                                {{-- <div class="mt-5 text-muted text-left">
                                     <a href="{{ route('index') }}" target="_blank"><i class="fa fa-angle-double-left"
                                             aria-hidden="true"></i> Go to Website </a>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="mt-5 text-muted text-center">
-                            Designed & Developed By <a href="https://www.sanjaresolutions.com" target="_blank">Sanjar E
-                                Solutions</a>
+                            Designed & Developed By <a href="https://www.infinityplus1.in" target="_blank">Infinity Plus 1</a>
                         </div>
                     </div>
                 </div>
