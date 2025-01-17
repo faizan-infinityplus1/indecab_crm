@@ -23,7 +23,7 @@ Route::middleware('guest')->group(function () {
 });
 Route::prefix('admumb')->group(function () {
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('login');
    
 
