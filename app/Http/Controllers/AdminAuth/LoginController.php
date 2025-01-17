@@ -14,12 +14,19 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        // $this->middleware('guard:user')->except('logout');
+        // dd('i m at login guard');
         return [
             'guard',
             new Middleware('admin', except: ['logout']),
         ];
     }
+
+    protected function guard()
+    {
+        return Auth::guard('admin');
+    }
+
+
     public function showLoginForm()
     {
         return view('adminauth.login');
@@ -30,6 +37,7 @@ class LoginController extends Controller
         //     'email'    => 'required|email',
         //     'password' => 'required',
         // ]);
+        // Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remeber);
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remeber)) {
             return redirect()->intended(url()->previous());
         }

@@ -11,6 +11,9 @@ class AdminController extends Controller
     
     public function __construct()
     {
+        // dd('i m at login auth');
+
+        // Auth::logout();
         return [
             'guard',
             new Middleware('admin', except: ['logout']),
