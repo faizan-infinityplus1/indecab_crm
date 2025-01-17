@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\Middleware;
-
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -20,7 +20,7 @@ class AdminController extends Controller
     public function index()
     {
 
-        return view('adminauth.index', compact(['todays_sales', 'today_users', 'orders', 'subscribers', 'new_orders', 'new_users']));
+        return view('adminauth.index');
     }
 
 
