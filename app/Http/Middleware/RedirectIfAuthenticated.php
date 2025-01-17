@@ -13,10 +13,10 @@ class RedirectIfAuthenticated
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
     {
-
         switch ($guard) {
             case 'admin':
                 if (Auth::guard($guard)->check()) {
@@ -25,6 +25,7 @@ class RedirectIfAuthenticated
                 break;
 
             case 'user':
+
                 if (Auth::guard($guard)->check()) {
                     return redirect()->intended(route('user.dashboard'));
                 }
@@ -37,7 +38,10 @@ class RedirectIfAuthenticated
                 break;
 
             default:
-                return redirect()->intended('/');
+                // Redirect to a default dashboard for any undefined guard
+                if (Auth::check()) {
+                    return redirect()->intended('/dashboard');
+                }
                 break;
         }
 

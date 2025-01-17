@@ -5,22 +5,19 @@ use App\Http\Controllers\ShopAuth\LoginController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => 'auth:admin'], function () {
-
-Route::get('/', [LoginController::class, 'login'])->name('profile.edit');
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::middleware('guest')->group(function () {
+        Route::GET('/login', 'AdminAuth\LoginController@    ')->name('login');
+        Route::POST('/login', 'AdminAuth\LoginController@login');
+        Route::POST('/password/email', 'AdminAuth\ForgotPasswordController@sendResetLinkEmail');
+        Route::GET('/password/email', 'AdminAuth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        Route::POST('/password/email', 'AdminAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        Route::POST('/password/reset', 'AdminAuth\ResetPasswordController@reset')->name('password.update');
+        Route::GET('/password/reset/{token}', 'AdminAuth\ResetPasswordController@showResetForm')->name('password.reset');
+        Route::GET('/check/email', 'AdminAuth\LoginController@checkEmail')->name('check.email');
 });
-
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

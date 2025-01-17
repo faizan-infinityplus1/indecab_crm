@@ -2,22 +2,28 @@
 
 namespace App\Http\Controllers\ShopAuth;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;  // Make sure this is the correct import
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use Illuminate\Routing\Controllers\Middleware;
 
 
-class LoginController extends Controller
+class LoginController extends Controller  // Inheriting from Controller class
 {
-    public function __contruct()
+    public function __construct()
     {
-        $this->middleware('guard:shop')->except('logout');
+        // $this->middleware('guard:user')->except('logout');
+        return [
+            'guard',
+            new Middleware('user', except: ['logout']),
+        ];
+    
     }
 
     protected function guard()
     {
-        return Auth::guard('shop');
+        return Auth::guard('user');
     }
 
     public function showLoginForm()
@@ -27,29 +33,13 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $this->validate($request, [
-            'email'    => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if (Auth::guard('shop')->attempt(['email' => $request->email, 'password' => $request->password, 'status' => true], $request->remeber)) {
-
-            // connectify('success', 'Logged In', 'You Are Successfully Logged In !');
-
-            return redirect()->intended(url()->previous());
-
-        }
-
-        // connectify('error', 'Error', 'Invalid Username or Password, try again !');
-        return back()->withInput($request->only('email', 'remember'));
+        // Your login logic here
+        print_r('I am here');
     }
 
     public function logout()
     {
-        Auth::guard('shop')->logout();
-
-        // connectify('success', 'Logged Out', 'You Are Successfully Logged Out !');
-
+        Auth::guard('user')->logout();
         return redirect(route('shop.login'));
     }
 }
