@@ -22,7 +22,10 @@ class AdminController extends Controller
 
         return view('adminauth.index');
     }
-
+    public function showDutyTypes()
+    {
+        return view('backend.admin.masters.dutytypes.index');
+    }
 
 
 
