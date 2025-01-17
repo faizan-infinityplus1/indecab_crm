@@ -19,6 +19,7 @@ class RedirectIfAuthenticated
     {
         switch ($guard) {
             case 'admin':
+                dd('i m here');
                 if (Auth::guard($guard)->check()) {
                     return redirect()->intended(route('admin.dashboard'));
                 }

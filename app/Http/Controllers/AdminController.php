@@ -20,7 +20,7 @@ class AdminController extends Controller
     public function index()
     {
 
-        return view('adminauth.index', compact(['todays_sales', 'today_users', 'orders', 'subscribers', 'new_orders', 'new_users']));
+        return view('adminauth.index');
     }
 
 
