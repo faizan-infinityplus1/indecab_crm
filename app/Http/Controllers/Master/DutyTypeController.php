@@ -7,16 +7,13 @@ use Illuminate\Http\Request;
 
 class DutyTypeController extends Controller
 {
-    public function showDutyTypes()
+    public function index()
     {
         return view('backend.admin.masters.dutytypes.index');
     }
-    public function createDutyTypes()
+    public function show()
     {
-        return view('backend.admin.masters.dutytypes.create');
+        return view('backend.admin.masters.dutytypes.show');
     }
-    public function editDutyTypes()
-    {
-        return view('backend.admin.masters.dutytypes.edit');
-    }
+ 
 }
