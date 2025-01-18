@@ -13,7 +13,7 @@ class AdminController extends Controller
     {
         // dd('i m at login auth');
 
-        Auth::logout();
+        // Auth::logout();
         return [
             'guard',
             new Middleware('admin', except: ['logout']),
@@ -28,6 +28,10 @@ class AdminController extends Controller
     public function showDutyTypes()
     {
         return view('backend.admin.masters.dutytypes.index');
+    }
+    public function createDutyTypes()
+    {
+        return view('backend.admin.masters.dutytypes.create');
     }
 
 

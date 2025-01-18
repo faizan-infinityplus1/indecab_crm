@@ -15,6 +15,7 @@ Route::middleware('guest:admin')->group(function () {
 Route::middleware('auth:admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/duty-types', [AdminController::class, 'showDutyTypes'])->name('showDutyTypes');
+    Route::get('/duty-types/create', [AdminController::class, 'createDutyTypes'])->name('createDutyTypes');
 });
 
 
