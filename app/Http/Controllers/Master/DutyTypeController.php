@@ -15,5 +15,8 @@ class DutyTypeController extends Controller
     {
         return view('backend.admin.masters.dutytypes.show');
     }
+    public function store(){
+        
+    }
  
 }

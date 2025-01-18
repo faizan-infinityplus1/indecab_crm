@@ -32,20 +32,20 @@
                         <span class="warning-msg-block"></span>
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label required">Duty Type Name </label>
-                        <input type="text" class="form-control  border-bottom" id="" required>
+                        <label for="name" class="form-label required">Duty Type Name </label>
+                        <input type="text" class="form-control  border-bottom" id="name" required>
                         <span class="warning-msg-block"></span>
                     </div>
                     {{-- HR-KM (Local) --}}
                     <div>
                         <div class="mb-3" x-show="maxHours">
-                            <label for="" class="form-label required">Maximum Hours </label>
-                            <input type="number" class="form-control  border-bottom" id="" required>
+                            <label for="max_hours" class="form-label required">Maximum Hours </label>
+                            <input type="number" class="form-control  border-bottom" id="max_hours" required>
                             <span class="warning-msg-block"></span>
                         </div>
                         <div class="mb-3" x-show="maxKm">
-                            <label for="" class="form-label required">Maximum Kilometers </label>
-                            <input type="number" class="form-control  border-bottom" id="" required>
+                            <label for="maxkm" class="form-label required">Maximum Kilometers </label>
+                            <input type="number" class="form-control  border-bottom" id="maxkm" required>
                             <span class="warning-msg-block"></span>
                         </div>
                     </div>
@@ -67,6 +67,13 @@
 
                     {{-- Long Duration - Total KM Daily HR (Monthly Bookings) --}}
                     <div>
+                       
+                        
+                        <div class="mb-3" x-show="maxDays">
+                            <label for="" class="form-label required">Maximum days </label>
+                            <input type="number" class="form-control  border-bottom" id="" required>
+                            <span class="warning-msg-block"></span>
+                        </div>
                         <div class="mb-3" x-show="maxHoursPerDay">
                             <label for="" class="form-label required">Maximum Hours per day </label>
                             <input type="number" class="form-control  border-bottom" id="" required>
@@ -74,11 +81,6 @@
                         </div>
                         <div class="mb-3" x-show="totalKm">
                             <label for="" class="form-label required">Total Km </label>
-                            <input type="number" class="form-control  border-bottom" id="" required>
-                            <span class="warning-msg-block"></span>
-                        </div>
-                        <div class="mb-3" x-show="maxDays">
-                            <label for="" class="form-label required">Maximum days </label>
                             <input type="number" class="form-control  border-bottom" id="" required>
                             <span class="warning-msg-block"></span>
                         </div>
@@ -238,8 +240,8 @@
                 longDurationDaily() {
                     this.reset();
                     this.maxHoursPerDay = true;
-                    this.totalKm = true;
                     this.maxDays = true;
+                    this.totalKm = true;
                 },
                 longDurationMonthly() {
                     this.reset();
