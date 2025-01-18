@@ -26,7 +26,8 @@
                             <option value="hrKmLocal">HR-KM (Local)</option>
                             <option value="dayKmOutstation">Day-KM (Outstation)</option>
                             <option value="longDurationDaily">Long Duration - Total KM Daily HR (Monthly Bookings)</option>
-                            <option value="longDurationMonthly">Long Duration - Total KM &amp; HR (Monthly Bookings)</option>
+                            <option value="longDurationMonthly">Long Duration - Total KM &amp; HR (Monthly Bookings)
+                            </option>
                             <option value="flatRate">Flat Rate</option>
                         </select>
                         <span class="warning-msg-block"></span>
@@ -67,8 +68,8 @@
 
                     {{-- Long Duration - Total KM Daily HR (Monthly Bookings) --}}
                     <div>
-                       
-                        
+
+
                         <div class="mb-3" x-show="maxDays">
                             <label for="" class="form-label required">Maximum days </label>
                             <input type="number" class="form-control  border-bottom" id="" required>
@@ -99,14 +100,11 @@
                     <div class="mb-3">
                         <label for="" class="form-label">Limit this duty type to be selected only for these
                             cities</label>
-                        <select multiple class="form-select border-bottom" aria-label="Multiple select example"
-                            name="" id="">
-                            <option value="">City 1</option>
-                            <option value="">City 2</option>
-                            <option value="">City 3</option>
-                            <option value="">City 4</option>
-                            <option value="">City 5</option>
-                            <option value="">City 6</option>
+                        <select id="multiple" class="js-states form-control" multiple>
+                            <option>Java</option>
+                            <option>Javascript</option>
+                            <option>PHP</option>
+                            <option>Visual Basic</option>
                         </select>
                         <span class="warning-msg-block"></span>
                     </div>
@@ -249,13 +247,23 @@
                     this.maxDays = true;
                     this.totalHours = true;
                 },
-                flatRate(){
+                flatRate() {
                     this.reset();
                     this.subType = true;
-                    
+
                 }
 
             }))
         })
+    </script>
+@endsection
+
+
+@section('extrajs')
+    <script>
+        $("#multiple").select2({
+            placeholder: "Select a programming language",
+            allowClear: true
+        });
     </script>
 @endsection
