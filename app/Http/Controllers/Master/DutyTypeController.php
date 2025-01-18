@@ -15,4 +15,8 @@ class DutyTypeController extends Controller
     {
         return view('backend.admin.masters.dutytypes.create');
     }
+    public function editDutyTypes()
+    {
+        return view('backend.admin.masters.dutytypes.edit');
+    }
 }
