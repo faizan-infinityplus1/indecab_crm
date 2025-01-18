@@ -220,7 +220,6 @@
                     this.maxHours = true;
                     this.maxKm = true;
                     this.subType = true;
-
                 },
             }))
         })
