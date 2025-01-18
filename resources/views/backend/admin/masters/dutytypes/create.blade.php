@@ -51,7 +51,6 @@
                             <span class="warning-msg-block"></span>
                         </div>
                     </div>
-
                     {{-- Day-KM (Outstation) --}}
                     <div>
                         <div class="mb-3" x-show="maxKmPerDay">
@@ -66,47 +65,7 @@
                             </label>
                         </div>
                     </div>
-
-                    {{-- Long Duration - Total KM Daily HR (Monthly Bookings) --}}
-                    <div>
-                        <div class="mb-3">
-                            <label for="" class="form-label required">Maximum Hours per day </label>
-                            <input type="number" class="form-control  border-bottom" id="" required>
-                            <span class="warning-msg-block"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label required">Total Km </label>
-                            <input type="number" class="form-control  border-bottom" id="" required>
-                            <span class="warning-msg-block"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label required">Maximum days </label>
-                            <input type="number" class="form-control  border-bottom" id="" required>
-                            <span class="warning-msg-block"></span>
-                        </div>
-                    </div>
-
                     {{-- Long Duration - Total KM & HR (Monthly Bookings) --}}
-                    <div>
-                        <div class="mb-3">
-                            <label for="" class="form-label required">Total Hours</label>
-                            <input type="number" class="form-control  border-bottom" id="" required>
-                            <span class="warning-msg-block"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label required">Total Km </label>
-                            <input type="number" class="form-control  border-bottom" id="" required>
-                            <span class="warning-msg-block"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label required">Maximum days </label>
-                            <input type="number" class="form-control  border-bottom" id="" required>
-                            <span class="warning-msg-block"></span>
-                        </div>
-                    </div>
-
-
-
                     <div class="mb-3">
                         <label for="" class="form-label">Limit this duty type to be selected only for these
                             cities</label>
@@ -120,20 +79,6 @@
                             <option value="">City 6</option>
                         </select>
                         <span class="warning-msg-block"></span>
-                    </div>
-
-                    {{-- Sub Type --}}
-                    <div>
-                        <div class="mb-3">
-                            <label for="" class="form-label required">Type</label>
-                            <select class="form-select border-bottom" aria-label="Default select example" name=""
-                                id="">
-                                <option value="">(Select One)</option>
-                                <option value="">Airport</option>
-                                <option value="">Local</option>
-                            </select>
-                            <span class="warning-msg-block"></span>
-                        </div>
                     </div>
 
                     <div class="form-check mb-3">
