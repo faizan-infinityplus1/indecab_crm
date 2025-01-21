@@ -6,6 +6,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Master\DutyTypeController;
 use App\Http\Controllers\Master\CategoriesVehicleGroupsController;
+use App\Http\Controllers\Master\TaxesController;
+use App\Http\Controllers\Master\CustomersController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->group(function () {
@@ -20,6 +22,12 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/duty-types/edit', [DutyTypeController::class, 'editDutyTypes'])->name('editDutyTypes');
     Route::get('/vehicle-groups', [CategoriesVehicleGroupsController::class, 'showVehicleGroups'])->name('showVehicleGroups');
     Route::get('/vehicle-groups/create', [CategoriesVehicleGroupsController::class, 'createVehicleGroups'])->name('createVehicleGroups');
+    
+    Route::get('/taxes', [TaxesController::class, 'showTaxes'])->name('showTaxes');
+    Route::get('/taxes/create', [TaxesController::class, 'createTaxes'])->name('createTaxes');
+    
+    Route::get('/customers', [CustomersController::class, 'showCustomers'])->name('showCustomers');
+    Route::get('/customers/create', [CustomersController::class, 'createCustomers'])->name('createCustomers');
 });
 
 

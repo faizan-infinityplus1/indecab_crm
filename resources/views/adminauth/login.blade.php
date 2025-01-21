@@ -38,6 +38,9 @@
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="{!! asset('admin/css/custom.css') !!}">
     <link rel='shortcut icon' type='image/x-icon' href="{!! asset('admin/img/favicon.ico') !!}" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css" integrity="sha512-v8QQ0YQ3H4K6Ic3PJkym91KoeNT5S3PnDKvqnwqFD1oiqIl653crGZplPdU5KKtHjO0QKcQ2aUlQZYjHczkmGw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -46,17 +49,55 @@
         <section class="section">
             <div class="container mt-5">
                 <div class="row">
-                    <div
-                        class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h4>Administrative Login</h4>
+                    {{-- <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4"> --}}
+                    <div class="col-md-5 mx-auto">
+                        <div class="card">
+                            <div class="card-header text-center justify-content-center bg-dark text-light">
+                                <h4 class="text-center">Sign in to continue to Infinity Plus 1 CRM</h4>
                             </div>
                             <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <img src="assets/image/infinityplus1_logo1.png" alt="" class="mx-auto" alt="logo" height="100px">
+                                    </div>
+                                </div>
                                 <form class="md-float-material form-material needs-validation" id="formLogin"
                                     method="POST">
                                     @csrf
                                     <div class="form-group">
+                                        <label class="" for="autoSizingInputGroup">Email</label>
+                                        <div class="input-group">
+                                          <div class="input-group-text"><i class="fa-solid fa-user"></i></div>
+                                          <input id="email" type="email"  class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Your Email Address" required tabindex="1" autofocus>
+                                          @if ($errors->has('email'))
+                                          <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                          </span>
+                                          @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="password">Password</label>
+                                        <!-- @if (Route::has('password.request'))
+                                            <div class="float-right">
+                                                <a href="{{ route('password.request') }}" class="text-small"
+                                                    id="password">
+                                                    Forgot Password?
+                                                </a>
+                                            </div>
+                                            @endif -->
+                                        <div class="input-group">
+                                          <div class="input-group-text"><i class="fa-solid fa-lock"></i></div>
+                                          <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                          name="password" placeholder="Password" tabindex="2" required>
+                                          @if ($errors->has('password'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                        @endif
+                                        </div>
+                                    </div>
+                                    {{-- <div class="form-group">
                                         <label for="password" class="control-label">Email</label>
                                         <input id="email" type="email"
                                             class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
@@ -88,7 +129,7 @@
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
                                         @endif
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
                                             <input class="custom-control-input" type="checkbox" name="remember"
@@ -96,12 +137,13 @@
                                             <label class="custom-control-label" for="remember">Remember Me</label>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group text-center">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block btnSubmit"
                                             tabindex="4">
                                             Login
                                         </button>
                                     </div>
+                                    <p class="text-center">© 2025 Infinity Plus 1 Pvt Ltd. Crafted with ❤️</p>
                                 </form>
                                 {{-- <div class="mt-5 text-muted text-left">
                                     <a href="{{ route('index') }}" target="_blank"><i class="fa fa-angle-double-left"
@@ -109,9 +151,9 @@
                                 </div> --}}
                             </div>
                         </div>
-                        <div class="mt-5 text-muted text-center">
+                        {{-- <div class="mt-5 text-muted text-center">
                             Designed & Developed By <a href="https://www.infinityplus1.in" target="_blank">Infinity Plus 1</a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -127,7 +169,9 @@
     <script src="{!! asset('admin/js/custom.js') !!}"></script>
     <script src="{!! asset('admin/js/jquery.validate.min.js') !!}"></script>
 
-    <script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/fontawesome.min.js" integrity="sha512-j12pXc2gXZL/JZw5Mhi6LC7lkiXL0e2h+9ZWpqhniz0DkDrO01VNlBrG3LkPBn6DgG2b8CDjzJT+lxfocsS1Vw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{-- <script>
         $(document).ready(function () {
 
             jQuery.validator.addMethod("validate_email", function (value, element) {
@@ -171,7 +215,7 @@
 
         });
 
-    </script>
+    </script> --}}
 </body>
 
 </html>
