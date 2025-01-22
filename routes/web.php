@@ -8,6 +8,7 @@ use App\Http\Controllers\Master\DutyTypeController;
 use App\Http\Controllers\Master\CategoriesVehicleGroupsController;
 use App\Http\Controllers\Master\TaxesController;
 use App\Http\Controllers\Master\CustomersController;
+use App\Http\Controllers\Master\MyDriversController;
 use App\Http\Controllers\Master\SuppliersController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,11 +32,14 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/customers/create', [CustomersController::class, 'createCustomers'])->name('createCustomers');
     Route::get('/customers/groups', [CustomersController::class, 'showCustomersGroups'])->name('showCustomersGroups');
     Route::get('/customers/groups/create', [CustomersController::class, 'createCustomersGroups'])->name('createCustomersGroups');
-
+    
     Route::get('/suppliers', [SuppliersController::class, 'showSuppliers'])->name('showSuppliers');
     Route::get('/suppliers/create', [SuppliersController::class, 'createSuppliers'])->name('createSuppliers');
     Route::get('/suppliers/groups', [SuppliersController::class, 'showSuppliersGroups'])->name('showSuppliersGroups');
     Route::get('/suppliers/groups/create', [SuppliersController::class, 'createSuppliersGroups'])->name('createSuppliersGroups');
+    
+    Route::get('/drivers', [MyDriversController::class, 'showDrivers'])->name('showDrivers');
+    Route::get('/drivers/create', [MyDriversController::class, 'createDrivers'])->name('createDrivers');
 });
 
 
