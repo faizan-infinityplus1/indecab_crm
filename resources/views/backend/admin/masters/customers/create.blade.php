@@ -1,5 +1,11 @@
 @extends('layouts.admin-master')
 @section('content')
+
+<style>
+    .ql-editor {
+        min-height: 92px;
+    }
+</style>
     <div x-data="block">
         <div class="container-fluid px-5">
             {{-- page heading start --}}
@@ -772,11 +778,17 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="" class="form-label">Notes</label>
-                                <textarea class="form-control" id="" rows="10"></textarea>
+                                <textarea class="form-control" id="" rows="5"></textarea>
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
-                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="editor" class="form-label">Invoice Terms & Conditions</label>
+                                <div id="editor">
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
 

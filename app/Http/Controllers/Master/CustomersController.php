@@ -15,4 +15,13 @@ class CustomersController extends Controller
     {
         return view('backend.admin.masters.customers.create');
     }
+    public function showCustomersGroups()
+    {
+        return view('backend.admin.masters.customers.groups');
+    }
+    public function createCustomersGroups()
+    {
+        return view('backend.admin.masters.customers.gropus-create');
+    }
+
 }

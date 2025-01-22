@@ -28,6 +28,8 @@ Route::middleware('auth:admin')->group(function () {
     
     Route::get('/customers', [CustomersController::class, 'showCustomers'])->name('showCustomers');
     Route::get('/customers/create', [CustomersController::class, 'createCustomers'])->name('createCustomers');
+    Route::get('/customers/groups', [CustomersController::class, 'showCustomersGroups'])->name('showCustomersGroups');
+    Route::get('/customers/groups/create', [CustomersController::class, 'createCustomersGroups'])->name('createCustomersGroups');
 });
 
 
