@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class MstDutyType extends Model
 {
     protected $fillable = [
-        'type',
-        'type_name',
+        'duty_type',
+        'duty_name',
         'max_hours',
         'maxkm',
         'maxkmper_day',
-        'outside_allowan',
+        'apply_outside_allowance',
         'maxhoursper_day',
         'totkm',
         'max_days',

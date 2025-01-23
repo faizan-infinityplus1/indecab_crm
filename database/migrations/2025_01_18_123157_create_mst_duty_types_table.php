@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('mst_duty_types', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->string('name');
+            $table->string('duty_type');
+            $table->string('duty_name');
             $table->string('sub_type')->nullable();
             $table->integer('max_hours')->nullable();
             $table->integer('max_km')->nullable();
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('max_days')->nullable();
             $table->integer('total_hours')->nullable();
             $table->longText('city_limit')->nullable();
-            $table->boolean('outside_allowan')->default(false);
+            $table->boolean('apply_outside_allowance')->default(false);
             $table->boolean('p2p')->default(false);
             $table->boolean('g2g')->default(false);
             $table->boolean('g_strkmtim')->default(false);

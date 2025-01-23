@@ -42,14 +42,21 @@
 
     {{-- Quill js --}}
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js"></script>
     {{-- Initialize Quill editor --}}
     <script>
-        const toolbarOptions = [['bold', 'italic', 'underline', { 'color': [] }, { 'background': [] }, 'link', 'image']];
+        const toolbarOptions = [
+            ['bold', 'italic', 'underline', {
+                'color': []
+            }, {
+                'background': []
+            }, 'link', 'image']
+        ];
         const quill = new Quill('#editor', {
             theme: 'snow',
             modules: {
-                        toolbar: toolbarOptions
-                    }
+                toolbar: toolbarOptions
+            }
         });
     </script>
     @yield('extrajs')
