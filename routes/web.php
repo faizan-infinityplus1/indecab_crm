@@ -20,26 +20,29 @@ Route::middleware('guest:admin')->group(function () {
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/duty-types', [DutyTypeController::class, 'index'])->name('showDutyTypes');
+    Route::get('/duty-types', [DutyTypeController::class, 'index'])->name('dutytype.index');
     Route::get('/duty-types/manage/{id?}', [DutyTypeController::class, 'manage'])->name('dutytype.manage');
-    Route::post('/duty-types/create', [DutyTypeController::class, 'store'])->name('dutytype.store');
+    Route::post('/duty-types/store', [DutyTypeController::class, 'store'])->name('dutytype.store');
     Route::post('/duty-types/update/{id}', [DutyTypeController::class, 'update'])->name('dutytype.update');
-    Route::get('/vehicle-groups', [CategoriesVehicleGroupsController::class, 'showVehicleGroups'])->name('showVehicleGroups');
-    Route::get('/vehicle-groups/create', [CategoriesVehicleGroupsController::class, 'createVehicleGroups'])->name('createVehicleGroups');
-    
+
+    Route::get('/vehicle-groups', [CategoriesVehicleGroupsController::class, 'index'])->name('vehiclegroups.index');
+    Route::get('/vehicle-groups/manage/{id?}', [CategoriesVehicleGroupsController::class, 'manage'])->name('vehiclegroups.manage');
+    Route::post('/vehicle-groups/store', [CategoriesVehicleGroupsController::class, 'store'])->name('vehiclegroups.store');
+    Route::post('/vehicle-groups/update/{id}', [CategoriesVehicleGroupsController::class, 'update'])->name('vehiclegroups.update');
+
     Route::get('/taxes', [TaxesController::class, 'showTaxes'])->name('showTaxes');
     Route::get('/taxes/create', [TaxesController::class, 'createTaxes'])->name('createTaxes');
-    
+
     Route::get('/customers', [CustomersController::class, 'showCustomers'])->name('showCustomers');
     Route::get('/customers/create', [CustomersController::class, 'createCustomers'])->name('createCustomers');
     Route::get('/customers/groups', [CustomersController::class, 'showCustomersGroups'])->name('showCustomersGroups');
     Route::get('/customers/groups/create', [CustomersController::class, 'createCustomersGroups'])->name('createCustomersGroups');
-    
+
     Route::get('/suppliers', [SuppliersController::class, 'showSuppliers'])->name('showSuppliers');
     Route::get('/suppliers/create', [SuppliersController::class, 'createSuppliers'])->name('createSuppliers');
     Route::get('/suppliers/groups', [SuppliersController::class, 'showSuppliersGroups'])->name('showSuppliersGroups');
     Route::get('/suppliers/groups/create', [SuppliersController::class, 'createSuppliersGroups'])->name('createSuppliersGroups');
-    
+
     Route::get('/drivers', [MyDriversController::class, 'showDrivers'])->name('showDrivers');
     Route::get('/drivers/create', [MyDriversController::class, 'createDrivers'])->name('createDrivers');
 

@@ -33,12 +33,12 @@ class DutyTypeController extends Controller
                 'max_hours_per_day' => 'nullable|numeric',
                 'total_km' => 'nullable|numeric',
                 'total_hours' => 'nullable|numeric',
-                'city_limit' => 'nullable|array', 
+                'city_limit' => 'nullable|array',
                 'sub_type' => 'string',
 
             ],
             [
-                'selectType.required' => 'Please Enter Select Type',
+                'selectType.required' => 'Please Select Select Type',
                 'name.required' => 'Please Filled Duty Type Name ',
             ]
         );
@@ -89,11 +89,11 @@ class DutyTypeController extends Controller
                 'max_hours_per_day' => 'nullable|numeric',
                 'total_km' => 'nullable|numeric',
                 'total_hours' => 'nullable|numeric',
-                'city_limit' => 'nullable|array', 
+                'city_limit' => 'nullable|array',
                 'sub_type' => 'string',
             ],
             [
-                'selectType.required' => 'Please Enter Select Type',
+                'selectType.required' => 'Please Select Select Type',
                 'name.required' => 'Please Filled Duty Type Name ',
             ]
         );
@@ -101,10 +101,11 @@ class DutyTypeController extends Controller
             // dd($request->max_hours);
             // connectify('error', 'Add Product', $validator->errors()->first());
             dd($validator->errors()->first());
-            return redirect(route('dutytype.manage'))->withInput();
+            return redirect(route('dutytype.manage', $request->id))->withInput();
         }
+        $dutyType = MstDutyType::where('id', $request->id)->firstOrFail();
 
-        $dutyType = MstDutyType::create([
+        $dutyType->update([
             'duty_type' => $request->duty_type,
             'duty_name' => $request->duty_name,
             'max_hours' => $request->max_hours,
@@ -125,7 +126,7 @@ class DutyTypeController extends Controller
         ]);
         if ($dutyType) {
             // connectify('success', 'Product Added', 'Duty Type has been added successfully !');
-            return redirect(route('dutytype.manage'));
+            return redirect(route('dutytype.manage', $request->id));
         }
     }
 }

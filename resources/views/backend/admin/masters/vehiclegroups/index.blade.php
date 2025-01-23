@@ -16,7 +16,7 @@
                 <h1>Categories - Vehicle Groups</h1>
             </div>
             <div class="col-md-6 text-end">
-                <div class="btn-group" role="group"><a href="{{route('createVehicleGroups')}}" class="btn btn-primary">Add Vehicle Group</a></div>
+                <div class="btn-group" role="group"><a href="{{route('vehiclegroups.manage')}}" class="btn btn-primary">Add Vehicle Group</a></div>
             </div>
         </div>
     </div>

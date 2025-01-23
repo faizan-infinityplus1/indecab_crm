@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Lang;
 
 class LoginController extends Controller
@@ -29,6 +30,9 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
+//         $password = '123456789'; // User's plain text password
+// $hashedPassword = Hash::make($password); // Hash the password
+// dd($hashedPassword);
         return view('adminauth.login');
     }
 

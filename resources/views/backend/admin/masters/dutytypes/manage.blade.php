@@ -15,12 +15,12 @@
             {{-- form start --}}
             <div>
                 <form action="{{ $data ? route('dutytype.update', $data->id) : route('dutytype.store') }}" method="post"
-                    id="formAddDutyType">
+                    id="formDutyType">
                     @csrf
                     <div class="mb-3">
                         <label for="duty_type" class="form-label">Type</label>
                         <select class="form-select border-bottom" name="duty_type" id="selectedType"
-                            @change="changedType($event.target.value)" required>
+                            @change="changedType($event.target.value)" >
                             <option selected="selected" style="display:none;" value="">(Select One)</option>
                             <option value="hrKmLocal"
                                 {{ old('selectedType', $data->duty_type ?? '') == 'hrKmLocal' ? 'selected' : '' }}>HR-KM
@@ -40,13 +40,13 @@
                                 Long
                                 Duration - Total KM &amp; HR (Monthly Bookings)
                             </option>
-                            <option value="flatRate">Flat Rate</option>
+                            <option value="flatRate" {{ old('selectedType', $data->duty_type ?? '') == 'flatRate' ? 'selected' : '' }}>Flat Rate</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="duty_name" class="form-label">Duty Type Name </label>
                         <input type="text" name="duty_name" value="{{ old('name', $data->duty_name ?? '') }}"
-                            class="form-control  border-bottom" id="duty_name" placeholder="Type Duty Name" required>
+                            class="form-control  border-bottom" id="duty_name" placeholder="Type Duty Name" >
                         <span class="warning-msg-block"></span>
                     </div>
                     {{-- HR-KM (Local) --}}
@@ -147,11 +147,11 @@
 
                     <div x-show="subType">
                         <div class="mb-3">
-                            <label for="subType" class="form-label ">Sub Type</label>
-                            <select class="form-select border-bottom" name="sub_type" id="subType">
-                                <option value="select_one">(Select One)</option>
-                                <option value="airport">Airport</option>
-                                <option value="local">Local</option>
+                            <label for="sub_type" class="form-label ">Sub Type</label>
+                            <select class="form-select border-bottom" name="sub_type" id="sub_type">
+                                <option value="select_one" {{ old('sub_type', $data->sub_type ?? '') == 'select_one' ? 'selected' : '' }}>(Select One)</option>
+                                <option value="airport" {{ old('sub_type', $data->sub_type ?? '') == 'airport' ? 'selected' : '' }}>Airport</option>
+                                <option value="local" {{ old('sub_type', $data->sub_type ?? '') == 'local' ? 'selected' : '' }}>Local</option>
                             </select>
                             <span class="warning-msg-block"></span>
                         </div>
@@ -311,14 +311,13 @@
     <script>
         $("#city_limit").select2({
             placeholder: "Select an Option",
-            allowClear: true,
-            required: true
+            allowClear: true
         });
         // Laravel variable containing the comma-separated value from the database
 
 
         $(document).ready(function() {
-            $("#formAddDutyType").validate({
+            $("#formDutyType").validate({
                 rules: {
                     duty_type: {
                         required: true
