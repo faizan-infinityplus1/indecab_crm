@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
+use App\Models\MstDutyType;
 use Illuminate\Http\Request;
 
 class DutyTypeController extends Controller
@@ -11,12 +12,17 @@ class DutyTypeController extends Controller
     {
         return view('backend.admin.masters.dutytypes.index');
     }
-    public function show()
+    public function manage($id = null)
     {
-        return view('backend.admin.masters.dutytypes.show');
+        $data = $id ? MstDutyType::find($id) : null; // Find the record or default to null
+        return view('backend.admin.masters.dutytypes.manage',compact('data'));
     }
-    public function store(){
-        
+    public function store(Request $request){
+        dd($request);
+    }
+
+    public function update(){
+
     }
  
 }

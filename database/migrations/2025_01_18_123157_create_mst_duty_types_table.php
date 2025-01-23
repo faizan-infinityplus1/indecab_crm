@@ -24,9 +24,9 @@ return new class extends Migration
             $table->integer('max_days')->nullable();
             $table->integer('total_hours')->nullable();
             $table->longText('city_limit')->nullable();
-            $table->boolean('apply_out')->default(false);
-            $table->boolean('isp2p')->default(false);
-            $table->boolean('isg2g')->default(false);
+            $table->boolean('outside_allowan')->default(false);
+            $table->boolean('p2p')->default(false);
+            $table->boolean('g2g')->default(false);
             $table->boolean('g_strkmtim')->default(false);
             $table->boolean('g_endkmtim')->default(false);
             $table->boolean('disdutroute')->default(false);
