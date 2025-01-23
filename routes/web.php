@@ -10,6 +10,7 @@ use App\Http\Controllers\Master\TaxesController;
 use App\Http\Controllers\Master\CustomersController;
 use App\Http\Controllers\Master\MyDriversController;
 use App\Http\Controllers\Master\SuppliersController;
+use App\Http\Controllers\Master\VehiclesController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->group(function () {
@@ -40,6 +41,9 @@ Route::middleware('auth:admin')->group(function () {
     
     Route::get('/drivers', [MyDriversController::class, 'showDrivers'])->name('showDrivers');
     Route::get('/drivers/create', [MyDriversController::class, 'createDrivers'])->name('createDrivers');
+
+    Route::get('/vehicles', [VehiclesController::class, 'showVehicles'])->name('showVehicles');
+    Route::get('/vehicles/create', [VehiclesController::class, 'createVehicles'])->name('createVehicles');
 });
 
 
