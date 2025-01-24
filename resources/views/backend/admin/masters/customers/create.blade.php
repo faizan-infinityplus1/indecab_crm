@@ -822,4 +822,20 @@
         </div>
     </div>
 @endsection
- 
+@section('extrajs')
+<script>
+    const toolbarOptions = [
+        ['bold', 'italic', 'underline', {
+            'color': []
+        }, {
+            'background': []
+        }, 'link', 'image']
+    ];
+    const quill = new Quill('#editor', {
+        theme: 'snow',
+        modules: {
+            toolbar: toolbarOptions
+        }
+    });
+</script>
+@endsection

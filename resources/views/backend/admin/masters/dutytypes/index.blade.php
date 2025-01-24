@@ -12,7 +12,7 @@
 </style>
 
 
-<div class="container-fluid">
+{{-- <div class="container-fluid">
     <div class="page-header page-header-sticky bg-white">
         <div class="row">
             <div class="col-md-6">
@@ -24,66 +24,226 @@
         </div>
     </div>
     <div>
-        <div class="form-group ic-list-simple-filter">
-            <div class="input-group">
-                <div class="search-block"><i class="icon icon-search"></i></div>
-                <input type="search" class="form-control" placeholder="Search by duty type" value="">
-            </div>
-        </div>
-        <div class="row pagination-row">
-            <div class="col">
-                <p class="text-end">Total <b>30</b> records</p>
-            </div>
-        </div>
+       
         <div>
-            <table class="col-12">
+            <table id="dutyTypeTable" class=" display" >
                 <thead>
-                    <tr role="row">
-                        <th colspan="1" scope="col" role="columnheader" title="Toggle SortBy" class="" >Name<div>
-                                <div></div>
-                            </div>
-                        </th>
-                        <th colspan="1" scope="col" role="columnheader" title="Toggle SortBy" class="" width="380">Type<div>
-                                <div></div>
-                            </div>
-                        </th>
-                        <th colspan="1" scope="col" role="columnheader" title="Toggle SortBy" class="text-end" width="130">Max. Kilometers<div>
-                                <div></div>
-                            </div>
-                        </th>
-                        <th colspan="1" scope="col" role="columnheader" title="Toggle SortBy" class="text-end" width="130">Max. Hours<div>
-                                <div></div>
-                            </div>
-                        </th>
-                        <th colspan="1" scope="col" role="columnheader" class="" width="50">
-                            <div>
-                                <div></div>
-                            </div>
-                        </th>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary</th>
+                        <th style="width: 50px;"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr role="row">
-                        <td>10Hr 80Km</td>
-                        <td>HR-KM (Local)</td>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>asdasd Architect</td>
+                        <td>Edinburgh</td>
+                        <td>123123123</td>
+                        <td>2011-04-25</td>
+                        <td>$320,800</td>
                         <td>
-                            <div class="text-end">80</div>
-                        </td>
-                        <td>
-                            <div class="text-end">10</div>
-                        </td>
-                        <td class="-action-cell">
-                            <div class="dropdown"><span class="dropdown-toggle icon-cog -action-cell-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a>View Activity Logs</a></li>
-                                    <li><a><span class="text-danger">Delete</span></a></li>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>asdasdasd Architect</td>
+                        <td>rtyrtyrty</td>
+                        <td>61</td>
+                        <td>2011-04-25</td>
+                        <td>$320,800</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>qweqwe Nixon</td>
+                        <td>jghjfg Architect</td>
+                        <td>zbxbxcvb</td>
+                        <td>xcbvxcbxcb</td>
+                        <td>2011-04-25</td>
+                        <td>$320,800</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div> --}}
+
+
+<div class="card rounded-0">
+    <div class="card-header d-flex justify-content-between">
+        <h4 >Duty Types</h4>
+        <button class="btn btn-primary">Add Duty Type</button>
+    </div>
+    <div class="card-body">
+        @if($errors->any())
+        <div class="alert alert-danger ">
+            <span class="close" onclick="this.parentElement.style.display='none';"
+                style="cursor: pointer;">&times;</span>
+            @foreach ($errors->all() as $error)
+            <li>
+                <span class="text-white">{{ $error }}</span>
+            </li>
+            @endforeach
+        </div>
+        @endif
+        <div class="table-responsive">
+            <table class="table table-striped table-hover datatable" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary</th>
+                        <th>Setting</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>asdasd Architect</td>
+                        <td>Edinburgh</td>
+                        <td>123123123</td>
+                        <td>2011-04-25</td>
+                        <td>$320,800</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>asdasdasd Architect</td>
+                        <td>rtyrtyrty</td>
+                        <td>61</td>
+                        <td>2011-04-25</td>
+                        <td>$320,800</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>qweqwe Nixon</td>
+                        <td>jghjfg Architect</td>
+                        <td>zbxbxcvb</td>
+                        <td>xcbvxcbxcb</td>
+                        <td>2011-04-25</td>
+                        <td>$320,800</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary</th>
+                        <th>Setting</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
 </div>
+
+@endsection
+
+
+@section('extrajs')
+<script>
+    $(document).ready( function () {
+    $('.datatable').DataTable({
+        responsive: true
+    });
+    $(".dropdown-toggle").dropdown();
+
+} );
+</script>
 @endsection

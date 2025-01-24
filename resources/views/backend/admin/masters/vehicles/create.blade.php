@@ -1,11 +1,7 @@
 @extends('layouts.admin-master')
 @section('content')
 
-<style>
-    .ql-editor {
-        min-height: 92px;
-    }
-</style>
+
 <div>
     <div class="container-fluid px-5">
         {{-- page heading start --}}

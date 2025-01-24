@@ -42,7 +42,7 @@ class CategoriesVehicleGroupsController extends Controller
         );
         if ($validator->fails()) {
             // connectify('error', 'Add Product', $validator->errors()->first());
-            dd($validator->errors()->first());
+            dd($validator->errors()->first(),'i m here');
             return redirect(route('vehiclegroups.manage'))->withInput();
         }
         if ($request->hasFile('image')) {
@@ -92,13 +92,14 @@ class CategoriesVehicleGroupsController extends Controller
             $old_image = "/storage/images/categories-vehicle-groups/";
             File::delete(public_path($old_image . $vehGrpName->image));
 
-            $request['img'] = $vehGrpName->image . '.' . pathinfo($request->image->getClientOriginalName(), PATHINFO_EXTENSION);
+            $request['img'] = uniqid() . '.' . pathinfo($request->image->getClientOriginalName(), PATHINFO_EXTENSION);
             $request->image->move(public_path('storage/images/categories-vehicle-groups'), $request->img);
         }
 
         $vehGrpName->update([
             'name' => $request->name,
             'description' => $request->description,
+            'image' => $request->img,
             'seat_capacity' => $request->seat_capacity,
             'lug_count' => $request->lug_count,
         ]);

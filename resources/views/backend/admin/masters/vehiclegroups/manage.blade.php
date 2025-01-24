@@ -33,8 +33,8 @@
                         <div class="col-md-4 mb-3">
                             <label for="" class="form-label">Avatar </label>
                             <div>
-                                <label for="qwer" class="btn shadow-sm border rounded-1">Choose File</label>
-                                <input type="file" class="form-control" accept="image/png, image/gif, image/jpeg"
+                                <label for="image" class="btn shadow-sm border rounded-1">Choose File</label>
+                                <input type="file" class="form-control d-none" accept="image/png, image/gif, image/jpeg"
                                     name="image" value="{{ old('image', $data->image ?? '') }}"
                                     id="image">
                             </div>
