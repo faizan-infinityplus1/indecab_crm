@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
-use App\Models\CatVehGroup;
+use App\Models\MstCatVehGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -17,7 +17,7 @@ class CategoriesVehicleGroupsController extends Controller
     }
     public function manage($id = null)
     {
-        $data = $id ? CatVehGroup::find($id) : null; // Find the record or default to null
+        $data = $id ? MstCatVehGroup::find($id) : null; // Find the record or default to null
 
         return view('backend.admin.masters.vehiclegroups.manage', compact('data'));
     }
@@ -51,7 +51,7 @@ class CategoriesVehicleGroupsController extends Controller
             // $request->image->storeAs('public/images/categories-vehicle-groups', $request->img);
             $request->image->move(public_path('storage/images/categories-vehicle-groups'), $request->img);
         }
-        $vehGrpName = CatVehGroup::create([
+        $vehGrpName = MstCatVehGroup::create([
             'name' => $request->name,
             'description' => $request->description,
             'image' => $request->img,
@@ -87,7 +87,7 @@ class CategoriesVehicleGroupsController extends Controller
             return redirect(route('vehiclegroups.manage', $request->id))->withInput();
         }
 
-        $vehGrpName = CatVehGroup::where('id', $request->id)->firstOrFail();
+        $vehGrpName = MstCatVehGroup::where('id', $request->id)->firstOrFail();
         if ($request->hasFile('image')) {
             $old_image = "/storage/images/categories-vehicle-groups/";
             File::delete(public_path($old_image . $vehGrpName->image));

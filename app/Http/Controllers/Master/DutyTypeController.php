@@ -35,7 +35,6 @@ class DutyTypeController extends Controller
                 'total_hours' => 'nullable|numeric',
                 'city_limit' => 'nullable|array',
                 'sub_type' => 'string',
-
             ],
             [
                 'selectType.required' => 'Please Select Select Type',

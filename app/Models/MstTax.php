@@ -4,14 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CatVehGroup extends Model
+class MstTax extends Model
 {
     protected $fillable = [
         'name',  //required
-        'description',
-        'image',
-        'seat_capacity',
-        'lug_count',
+        'percentage',
+        'in_active'
 
     ];
 }

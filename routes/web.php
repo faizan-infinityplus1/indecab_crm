@@ -30,8 +30,10 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/vehicle-groups/store', [CategoriesVehicleGroupsController::class, 'store'])->name('vehiclegroups.store');
     Route::post('/vehicle-groups/update/{id}', [CategoriesVehicleGroupsController::class, 'update'])->name('vehiclegroups.update');
 
-    Route::get('/taxes', [TaxesController::class, 'showTaxes'])->name('showTaxes');
-    Route::get('/taxes/create', [TaxesController::class, 'createTaxes'])->name('createTaxes');
+    Route::get('/taxes', [TaxesController::class, 'index'])->name('taxes.index');
+    Route::get('/taxes/manage/{id?}', [TaxesController::class, 'manage'])->name('taxes.manage');
+    Route::post('/taxes/store', [TaxesController::class, 'store'])->name('taxes.store');
+    Route::post('/taxes/update/{id}', [TaxesController::class, 'update'])->name('taxes.update');
 
     Route::get('/customers', [CustomersController::class, 'showCustomers'])->name('showCustomers');
     Route::get('/customers/create', [CustomersController::class, 'createCustomers'])->name('createCustomers');
