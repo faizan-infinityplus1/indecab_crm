@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cat_veh_groups', function (Blueprint $table) {
+        Schema::create('mst_taxes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description')->nullable();
-            $table->string('image')->nullable();
-            $table->string('seat_capacity')->nullable();
-            $table->integer('lug_count')->nullable();
+            $table->integer('percentage')->nullable();
+            $table->boolean('in_active')->default(false);
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cat_veh_groups');
+        Schema::dropIfExists('mst_taxes');
     }
 };

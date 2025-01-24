@@ -16,7 +16,7 @@
                 <h1>Taxes</h1>
             </div>
             <div class="col-md-6 text-end">
-                <div class="btn-group" role="group"><a href="{{route('createTaxes')}}" class="btn btn-primary">Add Tax Type</a></div>
+                <div class="btn-group" role="group"><a href="{{route('taxes.manage')}}" class="btn btn-primary">Add Tax Type</a></div>
             </div>
         </div>
     </div>
