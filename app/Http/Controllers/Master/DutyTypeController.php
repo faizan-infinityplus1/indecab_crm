@@ -47,7 +47,6 @@ class DutyTypeController extends Controller
             dd($validator->errors()->first());
             return redirect(route('dutytype.manage'))->withInput();
         }
-
         $dutyType = MstDutyType::create([
             'duty_type' => $request->duty_type,
             'duty_name' => $request->duty_name,
@@ -61,6 +60,7 @@ class DutyTypeController extends Controller
             'city_limit' => $request->city_limit,
             'sub_type' => $request->sub_type,
             'apply_outside_allowance' => $request->apply_outside_allowance ?? false,
+            'city_limit' => is_array($request->city_limit) ? implode(',', $request->city_limit) : $request->city_limit,
             'p2p' => $request->p2p ?? false,
             'g2g' => $request->g2g ?? false,
             'g_strkmtim' => $request->g_strkmtim ?? false,
