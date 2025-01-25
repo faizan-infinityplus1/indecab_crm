@@ -122,9 +122,9 @@
 
 
 <div class="card rounded-0">
-    <div class="card-header d-flex justify-content-between">
+    <div class="card-header d-flex justify-content-between ">
         <h4 >Duty Types</h4>
-        <button class="btn btn-primary">Add Duty Type</button>
+        <div class="btn-group" role="group"><a href="{{route('dutytype.manage')}}" class="btn btn-primary">Add Duty Type</a></div>
     </div>
     <div class="card-body">
         @if($errors->any())
@@ -143,12 +143,10 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                        <th>Setting</th>
+                        <th>Type</th>
+                        <th>Max. Kilometers</th>
+                        <th>Max. Hours</th>
+                        <th width="100">setting</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -157,8 +155,6 @@
                         <td>asdasd Architect</td>
                         <td>Edinburgh</td>
                         <td>123123123</td>
-                        <td>2011-04-25</td>
-                        <td>$320,800</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button"
@@ -178,8 +174,6 @@
                         <td>asdasdasd Architect</td>
                         <td>rtyrtyrty</td>
                         <td>61</td>
-                        <td>2011-04-25</td>
-                        <td>$320,800</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button"
@@ -199,8 +193,25 @@
                         <td>jghjfg Architect</td>
                         <td>zbxbxcvb</td>
                         <td>xcbvxcbxcb</td>
-                        <td>2011-04-25</td>
-                        <td>$320,800</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>qweqwe Nixon</td>
+                        <td>jghjfg Architect</td>
+                        <td>zbxbxcvb</td>
+                        <td>xcbvxcbxcb</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button"
@@ -220,12 +231,10 @@
                 <tfoot>
                     <tr>
                         <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                        <th>Setting</th>
+                        <th>Type</th>
+                        <th>Max. Kilometers</th>
+                        <th>Max. Hours</th>
+                        <th>setting</th>
                     </tr>
                 </tfoot>
             </table>
