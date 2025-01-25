@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-6 text-end">
                 <div class="btn-group" role="group"><a href="{{route('customers.index')}}" class="btn btn-light border">Manage Customer Groups</a></div>
-                <div class="btn-group" role="group"><a href="{{route('customers.manage')}}" class="btn btn-primary">Add Customer</a></div>
+                <div class="btn-group" role="group"><a href="{{route('customers.create')}}" class="btn btn-primary">Add Customer</a></div>
             </div>
         </div>
     </div>
