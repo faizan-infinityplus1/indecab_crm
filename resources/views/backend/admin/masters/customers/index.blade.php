@@ -97,11 +97,29 @@
 
 <div class="card rounded-0">
     <div class="card-header d-flex justify-content-between ">
-        <h4 >Taxes</h4>
+        <div class="col-md-6">
+            <h1>Customers</h1>
+        </div>
+        <div class="col-md-6 text-end d-flex justify-content-end align-items-center gap-2">
+            <div class="btn-group" role="group"><a href="{{route('customers.index')}}" class="btn btn-light border">Manage Customer Groups</a></div>
+            <div class="btn-group" role="group"><a href="{{route('customers.create')}}" class="btn btn-primary">Add Customer</a></div>
+            <div class="dropdown">
+                <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Merge Two Customers</a></li>
+                  <li><a class="dropdown-item" href="#">Import</a></li>
+                  <li><a class="dropdown-item" href="#">Export Customers</a></li>
+                  <li><a class="dropdown-item" href="#">Export Pricing</a></li>
+                </ul>
+            </div>
+        </div>
+        {{-- <h4 >Taxes</h4>
         <div class="col-md-6 text-end">
             <div class="btn-group" role="group"><a href="{{route('showCustomersGroups')}}" class="btn btn-light border">Manage Customer Groups</a></div>
             <div class="btn-group" role="group"><a href="{{route('customers.create')}}" class="btn btn-primary">Add Customer</a></div>
-        </div>
+        </div> --}}
         {{-- <div class="btn-group" role="group"><a href="{{route('taxes.manage')}}" class="btn btn-primary">Add Tax Type</a></div> --}}
     </div>
     <div class="card-body">

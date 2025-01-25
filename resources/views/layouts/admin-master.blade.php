@@ -30,7 +30,7 @@
 <body>
     <nav class="navbar fixed-top bg-dark text-white px-3 py-0 d-flex justify-content-between align-items-center">
         <div class="left_nav_menu d-flex align-items-center">
-            <div class="logo_container bg-light py-2">
+            <div class="logo_container bg-light py-2 my-2">
                 <a href="{{route('admin.dashboard')}}" class="text-decoration-none text-white">
                     {{-- <img src="" alt=""> --}}
                     {{-- Mumbai Cab Service --}}
@@ -169,7 +169,7 @@
               <a href="#" class="text-white"> Help</a> 
         </div>
     </nav>
-    <div style="margin-top: 65px;">
+    <div style="margin-top: 75px;">
         @yield('content')
     </div>
 
