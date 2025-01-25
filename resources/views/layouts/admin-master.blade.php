@@ -106,7 +106,7 @@
                           <li><a class="dropdown-item" href="{{route('vehiclegroups.index')}}">Categories - Vehicle Groups</a></li>
                           <li><a class="dropdown-item" href="{{route('taxes.index')}}">Taxes</a></li>
                           <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="{{route('showCustomers')}}">Customers</a></li>
+                          <li><a class="dropdown-item" href="{{route('customers.index')}}">Customers</a></li>
                           <li><a class="dropdown-item" href="{{route('showSuppliers')}}">Suppliers</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="{{route('showDrivers')}}">My Drivers</a></li>
@@ -123,7 +123,7 @@
                           <li><a class="dropdown-item" href="#">My Companies</a></li>
                         </ul>
                     </li>
-                    <li class="nav_menu_item dropdown">
+                    {{-- <li class="nav_menu_item dropdown">
                         <a href="#" class="nav_menu_link nav_parent_link text-decoration-none text-white p-3" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-chart-line"></i>
                             Network
@@ -132,7 +132,7 @@
                           <li><a class="dropdown-item" href="#">My Associates</a></li>
                           <li><a class="dropdown-item" href="#">All Associates</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     {{-- <li class="nav_menu_item dropdown">
                         <a href="#" class="nav_menu_link nav_parent_link text-decoration-none text-white p-3">
                             <i class="fa-solid fa-location-dot"></i>

@@ -100,7 +100,7 @@
         <h4 >Taxes</h4>
         <div class="col-md-6 text-end">
             <div class="btn-group" role="group"><a href="{{route('showCustomersGroups')}}" class="btn btn-light border">Manage Customer Groups</a></div>
-            <div class="btn-group" role="group"><a href="{{route('createCustomers')}}" class="btn btn-primary">Add Customer</a></div>
+            <div class="btn-group" role="group"><a href="{{route('customers.create')}}" class="btn btn-primary">Add Customer</a></div>
         </div>
         {{-- <div class="btn-group" role="group"><a href="{{route('taxes.manage')}}" class="btn btn-primary">Add Tax Type</a></div> --}}
     </div>

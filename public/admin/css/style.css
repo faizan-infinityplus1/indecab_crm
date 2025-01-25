@@ -5,3 +5,24 @@
 .logo_container img {
     height: 50px;
 }
+
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="date"], select {
+    border-radius: 0px !important;
+    border: none !important;
+    border-bottom: 1px solid #dee2e6 !important   ;
+    /* border-bottom: 1px solid blue; */
+}
+.form-control, textarea.form-control {
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #dee2e6;
+    background-color: transparent;
+}
+.form-control:focus, .form-select:focus {
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid blue !important;
+    border-radius: 0;
+}
+
