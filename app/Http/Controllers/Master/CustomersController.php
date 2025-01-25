@@ -7,13 +7,21 @@ use Illuminate\Http\Request;
 
 class CustomersController extends Controller
 {
-    public function showCustomers()
+    public function index()
     {
         return view('backend.admin.masters.customers.index');
     }
-    public function createCustomers()
+    public function create()
     {
         return view('backend.admin.masters.customers.create');
+    }
+    public function store(Request $request) {
+        dd($request);
+
+    }
+    public function update(Request $request)
+    {
+        dd($request);
     }
     public function showCustomersGroups()
     {
@@ -23,5 +31,4 @@ class CustomersController extends Controller
     {
         return view('backend.admin.masters.customers.groups-create');
     }
-
 }
