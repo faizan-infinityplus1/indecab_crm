@@ -15,7 +15,7 @@ class TaxesController extends Controller
     }
     public function manage($id = null)
     {
-        $data = $id ? MstTax::find($id) : null; // Find the record or default to null
+        $data = $id ? MstTax::active()->find($id) : null; // Find the record or default to null
         return view('backend.admin.masters.taxes.manage', compact('data'));
     }
 

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('mst_duty_types', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('admin_id')->nullable();
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('restrict');
             $table->string('duty_type');
             $table->string('duty_name');
             $table->string('sub_type')->nullable();
