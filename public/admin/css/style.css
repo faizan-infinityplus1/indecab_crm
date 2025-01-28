@@ -6,6 +6,11 @@
     height: 50px;
 }
 
+.page-heading-container {
+    padding-left: 27px;
+    padding-right: 27px;
+}
+
 input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="date"], select {
     border-radius: 0px !important;
     border: none !important;
@@ -26,3 +31,9 @@ input[type="text"], input[type="password"], input[type="email"], input[type="num
     border-radius: 0;
 }
 
+/* modal code start */
+.activity-logs-modal {
+    min-width: 900px;
+}
+
+/* modal code end */

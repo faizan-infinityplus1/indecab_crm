@@ -19,8 +19,10 @@
                 <h1>Customers</h1>
             </div>
             <div class="col-md-6 text-end">
-                <div class="btn-group" role="group"><a href="{{route('customers.index')}}" class="btn btn-light border">Manage Customer Groups</a></div>
-                <div class="btn-group" role="group"><a href="{{route('customers.create')}}" class="btn btn-primary">Add Customer</a></div>
+                <div class="btn-group" role="group"><a href="{{route('customers.index')}}"
+                        class="btn btn-light border">Manage Customer Groups</a></div>
+                <div class="btn-group" role="group"><a href="{{route('customers.create')}}" class="btn btn-primary">Add
+                        Customer</a></div>
             </div>
         </div>
     </div>
@@ -46,13 +48,14 @@
             <table class="col-12">
                 <thead>
                     <tr role="row">
-                        <th colspan="1" scope="col" role="columnheader" title="Toggle SortBy" class="" >
+                        <th colspan="1" scope="col" role="columnheader" title="Toggle SortBy" class="">
                             Name
                         </th>
                         <th colspan="1" scope="col" role="columnheader" title="Toggle SortBy" class="" width="250">
                             Group Name
                         </th>
-                        <th colspan="1" scope="col" role="columnheader" title="Toggle SortBy" class="text-end" width="200">
+                        <th colspan="1" scope="col" role="columnheader" title="Toggle SortBy" class="text-end"
+                            width="200">
                             Phone Number
                         </th>
                         <th colspan="1" scope="col" role="columnheader" title="Toggle SortBy" class="" width="200">
@@ -62,7 +65,7 @@
                             Status
                         </th>
                         <th colspan="1" scope="col" role="columnheader" class="" width="50">
-                            
+
                         </th>
                     </tr>
                 </thead>
@@ -80,7 +83,8 @@
                             <div class="text-success">Active</div>
                         </td>
                         <td class="-action-cell">
-                            <div class="dropdown"><span class="dropdown-toggle icon-cog -action-cell-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
+                            <div class="dropdown"><span class="dropdown-toggle icon-cog -action-cell-btn" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li><a>View Activity Logs</a></li>
                                     <li><a><span class="text-danger">Delete</span></a></li>
@@ -95,32 +99,38 @@
 </div>
 @endsection --}}
 
-<div class="card rounded-0">
-    <div class="card-header d-flex justify-content-between ">
-        <div class="col-md-6">
-            <h1>Customers</h1>
-        </div>
-        <div class="col-md-6 text-end d-flex justify-content-end align-items-center gap-2">
-            <div class="btn-group" role="group"><a href="{{route('customers.index')}}" class="btn btn-light border">Manage Customer Groups</a></div>
-            <div class="btn-group" role="group"><a href="{{route('customers.create')}}" class="btn btn-primary">Add Customer</a></div>
+<div class="card rounded-0 border-0 p-3">
+    <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
+
+        <h4>Customers</h4>
+
+        <div class="text-end d-flex justify-content-end align-items-center gap-2">
+            <div class="btn-group" role="group"><a href="{{route('showCustomersGroups')}}"
+                    class="btn btn-light border">Manage Customer Groups</a></div>
+            <div class="btn-group" role="group"><a href="{{route('customers.create')}}" class="btn btn-primary">Add
+                    Customer</a></div>
             <div class="dropdown">
-                <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
                     <i class="fa-solid fa-gear"></i>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Merge Two Customers</a></li>
-                  <li><a class="dropdown-item" href="#">Import</a></li>
-                  <li><a class="dropdown-item" href="#">Export Customers</a></li>
-                  <li><a class="dropdown-item" href="#">Export Pricing</a></li>
+                    <li><a class="dropdown-item" href="#">Merge Two Customers</a></li>
+                    <li><a class="dropdown-item" href="#">Import</a></li>
+                    <li><a class="dropdown-item" href="#">Export Customers</a></li>
+                    <li><a class="dropdown-item" href="#">Export Pricing</a></li>
                 </ul>
             </div>
         </div>
-        {{-- <h4 >Taxes</h4>
+        {{-- <h4>Taxes</h4>
         <div class="col-md-6 text-end">
-            <div class="btn-group" role="group"><a href="{{route('showCustomersGroups')}}" class="btn btn-light border">Manage Customer Groups</a></div>
-            <div class="btn-group" role="group"><a href="{{route('customers.create')}}" class="btn btn-primary">Add Customer</a></div>
+            <div class="btn-group" role="group"><a href="{{route('showCustomersGroups')}}"
+                    class="btn btn-light border">Manage Customer Groups</a></div>
+            <div class="btn-group" role="group"><a href="{{route('customers.create')}}" class="btn btn-primary">Add
+                    Customer</a></div>
         </div> --}}
-        {{-- <div class="btn-group" role="group"><a href="{{route('taxes.manage')}}" class="btn btn-primary">Add Tax Type</a></div> --}}
+        {{-- <div class="btn-group" role="group"><a href="{{route('taxes.manage')}}" class="btn btn-primary">Add Tax
+                Type</a></div> --}}
     </div>
     <div class="card-body">
         @if($errors->any())
@@ -157,8 +167,8 @@
                         </td>
                         <td>
                             <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -179,8 +189,8 @@
                         </td>
                         <td>
                             <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -201,8 +211,8 @@
                         </td>
                         <td>
                             <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -223,8 +233,8 @@
                         </td>
                         <td>
                             <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">

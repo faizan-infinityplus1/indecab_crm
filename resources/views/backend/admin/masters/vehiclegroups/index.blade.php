@@ -1,7 +1,7 @@
 @extends('layouts.admin-master')
 @section('content')
-<div class="card rounded-0">
-    <div class="card-header d-flex justify-content-between">
+<div class="card rounded-0 border-0 p-3">
+    <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
         <h4>Categories - Vehicle Groups</h4>
         <div class="btn-group" role="group"><a href="{{route('vehiclegroups.manage')}}" class="btn btn-primary">Add Vehicle Group</a></div>
     </div>

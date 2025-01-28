@@ -12,7 +12,7 @@
 </style>
 
 
-<div class="container-fluid">
+{{-- <div class="container-fluid">
     <div class="page-header page-header-sticky bg-white">
         <div class="row">
             <div class="col-md-6">
@@ -116,5 +116,194 @@
             </table>
         </div>
     </div>
+</div> --}}
+
+<div class="card rounded-0 border-0 p-3">
+    <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
+
+        <h4>Suppliers</h4>
+
+        <div class="text-end d-flex justify-content-end align-items-center gap-2">
+            <div class="btn-group" role="group"><a href="{{route('showSuppliersGroups')}}"
+                    class="btn btn-light border">Manage Supplier</a></div>
+            <div class="btn-group" role="group"><a href="{{route('createSuppliers')}}" class="btn btn-primary">Add Supplier</a></div>
+            <div class="dropdown">
+                <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Merge Two Suppliers</a></li>
+                    <li><a class="dropdown-item" href="#">Import Company Suppliers</a></li>
+                    <li><a class="dropdown-item" href="#">Import DCO Suppliers</a></li>
+                    <li><a class="dropdown-item" href="#">Export Suppliers</a></li>
+                    <li><a class="dropdown-item" href="#">Export Pricing</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        @if($errors->any())
+        <div class="alert alert-danger ">
+            <span class="close" onclick="this.parentElement.style.display='none';"
+                style="cursor: pointer;">&times;</span>
+            @foreach ($errors->all() as $error)
+            <li>
+                <span class="text-white">{{ $error }}</span>
+            </li>
+            @endforeach
+        </div>
+        @endif
+        <div class="table-responsive">
+            <table class="table table-striped table-hover datatable" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Group</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Vehicle</th>
+                        <th>City</th>
+                        <th>Indecab Go - Username</th>
+                        <th>Tracking</th>
+                        <th>Status</th>
+                        <th width="100">setting</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Abu Huzefa</td>
+                        <td>NA</td>
+                        <td>98196 86828</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>
+                            <div class="text-success">Active</div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>A Das</td>
+                        <td>NA</td>
+                        <td>7045866463</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>
+                            <div class="text-success">Active</div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>A Das</td>
+                        <td>NA</td>
+                        <td>8050301046</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>
+                            <div class="text-success">Active</div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>A Das</td>
+                        <td>NA</td>
+                        <td>97417 88843</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>
+                            <div class="text-success">Active</div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Group</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Vehicle</th>
+                        <th>City</th>
+                        <th>Indecab Go - Username</th>
+                        <th>Tracking</th>
+                        <th>Status</th>
+                        <th>setting</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 </div>
+@endsection
+@section('extrajs')
+<script>
+    $(document).ready( function () {
+    $('.datatable').DataTable({
+        responsive: true
+    });
+    $(".dropdown-toggle").dropdown();
+
+} );
+</script>
 @endsection
