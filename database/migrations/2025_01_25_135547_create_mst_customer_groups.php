@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('mst_customer_groups', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('admin_id')->nullable();
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('restrict');
             $table->string('name');
             $table->timestamps();
         });

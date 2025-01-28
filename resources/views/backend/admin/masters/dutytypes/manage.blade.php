@@ -21,7 +21,7 @@
                         <label for="duty_type" class="form-label">Type</label>
                         <select class="form-select border-bottom" name="duty_type" id="selectedType"
                             @change="changedType($event.target.value)" >
-                            <option selected="selected" style="display:none;" value="">(Select One)</option>
+                            <option  style="display:none;" value="">(Select One)</option>
                             <option value="hrKmLocal"
                                 {{ old('selectedType', $data->duty_type ?? '') == 'hrKmLocal' ? 'selected' : '' }}>HR-KM
                                 (Local)

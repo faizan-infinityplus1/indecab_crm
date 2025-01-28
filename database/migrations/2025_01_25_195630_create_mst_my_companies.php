@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mst_cat_veh_groups', function (Blueprint $table) {
+        Schema::create('mst_my_companies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('restrict');
             $table->string('name');
-            $table->string('description')->nullable();
-            $table->string('image')->nullable();
-            $table->integer('seat_capacity')->nullable();
-            $table->integer('lug_count')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mst_cat_veh_groups');
+        Schema::dropIfExists('mst_my_companies');
     }
 };

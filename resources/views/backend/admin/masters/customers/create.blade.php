@@ -20,148 +20,151 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form action="{{route('customers.store')}}" method="post">
+                <form action="{{ route('customers.store') }}" method="post" id="formCutsomer">
                     @csrf
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="" class="form-label ">Name </label>
-                                <input type="text" class="form-control  border-bottom" id="" >
+                                <label for="name" class="form-label ">Name </label>
+                                <input type="text" class="form-control  border-bottom" name="name" id="name">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label">Address </label>
-                                <textarea class="form-control" id="" rows="10"></textarea>
+                                <label for="address" class="form-label">Address </label>
+                                <textarea class="form-control" rows="10" name="address" id="address"></textarea>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label ">Pin Code </label>
-                                <input type="text" class="form-control  border-bottom" id="" maxlength="6">
+                                <label for="pincode" class="form-label ">Pin Code </label>
+                                <input type="number" class="form-control  border-bottom" maxlength="6" name="pincode"
+                                    id="pincode">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">State</label>
-                                <select class="form-select border-bottom" aria-label="Default select example" name=""
-                                    id="" >
-                                    <option value="selectOne">Select an option</option>
-                                    <option value="">01-Jammu and Kashmir</option>
-                                    <option value="">02-Himachal Pradesh</option>
-                                    <option value="">03-Punjab</option>
-                                    <option value="">04-Chandigarh</option>
-                                    <option value="">05-Uttarakhand</option>
-                                    <option value="">06-Haryana</option>
-                                    <option value="">07-Delhi</option>
-                                    <option value="">08-Rajasthan</option>
-                                    <option value="">09-Uttar Pradesh</option>
-                                    <option value="">10-Bihar</option>
-                                    <option value="">11-Sikkim</option>
-                                    <option value="">12-Arunachal Pradesh</option>
-                                    <option value="">13-Nagaland</option>
-                                    <option value="">14-Manipur</option>
-                                    <option value="">15-Mizoram</option>
-                                    <option value="">16-Tripura</option>
-                                    <option value="">17-Meghalaya</option>
-                                    <option value="">18-Assam</option>
-                                    <option value="">19-West Bengal</option>
-                                    <option value="">20-Jharkhand</option>
-                                    <option value="">21-Odisha</option>
-                                    <option value="">22-Chhattisgarh</option>
-                                    <option value="">23-Madhya Pradesh</option>
-                                    <option value="">24-Gujarat</option>
-                                    <option value="">25-Daman and Diu</option>
-                                    <option value="">26-Dadra and Nagar Haveli</option>
-                                    <option value="">27-Maharashtra</option>
-                                    <option value="">28-Andhra Pradesh</option>
-                                    <option value="">29-Karnataka</option>
-                                    <option value="">30-Goa</option>
-                                    <option value="">31-Lakshadweep</option>
-                                    <option value="">32-Kerala</option>
-                                    <option value="">33-Tamil Nadu</option>
-                                    <option value="">34-Puducherry</option>
-                                    <option value="">35-Andaman and Nicobar Islands</option>
-                                    <option value="">36-Telangana</option>
-                                    <option value="">37-Andhra Pradesh</option>
-                                    <option value="">38-Ladakh</option>
+                                <select class="form-select border-bottom" aria-label="Default select example" name="state"
+                                    id="state">
+                                    <option class="d-none" value="">Select an option</option>
+                                    <option value="jammu_and_kashmir">01-Jammu and Kashmir</option>
+                                    <option value="himachal_pradesh">02-Himachal Pradesh</option>
+                                    <option value="punjab">03-Punjab</option>
+                                    <option value="chandigar">04-Chandigarh</option>
+                                    <option value="uttarakhand">05-Uttarakhand</option>
+                                    <option value="haryana">06-Haryana</option>
+                                    <option value="delhi">07-Delhi</option>
+                                    <option value="rajastan">08-Rajasthan</option>
+                                    <option value="uttar_pradesh">09-Uttar Pradesh</option>
+                                    <option value="bihar">10-Bihar</option>
+                                    <option value="sikkim">11-Sikkim</option>
+                                    <option value="arrunachal_pradesh">12-Arunachal Pradesh</option>
+                                    <option value="nagaland">13-Nagaland</option>
+                                    <option value="manipur">14-Manipur</option>
+                                    <option value="mizorm">15-Mizoram</option>
+                                    <option value="tripura">16-Tripura</option>
+                                    <option value="meghalaya">17-Meghalaya</option>
+                                    <option value="assam">18-Assam</option>
+                                    <option value="west_bengal">19-West Bengal</option>
+                                    <option value="jharkhand">20-Jharkhand</option>
+                                    <option value="odisha">21-Odisha</option>
+                                    <option value="chattisgarh">22-Chhattisgarh</option>
+                                    <option value="madhya_pradesh">23-Madhya Pradesh</option>
+                                    <option value="gujrat">24-Gujarat</option>
+                                    <option value="daman_and_diu">25-Daman and Diu</option>
+                                    <option value="dadra_and_nagar_haveli">26-Dadra and Nagar Haveli</option>
+                                    <option value="maharashtra">27-Maharashtra</option>
+                                    <option value="andra_pradesh">28-Andhra Pradesh</option>
+                                    <option value="karnataka">29-Karnataka</option>
+                                    <option value="goa">30-Goa</option>
+                                    <option value="lakshadweep">31-Lakshadweep</option>
+                                    <option value="kerala">32-Kerala</option>
+                                    <option value="tamil_nadu">33-Tamil Nadu</option>
+                                    <option value="paducherry">34-Puducherry</option>
+                                    <option value="andaman_and_nico_islands">35-Andaman and Nicobar Islands</option>
+                                    <option value="telengana">36-Telangana</option>
+                                    <option value="andra_pradesh">37-Andhra Pradesh</option>
+                                    <option value="ladakh">38-Ladakh</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
+
                                 <label for="" class="form-label ">Customer Group</label>
-                                <select class="form-select border-bottom" aria-label="Default select example" name=""
-                                    id="" >
-                                    <option value="selectOne">Select an option</option>
-                                    <option value="">test</option>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    name="cust_groups_id" id="cust_groups_id">
+                                    <option style="display:none;" value="">option one</option>
+                                    @foreach ($customerGroup as $data)
+                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                    @endforeach
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Phone Number</label>
-                                <input type="text" class="form-control  border-bottom" id="">
+                                <input type="text" class="form-control  border-bottom" name="phone_no" id="phone_no">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Email Address</label>
-                                <input type="email" class="form-control  border-bottom" id="">
+                                <input type="email" class="form-control  border-bottom" name="email_id"
+                                    id="email_id">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">PAN Number</label>
-                                <input type="text" class="form-control  border-bottom" id="">
+                                <input type="text" class="form-control  border-bottom" name="pan_no" id="pan_no">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">GSTIN Number</label>
-                                <input type="text" class="form-control  border-bottom" id="">
+                                <input type="text" class="form-control  border-bottom" name="gst_no" id="gst_no">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">TDS Percentage %</label>
-                                <input type="number" class="form-control  border-bottom" id="">
+                                <input type="number" class="form-control  border-bottom" name="tds_perc"
+                                    id="tds_perc">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Invoice's default due date after - enter
                                     number of days</label>
-                                <input type="number" class="form-control  border-bottom" id="">
+                                <input type="number" class="form-control  border-bottom" name="inv_def" id="inv_def">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Default Discount %</label>
-                                <input type="number" class="form-control  border-bottom" id="">
+                                <input type="number" class="form-control  border-bottom" name="def_disc"
+                                    id="def_disc">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Select base city for fuel
                                     surcharge</label>
                                 <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="" id="" >
-                                    <option value="selectOne">Select an option</option>
-                                    <option value="">Abohar</option>
-                                    <option value="">Abu Dhabi</option>
-                                    <option value="">Adilabad</option>
-                                    <option value="">Adoni</option>
-                                    <option value="">Agartala</option>
-                                    <option value="">Agra</option>
+                                    name="base_city_fuel" id="base_city_fuel">
+                                    <option class="d-none" value="">Select an option</option>
+
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Sales Commission Percentage %</label>
-                                <input type="number" class="form-control  border-bottom" id="">
+                                <input type="number" class="form-control  border-bottom" name="sales_comis_perc"
+                                    id="sales_comis_perc">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Country (Used for exports class
                                     E-invoice)</label>
                                 <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="" id="" >
-                                    <option value="selectOne">Select an option</option>
-                                    <option value="">Afghanistan</option>
-                                    <option value="">Aland Islands</option>
-                                    <option value="">Albania</option>
-                                    <option value="">Algeria</option>
-                                    <option value="">AmericanSamoa</option>
-                                    <option value="">Andorra</option>
+                                    name="country" id="country">
+                                    <option class="d-none" value="">Select an option</option>
+                                    <option value="afghanistan">Afghanistan</option>
+                                    <option value="aland_islands">Aland Islands</option>
+                                    <option value="albania">Albania</option>
+                                    <option value="algeria">Algeria</option>
+                                    <option value="admerican_samoa">American Samoa</option>
+                                    <option value="andorra">Andorra</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -169,14 +172,14 @@
                                 <label for="" class="form-label ">Default Tax Classification - Used in
                                     Invoice for Tally</label>
                                 <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="" id="" >
-                                    <option value="selectOne">Select an option</option>
-                                    <option value="">Branch Transfer Outward</option>
-                                    <option value="">Deemed Exports Exempt</option>
-                                    <option value="">Deemed Exports Nil Rated</option>
-                                    <option value="">Deemed Exports Taxable</option>
-                                    <option value="">Exports Exempt</option>
-                                    <option value="">Exports LUT/Bond</option>
+                                    name="def_tax_classif" id="def_tax_classif">
+                                    <option class="d-none" value="">Select an option</option>
+                                    <option value="branch_transfer_outward">Branch Transfer Outward</option>
+                                    <option value="deemed_exports_exempt">Deemed Exports Exempt</option>
+                                    <option value="deemed_exports_nil_rated">Deemed Exports Nil Rated</option>
+                                    <option value="deemed_exports_taxable">Deemed Exports Taxable</option>
+                                    <option value="exports_exempt">Exports Exempt</option>
+                                    <option value="exports_lut_bond">Exports LUT/Bond</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -184,14 +187,11 @@
                                 <label for="" class="form-label ">Custom Field - Related customer
                                     Id</label>
                                 <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="" id="" >
-                                    <option value="selectOne">Select an option</option>
-                                    <option value="">- Holiday wala</option>
-                                    <option value="">- Ravi Thakkar</option>
-                                    <option value="">-Vasundara Singh</option>
-                                    <option value="">A Das</option>
-                                    <option value="">A Hazarika</option>
-                                    <option value="">A K Mishra</option>
+                                    name="customer_id" id="customer_id">
+                                    <option class="d-none" value="">Select an option</option>
+                                    @foreach ($mstCustomer as $data)
+                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                    @endforeach
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -202,68 +202,72 @@
                                 billing details.
                                 <div class="mb-3">
                                     <label for="" class="form-label">Billing Name </label>
-                                    <input type="text" class="form-control  border-bottom" id="">
+                                    <input type="text" class="form-control  border-bottom" name="gst_name"
+                                        id="gst_name">
                                     <span class="warning-msg-block"></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Billing Address </label>
-                                    <textarea class="form-control" id="" rows="10"></textarea>
+                                    <textarea class="form-control" rows="10" name="gst_addr" id="gst_addr"></textarea>
                                     <span class="warning-msg-block"></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label ">State</label>
                                     <select class="form-select border-bottom" aria-label="Default select example"
-                                        name="" id="" >
-                                        <option value="selectOne">Select an option</option>
-                                        <option value="">01-Jammu and Kashmir</option>
-                                        <option value="">02-Himachal Pradesh</option>
-                                        <option value="">03-Punjab</option>
-                                        <option value="">04-Chandigarh</option>
-                                        <option value="">05-Uttarakhand</option>
-                                        <option value="">06-Haryana</option>
-                                        <option value="">07-Delhi</option>
-                                        <option value="">08-Rajasthan</option>
-                                        <option value="">09-Uttar Pradesh</option>
-                                        <option value="">10-Bihar</option>
-                                        <option value="">11-Sikkim</option>
-                                        <option value="">12-Arunachal Pradesh</option>
-                                        <option value="">13-Nagaland</option>
-                                        <option value="">14-Manipur</option>
-                                        <option value="">15-Mizoram</option>
-                                        <option value="">16-Tripura</option>
-                                        <option value="">17-Meghalaya</option>
-                                        <option value="">18-Assam</option>
-                                        <option value="">19-West Bengal</option>
-                                        <option value="">20-Jharkhand</option>
-                                        <option value="">21-Odisha</option>
-                                        <option value="">22-Chhattisgarh</option>
-                                        <option value="">23-Madhya Pradesh</option>
-                                        <option value="">24-Gujarat</option>
-                                        <option value="">25-Daman and Diu</option>
-                                        <option value="">26-Dadra and Nagar Haveli</option>
-                                        <option value="">27-Maharashtra</option>
-                                        <option value="">28-Andhra Pradesh</option>
-                                        <option value="">29-Karnataka</option>
-                                        <option value="">30-Goa</option>
-                                        <option value="">31-Lakshadweep</option>
-                                        <option value="">32-Kerala</option>
-                                        <option value="">33-Tamil Nadu</option>
-                                        <option value="">34-Puducherry</option>
-                                        <option value="">35-Andaman and Nicobar Islands</option>
-                                        <option value="">36-Telangana</option>
-                                        <option value="">37-Andhra Pradesh</option>
-                                        <option value="">38-Ladakh</option>
+                                        name="gst_state" id="gst_state">
+                                        <option class="d-none" value="">Select an option</option>
+                                        <option class="d-none" value="">Select an option</option>
+                                        <option value="jammu_and_kashmir">01-Jammu and Kashmir</option>
+                                        <option value="himachal_pradesh">02-Himachal Pradesh</option>
+                                        <option value="punjab">03-Punjab</option>
+                                        <option value="chandigar">04-Chandigarh</option>
+                                        <option value="uttarakhand">05-Uttarakhand</option>
+                                        <option value="haryana">06-Haryana</option>
+                                        <option value="delhi">07-Delhi</option>
+                                        <option value="rajastan">08-Rajasthan</option>
+                                        <option value="uttar_pradesh">09-Uttar Pradesh</option>
+                                        <option value="bihar">10-Bihar</option>
+                                        <option value="sikkim">11-Sikkim</option>
+                                        <option value="arrunachal_pradesh">12-Arunachal Pradesh</option>
+                                        <option value="nagaland">13-Nagaland</option>
+                                        <option value="manipur">14-Manipur</option>
+                                        <option value="mizorm">15-Mizoram</option>
+                                        <option value="tripura">16-Tripura</option>
+                                        <option value="meghalaya">17-Meghalaya</option>
+                                        <option value="assam">18-Assam</option>
+                                        <option value="west_bengal">19-West Bengal</option>
+                                        <option value="jharkhand">20-Jharkhand</option>
+                                        <option value="odisha">21-Odisha</option>
+                                        <option value="chattisgarh">22-Chhattisgarh</option>
+                                        <option value="madhya_pradesh">23-Madhya Pradesh</option>
+                                        <option value="gujrat">24-Gujarat</option>
+                                        <option value="daman_and_diu">25-Daman and Diu</option>
+                                        <option value="dadra_and_nagar_haveli">26-Dadra and Nagar Haveli</option>
+                                        <option value="maharashtra">27-Maharashtra</option>
+                                        <option value="andra_pradesh">28-Andhra Pradesh</option>
+                                        <option value="karnataka">29-Karnataka</option>
+                                        <option value="goa">30-Goa</option>
+                                        <option value="lakshadweep">31-Lakshadweep</option>
+                                        <option value="kerala">32-Kerala</option>
+                                        <option value="tamil_nadu">33-Tamil Nadu</option>
+                                        <option value="paducherry">34-Puducherry</option>
+                                        <option value="andaman_and_nico_islands">35-Andaman and Nicobar Islands</option>
+                                        <option value="telengana">36-Telangana</option>
+                                        <option value="andra_pradesh">37-Andhra Pradesh</option>
+                                        <option value="ladakh">38-Ladakh</option>
                                     </select>
                                     <span class="warning-msg-block"></span>
                                 </div>
                                 <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" value="" id="">
+                                    <input class="form-check-input" type="checkbox" value="1" name="is_gst_primary"
+                                        id="is_gst_primary">
                                     <label class="form-check-label" for="">
                                         Use billing name as primary name on invoice?
                                     </label>
                                 </div>
                                 <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" value="" id="">
+                                    <input class="form-check-input" type="checkbox" value="1" name="is_gst_tally"
+                                        id="is_gst_tally">
                                     <label class="form-check-label" for="">
                                         Use billing name in Tally export?
                                     </label>
@@ -271,87 +275,92 @@
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Alternate Phone Number</label>
-                                <input type="text" class="form-control  border-bottom" id="">
+                                <input type="text" class="form-control  border-bottom" name="altern_phone_no"
+                                    id="altern_phone_no">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Alternate email address</label>
-                                <input type="text" class="form-control  border-bottom" id="">
+                                <input type="text" class="form-control  border-bottom" name="altern_email_id"
+                                    id="altern_email_id">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Service Tax Number</label>
-                                <input type="text" class="form-control  border-bottom" id="">
+                                <input type="text" class="form-control  border-bottom" name="serv_tax_no"
+                                    id="serv_tax_no">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">GST Type</label>
                                 <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="" id="" >
-                                    <option value="selectOne">Select an option</option>
-                                    <option value="">Registered</option>
-                                    <option value="">Un-registered</option>
+                                    name="gst_type" id="gst_type">
+                                    <option class="d-none" value="">Select an option</option>
+                                    <option value="reqgistered">Registered</option>
+                                    <option value="un_registered">Un-registered</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Reverse Charge Applicable</label>
                                 <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="" id="" >
-                                    <option value="selectOne">Select an option</option>
-                                    <option value="">No</option>
-                                    <option value="">Yes</option>
+                                    name="revrse_chrg" id="revrse_chrg">
+                                    <option class="d-none" value="">Select an option</option>
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label ">Surcharge Percentage %</label>
-                                <input type="number" class="form-control  border-bottom" id="">
+                                <label for="surcharg_perc" class="form-label ">Surcharge Percentage %</label>
+                                <input type="number" class="form-control  border-bottom" name="surcharg_perc"
+                                    id="surcharg_perc">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Default Car Hire Charges Discount
                                     %</label>
-                                <input type="number" class="form-control  border-bottom" id="">
+                                <input type="number" class="form-control  border-bottom" name="def_car_chrg_disc"
+                                    id="def_car_chrg_disc">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Forced Fuel Type</label>
                                 <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="" id="" >
-                                    <option value="selectOne">Select an option</option>
-                                    <option value="">Petrol</option>
-                                    <option value="">Diesel</option>
-                                    <option value="">CNG</option>
-                                    <option value="">Electric</option>
+                                    name="force_fuel_type" id="force_fuel_type">
+                                    <option class="d-none" value="">Select an option</option>
+                                    <option value="petrol">Petrol</option>
+                                    <option value="diesel">Diesel</option>
+                                    <option value="cng">CNG</option>
+                                    <option value="electric">Electric</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Default feedback form</label>
                                 <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="" id="" >
-                                    <option value="selectOne">Select an option</option>
-                                    <option value="">Mumbai Cab Service</option>
+                                    name="feedback_id" id="feedback_id">
+                                    <option class="d-none" value="">Select an option</option>
+                                    @foreach ($feedbackForm as $data)
+                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                    @endforeach
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">Default Company</label>
                                 <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="" id="" >
-                                    <option value="selectOne">Select an option</option>
-                                    <option value="">Uqaab Graphics</option>
-                                    <option value="">Uqaab Holidays</option>
+                                    name="company_id" id="company_id">
+                                    <option class="d-none" value="">Select an option</option>
+                                    @foreach ($myCompany as $data)
+                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                    @endforeach
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label ">Branches</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="" id="" >
-                                    <option value="selectOne">Select an option</option>
-                                </select>
+                                <label for="branch" class="form-label">Branches</label>
+                                <input type="text" class="form-control border-bottom" name="branch" id="branch">
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
@@ -364,9 +373,8 @@
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Cities - Limit ability to add
                                             bookings to these cities</label>
-                                        <select class="form-select border-bottom" aria-label="Default select example"
-                                            name="" id="" >
-                                            <option value="">Select an option</option>
+                                        <select class="form-select border-bottom" aria-label="Default select example">
+                                            <option class="d-none" value="">Select an option</option>
                                             <option value="">Abohar</option>
                                             <option value="">Abu Dhabi</option>
                                             <option value="">Adilabad</option>
@@ -380,7 +388,7 @@
                                         <label for="" class="form-label ">Duty Types - Limit ability to
                                             add bookings to these Duty Types</label>
                                         <select class="form-select border-bottom" aria-label="Default select example"
-                                            name="" id="" >
+                                            name="" id="">
                                             <option value="">10Hr 80Km</option>
                                             <option value="">10hr100km</option>
                                             <option value="">11Hr 110Km</option>
@@ -395,7 +403,7 @@
                                         <label for="" class="form-label ">Vehicle Group - Limit ability to
                                             add bookings to these Vehicle Groups</label>
                                         <select class="form-select border-bottom" aria-label="Default select example"
-                                            name="" id="" >
+                                            name="" id="">
                                             <option value="">20 Seater</option>
                                             <option value="">25 Seater A/C</option>
                                             <option value="">35 Seater Bus</option>
@@ -410,7 +418,7 @@
                                         <label for="" class="form-label ">Applicable Supplier Ids
                                             (Supplier allotment would be restricted to these suppliers only)</label>
                                         <select class="form-select border-bottom" aria-label="Default select example"
-                                            name="" id="" >
+                                            name="" id="">
                                             <option value="">Abu Huzefa</option>
                                             <option value="">Afzal</option>
                                             <option value="">Airline tour and travels</option>
@@ -425,7 +433,7 @@
                                         <label for="" class="form-label ">Labels - Applied to
                                             booking</label>
                                         <select class="form-select border-bottom" aria-label="Default select example"
-                                            name="" id="" >
+                                            name="" id="">
                                             <option value="">Cash Duty</option>
                                             <option value="">Cash Paid By Company</option>
                                             <option value="">Corporate</option>
@@ -439,7 +447,7 @@
                                         <label for="" class="form-label ">Cities - To only consider extras
                                             that have higher total cost on invoice</label>
                                         <select class="form-select border-bottom" aria-label="Default select example"
-                                            name="" id="" >
+                                            name="" id="">
                                             <option value="">Abohar</option>
                                             <option value="">Abu Dhabi</option>
                                             <option value="">Adilabad</option>
@@ -523,44 +531,6 @@
 
                                 <div class="appli_tax_body" id="appli_tax_body">
                                     {{-- component start --}}
-                                    {{-- <div class="d-flex border-bottom">
-                                        <div class="p-3">
-                                            <button type="button" class="btn btn-primary rounded-1"><i
-                                                    class="fa-solid fa-minus"></i></button>
-                                        </div>
-                                        <div class="p-3 ps-0 w-100">
-                                            <div class="panel border rounded">
-                                                <div class="panel-heading bg-light p-3">Applicable Taxes</div>
-                                                <div class="panel-body p-3">
-                                                    <div class="mb-3">
-                                                        <label for="" class="form-label ">Tax</label>
-                                                        <select class="form-select border-bottom"
-                                                            aria-label="Default select example" name=""
-                                                            id="" >
-                                                            <option value="">(Select Tax)</option>
-                                                            <option value="">CGST 2.5%</option>
-                                                            <option value="">SGST 2.5%</option>
-                                                            <option value="">IGST 5%</option>
-                                                            <option value="">CGST 6%</option>
-                                                            <option value="">SGST 6%</option>
-                                                            <option value="">IGST 12%</option>
-                                                        </select>
-                                                        <span class="warning-msg-block"></span>
-                                                    </div>
-                                                    <div class="form-check mb-3">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="">
-                                                        <label class="form-check-label" for="">
-                                                            Not to be charged3?
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                     --}}
-
                                     {{-- component end --}}
 
                                 </div>
@@ -651,9 +621,9 @@
                                 <div class="panel-heading bg-light p-3">Files</div>
                                 <div class="files_body" id="files_body">
 
-                                {{-- component start --}}
-                                
-                                {{-- component end --}}
+                                    {{-- component start --}}
+
+                                    {{-- component end --}}
                                 </div>
                                 <div class="p-3">
                                     <button type="button" class="btn btn-primary rounded-1" id="extend_files"><i
@@ -671,26 +641,24 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="" class="form-label">Notes</label>
-                                <textarea class="form-control" id="" rows="5"></textarea>
+                                <textarea class="form-control" rows="5" name="notes" id="notes"></textarea>
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="editor" class="form-label">Invoice Terms & Conditions</label>
-                                <div id="editor">
-                                </div>
+                                <textarea id="summernote" name="inv_term_cond"></textarea>
+
                             </div>
                         </div>
                     </div>
-
-
                     <div class="bg-light mb-3 p-3">
                         You could use this field as unique identifier when integrating with another system. This field would
                         be available in Duties & Invoice exports.
                         <div class="mb-3">
                             <label for="" class="form-label ">Customer Code</label>
-                            <input type="text" class="form-control  border-bottom" id="">
+                            <input type="text" class="form-control  border-bottom" name="cust_code" id="cust_code">
                             <span class="warning-msg-block"></span>
                         </div>
                     </div>
@@ -700,13 +668,14 @@
                     </div>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="" id="">
+                        <input class="form-check-input" type="checkbox" value="1" name="inv_og_hide"
+                            id="inv_og_hide">
                         <label class="form-check-label" for="">
                             Always hide 'Original for recipient' on invoice
                         </label>
                     </div>
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="" id="">
+                        <input class="form-check-input" type="checkbox" value="1" name="in_active" id="in_active">
                         <label class="form-check-label" for="">
                             In-Active
                         </label>
@@ -718,32 +687,63 @@
     </div>
 @endsection
 @section('extrajs')
+    <script src="{{ asset('admin/js/cities.js') }}"></script>
+
     <script>
-        const toolbarOptions = [
-            ['bold', 'italic', 'underline', {
-                'color': []
-            }, {
-                'background': []
-            }, 'link', 'image']
-        ];
-        const quill = new Quill('#editor', {
-            theme: 'snow',
-            modules: {
-                toolbar: toolbarOptions
-            }
-        });
+        $(document).ready(function() {
+            document.getElementById("base_city_fuel").innerHTML = htmlCities;
+            var applicableTaxes = @json($applicableTaxes);
+            $("#formCutsomer").validate({
+                rules: {
+                    name: {
+                        required: false
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Please Enter Name"
+                    }
+                },
+                errorElement: "div",
+                errorClass: "error-message",
+                highlight: function(element) {
+                    $(element).addClass("is-invalid");
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass("is-invalid");
+                },
+                submitHandler: function(form) {
+                    $('.btnSubmit').attr('disabled', 'disabled');
+                    $(".btnSubmit").html('<span class="fa fa-spinner fa-spin"></span> Loading...');
+                    form.submit();
+                }
+            });
 
-        // Applicable Taxes Start Here
+            $('#summernote').summernote({
+                placeholder: '',
+                tabsize: 2,
+                height: 42
+            }); // Applicable Taxes Start Here
 
-        $(document).on('click', '.remove_appli_tax_body', function() {
-            $(this).closest('.d-flex').remove();
-        });
 
-        $('#extend_appli_tax').on('click', function() {
-            const childCount = $('#appli_tax_body').find('.d-flex').length + 1;
-            console.log(childCount);
 
-            var template = `<div class="d-flex border-bottom">
+
+
+
+            $(document).on('click', '.remove_appli_tax_body', function() {
+                $(this).closest('.d-flex').remove();
+            });
+
+            $('#extend_appli_tax').on('click', function() {
+                const childCount = $('#appli_tax_body').find('.d-flex').length + 1;
+                console.log(childCount);
+
+                let taxOptions = '<option value="">(Select Tax)</option>';
+                applicableTaxes.forEach(tax => {
+                    taxOptions += `<option value="${tax.id}">${tax.name}</option>`;
+                });
+
+                var template = `<div class="d-flex border-bottom">
             <div class="p-3">
                 <button type="button" class="btn btn-primary rounded-1 remove_appli_tax_body" data-index=${childCount}>
                     <i class="fa-solid fa-minus"></i>
@@ -754,21 +754,15 @@
                     <div class="panel-heading bg-light p-3">Applicable Taxes</div>
                     <div class="panel-body p-3">
                         <div class="mb-3">
-                            <label for="" class="form-label ">Tax</label>
+                            <label for="appli_tax${childCount}" class="form-label ">Tax</label>
                             <select class="form-select border-bottom" aria-label="Default select example" name="appli_tax${childCount}"
-                                id="" data-index=${childCount} >
-                                <option value="">(Select Tax)</option>
-                                <option value="">CGST 2.5%</option>
-                                <option value="">SGST 2.5%</option>
-                                <option value="">IGST 5%</option>
-                                <option value="">CGST 6%</option>
-                                <option value="">SGST 6%</option>
-                                <option value="">IGST 12%</option>
+                                id="appli_tax${childCount}" data-index=${childCount} >
+                                                            ${taxOptions}
                             </select>
                         </div>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="1" id="appli_tax_n_ch" name="appli_tax_n_ch${childCount}" data-index=${childCount}>
-                            <label class="form-check-label" for="appli_tax_n_ch">
+                            <input class="form-check-input" type="checkbox" value="1" id="appli_tax_n_ch${childCount}" value="1" name="appli_tax_n_ch${childCount}" data-index=${childCount}>
+                            <label class="form-check-label" for="appli_tax_n_ch${childCount}">
                                 Not to be charged?
                             </label>
                         </div>
@@ -777,22 +771,36 @@
             </div>
         </div>`;
 
-            $('#appli_tax_body').append(template);
-        });
+                $('#appli_tax_body').append(template);
 
-        // Applicable Taxes End Here
+                // For dynamic select fields
+                $(`#appli_tax${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Please select a tax option"
+                    }
+                });
 
-        // Applicable Interstate Taxes Start Here
+                // Revalidate the form (to make sure dynamic fields are validated correctly)
 
-        $(document).on('click', '.remove_inter_appli_tax_body', function() {
-            $(this).closest('.d-flex').remove();
-        });
+            });
 
-        $('#extend_inter_appli_tax').on('click', function() {
-            const childCount = $('#inter_appli_tax_body').find('.d-flex').length + 1;
-            console.log(childCount);
+            // Applicable Taxes End Here
 
-            var template = `  <div class="d-flex border-bottom">
+            // Applicable Interstate Taxes Start Here
+
+            $(document).on('click', '.remove_inter_appli_tax_body', function() {
+                $(this).closest('.d-flex').remove();
+            });
+
+            $('#extend_inter_appli_tax').on('click', function() {
+                const childCount = $('#inter_appli_tax_body').find('.d-flex').length + 1;
+                console.log(childCount);
+                let taxOptions = '<option value="">(Select Tax)</option>';
+                applicableTaxes.forEach(tax => {
+                    taxOptions += `<option value="${tax.id}">${tax.name}</option>`;
+                });
+                var template = `  <div class="d-flex border-bottom">
                                     <div class="p-3">
                                         <button type="button" class="btn btn-primary rounded-1 remove_inter_appli_tax_body"><i
                                                 class="fa-solid fa-minus"></i></button>
@@ -802,22 +810,16 @@
                                             <div class="panel-heading bg-light p-3">Applicable Interstate Taxes</div>
                                             <div class="panel-body p-3">
                                                 <div class="mb-3">
-                                                    <label for="" class="form-label ">Tax</label>
+                                                    <label for="inter_appli_tax${childCount}" class="form-label ">Tax</label>
                                                       <select class="form-select border-bottom" aria-label="Default select example" name="inter_appli_tax${childCount}"
-                                id="" data-index=${childCount} >
-                                                        <option value="">(Select Tax)</option>
-                                                        <option value="">CGST 2.5%</option>
-                                                        <option value="">SGST 2.5%</option>
-                                                        <option value="">IGST 5%</option>
-                                                        <option value="">CGST 6%</option>
-                                                        <option value="">SGST 6%</option>
-                                                        <option value="">IGST 12%</option>
+                                id="inter_appli_tax${childCount}" data-index=${childCount} >
+                                                                                                                   ${taxOptions}
                                                     </select>
                                                     <span class="warning-msg-block"></span>
                                                 </div>
                                                 <div class="form-check mb-3">
-                                                    <input class="form-check-input" type="checkbox" value="1" id="appli_tax_n_ch" name="inter_appli_tax_n_ch${childCount}" data-index=${childCount}>
-                                                    <label class="form-check-label" for="">
+                                                    <input class="form-check-input" type="checkbox" value="1" id="inter_appli_tax_n_ch${childCount}" name="inter_appli_tax_n_ch${childCount}" data-index=${childCount}>
+                                                    <label class="form-check-label" for="inter_appli_tax_n_ch${childCount}">
                                                         Not to be charged?
                                                     </label>
                                                 </div>
@@ -826,33 +828,41 @@
                                     </div>
                                 </div>`;
 
-            $('#inter_appli_tax_body').append(template);
-        });
+                $('#inter_appli_tax_body').append(template);
 
-        // Applicable Interstate Taxes End Here
+                $(`#inter_appli_tax${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Please select a tax option"
+                    }
+                });
 
-        // Driver Allowance Settings Start Here
+            });
 
-        $(document).on('click', '.remove_dri_allow_set', function() {
-            $(this).closest('tr').remove();
-        });
+            // Applicable Interstate Taxes End Here
 
-        $('#extend_dri_allow_set').on('click', function() {
-            const childCount = $('#dri_allow_set_tax_body').find('tr').length + 1;
-            console.log(childCount);
+            // Driver Allowance Settings Start Here
 
-            var template = `    <tr>
+            $(document).on('click', '.remove_dri_allow_set', function() {
+                $(this).closest('tr').remove();
+            });
+
+            $('#extend_dri_allow_set').on('click', function() {
+                const childCount = $('#dri_allow_set_tax_body').find('tr').length + 1;
+                console.log(childCount);
+
+                var template = `    <tr>
                                                 <td>
                                                     <select class="form-select border-bottom"
                                                         aria-label="Default select example" name="dri_allow_set_city${childCount}" data-index=${childCount} id=""
                                                         >
-                                                        <option value="">All</option>
-                                                        <option value="">Abohar</option>
-                                                        <option value="">Abu Dhabi</option>
-                                                        <option value="">Adilabad</option>
-                                                        <option value="">Adoni</option>
-                                                        <option value="">Agartala</option>
-                                                        <option value="">Agra</option>
+                                                        <option value="all">All</option>
+                                                        <option value="abohar">Abohar</option>
+                                                        <option value="abu_dhabi">Abu Dhabi</option>
+                                                        <option value="adilabad">Adilabad</option>
+                                                        <option value="adoni">Adoni</option>
+                                                        <option value="agartala">Agartala</option>
+                                                        <option value="agra">Agra</option>
                                                     </select>
                                                 </td>
                                                 <td>
@@ -901,22 +911,22 @@
                                                 </td>
                                             </tr>`;
 
-            $('#dri_allow_set_tax_body').append(template);
-        });
+                $('#dri_allow_set_tax_body').append(template);
+            });
 
-        // Driver Allowance Settings End Here
+            // Driver Allowance Settings End Here
 
-        // Duty Type Type Timings Start Here
+            // Duty Type Type Timings Start Here
 
-        $(document).on('click', '.remove_dut_typ_tim', function() {
-            $(this).closest('tr').remove();
-        });
+            $(document).on('click', '.remove_dut_typ_tim', function() {
+                $(this).closest('tr').remove();
+            });
 
-        $('#extend_dut_typ_tim').on('click', function() {
-            const childCount = $('#dut_typ_tim_body').find('tr').length + 1;
-            console.log(childCount);
+            $('#extend_dut_typ_tim').on('click', function() {
+                const childCount = $('#dut_typ_tim_body').find('tr').length + 1;
+                console.log(childCount);
 
-            var template = `      <tr>
+                var template = `      <tr>
                                                 <td>
                                                     <select class="form-select border-bottom"
                                                         aria-label="Default select example" name="dut_typ_tim${childCount}" data-index=${childCount} id=""
@@ -959,22 +969,22 @@
                                                 </td>
                                             </tr>`;
 
-            $('#dut_typ_tim_body').append(template);
-        });
+                $('#dut_typ_tim_body').append(template);
+            });
 
-        // Duty Type Type Timings End Here
+            // Duty Type Type Timings End Here
 
-        // Files Start Here
+            // Files Start Here
 
-        $(document).on('click', '.remove_files', function() {
-            $(this).closest('.d-flex').remove();
-        });
+            $(document).on('click', '.remove_files', function() {
+                $(this).closest('.d-flex').remove();
+            });
 
-        $('#extend_files').on('click', function() {
-            const childCount = $('#files_body').find('.d-flex').length + 1;
-            console.log(childCount);
+            $('#extend_files').on('click', function() {
+                const childCount = $('#files_body').find('.d-flex').length + 1;
+                console.log(childCount);
 
-            var template = `      <div class="d-flex border-bottom">
+                var template = `      <div class="d-flex border-bottom">
                                     <div class="p-3">
                                         <button type="button" class="btn btn-primary rounded-1 remove_files"><i
                                                 class="fa-solid fa-minus"></i></button>
@@ -1005,7 +1015,10 @@
                                     </div>
                                 </div>`;
 
-            $('#files_body').append(template);
+                $('#files_body').append(template);
+            });
+            $("#formDutyType").valid();
+
         });
 
         // Files End Here

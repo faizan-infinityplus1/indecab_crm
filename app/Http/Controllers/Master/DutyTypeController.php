@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Master;
 use App\Http\Controllers\Controller;
 use App\Models\MstDutyType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class DutyTypeController extends Controller
@@ -15,7 +16,7 @@ class DutyTypeController extends Controller
     }
     public function manage($id = null)
     {
-        $data = $id ? MstDutyType::find($id) : null; // Find the record or default to null
+        $data = $id ?MstDutyType::active()->find($id) : null; // Find the record or default to null
         return view('backend.admin.masters.dutytypes.manage', compact('data'));
     }
     public function store(Request $request)

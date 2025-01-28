@@ -17,7 +17,7 @@ class CategoriesVehicleGroupsController extends Controller
     }
     public function manage($id = null)
     {
-        $data = $id ? MstCatVehGroup::find($id) : null; // Find the record or default to null
+        $data = $id ? MstCatVehGroup::active()->find($id) : null; // Find the record or default to null
 
         return view('backend.admin.masters.vehiclegroups.manage', compact('data'));
     }

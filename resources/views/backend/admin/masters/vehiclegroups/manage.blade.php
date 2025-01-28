@@ -28,7 +28,7 @@
                         <div class="col-md-8 mb-3">
                             <label for="" class="form-label required">Description </label>
                             <textarea class="form-control" rows="10" name="description"
-                                value="{{ old('description', $data->description ?? '') }}" id="description" ></textarea>
+                                 id="description" >{{ old('description', $data->description ?? '') }}</textarea>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="" class="form-label">Avatar </label>
