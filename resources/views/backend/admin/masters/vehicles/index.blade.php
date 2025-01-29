@@ -101,23 +101,18 @@
 <div class="card rounded-0 border-0 p-3">
     <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
 
-        <h4>Customers</h4>
+        <h4>Vehicles</h4>
 
         <div class="text-end d-flex justify-content-end align-items-center gap-2">
-            <div class="btn-group" role="group"><a href="{{route('showCustomersGroups')}}"
-                    class="btn btn-light border">Manage Customer Groups</a></div>
-            <div class="btn-group" role="group"><a href="{{route('customers.create')}}" class="btn btn-primary">Add
-                    Customer</a></div>
+            <div class="btn-group" role="group"><a href="{{route('createVehicles')}}" class="btn btn-primary">Add Vehicle</a></div>
             <div class="dropdown">
                 <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <i class="fa-solid fa-gear"></i>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Merge Two Customers</a></li>
                     <li><a class="dropdown-item" href="#">Import</a></li>
-                    <li><a class="dropdown-item" href="#">Export Customers</a></li>
-                    <li><a class="dropdown-item" href="#">Export Pricing</a></li>
+                    <li><a class="dropdown-item" href="#">Export Vehicles</a></li>
                 </ul>
             </div>
         </div>
@@ -147,10 +142,10 @@
             <table class="table table-striped table-hover datatable" style="width:100%;">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Group Name</th>
-                        <th>Phone Number</th>
-                        <th>Group Name</th>
+                        <th>Model Name</th>
+                        <th>Group</th>
+                        <th>Assigned Driver</th>
+                        <th>Vehicle Number</th>
                         <th>Status</th>
                         <th width="100">setting</th>
                     </tr>
@@ -248,10 +243,10 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Name</th>
-                        <th>Group Name</th>
-                        <th>Phone Number</th>
-                        <th>Group Name</th>
+                        <th>Model Name</th>
+                        <th>Group</th>
+                        <th>Assigned Driver</th>
+                        <th>Vehicle Number</th>
                         <th>Status</th>
                         <th>setting</th>
                     </tr>

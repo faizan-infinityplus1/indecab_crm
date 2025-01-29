@@ -110,11 +110,8 @@
                     <i class="fa-solid fa-gear"></i>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Merge Two Suppliers</a></li>
-                    <li><a class="dropdown-item" href="#">Import Company Suppliers</a></li>
-                    <li><a class="dropdown-item" href="#">Import DCO Suppliers</a></li>
-                    <li><a class="dropdown-item" href="#">Export Suppliers</a></li>
-                    <li><a class="dropdown-item" href="#">Export Pricing</a></li>
+                    <li><a class="dropdown-item" href="#">Import</a></li>
+                    <li><a class="dropdown-item" href="#">Export Drivers</a></li>
                 </ul>
             </div>
         </div>

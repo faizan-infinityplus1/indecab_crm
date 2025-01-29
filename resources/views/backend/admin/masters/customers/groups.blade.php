@@ -67,11 +67,10 @@
         <h4>Customer Groups</h4>
 
         <div class="text-end d-flex justify-content-end align-items-center gap-2">
-            <div class="btn-group" role="group"><a href="{{route('showCustomersGroups')}}"
-                    class="btn btn-light border">Manage Customer Groups</a></div>
-            <div class="btn-group" role="group"><a href="{{route('createCustomersGroups')}}" class="btn btn-primary">Add
-                    Customer</a></div>
-            <div class="dropdown">
+            {{-- <div class="btn-group" role="group"><a href="{{route('showCustomersGroups')}}"
+                    class="btn btn-light border">Manage Customer Groups</a></div> --}}
+            <div class="btn-group" role="group"><a href="{{route('createCustomersGroups')}}" class="btn btn-primary">Add Customer Group</a></div>
+            {{-- <div class="dropdown">
                 <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <i class="fa-solid fa-gear"></i>
@@ -82,7 +81,7 @@
                     <li><a class="dropdown-item" href="#">Export Customers</a></li>
                     <li><a class="dropdown-item" href="#">Export Pricing</a></li>
                 </ul>
-            </div>
+            </div> --}}
         </div>
         {{-- <h4>Taxes</h4>
         <div class="col-md-6 text-end">
@@ -111,112 +110,25 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Group Name</th>
-                        <th>Phone Number</th>
-                        <th>Group Name</th>
-                        <th>Status</th>
-                        <th width="100">setting</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>A Das</td>
-                        <td>NA</td>
-                        <td>9840729952</td>
-                        <td>NA</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
                     </tr>
                     <tr>
                         <td>A Das</td>
-                        <td>NA</td>
-                        <td>9840729952</td>
-                        <td>NA</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
                     </tr>
                     <tr>
                         <td>A Das</td>
-                        <td>NA</td>
-                        <td>9840729952</td>
-                        <td>NA</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
                     </tr>
                     <tr>
                         <td>A Das</td>
-                        <td>NA</td>
-                        <td>9840729952</td>
-                        <td>NA</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
                     </tr>
-
                 </tbody>
                 <tfoot>
                     <tr>
                         <th>Name</th>
-                        <th>Group Name</th>
-                        <th>Phone Number</th>
-                        <th>Group Name</th>
-                        <th>Status</th>
-                        <th>setting</th>
                     </tr>
                 </tfoot>
             </table>

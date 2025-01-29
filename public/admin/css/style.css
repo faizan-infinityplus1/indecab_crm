@@ -37,3 +37,9 @@ input[type="text"], input[type="password"], input[type="email"], input[type="num
 }
 
 /* modal code end */
+
+
+ul.dropdown-menu.dropdown-menu-end {
+    right: 0;
+    left: auto;
+}

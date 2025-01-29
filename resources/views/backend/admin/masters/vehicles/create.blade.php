@@ -54,7 +54,7 @@
                             <span class="warning-msg-block"></span>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label required">Forced Fuel Type</label>
+                            <label for="" class="form-label required">Fuel Type</label>
                             <select class="form-select border-bottom" aria-label="Default select example" name=""
                                 id=""  required>
                                 <option value="selectOne">Select an option</option>

@@ -125,7 +125,7 @@
 
         <div class="text-end d-flex justify-content-end align-items-center gap-2">
             <div class="btn-group" role="group"><a href="{{route('showSuppliersGroups')}}"
-                    class="btn btn-light border">Manage Supplier</a></div>
+                    class="btn btn-light border">Manage Supplier Groups</a></div>
             <div class="btn-group" role="group"><a href="{{route('createSuppliers')}}" class="btn btn-primary">Add Supplier</a></div>
             <div class="dropdown">
                 <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
