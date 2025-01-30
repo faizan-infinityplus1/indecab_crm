@@ -604,6 +604,63 @@
                                         </thead>
                                         <tbody class="dut_typ_tim_body" id="dut_typ_tim_body">
                                             {{-- component start --}}
+                                            @foreach ( $mstCustomerDutyType as $data)
+                                                
+                                            <tr>
+                                                <td>
+                                                    <select class="form-select border-bottom"
+                                                        aria-label="Default select example" name="dut_typ_tim${childCount}" 
+                                                         id="dut_typ_tim${childCount}"
+                                                         data-index=${childCount}
+                                                        >
+                                                        <option value="">(Select Duty type type)</option>
+                                                        <option value="hrKmLocal">HR-KM (Local)</option>
+                                                        <option value="dayKmOutstation">Day-KM (Outstation)</option>
+                                                        <option value="longDurationDaily">Long Duration - Total KM Daily HR (Monthly
+                                                            Bookings)</option>
+                                                    </select>
+                                                </td>
+    
+                                                <td>
+                                                    <select class="form-select border-bottom"
+                                                        aria-label="Default select example" name="dut_typ_tim_str${childCount}" 
+                                                         id="dut_typ_tim_str${childCount}"
+                                                         data-index=${childCount}
+                                                        >
+                                                        <option value=""></option>
+                                                        <option value="00:00">00:00</option>
+                                                        <option value="00:15">00:15</option>
+                                                        <option value="00:30">00:30</option>
+                                                        <option value="00:45">00:45</option>
+                                                        <option value="1:00">1:00</option>
+                                                        <option value="1:15">1:15</option>
+                                                        <option value="1:30">1:30</option>
+                                                    </select>
+                                                </td>
+    
+                                                <td>
+                                                    <select class="form-select border-bottom"
+                                                        aria-label="Default select example" name="dut_typ_tim_end${childCount}" 
+                                                        data-index=${childCount}
+                                                         id="dut_typ_tim_end${childCount}"
+                                                        >
+                                                       <option value=""></option>
+                                                        <option value="00:00">00:00</option>
+                                                        <option value="00:15">00:15</option>
+                                                        <option value="00:30">00:30</option>
+                                                        <option value="00:45">00:45</option>
+                                                        <option value="1:00">1:00</option>
+                                                        <option value="1:15">1:15</option>
+                                                        <option value="1:30">1:30</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger py-0 remove_dut_typ_tim" >
+                                                        <i class="fa-solid fa-xmark"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            @endforeach
 
                                             {{-- component end --}}
                                         </tbody>
@@ -692,6 +749,7 @@
 
     <script>
         $(document).ready(function() {
+            let storedData = @json($mstCustomer);
             document.getElementById("base_city_fuel").innerHTML = htmlCities;
             var applicableTaxes = @json($applicableTaxes);
             $("#formCustomer").validate({
@@ -852,7 +910,13 @@
                                                     <select class="form-select border-bottom"
                                                         aria-label="Default select example" name="dri_allow_set_city${childCount}"  id="dri_allow_set_city${childCount}" data-index=${childCount}
                                                         >
-                                                       ${htmlCities}
+                                                        <option value="all">All</option>
+                                                        <option value="abohar">Abohar</option>
+                                                        <option value="abu_dhabi">Abu Dhabi</option>
+                                                        <option value="adilabad">Adilabad</option>
+                                                        <option value="adoni">Adoni</option>
+                                                        <option value="agartala">Agartala</option>
+                                                        <option value="agra">Agra</option>
                                                     </select>
                                                 </td>
                                                 <td>
@@ -942,7 +1006,6 @@
 
             // Driver Allowance Settings End Here
 
-            // Duty Type Type Timings Start Here
 
             $(document).on('click', '.remove_dut_typ_tim', function() {
                 $(this).closest('tr').remove();
@@ -953,59 +1016,59 @@
                 console.log(childCount);
 
                 var template = `      <tr>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dut_typ_tim${childCount}" 
-                                                         id="dut_typ_tim${childCount}"
-                                                         data-index=${childCount}
-                                                        >
-                                                        <option value="">(Select Duty type type)</option>
-                                                        <option value="hrKmLocal">HR-KM (Local)</option>
-                                                        <option value="dayKmOutstation">Day-KM (Outstation)</option>
-                                                        <option value="longDurationDaily">Long Duration - Total KM Daily HR (Monthly
-                                                            Bookings)</option>
-                                                    </select>
-                                                </td>
+                                            <td>
+                                                <select class="form-select border-bottom"
+                                                    aria-label="Default select example" name="dut_typ_tim${childCount}" 
+                                                     id="dut_typ_tim${childCount}"
+                                                     data-index=${childCount}
+                                                    >
+                                                    <option value="">(Select Duty type type)</option>
+                                                    <option value="hrKmLocal">HR-KM (Local)</option>
+                                                    <option value="dayKmOutstation">Day-KM (Outstation)</option>
+                                                    <option value="longDurationDaily">Long Duration - Total KM Daily HR (Monthly
+                                                        Bookings)</option>
+                                                </select>
+                                            </td>
 
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dut_typ_tim_str${childCount}" 
-                                                         id="dut_typ_tim_str${childCount}"
-                                                         data-index=${childCount}
-                                                        >
-                                                        <option value=""></option>
-                                                        <option value="00:00">00:00</option>
-                                                        <option value="00:15">00:15</option>
-                                                        <option value="00:30">00:30</option>
-                                                        <option value="00:45">00:45</option>
-                                                        <option value="1:00">1:00</option>
-                                                        <option value="1:15">1:15</option>
-                                                        <option value="1:30">1:30</option>
-                                                    </select>
-                                                </td>
+                                            <td>
+                                                <select class="form-select border-bottom"
+                                                    aria-label="Default select example" name="dut_typ_tim_str${childCount}" 
+                                                     id="dut_typ_tim_str${childCount}"
+                                                     data-index=${childCount}
+                                                    >
+                                                    <option value=""></option>
+                                                    <option value="00:00">00:00</option>
+                                                    <option value="00:15">00:15</option>
+                                                    <option value="00:30">00:30</option>
+                                                    <option value="00:45">00:45</option>
+                                                    <option value="1:00">1:00</option>
+                                                    <option value="1:15">1:15</option>
+                                                    <option value="1:30">1:30</option>
+                                                </select>
+                                            </td>
 
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dut_typ_tim_end${childCount}" 
-                                                        data-index=${childCount}
-                                                         id="dut_typ_tim_end${childCount}"
-                                                        >
-                                                       <option value=""></option>
-                                                        <option value="00:00">00:00</option>
-                                                        <option value="00:15">00:15</option>
-                                                        <option value="00:30">00:30</option>
-                                                        <option value="00:45">00:45</option>
-                                                        <option value="1:00">1:00</option>
-                                                        <option value="1:15">1:15</option>
-                                                        <option value="1:30">1:30</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-danger py-0 remove_dut_typ_tim" >
-                                                        <i class="fa-solid fa-xmark"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>`;
+                                            <td>
+                                                <select class="form-select border-bottom"
+                                                    aria-label="Default select example" name="dut_typ_tim_end${childCount}" 
+                                                    data-index=${childCount}
+                                                     id="dut_typ_tim_end${childCount}"
+                                                    >
+                                                   <option value=""></option>
+                                                    <option value="00:00">00:00</option>
+                                                    <option value="00:15">00:15</option>
+                                                    <option value="00:30">00:30</option>
+                                                    <option value="00:45">00:45</option>
+                                                    <option value="1:00">1:00</option>
+                                                    <option value="1:15">1:15</option>
+                                                    <option value="1:30">1:30</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger py-0 remove_dut_typ_tim" >
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </button>
+                                            </td>
+                                        </tr>`;
 
                 $('#dut_typ_tim_body').append(template);
 

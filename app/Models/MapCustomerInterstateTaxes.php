@@ -9,7 +9,6 @@ class MapCustomerInterstateTaxes extends Model
 {
     protected $fillable = [
         'customer_id',
-        'tax_id',
         'tax_id', 
         'not_charged'
     ];

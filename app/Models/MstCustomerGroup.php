@@ -21,4 +21,9 @@ class MstCustomerGroup extends Model
             }
         });
     }
+    // Define the relationship
+    public function customer()
+    {
+        return $this->belongsTo(MstCustomer::class, 'cust_groups_id'); // 'customer_id' is the foreign key in this model
+    }
 }
