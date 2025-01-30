@@ -12,7 +12,7 @@
 </style>
 
 
-<div class="container-fluid">
+{{-- <div class="container-fluid">
     <div class="page-header page-header-sticky bg-white">
         <div class="row">
             <div class="col-md-6">
@@ -96,4 +96,136 @@
 </div>
 
 
+@endsection --}}
+<div class="card rounded-0 border-0 p-3">
+    <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
+
+        <h4>Drivers</h4>
+
+        <div class="text-end d-flex justify-content-end align-items-center gap-2">
+            <div class="btn-group" role="group"><a href="{{route('createDrivers')}}" class="btn btn-primary">Add Driver</a></div>
+            <div class="dropdown">
+                <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Import</a></li>
+                    <li><a class="dropdown-item" href="#">Export Drivers</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        @if($errors->any())
+        <div class="alert alert-danger ">
+            <span class="close" onclick="this.parentElement.style.display='none';"
+                style="cursor: pointer;">&times;</span>
+            @foreach ($errors->all() as $error)
+            <li>
+                <span class="text-white">{{ $error }}</span>
+            </li>
+            @endforeach
+        </div>
+        @endif
+        <div class="table-responsive">
+            <table class="table table-striped table-hover datatable" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Indecab Go - Username</th>
+                        <th>Tracking</th>
+                        <th>Status</th>
+                        <th width="100">setting</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Adil Patel</td>
+                        <td>7738373502</td>
+                        <td>User not created</td>
+                        <td>Not Enabled</td>
+                        <td><div class="text-success">Active</div></td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Irshad Khan</td>
+                        <td>7017616157</td>
+                        <td>User not created</td>
+                        <td>Not Enabled</td>
+                        <td><div class="text-success">Active</div></td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Joshua</td>
+                        <td>9757414625</td>
+                        <td>User not created</td>
+                        <td>Not Enabled</td>
+                        <td><div class="text-success">Active</div></td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Indecab Go - Username</th>
+                        <th>Tracking</th>
+                        <th>Status</th>
+                        <th>setting</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+@endsection
+@section('extrajs')
+<script>
+    $(document).ready( function () {
+    $('.datatable').DataTable({
+        responsive: true
+    });
+    $(".dropdown-toggle").dropdown();
+
+} );
+</script>
 @endsection

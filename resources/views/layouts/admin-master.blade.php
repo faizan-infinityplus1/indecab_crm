@@ -44,7 +44,7 @@
                             <i class="fa-solid fa-car"></i>
                             Duties
                         </a>
-                        <ul class="dropdown-menu mt-3">
+                        <ul class="dropdown-menu mt-2">
                           <li><a class="dropdown-item" href="#">Add Booking</a></li>
                           <li><a class="dropdown-item" href="#">Incoming</a></li>
                           <li><a class="dropdown-item" href="#">Needs Attention</a></li>
@@ -64,7 +64,7 @@
                             <i class="fa-solid fa-bars"></i>
                             Operations
                         </a>
-                        <ul class="dropdown-menu mt-3">
+                        <ul class="dropdown-menu mt-2">
                           <li><a class="dropdown-item" href="#">Availability</a></li>
                           <li><a class="dropdown-item" href="#">Bookings</a></li>
                           <li><a class="dropdown-item" href="#">Billing</a></li>
@@ -90,18 +90,13 @@
                             <i class="fa-solid fa-chart-line"></i>
                             Reports
                         </a>
-                        {{-- <ul class="dropdown-menu mt-3">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul> --}}
                     </li>
                     <li class="nav_menu_item dropdown">
                         <a href="#" class="nav_menu_link nav_parent_link text-decoration-none text-white p-3" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-database"></i>
                             Masters
                         </a>
-                        <ul class="dropdown-menu mt-3">
+                        <ul class="dropdown-menu mt-2">
                           <li><a class="dropdown-item" href="{{route('dutytype.index')}}">Duty Types</a></li>
                           <li><a class="dropdown-item" href="{{route('vehiclegroups.index')}}">Categories - Vehicle Groups</a></li>
                           <li><a class="dropdown-item" href="{{route('taxes.index')}}">Taxes</a></li>
@@ -111,9 +106,9 @@
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="{{route('showDrivers')}}">My Drivers</a></li>
                           <li><a class="dropdown-item" href="{{route('showVehicles')}}">My Vehicles</a></li>
-                          <li><a class="dropdown-item" href="#">Duty Supporters</a></li>
-                          <li><a class="dropdown-item" href="#">Labels</a></li>
-                          <li><a class="dropdown-item" href="#">Feedback Forms</a></li>
+                          <li><a class="dropdown-item" href="{{route('dutysupporters.index')}}">Duty Supporters</a></li>
+                          <li><a class="dropdown-item" href="{{route('labels.index')}}">Labels</a></li>
+                          <li><a class="dropdown-item" href="{{route('feedbackforms.index')}}">Feedback Forms</a></li>
                           <li><a class="dropdown-item" href="#">Employees</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="#">Billing Items</a></li>
@@ -123,27 +118,6 @@
                           <li><a class="dropdown-item" href="#">My Companies</a></li>
                         </ul>
                     </li>
-                    {{-- <li class="nav_menu_item dropdown">
-                        <a href="#" class="nav_menu_link nav_parent_link text-decoration-none text-white p-3" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-chart-line"></i>
-                            Network
-                        </a>
-                        <ul class="dropdown-menu mt-3">
-                          <li><a class="dropdown-item" href="#">My Associates</a></li>
-                          <li><a class="dropdown-item" href="#">All Associates</a></li>
-                        </ul>
-                    </li> --}}
-                    {{-- <li class="nav_menu_item dropdown">
-                        <a href="#" class="nav_menu_link nav_parent_link text-decoration-none text-white p-3">
-                            <i class="fa-solid fa-location-dot"></i>
-                            Location Tracking
-                        </a>
-                        <ul class="dropdown-menu mt-3">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li> --}}
                 </ul>
             </div>
         </div>
@@ -175,6 +149,8 @@
 
     {{-- Jquery Js --}}
     <script src="{{asset('admin/js/jquery/jquery.3.7.1.js')}}"></script>
+
+    <script src="{{asset('admin/js/script.js')}}"></script>
     {{-- Alpine Js --}}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 

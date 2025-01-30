@@ -8,6 +8,10 @@ use App\Http\Controllers\Master\DutyTypeController;
 use App\Http\Controllers\Master\CategoriesVehicleGroupsController;
 use App\Http\Controllers\Master\TaxesController;
 use App\Http\Controllers\Master\CustomersController;
+use App\Http\Controllers\Master\DutySupportersController;
+use App\Http\Controllers\Master\EmployeesController;
+use App\Http\Controllers\Master\FeedbackFormsController;
+use App\Http\Controllers\Master\LabelsController;
 use App\Http\Controllers\Master\MyDriversController;
 use App\Http\Controllers\Master\SuppliersController;
 use App\Http\Controllers\Master\VehiclesController;
@@ -52,6 +56,18 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/vehicles', [VehiclesController::class, 'showVehicles'])->name('showVehicles');
     Route::get('/vehicles/create', [VehiclesController::class, 'createVehicles'])->name('createVehicles');
+    
+    Route::get('/duty-supporters', [DutySupportersController::class, 'index'])->name('dutysupporters.index');
+    Route::get('/duty-supporters/manage/{id?}', [DutySupportersController::class, 'manage'])->name('dutysupporters.manage');
+
+    Route::get('/labels', [LabelsController::class, 'index'])->name('labels.index');
+    Route::get('/labels/manage/{id?}', [LabelsController::class, 'manage'])->name('labels.manage');
+
+    Route::get('/feedback-forms', [FeedbackFormsController::class, 'index'])->name('feedbackforms.index');
+    Route::get('/feedback-forms/manage/{id?}', [FeedbackFormsController::class, 'manage'])->name('feedbackforms.manage');
+
+    Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');
+    Route::get('/employees/manage/{id?}', [EmployeesController::class, 'manage'])->name('employees.manage');
 });
 
 
