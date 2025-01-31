@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class MstCustomerDutyTypeType extends Model
+class MstCustomerDutyType extends Model
 {
 
     protected $fillable = [

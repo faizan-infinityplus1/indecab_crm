@@ -44,8 +44,8 @@ class MstCustomer extends Model
         'notes',
         'inv_term_cond',
         'cust_code',
-        'inv_og_hide',
-        'in_active',
+        'is_inv_og_hide',
+        'is_active'
     ];
     
     public function scopeActive($query)
@@ -68,7 +68,7 @@ class MstCustomer extends Model
         return $this->hasMany(MstCustomerGroup::class, 'id'); // assuming 'customer_id' is the foreign key in MstCustomerGroup
     }
     public function mstCustomerDutyType(){
-        return $this->hasMany(MstCustomerDutyTypeType::class, 'customer_id'); // assuming 'customer_id' is the foreign key in MstCustomerGroup
+        return $this->hasMany(MstCustomerDutyType::class, 'customer_id'); // assuming 'customer_id' is the foreign key in MstCustomerGroup
 
     }
 }

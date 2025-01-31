@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class MapCustomerInterstateTaxes extends Model
+class MstCustomerApplicableTaxes extends Model
 {
     protected $fillable = [
+        'admin_id',
         'customer_id',
+        'tax_id',
         'tax_id', 
         'not_charged'
     ];

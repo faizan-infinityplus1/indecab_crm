@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mst_customer_duty_type_types', function (Blueprint $table) {
+        Schema::create('mst_customer_duty_types', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('admin_id')->nullable();
-            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('restrict');
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->unsignedBigInteger('customer_id')->nullable();
-            $table->foreign('customer_id')->references('id')->on('mst_customers')->onDelete('restrict');
+            $table->foreign('customer_id')->references('id')->on('mst_customers')->onDelete('cascade');
             $table->string('duty_type');
             $table->integer('start_time');
             $table->integer('end_time');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mst_customer_duty_type_types');
+        Schema::dropIfExists('mst_customer_duty_types');
     }
 };

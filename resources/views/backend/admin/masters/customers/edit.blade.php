@@ -20,69 +20,33 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form action="{{ route('customers.store') }}" method="post" id="formCustomer" enctype="multipart/form-data">
+                <form action="{{ route('customers.update', $particularMstCustomer->id) }}" method="post" id="formCustomer" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="name" class="form-label ">Name </label>
-                                <input type="text" class="form-control  border-bottom" name="name" id="name">
-                                <span class="warning-msg-block"></span>
+                                <input type="text" class="form-control  border-bottom" name="name" id="name"
+                                    value="{{ old('name', $particularMstCustomer->name ?? '') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address </label>
-                                <textarea class="form-control" rows="10" name="address" id="address"></textarea>
+                                <textarea class="form-control" rows="10" name="address" id="address">
+                                     {{ old('name', $particularMstCustomer->address ?? '') }}
+                                </textarea>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="pincode" class="form-label ">Pin Code </label>
                                 <input type="number" class="form-control  border-bottom" maxlength="6" name="pincode"
-                                    id="pincode">
+                                    id="pincode" value="{{ old('pincode', $particularMstCustomer->pincode ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label ">State</label>
                                 <select class="form-select border-bottom" aria-label="Default select example" name="state"
                                     id="state">
-                                    <option class="d-none" value="">Select an option</option>
-                                    <option value="jammu_and_kashmir">01-Jammu and Kashmir</option>
-                                    <option value="himachal_pradesh">02-Himachal Pradesh</option>
-                                    <option value="punjab">03-Punjab</option>
-                                    <option value="chandigar">04-Chandigarh</option>
-                                    <option value="uttarakhand">05-Uttarakhand</option>
-                                    <option value="haryana">06-Haryana</option>
-                                    <option value="delhi">07-Delhi</option>
-                                    <option value="rajastan">08-Rajasthan</option>
-                                    <option value="uttar_pradesh">09-Uttar Pradesh</option>
-                                    <option value="bihar">10-Bihar</option>
-                                    <option value="sikkim">11-Sikkim</option>
-                                    <option value="arrunachal_pradesh">12-Arunachal Pradesh</option>
-                                    <option value="nagaland">13-Nagaland</option>
-                                    <option value="manipur">14-Manipur</option>
-                                    <option value="mizorm">15-Mizoram</option>
-                                    <option value="tripura">16-Tripura</option>
-                                    <option value="meghalaya">17-Meghalaya</option>
-                                    <option value="assam">18-Assam</option>
-                                    <option value="west_bengal">19-West Bengal</option>
-                                    <option value="jharkhand">20-Jharkhand</option>
-                                    <option value="odisha">21-Odisha</option>
-                                    <option value="chattisgarh">22-Chhattisgarh</option>
-                                    <option value="madhya_pradesh">23-Madhya Pradesh</option>
-                                    <option value="gujrat">24-Gujarat</option>
-                                    <option value="daman_and_diu">25-Daman and Diu</option>
-                                    <option value="dadra_and_nagar_haveli">26-Dadra and Nagar Haveli</option>
-                                    <option value="maharashtra">27-Maharashtra</option>
-                                    <option value="andra_pradesh">28-Andhra Pradesh</option>
-                                    <option value="karnataka">29-Karnataka</option>
-                                    <option value="goa">30-Goa</option>
-                                    <option value="lakshadweep">31-Lakshadweep</option>
-                                    <option value="kerala">32-Kerala</option>
-                                    <option value="tamil_nadu">33-Tamil Nadu</option>
-                                    <option value="paducherry">34-Puducherry</option>
-                                    <option value="andaman_and_nico_islands">35-Andaman and Nicobar Islands</option>
-                                    <option value="telengana">36-Telangana</option>
-                                    <option value="andra_pradesh">37-Andhra Pradesh</option>
-                                    <option value="ladakh">38-Ladakh</option>
+                                 
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -93,49 +57,55 @@
                                     name="cust_groups_id" id="cust_groups_id">
                                     <option style="display:none;" value="">option one</option>
                                     @foreach ($customerGroup as $data)
-                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                        <option value="{{ $data->id }}"
+                                            {{ old('cust_groups_id', $data->id) == ($particularMstCustomer->cust_groups_id ?? '') ? 'selected' : '' }}>
+                                            {{ $data->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="phone_no" class="form-label ">Phone Number</label>
-                                <input type="text" class="form-control  border-bottom" name="phone_no"
-                                    id="phone_no">
+                                <label for="phone_no" class="form-label">Phone Number</label>
+                                <input type="text" class="form-control border-bottom" name="phone_no" id="phone_no"
+                                    value="{{ old('phone_no', $particularMstCustomer->phone_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="email_id" class="form-label ">Email Address</label>
-                                <input type="email" class="form-control  border-bottom" name="email_id"
-                                    id="email_id">
+                                <input type="email" class="form-control  border-bottom" name="email_id" id="email_id"
+                                    value="{{ old('name', $particularMstCustomer->email_id ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="pan_no" class="form-label ">PAN Number</label>
-                                <input type="text" class="form-control  border-bottom" name="pan_no" id="pan_no">
+                                <input type="text" class="form-control  border-bottom" name="pan_no" id="pan_no"
+                                    value="{{ old('name', $particularMstCustomer->pan_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="gst_no" class="form-label ">GSTIN Number</label>
-                                <input type="text" class="form-control  border-bottom" name="gst_no" id="gst_no">
+                                <input type="text" class="form-control  border-bottom" name="gst_no" id="gst_no"
+                                    value="{{ old('gst_no', $particularMstCustomer->gst_no ?? '') }} ">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="tds_perc" class="form-label ">TDS Percentage %</label>
-                                <input type="number" class="form-control  border-bottom" name="tds_perc"
-                                    id="tds_perc">
+                                <input type="number" class="form-control  border-bottom" name="tds_perc" id="tds_perc"
+                                    value="{{ old('gst_no', $particularMstCustomer->tds_perc ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="inv_def" class="form-label ">Invoice's default due date after - enter
                                     number of days</label>
-                                <input type="number" class="form-control  border-bottom" name="inv_def" id="inv_def">
+                                <input type="number" class="form-control  border-bottom" name="inv_def" id="inv_def"
+                                    value="{{ old('inv_def', $particularMstCustomer->inv_def ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="def_disc" class="form-label ">Default Discount %</label>
-                                <input type="number" class="form-control  border-bottom" name="def_disc"
-                                    id="def_disc">
+                                <input type="number" class="form-control  border-bottom" name="def_disc" id="def_disc"
+                                    value="{{ old('def_disc', $particularMstCustomer->def_disc ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -151,21 +121,14 @@
                             <div class="mb-3">
                                 <label for="sales_comis_perc" class="form-label ">Sales Commission Percentage %</label>
                                 <input type="number" class="form-control  border-bottom" name="sales_comis_perc"
-                                    id="sales_comis_perc">
-                                <span class="warning-msg-block"></span>
+                                    id="sales_comis_perc"
+                                    value="{{ old('sales_comis_perc', $particularMstCustomer->sales_comis_perc ?? '') }}">
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label ">Country (Used for exports class
+                                <label for="country" class="form-label ">Country (Used for exports class
                                     E-invoice)</label>
                                 <select class="form-select border-bottom" aria-label="Default select example"
                                     name="country" id="country">
-                                    <option class="d-none" value="">Select an option</option>
-                                    <option value="afghanistan">Afghanistan</option>
-                                    <option value="aland_islands">Aland Islands</option>
-                                    <option value="albania">Albania</option>
-                                    <option value="algeria">Algeria</option>
-                                    <option value="admerican_samoa">American Samoa</option>
-                                    <option value="andorra">Andorra</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -175,12 +138,24 @@
                                 <select class="form-select border-bottom" aria-label="Default select example"
                                     name="def_tax_classif" id="def_tax_classif">
                                     <option class="d-none" value="">Select an option</option>
-                                    <option value="branch_transfer_outward">Branch Transfer Outward</option>
-                                    <option value="deemed_exports_exempt">Deemed Exports Exempt</option>
-                                    <option value="deemed_exports_nil_rated">Deemed Exports Nil Rated</option>
-                                    <option value="deemed_exports_taxable">Deemed Exports Taxable</option>
-                                    <option value="exports_exempt">Exports Exempt</option>
-                                    <option value="exports_lut_bond">Exports LUT/Bond</option>
+                                    <option value="branch_transfer_outward"
+                                        {{ old('def_tax_classif', $particularMstCustomer->def_tax_classif ?? '') == 'branch_transfer_outward' ? 'selected' : '' }}>
+                                        Branch Transfer Outward</option>
+                                    <option value="deemed_exports_exempt"
+                                        {{ old('def_tax_classif', $particularMstCustomer->def_tax_classif ?? '') == 'deemed_exports_exempt' ? 'selected' : '' }}>
+                                        Deemed Exports Exempt</option>
+                                    <option value="deemed_exports_nil_rated"
+                                        {{ old('def_tax_classif', $particularMstCustomer->def_tax_classif ?? '') == 'deemed_exports_nil_rated' ? 'selected' : '' }}>
+                                        Deemed Exports Nil Rated</option>
+                                    <option value="deemed_exports_taxable"
+                                        {{ old('def_tax_classif', $particularMstCustomer->def_tax_classif ?? '') == 'deemed_exports_taxable' ? 'selected' : '' }}>
+                                        Deemed Exports Taxable</option>
+                                    <option value="exports_exempt"
+                                        {{ old('def_tax_classif', $particularMstCustomer->def_tax_classif ?? '') == 'exports_exempt' ? 'selected' : '' }}>
+                                        Exports Exempt</option>
+                                    <option value="exports_lut_bond"
+                                        {{ old('def_tax_classif', $particularMstCustomer->def_tax_classif ?? '') == 'exports_lut_bond' ? 'selected' : '' }}>
+                                        Exports LUT/Bond</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -204,71 +179,38 @@
                                 <div class="mb-3">
                                     <label for="gst_name" class="form-label">Billing Name </label>
                                     <input type="text" class="form-control  border-bottom" name="gst_name"
-                                        id="gst_name">
+                                        id="gst_name"
+                                        value="{{ old('gst_name', $particularMstCustomer->gst_name ?? '') }}">
                                     <span class="warning-msg-block"></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="gst_addr" class="form-label">Billing Address </label>
-                                    <textarea class="form-control" rows="10" name="gst_addr" id="gst_addr"></textarea>
+                                    <textarea class="form-control" rows="10" name="gst_addr" id="gst_addr">
+                                        {{ old('gst_addr', $particularMstCustomer->gst_addr ?? '') }}
+                                    </textarea>
                                     <span class="warning-msg-block"></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="gst_state" class="form-label ">State</label>
                                     <select class="form-select border-bottom" aria-label="Default select example"
                                         name="gst_state" id="gst_state">
-                                        <option class="d-none" value="">Select an option</option>
-                                        <option class="d-none" value="">Select an option</option>
-                                        <option value="jammu_and_kashmir">01-Jammu and Kashmir</option>
-                                        <option value="himachal_pradesh">02-Himachal Pradesh</option>
-                                        <option value="punjab">03-Punjab</option>
-                                        <option value="chandigar">04-Chandigarh</option>
-                                        <option value="uttarakhand">05-Uttarakhand</option>
-                                        <option value="haryana">06-Haryana</option>
-                                        <option value="delhi">07-Delhi</option>
-                                        <option value="rajastan">08-Rajasthan</option>
-                                        <option value="uttar_pradesh">09-Uttar Pradesh</option>
-                                        <option value="bihar">10-Bihar</option>
-                                        <option value="sikkim">11-Sikkim</option>
-                                        <option value="arrunachal_pradesh">12-Arunachal Pradesh</option>
-                                        <option value="nagaland">13-Nagaland</option>
-                                        <option value="manipur">14-Manipur</option>
-                                        <option value="mizorm">15-Mizoram</option>
-                                        <option value="tripura">16-Tripura</option>
-                                        <option value="meghalaya">17-Meghalaya</option>
-                                        <option value="assam">18-Assam</option>
-                                        <option value="west_bengal">19-West Bengal</option>
-                                        <option value="jharkhand">20-Jharkhand</option>
-                                        <option value="odisha">21-Odisha</option>
-                                        <option value="chattisgarh">22-Chhattisgarh</option>
-                                        <option value="madhya_pradesh">23-Madhya Pradesh</option>
-                                        <option value="gujrat">24-Gujarat</option>
-                                        <option value="daman_and_diu">25-Daman and Diu</option>
-                                        <option value="dadra_and_nagar_haveli">26-Dadra and Nagar Haveli</option>
-                                        <option value="maharashtra">27-Maharashtra</option>
-                                        <option value="andra_pradesh">28-Andhra Pradesh</option>
-                                        <option value="karnataka">29-Karnataka</option>
-                                        <option value="goa">30-Goa</option>
-                                        <option value="lakshadweep">31-Lakshadweep</option>
-                                        <option value="kerala">32-Kerala</option>
-                                        <option value="tamil_nadu">33-Tamil Nadu</option>
-                                        <option value="paducherry">34-Puducherry</option>
-                                        <option value="andaman_and_nico_islands">35-Andaman and Nicobar Islands</option>
-                                        <option value="telengana">36-Telangana</option>
-                                        <option value="andra_pradesh">37-Andhra Pradesh</option>
-                                        <option value="ladakh">38-Ladakh</option>
+                                        
                                     </select>
                                     <span class="warning-msg-block"></span>
                                 </div>
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="checkbox" value="1" name="is_gst_primary"
-                                        id="is_gst_primary">
+                                        id="is_gst_primary"
+                                        {{ old('is_gst_primary', $particularMstCustomer->is_gst_primary ?? '') ? 'checked' : '' }}
+                                        value="1">
                                     <label class="form-check-label" for="">
                                         Use billing name as primary name on invoice?
                                     </label>
                                 </div>
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="checkbox" value="1" name="is_gst_tally"
-                                        id="is_gst_tally">
+                                        id="is_gst_tally"
+                                        {{ old('is_gst_tally', $particularMstCustomer->is_gst_tally ?? '') ? 'checked' : '' }}>
                                     <label class="form-check-label" for="">
                                         Use billing name in Tally export?
                                     </label>
@@ -277,19 +219,22 @@
                             <div class="mb-3">
                                 <label for="altern_phone_no" class="form-label ">Alternate Phone Number</label>
                                 <input type="text" class="form-control  border-bottom" name="altern_phone_no"
-                                    id="altern_phone_no">
+                                    id="altern_phone_no"
+                                    value="{{ old('altern_phone_no', $particularMstCustomer->altern_phone_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="altern_email_id" class="form-label ">Alternate email address</label>
                                 <input type="text" class="form-control  border-bottom" name="altern_email_id"
-                                    id="altern_email_id">
+                                    id="altern_email_id"
+                                    value="{{ old('altern_email_id', $particularMstCustomer->altern_email_id ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="serv_tax_no" class="form-label ">Service Tax Number</label>
                                 <input type="text" class="form-control  border-bottom" name="serv_tax_no"
-                                    id="serv_tax_no">
+                                    id="serv_tax_no"
+                                    value="{{ old('serv_tax_no', $particularMstCustomer->serv_tax_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -297,8 +242,12 @@
                                 <select class="form-select border-bottom" aria-label="Default select example"
                                     name="gst_type" id="gst_type">
                                     <option class="d-none" value="">Select an option</option>
-                                    <option value="registered">Registered</option>
-                                    <option value="un_registered">Un-registered</option>
+                                    <option value="registered"
+                                        {{ old('registered', $particularMstCustomer->gst_type ?? '') == 'registered' ? 'selected' : '' }}>
+                                        Registered</option>
+                                    <option value="un_registered"
+                                        {{ old('un_registered', $particularMstCustomer->gst_type ?? '') == 'un_registered' ? 'selected' : '' }}>
+                                        Un-registered</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -307,22 +256,28 @@
                                 <select class="form-select border-bottom" aria-label="Default select example"
                                     name="revrse_chrg" id="revrse_chrg">
                                     <option class="d-none" value="">Select an option</option>
-                                    <option value="no">No</option>
-                                    <option value="yes">Yes</option>
+                                    <option value="no"
+                                        {{ old('un_registered', $particularMstCustomer->revrse_chrg ?? '') == 'no' ? 'selected' : '' }}>
+                                        No</option>
+                                    <option value="yes"
+                                        {{ old('un_registered', $particularMstCustomer->revrse_chrg ?? '') == 'yes' ? 'selected' : '' }}>
+                                        Yes</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="surcharg_perc" class="form-label ">Surcharge Percentage %</label>
                                 <input type="number" class="form-control  border-bottom" name="surcharg_perc"
-                                    id="surcharg_perc">
+                                    id="surcharg_perc"
+                                    value="{{ old('surcharg_perc', $particularMstCustomer->surcharg_perc ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="def_car_chrg_disc" class="form-label ">Default Car Hire Charges Discount
                                     %</label>
                                 <input type="number" class="form-control  border-bottom" name="def_car_chrg_disc"
-                                    id="def_car_chrg_disc">
+                                    id="def_car_chrg_disc"
+                                    value="{{ old('surcharg_perc', $particularMstCustomer->def_car_chrg_disc ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -330,10 +285,18 @@
                                 <select class="form-select border-bottom" aria-label="Default select example"
                                     name="force_fuel_type" id="force_fuel_type">
                                     <option class="d-none" value="">Select an option</option>
-                                    <option value="petrol">Petrol</option>
-                                    <option value="diesel">Diesel</option>
-                                    <option value="cng">CNG</option>
-                                    <option value="electric">Electric</option>
+                                    <option value="petrol"
+                                        {{ old('force_fuel_type', $particularMstCustomer->force_fuel_type ?? '') == 'petrol' ? 'selected' : '' }}>
+                                        Petrol</option>
+                                    <option value="diesel"
+                                        {{ old('force_fuel_type', $particularMstCustomer->force_fuel_type ?? '') == 'diesel' ? 'selected' : '' }}>
+                                        Diesel</option>
+                                    <option value="cng"
+                                        {{ old('force_fuel_type', $particularMstCustomer->force_fuel_type ?? '') == 'cng' ? 'selected' : '' }}>
+                                        CNG</option>
+                                    <option value="electric"
+                                        {{ old('force_fuel_type', $particularMstCustomer->force_fuel_type ?? '') == 'electric' ? 'selected' : '' }}>
+                                        Electric</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -361,7 +324,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="branch" class="form-label">Branches</label>
-                                <input type="text" class="form-control border-bottom" name="branch" id="branch">
+                                <input type="text" class="form-control border-bottom" name="branch" id="branch"
+                                    value="{{ old('branch', $particularMstCustomer->branch ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
@@ -604,63 +568,49 @@
                                         </thead>
                                         <tbody class="dut_typ_tim_body" id="dut_typ_tim_body">
                                             {{-- component start --}}
-                                            @foreach ( $mstCustomerDutyType as $data)
-                                                
-                                            <tr>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dut_typ_tim${childCount}" 
-                                                         id="dut_typ_tim${childCount}"
-                                                         data-index=${childCount}
-                                                        >
-                                                        <option value="">(Select Duty type type)</option>
-                                                        <option value="hrKmLocal">HR-KM (Local)</option>
-                                                        <option value="dayKmOutstation">Day-KM (Outstation)</option>
-                                                        <option value="longDurationDaily">Long Duration - Total KM Daily HR (Monthly
-                                                            Bookings)</option>
-                                                    </select>
-                                                </td>
-    
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dut_typ_tim_str${childCount}" 
-                                                         id="dut_typ_tim_str${childCount}"
-                                                         data-index=${childCount}
-                                                        >
-                                                        <option value=""></option>
-                                                        <option value="00:00">00:00</option>
-                                                        <option value="00:15">00:15</option>
-                                                        <option value="00:30">00:30</option>
-                                                        <option value="00:45">00:45</option>
-                                                        <option value="1:00">1:00</option>
-                                                        <option value="1:15">1:15</option>
-                                                        <option value="1:30">1:30</option>
-                                                    </select>
-                                                </td>
-    
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dut_typ_tim_end${childCount}" 
-                                                        data-index=${childCount}
-                                                         id="dut_typ_tim_end${childCount}"
-                                                        >
-                                                       <option value=""></option>
-                                                        <option value="00:00">00:00</option>
-                                                        <option value="00:15">00:15</option>
-                                                        <option value="00:30">00:30</option>
-                                                        <option value="00:45">00:45</option>
-                                                        <option value="1:00">1:00</option>
-                                                        <option value="1:15">1:15</option>
-                                                        <option value="1:30">1:30</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-danger py-0 remove_dut_typ_tim" >
-                                                        <i class="fa-solid fa-xmark"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            @endforeach
+                        @foreach ($mstCustomerDutyType as $data)
+                            <tr>
+                                <td>
+                                    <select class="form-select border-bottom"
+                                        aria-label="Default select example" name="dut_typ_tim"
+                                        id="dut_typ_tim">
+                                        <option value="">(Select Duty type type)</option>
+                                        <option value="hrKmLocal"
+                                            {{ old('dut_typ_tim', $data->duty_type ?? '') == 'hrKmLocal' ? 'selected' : '' }}>
+                                            HR-KM (Local)</option>
+                                        <option value="dayKmOutstation"
+                                            {{ old('dut_typ_tim', $data->duty_type ?? '') == 'dayKmOutstation' ? 'selected' : '' }}>
+                                            Day-KM (Outstation)</option>
+                                        <option value="longDurationDaily"
+                                            {{ old('dut_typ_tim', $data->duty_type ?? '') == 'longDurationDaily' ? 'selected' : '' }}>
+                                            Long Duration - Total KM
+                                            Daily HR (Monthly
+                                            Bookings)</option>
+                                    </select>
+                                </td>
+
+                                <td>
+                                    <select class="form-select border-bottom"
+                                        aria-label="Default select example" name="dut_typ_tim_str"
+                                        id="dut_typ_tim_str">
+
+                                    </select>
+                                </td>
+
+                                <td>
+                                    <select class="form-select border-bottom"
+                                        aria-label="Default select example" name="dut_typ_tim_end"
+                                        id="dut_typ_tim_end">
+                                    </select>
+                                </td>
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-danger py-0 remove_dut_typ_tim">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
 
                                             {{-- component end --}}
                                         </tbody>
@@ -691,23 +641,18 @@
                         </div>
                     </div>
 
-
-
-
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="notes" class="form-label">Notes</label>
-                                <textarea class="form-control" rows="5" name="notes" id="notes"></textarea>
+                                <textarea class="form-control" rows="5" name="notes" id="notes">{{ old('notes', $particularMstCustomer->notes ?? '') }}</textarea>
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="inv_term_cond" class="form-label">Invoice Terms & Conditions</label>
-                                <textarea id="summernote" name="inv_term_cond"></textarea>
-
+                                <textarea id="summernote" name="inv_term_cond">{{ old('inv_term_cond', $particularMstCustomer->inv_term_cond ?? '') }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -716,7 +661,8 @@
                         be available in Duties & Invoice exports.
                         <div class="mb-3">
                             <label for="cust_code" class="form-label ">Customer Code</label>
-                            <input type="text" class="form-control  border-bottom" name="cust_code" id="cust_code">
+                            <input type="text" class="form-control  border-bottom" name="cust_code" id="cust_code"
+                                value="{{ old('cust_code', $particularMstCustomer->cust_code ?? '') }}">
                             <span class="warning-msg-block"></span>
                         </div>
                     </div>
@@ -726,15 +672,17 @@
                     </div>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="1" name="inv_og_hide"
-                            id="inv_og_hide">
-                        <label class="form-check-label" for="">
+                        <input class="form-check-input" type="checkbox" value="1" name="is_inv_og_hide"
+                            id="is_inv_og_hide"
+                            {{ old('is_inv_og_hide', $particularMstCustomer->is_inv_og_hide ?? '') ? 'checked' : '' }}>
+                        <label class="form-check-label" for="is_inv_og_hide">
                             Always hide 'Original for recipient' on invoice
                         </label>
                     </div>
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="1" name="in_active" id="in_active">
-                        <label class="form-check-label" for="">
+                        <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active"
+                            {{ old('is_active', $particularMstCustomer->is_active ?? '') ? 'checked' : '' }}>
+                        <label class="form-check-label" for="is_active">
                             In-Active
                         </label>
                     </div>
@@ -746,11 +694,35 @@
 @endsection
 @section('extrajs')
     <script src="{{ asset('admin/js/cities.js') }}"></script>
+    <script src="{{ asset('admin/js/states.js') }}"></script>
+    <script src="{{ asset('admin/js/timeslots.js') }}"></script>
+    <script src="{{ asset('admin/js/options.js') }}"></script>
 
     <script>
         $(document).ready(function() {
-            let storedData = @json($mstCustomer);
-            document.getElementById("base_city_fuel").innerHTML = htmlCities;
+            let baseCityFuel = @json($particularMstCustomer->base_city_fuel);
+            let countryDropDown = @json($particularMstCustomer->country);
+            let state = @json($particularMstCustomer->state);
+            let gstState = @json($particularMstCustomer->gst_state);
+            let startTime = @json($particularMstCustomer->start_time);
+            let endTime = @json($particularMstCustomer->end_time);
+            console.log(gstState);
+
+            // Function to generate HTML for the options and set the selected attribute based on dynamic variables
+            
+
+            document.getElementById("base_city_fuel").innerHTML = generateCityOptions(baseCityFuel);
+            document.getElementById("country").innerHTML = generateCityOptions(countryDropDown);
+
+           
+            document.getElementById("state").innerHTML = generateStateOptions();
+            document.getElementById("gst_state").innerHTML = generateStateOptions(gstState);
+            document.getElementById("state").innerHTML = generateStateOptions(state);
+
+          
+
+          
+
             var applicableTaxes = @json($applicableTaxes);
             $("#formCustomer").validate({
                 rules: {
@@ -910,13 +882,8 @@
                                                     <select class="form-select border-bottom"
                                                         aria-label="Default select example" name="dri_allow_set_city${childCount}"  id="dri_allow_set_city${childCount}" data-index=${childCount}
                                                         >
-                                                        <option value="all">All</option>
-                                                        <option value="abohar">Abohar</option>
-                                                        <option value="abu_dhabi">Abu Dhabi</option>
-                                                        <option value="adilabad">Adilabad</option>
-                                                        <option value="adoni">Adoni</option>
-                                                        <option value="agartala">Agartala</option>
-                                                        <option value="agra">Agra</option>
+                                                                                ${generateCityOptions(baseCityFuel)}
+
                                                     </select>
                                                 </td>
                                                 <td>
@@ -924,14 +891,8 @@
                                                         aria-label="Default select example" name="dri_allow_set_early_time${childCount}" id="dri_allow_set_early_time${childCount}"
                                                         data-index=${childCount}
                                                         >
-                                                         <option value=""></option>
-                                                        <option value="00:00">00:00</option>
-                                                        <option value="00:15">00:15</option>
-                                                        <option value="00:30">00:30</option>
-                                                        <option value="00:45">00:45</option>
-                                                        <option value="1:00">1:00</option>
-                                                        <option value="1:15">1:15</option>
-                                                        <option value="1:30">1:30</option>
+                                                                                                                ${generateTimeSlots()}
+
                                                     </select>
                                                 </td>
                                                 <td>
@@ -939,14 +900,8 @@
                                                         aria-label="Default select example" name="dri_allow_set_late_time${childCount}" id="dri_allow_set_late_time${childCount}"
                                                         data-index=${childCount}
                                                         >
-                                                         <option value=""></option>
-                                                         <option value="00:00">00:00</option>
-                                                        <option value="00:15">00:15</option>
-                                                        <option value="00:30">00:30</option>
-                                                        <option value="00:45">00:45</option>
-                                                        <option value="1:00">1:00</option>
-                                                        <option value="1:15">1:15</option>
-                                                        <option value="1:30">1:30</option>
+                                                                                                         ${generateTimeSlots()}
+
                                                     </select>
                                                 </td>
                                                 <td>
@@ -954,14 +909,8 @@
                                                         aria-label="Default select example" name="dri_allow_set_outst_overnig_time${childCount}" id="dri_allow_set_outst_overnig_time${childCount}"
                                                         data-index=${childCount}
                                                         >
-                                                         <option value=""></option>
-                                                        <option value="00:00">00:00</option>
-                                                        <option value="00:15">00:15</option>
-                                                        <option value="00:30">00:30</option>
-                                                        <option value="00:45">00:45</option>
-                                                        <option value="1:00">1:00</option>
-                                                        <option value="1:15">1:15</option>
-                                                        <option value="1:30">1:30</option>
+                                                                                                               ${generateTimeSlots()}
+
                                                     </select>
                                                 </td>
                                                 <td>
@@ -1036,14 +985,8 @@
                                                      id="dut_typ_tim_str${childCount}"
                                                      data-index=${childCount}
                                                     >
-                                                    <option value=""></option>
-                                                    <option value="00:00">00:00</option>
-                                                    <option value="00:15">00:15</option>
-                                                    <option value="00:30">00:30</option>
-                                                    <option value="00:45">00:45</option>
-                                                    <option value="1:00">1:00</option>
-                                                    <option value="1:15">1:15</option>
-                                                    <option value="1:30">1:30</option>
+                                                                                                            ${generateTimeSlots()}
+
                                                 </select>
                                             </td>
 
@@ -1053,14 +996,8 @@
                                                     data-index=${childCount}
                                                      id="dut_typ_tim_end${childCount}"
                                                     >
-                                                   <option value=""></option>
-                                                    <option value="00:00">00:00</option>
-                                                    <option value="00:15">00:15</option>
-                                                    <option value="00:30">00:30</option>
-                                                    <option value="00:45">00:45</option>
-                                                    <option value="1:00">1:00</option>
-                                                    <option value="1:15">1:15</option>
-                                                    <option value="1:30">1:30</option>
+                                                                                                           ${generateTimeSlots()}
+
                                                 </select>
                                             </td>
                                             <td>

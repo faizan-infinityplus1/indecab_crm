@@ -43,6 +43,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/customers/create', [CustomersController::class, 'create'])->name('customers.create');
     Route::post('/customers/store', [CustomersController::class, 'store'])->name('customers.store');
     Route::get('/customers/edit/{id}', [CustomersController::class, 'edit'])->name('customers.edit');
+    Route::post('/customers/update/{id}', [CustomersController::class, 'update'])->name('customers.update');
     Route::get('/customers/groups', [CustomersController::class, 'showCustomersGroups'])->name('showCustomersGroups');
     Route::get('/customers/groups/create', [CustomersController::class, 'createCustomersGroups'])->name('createCustomersGroups');
 

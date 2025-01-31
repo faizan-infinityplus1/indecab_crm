@@ -863,5 +863,4 @@ const cities = [{
     name: "Gondia"
 }
 ];
-let htmlCities = `<option class="d-none" value="">Select an option</option>\n` +
-    cities.map(city => `<option value="${city.value}">${city.name}</option>`).join("\n");
+

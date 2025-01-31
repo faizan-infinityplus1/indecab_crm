@@ -41,48 +41,10 @@
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label ">State</label>
+                                <label for="state" class="form-label ">State</label>
                                 <select class="form-select border-bottom" aria-label="Default select example" name="state"
                                     id="state">
-                                    <option class="d-none" value="">Select an option</option>
-                                    <option value="jammu_and_kashmir">01-Jammu and Kashmir</option>
-                                    <option value="himachal_pradesh">02-Himachal Pradesh</option>
-                                    <option value="punjab">03-Punjab</option>
-                                    <option value="chandigar">04-Chandigarh</option>
-                                    <option value="uttarakhand">05-Uttarakhand</option>
-                                    <option value="haryana">06-Haryana</option>
-                                    <option value="delhi">07-Delhi</option>
-                                    <option value="rajastan">08-Rajasthan</option>
-                                    <option value="uttar_pradesh">09-Uttar Pradesh</option>
-                                    <option value="bihar">10-Bihar</option>
-                                    <option value="sikkim">11-Sikkim</option>
-                                    <option value="arrunachal_pradesh">12-Arunachal Pradesh</option>
-                                    <option value="nagaland">13-Nagaland</option>
-                                    <option value="manipur">14-Manipur</option>
-                                    <option value="mizorm">15-Mizoram</option>
-                                    <option value="tripura">16-Tripura</option>
-                                    <option value="meghalaya">17-Meghalaya</option>
-                                    <option value="assam">18-Assam</option>
-                                    <option value="west_bengal">19-West Bengal</option>
-                                    <option value="jharkhand">20-Jharkhand</option>
-                                    <option value="odisha">21-Odisha</option>
-                                    <option value="chattisgarh">22-Chhattisgarh</option>
-                                    <option value="madhya_pradesh">23-Madhya Pradesh</option>
-                                    <option value="gujrat">24-Gujarat</option>
-                                    <option value="daman_and_diu">25-Daman and Diu</option>
-                                    <option value="dadra_and_nagar_haveli">26-Dadra and Nagar Haveli</option>
-                                    <option value="maharashtra">27-Maharashtra</option>
-                                    <option value="andra_pradesh">28-Andhra Pradesh</option>
-                                    <option value="karnataka">29-Karnataka</option>
-                                    <option value="goa">30-Goa</option>
-                                    <option value="lakshadweep">31-Lakshadweep</option>
-                                    <option value="kerala">32-Kerala</option>
-                                    <option value="tamil_nadu">33-Tamil Nadu</option>
-                                    <option value="paducherry">34-Puducherry</option>
-                                    <option value="andaman_and_nico_islands">35-Andaman and Nicobar Islands</option>
-                                    <option value="telengana">36-Telangana</option>
-                                    <option value="andra_pradesh">37-Andhra Pradesh</option>
-                                    <option value="ladakh">38-Ladakh</option>
+
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -100,14 +62,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="phone_no" class="form-label ">Phone Number</label>
-                                <input type="text" class="form-control  border-bottom" name="phone_no"
-                                    id="phone_no">
+                                <input type="text" class="form-control  border-bottom" name="phone_no" id="phone_no">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="email_id" class="form-label ">Email Address</label>
-                                <input type="email" class="form-control  border-bottom" name="email_id"
-                                    id="email_id">
+                                <input type="email" class="form-control  border-bottom" name="email_id" id="email_id">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -122,8 +82,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="tds_perc" class="form-label ">TDS Percentage %</label>
-                                <input type="number" class="form-control  border-bottom" name="tds_perc"
-                                    id="tds_perc">
+                                <input type="number" class="form-control  border-bottom" name="tds_perc" id="tds_perc">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -159,13 +118,7 @@
                                     E-invoice)</label>
                                 <select class="form-select border-bottom" aria-label="Default select example"
                                     name="country" id="country">
-                                    <option class="d-none" value="">Select an option</option>
-                                    <option value="afghanistan">Afghanistan</option>
-                                    <option value="aland_islands">Aland Islands</option>
-                                    <option value="albania">Albania</option>
-                                    <option value="algeria">Algeria</option>
-                                    <option value="admerican_samoa">American Samoa</option>
-                                    <option value="andorra">Andorra</option>
+
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -216,46 +169,7 @@
                                     <label for="gst_state" class="form-label ">State</label>
                                     <select class="form-select border-bottom" aria-label="Default select example"
                                         name="gst_state" id="gst_state">
-                                        <option class="d-none" value="">Select an option</option>
-                                        <option class="d-none" value="">Select an option</option>
-                                        <option value="jammu_and_kashmir">01-Jammu and Kashmir</option>
-                                        <option value="himachal_pradesh">02-Himachal Pradesh</option>
-                                        <option value="punjab">03-Punjab</option>
-                                        <option value="chandigar">04-Chandigarh</option>
-                                        <option value="uttarakhand">05-Uttarakhand</option>
-                                        <option value="haryana">06-Haryana</option>
-                                        <option value="delhi">07-Delhi</option>
-                                        <option value="rajastan">08-Rajasthan</option>
-                                        <option value="uttar_pradesh">09-Uttar Pradesh</option>
-                                        <option value="bihar">10-Bihar</option>
-                                        <option value="sikkim">11-Sikkim</option>
-                                        <option value="arrunachal_pradesh">12-Arunachal Pradesh</option>
-                                        <option value="nagaland">13-Nagaland</option>
-                                        <option value="manipur">14-Manipur</option>
-                                        <option value="mizorm">15-Mizoram</option>
-                                        <option value="tripura">16-Tripura</option>
-                                        <option value="meghalaya">17-Meghalaya</option>
-                                        <option value="assam">18-Assam</option>
-                                        <option value="west_bengal">19-West Bengal</option>
-                                        <option value="jharkhand">20-Jharkhand</option>
-                                        <option value="odisha">21-Odisha</option>
-                                        <option value="chattisgarh">22-Chhattisgarh</option>
-                                        <option value="madhya_pradesh">23-Madhya Pradesh</option>
-                                        <option value="gujrat">24-Gujarat</option>
-                                        <option value="daman_and_diu">25-Daman and Diu</option>
-                                        <option value="dadra_and_nagar_haveli">26-Dadra and Nagar Haveli</option>
-                                        <option value="maharashtra">27-Maharashtra</option>
-                                        <option value="andra_pradesh">28-Andhra Pradesh</option>
-                                        <option value="karnataka">29-Karnataka</option>
-                                        <option value="goa">30-Goa</option>
-                                        <option value="lakshadweep">31-Lakshadweep</option>
-                                        <option value="kerala">32-Kerala</option>
-                                        <option value="tamil_nadu">33-Tamil Nadu</option>
-                                        <option value="paducherry">34-Puducherry</option>
-                                        <option value="andaman_and_nico_islands">35-Andaman and Nicobar Islands</option>
-                                        <option value="telengana">36-Telangana</option>
-                                        <option value="andra_pradesh">37-Andhra Pradesh</option>
-                                        <option value="ladakh">38-Ladakh</option>
+
                                     </select>
                                     <span class="warning-msg-block"></span>
                                 </div>
@@ -669,14 +583,14 @@
                     </div>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="1" name="inv_og_hide"
-                            id="inv_og_hide">
+                        <input class="form-check-input" type="checkbox" value="1" name="is_inv_og_hide"
+                            id="is_inv_og_hide">
                         <label class="form-check-label" for="">
                             Always hide 'Original for recipient' on invoice
                         </label>
                     </div>
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="1" name="in_active" id="in_active">
+                        <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active">
                         <label class="form-check-label" for="">
                             In-Active
                         </label>
@@ -689,10 +603,21 @@
 @endsection
 @section('extrajs')
     <script src="{{ asset('admin/js/cities.js') }}"></script>
+    <script src="{{ asset('admin/js/states.js') }}"></script>
+    <script src="{{ asset('admin/js/timeslots.js') }}"></script>
+    <script src="{{ asset('admin/js/options.js') }}"></script>
 
     <script>
         $(document).ready(function() {
-            document.getElementById("base_city_fuel").innerHTML = htmlCities;
+           
+            document.getElementById("base_city_fuel").innerHTML = generateCityOptions();
+            document.getElementById("country").innerHTML = generateCityOptions();
+
+           
+            document.getElementById("state").innerHTML = generateStateOptions();
+            document.getElementById("gst_state").innerHTML = generateStateOptions();
+            document.getElementById("state").innerHTML = generateStateOptions();
+
             var applicableTaxes = @json($applicableTaxes);
             $("#formCustomer").validate({
                 rules: {
@@ -706,7 +631,7 @@
                     }
                 },
                 errorElement: "div",
-                errorClass: "error-message",
+                errorClass: "error-message text-danger",
                 highlight: function(element) {
                     $(element).addClass("is-invalid");
                 },
@@ -852,7 +777,7 @@
                                                     <select class="form-select border-bottom"
                                                         aria-label="Default select example" name="dri_allow_set_city${childCount}"  id="dri_allow_set_city${childCount}" data-index=${childCount}
                                                         >
-                                                       ${htmlCities}
+                                                       ${generateCityOptions()}
                                                     </select>
                                                 </td>
                                                 <td>
@@ -860,14 +785,7 @@
                                                         aria-label="Default select example" name="dri_allow_set_early_time${childCount}" id="dri_allow_set_early_time${childCount}"
                                                         data-index=${childCount}
                                                         >
-                                                         <option value=""></option>
-                                                        <option value="00:00">00:00</option>
-                                                        <option value="00:15">00:15</option>
-                                                        <option value="00:30">00:30</option>
-                                                        <option value="00:45">00:45</option>
-                                                        <option value="1:00">1:00</option>
-                                                        <option value="1:15">1:15</option>
-                                                        <option value="1:30">1:30</option>
+                                                        ${generateTimeSlots()}
                                                     </select>
                                                 </td>
                                                 <td>
@@ -875,14 +793,8 @@
                                                         aria-label="Default select example" name="dri_allow_set_late_time${childCount}" id="dri_allow_set_late_time${childCount}"
                                                         data-index=${childCount}
                                                         >
-                                                         <option value=""></option>
-                                                         <option value="00:00">00:00</option>
-                                                        <option value="00:15">00:15</option>
-                                                        <option value="00:30">00:30</option>
-                                                        <option value="00:45">00:45</option>
-                                                        <option value="1:00">1:00</option>
-                                                        <option value="1:15">1:15</option>
-                                                        <option value="1:30">1:30</option>
+                                                                                                                 ${generateTimeSlots()}
+
                                                     </select>
                                                 </td>
                                                 <td>
@@ -890,14 +802,8 @@
                                                         aria-label="Default select example" name="dri_allow_set_outst_overnig_time${childCount}" id="dri_allow_set_outst_overnig_time${childCount}"
                                                         data-index=${childCount}
                                                         >
-                                                         <option value=""></option>
-                                                        <option value="00:00">00:00</option>
-                                                        <option value="00:15">00:15</option>
-                                                        <option value="00:30">00:30</option>
-                                                        <option value="00:45">00:45</option>
-                                                        <option value="1:00">1:00</option>
-                                                        <option value="1:15">1:15</option>
-                                                        <option value="1:30">1:30</option>
+                                                                                                                 ${generateTimeSlots()}
+
                                                     </select>
                                                 </td>
                                                 <td>
@@ -973,14 +879,8 @@
                                                          id="dut_typ_tim_str${childCount}"
                                                          data-index=${childCount}
                                                         >
-                                                        <option value=""></option>
-                                                        <option value="00:00">00:00</option>
-                                                        <option value="00:15">00:15</option>
-                                                        <option value="00:30">00:30</option>
-                                                        <option value="00:45">00:45</option>
-                                                        <option value="1:00">1:00</option>
-                                                        <option value="1:15">1:15</option>
-                                                        <option value="1:30">1:30</option>
+                                                                                                          ${generateTimeSlots()}
+
                                                     </select>
                                                 </td>
 
@@ -990,14 +890,8 @@
                                                         data-index=${childCount}
                                                          id="dut_typ_tim_end${childCount}"
                                                         >
-                                                       <option value=""></option>
-                                                        <option value="00:00">00:00</option>
-                                                        <option value="00:15">00:15</option>
-                                                        <option value="00:30">00:30</option>
-                                                        <option value="00:45">00:45</option>
-                                                        <option value="1:00">1:00</option>
-                                                        <option value="1:15">1:15</option>
-                                                        <option value="1:30">1:30</option>
+                                                                                                           ${generateTimeSlots()}
+
                                                     </select>
                                                 </td>
                                                 <td>

@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class MstCustomerGroup extends Model
 {
+    protected $fillable = [
+        'admin_id',
+        'name',
+    ];
     public function scopeActive($query)
     {
         return $query->where('admin_id', Auth::user()->id);

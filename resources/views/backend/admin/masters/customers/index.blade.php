@@ -149,7 +149,7 @@
                             <th>Name</th>
                             <th>Group Name</th>
                             <th>Phone Number</th>
-                            <th>Group Name</th>
+                            <th>Gst Number</th>
                             <th>Status</th>
                             <th width="100">setting</th>
                         </tr>
@@ -159,37 +159,41 @@
                             <tr>
 
                                 <td>{{ $data->name }}</td>
+                                @if ($data->customerGroups->isNotEmpty())                               
                                 <td>
                                     @foreach ($data->customerGroups as $group)
-                                        @if ($group)
-                                            <p>{{ $group->name }}</p>
-                                        @else
-                                            <p>No customer groups</p> <!-- Display if no customer groups are found -->
-                                        @endif
-                                    @endforeach
+                               {!! !empty($group->name) ? $group->name : '<span>NA</span>' !!}
+                               @endforeach
+                                </td>
+                                @else
+                              <td>  {!! !empty($group->name) ? $group->name : '<span>NA</span>' !!} </td>
+                                @endif
 
-                                </td>
-                                <td>{{ $data->phone_no }}</td>
-                                <td>{{ $data->gst_no }}</td>
-                                <td>
-                                    <div class="text-success">{{ $data->in_active == false ? 'In Active' : 'Active' }}</div>
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fa-solid fa-gear"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item"
-                                                    href="{{ route('customers.edit', $data->id) }}">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+
+                        </td>
+                        <td>{!! $data->phone_no ?? '<span>NA</span>' !!}</td>
+                        <td>{!! $data->gst_no ?? '<span>NA</span>' !!}</td>
+
+                        <td>
+                            <div class="{{ $data->is_active == true ? 'text-success' : 'text-danger' }}">
+                                {{ $data->is_active == false ? 'In Active' : 'Active' }}</div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ route('customers.edit', $data->id) }}">Edit</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                        </tr>
                         @endforeach
 
 
