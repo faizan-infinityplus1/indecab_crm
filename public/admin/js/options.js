@@ -1,6 +1,6 @@
 function generateStateOptions(selectedState) {
     return [
-        `<option value="" disabled ${!selectedState ? "selected" : ""}>-- Select a State --</option>`,
+        `<option value="" ${!selectedState ? "selected" : ""}>-- Select a State --</option>`,
         ...states.map(state =>
             `<option value="${state.value}" ${state.value === selectedState ? 'selected' : ''}>${state.name}</option>`
         )
@@ -10,7 +10,7 @@ function generateStateOptions(selectedState) {
 function generateCityOptions(selectedCity) {
     console.log(selectedCity);
     return [
-        `<option value="" disabled ${!selectedCity ? "selected" : ""}>-- Select a City --</option>`,
+        `<option value="" ${!selectedCity ? "selected" : ""}>-- Select a City --</option>`,
         ...cities.map(city =>
             `<option value="${city.value}" ${city.value === selectedCity ? 'selected' : ''}>${city.name}</option>`
         )
