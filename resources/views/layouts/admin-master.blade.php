@@ -119,7 +119,7 @@
                           <li><a class="dropdown-item" href="#">Pricing</a></li>
                           <li><a class="dropdown-item" href="{{route('branches.index')}}">Dispatch Center/Branches</a></li>
                           <li><a class="dropdown-item" href="{{route('bankaccounts.index')}}">Bank Accounts</a></li>
-                          <li><a class="dropdown-item" href="#">My Companies</a></li>
+                          <li><a class="dropdown-item" href="{{route('companies.index')}}">My Companies</a></li>
                         </ul>
                     </li>
                 </ul>

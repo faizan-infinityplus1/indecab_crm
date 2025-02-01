@@ -17,7 +17,7 @@
     <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
         <h4>My Companies</h4>
         <div class="text-end d-flex justify-content-end align-items-center gap-2">
-            <div class="btn-group" role="group"><a href="{{route('showCustomersGroups')}}"
+            <div class="btn-group" role="group"><a href="{{route('companiesprofiles.index')}}"
                     class="btn btn-light border">Manage Company Profiles</a></div>
             <div class="btn-group" role="group"><a href="{{route('companies.manage')}}" class="btn btn-primary">Add
                     Company</a></div>

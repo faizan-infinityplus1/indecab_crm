@@ -10,6 +10,7 @@ use App\Http\Controllers\Master\BranchesController;
 use App\Http\Controllers\Master\DutyTypeController;
 use App\Http\Controllers\Master\CategoriesVehicleGroupsController;
 use App\Http\Controllers\Master\CompaniesController;
+use App\Http\Controllers\Master\CompaniesProfilesController;
 use App\Http\Controllers\Master\TaxesController;
 use App\Http\Controllers\Master\CustomersController;
 use App\Http\Controllers\Master\DutySupportersController;
@@ -91,8 +92,9 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/companies', [CompaniesController::class, 'index'])->name('companies.index');
     Route::get('/companies/manage/{id?}', [CompaniesController::class, 'manage'])->name('companies.manage');
-    Route::get('/companies/profiles', [CompaniesController::class, 'index'])->name('companies.index');
-    Route::get('/companies/profiles/manage/{id?}', [CompaniesController::class, 'manage'])->name('companies.manage');
+
+    Route::get('/companies/profiles', [CompaniesProfilesController::class, 'index'])->name('companiesprofiles.index');
+    Route::get('/companies/profiles/manage/{id?}', [CompaniesProfilesController::class, 'manage'])->name('companiesprofiles.manage');
 });
 
 
