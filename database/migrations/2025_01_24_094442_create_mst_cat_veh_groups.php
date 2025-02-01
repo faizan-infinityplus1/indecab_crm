@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('mst_cat_veh_groups', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('admin_id')->nullable();
-            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('restrict');
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('image')->nullable();

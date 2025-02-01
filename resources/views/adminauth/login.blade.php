@@ -58,7 +58,7 @@
                             <div class="card-body">
                                 <div class="row mb-3">
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <img src="assets/image/infinityplus1_logo1.png" alt="" class="mx-auto" alt="logo" height="100px">
+                                        <img src="admin/images/logo.png" alt="" class="mx-auto" alt="logo" height="100px">
                                     </div>
                                 </div>
                                 <form class="md-float-material form-material needs-validation" id="formLogin"

@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class MapCustomerApplicableTaxes extends Model
+class MstCustomerApplicableTaxes extends Model
 {
     protected $fillable = [
         'admin_id',
         'customer_id',
         'tax_id',
-        'tax_id', 
         'not_charged'
     ];
     public function scopeActive($query)
@@ -27,5 +26,10 @@ class MapCustomerApplicableTaxes extends Model
                 $model->admin_id = Auth::user()->id; // Set admin_id to the logged-in user's ID
             }
         });
+    }
+
+    public function mstCustomer()
+    {
+        return $this->belongsTo(MstCustomer::class, 'id'); // assuming 'customer_id' is the foreign key in MstCustomerGroup
     }
 }

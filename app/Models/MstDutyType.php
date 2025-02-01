@@ -41,5 +41,9 @@ class MstDutyType extends Model
             }
         });
     }
+    public function mstCustomer(){
+        return $this->hasMany(MstCustomer::class, 'id'); // assuming 'customer_id' is the foreign key in MstCustomerGroup
+
+    }
  
 }

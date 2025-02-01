@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class MapCustomerInterstateTaxes extends Model
+class MstCustomerInterstateTaxes extends Model
 {
     protected $fillable = [
         'customer_id',
-        'tax_id',
         'tax_id', 
         'not_charged'
     ];
@@ -26,5 +25,10 @@ class MapCustomerInterstateTaxes extends Model
                 $model->admin_id = Auth::user()->id; // Set admin_id to the logged-in user's ID
             }
         });
+    }
+
+    public function mstCustomer()
+    {
+        return $this->belongsTo(MstCustomer::class, 'id'); // assuming 'customer_id' is the foreign key in MstCustomerGroup
     }
 }

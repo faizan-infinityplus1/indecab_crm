@@ -46,7 +46,14 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/customers', [CustomersController::class, 'index'])->name('customers.index');
     Route::get('/customers/create', [CustomersController::class, 'create'])->name('customers.create');
     Route::post('/customers/store', [CustomersController::class, 'store'])->name('customers.store');
-    Route::post('/customers/update', [CustomersController::class, 'update'])->name('customers.update');
+    Route::get('/customers/edit/{id}', [CustomersController::class, 'edit'])->name('customers.edit');
+    Route::post('/customers/update/{id}', [CustomersController::class, 'update'])->name('customers.update');
+    Route::delete('/customers/delete/applicable-taxes/{id}', [CustomersController::class, 'deleteApplicableTaxes'])->name('customers.delete.applicable.taxes');
+    Route::delete('/customers/delete/interstate-taxes/{id}', [CustomersController::class, 'deleteInterstateTaxes'])->name('customers.delete.interstate.taxes');
+    Route::delete('/customers/delete/driver-allowance-setting/{id}', [CustomersController::class, 'deleteDriverAllowanceSetting'])->name('customers.delete.driver.allowance.setting');
+    Route::delete('/customers/delete/duty-type/{id}', [CustomersController::class, 'deleteDutyType'])->name('customers.delete.duty.type');
+    Route::delete('/customers/delete/files/{id}', [CustomersController::class, 'deleteFiles'])->name('customers.delete.files');
+
     Route::get('/customers/groups', [CustomersController::class, 'showCustomersGroups'])->name('showCustomersGroups');
     Route::get('/customers/groups/create', [CustomersController::class, 'createCustomersGroups'])->name('createCustomersGroups');
 

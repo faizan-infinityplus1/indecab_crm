@@ -11,11 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mst_my_companies', function (Blueprint $table) {
+        Schema::create('mst_customer_driver_allowance_settings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
-            $table->string('name');
+            $table->unsignedBigInteger('customer_id')->nullable();
+            $table->foreign('customer_id')->references('id')->on('mst_customers')->onDelete('cascade');
+            $table->string('city_name');
+            $table->string('early_time', 5); 
+            $table->string('late_time', 5); 
+            $table->string('outsta_overnig_time', 5); 
             $table->timestamps();
         });
     }
@@ -25,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mst_my_companies');
+        Schema::dropIfExists('mst_customer_driver_allowance_settings');
     }
 };
