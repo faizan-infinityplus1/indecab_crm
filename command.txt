@@ -1,3 +1,5 @@
+php artisan tinker on terminal
+Then Below
  Admin::create([
                 'name' => 'admin2',
                 'email' => 'admin2@gmail.com',
