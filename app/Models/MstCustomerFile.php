@@ -17,4 +17,8 @@ class MstCustomerFile extends Model
     {
         return $query->where('admin_id', Auth::user()->id);
     }
+    public function mstCustomer()
+    {
+        return $this->belongsTo(MstCustomer::class, 'id'); // assuming 'customer_id' is the foreign key in MstCustomerGroup
+    }
 }

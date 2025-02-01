@@ -11,7 +11,6 @@ class MstCustomerApplicableTaxes extends Model
         'admin_id',
         'customer_id',
         'tax_id',
-        'tax_id', 
         'not_charged'
     ];
     public function scopeActive($query)
@@ -27,5 +26,10 @@ class MstCustomerApplicableTaxes extends Model
                 $model->admin_id = Auth::user()->id; // Set admin_id to the logged-in user's ID
             }
         });
+    }
+
+    public function mstCustomer()
+    {
+        return $this->belongsTo(MstCustomer::class, 'id'); // assuming 'customer_id' is the foreign key in MstCustomerGroup
     }
 }

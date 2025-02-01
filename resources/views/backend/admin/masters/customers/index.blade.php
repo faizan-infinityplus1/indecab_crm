@@ -223,6 +223,7 @@
                 responsive: true
             });
             $(".dropdown-toggle").dropdown();
+            $('.datatable').attr('id', 'desc'); 
 
         });
     </script>

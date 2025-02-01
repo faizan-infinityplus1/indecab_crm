@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class CategoriesVehicleGroupsController extends Controller
 {
@@ -42,22 +43,34 @@ class CategoriesVehicleGroupsController extends Controller
         );
         if ($validator->fails()) {
             // connectify('error', 'Add Product', $validator->errors()->first());
-            dd($validator->errors()->first(),'i m here');
+            dd($validator->errors()->first(), 'i m here');
             return redirect(route('vehiclegroups.manage'))->withInput();
         }
         if ($request->hasFile('image')) {
-            $request['img'] = uniqid() . '.' . pathinfo($request->image->getClientOriginalName(), PATHINFO_EXTENSION);
+            $fileName = uniqid() . '.' . $request->image->getClientOriginalExtension();
 
-            // $request->image->storeAs('public/images/categories-vehicle-groups', $request->img);
-            $request->image->move(public_path('storage/images/categories-vehicle-groups'), $request->img);
+            // Store the file using the 'public' disk
+            $path = $request->image->storeAs('images/categories-vehicle-groups', $fileName, 'public');
+
+            // Save the file path to the request or database
+            $request['img'] = $path;
+
+            $vehGrpName = MstCatVehGroup::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'image' => $request->img,
+                'seat_capacity' => $request->seat_capacity,
+                'lug_count' => $request->lug_count,
+            ]);
+        } else {
+            $vehGrpName = MstCatVehGroup::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'seat_capacity' => $request->seat_capacity,
+                'lug_count' => $request->lug_count,
+            ]);
         }
-        $vehGrpName = MstCatVehGroup::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'image' => $request->img,
-            'seat_capacity' => $request->seat_capacity,
-            'lug_count' => $request->lug_count,
-        ]);
+
         if ($vehGrpName) {
             // connectify('success', 'Product Added', 'Duty Type has been added successfully !');
             return redirect(route('vehiclegroups.manage'));
@@ -89,20 +102,43 @@ class CategoriesVehicleGroupsController extends Controller
 
         $vehGrpName = MstCatVehGroup::where('id', $request->id)->firstOrFail();
         if ($request->hasFile('image')) {
-            $old_image = "/storage/images/categories-vehicle-groups/";
-            File::delete(public_path($old_image . $vehGrpName->image));
+            if ($vehGrpName->image) {
+                $imageName = basename($vehGrpName->image);
+                $oldImagePath = 'images/categories-vehicle-groups/' . $imageName;
+                Log::info('Old image path: ', ['path' => $oldImagePath]);
+                if (Storage::disk('public')->exists($oldImagePath)) {
+                    Log::info('Deleting old image: ', ['path' => $oldImagePath]);
+                    $deleted = Storage::disk('public')->delete($oldImagePath);
+                    if ($deleted) {
+                        Log::info('Old image deleted successfully.');
+                    } else {
+                        Log::error('Failed to delete old image.');
+                    }
+                } else {
+                    Log::warning('Old image not found: ', ['path' => $oldImagePath]);
+                }
+            }
 
-            $request['img'] = uniqid() . '.' . pathinfo($request->image->getClientOriginalName(), PATHINFO_EXTENSION);
-            $request->image->move(public_path('storage/images/categories-vehicle-groups'), $request->img);
+            $fileName = uniqid() . '.' . pathinfo($request->image->getClientOriginalName(), PATHINFO_EXTENSION);
+            $path = $request->image->storeAs('images/categories-vehicle-groups', $fileName, 'public');
+            $request['img'] = $path;
+
+            $vehGrpName->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'image' => $request->img,
+                'seat_capacity' => $request->seat_capacity,
+                'lug_count' => $request->lug_count,
+            ]);
+        } else {
+            $vehGrpName->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'seat_capacity' => $request->seat_capacity,
+                'lug_count' => $request->lug_count,
+            ]);
         }
 
-        $vehGrpName->update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'image' => $request->img,
-            'seat_capacity' => $request->seat_capacity,
-            'lug_count' => $request->lug_count,
-        ]);
         if ($vehGrpName) {
             // connectify('success', 'Product Added', 'Duty Type has been added successfully !');
             return redirect(route('vehiclegroups.manage', $request->id));

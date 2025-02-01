@@ -25,6 +25,10 @@
         rel="stylesheet">
     {{--
     <link rel="stylesheet" href="admin/css/datatables.2.2.1.css"> --}}
+    <script src="{{ asset('admin/js/cities.js') }}"></script>
+    <script src="{{ asset('admin/js/states.js') }}"></script>
+    <script src="{{ asset('admin/js/timeslots.js') }}"></script>
+    <script src="{{ asset('admin/js/options.js') }}"></script>
 </head>
 
 <body>

@@ -18,9 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->foreign('customer_id')->references('id')->on('mst_customers')->onDelete('cascade');
             $table->string('city_name');
-            $table->integer('early_time');
-            $table->integer('late_time');
-            $table->integer('outsta_overnig_time');
+            $table->string('early_time', 5); 
+            $table->string('late_time', 5); 
+            $table->string('outsta_overnig_time', 5); 
             $table->timestamps();
         });
     }

@@ -280,7 +280,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-12">
                             <div class="panel border rounded mb-3">
                                 <div class="panel-heading bg-light p-3">Booking/Duties Settings</div>
@@ -436,7 +436,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="row">
 
@@ -661,7 +661,7 @@
 
                 let taxOptions = '<option value="">(Select Tax)</option>';
                 applicableTaxes.forEach(tax => {
-                    taxOptions += `<option value="${tax.id}">${tax.name}</option>`;
+                    taxOptions += `<option value="${tax.id}">${tax.percentage}</option>`;
                 });
 
                 var template = `<div class="d-flex border-bottom">
@@ -719,7 +719,7 @@
                 console.log(childCount);
                 let taxOptions = '<option value="">(Select Tax)</option>';
                 applicableTaxes.forEach(tax => {
-                    taxOptions += `<option value="${tax.id}">${tax.name}</option>`;
+                    taxOptions += `<option value="${tax.id}">${tax.percentage}</option>`;
                 });
                 var template = `  <div class="d-flex border-bottom">
                                     <div class="p-3">
@@ -788,15 +788,15 @@
                                                         ${generateTimeSlots()}
                                                     </select>
                                                 </td>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dri_allow_set_late_time${childCount}" id="dri_allow_set_late_time${childCount}"
-                                                        data-index=${childCount}
-                                                        >
-                                                                                                                 ${generateTimeSlots()}
+                            <td>
+                                <select class="form-select border-bottom"
+                                    aria-label="Default select example" name="dri_allow_set_late_time${childCount}" id="dri_allow_set_late_time${childCount}"
+                                    data-index=${childCount}
+                                    >
+                                                                                                ${generateTimeSlots()}
 
-                                                    </select>
-                                                </td>
+                                </select>
+                            </td>
                                                 <td>
                                                     <select class="form-select border-bottom"
                                                         aria-label="Default select example" name="dri_allow_set_outst_overnig_time${childCount}" id="dri_allow_set_outst_overnig_time${childCount}"
@@ -873,27 +873,27 @@
                                                     </select>
                                                 </td>
 
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dut_typ_tim_str${childCount}" 
-                                                         id="dut_typ_tim_str${childCount}"
-                                                         data-index=${childCount}
-                                                        >
-                                                                                                          ${generateTimeSlots()}
+                                <td>
+                                    <select class="form-select border-bottom"
+                                        aria-label="Default select example" name="dut_typ_tim_str${childCount}" 
+                                            id="dut_typ_tim_str${childCount}"
+                                            data-index=${childCount}
+                                        >
+                                                                                            ${generateTimeSlots()}
 
-                                                    </select>
-                                                </td>
+                                    </select>
+                                </td>
 
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dut_typ_tim_end${childCount}" 
-                                                        data-index=${childCount}
-                                                         id="dut_typ_tim_end${childCount}"
-                                                        >
-                                                                                                           ${generateTimeSlots()}
+                                <td>
+                                    <select class="form-select border-bottom"
+                                        aria-label="Default select example" name="dut_typ_tim_end${childCount}" 
+                                        data-index=${childCount}
+                                            id="dut_typ_tim_end${childCount}"
+                                        >
+                                                                                            ${generateTimeSlots()}
 
-                                                    </select>
-                                                </td>
+                                    </select>
+                                </td>
                                                 <td>
                                                     <button type="button" class="btn btn-danger py-0 remove_dut_typ_tim" >
                                                         <i class="fa-solid fa-xmark"></i>

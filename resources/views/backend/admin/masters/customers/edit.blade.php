@@ -20,7 +20,8 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form action="{{ route('customers.update', $particularMstCustomer->id) }}" method="post" id="formCustomer" enctype="multipart/form-data">
+                <form action="{{ route('customers.update', $particularMstCustomer->id) }}" method="post" id="formCustomer"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-6">
@@ -43,10 +44,10 @@
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label ">State</label>
+                                <label for="state" class="form-label ">State</label>
                                 <select class="form-select border-bottom" aria-label="Default select example" name="state"
                                     id="state">
-                                 
+
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -194,7 +195,7 @@
                                     <label for="gst_state" class="form-label ">State</label>
                                     <select class="form-select border-bottom" aria-label="Default select example"
                                         name="gst_state" id="gst_state">
-                                        
+
                                     </select>
                                     <span class="warning-msg-block"></span>
                                 </div>
@@ -330,7 +331,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-12">
                             <div class="panel border rounded mb-3">
                                 <div class="panel-heading bg-light p-3">Booking/Duties Settings</div>
@@ -486,7 +487,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="row">
 
@@ -496,6 +497,48 @@
 
                                 <div class="appli_tax_body" id="appli_tax_body">
                                     {{-- component start --}}
+                                    @foreach ($mstApplicableTaxesCustomer as $data)
+                                        <div class="d-flex border-bottom">
+                                            <div class="p-3">
+                                                <button type="button"
+                                                    class="btn btn-primary rounded-1 remove_appli_tax_body"
+                                                    data-id={{ $data->id ?? '' }}>
+                                                    <i class="fa-solid fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="p-3 ps-0 w-100">
+                                                <div class="panel border rounded">
+                                                    <div class="panel-heading bg-light p-3">Applicable Taxes</div>
+                                                    <div class="panel-body p-3">
+                                                        <div class="mb-3">
+                                                            <label for="appli_tax" class="form-label ">Tax</label>
+                                                            <select class="form-select border-bottom"
+                                                                aria-label="Default select example" name="appli_tax"
+                                                                id="appli_tax">
+                                                                <option value="">(Select Tax)</option>
+
+                                                                @foreach ($applicableTaxes as $taxesData)
+                                                                    <option value="{{ $taxesData->id }}"
+                                                                        {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
+                                                                        {{ $taxesData->percentage }}</option>
+                                                                @endforeach
+
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-check mb-3">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="1" id="appli_tax_n_ch" value="1"
+                                                                name="appli_tax_n_ch"
+                                                                {{ old('inter_appli_tax_n_ch', $data->not_charged ?? '') ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="appli_tax_n_ch">
+                                                                Not to be charged?
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                     {{-- component end --}}
 
                                 </div>
@@ -513,7 +556,47 @@
                                 <div class="inter_appli_tax_body" id="inter_appli_tax_body">
 
                                     {{-- component start --}}
+                                    @foreach ($mstInterstateTaxesCustomer as $data)
+                                        <div class="d-flex border-bottom">
+                                            <div class="p-3">
+                                                <button type="button"
+                                                    class="btn btn-primary rounded-1 remove_inter_appli_tax_body"
+                                                    data-id="{{ $data->id ?? '' }}"><i class="fa-solid fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="p-3 ps-0 w-100">
+                                                <div class="panel border rounded">
+                                                    <div class="panel-heading bg-light p-3">Applicable Interstate Taxes
+                                                    </div>
+                                                    <div class="panel-body p-3">
+                                                        <div class="mb-3">
+                                                            <label for="inter_appli_tax" class="form-label ">Tax</label>
+                                                            <select class="form-select border-bottom"
+                                                                aria-label="Default select example" name="inter_appli_tax"
+                                                                id="inter_appli_tax">
+                                                                @foreach ($applicableTaxes as $taxesData)
+                                                                    <option value="{{ $taxesData->id }}"
+                                                                        {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
+                                                                        {{ $taxesData->percentage }}</option>
+                                                                @endforeach
 
+                                                            </select>
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="form-check mb-3">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="1" id="inter_appli_tax_n_ch"
+                                                                name="inter_appli_tax_n_ch">
+                                                            <label class="form-check-label" for="inter_appli_tax_n_ch"
+                                                                {{ old('inter_appli_tax_n_ch', $data->not_charged ?? '') ? 'checked' : '' }}>
+                                                                Not to be charged?
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                     {{-- component end --}}
                                 </div>
                                 <div class="p-3">
@@ -541,7 +624,50 @@
                                         <tbody class="dri_allow_set_tax_body" id="dri_allow_set_tax_body">
 
                                             {{-- component start --}}
+                                            @foreach ($mstDriverCustomerSetting as $data)
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-select border-bottom"
+                                                            aria-label="Default select example" name="dri_allow_set_city"
+                                                            id="dri_allow_set_city"
+                                                            data-dri-city="{{ $data->city_name ?? '' }}">
 
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select border-bottom"
+                                                            aria-label="Default select example"
+                                                            name="dri_allow_set_early_time" id="dri_allow_set_early_time"
+                                                            data-start-dri-time="{{ $data->early_time ?? '' }}">
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select border-bottom"
+                                                            aria-label="Default select example"
+                                                            name="dri_allow_set_late_time" id="dri_allow_set_late_time"
+                                                            data-end-dri-time="{{ $data->late_time ?? '' }}">
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select border-bottom"
+                                                            aria-label="Default select example"
+                                                            name="dri_allow_set_outst_overnig_time"
+                                                            id="dri_allow_set_outst_overnig_time"
+                                                            data-over-night-time="{{ $data->outsta_overnig_time ?? '' }}">
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button"
+                                                            class="btn btn-danger py-0 remove_dri_allow_set"
+                                                            data-id="{{ $data->id ?? '' }}">
+                                                            <i class="fa-solid fa-xmark"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
 
                                             {{-- component end --}}
                                         </tbody>
@@ -568,49 +694,53 @@
                                         </thead>
                                         <tbody class="dut_typ_tim_body" id="dut_typ_tim_body">
                                             {{-- component start --}}
-                        @foreach ($mstCustomerDutyType as $data)
-                            <tr>
-                                <td>
-                                    <select class="form-select border-bottom"
-                                        aria-label="Default select example" name="dut_typ_tim"
-                                        id="dut_typ_tim">
-                                        <option value="">(Select Duty type type)</option>
-                                        <option value="hrKmLocal"
-                                            {{ old('dut_typ_tim', $data->duty_type ?? '') == 'hrKmLocal' ? 'selected' : '' }}>
-                                            HR-KM (Local)</option>
-                                        <option value="dayKmOutstation"
-                                            {{ old('dut_typ_tim', $data->duty_type ?? '') == 'dayKmOutstation' ? 'selected' : '' }}>
-                                            Day-KM (Outstation)</option>
-                                        <option value="longDurationDaily"
-                                            {{ old('dut_typ_tim', $data->duty_type ?? '') == 'longDurationDaily' ? 'selected' : '' }}>
-                                            Long Duration - Total KM
-                                            Daily HR (Monthly
-                                            Bookings)</option>
-                                    </select>
-                                </td>
+                                            @foreach ($mstDutyTypeCustomer as $data)
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-select border-bottom"
+                                                            aria-label="Default select example" name="dut_typ_tim"
+                                                            id="dut_typ_tim">
+                                                            <option value="">(Select Duty type type)</option>
+                                                            <option value="hrKmLocal"
+                                                                {{ old('dut_typ_tim', $data->duty_type ?? '') == 'hrKmLocal' ? 'selected' : '' }}>
+                                                                HR-KM (Local)</option>
+                                                            <option value="dayKmOutstation"
+                                                                {{ old('dut_typ_tim', $data->duty_type ?? '') == 'dayKmOutstation' ? 'selected' : '' }}>
+                                                                Day-KM (Outstation)</option>
+                                                            <option value="longDurationDaily"
+                                                                {{ old('dut_typ_tim', $data->duty_type ?? '') == 'longDurationDaily' ? 'selected' : '' }}>
+                                                                Long Duration - Total KM
+                                                                Daily HR (Monthly
+                                                                Bookings)</option>
+                                                        </select>
+                                                    </td>
 
-                                <td>
-                                    <select class="form-select border-bottom"
-                                        aria-label="Default select example" name="dut_typ_tim_str"
-                                        id="dut_typ_tim_str">
+                                                    <td>
+                                                        <select class="form-select border-bottom"
+                                                            aria-label="Default select example" name="dut_typ_tim_str"
+                                                            id="dut_typ_tim_str"
+                                                            data-start-time="{{ $data->start_time ?? '' }}">
 
-                                    </select>
-                                </td>
 
-                                <td>
-                                    <select class="form-select border-bottom"
-                                        aria-label="Default select example" name="dut_typ_tim_end"
-                                        id="dut_typ_tim_end">
-                                    </select>
-                                </td>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-danger py-0 remove_dut_typ_tim">
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        @endforeach
+                                                        </select>
+                                                    </td>
+
+                                                    <td>
+                                                        <select class="form-select border-bottom"
+                                                            aria-label="Default select example" name="dut_typ_tim_end"
+                                                            id="dut_typ_tim_end"
+                                                            data-end-time="{{ $data->end_time ?? '' }}">>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button"
+                                                            class="btn btn-danger py-0 remove_dut_typ_tim"
+                                                            data-id="{{ $data->id ?? '' }}">
+                                                            <i class="fa-solid fa-xmark"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
 
                                             {{-- component end --}}
                                         </tbody>
@@ -630,7 +760,41 @@
                                 <div class="files_body" id="files_body">
 
                                     {{-- component start --}}
-
+                                    @foreach ($mstFilesCustomer as $data)
+                                        <div class="d-flex border-bottom">
+                                            <div class="p-3">
+                                                <button type="button" class="btn btn-primary rounded-1 remove_files"
+                                                    data-id="{{ $data->id ?? '' }}"><i
+                                                        class="fa-solid fa-minus"></i></button>
+                                            </div>
+                                            <div class="p-3 ps-0 w-100">
+                                                <div class="panel border rounded">
+                                                    <div class="panel-heading bg-light p-3">Files</div>
+                                                    <div class="panel-body p-3">
+                                                        <div class="mb-3">
+                                                            <label for="file_name" class="form-label">File Name </label>
+                                                            <input type="text" class="form-control  border-bottom"
+                                                                name="file_name" id="file_name"
+                                                                value="{{ old('name', $data->name ?? '') }}">
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="image" class="form-label">Upload </label>
+                                                            <div>
+                                                                <label for="image"
+                                                                    class="btn shadow-sm border rounded-1">Choose
+                                                                    File</label>
+                                                                <input type="file" class="form-control"
+                                                                    style="display: none;" name="image" id="image">
+                                                                <a href="{{ asset('storage/images/customer-images/' . $data->image) }}"
+                                                                    alt="">{{ $data->image }}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                     {{-- component end --}}
                                 </div>
                                 <div class="p-3">
@@ -693,35 +857,65 @@
     </div>
 @endsection
 @section('extrajs')
-    <script src="{{ asset('admin/js/cities.js') }}"></script>
-    <script src="{{ asset('admin/js/states.js') }}"></script>
-    <script src="{{ asset('admin/js/timeslots.js') }}"></script>
-    <script src="{{ asset('admin/js/options.js') }}"></script>
-
     <script>
         $(document).ready(function() {
+
+            // Duty Type Type Timings
+            const startTimeElement = document.getElementById('dut_typ_tim_str');
+            if (startTimeElement) {
+                // data-appicable-tax-cross
+                const startTime = startTimeElement.dataset.startTime;
+                startTimeElement.innerHTML = generateTimeSlots(startTime);
+
+                const endTimeElement = document.getElementById('dut_typ_tim_end');
+                const endTime = endTimeElement.dataset.endTime;
+                endTimeElement.innerHTML = generateTimeSlots(endTime);
+            }
+
+            // Driver Allowance Setting
+
+            const driCityElement = document.getElementById('dri_allow_set_city');
+            if (driCityElement) {
+                const driCity = driCityElement.dataset.driCity;
+                driCityElement.innerHTML = generateCityOptions(driCity);
+
+                const startDriTimeElement = document.getElementById('dri_allow_set_early_time');
+                const startDriTime = startDriTimeElement.dataset.startDriTime;
+                startDriTimeElement.innerHTML = generateTimeSlots(startDriTime);
+
+                const endDriTimeElement = document.getElementById('dri_allow_set_late_time');
+                const endDriTime = endDriTimeElement.dataset.endDriTime;
+                endDriTimeElement.innerHTML = generateTimeSlots(endDriTime);
+
+                const DriOveTimeElement = document.getElementById('dri_allow_set_outst_overnig_time');
+                const overNightTime = DriOveTimeElement.dataset.overNightTime;
+                DriOveTimeElement.innerHTML = generateTimeSlots(overNightTime);
+            }
+
+
             let baseCityFuel = @json($particularMstCustomer->base_city_fuel);
             let countryDropDown = @json($particularMstCustomer->country);
             let state = @json($particularMstCustomer->state);
             let gstState = @json($particularMstCustomer->gst_state);
-            let startTime = @json($particularMstCustomer->start_time);
-            let endTime = @json($particularMstCustomer->end_time);
+            // let startTime = @json($particularMstCustomer->start_time);
+            // let endTime = @json($particularMstCustomer->end_time);
             console.log(gstState);
 
             // Function to generate HTML for the options and set the selected attribute based on dynamic variables
-            
+
 
             document.getElementById("base_city_fuel").innerHTML = generateCityOptions(baseCityFuel);
             document.getElementById("country").innerHTML = generateCityOptions(countryDropDown);
 
-           
+
             document.getElementById("state").innerHTML = generateStateOptions();
             document.getElementById("gst_state").innerHTML = generateStateOptions(gstState);
             document.getElementById("state").innerHTML = generateStateOptions(state);
 
-          
 
-          
+
+            // document.getElementById("dut_typ_tim_str").innerHTML = generateStateOptions(startTime);
+            // document.getElementById("dut_typ_tim_end").innerHTML = generateStateOptions(endTime);
 
             var applicableTaxes = @json($applicableTaxes);
             $("#formCustomer").validate({
@@ -754,11 +948,42 @@
                 placeholder: '',
                 tabsize: 2,
                 height: 42
-            }); // Applicable Taxes Start Here
+            });
+            // Applicable Taxes Start Here
 
             $(document).on('click', '.remove_appli_tax_body', function() {
-                $(this).closest('.d-flex').remove();
+                console.log('Clicked delete button');
+
+                let taxId = $(this).data('id'); // Get tax ID
+                console.log("Tax ID:", taxId); // Debugging
+
+                let parentDiv = $(this).closest('.d-flex');
+
+                if (taxId === "new") {
+                    // Handle dynamic rows (no database record)
+                    parentDiv.remove();
+                } else if (taxId === undefined || taxId === '' || taxId === null) {
+                    // Handle invalid tax ID
+                } else {
+                    // Handle existing records (send AJAX request to delete from database)
+                    $.ajax({
+                        url: "{{ route('customers.delete.applicable.taxes', ':id') }}".replace(
+                            ':id', taxId),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            parentDiv.remove();
+                        },
+                        error: function(response) {
+                            alert('Failed to delete tax');
+                        }
+                    });
+                }
             });
+
 
             $('#extend_appli_tax').on('click', function() {
                 const childCount = $('#appli_tax_body').find('.d-flex').length + 1;
@@ -766,12 +991,12 @@
 
                 let taxOptions = '<option value="">(Select Tax)</option>';
                 applicableTaxes.forEach(tax => {
-                    taxOptions += `<option value="${tax.id}">${tax.name}</option>`;
+                    taxOptions += `<option value="${tax.id}">${tax.percentage}</option>`;
                 });
 
                 var template = `<div class="d-flex border-bottom">
             <div class="p-3">
-                <button type="button" class="btn btn-primary rounded-1 remove_appli_tax_body" data-index=${childCount}>
+                <button type="button" class="btn btn-primary rounded-1 remove_appli_tax_body" data-index=${childCount} data-id="new">
                     <i class="fa-solid fa-minus"></i>
                 </button>
             </div>
@@ -816,7 +1041,37 @@
             // Applicable Interstate Taxes Start Here
 
             $(document).on('click', '.remove_inter_appli_tax_body', function() {
-                $(this).closest('.d-flex').remove();
+                console.log('Clicked delete button');
+
+                let taxId = $(this).data('id'); // Get tax ID
+                console.log("Tax ID:", taxId); // Debugging
+
+                let parentDiv = $(this).closest('.d-flex');
+
+                if (taxId === "new") {
+                    // Handle dynamic rows (no database record)
+                    parentDiv.remove();
+                } else if (taxId === undefined || taxId === '' || taxId === null) {
+                    // Handle invalid tax ID
+                } else {
+                    // Handle existing records (send AJAX request to delete from database)
+                    $.ajax({
+                        url: "{{ route('customers.delete.interstate.taxes', ':id') }}".replace(
+                            ':id', taxId),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            parentDiv.remove();
+                        },
+                        error: function(response) {
+                            alert('Failed to delete tax');
+                        }
+                    });
+                }
+
             });
 
             $('#extend_inter_appli_tax').on('click', function() {
@@ -824,11 +1079,11 @@
                 console.log(childCount);
                 let taxOptions = '<option value="">(Select Tax)</option>';
                 applicableTaxes.forEach(tax => {
-                    taxOptions += `<option value="${tax.id}">${tax.name}</option>`;
+                    taxOptions += `<option value="${tax.id}">${tax.percentage}</option>`;
                 });
                 var template = `  <div class="d-flex border-bottom">
                                     <div class="p-3">
-                                        <button type="button" class="btn btn-primary rounded-1 remove_inter_appli_tax_body"><i
+                                        <button type="button" class="btn btn-primary rounded-1 remove_inter_appli_tax_body" data-id="new"><i
                                                 class="fa-solid fa-minus"></i></button>
                                     </div>
                                     <div class="p-3 ps-0 w-100">
@@ -870,7 +1125,33 @@
             // Driver Allowance Settings Start Here
 
             $(document).on('click', '.remove_dri_allow_set', function() {
-                $(this).closest('tr').remove();
+                console.log('Clicked delete button');
+
+                let driverAllowanceId = $(this).data('id'); // Get tax ID
+                console.log("Tax ID:", driverAllowanceId); // Debugging
+
+                let parentDiv = $(this).closest('tr');
+
+                if (driverAllowanceId === "new") {
+                    parentDiv.remove();
+                } else {
+                    $.ajax({
+                        url: "{{ route('customers.delete.driver.allowance.setting', ':id') }}"
+                            .replace(
+                                ':id', driverAllowanceId),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            parentDiv.remove();
+                        },
+                        error: function(response) {
+                            alert('Failed to delete tax');
+                        }
+                    });
+                }
             });
 
             $('#extend_dri_allow_set').on('click', function() {
@@ -878,43 +1159,43 @@
                 console.log(childCount);
 
                 var template = `    <tr>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dri_allow_set_city${childCount}"  id="dri_allow_set_city${childCount}" data-index=${childCount}
-                                                        >
-                                                                                ${generateCityOptions(baseCityFuel)}
+                    <td>
+                        <select class="form-select border-bottom"
+                            aria-label="Default select example" name="dri_allow_set_city${childCount}"  id="dri_allow_set_city${childCount}" data-index=${childCount}
+                            >
+                            ${generateCityOptions(baseCityFuel)}
 
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dri_allow_set_early_time${childCount}" id="dri_allow_set_early_time${childCount}"
-                                                        data-index=${childCount}
-                                                        >
-                                                                                                                ${generateTimeSlots()}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select border-bottom"
+                            aria-label="Default select example" name="dri_allow_set_early_time${childCount}" id="dri_allow_set_early_time${childCount}"
+                            data-index=${childCount}
+                            >
+                                                                                    ${generateTimeSlots()}
 
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dri_allow_set_late_time${childCount}" id="dri_allow_set_late_time${childCount}"
-                                                        data-index=${childCount}
-                                                        >
-                                                                                                         ${generateTimeSlots()}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select border-bottom"
+                            aria-label="Default select example" name="dri_allow_set_late_time${childCount}" id="dri_allow_set_late_time${childCount}"
+                            data-index=${childCount}
+                            >
+                                                                                ${generateTimeSlots()}
 
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dri_allow_set_outst_overnig_time${childCount}" id="dri_allow_set_outst_overnig_time${childCount}"
-                                                        data-index=${childCount}
-                                                        >
-                                                                                                               ${generateTimeSlots()}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select border-bottom"
+                            aria-label="Default select example" name="dri_allow_set_outst_overnig_time${childCount}" id="dri_allow_set_outst_overnig_time${childCount}"
+                            data-index=${childCount}
+                            >
+                                                                                    ${generateTimeSlots()}
 
-                                                    </select>
-                                                </td>
+                        </select>
+                    </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-danger py-0 remove_dri_allow_set">
+                                                    <button type="button" class="btn btn-danger py-0 remove_dri_allow_set" data-id="new">
                                                         <i class="fa-solid fa-xmark"></i>
                                                     </button>
                                                 </td>
@@ -957,7 +1238,33 @@
 
 
             $(document).on('click', '.remove_dut_typ_tim', function() {
-                $(this).closest('tr').remove();
+                console.log('Clicked delete button');
+
+                let dutyType = $(this).data('id'); // Get tax ID
+                console.log("Tax ID:", dutyType); // Debugging
+
+                let parentDiv = $(this).closest('tr');
+
+                if (dutyType === "new") {
+                    console.log('javascript dom deleted');
+                    parentDiv.remove();
+                } else {
+                    $.ajax({
+                        url: "{{ route('customers.delete.duty.type', ':id') }}".replace(
+                            ':id', dutyType),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            parentDiv.remove();
+                        },
+                        error: function(response) {
+                            alert('Failed to delete tax');
+                        }
+                    });
+                }
             });
 
             $('#extend_dut_typ_tim').on('click', function() {
@@ -1001,7 +1308,7 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-danger py-0 remove_dut_typ_tim" >
+                                                <button type="button" class="btn btn-danger py-0 remove_dut_typ_tim" data-id="new" >
                                                     <i class="fa-solid fa-xmark"></i>
                                                 </button>
                                             </td>
@@ -1038,7 +1345,33 @@
             // Files Start Here
 
             $(document).on('click', '.remove_files', function() {
-                $(this).closest('.d-flex').remove();
+                console.log('Clicked delete button');
+
+                let dutyType = $(this).data('id'); // Get tax ID
+                console.log("Tax ID:", dutyType); // Debugging
+
+                let parentDiv = $(this).closest('.d-flex');
+
+                if (dutyType === "new") {
+                    console.log('javascript dom deleted');
+                    parentDiv.remove();
+                } else {
+                    $.ajax({
+                        url: "{{ route('customers.delete.files', ':id') }}".replace(
+                            ':id', dutyType),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            parentDiv.remove();
+                        },
+                        error: function(response) {
+                            alert('Failed to delete tax');
+                        }
+                    });
+                }
             });
 
             $('#extend_files').on('click', function() {
@@ -1047,7 +1380,7 @@
 
                 var template = `      <div class="d-flex border-bottom">
                                     <div class="p-3">
-                                        <button type="button" class="btn btn-primary rounded-1 remove_files"><i
+                                        <button type="button" class="btn btn-primary rounded-1 remove_files" data-id="new"><i
                                                 class="fa-solid fa-minus"></i></button>
                                     </div>
                                     <div class="p-3 ps-0 w-100">

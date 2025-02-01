@@ -23,7 +23,7 @@ class CustomersController extends Controller
 {
     public function index()
     {
-        $mstCustomer = MstCustomer::active()->with('customerGroups')->orderBy('id', 'Desc')->get();
+        $mstCustomer = MstCustomer::active()->with('customerGroups')->orderBy('id', 'DESC')->get();
 
         return view('backend.admin.masters.customers.index', compact('mstCustomer'));
     }
@@ -143,7 +143,7 @@ class CustomersController extends Controller
             $applicableTaxesData = [];
             for ($i = 1; $request->has("appli_tax$i"); $i++) {
                 $taxId = $request->input("appli_tax{$i}");
-                $isNotCharged = $request->has("appli_tax_n_ch{$i}") ? true : false;
+                $isNotCharged = $request->input("appli_tax_n_ch{$i}") ? true : false;
                 // Add to applicable taxes data array
                 $applicableTaxesData[] = [
                     'admin_id' => Auth::id(),
@@ -155,8 +155,8 @@ class CustomersController extends Controller
                 ];
                 // print_r($applicableTaxesData);
             }
-            // dd($applicableTaxesData);
             MstCustomerApplicableTaxes::insert($applicableTaxesData);
+            // dd($applicableTaxesData);
 
 
             // Process Interstate Taxes
@@ -175,13 +175,14 @@ class CustomersController extends Controller
                 ];
             }
             MstCustomerInterstateTaxes::insert($interstateTaxesData);
+            // dd($interstateTaxesData);
             // Driver Allowance Setting
             $driverAllowSettingData = [];
             for ($i = 1; $request->has("dri_allow_set_city$i"); $i++) {
                 $cityName = $request->input("dri_allow_set_city$i");
-                $earlyTime = $request->has("dri_allow_set_early_time{$i}");
-                $lateTime = $request->has("dri_allow_set_late_time{$i}");
-                $outstaOvernigTime = $request->has("dri_allow_set_late_time{$i}");
+                $earlyTime = $request->input("dri_allow_set_early_time{$i}");
+                $lateTime = $request->input("dri_allow_set_late_time{$i}");
+                $outstaOvernigTime = $request->input("dri_allow_set_outst_overnig_time{$i}");
                 // Add to interstate taxes data array
                 $driverAllowSettingData[] = [
                     'admin_id' => Auth::id(),
@@ -194,15 +195,15 @@ class CustomersController extends Controller
                     'updated_at' => now(),
                 ];
             }
-
             MstCustomerDriverAllownanceSetting::insert($driverAllowSettingData);
+            // dd($driverAllowSettingData);
 
             // Duty Type Types
             $dutyTypeTypeData = [];
             for ($i = 1; $request->has("dut_typ_tim$i"); $i++) {
                 $dutyType = $request->input("dut_typ_tim$i");
-                $startTime = $request->has("dut_typ_tim_str{$i}");
-                $endTime = $request->has("dri_allow_set_late_time{$i}");
+                $startTime = $request->input("dut_typ_tim_str{$i}");
+                $endTime = $request->input("dut_typ_tim_end{$i}");
                 // Add to interstate taxes data array
                 $dutyTypeTypeData[] = [
                     'admin_id' => Auth::id(),
@@ -214,8 +215,8 @@ class CustomersController extends Controller
                     'updated_at' => now(),
                 ];
             }
-
             MstCustomerDutyType::insert($dutyTypeTypeData);
+            // dd($dutyTypeTypeData);
 
             // Files
             $filesData = [];
@@ -227,7 +228,8 @@ class CustomersController extends Controller
 
                     // Generate unique file name and save the file
                     $uniqueFileName = uniqid() . '.' . $image->getClientOriginalExtension();
-                    $image->move(public_path('storage/images/customer-images'), $uniqueFileName);
+                    $image->storeAs('images/customer-images', $uniqueFileName, 'public');
+
 
                     // Add file data to array
                     $filesData[] = [
@@ -238,7 +240,10 @@ class CustomersController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
+                    // dd($filesData);
                 }
+                else{
+
                 $filesData[] = [
                     'admin_id' => Auth::user()->id,
                     'customer_id' => $customerId,
@@ -248,11 +253,13 @@ class CustomersController extends Controller
                 ];
             }
 
+            }
+
             MstCustomerFile::insert($filesData);
 
 
 
-            return redirect(route('customers.index'));
+            // return redirect(route('customers.index'));
         } catch (Exception $e) {
             dd($e);
         }
@@ -260,14 +267,19 @@ class CustomersController extends Controller
     public function edit(Request $request)
     {
         $mstCustomer = MstCustomer::active()->get();
-        $particularMstCustomer = MstCustomer::active()->where('id',$request->id)->first();
-        $mstCustomerDutyType = MstCustomerDutyType::active()->with('mstCustomer')->get();
-        // dd($mstCustomerDutyType);
         $customerGroup = MstCustomerGroup::active()->get();
         $feedbackForm = MstFeedbackForm::active()->get();
         $myCompany = MstMyCompany::active()->get();
         $applicableTaxes = MstTax::active()->get();
-        return view('backend.admin.masters.customers.edit', compact('mstCustomer', 'particularMstCustomer','mstCustomerDutyType', 'customerGroup', 'myCompany', 'feedbackForm', 'applicableTaxes'));
+        $particularMstCustomer = MstCustomer::active()->where('id', $request->id)->first();
+        $mstApplicableTaxesCustomer = MstCustomerApplicableTaxes::active()->with('mstCustomer')->where('customer_id', $request->id)->get();
+        // dd($mstApplicableTaxesCustomer);
+        $mstInterstateTaxesCustomer = MstCustomerInterstateTaxes::active()->with('mstCustomer')->where('customer_id', $request->id)->get();
+        $mstDutyTypeCustomer = MstCustomerDutyType::active()->with('mstCustomer')->where('customer_id', $request->id)->get();
+        $mstDriverCustomerSetting = MstCustomerDriverAllownanceSetting::active()->with('mstCustomer')->where('customer_id', $request->id)->get();
+        $mstFilesCustomer = MstCustomerFile::active()->with('mstCustomer')->where('customer_id', $request->id)->get();
+        //    dd($mstFilesCustomer,$request->id);
+        return view('backend.admin.masters.customers.edit', compact('mstCustomer', 'customerGroup', 'myCompany', 'feedbackForm', 'applicableTaxes', 'particularMstCustomer', 'mstApplicableTaxesCustomer', 'mstInterstateTaxesCustomer', 'mstDutyTypeCustomer', 'mstDriverCustomerSetting', 'mstFilesCustomer'));
     }
     public function update(Request $request)
     {
@@ -370,8 +382,8 @@ class CustomersController extends Controller
             // dd($mstCustomer);
             // $customerId = $customer->id;
 
+            // // Process Taxes
 
-            // // Process Applicable Taxes
             // $applicableTaxesData = [];
             // for ($i = 1; $request->has("appli_tax$i"); $i++) {
             //     $taxId = $request->input("appli_tax{$i}");
@@ -411,9 +423,9 @@ class CustomersController extends Controller
             // $driverAllowSettingData = [];
             // for ($i = 1; $request->has("dri_allow_set_city$i"); $i++) {
             //     $cityName = $request->input("dri_allow_set_city$i");
-            //     $earlyTime = $request->has("dri_allow_set_early_time{$i}");
-            //     $lateTime = $request->has("dri_allow_set_late_time{$i}");
-            //     $outstaOvernigTime = $request->has("dri_allow_set_late_time{$i}");
+            //     $earlyTime = $request->input("dri_allow_set_early_time{$i}");
+            //     $lateTime = $request->input("dri_allow_set_late_time{$i}");
+            //     $outstaOvernigTime = $request->input("dri_allow_set_outst_overnig_time{$i}");
             //     // Add to interstate taxes data array
             //     $driverAllowSettingData[] = [
             //         'admin_id' => Auth::id(),
@@ -426,15 +438,15 @@ class CustomersController extends Controller
             //         'updated_at' => now(),
             //     ];
             // }
-
+            // // dd($driverAllowSettingData);
             // MstCustomerDriverAllownanceSetting::insert($driverAllowSettingData);
 
             // // Duty Type Types
             // $dutyTypeTypeData = [];
             // for ($i = 1; $request->has("dut_typ_tim$i"); $i++) {
             //     $dutyType = $request->input("dut_typ_tim$i");
-            //     $startTime = $request->has("dut_typ_tim_str{$i}");
-            //     $endTime = $request->has("dri_allow_set_late_time{$i}");
+            //     $startTime = $request->input("dut_typ_tim_str{$i}");
+            //     $endTime = $request->input("dut_typ_tim_end{$i}");
             //     // Add to interstate taxes data array
             //     $dutyTypeTypeData[] = [
             //         'admin_id' => Auth::id(),
@@ -446,7 +458,6 @@ class CustomersController extends Controller
             //         'updated_at' => now(),
             //     ];
             // }
-
             // MstCustomerDutyType::insert($dutyTypeTypeData);
 
             // // Files
@@ -481,6 +492,8 @@ class CustomersController extends Controller
             // }
 
             // MstCustomerFile::insert($filesData);
+
+            // MstCustomerFile::insert($filesData);
             return redirect(route('customers.edit', $request->id));
 
 
@@ -490,6 +503,67 @@ class CustomersController extends Controller
             dd($e);
         }
     }
+
+    public function deleteApplicableTaxes(Request $request){
+        try {
+            // Find the record by ID and delete it
+            $interstateTax = MstCustomerApplicableTaxes::findOrFail($request->id);
+            $interstateTax->delete();
+
+            return response()->json(['success' => 'Applicable Tax deleted successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete tax.'], 500);
+        }
+    }
+
+    public function deleteInterstateTaxes(Request $request){
+        try {
+            // Find the record by ID and delete it
+            $interstateTax = MstCustomerInterstateTaxes::findOrFail($request->id);
+            $interstateTax->delete();
+
+            return response()->json(['success' => 'Inter State tax deleted successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete tax.'],  $e);
+        }
+    }
+
+    public function deleteDriverAllowanceSetting(Request $request){
+        try {
+            // Find the record by ID and delete it
+            $driverAllowanceSetting = MstCustomerDriverAllownanceSetting::findOrFail($request->id);
+            $driverAllowanceSetting->delete();
+
+            return response()->json(['success' => 'Driver Allowance Setting deleted successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete tax.'],  $e);
+        }
+    }
+
+    public function deleteDutyType(Request $request){
+        try {
+            // Find the record by ID and delete it
+            $dutyType = MstCustomerDutyType::findOrFail($request->id);
+            $dutyType->delete();
+
+            return response()->json(['success' => 'Duty Type deleted successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete tax.'],  $e);
+        }
+    }
+
+    public function deleteFiles(Request $request){
+        try {
+            // Find the record by ID and delete it
+            $deleteFiles = MstCustomerFile::findOrFail($request->id);
+            $deleteFiles->delete();
+
+            return response()->json(['success' => 'Duty Type deleted successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete tax.'],  $e);
+        }
+    }
+    
     public function showCustomersGroups()
     {
         return view('backend.admin.masters.customers.groups');
