@@ -513,8 +513,10 @@
                                                         <div class="mb-3">
                                                             <label for="appli_tax" class="form-label ">Tax</label>
                                                             <select class="form-select border-bottom"
-                                                                aria-label="Default select example" name="appli_tax"
-                                                                id="appli_tax">
+                                                                aria-label="Default select example" name="appli_tax{{$data->id}}"
+                                                                id="appli_tax"
+                                                                data-index={{$data->id ?? '' }}
+                                                                >
                                                                 <option value="">(Select Tax)</option>
 
                                                                 @foreach ($applicableTaxes as $taxesData)
@@ -630,7 +632,8 @@
                                                         <select class="form-select border-bottom"
                                                             aria-label="Default select example" name="dri_allow_set_city"
                                                             id="dri_allow_set_city"
-                                                            data-dri-city="{{ $data->city_name ?? '' }}">
+                                                            data-dri-city="{{ $data->city_name ?? '' }}"
+                                                           >
 
                                                         </select>
                                                     </td>

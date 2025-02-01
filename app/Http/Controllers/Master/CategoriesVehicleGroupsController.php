@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\MstCatVehGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
@@ -69,6 +71,7 @@ class CategoriesVehicleGroupsController extends Controller
                 'seat_capacity' => $request->seat_capacity,
                 'lug_count' => $request->lug_count,
             ]);
+           
         }
 
         if ($vehGrpName) {
