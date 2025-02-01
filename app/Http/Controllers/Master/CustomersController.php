@@ -259,7 +259,7 @@ class CustomersController extends Controller
 
 
 
-            // return redirect(route('customers.index'));
+            return redirect(route('customers.index'));
         } catch (Exception $e) {
             dd($e);
         }
@@ -337,9 +337,9 @@ class CustomersController extends Controller
                 dd($validator->errors()->first());
                 return redirect(route('customers.index'))->withInput();
             }
-            $mstCustomer = MstCustomer::where('id', $request->id)->firstOrFail();
+            $customerId = MstCustomer::where('id', $request->id)->firstOrFail();
 
-            $mstCustomer->update([
+            $customerId->update([
                 'name' => $request->name,
                 'address' => $request->address,
                 'pincode' => $request->pincode,
@@ -380,118 +380,119 @@ class CustomersController extends Controller
                 'is_active' => $request->is_active ?? false,
             ]);
             // dd($mstCustomer);
-            // $customerId = $customer->id;
+            $customerId = $customerId->id;
+            dd($customerId);
 
             // // Process Taxes
 
-            // $applicableTaxesData = [];
-            // for ($i = 1; $request->has("appli_tax$i"); $i++) {
-            //     $taxId = $request->input("appli_tax{$i}");
-            //     $isNotCharged = $request->has("appli_tax_n_ch{$i}") ? true : false;
-            //     // Add to applicable taxes data array
-            //     $applicableTaxesData[] = [
-            //         'admin_id' => Auth::id(),
-            //         'customer_id' => $customerId,
-            //         'tax_id' => $taxId,
-            //         'not_charged' => $isNotCharged,
-            //         'created_at' => now(),
-            //         'updated_at' => now(),
-            //     ];
-            //     // print_r($applicableTaxesData);
-            // }
-            // // dd($applicableTaxesData);
-            // MstCustomerApplicableTaxes::insert($applicableTaxesData);
+            $applicableTaxesData = [];
+            for ($i = 1; $request->has("appli_tax$i"); $i++) {
+                $taxId = $request->input("appli_tax{$i}");
+                $isNotCharged = $request->has("appli_tax_n_ch{$i}") ? true : false;
+                // Add to applicable taxes data array
+                $applicableTaxesData[] = [
+                    'admin_id' => Auth::id(),
+                    'customer_id' => $customerId,
+                    'tax_id' => $taxId,
+                    'not_charged' => $isNotCharged,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+                // print_r($applicableTaxesData);
+            }
+            // dd($applicableTaxesData);
+            MstCustomerApplicableTaxes::insert($applicableTaxesData);
 
 
-            // // Process Interstate Taxes
-            // $interstateTaxesData = [];
-            // for ($i = 1; $request->has("inter_appli_tax$i"); $i++) {
-            //     $taxId = $request->input("inter_appli_tax$i");
-            //     $isNotCharged = $request->has("inter_appli_tax_n_ch{$i}") ? 1 : 0;
-            //     // Add to interstate taxes data array
-            //     $interstateTaxesData[] = [
-            //         'admin_id' => Auth::id(),
-            //         'customer_id' => $customerId,
-            //         'tax_id' => $taxId,
-            //         'not_charged' => $isNotCharged,
-            //         'created_at' => now(),
-            //         'updated_at' => now(),
-            //     ];
-            // }
-            // MstCustomerInterstateTaxes::insert($interstateTaxesData);
-            // // Driver Allowance Setting
-            // $driverAllowSettingData = [];
-            // for ($i = 1; $request->has("dri_allow_set_city$i"); $i++) {
-            //     $cityName = $request->input("dri_allow_set_city$i");
-            //     $earlyTime = $request->input("dri_allow_set_early_time{$i}");
-            //     $lateTime = $request->input("dri_allow_set_late_time{$i}");
-            //     $outstaOvernigTime = $request->input("dri_allow_set_outst_overnig_time{$i}");
-            //     // Add to interstate taxes data array
-            //     $driverAllowSettingData[] = [
-            //         'admin_id' => Auth::id(),
-            //         'customer_id' => $customerId,
-            //         'city_name' => $cityName,
-            //         'early_time' => $earlyTime,
-            //         'late_time' => $lateTime,
-            //         'outsta_overnig_time' => $outstaOvernigTime,
-            //         'created_at' => now(),
-            //         'updated_at' => now(),
-            //     ];
-            // }
-            // // dd($driverAllowSettingData);
-            // MstCustomerDriverAllownanceSetting::insert($driverAllowSettingData);
+            // Process Interstate Taxes
+            $interstateTaxesData = [];
+            for ($i = 1; $request->has("inter_appli_tax$i"); $i++) {
+                $taxId = $request->input("inter_appli_tax$i");
+                $isNotCharged = $request->has("inter_appli_tax_n_ch{$i}") ? 1 : 0;
+                // Add to interstate taxes data array
+                $interstateTaxesData[] = [
+                    'admin_id' => Auth::id(),
+                    'customer_id' => $customerId,
+                    'tax_id' => $taxId,
+                    'not_charged' => $isNotCharged,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+            MstCustomerInterstateTaxes::insert($interstateTaxesData);
+            // Driver Allowance Setting
+            $driverAllowSettingData = [];
+            for ($i = 1; $request->has("dri_allow_set_city$i"); $i++) {
+                $cityName = $request->input("dri_allow_set_city$i");
+                $earlyTime = $request->input("dri_allow_set_early_time{$i}");
+                $lateTime = $request->input("dri_allow_set_late_time{$i}");
+                $outstaOvernigTime = $request->input("dri_allow_set_outst_overnig_time{$i}");
+                // Add to interstate taxes data array
+                $driverAllowSettingData[] = [
+                    'admin_id' => Auth::id(),
+                    'customer_id' => $customerId,
+                    'city_name' => $cityName,
+                    'early_time' => $earlyTime,
+                    'late_time' => $lateTime,
+                    'outsta_overnig_time' => $outstaOvernigTime,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+            // dd($driverAllowSettingData);
+            MstCustomerDriverAllownanceSetting::insert($driverAllowSettingData);
 
-            // // Duty Type Types
-            // $dutyTypeTypeData = [];
-            // for ($i = 1; $request->has("dut_typ_tim$i"); $i++) {
-            //     $dutyType = $request->input("dut_typ_tim$i");
-            //     $startTime = $request->input("dut_typ_tim_str{$i}");
-            //     $endTime = $request->input("dut_typ_tim_end{$i}");
-            //     // Add to interstate taxes data array
-            //     $dutyTypeTypeData[] = [
-            //         'admin_id' => Auth::id(),
-            //         'customer_id' => $customerId,
-            //         'duty_type' => $dutyType,
-            //         'start_time' => $startTime,
-            //         'end_time' => $endTime,
-            //         'created_at' => now(),
-            //         'updated_at' => now(),
-            //     ];
-            // }
-            // MstCustomerDutyType::insert($dutyTypeTypeData);
+            // Duty Type Types
+            $dutyTypeTypeData = [];
+            for ($i = 1; $request->has("dut_typ_tim$i"); $i++) {
+                $dutyType = $request->input("dut_typ_tim$i");
+                $startTime = $request->input("dut_typ_tim_str{$i}");
+                $endTime = $request->input("dut_typ_tim_end{$i}");
+                // Add to interstate taxes data array
+                $dutyTypeTypeData[] = [
+                    'admin_id' => Auth::id(),
+                    'customer_id' => $customerId,
+                    'duty_type' => $dutyType,
+                    'start_time' => $startTime,
+                    'end_time' => $endTime,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+            MstCustomerDutyType::insert($dutyTypeTypeData);
 
-            // // Files
-            // $filesData = [];
-            // for ($i = 1; $request->has("file_name$i"); $i++) {
-            //     $fileName = $request->input("file_name$i");
+            // Files
+            $filesData = [];
+            for ($i = 1; $request->has("file_name$i"); $i++) {
+                $fileName = $request->input("file_name$i");
 
-            //     if ($request->hasFile("image$i")) {
-            //         $image = $request->file("image$i");
+                if ($request->hasFile("image$i")) {
+                    $image = $request->file("image$i");
 
-            //         // Generate unique file name and save the file
-            //         $uniqueFileName = uniqid() . '.' . $image->getClientOriginalExtension();
-            //         $image->move(public_path('storage/images/customer-images'), $uniqueFileName);
+                    // Generate unique file name and save the file
+                    $uniqueFileName = uniqid() . '.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('storage/images/customer-images'), $uniqueFileName);
 
-            //         // Add file data to array
-            //         $filesData[] = [
-            //             'admin_id' => Auth::user()->id,
-            //             'customer_id' => $customerId,
-            //             'name' => $fileName,
-            //             'image' => $uniqueFileName, // Save the unique file name
-            //             'created_at' => now(),
-            //             'updated_at' => now(),
-            //         ];
-            //     }
-            //     $filesData[] = [
-            //         'admin_id' => Auth::user()->id,
-            //         'customer_id' => $customerId,
-            //         'name' => $fileName,
-            //         'created_at' => now(),
-            //         'updated_at' => now(),
-            //     ];
-            // }
+                    // Add file data to array
+                    $filesData[] = [
+                        'admin_id' => Auth::user()->id,
+                        'customer_id' => $customerId,
+                        'name' => $fileName,
+                        'image' => $uniqueFileName, // Save the unique file name
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+                $filesData[] = [
+                    'admin_id' => Auth::user()->id,
+                    'customer_id' => $customerId,
+                    'name' => $fileName,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
 
-            // MstCustomerFile::insert($filesData);
+            MstCustomerFile::insert($filesData);
 
             // MstCustomerFile::insert($filesData);
             return redirect(route('customers.edit', $request->id));
