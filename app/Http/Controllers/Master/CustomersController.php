@@ -381,7 +381,6 @@ class CustomersController extends Controller
             ]);
             // dd($mstCustomer);
             $customerId = $customerId->id;
-            dd($customerId);
 
             // // Process Taxes
 
@@ -466,23 +465,23 @@ class CustomersController extends Controller
             for ($i = 1; $request->has("file_name$i"); $i++) {
                 $fileName = $request->input("file_name$i");
 
-                if ($request->hasFile("image$i")) {
-                    $image = $request->file("image$i");
+                // if ($request->hasFile("image$i")) {
+                //     $image = $request->file("image$i");
 
-                    // Generate unique file name and save the file
-                    $uniqueFileName = uniqid() . '.' . $image->getClientOriginalExtension();
-                    $image->move(public_path('storage/images/customer-images'), $uniqueFileName);
+                //     // Generate unique file name and save the file
+                //     $uniqueFileName = uniqid() . '.' . $image->getClientOriginalExtension();
+                //     $image->move(public_path('storage/images/customer-images'), $uniqueFileName);
 
-                    // Add file data to array
-                    $filesData[] = [
-                        'admin_id' => Auth::user()->id,
-                        'customer_id' => $customerId,
-                        'name' => $fileName,
-                        'image' => $uniqueFileName, // Save the unique file name
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ];
-                }
+                //     // Add file data to array
+                //     $filesData[] = [
+                //         'admin_id' => Auth::user()->id,
+                //         'customer_id' => $customerId,
+                //         'name' => $fileName,
+                //         'image' => $uniqueFileName, // Save the unique file name
+                //         'created_at' => now(),
+                //         'updated_at' => now(),
+                //     ];
+                // }
                 $filesData[] = [
                     'admin_id' => Auth::user()->id,
                     'customer_id' => $customerId,
