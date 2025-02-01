@@ -15,21 +15,9 @@
 
 <div class="card rounded-0 border-0 p-3">
     <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
-        <h4>Employees</h4>
+        <h4>Bank Accounts</h4>
         <div class="text-end d-flex justify-content-end align-items-center gap-2">
-            <div class="btn-group" role="group"><a href="#"
-                    class="btn btn-light border">Permission profiles</a></div>
-            <div class="btn-group" role="group"><a href="{{route('employees.manage')}}" class="btn btn-primary">Add Employee</a></div>
-            <div class="dropdown">
-                <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="fa-solid fa-gear"></i>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#import-employees">Import</a></li>
-                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#call-settings">Indecall Settings - For Admin</a></li>
-                </ul>
-            </div>
+            <div class="btn-group" role="group"><a href="{{route('bankaccounts.manage')}}" class="btn btn-primary">Add Bank Account</a></div>
         </div>
     </div>
     <div class="card-body">
@@ -45,7 +33,7 @@
         </div>
         @endif
         <div class="bg-light mb-3 p-3 text-center">
-            Get started by adding <a href="{{route('labels.manage')}}" class="text-decoration-none">labels</a> for your business.
+            Get started by adding <a href="{{route('bankaccounts.manage')}}" class="text-decoration-none">bank accounts</a> for your business.
         </div>
 
         <div class="table-responsive">
@@ -53,28 +41,20 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Phone Number</th>
-                        <th>Email / Username</th>
-                        <th>Branches</th>
-                        <th>User</th>
-                        <th>Permission profile</th>
+                        <th>Account Number</th>
+                        <th>Bank Name</th>
+                        <th>Bank Branch</th>
+                        <th>IFSC Code</th>
                         <th width="100">setting</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>
-                            NAUSHAD CHAND SHAIKH
-                        </td>
-                        <td>
-                            9594576536
-                        </td>
-                        <td>
-                            shaikhnaushad327@gmail.com
-                        </td>
-                        <td>NA</td>
-                        <td><div class="text-success">Active</div></td>
-                        <td></td>
+                        <td>MUMBAI CAB SERVICE</td>
+                        <td>750061101004397</td>
+                        <td>Kokan Mercantile Co-operative Bank</td>
+                        <td>Kokan Mercantile Co-operative Bank IMPS</td>
+                        <td>KKBK0KMCB02</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button"
@@ -85,10 +65,26 @@
                                     <li>
                                         <a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#activity-log">View Activity Logs</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Manage Permission</a></li>
-                                    <li><a class="dropdown-item" href="#">Reset Password</a></li>
-                                    <li><a class="dropdown-item" href="#">Disable Employee User</a></li>
-                                    <li><a class="dropdown-item" href="#">Indecall Settings</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>YES BANK</td>
+                        <td>021363400005509</td>
+                        <td>Yes Bank</td>
+                        <td>GHATKOPAR, MUMBAI</td>
+                        <td>YESB0000213</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#activity-log">View Activity Logs</a>
+                                    </li>
                                 </ul>
                             </div>
                         </td>
@@ -97,11 +93,10 @@
                 <tfoot>
                     <tr>
                         <th>Name</th>
-                        <th>Phone Number</th>
-                        <th>Email / Username</th>
-                        <th>Branches</th>
-                        <th>User</th>
-                        <th>Permission profile</th>
+                        <th>Account Number</th>
+                        <th>Bank Name</th>
+                        <th>Bank Branch</th>
+                        <th>IFSC Code</th>
                         <th>setting</th>
                     </tr>
                 </tfoot>

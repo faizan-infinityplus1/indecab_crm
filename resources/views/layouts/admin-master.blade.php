@@ -109,12 +109,12 @@
                           <li><a class="dropdown-item" href="{{route('dutysupporters.index')}}">Duty Supporters</a></li>
                           <li><a class="dropdown-item" href="{{route('labels.index')}}">Labels</a></li>
                           <li><a class="dropdown-item" href="{{route('feedbackforms.index')}}">Feedback Forms</a></li>
-                          <li><a class="dropdown-item" href="#">Employees</a></li>
+                          <li><a class="dropdown-item" href="{{route('employees.index')}}">Employees</a></li>
                           <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Billing Items</a></li>
+                          <li><a class="dropdown-item" href="{{route('billingitems.index')}}">Billing Items</a></li>
                           <li><a class="dropdown-item" href="#">Pricing</a></li>
-                          <li><a class="dropdown-item" href="#">Dispatch Center/Branches</a></li>
-                          <li><a class="dropdown-item" href="#">Bank Accounts</a></li>
+                          <li><a class="dropdown-item" href="{{route('branches.index')}}">Dispatch Center/Branches</a></li>
+                          <li><a class="dropdown-item" href="{{route('bankaccounts.index')}}">Bank Accounts</a></li>
                           <li><a class="dropdown-item" href="#">My Companies</a></li>
                         </ul>
                     </li>

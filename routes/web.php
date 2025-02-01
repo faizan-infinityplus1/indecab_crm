@@ -4,8 +4,12 @@ use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\AdminAuth\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Master\BankAccountsController;
+use App\Http\Controllers\Master\BillingItemsController;
+use App\Http\Controllers\Master\BranchesController;
 use App\Http\Controllers\Master\DutyTypeController;
 use App\Http\Controllers\Master\CategoriesVehicleGroupsController;
+use App\Http\Controllers\Master\CompaniesController;
 use App\Http\Controllers\Master\TaxesController;
 use App\Http\Controllers\Master\CustomersController;
 use App\Http\Controllers\Master\DutySupportersController;
@@ -68,6 +72,20 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');
     Route::get('/employees/manage/{id?}', [EmployeesController::class, 'manage'])->name('employees.manage');
+    
+    Route::get('/billing-items', [BillingItemsController::class, 'index'])->name('billingitems.index');
+    Route::get('/billing-items/manage/{id?}', [BillingItemsController::class, 'manage'])->name('billingitems.manage');
+
+    Route::get('/branches', [BranchesController::class, 'index'])->name('branches.index');
+    Route::get('/branches/manage/{id?}', [BranchesController::class, 'manage'])->name('branches.manage');
+
+    Route::get('/bank-accounts', [BankAccountsController::class, 'index'])->name('bankaccounts.index');
+    Route::get('/bank-accounts/manage/{id?}', [BankAccountsController::class, 'manage'])->name('bankaccounts.manage');
+
+    Route::get('/companies', [CompaniesController::class, 'index'])->name('companies.index');
+    Route::get('/companies/manage/{id?}', [CompaniesController::class, 'manage'])->name('companies.manage');
+    Route::get('/companies/profiles', [CompaniesController::class, 'index'])->name('companies.index');
+    Route::get('/companies/profiles/manage/{id?}', [CompaniesController::class, 'manage'])->name('companies.manage');
 });
 
 
