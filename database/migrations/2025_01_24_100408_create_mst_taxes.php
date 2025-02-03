@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->string('name');
-            $table->integer('percentage')->nullable();
+            $table->decimal('percentage', 5, 2)->nullable();
             $table->boolean('in_active')->default(false);
             $table->timestamps();
         });

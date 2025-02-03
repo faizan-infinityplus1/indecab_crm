@@ -15,9 +15,9 @@
 
 <div class="card rounded-0 border-0 p-3">
     <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
-        <h4>Billing Items</h4>
+        <h4>Company Profiles</h4>
         <div class="text-end d-flex justify-content-end align-items-center gap-2">
-            <div class="btn-group" role="group"><a href="{{route('billingitems.manage')}}" class="btn btn-primary">Add Billing Item</a></div>
+            <div class="btn-group" role="group"><a href="{{route('companiesprofiles.manage')}}" class="btn btn-primary">Add Company Profile</a></div>
         </div>
     </div>
     <div class="card-body">
@@ -41,22 +41,14 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Short Name</th>
-                        <th>Taxable</th>
-                        <th>Allow driver to add</th>
-                        <th>Not charged on invoice?</th>
-                        <th>Status</th>
+                        <th>Default Profile For</th>
                         <th width="100">setting</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Car Wash</td>
-                        <td>NA</td>
-                        <td>No</td>
-                        <td>No</td>
-                        <td>No</td>
-                        <td><div class="text-success">Active</div></td>
+                        <td>Arbaaz Chougle</td>
+                        <td>Sister company: Uqaab Graphics | Sister company: Uqaab Holidays | Primary company: Mumbai Cab Service</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button"
@@ -64,31 +56,6 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#activity-log">View Activity Logs</a>
-                                    </li>
-                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Driver Allowance</td>
-                        <td>NA</td>
-                        <td><div class="text-success">Yes</div></td>
-                        <td>No</td>
-                        <td>No</td>
-                        <td><div class="text-success">Active</div></td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#activity-log">View Activity Logs</a>
-                                    </li>
                                     <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
@@ -98,11 +65,7 @@
                 <tfoot>
                     <tr>
                         <th>Name</th>
-                        <th>Short Name</th>
-                        <th>Taxable</th>
-                        <th>Allow driver to add</th>
-                        <th>Not charged on invoice?</th>
-                        <th>Status</th>
+                        <th>Default Profile For</th>
                         <th>setting</th>
                     </tr>
                 </tfoot>

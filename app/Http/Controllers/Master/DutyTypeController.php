@@ -12,7 +12,8 @@ class DutyTypeController extends Controller
 {
     public function index()
     {
-        return view('backend.admin.masters.dutytypes.index');
+        $data = MstDutyType::all();
+        return view('backend.admin.masters.dutytypes.index', compact('data'));
     }
     public function manage($id = null)
     {

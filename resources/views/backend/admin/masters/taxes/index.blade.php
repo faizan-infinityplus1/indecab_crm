@@ -94,9 +94,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($data as $data)
                     <tr>
-                        <td>1</td>
-                        <td>1.00</td>
+                        <td>{{$data->name}}</td>
+                        <td>{{$data->percentage}}</td>
                         <td>
                             <div class="text-success">Active</div>
                         </td>
@@ -114,106 +115,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>CGST 2.5%</td>
-                        <td>2.50</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>CGST 6%</td>
-                        <td>6.00</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>IGST 12%</td>
-                        <td>12.00</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>IGST 5%</td>
-                        <td>5.00</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>SGST 2.5%</td>
-                        <td>2.50</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
+                    @endforeach
 
                 </tbody>
                 <tfoot>

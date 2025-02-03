@@ -116,7 +116,7 @@
                           <li><a class="dropdown-item" href="{{route('employees.index')}}">Employees</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="{{route('billingitems.index')}}">Billing Items</a></li>
-                          <li><a class="dropdown-item" href="#">Pricing</a></li>
+                          <li><a class="dropdown-item" href="{{route('customerpricing.index')}}">Pricing</a></li>
                           <li><a class="dropdown-item" href="{{route('branches.index')}}">Dispatch Center/Branches</a></li>
                           <li><a class="dropdown-item" href="{{route('bankaccounts.index')}}">Bank Accounts</a></li>
                           <li><a class="dropdown-item" href="{{route('companies.index')}}">My Companies</a></li>
@@ -180,7 +180,39 @@
         src="https://cdn.datatables.net/v/bs5/dt-2.2.1/b-3.2.1/date-1.5.5/fh-4.0.1/r-3.0.3/rr-1.5.0/sc-2.4.3/sb-1.8.1/sp-2.3.3/datatables.min.js">
     </script>
     {{-- <script src="{{asset('admin/js/datatables.2.2.1.js')}}"></script> --}}
+    <script>
+    $(document).ready(function() {
+        const summernote1 = document.getElementById('summernote');
+        if (summernote1) {
+            $(summernote1).summernote({
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    // ['color', ['color']],
+                    ['media', ['picture', 'link',]]
+                ],
+                placeholder: 'Type your text...',
+                tabsize: 2,
+                height: 80
+            });
+        }
+        const summernote2 = document.getElementById('summernote2');
+        if(summernote2){
+            $(summernote2).summernote({
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    // ['color', ['color']],
+                    ['media', ['picture', 'link',]]
+                ],
+                placeholder: 'Type your text...',
+                tabsize: 2,
+                height: 80
+            });
 
+        }
+       
+            
+    });
+        </script>
     {{-- Custom Js --}}
     @yield('extrajs')
 </body>

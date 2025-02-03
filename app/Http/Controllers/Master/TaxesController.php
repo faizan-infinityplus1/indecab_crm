@@ -11,7 +11,8 @@ class TaxesController extends Controller
 {
     public function index()
     {
-        return view('backend.admin.masters.taxes.index');
+        $data = MstTax::all();
+        return view('backend.admin.masters.taxes.index', compact('data'));
     }
     public function manage($id = null)
     {
@@ -25,7 +26,7 @@ class TaxesController extends Controller
             $request->all(),
             [
                 'name' => 'required|string',
-                'percentage' => 'required|integer',
+                'percentage' => 'required|numeric', 
             ],
             [
                 'name.required' => 'Please Filled Vehicles Groups Name ',
@@ -56,7 +57,7 @@ class TaxesController extends Controller
             $request->all(),
             [
                 'name' => 'required|string',
-                'percentage' => 'required|integer',
+                'percentage' => 'required|numeric', 
             ],
             [
                 'name.required' => 'Please Filled Vehicles Groups Name ',

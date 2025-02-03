@@ -11,6 +11,7 @@ use App\Http\Controllers\Master\DutyTypeController;
 use App\Http\Controllers\Master\CategoriesVehicleGroupsController;
 use App\Http\Controllers\Master\CompaniesController;
 use App\Http\Controllers\Master\CompaniesProfilesController;
+use App\Http\Controllers\Master\CustomerPricingController;
 use App\Http\Controllers\Master\TaxesController;
 use App\Http\Controllers\Master\CustomersController;
 use App\Http\Controllers\Master\DutySupportersController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Master\EmployeesController;
 use App\Http\Controllers\Master\FeedbackFormsController;
 use App\Http\Controllers\Master\LabelsController;
 use App\Http\Controllers\Master\MyDriversController;
+use App\Http\Controllers\Master\SupplierPricingController;
 use App\Http\Controllers\Master\SuppliersController;
 use App\Http\Controllers\Master\VehiclesController;
 use Illuminate\Support\Facades\Route;
@@ -95,6 +97,10 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/companies/profiles', [CompaniesProfilesController::class, 'index'])->name('companiesprofiles.index');
     Route::get('/companies/profiles/manage/{id?}', [CompaniesProfilesController::class, 'manage'])->name('companiesprofiles.manage');
+    
+    Route::get('/pricing', [CustomerPricingController::class, 'index'])->name('customerpricing.index');
+
+    Route::get('/pricing/supplier', [SupplierPricingController::class, 'index'])->name('supplierpricing.index');
 });
 
 

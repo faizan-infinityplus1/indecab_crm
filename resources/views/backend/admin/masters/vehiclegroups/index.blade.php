@@ -27,8 +27,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($data as $data)
                     <tr>
-                        <td>Tiger Nixon</td>
+                        <td>{{$data->name}}</td>
                        
                         <td>320</td>
                         <td>
@@ -45,40 +46,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>61</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>qweqwe Nixon</td>
-                        <td>800</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
+                    @endforeach
 
                 </tbody>
                 <tfoot>

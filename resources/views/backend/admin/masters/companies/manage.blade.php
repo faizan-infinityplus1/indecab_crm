@@ -22,8 +22,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="" class="form-label required">Company Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control  border-bottom" id="" required>
+                            <label for="" class="form-label">Company Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control  border-bottom" id="">
                             <span class="warning-msg-block"></span>
                         </div>
                         <div class="mb-3">

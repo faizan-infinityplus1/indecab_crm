@@ -165,7 +165,7 @@
                         </label>
                     </div>
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="" name="g2g"
+                        <input class="form-check-input" type="checkbox" id="g2g" name="g2g"
                             {{ old('g2g', $data->g2g ?? '') ? 'checked' : '' }} value="1">
                         <label class="form-check-label" for="g2g">
                             Is Garage to Garage (GTG)? - For use with Indecab Go driver mobile app only
