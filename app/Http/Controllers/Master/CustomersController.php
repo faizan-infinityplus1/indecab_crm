@@ -140,22 +140,22 @@ class CustomersController extends Controller
 
 
             // Process Applicable Taxes
-            $applicableTaxesData = [];
-            for ($i = 1; $request->has("appli_tax$i"); $i++) {
-                $taxId = $request->input("appli_tax{$i}");
-                $isNotCharged = $request->input("appli_tax_n_ch{$i}") ? true : false;
-                // Add to applicable taxes data array
-                $applicableTaxesData[] = [
-                    'admin_id' => Auth::id(),
-                    'customer_id' => $customerId,
-                    'tax_id' => $taxId,
-                    'not_charged' => $isNotCharged,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-                // print_r($applicableTaxesData);
-            }
-            MstCustomerApplicableTaxes::insert($applicableTaxesData);
+            // $applicableTaxesData = [];
+            // for ($i = 1; $request->has("appli_tax$i"); $i++) {
+            //     $taxId = $request->input("appli_tax{$i}");
+            //     $isNotCharged = $request->input("appli_tax_n_ch{$i}") ? true : false;
+            //     // Add to applicable taxes data array
+            //     $applicableTaxesData[] = [
+            //         'admin_id' => Auth::id(),
+            //         'customer_id' => $customerId,
+            //         'tax_id' => $taxId,
+            //         'not_charged' => $isNotCharged,
+            //         'created_at' => now(),
+            //         'updated_at' => now(),
+            //     ];
+            //     // print_r($applicableTaxesData);
+            // }
+            // MstCustomerApplicableTaxes::insert($applicableTaxesData);
             // dd($applicableTaxesData);
 
 
@@ -241,18 +241,16 @@ class CustomersController extends Controller
                         'updated_at' => now(),
                     ];
                     // dd($filesData);
+                } else {
+
+                    $filesData[] = [
+                        'admin_id' => Auth::user()->id,
+                        'customer_id' => $customerId,
+                        'name' => $fileName,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
                 }
-                else{
-
-                $filesData[] = [
-                    'admin_id' => Auth::user()->id,
-                    'customer_id' => $customerId,
-                    'name' => $fileName,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-            }
-
             }
 
             MstCustomerFile::insert($filesData);
@@ -382,43 +380,83 @@ class CustomersController extends Controller
             // dd($mstCustomer);
             $customerId = $customerId->id;
 
-            // // Process Taxes
+            // // Process Applicable Taxes
 
             $applicableTaxesData = [];
-            for ($i = 1; $request->has("appli_tax$i"); $i++) {
-                $taxId = $request->input("appli_tax{$i}");
-                $isNotCharged = $request->has("appli_tax_n_ch{$i}") ? true : false;
-                // Add to applicable taxes data array
-                $applicableTaxesData[] = [
-                    'admin_id' => Auth::id(),
-                    'customer_id' => $customerId,
-                    'tax_id' => $taxId,
-                    'not_charged' => $isNotCharged,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-                // print_r($applicableTaxesData);
+
+            foreach ($request->keys() as $key) {
+                if (preg_match('/applitax_(\d+)_new/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $taxId = $request->get($key);
+                    $isNotCharged = $request->has("applitaxnch_{$id}_new");
+
+                    $applicableTaxesData[] = [
+                        'admin_id' => Auth::id(),
+                        'customer_id' => $customerId,
+                        'tax_id' => $taxId,
+                        'not_charged' => $isNotCharged,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                } elseif (preg_match('/applitax_(\d+)_update/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $taxId = $request->get($key);
+                    $isNotCharged = $request->has("applitaxnch_{$id}_update");
+
+                    // Update record correctly
+                    MstCustomerApplicableTaxes::where('id', $id)->update([
+                        'admin_id' => Auth::id(),
+                        'customer_id' => $customerId,
+                        'tax_id' => $taxId,
+                        'not_charged' => $isNotCharged,
+                        'updated_at' => now(),
+                    ]);
+                }
             }
-            // dd($applicableTaxesData);
-            MstCustomerApplicableTaxes::insert($applicableTaxesData);
+
+            if (!empty($applicableTaxesData)) {
+                MstCustomerApplicableTaxes::insert($applicableTaxesData);
+            }
 
 
-            // Process Interstate Taxes
             $interstateTaxesData = [];
-            for ($i = 1; $request->has("inter_appli_tax$i"); $i++) {
-                $taxId = $request->input("inter_appli_tax$i");
-                $isNotCharged = $request->has("inter_appli_tax_n_ch{$i}") ? 1 : 0;
-                // Add to interstate taxes data array
-                $interstateTaxesData[] = [
-                    'admin_id' => Auth::id(),
-                    'customer_id' => $customerId,
-                    'tax_id' => $taxId,
-                    'not_charged' => $isNotCharged,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
+
+            foreach ($request->keys() as $key) {
+                if (preg_match('/interapplitax_(\d+)_new/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $taxId = $request->get($key);
+                    $isNotCharged = $request->has("interapplitaxnch_{$id}_new");
+                    $interstateTaxesData[] = [
+                        'admin_id' => Auth::id(),
+                        'customer_id' => $customerId,
+                        'tax_id' => $taxId,
+                        'not_charged' => $isNotCharged,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                } elseif (preg_match('/interapplitax_(\d+)_update/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $taxId = $request->get($key);
+                    $isNotCharged = $request->has("applitaxnch_{$id}_update");
+
+                    // Update record correctly
+                    MstCustomerInterstateTaxes::where('id', $id)->update([
+                        'admin_id' => Auth::id(),
+                        'customer_id' => $customerId,
+                        'tax_id' => $taxId,
+                        'not_charged' => $isNotCharged,
+                        'updated_at' => now(),
+                    ]);
+                }
             }
-            MstCustomerInterstateTaxes::insert($interstateTaxesData);
+
+            if (!empty($applicableTaxesData)) {
+                MstCustomerInterstateTaxes::insert($applicableTaxesData);
+            }
+
+
+
+            
             // Driver Allowance Setting
             $driverAllowSettingData = [];
             for ($i = 1; $request->has("dri_allow_set_city$i"); $i++) {
@@ -504,7 +542,8 @@ class CustomersController extends Controller
         }
     }
 
-    public function deleteApplicableTaxes(Request $request){
+    public function deleteApplicableTaxes(Request $request)
+    {
         try {
             // Find the record by ID and delete it
             $interstateTax = MstCustomerApplicableTaxes::findOrFail($request->id);
@@ -516,7 +555,8 @@ class CustomersController extends Controller
         }
     }
 
-    public function deleteInterstateTaxes(Request $request){
+    public function deleteInterstateTaxes(Request $request)
+    {
         try {
             // Find the record by ID and delete it
             $interstateTax = MstCustomerInterstateTaxes::findOrFail($request->id);
@@ -528,7 +568,8 @@ class CustomersController extends Controller
         }
     }
 
-    public function deleteDriverAllowanceSetting(Request $request){
+    public function deleteDriverAllowanceSetting(Request $request)
+    {
         try {
             // Find the record by ID and delete it
             $driverAllowanceSetting = MstCustomerDriverAllownanceSetting::findOrFail($request->id);
@@ -540,7 +581,8 @@ class CustomersController extends Controller
         }
     }
 
-    public function deleteDutyType(Request $request){
+    public function deleteDutyType(Request $request)
+    {
         try {
             // Find the record by ID and delete it
             $dutyType = MstCustomerDutyType::findOrFail($request->id);
@@ -552,7 +594,8 @@ class CustomersController extends Controller
         }
     }
 
-    public function deleteFiles(Request $request){
+    public function deleteFiles(Request $request)
+    {
         try {
             // Find the record by ID and delete it
             $deleteFiles = MstCustomerFile::findOrFail($request->id);
@@ -563,7 +606,7 @@ class CustomersController extends Controller
             return response()->json(['error' => 'Failed to delete tax.'],  $e);
         }
     }
-    
+
     public function showCustomersGroups()
     {
         return view('backend.admin.masters.customers.groups');

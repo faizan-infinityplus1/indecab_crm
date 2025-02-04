@@ -509,28 +509,28 @@
                                             <div class="p-3 ps-0 w-100">
                                                 <div class="panel border rounded">
                                                     <div class="panel-heading bg-light p-3">Applicable Taxes</div>
-                                                    <div class="panel-body p-3">
-                                                        <div class="mb-3">
-                                                            <label for="appli_tax" class="form-label ">Tax</label>
-                                                            <select class="form-select border-bottom"
-                                                                aria-label="Default select example" name="appli_tax{{$data->id}}"
-                                                                id="appli_tax"
-                                                                data-index={{$data->id ?? '' }}
-                                                                >
-                                                                <option value="">(Select Tax)</option>
+                        <div class="panel-body p-3">
+                            <div class="mb-3">
+                                <label for="appli_tax" class="form-label ">Tax</label>
+                                <select class="form-select border-bottom"
+                                    aria-label="Default select example" name="applitax_{{$data->id}}_update"
+                                    id="appli_tax"
+                                    data-index={{$data->id ?? '' }}
+                                    >
+                                    <option value="">(Select Tax)</option>
 
-                                                                @foreach ($applicableTaxes as $taxesData)
-                                                                    <option value="{{ $taxesData->id }}"
-                                                                        {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
-                                                                        {{ $taxesData->percentage }}</option>
-                                                                @endforeach
+                                    @foreach ($applicableTaxes as $taxesData)
+                                        <option value="{{ $taxesData->id }}"
+                                            {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
+                                            {{ $taxesData->percentage }}</option>
+                                    @endforeach
 
-                                                            </select>
+                                </select>
                                                         </div>
                                                         <div class="form-check mb-3">
                                                             <input class="form-check-input" type="checkbox"
                                                                 value="1" id="appli_tax_n_ch" value="1"
-                                                                name="appli_tax_n_ch"
+                                                                name="applitaxnch_{{$data->id}}_update"
                                                                 {{ old('inter_appli_tax_n_ch', $data->not_charged ?? '') ? 'checked' : '' }}>
                                                             <label class="form-check-label" for="appli_tax_n_ch">
                                                                 Not to be charged?
@@ -574,7 +574,7 @@
                                                         <div class="mb-3">
                                                             <label for="inter_appli_tax" class="form-label ">Tax</label>
                                                             <select class="form-select border-bottom"
-                                                                aria-label="Default select example" name="inter_appli_tax"
+                                                                aria-label="Default select example" name="interapplitax_{{$data->id}}_update"
                                                                 id="inter_appli_tax">
                                                                 @foreach ($applicableTaxes as $taxesData)
                                                                     <option value="{{ $taxesData->id }}"
@@ -588,7 +588,7 @@
                                                         <div class="form-check mb-3">
                                                             <input class="form-check-input" type="checkbox"
                                                                 value="1" id="inter_appli_tax_n_ch"
-                                                                name="inter_appli_tax_n_ch">
+                                                                name="interapplitaxnch_{{$data->id}}_update">
                                                             <label class="form-check-label" for="inter_appli_tax_n_ch"
                                                                 {{ old('inter_appli_tax_n_ch', $data->not_charged ?? '') ? 'checked' : '' }}>
                                                                 Not to be charged?
@@ -952,8 +952,8 @@
                 tabsize: 2,
                 height: 42
             });
-            // Applicable Taxes Start Here
 
+            // Applicable Taxes Start Here
             $(document).on('click', '.remove_appli_tax_body', function() {
                 console.log('Clicked delete button');
 
@@ -1009,13 +1009,13 @@
                     <div class="panel-body p-3">
                         <div class="mb-3">
                             <label for="appli_tax${childCount}" class="form-label ">Tax</label>
-                            <select class="form-select border-bottom" aria-label="Default select example" name="appli_tax${childCount}"
+                            <select class="form-select border-bottom" aria-label="Default select example" name="applitax_${childCount}_new"
                                 id="appli_tax${childCount}" data-index=${childCount} >
                                                             ${taxOptions}
                             </select>
                         </div>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="1" id="appli_tax_n_ch${childCount}" value="1" name="appli_tax_n_ch${childCount}" data-index=${childCount}>
+                            <input class="form-check-input" type="checkbox" value="1" id="appli_tax_n_ch${childCount}" value="1" name="applitaxnch_${childCount}_new" data-index=${childCount}>
                             <label class="form-check-label" for="appli_tax_n_ch${childCount}">
                                 Not to be charged?
                             </label>
@@ -1095,15 +1095,15 @@
                                             <div class="panel-body p-3">
                                                 <div class="mb-3">
                                                     <label for="inter_appli_tax${childCount}" class="form-label ">Tax</label>
-                                                      <select class="form-select border-bottom" aria-label="Default select example" name="inter_appli_tax${childCount}"
+                                                      <select class="form-select border-bottom" aria-label="Default select example" name="interapplitax_${childCount}_new"
                                 id="inter_appli_tax${childCount}" data-index=${childCount} >
                                                                                                                    ${taxOptions}
                                                     </select>
                                                     <span class="warning-msg-block"></span>
                                                 </div>
                                                 <div class="form-check mb-3">
-                                                    <input class="form-check-input" type="checkbox" value="1" id="inter_appli_tax_n_ch${childCount}" name="inter_appli_tax_n_ch${childCount}" data-index=${childCount}>
-                                                    <label class="form-check-label" for="inter_appli_tax_n_ch${childCount}">
+                                                    <input class="form-check-input" type="checkbox" value="1" id="inter_appli_tax_n_ch${childCount}" name="interapplitaxnch${childCount}_new" data-index=${childCount}>
+                                                    <label class="form-check-label" for="interapplitaxnch_${childCount}_new">
                                                         Not to be charged?
                                                     </label>
                                                 </div>

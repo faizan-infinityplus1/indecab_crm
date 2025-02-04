@@ -1,4 +1,4 @@
-php artisan tinker on terminal
+php artisan tinker on terminal`
 Then Below
  Admin::create([
                 'name' => 'admin2',
