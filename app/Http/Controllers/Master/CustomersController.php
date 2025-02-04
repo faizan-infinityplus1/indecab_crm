@@ -383,13 +383,15 @@ class CustomersController extends Controller
             // // Process Applicable Taxes
 
             $applicableTaxesData = [];
-
+            $interstateTaxesData = [];
+            
             foreach ($request->keys() as $key) {
+                // Handle applicable taxes
                 if (preg_match('/applitax_(\d+)_new/', $key, $matches)) {
                     $id = (int) $matches[1]; // Ensure integer
                     $taxId = $request->get($key);
                     $isNotCharged = $request->has("applitaxnch_{$id}_new");
-
+            
                     $applicableTaxesData[] = [
                         'admin_id' => Auth::id(),
                         'customer_id' => $customerId,
@@ -402,7 +404,7 @@ class CustomersController extends Controller
                     $id = (int) $matches[1]; // Ensure integer
                     $taxId = $request->get($key);
                     $isNotCharged = $request->has("applitaxnch_{$id}_update");
-
+            
                     // Update record correctly
                     MstCustomerApplicableTaxes::where('id', $id)->update([
                         'admin_id' => Auth::id(),
@@ -412,20 +414,13 @@ class CustomersController extends Controller
                         'updated_at' => now(),
                     ]);
                 }
-            }
-
-            if (!empty($applicableTaxesData)) {
-                MstCustomerApplicableTaxes::insert($applicableTaxesData);
-            }
-
-
-            $interstateTaxesData = [];
-
-            foreach ($request->keys() as $key) {
+            
+                // Handle interstate taxes
                 if (preg_match('/interapplitax_(\d+)_new/', $key, $matches)) {
                     $id = (int) $matches[1]; // Ensure integer
                     $taxId = $request->get($key);
                     $isNotCharged = $request->has("interapplitaxnch_{$id}_new");
+            
                     $interstateTaxesData[] = [
                         'admin_id' => Auth::id(),
                         'customer_id' => $customerId,
@@ -437,8 +432,8 @@ class CustomersController extends Controller
                 } elseif (preg_match('/interapplitax_(\d+)_update/', $key, $matches)) {
                     $id = (int) $matches[1]; // Ensure integer
                     $taxId = $request->get($key);
-                    $isNotCharged = $request->has("applitaxnch_{$id}_update");
-
+                    $isNotCharged = $request->has("interapplitaxnch_{$id}_update");
+            
                     // Update record correctly
                     MstCustomerInterstateTaxes::where('id', $id)->update([
                         'admin_id' => Auth::id(),
@@ -449,9 +444,15 @@ class CustomersController extends Controller
                     ]);
                 }
             }
-
+            
+            // Insert new applicable taxes
             if (!empty($applicableTaxesData)) {
-                MstCustomerInterstateTaxes::insert($applicableTaxesData);
+                MstCustomerApplicableTaxes::insert($applicableTaxesData);
+            }
+            
+            // Insert new interstate taxes
+            if (!empty($interstateTaxesData)) {
+                MstCustomerInterstateTaxes::insert($interstateTaxesData);
             }
 
 
