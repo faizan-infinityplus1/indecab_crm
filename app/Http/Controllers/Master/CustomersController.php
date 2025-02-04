@@ -17,6 +17,7 @@ use App\Models\MstTax;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class CustomersController extends Controller
@@ -140,22 +141,22 @@ class CustomersController extends Controller
 
 
             // Process Applicable Taxes
-            // $applicableTaxesData = [];
-            // for ($i = 1; $request->has("appli_tax$i"); $i++) {
-            //     $taxId = $request->input("appli_tax{$i}");
-            //     $isNotCharged = $request->input("appli_tax_n_ch{$i}") ? true : false;
-            //     // Add to applicable taxes data array
-            //     $applicableTaxesData[] = [
-            //         'admin_id' => Auth::id(),
-            //         'customer_id' => $customerId,
-            //         'tax_id' => $taxId,
-            //         'not_charged' => $isNotCharged,
-            //         'created_at' => now(),
-            //         'updated_at' => now(),
-            //     ];
-            //     // print_r($applicableTaxesData);
-            // }
-            // MstCustomerApplicableTaxes::insert($applicableTaxesData);
+            $applicableTaxesData = [];
+            for ($i = 1; $request->has("appli_tax$i"); $i++) {
+                $taxId = $request->input("appli_tax{$i}");
+                $isNotCharged = $request->input("appli_tax_n_ch{$i}") ? true : false;
+                // Add to applicable taxes data array
+                $applicableTaxesData[] = [
+                    'admin_id' => Auth::id(),
+                    'customer_id' => $customerId,
+                    'tax_id' => $taxId,
+                    'not_charged' => $isNotCharged,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+                // print_r($applicableTaxesData);
+            }
+            MstCustomerApplicableTaxes::insert($applicableTaxesData);
             // dd($applicableTaxesData);
 
 
@@ -224,19 +225,15 @@ class CustomersController extends Controller
                 $fileName = $request->input("file_name$i");
 
                 if ($request->hasFile("image$i")) {
-                    $image = $request->file("image$i");
-
-                    // Generate unique file name and save the file
-                    $uniqueFileName = uniqid() . '.' . $image->getClientOriginalExtension();
-                    $image->storeAs('images/customer-images', $uniqueFileName, 'public');
-
+                        $file = $request->file("image{$i}");
+                        $filePath = $file->store('customer-images', 'public'); // Store in 'storage/app/public/customer-images'
 
                     // Add file data to array
                     $filesData[] = [
                         'admin_id' => Auth::user()->id,
                         'customer_id' => $customerId,
                         'name' => $fileName,
-                        'image' => $uniqueFileName, // Save the unique file name
+                        'image' => $filePath, // Save the unique file name
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
@@ -384,14 +381,19 @@ class CustomersController extends Controller
 
             $applicableTaxesData = [];
             $interstateTaxesData = [];
-            
+            $driverSettingsData = [];
+            $dutyTypeSettingsData = [];
+            $filesData = [];
+
+
+
             foreach ($request->keys() as $key) {
                 // Handle applicable taxes
-                if (preg_match('/applitax_(\d+)_new/', $key, $matches)) {
+                if (preg_match('/^applitax_(\d+)_new$/', $key, $matches)) {
                     $id = (int) $matches[1]; // Ensure integer
                     $taxId = $request->get($key);
                     $isNotCharged = $request->has("applitaxnch_{$id}_new");
-            
+
                     $applicableTaxesData[] = [
                         'admin_id' => Auth::id(),
                         'customer_id' => $customerId,
@@ -400,11 +402,11 @@ class CustomersController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
-                } elseif (preg_match('/applitax_(\d+)_update/', $key, $matches)) {
+                } elseif (preg_match('/^applitax_(\d+)_update$/', $key, $matches)) {
                     $id = (int) $matches[1]; // Ensure integer
                     $taxId = $request->get($key);
                     $isNotCharged = $request->has("applitaxnch_{$id}_update");
-            
+
                     // Update record correctly
                     MstCustomerApplicableTaxes::where('id', $id)->update([
                         'admin_id' => Auth::id(),
@@ -414,13 +416,13 @@ class CustomersController extends Controller
                         'updated_at' => now(),
                     ]);
                 }
-            
-                // Handle interstate taxes
-                if (preg_match('/interapplitax_(\d+)_new/', $key, $matches)) {
+
+                // Handle interstate taxes (Ensure it does not modify applicable taxes)
+                if (preg_match('/^interapplitax_(\d+)_new$/', $key, $matches)) {
                     $id = (int) $matches[1]; // Ensure integer
                     $taxId = $request->get($key);
                     $isNotCharged = $request->has("interapplitaxnch_{$id}_new");
-            
+
                     $interstateTaxesData[] = [
                         'admin_id' => Auth::id(),
                         'customer_id' => $customerId,
@@ -429,11 +431,11 @@ class CustomersController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
-                } elseif (preg_match('/interapplitax_(\d+)_update/', $key, $matches)) {
+                } elseif (preg_match('/^interapplitax_(\d+)_update$/', $key, $matches)) {
                     $id = (int) $matches[1]; // Ensure integer
                     $taxId = $request->get($key);
                     $isNotCharged = $request->has("interapplitaxnch_{$id}_update");
-            
+
                     // Update record correctly
                     MstCustomerInterstateTaxes::where('id', $id)->update([
                         'admin_id' => Auth::id(),
@@ -443,96 +445,185 @@ class CustomersController extends Controller
                         'updated_at' => now(),
                     ]);
                 }
+
+
+                // Handle Driver Allow Settings
+                if (preg_match('/^driallowsetcity_(\d+)_new$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $city = $request->get($key);
+                    $earlyTime = $request->get("driallowsetearlytime_{$id}_new");
+                    $lateTime = $request->get("driallowsetlatetime_{$id}_new");
+                    $overnightTime = $request->get("driallowsetoutstovernigtime_{$id}_new");
+
+                    $driverSettingsData[] = [
+                        'admin_id' => Auth::id(),
+                        'customer_id' => $customerId,
+                        'city_name' => $city,
+                        'early_time' => $earlyTime,
+                        'late_time' => $lateTime,
+                        'outsta_overnig_time' => $overnightTime,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                } elseif (preg_match('/^driallowsetcity_(\d+)_update$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $city = $request->get($key);
+                    $earlyTime = $request->get("driallowsetearlytime_{$id}_update");
+                    $lateTime = $request->get("driallowsetlatetime_{$id}_update");
+                    $overnightTime = $request->get("driallowsetoutstovernigtime_{$id}_update");
+
+                    // Update record correctly
+                    MstCustomerDriverAllownanceSetting::where('id', $id)->update([
+                        'admin_id' => Auth::id(),
+                        'customer_id' => $customerId,
+                        'city_name' => $city,
+                        'early_time' => $earlyTime,
+                        'late_time' => $lateTime,
+                        'outsta_overnig_time' => $overnightTime,
+                        'updated_at' => now(),
+                    ]);
+                }
+
+                // Handle Duty Type taxes 
+                if (preg_match('/^duttyptim_(\d+)_new$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $dutyType = $request->get($key);
+                    $startTime = $request->get("duttyptimstr_{$id}_new");
+                    $endTime = $request->get("duttyptimend_{$id}_new");
+
+                    $dutyTypeSettingsData[] = [
+                        'admin_id' => Auth::id(),
+                        'customer_id' => $customerId,
+                        'duty_type' => $dutyType,
+                        'start_time' => $startTime,
+                        'end_time' => $endTime,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                } elseif (preg_match('/^duttyptim_(\d+)_update$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $dutyType = $request->get($key);
+                    $startTime = $request->get("duttyptimstr_{$id}_update");
+                    $endTime = $request->get("duttyptimend_{$id}_update");
+
+                    // Update record correctly
+                    MstCustomerDutyType::where('id', $id)->update([
+                        'admin_id' => Auth::id(),
+                        'customer_id' => $customerId,
+                        'duty_type' => $dutyType,
+                        'start_time' => $startTime,
+                        'end_time' => $endTime,
+                        'updated_at' => now(),
+                    ]);
+                }
+
+                if (preg_match('/^filename_(\d+)_new$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $fileName = $request->get($key);
+                    $filePath = null;
+
+
+                    if ($request->hasFile("image_{$id}_new")) {
+                        $file = $request->file("image_{$id}_new");
+                        $filePath = $file->store('customer-images', 'public'); // Store in 'storage/app/public/customer-images'
+                    }
+
+                    $filesData[] = [
+                        'admin_id' => Auth::id(),
+                        'customer_id' => $customerId,
+                        'name' => $fileName,
+                        'image' => $filePath,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                } elseif (preg_match('/^filename_(\d+)_update$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $fileName = $request->get($key);
+                    $existingFile = MstCustomerFile::find($id);
+
+                    $filePath = $existingFile->image; // Retain old file if no new file is uploaded
+
+                    if ($request->hasFile("image_{$id}_update")) {
+                        $file = $request->file("image_{$id}_update");
+
+                        // Delete old file if exists
+                        if ($existingFile->image) {
+                            Storage::disk('public')->delete($existingFile->image);
+                        }
+
+                        // $filePath = $file->store('storage/images/customer-images', 'public');
+                        $filePath = $file->store('customer-images', 'public');
+                    }
+
+                    // Update existing file
+                    MstCustomerFile::where('id', $id)->update([
+                        'admin_id' => Auth::id(),
+                        'customer_id' => $customerId,
+                        'name' => $fileName,
+                        'image' => $filePath,
+                        'updated_at' => now(),
+                    ]);
+                }
             }
-            
+
+            if (!empty($driverSettingsData)) {
+                MstCustomerDriverAllownanceSetting::insert($driverSettingsData);
+            }
+
+            // Insert new duty type settings
+            if (!empty($dutyTypeSettingsData)) {
+                MstCustomerDutyType::insert($dutyTypeSettingsData);
+            }
+
+            if (!empty($filesData)) {
+                MstCustomerFile::insert($filesData);
+            }
+
+            // Files
+            // $filesData = [];
+            // for ($i = 1; $request->has("file_name$i"); $i++) {
+            //     $fileName = $request->input("file_name$i");
+
+            //     // if ($request->hasFile("image$i")) {
+            //     //     $image = $request->file("image$i");
+
+            //     //     // Generate unique file name and save the file
+            //     //     $uniqueFileName = uniqid() . '.' . $image->getClientOriginalExtension();
+            //     //     $image->move(public_path('storage/images/customer-images'), $uniqueFileName);
+
+            //     //     // Add file data to array
+            //     //     $filesData[] = [
+            //     //         'admin_id' => Auth::user()->id,
+            //     //         'customer_id' => $customerId,
+            //     //         'name' => $fileName,
+            //     //         'image' => $uniqueFileName, // Save the unique file name
+            //     //         'created_at' => now(),
+            //     //         'updated_at' => now(),
+            //     //     ];
+            //     // }
+            //     $filesData[] = [
+            //         'admin_id' => Auth::user()->id,
+            //         'customer_id' => $customerId,
+            //         'name' => $fileName,
+            //         'created_at' => now(),
+            //         'updated_at' => now(),
+            //     ];
+            // }
+
+            // MstCustomerFile::insert($filesData);
+
+
+
             // Insert new applicable taxes
             if (!empty($applicableTaxesData)) {
                 MstCustomerApplicableTaxes::insert($applicableTaxesData);
             }
-            
+
             // Insert new interstate taxes
             if (!empty($interstateTaxesData)) {
                 MstCustomerInterstateTaxes::insert($interstateTaxesData);
             }
 
-
-
-            
-            // Driver Allowance Setting
-            $driverAllowSettingData = [];
-            for ($i = 1; $request->has("dri_allow_set_city$i"); $i++) {
-                $cityName = $request->input("dri_allow_set_city$i");
-                $earlyTime = $request->input("dri_allow_set_early_time{$i}");
-                $lateTime = $request->input("dri_allow_set_late_time{$i}");
-                $outstaOvernigTime = $request->input("dri_allow_set_outst_overnig_time{$i}");
-                // Add to interstate taxes data array
-                $driverAllowSettingData[] = [
-                    'admin_id' => Auth::id(),
-                    'customer_id' => $customerId,
-                    'city_name' => $cityName,
-                    'early_time' => $earlyTime,
-                    'late_time' => $lateTime,
-                    'outsta_overnig_time' => $outstaOvernigTime,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-            }
-            // dd($driverAllowSettingData);
-            MstCustomerDriverAllownanceSetting::insert($driverAllowSettingData);
-
-            // Duty Type Types
-            $dutyTypeTypeData = [];
-            for ($i = 1; $request->has("dut_typ_tim$i"); $i++) {
-                $dutyType = $request->input("dut_typ_tim$i");
-                $startTime = $request->input("dut_typ_tim_str{$i}");
-                $endTime = $request->input("dut_typ_tim_end{$i}");
-                // Add to interstate taxes data array
-                $dutyTypeTypeData[] = [
-                    'admin_id' => Auth::id(),
-                    'customer_id' => $customerId,
-                    'duty_type' => $dutyType,
-                    'start_time' => $startTime,
-                    'end_time' => $endTime,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-            }
-            MstCustomerDutyType::insert($dutyTypeTypeData);
-
-            // Files
-            $filesData = [];
-            for ($i = 1; $request->has("file_name$i"); $i++) {
-                $fileName = $request->input("file_name$i");
-
-                // if ($request->hasFile("image$i")) {
-                //     $image = $request->file("image$i");
-
-                //     // Generate unique file name and save the file
-                //     $uniqueFileName = uniqid() . '.' . $image->getClientOriginalExtension();
-                //     $image->move(public_path('storage/images/customer-images'), $uniqueFileName);
-
-                //     // Add file data to array
-                //     $filesData[] = [
-                //         'admin_id' => Auth::user()->id,
-                //         'customer_id' => $customerId,
-                //         'name' => $fileName,
-                //         'image' => $uniqueFileName, // Save the unique file name
-                //         'created_at' => now(),
-                //         'updated_at' => now(),
-                //     ];
-                // }
-                $filesData[] = [
-                    'admin_id' => Auth::user()->id,
-                    'customer_id' => $customerId,
-                    'name' => $fileName,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-            }
-
-            MstCustomerFile::insert($filesData);
-
-            // MstCustomerFile::insert($filesData);
             return redirect(route('customers.edit', $request->id));
 
 

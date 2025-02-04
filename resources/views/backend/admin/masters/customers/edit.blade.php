@@ -630,7 +630,7 @@
                                                 <tr>
                                                     <td>
                                                         <select class="form-select border-bottom"
-                                                            aria-label="Default select example" name="dri_allow_set_city"
+                                                            aria-label="Default select example" name="driallowsetcity_{{$data->id}}_update"
                                                             id="dri_allow_set_city"
                                                             data-dri-city="{{ $data->city_name ?? '' }}"
                                                            >
@@ -640,7 +640,7 @@
                                                     <td>
                                                         <select class="form-select border-bottom"
                                                             aria-label="Default select example"
-                                                            name="dri_allow_set_early_time" id="dri_allow_set_early_time"
+                                                            name="driallowsetearlytime_{{$data->id}}_update" id="dri_allow_set_early_time"
                                                             data-start-dri-time="{{ $data->early_time ?? '' }}">
 
                                                         </select>
@@ -648,7 +648,7 @@
                                                     <td>
                                                         <select class="form-select border-bottom"
                                                             aria-label="Default select example"
-                                                            name="dri_allow_set_late_time" id="dri_allow_set_late_time"
+                                                            name="driallowsetlatetime_{{$data->id}}_update" id="dri_allow_set_late_time"
                                                             data-end-dri-time="{{ $data->late_time ?? '' }}">
 
                                                         </select>
@@ -656,7 +656,7 @@
                                                     <td>
                                                         <select class="form-select border-bottom"
                                                             aria-label="Default select example"
-                                                            name="dri_allow_set_outst_overnig_time"
+                                                            name="driallowsetoutstovernigtime_{{$data->id}}_update"
                                                             id="dri_allow_set_outst_overnig_time"
                                                             data-over-night-time="{{ $data->outsta_overnig_time ?? '' }}">
 
@@ -701,7 +701,7 @@
                                                 <tr>
                                                     <td>
                                                         <select class="form-select border-bottom"
-                                                            aria-label="Default select example" name="dut_typ_tim"
+                                                            aria-label="Default select example" name="duttyptim_{{$data->id}}_update"
                                                             id="dut_typ_tim">
                                                             <option value="">(Select Duty type type)</option>
                                                             <option value="hrKmLocal"
@@ -720,7 +720,7 @@
 
                                                     <td>
                                                         <select class="form-select border-bottom"
-                                                            aria-label="Default select example" name="dut_typ_tim_str"
+                                                            aria-label="Default select example" name="duttyptimstr_{{$data->id}}_update"
                                                             id="dut_typ_tim_str"
                                                             data-start-time="{{ $data->start_time ?? '' }}">
 
@@ -730,7 +730,7 @@
 
                                                     <td>
                                                         <select class="form-select border-bottom"
-                                                            aria-label="Default select example" name="dut_typ_tim_end"
+                                                            aria-label="Default select example" name="duttyptimend_{{$data->id}}_update"
                                                             id="dut_typ_tim_end"
                                                             data-end-time="{{ $data->end_time ?? '' }}">>
                                                         </select>
@@ -777,7 +777,7 @@
                                                         <div class="mb-3">
                                                             <label for="file_name" class="form-label">File Name </label>
                                                             <input type="text" class="form-control  border-bottom"
-                                                                name="file_name" id="file_name"
+                                                                name="filename_{{$data->id}}_update" id="file_name"
                                                                 value="{{ old('name', $data->name ?? '') }}">
                                                             <span class="warning-msg-block"></span>
                                                         </div>
@@ -788,8 +788,8 @@
                                                                     class="btn shadow-sm border rounded-1">Choose
                                                                     File</label>
                                                                 <input type="file" class="form-control"
-                                                                    style="display: none;" name="image" id="image">
-                                                                <a href="{{ asset('storage/images/customer-images/' . $data->image) }}"
+                                                                    style="display: none;" name="image_{{$data->id}}_update" id="image">
+                                                                <a href="{{ asset('storage/' . $data->image) }}"
                                                                     alt="">{{ $data->image }}</a>
                                                             </div>
                                                         </div>
@@ -981,7 +981,6 @@
                             parentDiv.remove();
                         },
                         error: function(response) {
-                            alert('Failed to delete tax');
                         }
                     });
                 }
@@ -1070,7 +1069,6 @@
                             parentDiv.remove();
                         },
                         error: function(response) {
-                            alert('Failed to delete tax');
                         }
                     });
                 }
@@ -1151,7 +1149,6 @@
                             parentDiv.remove();
                         },
                         error: function(response) {
-                            alert('Failed to delete tax');
                         }
                     });
                 }
@@ -1164,7 +1161,7 @@
                 var template = `    <tr>
                     <td>
                         <select class="form-select border-bottom"
-                            aria-label="Default select example" name="dri_allow_set_city${childCount}"  id="dri_allow_set_city${childCount}" data-index=${childCount}
+                            aria-label="Default select example" name="driallowsetcity_${childCount}_new"  id="dri_allow_set_city${childCount}" data-index=${childCount}
                             >
                             ${generateCityOptions(baseCityFuel)}
 
@@ -1172,7 +1169,7 @@
                     </td>
                     <td>
                         <select class="form-select border-bottom"
-                            aria-label="Default select example" name="dri_allow_set_early_time${childCount}" id="dri_allow_set_early_time${childCount}"
+                            aria-label="Default select example" name="driallowsetearlytime_${childCount}_new" id="dri_allow_set_early_time${childCount}"
                             data-index=${childCount}
                             >
                                                                                     ${generateTimeSlots()}
@@ -1181,7 +1178,7 @@
                     </td>
                     <td>
                         <select class="form-select border-bottom"
-                            aria-label="Default select example" name="dri_allow_set_late_time${childCount}" id="dri_allow_set_late_time${childCount}"
+                            aria-label="Default select example" name="driallowsetlatetime_${childCount}_new" id="dri_allow_set_late_time${childCount}"
                             data-index=${childCount}
                             >
                                                                                 ${generateTimeSlots()}
@@ -1190,7 +1187,7 @@
                     </td>
                     <td>
                         <select class="form-select border-bottom"
-                            aria-label="Default select example" name="dri_allow_set_outst_overnig_time${childCount}" id="dri_allow_set_outst_overnig_time${childCount}"
+                            aria-label="Default select example" name="driallowsetoutstovernigtime_${childCount}_new" id="driallow_set_outst_overnig_time${childCount}"
                             data-index=${childCount}
                             >
                                                                                     ${generateTimeSlots()}
@@ -1264,7 +1261,6 @@
                             parentDiv.remove();
                         },
                         error: function(response) {
-                            alert('Failed to delete tax');
                         }
                     });
                 }
@@ -1277,7 +1273,7 @@
                 var template = `      <tr>
                                             <td>
                                                 <select class="form-select border-bottom"
-                                                    aria-label="Default select example" name="dut_typ_tim${childCount}" 
+                                                    aria-label="Default select example" name="duttyptim_${childCount}_new" 
                                                      id="dut_typ_tim${childCount}"
                                                      data-index=${childCount}
                                                     >
@@ -1291,7 +1287,7 @@
 
                                             <td>
                                                 <select class="form-select border-bottom"
-                                                    aria-label="Default select example" name="dut_typ_tim_str${childCount}" 
+                                                    aria-label="Default select example" name="duttyptimstr_${childCount}_new" 
                                                      id="dut_typ_tim_str${childCount}"
                                                      data-index=${childCount}
                                                     >
@@ -1302,7 +1298,7 @@
 
                                             <td>
                                                 <select class="form-select border-bottom"
-                                                    aria-label="Default select example" name="dut_typ_tim_end${childCount}" 
+                                                    aria-label="Default select example" name="duttyptimend_${childCount}_new" 
                                                     data-index=${childCount}
                                                      id="dut_typ_tim_end${childCount}"
                                                     >
@@ -1371,7 +1367,6 @@
                             parentDiv.remove();
                         },
                         error: function(response) {
-                            alert('Failed to delete tax');
                         }
                     });
                 }
@@ -1391,9 +1386,9 @@
                                             <div class="panel-heading bg-light p-3">Files</div>
                                             <div class="panel-body p-3">
                                                 <div class="mb-3">
-                                                    <label for="file_name${childCount}" class="form-label">File Name </label>
+                                                    <label for="filename${childCount}" class="form-label">File Name </label>
                                                     <input type="text" class="form-control  border-bottom"
-                                                        name="file_name${childCount}"
+                                                        name="filename_${childCount}_new"
                                                         id="file_name${childCount}"
                                                         data-index=${childCount}>
                                                     <span class="warning-msg-block"></span>
@@ -1406,7 +1401,7 @@
                                                         <input type="file" 
                                                             class="form-control"
                                                             style="display: none;"
-                                                            name="image${childCount}"
+                                                            name="image_${childCount}_new"
                                                         id="image${childCount}"
                                                         data-index=${childCount}
                                                             >

@@ -52,7 +52,7 @@ class CategoriesVehicleGroupsController extends Controller
             $fileName = uniqid() . '.' . $request->image->getClientOriginalExtension();
 
             // Store the file using the 'public' disk
-            $path = $request->image->storeAs('images/categories-vehicle-groups', $fileName, 'public');
+            $path = $request->image->storeAs('categories-vehicle-groups', $fileName, 'public');
 
             // Save the file path to the request or database
             $request['img'] = $path;
@@ -107,7 +107,7 @@ class CategoriesVehicleGroupsController extends Controller
         if ($request->hasFile('image')) {
             if ($vehGrpName->image) {
                 $imageName = basename($vehGrpName->image);
-                $oldImagePath = 'images/categories-vehicle-groups/' . $imageName;
+                $oldImagePath = 'categories-vehicle-groups/' . $imageName;
                 Log::info('Old image path: ', ['path' => $oldImagePath]);
                 if (Storage::disk('public')->exists($oldImagePath)) {
                     Log::info('Deleting old image: ', ['path' => $oldImagePath]);
@@ -123,7 +123,7 @@ class CategoriesVehicleGroupsController extends Controller
             }
 
             $fileName = uniqid() . '.' . pathinfo($request->image->getClientOriginalName(), PATHINFO_EXTENSION);
-            $path = $request->image->storeAs('images/categories-vehicle-groups', $fileName, 'public');
+            $path = $request->image->storeAs('categories-vehicle-groups', $fileName, 'public');
             $request['img'] = $path;
 
             $vehGrpName->update([
