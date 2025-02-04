@@ -9,8 +9,6 @@
                     <div class="position-absolute" style="top: 96px; left: 0px;">
                         <button type="button" class="btn" onclick="window.history.back()"><i
                             class="fa-solid fa-angle-left"></i></button>
-                        {{-- <a href="{{route('')}}" class="text-decoration-none py-2 px-3 text-black-50 fw-light"><i
-                                class="fa-solid fa-angle-left"></i></a> --}}
                     </div>
                     <h1 class="h3 pb-3">New Duty Type</h1>
                 </div>

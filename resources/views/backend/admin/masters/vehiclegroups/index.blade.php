@@ -1,11 +1,11 @@
 @extends('layouts.admin-master')
 @section('content')
-<div class="card rounded-0 border-0 p-3">
-    <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
+<div class="card rounded-0 border-0 p-5">
+    <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
         <h4>Categories - Vehicle Groups</h4>
         <div class="btn-group" role="group"><a href="{{route('vehiclegroups.manage')}}" class="btn btn-primary">Add Vehicle Group</a></div>
     </div>
-    <div class="card-body">
+    <div class="card-body px-0">
         @if($errors->any())
         <div class="alert alert-danger ">
             <span class="close" onclick="this.parentElement.style.display='none';"
