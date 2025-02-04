@@ -124,7 +124,7 @@
         <h4>Suppliers</h4>
 
         <div class="text-end d-flex justify-content-end align-items-center gap-2">
-            <div class="btn-group" role="group"><a href="{{route('showSuppliersGroups')}}"
+            <div class="btn-group" role="group"><a href="{{route('suppliers.index')}}"
                     class="btn btn-light border">Manage Supplier Groups</a></div>
             <div class="btn-group" role="group"><a href="{{route('createSuppliers')}}" class="btn btn-primary">Add Supplier</a></div>
             <div class="dropdown">

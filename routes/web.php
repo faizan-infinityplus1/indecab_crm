@@ -57,7 +57,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/customers/groups', [CustomersController::class, 'showCustomersGroups'])->name('showCustomersGroups');
     Route::get('/customers/groups/create', [CustomersController::class, 'createCustomersGroups'])->name('createCustomersGroups');
 
-    Route::get('/suppliers', [SuppliersController::class, 'showSuppliers'])->name('showSuppliers');
+    Route::get('/suppliers', [SuppliersController::class, 'index'])->name('suppliers.index');
     Route::get('/suppliers/create', [SuppliersController::class, 'createSuppliers'])->name('createSuppliers');
     Route::get('/suppliers/groups', [SuppliersController::class, 'showSuppliersGroups'])->name('showSuppliersGroups');
     Route::get('/suppliers/groups/create', [SuppliersController::class, 'createSuppliersGroups'])->name('createSuppliersGroups');

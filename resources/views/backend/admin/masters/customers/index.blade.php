@@ -220,10 +220,11 @@
     <script>
         $(document).ready(function() {
             $('.datatable').DataTable({
-                responsive: true
+                responsive: true,
+                "order": [[ 'id', "desc" ]] 
+
             });
             $(".dropdown-toggle").dropdown();
-            $('.datatable').attr('id', 'desc'); 
 
         });
     </script>

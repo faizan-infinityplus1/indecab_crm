@@ -106,7 +106,7 @@
                           <li><a class="dropdown-item" href="{{route('taxes.index')}}">Taxes</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="{{route('customers.index')}}">Customers</a></li>
-                          <li><a class="dropdown-item" href="{{route('showSuppliers')}}">Suppliers</a></li>
+                          <li><a class="dropdown-item" href="{{route('suppliers.index')}}">Suppliers</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="{{route('showDrivers')}}">My Drivers</a></li>
                           <li><a class="dropdown-item" href="{{route('showVehicles')}}">My Vehicles</a></li>
