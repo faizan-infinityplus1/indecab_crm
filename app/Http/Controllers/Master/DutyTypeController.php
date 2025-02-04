@@ -130,4 +130,16 @@ class DutyTypeController extends Controller
             return redirect(route('dutytype.manage', $request->id));
         }
     }
+
+    public function delete(Request $request){
+        try {
+            $dutyType = MstDutyType::findOrFail($request->id);
+            $dutyType->delete();
+
+            // return response()->json(['success' => 'Duty Type deleted successfully.']);
+            return redirect()->back()->with('success', 'Duty Type deleted successfully.');
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete tax.'],  $e);
+        }
+    }
 }

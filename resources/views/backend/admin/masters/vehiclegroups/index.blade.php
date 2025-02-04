@@ -34,14 +34,21 @@
                         <td>320</td>
                         <td>
                             <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <button class="btn dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li>
+                                        <a class="dropdown-item view-activity-logs" href="#"  data-bs-toggle="modal" 
+                                            data-bs-target="#activity-log"  
+                                            data-id="{{ $data->id }}"
+                                            data-name="{{ $data->name }}"
+                                            data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
+                                            data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}">
+                                            View Activity Logs
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </td>

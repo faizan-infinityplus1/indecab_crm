@@ -147,9 +147,27 @@
               <a href="#" class="text-white"> Help</a> 
         </div>
     </nav>
-    <div style="margin-top: 75px;">
+    <div style="margin-top: 50px;">
         @yield('content')
     </div>
+    {{-- Modal start here --}}
+    <div class="modal fade" id="activity-log" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+        <div class="modal-content rounded-0 border-0">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Activity logs</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer justify-content-start">
+            <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    {{-- modal end here --}}
 
     {{-- Jquery Js --}}
     <script src="{{asset('admin/js/jquery/jquery.3.7.1.js')}}"></script>
@@ -212,7 +230,77 @@
        
             
     });
-        </script>
+    </script>
+
+    {{-- js for modals --}}
+    <script>
+        document.querySelectorAll('.view-activity-logs').forEach(item => {
+            item.addEventListener('click', function(event) {
+                
+                const id = this.getAttribute('data-id');
+                const name = this.getAttribute('data-name');
+                const created = this.getAttribute('data-created');
+                const updates = this.getAttribute('data-updates');
+        
+                const createdDate = new Date(created);
+                const updatedDate = new Date(updates);
+        
+                
+                const modalBody = document.querySelector('#activity-log .modal-body');
+                const modalTitle = document.querySelector('#exampleModalLabel');
+        
+                const formatDate = (date) => {
+                    const hours = String(date.getHours()).padStart(2, '0');
+                    const minutes = String(date.getMinutes()).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const year = date.getFullYear();
+                    return `${hours}:${minutes} on ${day}-${month}-${year}`;
+                };
+        
+                modalTitle.innerHTML = `
+                    Activity logs <span class="text-black-50"> for ${name}</span>
+                `;
+                
+                if (created && updates) {
+                    
+                    if (created === updates) {
+                        modalBody.innerHTML = `
+                            <div>
+                                <p>
+                                    You created Duty type at  ${formatDate(createdDate)}.
+                                </p>
+                            </div>
+                        `;
+                    } else {
+                        
+                        modalBody.innerHTML = `
+                            <div>
+                                <p>
+                                    You created Duty type at  ${formatDate(createdDate)}.
+                                </p>
+                            </div>
+                            <div class="bg-light p-3">
+                                <p class="text-center m-0">
+                                    Last updated at  ${formatDate(updatedDate)}.
+                                </p>
+                            </div>
+                        `;
+                    }
+                } else {
+                    
+                    modalBody.innerHTML = `
+                        <div class="bg-light p-3">
+                            <p class="text-center m-0">
+                                No log records found.
+                            </p>
+                        </div>
+                    `;
+                }
+            });
+        });
+    </script>
+    {{-- js for modals --}}
     {{-- Custom Js --}}
     @yield('extrajs')
 </body>

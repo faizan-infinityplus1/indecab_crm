@@ -13,12 +13,12 @@
 
 
 
-<div class="card rounded-0 border-0 p-3">
-    <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
+<div class="card rounded-0 border-0 p-5">
+    <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
         <h4 >Duty Types</h4>
         <div class="btn-group" role="group"><a href="{{route('dutytype.manage')}}" class="btn btn-primary">Add Duty Type</a></div>
     </div>
-    <div class="card-body">
+    <div class="card-body px-0">
         @if($errors->any())
         <div class="alert alert-danger ">
             <span class="close" onclick="this.parentElement.style.display='none';"
@@ -56,9 +56,18 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#activity-log">View Activity Logs</a>
+                                        <a class="dropdown-item view-activity-logs" href="#"  data-bs-toggle="modal" 
+                                            data-bs-target="#activity-log"  
+                                            data-id="{{ $data->id }}"
+                                            data-name="{{ $data->duty_name }}"
+                                            data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
+                                            data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}">
+                                            View Activity Logs
+                                        </a>
                                     </li>
-                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
+                                    <li>
+                                        <a class="dropdown-item text-danger" href="{{ route('dutytype.delete', $data->id) }}">Delete</a>
+                                    </li>
                                 </ul>
                             </div>
                         </td>
@@ -77,32 +86,6 @@
                 </tfoot>
             </table>
         </div>
-    </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="activity-log" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-      <div class="modal-content rounded-0 border-0">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Activity logs</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div>
-                <p>
-                    you have created Duty type at 14:06 on 04-07-2024
-                </p>
-            </div>
-            <div class="bg-light p-3">
-                <p class="text-center m-0">
-                    No log records found.
-                </p>
-            </div>
-        </div>
-        <div class="modal-footer justify-content-start">
-          <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
 </div>
 
