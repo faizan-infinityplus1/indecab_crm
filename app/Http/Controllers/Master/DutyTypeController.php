@@ -74,6 +74,12 @@ class DutyTypeController extends Controller
             return redirect(route('dutytype.manage'));
         }
     }
+    public function edit(Request $request)
+    {
+        $dutyType = MstDutyType::findOrFail($request->id);
+        
+        return view('backend.admin.masters.dutytypes.manage', compact('data'));
+    }
 
     public function update(Request $request)
     {

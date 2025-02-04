@@ -34,6 +34,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/duty-types', [DutyTypeController::class, 'index'])->name('dutytype.index');
     Route::get('/duty-types/manage/{id?}', [DutyTypeController::class, 'manage'])->name('dutytype.manage');
     Route::post('/duty-types/store', [DutyTypeController::class, 'store'])->name('dutytype.store');
+    Route::get('/duty-types/edit/{id}', [DutyTypeController::class, 'edit'])->name('dutytype.edit');
     Route::post('/duty-types/update/{id}', [DutyTypeController::class, 'update'])->name('dutytype.update');
     Route::get('/duty-types/delete/{id}', [DutyTypeController::class, 'delete'])->name('dutytype.delete');
 

@@ -66,6 +66,9 @@
                                         </a>
                                     </li>
                                     <li>
+                                        <a class="dropdown-item" href="{{ route('dutytype.manage', $data->id) }}">Edit</a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item text-danger" href="{{ route('dutytype.delete', $data->id) }}">Delete</a>
                                     </li>
                                 </ul>
