@@ -43,3 +43,14 @@ ul.dropdown-menu.dropdown-menu-end {
     right: 0;
     left: auto;
 }
+
+.fa-angle-left{
+    font-size: 24px;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #dee2e6;
+    background-color: transparent;
+}

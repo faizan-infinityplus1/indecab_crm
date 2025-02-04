@@ -204,7 +204,7 @@
                                         id="is_gst_primary"
                                         {{ old('is_gst_primary', $particularMstCustomer->is_gst_primary ?? '') ? 'checked' : '' }}
                                         value="1">
-                                    <label class="form-check-label" for="">
+                                    <label class="form-check-label" for="is_gst_primary">
                                         Use billing name as primary name on invoice?
                                     </label>
                                 </div>
@@ -212,7 +212,7 @@
                                     <input class="form-check-input" type="checkbox" value="1" name="is_gst_tally"
                                         id="is_gst_tally"
                                         {{ old('is_gst_tally', $particularMstCustomer->is_gst_tally ?? '') ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="">
+                                    <label class="form-check-label" for="is_gst_tally">
                                         Use billing name in Tally export?
                                     </label>
                                 </div>

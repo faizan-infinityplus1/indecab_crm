@@ -16,7 +16,8 @@ class CategoriesVehicleGroupsController extends Controller
 {
     public function index()
     {
-        return view('backend.admin.masters.vehiclegroups.index');
+        $data = MstCatVehGroup::all();
+        return view('backend.admin.masters.vehiclegroups.index', compact('data'));
     }
     public function manage($id = null)
     {

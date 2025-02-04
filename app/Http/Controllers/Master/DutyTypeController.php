@@ -12,7 +12,8 @@ class DutyTypeController extends Controller
 {
     public function index()
     {
-        return view('backend.admin.masters.dutytypes.index');
+        $data = MstDutyType::all();
+        return view('backend.admin.masters.dutytypes.index', compact('data'));
     }
     public function manage($id = null)
     {
@@ -73,6 +74,12 @@ class DutyTypeController extends Controller
             return redirect(route('dutytype.manage'));
         }
     }
+    public function edit(Request $request)
+    {
+        $dutyType = MstDutyType::findOrFail($request->id);
+        
+        return view('backend.admin.masters.dutytypes.manage', compact('data'));
+    }
 
     public function update(Request $request)
     {
@@ -127,6 +134,18 @@ class DutyTypeController extends Controller
         if ($dutyType) {
             // connectify('success', 'Product Added', 'Duty Type has been added successfully !');
             return redirect(route('dutytype.manage', $request->id));
+        }
+    }
+
+    public function delete(Request $request){
+        try {
+            $dutyType = MstDutyType::findOrFail($request->id);
+            $dutyType->delete();
+
+            // return response()->json(['success' => 'Duty Type deleted successfully.']);
+            return redirect()->back()->with('success', 'Duty Type deleted successfully.');
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete tax.'],  $e);
         }
     }
 }

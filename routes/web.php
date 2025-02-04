@@ -10,6 +10,8 @@ use App\Http\Controllers\Master\BranchesController;
 use App\Http\Controllers\Master\DutyTypeController;
 use App\Http\Controllers\Master\CategoriesVehicleGroupsController;
 use App\Http\Controllers\Master\CompaniesController;
+use App\Http\Controllers\Master\CompaniesProfilesController;
+use App\Http\Controllers\Master\CustomerPricingController;
 use App\Http\Controllers\Master\TaxesController;
 use App\Http\Controllers\Master\CustomersController;
 use App\Http\Controllers\Master\DutySupportersController;
@@ -17,6 +19,7 @@ use App\Http\Controllers\Master\EmployeesController;
 use App\Http\Controllers\Master\FeedbackFormsController;
 use App\Http\Controllers\Master\LabelsController;
 use App\Http\Controllers\Master\MyDriversController;
+use App\Http\Controllers\Master\SupplierPricingController;
 use App\Http\Controllers\Master\SuppliersController;
 use App\Http\Controllers\Master\VehiclesController;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +34,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/duty-types', [DutyTypeController::class, 'index'])->name('dutytype.index');
     Route::get('/duty-types/manage/{id?}', [DutyTypeController::class, 'manage'])->name('dutytype.manage');
     Route::post('/duty-types/store', [DutyTypeController::class, 'store'])->name('dutytype.store');
+    Route::get('/duty-types/edit/{id}', [DutyTypeController::class, 'edit'])->name('dutytype.edit');
     Route::post('/duty-types/update/{id}', [DutyTypeController::class, 'update'])->name('dutytype.update');
+    Route::get('/duty-types/delete/{id}', [DutyTypeController::class, 'delete'])->name('dutytype.delete');
 
     Route::get('/vehicle-groups', [CategoriesVehicleGroupsController::class, 'index'])->name('vehiclegroups.index');
     Route::get('/vehicle-groups/manage/{id?}', [CategoriesVehicleGroupsController::class, 'manage'])->name('vehiclegroups.manage');
@@ -91,8 +96,13 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/companies', [CompaniesController::class, 'index'])->name('companies.index');
     Route::get('/companies/manage/{id?}', [CompaniesController::class, 'manage'])->name('companies.manage');
-    Route::get('/companies/profiles', [CompaniesController::class, 'index'])->name('companies.index');
-    Route::get('/companies/profiles/manage/{id?}', [CompaniesController::class, 'manage'])->name('companies.manage');
+
+    Route::get('/companies/profiles', [CompaniesProfilesController::class, 'index'])->name('companiesprofiles.index');
+    Route::get('/companies/profiles/manage/{id?}', [CompaniesProfilesController::class, 'manage'])->name('companiesprofiles.manage');
+    
+    Route::get('/pricing', [CustomerPricingController::class, 'index'])->name('customerpricing.index');
+
+    Route::get('/pricing/supplier', [SupplierPricingController::class, 'index'])->name('supplierpricing.index');
 });
 
 
