@@ -447,12 +447,12 @@
                         </div>
                     </div>
 
-                    <div class="form-check mb-3">
+                    {{-- <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" value="1" id="is_app_logout">
                         <label class="form-check-label" for="is_app_logout">
                             Enable app logout button
                         </label>
-                    </div>
+                    </div> --}}
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" value="is_active" id="is_active">
                         <label class="form-check-label" for="is_active">

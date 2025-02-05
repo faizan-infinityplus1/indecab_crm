@@ -66,6 +66,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/suppliers/create', [SuppliersController::class, 'create'])->name('suppliers.create');
     Route::post('/suppliers/store', [SuppliersController::class, 'store'])->name('suppliers.store');
     Route::get('/suppliers/edit/{id}', [SuppliersController::class, 'edit'])->name('suppliers.edit');
+    Route::post('/suppliers/update/{id}', [CustomersController::class, 'update'])->name('suppliers.update');
 
 
     Route::get('/suppliers/groups', [SuppliersController::class, 'showSuppliersGroups'])->name('showSuppliersGroups');

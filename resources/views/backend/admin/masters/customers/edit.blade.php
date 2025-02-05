@@ -626,37 +626,41 @@
                                         <tbody class="dri_allow_set_tax_body" id="dri_allow_set_tax_body">
 
                                             {{-- component start --}}
+                                         
+                                            {{-- component start --}}
                                             @foreach ($mstDriverCustomerSetting as $data)
                                                 <tr>
                                                     <td>
-                                                        <select class="form-select border-bottom"
-                                                            aria-label="Default select example" name="driallowsetcity_{{$data->id}}_update"
+                                                        <select class="form-select border-bottom dri_allow_set_city"
+                                                            aria-label="Default select example"
+                                                            name="driallowsetcity_{{ $data->id }}_update"
                                                             id="dri_allow_set_city"
-                                                            data-dri-city="{{ $data->city_name ?? '' }}"
-                                                           >
+                                                            data-dri-city="{{ $data->city_name ?? '' }}">
 
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select class="form-select border-bottom"
+                                                        <select class="form-select border-bottom dri_allow_set_early_time"
                                                             aria-label="Default select example"
-                                                            name="driallowsetearlytime_{{$data->id}}_update" id="dri_allow_set_early_time"
+                                                            name="driallowsetearlytime_{{ $data->id }}_update"
+                                                            id="dri_allow_set_early_time"
                                                             data-start-dri-time="{{ $data->early_time ?? '' }}">
 
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select class="form-select border-bottom"
+                                                        <select class="form-select border-bottom dri_allow_set_late_time"
                                                             aria-label="Default select example"
-                                                            name="driallowsetlatetime_{{$data->id}}_update" id="dri_allow_set_late_time"
+                                                            name="driallowsetlatetime_{{ $data->id }}_update"
+                                                            id="dri_allow_set_late_time"
                                                             data-end-dri-time="{{ $data->late_time ?? '' }}">
 
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select class="form-select border-bottom"
+                                                        <select class="form-select border-bottom dri_allow_set_outst_overnig_time"
                                                             aria-label="Default select example"
-                                                            name="driallowsetoutstovernigtime_{{$data->id}}_update"
+                                                            name="driallowsetoutstovernigtime_{{ $data->id }}_update"
                                                             id="dri_allow_set_outst_overnig_time"
                                                             data-over-night-time="{{ $data->outsta_overnig_time ?? '' }}">
 
@@ -877,50 +881,44 @@
 
             // Driver Allowance Setting
 
-            const driCityElement = document.getElementById('dri_allow_set_city');
-            if (driCityElement) {
-                const driCity = driCityElement.dataset.driCity;
-                driCityElement.innerHTML = generateCityOptions(driCity);
+              document.querySelectorAll('.dri_allow_set_city').forEach((element) => {
+                const driCity = element.dataset.driCity;
+                element.innerHTML = generateCityOptions(driCity);
+            });
 
-                const startDriTimeElement = document.getElementById('dri_allow_set_early_time');
-                const startDriTime = startDriTimeElement.dataset.startDriTime;
-                startDriTimeElement.innerHTML = generateTimeSlots(startDriTime);
+            document.querySelectorAll('.dri_allow_set_early_time').forEach((element) => {
+                const startDriTime = element.dataset.startDriTime;
+                element.innerHTML = generateTimeSlots(startDriTime);
+            });
 
-                const endDriTimeElement = document.getElementById('dri_allow_set_late_time');
-                const endDriTime = endDriTimeElement.dataset.endDriTime;
-                endDriTimeElement.innerHTML = generateTimeSlots(endDriTime);
+            document.querySelectorAll('.dri_allow_set_late_time').forEach((element) => {
+                const endDriTime = element.dataset.endDriTime;
+                element.innerHTML = generateTimeSlots(endDriTime);
+            });
 
-                const DriOveTimeElement = document.getElementById('dri_allow_set_outst_overnig_time');
-                const overNightTime = DriOveTimeElement.dataset.overNightTime;
-                DriOveTimeElement.innerHTML = generateTimeSlots(overNightTime);
-            }
+            document.querySelectorAll('.dri_allow_set_outst_overnig_time').forEach((element) => {
+                const overNightTime = element.dataset.overNightTime;
+                element.innerHTML = generateTimeSlots(overNightTime);
+            });
 
 
-            let baseCityFuel = @json($particularMstCustomer->base_city_fuel);
-            let countryDropDown = @json($particularMstCustomer->country);
-            let state = @json($particularMstCustomer->state);
-            let gstState = @json($particularMstCustomer->gst_state);
-            // let startTime = @json($particularMstCustomer->start_time);
-            // let endTime = @json($particularMstCustomer->end_time);
-            console.log(gstState);
+            let particularMstCustomer = @json($particularMstCustomer);
+            var applicableTaxes = @json($applicableTaxes);
+
 
             // Function to generate HTML for the options and set the selected attribute based on dynamic variables
 
 
-            document.getElementById("base_city_fuel").innerHTML = generateCityOptions(baseCityFuel);
-            document.getElementById("country").innerHTML = generateCityOptions(countryDropDown);
-
-
-            document.getElementById("state").innerHTML = generateStateOptions();
-            document.getElementById("gst_state").innerHTML = generateStateOptions(gstState);
-            document.getElementById("state").innerHTML = generateStateOptions(state);
+            document.getElementById("base_city_fuel").innerHTML = generateCityOptions(particularMstCustomer.base_city_fuel);
+            document.getElementById("country").innerHTML = generateCityOptions(particularMstCustomer.country);
+            document.getElementById("state").innerHTML = generateStateOptions(particularMstCustomer.state);
+            document.getElementById("gst_state").innerHTML = generateStateOptions(particularMstCustomer.gst_state);
 
 
 
             // document.getElementById("dut_typ_tim_str").innerHTML = generateStateOptions(startTime);
             // document.getElementById("dut_typ_tim_end").innerHTML = generateStateOptions(endTime);
 
-            var applicableTaxes = @json($applicableTaxes);
             $("#formCustomer").validate({
                 rules: {
                     name: {

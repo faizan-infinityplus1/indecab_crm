@@ -49,7 +49,6 @@ return new class extends Migration
             $table->string('gst_type')->nullable();
             $table->string('start', 5)->nullable(); 
             $table->string('end', 5)->nullable(); 
-            $table->boolean('is_app_logout')->nullable();
             $table->boolean('is_gst_tally')->nullable();
             $table->boolean('is_active')->default(false);
             $table->timestamps();

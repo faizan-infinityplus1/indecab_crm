@@ -16,18 +16,21 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form action="{{ route('suppliers.store') }}" method="post">
+                <form action="{{ route('suppliers.update', $particularMstSupplier->id) }}" method="post" id="formCustomer">
                     @csrf
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="name" class="form-label ">Name </label>
-                                <input type="text" class="form-control  border-bottom" name="name" id="name">
+                                <input type="text" class="form-control  border-bottom" name="name" id="name"
+                                    value="{{ old('name', $particularMstSupplier->name ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address </label>
-                                <textarea class="form-control" rows="10" name="address" id="address"></textarea>
+                                <textarea class="form-control" rows="10" name="address" id="address">
+                                    {{ old('name', $particularMstSupplier->address ?? '') }}
+                                </textarea>
                                 <span class="warning-msg-block"></span>
                             </div>
 
@@ -56,13 +59,13 @@
                                 billing details.
                                 <div class="mb-3">
                                     <label for="gst_name" class="form-label">Billing Name </label>
-                                    <input type="text" class="form-control  border-bottom" name="gst_name"
-                                        id="gst_name">
+                                    <input type="text" class="form-control  border-bottom" name="gst_name" id="gst_name"
+                                        value="{{ old('gst_name', $particularMstSupplier->gst_name ?? '') }}">
                                     <span class="warning-msg-block"></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="gst_addr" class="form-label">Billing Address </label>
-                                    <textarea class="form-control" rows="10" name="gst_addr" id="gst_addr"></textarea>
+                                    <textarea class="form-control" rows="10" name="gst_addr" id="gst_addr">{{ old('gst_addr', $particularMstSupplier->gst_addr ?? '') }}</textarea>
                                     <span class="warning-msg-block"></span>
                                 </div>
                                 <div class="mb-3">
@@ -76,7 +79,8 @@
 
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="checkbox" value="1" name="is_gst_tally"
-                                        id="is_gst_tally">
+                                        id="is_gst_tally"
+                                        {{ old('is_gst_tally', $particularMstSupplier->is_gst_tally ?? '') ? 'checked' : '' }}>
                                     <label class="form-check-label" for="is_gst_tally">
                                         Use billing name in Tally export?
                                     </label>
@@ -88,18 +92,21 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="phone_no" class="form-label ">Phone Number</label>
-                                <input type="text" class="form-control  border-bottom" name="phone_no" id="phone_no">
+                                <input type="text" class="form-control  border-bottom" name="phone_no" id="phone_no"
+                                    value="{{ old('phone_no', $particularMstSupplier->phone_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="email_id" class="form-label ">Email Address</label>
-                                <input type="email" class="form-control  border-bottom" name="email_id" id="email_id">
+                                <input type="email" class="form-control  border-bottom" name="email_id" id="email_id"
+                                    value="{{ old('email_id', $particularMstSupplier->email_id ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
 
                             <div class="mb-3">
                                 <label for="gst_no" class="form-label ">GSTIN Number</label>
-                                <input type="text" class="form-control  border-bottom" name="gst_no" id="gst_no">
+                                <input type="text" class="form-control  border-bottom" name="gst_no" id="gst_no"
+                                    value="{{ old('gst_no', $particularMstSupplier->gst_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -117,8 +124,12 @@
                                 <select class="form-select border-bottom" aria-label="Default select example"
                                     name="revrse_chrg" id="revrse_chrg">
                                     <option class="d-none" value="">Select an option</option>
-                                    <option value="no">No</option>
-                                    <option value="yes">Yes</option>
+                                    <option value="no"
+                                        {{ old('un_registered', $particularMstSupplier->revrse_chrg ?? '') == 'no' ? 'selected' : '' }}>
+                                        No</option>
+                                    <option value="yes"
+                                        {{ old('un_registered', $particularMstSupplier->revrse_chrg ?? '') == 'yes' ? 'selected' : '' }}>
+                                        Yes</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -126,7 +137,8 @@
                             <div class="mb-3">
                                 <label for="revenue_share_per" class="form-label ">Revenue Share Percentage</label>
                                 <input type="text" class="form-control  border-bottom" name="revenue_share_per"
-                                    id="revenue_share_per">
+                                    id="revenue_share_per"
+                                    value="{{ old('revenue_share_per', $particularMstSupplier->revenue_share_per ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             {{-- <div class="mb-3">
@@ -142,37 +154,41 @@
                             <div class="mb-3">
                                 <label for="altern_phone_no" class="form-label ">Alternate Phone Number</label>
                                 <input type="number" class="form-control  border-bottom" name="altern_phone_no"
-                                    id="altern_phone_no">
+                                    id="altern_phone_no"
+                                    value="{{ old('altern_phone_no', $particularMstSupplier->altern_phone_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="altern_email_id" class="form-label ">Alternate email address</label>
                                 <input type="text" class="form-control  border-bottom" name="altern_email_id"
-                                    id="altern_email_id">
+                                    id="altern_email_id"
+                                    value="{{ old('altern_email_id', $particularMstSupplier->altern_email_id ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="pan_no" class="form-label ">PAN Number</label>
-                                <input type="text" class="form-control  border-bottom" name="pan_no" id="pan_no">
+                                <input type="text" class="form-control  border-bottom" name="pan_no" id="pan_no"
+                                    value="{{ old('pan_no', $particularMstSupplier->pan_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="serv_tax_no" class="form-label ">Service Tax Number</label>
                                 <input type="text" class="form-control  border-bottom" name="serv_tax_no"
-                                    id="serv_tax_no">
+                                    id="serv_tax_no"
+                                    value="{{ old('serv_tax_no', $particularMstSupplier->serv_tax_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
 
                             <div class="mb-3">
                                 <label for="tds_perc" class="form-label ">TDS Percentage %</label>
-                                <input type="number" class="form-control  border-bottom" name="tds_perc"
-                                    id="tds_perc">
+                                <input type="number" class="form-control  border-bottom" name="tds_perc" id="tds_perc"
+                                    value="{{ old('tds_perc', $particularMstSupplier->tds_perc ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="pincode" class="form-label ">Pin Code </label>
                                 <input type="number" class="form-control  border-bottom" maxlength="6" name="pincode"
-                                    id="pincode">
+                                    id="pincode" value="{{ old('pincode', $particularMstSupplier->pincode ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
 
@@ -203,56 +219,134 @@
                         <select class="form-select border-bottom" aria-label="Default select example"
                             name="def_tax_classif" id="def_tax_classif">
                             <option value="" style="display: none">Select an option</option>
-                            <option value="branch_transfer_inward">Branch Transfer Inward</option>
-                            <option value="import_exempt">Imports Exempt</option>
-                            <option value="import_nil_rated">Imports Nil Rated</option>
-                            <option value="import_taxable">Imports Taxable</option>
-                            <option value="inter_purch_exempt">Interstate Purchase Exempt</option>
-                            <option value="inter_purch_nil_rated">Interstate Purchase Nil Rated</option>
-                            <option value="inter_purch_taxable_5">Interstate Purchase Taxable - 5%</option>
-                            <option value="inter_purch_taxable_12">Interstate Purchase Taxable - 12%</option>
-                            <option value="inter_purch_taxable_18">Interstate Purchase Taxable - 18%</option>
-                            <option value="inter_purch_unreg_dealer">Interstate Purchase From Unregistered Dealer - Exempt
+                            <option value="branch_transfer_inward"
+                                {{ old('branch_transfer_inward', $particularMstSupplier->def_tax_classif ?? '') == 'branch_transfer_inward' ? 'selected' : '' }}>
+                                Branch Transfer Inward</option>
+                            <option value="import_exempt"
+                                {{ old('import_exempt', $particularMstSupplier->def_tax_classif ?? '') == 'import_exempt' ? 'selected' : '' }}>
+                                Imports Exempt</option>
+                            <option value="import_nil_rated"
+                                {{ old('import_nil_rated', $particularMstSupplier->def_tax_classif ?? '') == 'import_nil_rated' ? 'selected' : '' }}>
+                                Imports Nil Rated</option>
+                            <option value="import_taxable"
+                                {{ old('import_taxable', $particularMstSupplier->def_tax_classif ?? '') == 'import_taxable' ? 'selected' : '' }}>
+                                Imports Taxable</option>
+                            <option value="inter_purch_exempt"
+                                {{ old('inter_purch_exempt', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_exempt' ? 'selected' : '' }}>
+                                Interstate Purchase Exempt</option>
+                            <option value="inter_purch_nil_rated"
+                                {{ old('inter_purch_nil_rated', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_nil_rated' ? 'selected' : '' }}>
+                                Interstate Purchase Nil Rated</option>
+                            <option value="inter_purch_taxable_5"
+                                {{ old('inter_purch_taxable_5', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_taxable_5' ? 'selected' : '' }}>
+                                Interstate Purchase Taxable - 5%</option>
+                            <option value="inter_purch_taxable_12"
+                                {{ old('inter_purch_taxable_12', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_taxable_12' ? 'selected' : '' }}>
+                                Interstate Purchase Taxable - 12%</option>
+                            <option value="inter_purch_taxable_18"
+                                {{ old('inter_purch_taxable_18', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_taxable_18' ? 'selected' : '' }}>
+                                Interstate Purchase Taxable - 18%</option>
+                            <option value="inter_purch_unreg_dealer"
+                                {{ old('inter_purch_unreg_dealer', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_unreg_dealer' ? 'selected' : '' }}>
+                                Interstate Purchase From Unregistered Dealer - Exempt
                             </option>
-                            <option value="inter_purch_unreg_deal_nil">Interstate Purchase From Unregistered Dealer - Nil
+                            <option value="inter_purch_unreg_deal_nil"
+                                {{ old('inter_purch_unreg_deal_nil', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_unreg_deal_nil' ? 'selected' : '' }}>
+                                Interstate Purchase From Unregistered Dealer - Nil
                                 Rated</option>
-                            <option value="inter_purch_unreg_deal_serv">Interstate Purchase From Unregistered Dealer -
+                            <option value="inter_purch_unreg_deal_serv"
+                                {{ old('inter_purch_unreg_deal_serv', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_unreg_deal_serv' ? 'selected' : '' }}>
+                                Interstate Purchase From Unregistered Dealer -
                                 Services</option>
-                            <option value="inter_purch_unreg_deal_taxable">Interstate Purchase From Unregistered Dealer -
+                            <option value="inter_purch_unreg_deal_taxable"
+                                {{ old('inter_purch_unreg_deal_taxable', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_unreg_deal_taxable' ? 'selected' : '' }}>
+                                Interstate Purchase From Unregistered Dealer -
                                 Taxable</option>
-                            <option value="inter_purch_deem_export_exempt">Intrastate Purchase Deemed Exports - Exempt
+                            <option value="inter_purch_deem_export_exempt"
+                                {{ old('inter_purch_deem_export_exempt', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_deem_export_exempt' ? 'selected' : '' }}>
+                                Intrastate Purchase Deemed Exports - Exempt
                             </option>
-                            <option value="inter_purch_deem_export_nil">Intrastate Purchase Deemed Exports - Nil Rated
+                            <option value="inter_purch_deem_export_nil"
+                                {{ old('inter_purch_deem_export_nil', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_deem_export_nil' ? 'selected' : '' }}>
+                                Intrastate Purchase Deemed Exports - Nil Rated
                             </option>
-                            <option value="inter_purch_deem_export_taxable">Intrastate Purchase Deemed Exports - Taxable
+                            <option value="inter_purch_deem_export_taxable"
+                                {{ old('inter_purch_deem_export_taxable', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_deem_export_taxable' ? 'selected' : '' }}>
+                                Intrastate Purchase Deemed Exports - Taxable
                             </option>
-                            <option value="inter_purch_deem_export_exempt">Purchase Deemed Exports - Exempt</option>
-                            <option value="inter_purch_deem_export_nil_rated">Purchase Deemed Exports - Nil Rated</option>
-                            <option value="inter_purch_deem_export_taxable">Purchase Deemed Exports - Taxable</option>
-                            <option value="purch_exempt">Purchase Exempt</option>
-                            <option value="purch_nil_rated">Purchase Nil Rated</option>
-                            <option value="purch_taxable_5">Purchase Taxable - 5%</option>
-                            <option value="purch_taxable_12">Purchase Taxable - 12%</option>
-                            <option value="purch_taxable_18">Purchase Taxable - 18%</option>
-                            <option value="purch_compos_dealer">Purchase From Composition Dealer</option>
-                            <option value="purch_sez_exempt">Purchase From SEZ - Exempt</option>
-                            <option value="purch_sez_lut_bond">Purchase From SEZ - LUT/Bond</option>
-                            <option value="purch_sez_nil_rated">Purchase From SEZ - Nil Rated</option>
-                            <option value="purch_sez_taxable">Purchase From SEZ - Taxable</option>
-                            <option value="purch_sez_wibil_exempt">Purchase From SEZ (Without Bill of Entry)- Exempt
+                            <option value="inter_purch_deem_export_exempt"
+                                {{ old('inter_purch_deem_export_exempt', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_deem_export_exempt' ? 'selected' : '' }}>
+                                Purchase Deemed Exports - Exempt</option>
+                            <option value="inter_purch_deem_export_nil_rated"
+                                {{ old('inter_purch_deem_export_nil_rated', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_deem_export_nil_rated' ? 'selected' : '' }}>
+                                Purchase Deemed Exports - Nil Rated</option>
+                            <option value="inter_purch_deem_export_taxable"
+                                {{ old('inter_purch_deem_export_taxable', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_deem_export_taxable' ? 'selected' : '' }}>
+                                Purchase Deemed Exports - Taxable</option>
+                            <option value="purch_exempt"
+                                {{ old('purch_exempt', $particularMstSupplier->def_tax_classif ?? '') == 'purch_exempt' ? 'selected' : '' }}>
+                                Purchase Exempt</option>
+                            <option value="purch_nil_rated"
+                                {{ old('purch_nil_rated', $particularMstSupplier->def_tax_classif ?? '') == 'purch_nil_rated' ? 'selected' : '' }}>
+                                Purchase Nil Rated</option>
+                            <option value="purch_taxable_5"
+                                {{ old('purch_taxable_5', $particularMstSupplier->def_tax_classif ?? '') == 'purch_taxable_5' ? 'selected' : '' }}>
+                                Purchase Taxable - 5%</option>
+                            <option value="purch_taxable_12"
+                                {{ old('purch_taxable_12', $particularMstSupplier->def_tax_classif ?? '') == 'purch_taxable_12' ? 'selected' : '' }}>
+                                Purchase Taxable - 12%</option>
+                            <option value="purch_taxable_18"
+                                {{ old('purch_taxable_18', $particularMstSupplier->def_tax_classif ?? '') == 'purch_taxable_18' ? 'selected' : '' }}>
+                                Purchase Taxable - 18%</option>
+                            <option value="purch_compos_dealer"
+                                {{ old('purch_compos_dealer', $particularMstSupplier->def_tax_classif ?? '') == 'purch_compos_dealer' ? 'selected' : '' }}>
+                                Purchase From Composition Dealer</option>
+                            <option value="purch_sez_exempt"
+                                {{ old('purch_sez_exempt', $particularMstSupplier->def_tax_classif ?? '') == 'purch_sez_exempt' ? 'selected' : '' }}>
+                                Purchase From SEZ - Exempt</option>
+                            <option value="purch_sez_lut_bond"
+                                {{ old('purch_sez_lut_bond', $particularMstSupplier->def_tax_classif ?? '') == 'purch_sez_lut_bond' ? 'selected' : '' }}>
+                                Purchase From SEZ - LUT/Bond</option>
+                            <option value="purch_sez_nil_rated"
+                                {{ old('purch_sez_nil_rated', $particularMstSupplier->def_tax_classif ?? '') == 'purch_sez_nil_rated' ? 'selected' : '' }}>
+                                Purchase From SEZ - Nil Rated</option>
+                            <option value="purch_sez_taxable"
+                                {{ old('purch_sez_taxable', $particularMstSupplier->def_tax_classif ?? '') == 'purch_sez_taxable' ? 'selected' : '' }}>
+                                Purchase From SEZ - Taxable</option>
+                            <option value="purch_sez_wibil_exempt"
+                                {{ old('purch_sez_wibil_exempt', $particularMstSupplier->def_tax_classif ?? '') == 'purch_sez_wibil_exempt' ? 'selected' : '' }}>
+                                Purchase From SEZ (Without Bill of Entry)- Exempt
                             </option>
-                            <option value="purch_sez_wibile_nil_rated">Purchase From SEZ (Without Bill of Entry)- Nil Rated
+                            <option value="purch_sez_wibile_nil_rated"
+                                {{ old('purch_sez_wibile_nil_rated', $particularMstSupplier->def_tax_classif ?? '') == 'purch_sez_wibile_nil_rated' ? 'selected' : '' }}>
+                                Purchase From SEZ (Without Bill of Entry)- Nil Rated
                             </option>
-                            <option value="purch_sez_wibile_taxable">Purchase From SEZ (Without Bill of Entry)- Taxable
+                            <option value="purch_sez_wibile_taxable"
+                                {{ old('purch_sez_wibile_taxable', $particularMstSupplier->def_tax_classif ?? '') == 'purch_sez_wibile_taxable' ? 'selected' : '' }}>
+                                Purchase From SEZ (Without Bill of Entry)- Taxable
                             </option>
-                            <option value="purch_unreg_dealer_exempt">Purchase From Unregistered Dealer - Exempt</option>
-                            <option value="purch_unreg_dealer_nil_rated">Purchase From Unregistered Dealer - Nil Rated
+                            <option value="purch_unreg_dealer_exempt"
+                                {{ old('purch_unreg_dealer_exempt', $particularMstSupplier->def_tax_classif ?? '') == 'purch_unreg_dealer_exempt' ? 'selected' : '' }}>
+                                Purchase From Unregistered Dealer - Exempt</option>
+                            <option value="purch_unreg_dealer_nil_rated"
+                                {{ old('purch_unreg_dealer_nil_rated', $particularMstSupplier->def_tax_classif ?? '') == 'purch_unreg_dealer_nil_rated' ? 'selected' : '' }}>
+                                Purchase From Unregistered Dealer - Nil Rated
                             </option>
-                            <option value="purch_unreg_dealer_taxable">Purchase From Unregistered Dealer - Taxable</option>
-                            <option value="purch_rcm_5">Purchase RCM - 5%</option>
-                            <option value="inter_purch_rcm_5">Interstate Purchase RCM - 5%</option>
-                            <option value="inter_purch_rcm_12">Interstate Purchase RCM - 12%</option>
-                            <option value="inter_purch_rcm-18">Interstate Purchase RCM - 18%</option>
+                            <option value="purch_unreg_dealer_taxable"
+                                {{ old('purch_unreg_dealer_taxable', $particularMstSupplier->def_tax_classif ?? '') == 'purch_unreg_dealer_taxable' ? 'selected' : '' }}>
+                                Purchase From Unregistered Dealer - Taxable</option>
+                            <option value="purch_rcm_5"
+                                {{ old('purch_rcm_5', $particularMstSupplier->def_tax_classif ?? '') == 'purch_rcm_5' ? 'selected' : '' }}>
+                                Purchase RCM - 5%</option>
+                            <option value="inter_purch_rcm_5"
+                                {{ old('inter_purch_rcm_5', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_rcm_5' ? 'selected' : '' }}>
+                                Interstate Purchase RCM - 5%</option>
+                            <option value="inter_purch_rcm_12"
+                                {{ old('inter_purch_rcm_12', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_rcm_12' ? 'selected' : '' }}>
+                                Interstate Purchase RCM - 12%</option>
+                            <option value="inter_purch_rcm_18"
+                                {{ old('inter_purch_rcm_18', $particularMstSupplier->def_tax_classif ?? '') == 'inter_purch_rcm_18' ? 'selected' : '' }}>
+                                Interstate Purchase RCM - 18%</option>
 
                         </select>
                         <span class="warning-msg-block"></span>
@@ -262,8 +356,12 @@
                         <select class="form-select border-bottom" aria-label="Default select example"
                             name="tds_ledger_type" id="tds_ledger_type">
                             <option value="" style="display: none">Select an option</option>
-                            <option value="tds_company_supplier">TDS - Company Supplier</option>
-                            <option value="tds_individual_supplier">TDS - Individual Supplier</option>
+                            <option value="tds_company_supplier"
+                                {{ old('tds_company_supplier', $particularMstSupplier->tds_ledger_type ?? '') == 'tds_company_supplier' ? 'selected' : '' }}>
+                                TDS - Company Supplier</option>
+                            <option value="tds_individual_supplier"
+                                {{ old('tds_individual_supplier', $particularMstSupplier->tds_ledger_type ?? '') == 'tds_individual_supplier' ? 'selected' : '' }}>
+                                TDS - Individual Supplier</option>
                         </select>
                         <span class="warning-msg-block"></span>
                     </div>
@@ -277,6 +375,49 @@
 
                                 <div class="appli_tax_body" id="appli_tax_body">
                                     {{-- component start --}}
+                                    @foreach ($mstApplicableTaxesSupplier as $data)
+                                        <div class="d-flex border-bottom">
+                                            <div class="p-3">
+                                                <button type="button"
+                                                    class="btn btn-primary rounded-1 remove_appli_tax_body"
+                                                    data-id={{ $data->id ?? '' }}>
+                                                    <i class="fa-solid fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="p-3 ps-0 w-100">
+                                                <div class="panel border rounded">
+                                                    <div class="panel-heading bg-light p-3">Applicable Taxes</div>
+                                                    <div class="panel-body p-3">
+                                                        <div class="mb-3">
+                                                            <label for="appli_tax" class="form-label ">Tax</label>
+                                                            <select class="form-select border-bottom"
+                                                                aria-label="Default select example"
+                                                                name="applitax_{{ $data->id }}_update" id="appli_tax"
+                                                                data-index={{ $data->id ?? '' }}>
+                                                                <option value="">(Select Tax)</option>
+
+                                                                @foreach ($applicableTaxes as $taxesData)
+                                                                    <option value="{{ $taxesData->id }}"
+                                                                        {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
+                                                                        {{ $taxesData->percentage }}</option>
+                                                                @endforeach
+
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-check mb-3">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="1" id="appli_tax_n_ch" value="1"
+                                                                name="applitaxnch_{{ $data->id }}_update"
+                                                                {{ old('inter_appli_tax_n_ch', $data->not_charged ?? '') ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="appli_tax_n_ch">
+                                                                Not to be charged?
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                     {{-- component end --}}
 
                                 </div>
@@ -292,9 +433,49 @@
                             <div class="panel border rounded mb-3">
                                 <div class="panel-heading bg-light p-3">Applicable Interstate Taxes</div>
                                 <div class="inter_appli_tax_body" id="inter_appli_tax_body">
-
                                     {{-- component start --}}
+                                    @foreach ($mstInterstateTaxesSupplier as $data)
+                                        <div class="d-flex border-bottom">
+                                            <div class="p-3">
+                                                <button type="button"
+                                                    class="btn btn-primary rounded-1 remove_inter_appli_tax_body"
+                                                    data-id="{{ $data->id ?? '' }}"><i class="fa-solid fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="p-3 ps-0 w-100">
+                                                <div class="panel border rounded">
+                                                    <div class="panel-heading bg-light p-3">Applicable Interstate Taxes
+                                                    </div>
+                                                    <div class="panel-body p-3">
+                                                        <div class="mb-3">
+                                                            <label for="inter_appli_tax" class="form-label ">Tax</label>
+                                                            <select class="form-select border-bottom"
+                                                                aria-label="Default select example"
+                                                                name="interapplitax_{{ $data->id }}_update"
+                                                                id="inter_appli_tax">
+                                                                @foreach ($applicableTaxes as $taxesData)
+                                                                    <option value="{{ $taxesData->id }}"
+                                                                        {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
+                                                                        {{ $taxesData->percentage }}</option>
+                                                                @endforeach
 
+                                                            </select>
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="form-check mb-3">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="1" id="inter_appli_tax_n_ch"
+                                                                name="interapplitaxnch_{{ $data->id }}_update">
+                                                            <label class="form-check-label" for="inter_appli_tax_n_ch"
+                                                                {{ old('inter_appli_tax_n_ch', $data->not_charged ?? '') ? 'checked' : '' }}>
+                                                                Not to be charged?
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                     {{-- component end --}}
                                 </div>
                                 <div class="p-3">
@@ -347,9 +528,56 @@
                                         <tbody class="dri_allow_set_tax_body" id="dri_allow_set_tax_body">
 
                                             {{-- component start --}}
+                                            @foreach ($mstDriverSupplierSetting as $data)
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-select border-bottom dri_allow_set_city"
+                                                            aria-label="Default select example"
+                                                            name="driallowsetcity_{{ $data->id }}_update"
+                                                            id="dri_allow_set_city"
+                                                            data-dri-city="{{ $data->city_name ?? '' }}">
 
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select border-bottom dri_allow_set_early_time"
+                                                            aria-label="Default select example"
+                                                            name="driallowsetearlytime_{{ $data->id }}_update"
+                                                            id="dri_allow_set_early_time"
+                                                            data-start-dri-time="{{ $data->early_time ?? '' }}">
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select border-bottom dri_allow_set_late_time"
+                                                            aria-label="Default select example"
+                                                            name="driallowsetlatetime_{{ $data->id }}_update"
+                                                            id="dri_allow_set_late_time"
+                                                            data-end-dri-time="{{ $data->late_time ?? '' }}">
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select border-bottom dri_allow_set_outst_overnig_time"
+                                                            aria-label="Default select example"
+                                                            name="driallowsetoutstovernigtime_{{ $data->id }}_update"
+                                                            id="dri_allow_set_outst_overnig_time"
+                                                            data-over-night-time="{{ $data->outsta_overnig_time ?? '' }}">
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button"
+                                                            class="btn btn-danger py-0 remove_dri_allow_set"
+                                                            data-id="{{ $data->id ?? '' }}">
+                                                            <i class="fa-solid fa-xmark"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
 
                                             {{-- component end --}}
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -379,7 +607,9 @@
                         <select class="form-select border-bottom" aria-label="Default select example"
                             name="limit_duty_type[]" id="limit_duty_type" multiple>
                             @foreach ($mstDutyType as $data)
-                                <option value="{{ $data->duty_name }}">{{ $data->duty_name }}</option>
+                                <option value="{{ $data->duty_name }}"
+                                    {{ old('limit_duty_type', $data->duty_name ?? '') == $particularMstSupplier->limit_duty_type ? 'selected' : '' }}>
+                                    {{ $data->duty_name }}</option>
                             @endforeach
                         </select>
                         <span class="warning-msg-block"></span>
@@ -391,14 +621,17 @@
                         <select class="form-select border-bottom" aria-label="Default select example"
                             name="vehi_group_limit" id="vehi_group_limit" multiple>
                             @foreach ($mstCatVehGroup as $data)
-                                <option value="{{ $data->name }}">{{ $data->name }}</option>
+                                <option value="{{ $data->name }}"
+                                    {{ old('vehi_group_limit', $data->name ?? '') == $particularMstSupplier->vehi_group_limit ? 'selected' : '' }}>
+                                    {{ $data->name }}</option>
                             @endforeach
                         </select>
                         <span class="warning-msg-block"></span>
                     </div>
                     <div class="mb-3">
                         <label for="branch" class="form-label">Branches</label>
-                        <input type="text" class="form-control border-bottom" name="branch" id="branch">
+                        <input type="text" class="form-control border-bottom" name="branch" id="branch"
+                            value="{{ old('branch', $particularMstSupplier->branch ?? '') }}">
                         <span class="warning-msg-block"></span>
                     </div>
                     <div class="mb-3">
@@ -431,30 +664,27 @@
                         </div>
                     </div>
 
-
-                    {{-- =============== --}}
-
-
-
                     <div class="bg-light mb-3 p-3">
                         You could use this field as unique identifier when integrating with another system. This field would
                         be available in duties exports.
                         <div class="mb-3">
                             <label for="supplier_code" class="form-label ">Supplier Code</label>
                             <input type="text" class="form-control border-bottom" name="supplier_code"
-                                id="supplier_code">
+                                id="supplier_code"
+                                value="{{ old('supplier_code', $particularMstSupplier->supplier_code ?? '') }}">
                             <span class="warning-msg-block"></span>
                         </div>
                     </div>
 
-                    <div class="form-check mb-3">
+                    {{-- <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" value="1" id="is_app_logout">
                         <label class="form-check-label" for="is_app_logout">
                             Enable app logout button
                         </label>
-                    </div>
+                    </div> --}}
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="is_active" id="is_active">
+                        <input class="form-check-input" type="checkbox" value="is_active" id="is_active"
+                            {{ old('is_active', $particularMstSupplier->is_active ?? '') ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_active">
                             Active
                         </label>
@@ -469,22 +699,38 @@
 @section('extrajs')
     <script>
         $(document).ready(function() {
+
+
+
+            let particularMstSupplier = @json($particularMstSupplier);
             var applicableTaxes = @json($applicableTaxes);
-            // console.log(cities);
-            // document.getElementById("limit_allot_booking").innerHTML = generateCityOptions();
+            var limitAllotBooking = particularMstSupplier.limit_allot_booking;
+            if (limitAllotBooking != null) {
+                limitAllotBookingArray = limitAllotBooking.split(',');
+            }
+            let citiesExtHigCost = particularMstSupplier.cities_ext_hig_cost;
+            if (citiesExtHigCost != null) {
+                citiesExtHigCostArray = citiesExtHigCost.split(',');
+            }
+
+
+
             document.getElementById("cities_ext_hig_cost").innerHTML = generateCityOptions();
             document.getElementById("start").innerHTML = generateTimeSlots();
             document.getElementById("end").innerHTML = generateTimeSlots();
-            document.getElementById("state").innerHTML = generateStateOptions();
-            document.getElementById("gst_state").innerHTML = generateStateOptions();
-            
-            console.log(generateCitySelect2());
+            document.getElementById("state").innerHTML = generateStateOptions(particularMstSupplier.state);
+            document.getElementById("head_office_city").innerHTML = generateStateOptions(particularMstSupplier
+                .head_office_city);
+            document.getElementById("gst_state").innerHTML = generateStateOptions(particularMstSupplier.gst_state);
+            document.getElementById("start").innerHTML = generateTimeSlots(particularMstSupplier.start);
+            document.getElementById("end").innerHTML = generateTimeSlots(particularMstSupplier.end);
+
             $("#limit_allot_booking").select2({
                 placeholder: "Select an Option",
                 allowClear: true,
-                data: generateCitySelect2()
+                data: generateCitySelect2(limitAllotBookingArray)
             });
-            
+
             $("#limit_duty_type").select2({
                 placeholder: "Select an Option",
                 allowClear: true
@@ -498,8 +744,29 @@
                 allowClear: true
             });
 
+            // Driver Allowance Setting
+            document.querySelectorAll('.dri_allow_set_city').forEach((element) => {
+                const driCity = element.dataset.driCity;
+                element.innerHTML = generateCityOptions(driCity);
+            });
 
-            // Applicable Taxes
+            document.querySelectorAll('.dri_allow_set_early_time').forEach((element) => {
+                const startDriTime = element.dataset.startDriTime;
+                element.innerHTML = generateTimeSlots(startDriTime);
+            });
+
+            document.querySelectorAll('.dri_allow_set_late_time').forEach((element) => {
+                const endDriTime = element.dataset.endDriTime;
+                element.innerHTML = generateTimeSlots(endDriTime);
+            });
+
+            document.querySelectorAll('.dri_allow_set_outst_overnig_time').forEach((element) => {
+                const overNightTime = element.dataset.overNightTime;
+                element.innerHTML = generateTimeSlots(overNightTime);
+            });
+
+
+
             // Applicable Taxes Start Here
 
             $(document).on('click', '.remove_appli_tax_body', function() {

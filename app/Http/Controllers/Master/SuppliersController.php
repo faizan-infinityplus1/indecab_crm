@@ -182,7 +182,7 @@ class SuppliersController extends Controller
                 // Add to interstate taxes data array
                 $driverAllowSettingData[] = [
                     'admin_id' => Auth::id(),
-                    'customer_id' => $supplierId,
+                    'supplier_id' => $supplierId,
                     'city_name' => $cityName,
                     'early_time' => $earlyTime,
                     'late_time' => $lateTime,
@@ -233,15 +233,20 @@ class SuppliersController extends Controller
     }
 
     public function edit(Request $request){
+        $mstCatVehGroup = MstCatVehGroup::active()->get();
+        $mstDutyType = MstDutyType::active()->get();
+        $applicableTaxes = MstTax::active()->get();
         $particularMstSupplier = MstSupplier::active()->where('id', $request->id)->first();
-        $mstApplicableTaxesSupplier = MstSupplierApplicableTax::active()->with('mstCustomer')->where('supplier_id', $request->id)->get();
-        $mstInterstateTaxesSupplier = MstSupplierInterstateTax::active()->with('mstCustomer')->where('supplier_id', $request->id)->get();
-        $mstDriverCustomerSupplier = MstSupplierDriverAllowanceSetting::active()->with('mstCustomer')->where('supplier_id', $request->id)->get();
-        $mstDriverCustomerSupplier = MstSupplierDriverAllowanceSetting::active()->with('mstCustomer')->where('supplier_id', $request->id)->get();
-        return view('backend.admin.masters.suppliers.edit', compact('particularMstSupplier', 'mstApplicableTaxesSupplier', 'mstInterstateTaxesSupplier', 'mstDriverCustomerSupplier',''));
+        $mstApplicableTaxesSupplier = MstSupplierApplicableTax::active()->with('mstSupplier')->where('supplier_id', $request->id)->get();
+        $mstInterstateTaxesSupplier = MstSupplierInterstateTax::active()->with('mstSupplier')->where('supplier_id', $request->id)->get();
+        $mstDriverSupplierSetting = MstSupplierDriverAllowanceSetting::active()->with('mstSupplier')->where('supplier_id', $request->id)->get();
+        return view('backend.admin.masters.suppliers.edit', compact('mstCatVehGroup','mstDutyType','applicableTaxes','particularMstSupplier', 'mstApplicableTaxesSupplier', 'mstInterstateTaxesSupplier', 'mstDriverSupplierSetting'));
 
     }
 
+    public function update(){
+
+    }
     public function createSuppliersGroups()
     {
         return view('backend.admin.masters.suppliers.groups-create');

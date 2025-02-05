@@ -170,7 +170,6 @@
                                 @endif
 
 
-                        </td>
                         <td>{!! $data->phone_no ?? '<span>NA</span>' !!}</td>
                         <td>{!! $data->gst_no ?? '<span>NA</span>' !!}</td>
 
@@ -185,7 +184,8 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('customers.edit', $data->id) }}">Edit</a>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('customers.edit', $data->id) }}">Edit</a>
                                     </li>
                                     <li><a class="dropdown-item" href="#">Action</a></li>
                                     <li><a class="dropdown-item" href="#">Another action</a></li>
