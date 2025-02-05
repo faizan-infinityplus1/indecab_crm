@@ -41,6 +41,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/vehicle-groups', [CategoriesVehicleGroupsController::class, 'index'])->name('vehiclegroups.index');
     Route::get('/vehicle-groups/manage/{id?}', [CategoriesVehicleGroupsController::class, 'manage'])->name('vehiclegroups.manage');
     Route::post('/vehicle-groups/store', [CategoriesVehicleGroupsController::class, 'store'])->name('vehiclegroups.store');
+    Route::get('/vehicle-groups/edit/{id}', [CategoriesVehicleGroupsController::class, 'edit'])->name('vehiclegroups.edit');
     Route::post('/vehicle-groups/update/{id}', [CategoriesVehicleGroupsController::class, 'update'])->name('vehiclegroups.update');
 
     Route::get('/taxes', [TaxesController::class, 'index'])->name('taxes.index');

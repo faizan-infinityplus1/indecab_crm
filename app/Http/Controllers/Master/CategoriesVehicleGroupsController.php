@@ -80,6 +80,12 @@ class CategoriesVehicleGroupsController extends Controller
             return redirect(route('vehiclegroups.manage'));
         }
     }
+    public function edit(Request $request)
+    {
+        $vehGrpName = MstCatVehGroup::findOrFail($request->id);
+        
+        return view('backend.admin.masters.vehiclegroups.manage', compact('data'));
+    }
     public function update(Request $request)
     {
         $validator = Validator::make(

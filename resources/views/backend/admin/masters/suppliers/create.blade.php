@@ -195,6 +195,313 @@
                         </select>
                         <span class="warning-msg-block"></span>
                     </div>
+
+                    {{-- if select Driver cum owners (DCO)/Attached --}}
+                    <div class="panel border rounded mb-3">
+                        <div class="panel-heading bg-light p-3">Details - Driver cum owners (DCO)/Attached</div>
+
+                        <div class="p-3">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Avatar</label>
+                                <div>
+                                    <label for="qwer" class="btn shadow-sm border rounded-1">Choose File</label>
+                                    <input type="file" name="" id="qwer" affieldinput="[object Object]" class="form-control"
+                                        accept="image/png, image/gif, image/jpeg" style="display: none;">
+                                </div>
+                            </div>
+                        
+                            <div class="mb-3">
+                                <label for="" class="form-label ">Vehicle Model</label>
+                                <input type="text" class="form-control  border-bottom" name=""
+                                    id="">
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label ">Vehicle Number</label>
+                                <input type="text" class="form-control  border-bottom" name=""
+                                    id="">
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Fuel Type</label>
+                                <select class="form-select border-bottom" aria-label="Default select example" name=""
+                                    id=""  >
+                                    <option value="selectOne">Select an option</option>
+                                    <option value="">Petrol</option>
+                                    <option value="">Diesel</option>
+                                    <option value="">CNG</option>
+                                    <option value="">Electric</option>
+                                </select>
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Avatar</label>
+                                <div>
+                                    <label for="qwer" class="btn shadow-sm border rounded-1">Choose File</label>
+                                    <input type="file" name="" id="qwer" affieldinput="[object Object]" class="form-control"
+                                        accept="image/png, image/gif, image/jpeg" style="display: none;">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label ">Owner Name</label>
+                                <input type="text" class="form-control  border-bottom" name=""
+                                    id="">
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label ">Owner Phone Number</label>
+                                <input type="text" class="form-control  border-bottom" name=""
+                                    id="">
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Registration</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Registered Owner Name</label>
+                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Registration Date</label>
+                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Parts</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Chassis Number</label>
+                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Engine Number</label>
+                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Insurance</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Company Name</label>
+                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Policy Number</label>
+                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Issue Date</label>
+                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Due Date</label>
+                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Premium Amount</label>
+                                        <input type="number" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Cover Amount</label>
+                                        <input type="number" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">RTO</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Address </label>
+                                        <textarea class="form-control" rows="5" name="address" id=""></textarea>
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Tax Efficiency</label>
+                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Fitness</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Number</label>
+                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Authorization</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Number</label>
+                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Speed Governer</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Details</label>
+                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">PUC</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Number</label>
+                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Permits</div>
+                                {{-- component start --}}
+                                <div class="d-flex border-bottom">
+                                    <div class="p-3">
+                                        <button type="button" class="btn btn-primary rounded-1"><i
+                                                class="fa-solid fa-minus"></i></button>
+                                    </div>
+                                    <div class="p-3 ps-0 w-100">
+                                        <div class="panel border rounded">
+                                            <div class="panel-heading bg-light p-3">Permits</div>
+                                            <div class="panel-body p-3">
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label ">Type</label>
+                                                    <input type="text" class="form-control  border-bottom" id="">
+                                                    <span class="warning-msg-block"></span>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label ">Expiry Date</label>
+                                                    <input type="date" class="form-control  border-bottom" id="">
+                                                    <span class="warning-msg-block"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- component end --}}
+                                <div class="p-3">
+                                    <button type="button" class="btn btn-primary rounded-1"><i
+                                            class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">License Information</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Number</label>
+                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Valid Upto</label>
+                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Police</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Display Card Number</label>
+                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Display Card Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Verification Number</label>
+                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Verification Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" value="is_active" id="is_active">
+                                <label class="form-check-label" for="is_active">
+                                    Is COVID vaccinated
+                                </label>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    {{-- Driver cum owners (DCO)/Attached end --}}
+
+                    {{-- if select Company --}}
+                    <div class="panel border rounded mb-3">
+                        <div class="panel-heading bg-light p-3">Company - Details</div>
+                        <div class="p-3">
+                            <div class="mb-3">
+                                <label for="" class="form-label ">Owner Name</label>
+                                <input type="text" class="form-control  border-bottom" id="">
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label ">Vehicle Count</label>
+                                <input type="number" class="form-control  border-bottom" id="">
+                                <span class="warning-msg-block"></span>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Company end --}}
                     <div class="mb-3">
                         <label for="def_tax_classif" class="form-label ">Default Tax Classification - Used in Purchase
                             Invoice
