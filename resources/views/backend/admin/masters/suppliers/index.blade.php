@@ -126,7 +126,7 @@
         <div class="text-end d-flex justify-content-end align-items-center gap-2">
             <div class="btn-group" role="group"><a href="{{route('suppliers.index')}}"
                     class="btn btn-light border">Manage Supplier Groups</a></div>
-            <div class="btn-group" role="group"><a href="{{route('createSuppliers')}}" class="btn btn-primary">Add Supplier</a></div>
+            <div class="btn-group" role="group"><a href="{{route('suppliers.create')}}" class="btn btn-primary">Add Supplier</a></div>
             <div class="dropdown">
                 <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -171,8 +171,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($mstSupplier as $data)
                     <tr>
-                        <td>Abu Huzefa</td>
+
+                        <td>{{$data->name}}</td>
                         <td>NA</td>
                         <td>98196 86828</td>
                         <td>NA</td>
@@ -197,84 +199,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>A Das</td>
-                        <td>NA</td>
-                        <td>7045866463</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A Das</td>
-                        <td>NA</td>
-                        <td>8050301046</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A Das</td>
-                        <td>NA</td>
-                        <td>97417 88843</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
+                    @endforeach
 
                 </tbody>
                 <tfoot>

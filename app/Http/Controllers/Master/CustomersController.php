@@ -35,7 +35,6 @@ class CustomersController extends Controller
         $feedbackForm = MstFeedbackForm::active()->get();
         $myCompany = MstMyCompany::active()->get();
         $applicableTaxes = MstTax::active()->get();
-        $applicableTaxes = MstTax::active()->get();
         return view('backend.admin.masters.customers.create', compact('mstCustomer', 'customerGroup', 'myCompany', 'feedbackForm', 'applicableTaxes'));
     }
     public function store(Request $request)
@@ -268,12 +267,10 @@ class CustomersController extends Controller
         $applicableTaxes = MstTax::active()->get();
         $particularMstCustomer = MstCustomer::active()->where('id', $request->id)->first();
         $mstApplicableTaxesCustomer = MstCustomerApplicableTaxes::active()->with('mstCustomer')->where('customer_id', $request->id)->get();
-        // dd($mstApplicableTaxesCustomer);
         $mstInterstateTaxesCustomer = MstCustomerInterstateTaxes::active()->with('mstCustomer')->where('customer_id', $request->id)->get();
-        $mstDutyTypeCustomer = MstCustomerDutyType::active()->with('mstCustomer')->where('customer_id', $request->id)->get();
         $mstDriverCustomerSetting = MstCustomerDriverAllownanceSetting::active()->with('mstCustomer')->where('customer_id', $request->id)->get();
+        $mstDutyTypeCustomer = MstCustomerDutyType::active()->with('mstCustomer')->where('customer_id', $request->id)->get();
         $mstFilesCustomer = MstCustomerFile::active()->with('mstCustomer')->where('customer_id', $request->id)->get();
-        //    dd($mstFilesCustomer,$request->id);
         return view('backend.admin.masters.customers.edit', compact('mstCustomer', 'customerGroup', 'myCompany', 'feedbackForm', 'applicableTaxes', 'particularMstCustomer', 'mstApplicableTaxesCustomer', 'mstInterstateTaxesCustomer', 'mstDutyTypeCustomer', 'mstDriverCustomerSetting', 'mstFilesCustomer'));
     }
     public function update(Request $request)

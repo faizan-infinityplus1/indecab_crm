@@ -113,8 +113,8 @@
                                             data-bs-target="#activity-log"  
                                             data-id="{{ $data->id }}"
                                             data-name="{{ $data->name }}"
-                                            data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
-                                            data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}">
+                                            data-created="{{ $data->created_at?->format('H:i d-m-Y') }}"
+                                            data-updates="{{ $data->updated_at?->format('H:i d-m-Y') }}">
                                             View Activity Logs
                                         </a>
                                     </li>

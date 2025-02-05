@@ -511,36 +511,36 @@
                                                     <div class="panel-heading bg-light p-3">Applicable Taxes</div>
                         <div class="panel-body p-3">
                             <div class="mb-3">
-                                <label for="appli_tax" class="form-label ">Tax</label>
-                                <select class="form-select border-bottom"
-                                    aria-label="Default select example" name="applitax_{{$data->id}}_update"
-                                    id="appli_tax"
-                                    data-index={{$data->id ?? '' }}
-                                    >
-                                    <option value="">(Select Tax)</option>
+            <label for="appli_tax" class="form-label ">Tax</label>
+            <select class="form-select border-bottom"
+                aria-label="Default select example" name="applitax_{{$data->id}}_update"
+                id="appli_tax"
+                data-index={{$data->id ?? '' }}
+                >
+                <option value="">(Select Tax)</option>
 
-                                    @foreach ($applicableTaxes as $taxesData)
-                                        <option value="{{ $taxesData->id }}"
-                                            {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
-                                            {{ $taxesData->percentage }}</option>
-                                    @endforeach
+                @foreach ($applicableTaxes as $taxesData)
+                    <option value="{{ $taxesData->id }}"
+                        {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
+                        {{ $taxesData->percentage }}</option>
+                @endforeach
 
-                                </select>
-                                                        </div>
-                                                        <div class="form-check mb-3">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                value="1" id="appli_tax_n_ch" value="1"
-                                                                name="applitaxnch_{{$data->id}}_update"
-                                                                {{ old('inter_appli_tax_n_ch', $data->not_charged ?? '') ? 'checked' : '' }}>
-                                                            <label class="form-check-label" for="appli_tax_n_ch">
-                                                                Not to be charged?
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
+            </select>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox"
+                                            value="1" id="appli_tax_n_ch" value="1"
+                                            name="applitaxnch_{{$data->id}}_update"
+                                            {{ old('inter_appli_tax_n_ch', $data->not_charged ?? '') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="appli_tax_n_ch">
+                                            Not to be charged?
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
                                     {{-- component end --}}
 
                                 </div>

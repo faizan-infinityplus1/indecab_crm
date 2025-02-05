@@ -10,19 +10,27 @@ function generateStateOptions(selectedState) {
 function generateCityOptions(selectedCity) {
     console.log(selectedCity);
     return [
-        `<option value="" ${!selectedCity ? "selected" : ""}>-- Select a City --</option>`,
+        `<option value="" style="display:none;"  >-- Select a City --</option>`,
         ...cities.map(city =>
             `<option value="${city.value}" ${city.value === selectedCity ? 'selected' : ''}>${city.name}</option>`
         )
     ].join("\n");
 }
-    function generateTimeSlots(selectedTime) {
-        return [
-            `<option value="" disabled ${!selectedTime ? "selected" : ""}>-- Select a Time Slot --</option>`,
-            ...timeSlots.map(slot =>
-                `<option value="${slot.value}" ${slot.value === selectedTime ? 'selected' : ''}>${slot.name}</option>`
-            )
-        ].join("\n");
+function generateCitySelect2(selectedValues=[]) {
+    return cities.map(city => {
+        return {
+            id: city.value, text: city.name, "selected": selectedValues.includes(city.value)
+        }
     }
+    )
+}
+function generateTimeSlots(selectedTime) {
+    return [
+        `<option value="" disabled ${!selectedTime ? "selected" : ""}>-- Select a Time Slot --</option>`,
+        ...timeSlots.map(slot =>
+            `<option value="${slot.value}" ${slot.value === selectedTime ? 'selected' : ''}>${slot.name}</option>`
+        )
+    ].join("\n");
+}
 
 
