@@ -49,6 +49,9 @@
                                             View Activity Logs
                                         </a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('dutytype.manage', $data->id) }}">Edit</a>
+                                    </li>
                                 </ul>
                             </div>
                         </td>
