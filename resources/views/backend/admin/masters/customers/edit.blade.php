@@ -1161,7 +1161,7 @@
                         <select class="form-select border-bottom"
                             aria-label="Default select example" name="driallowsetcity_${childCount}_new"  id="dri_allow_set_city${childCount}" data-index=${childCount}
                             >
-                            ${generateCityOptions(baseCityFuel)}
+                            ${generateCityOptions(particularMstCustomer.base_city_fuel)}
 
                         </select>
                     </td>

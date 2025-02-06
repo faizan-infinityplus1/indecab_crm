@@ -16,7 +16,8 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form action="{{ route('suppliers.update', $particularMstSupplier->id) }}" method="post" id="formCustomer">
+                <form action="{{ route('suppliers.update', $particularMstSupplier->id) }}" method="post" id="formSupplier"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-6">
@@ -45,8 +46,8 @@
                             <div class="mb-3">
                                 <label for="type" class="form-label ">Type </label>
                                 <select class="form-select border-bottom" aria-label="Default select example" name="type"
-                                    id="type">
-                                    <option style="display:none;" value="">Select One</option>
+                                    id="selectedType" @change="changedType($event.target.value)">
+                                    <option value="selectOne">Select One</option>
                                     <option value="driverCumOwners">Driver cum owners (DCO)/Attached</option>
                                     <option value="company">Company</option>
                                 </select>
@@ -211,6 +212,306 @@
                         </select>
                         <span class="warning-msg-block"></span>
                     </div>
+
+                       {{-- if select Driver cum owners (DCO)/Attached --}}
+                       <div class="panel border rounded mb-3" x-show="driver_cum_owners_show">
+                        <div class="panel-heading bg-light p-3">Details - Driver cum owners (DCO)/Attached</div>
+
+                        <div class="p-3">
+                            <div class="mb-3">
+                                <label for="driver_image" class="form-label">Avatar</label>
+                                <div>
+                                    <label for="driver_image" class="btn shadow-sm border rounded-1">Choose File</label>
+                                    <input type="file" name="driver_image" id="driver_image" class="form-control"
+                                        accept="image/png, image/gif, image/jpeg" style="display: none;">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="vehicle_model" class="form-label ">Vehicle Model</label>
+                                <input type="text" class="form-control  border-bottom" name="vehicle_model"
+                                    id="vehicle_model">
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="vehicle_no" class="form-label ">Vehicle Number</label>
+                                <input type="text" class="form-control  border-bottom" name="vehicle_no"
+                                    id="vehicle_no">
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="vehicle_fuel_type" class="form-label">Fuel Type</label>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    name="vehicle_fuel_type" id="vehicle_fuel_type">
+                                    <option value="selectOne">Select an option</option>
+                                    <option value="petrol">Petrol</option>
+                                    <option value="diesel">Diesel</option>
+                                    <option value="cng">CNG</option>
+                                    <option value="electric">Electric</option>
+                                </select>
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="vehicle_image" class="form-label">Vehicle Photo</label>
+                                <div>
+                                    <label for="vehicle_image" class="btn shadow-sm border rounded-1">Choose File</label>
+                                    <input type="file" name="vehicle_image" id="vehicle_image"
+                                        affieldinput="[object Object]" class="form-control"
+                                        accept="image/png, image/gif, image/jpeg" style="display: none;">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="owner_name" class="form-label ">Owner Name</label>
+                                <input type="text" class="form-control  border-bottom" name="owner_name"
+                                    id="owner_name">
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="owner_phone_no" class="form-label ">Owner Phone Number</label>
+                                <input type="text" class="form-control  border-bottom" name="owner_phone_no"
+                                    id="owner_phone_no">
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Registration</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="regis_owner_name" class="form-label ">Registered Owner Name</label>
+                                        <input type="text" class="form-control  border-bottom" id="regis_owner_name"
+                                            name="regis_owner_name">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Registration Date</label>
+                                        <input type="date" class="form-control  border-bottom" id="regis_date"
+                                            name="regis_date">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Parts</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="parts_chasis_no" class="form-label ">Chassis Number</label>
+                                        <input type="text" class="form-control  border-bottom" name="parts_chasis_no"
+                                            id="parts_chasis_no">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="parts_engine_no" class="form-label ">Engine Number</label>
+                                        <input type="text" class="form-control  border-bottom" name="parts_engine_no"
+                                            id="parts_engine_no">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Insurance</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="insaurance_company_name" class="form-label ">Company Name</label>
+                                        <input type="text" class="form-control  border-bottom"
+                                            name="insaurance_company_name" id="insaurance_company_name">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="insurance_policy_no" class="form-label ">Policy Number</label>
+                                        <input type="text" class="form-control  border-bottom"
+                                            name="insurance_policy_no" id="insurance_policy_no">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="insurance_issue_date" class="form-label ">Issue Date</label>
+                                        <input type="date" class="form-control  border-bottom"
+                                            name="insurance_issue_date" id="insurance_issue_date">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="insurance_due_date" class="form-label ">Due Date</label>
+                                        <input type="date" class="form-control  border-bottom"
+                                            name="insurance_due_date" id="insurance_due_date">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="insurance_premium_account" class="form-label ">Premium Amount</label>
+                                        <input type="number" class="form-control  border-bottom"
+                                            name="insurance_premium_account" id="insurance_premium_account">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="insurance_cover_account" class="form-label ">Cover Amount</label>
+                                        <input type="number" class="form-control  border-bottom"
+                                            name="insurance_cover_account" id="insurance_cover_account">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">RTO</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="rto_address" class="form-label">Address </label>
+                                        <textarea class="form-control" rows="5" name="rto_address" id="rto_address"></textarea>
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="rto_tax_efficiency" class="form-label ">Tax Efficiency</label>
+                                        <input type="text" class="form-control  border-bottom"
+                                            name="rto_tax_efficiency" id="rto_tax_efficiency">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="rto_expiry_date" class="form-label ">Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom" name="rto_expiry_date"
+                                            id="rto_expiry_date">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Fitness</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="fitness_no" class="form-label ">Number</label>
+                                        <input type="text" class="form-control  border-bottom" name="fitness_no"
+                                            id="fitness_no">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fitness_expiry_date" class="form-label ">Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom"
+                                            name="fitness_expiry_date" id="fitness_expiry_date">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Authorization</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="auth_number" class="form-label ">Number</label>
+                                        <input type="text" class="form-control  border-bottom" name="auth_number"
+                                            id="auth_number">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="auth_expiry_date" class="form-label ">Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom" name="auth_expiry_date"
+                                            id="auth_expiry_date">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Speed Governer</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="speed_details" class="form-label ">Details</label>
+                                        <input type="text" class="form-control  border-bottom" name="speed_details"
+                                            id="speed_details">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom"
+                                            name="speed_expiry_date" id="speed_expiry_date">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">PUC</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Number</label>
+                                        <input type="text" class="form-control  border-bottom" name="puc_number"
+                                            id="puc_number">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom" name="puc_expiry_date"
+                                            id="puc_expiry_date">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Permits</div>
+                                {{-- component start --}}
+                                <div class="permits_tax_body" id="permits_tax_body">
+
+                                </div>
+                                {{-- component end --}}
+                                <div class="p-3">
+                                    <button type="button" class="btn btn-primary rounded-1" id="extend_permits"><i
+                                            class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">License Information</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Number</label>
+                                        <input type="text" class="form-control  border-bottom" name="license_no"
+                                            id="license_no">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Valid Upto</label>
+                                        <input type="date" class="form-control  border-bottom"
+                                            name="license_expiry_date" id="license_expiry_date">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Police</div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label ">Display Card Number</label>
+                                        <input type="text" class="form-control  border-bottom" name="police_card_no"
+                                            id="police_card_no">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="police_expiry_date" class="form-label ">Display Card Expiry
+                                            Date</label>
+                                        <input type="date" class="form-control border-bottom"
+                                            name="police_expiry_date" id="police_expiry_date">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="police_veri_number" class="form-label ">Verification Number</label>
+                                        <input type="text" class="form-control  border-bottom"
+                                            name="police_veri_number" id="police_veri_number">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="police_veri_expiry_date" class="form-label ">Verification Expiry
+                                            Date</label>
+                                        <input type="date" class="form-control  border-bottom"
+                                            name="police_veri_expiry_date" id="police_veri_expiry_date">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" value="1"
+                                    name="is_covid_vaccinated" id="is_covid_vaccinated">
+                                <label class="form-check-label" for="is_covid_vaccinated">
+                                    Is COVID vaccinated
+                                </label>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    {{-- Driver cum owners (DCO)/Attached end --}}
+
                     <div class="mb-3">
                         <label for="def_tax_classif" class="form-label ">Default Tax Classification - Used in Purchase
                             Invoice
@@ -399,7 +700,7 @@
                                                                 @foreach ($applicableTaxes as $taxesData)
                                                                     <option value="{{ $taxesData->id }}"
                                                                         {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
-                                                                        {{ $taxesData->percentage }}</option>
+                                                                       {{$taxesData->name }} {{ $taxesData->percentage  }}</option>
                                                                 @endforeach
 
                                                             </select>
@@ -456,7 +757,7 @@
                                                                 @foreach ($applicableTaxes as $taxesData)
                                                                     <option value="{{ $taxesData->id }}"
                                                                         {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
-                                                                        {{ $taxesData->percentage }}</option>
+                                                                        {{$taxesData->name }}  {{ $taxesData->percentage }}</option>
                                                                 @endforeach
 
                                                             </select>
@@ -558,7 +859,8 @@
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select class="form-select border-bottom dri_allow_set_outst_overnig_time"
+                                                        <select
+                                                            class="form-select border-bottom dri_allow_set_outst_overnig_time"
                                                             aria-label="Default select example"
                                                             name="driallowsetoutstovernigtime_{{ $data->id }}_update"
                                                             id="dri_allow_set_outst_overnig_time"
@@ -619,7 +921,7 @@
                             to these
                             Vehicle Groups</label>
                         <select class="form-select border-bottom" aria-label="Default select example"
-                            name="vehi_group_limit" id="vehi_group_limit" multiple>
+                            name="vehi_group_limit[]" id="vehi_group_limit" multiple>
                             @foreach ($mstCatVehGroup as $data)
                                 <option value="{{ $data->name }}"
                                     {{ old('vehi_group_limit', $data->name ?? '') == $particularMstSupplier->vehi_group_limit ? 'selected' : '' }}>
@@ -638,8 +940,8 @@
                         <label for="cities_ext_hig_cost" class="form-label ">Cities - To only consider extras that have
                             higher total
                             cost on invoice</label>
-                        <select class="form-select border-bottom" aria-label="Default select example"
-                            name="cities_ext_hig_cost[]" id="cities_ext_hig_cost" multiple>
+                        <select class="form-select border-bottom " name="cities_ext_hig_cost[]" id="cities_ext_hig_cost"
+                            multiple>
 
                         </select>
                         <span class="warning-msg-block"></span>
@@ -652,12 +954,137 @@
                                 <div class="panel-heading bg-light p-3">Bank Accounts</div>
                                 <div class="bank_accounts_tax_body" id="bank_accounts_tax_body">
 
-                                </div>
                                 {{-- component start --}}
+                                @foreach ($mstBankSupplierSetting as $data)
+                                    <div class="d-flex border-bottom">
+                                        <div class="p-3">
+                                            <button type="button" class="btn btn-primary rounded-1 remove_bank_accounts"
+                                                data-id="{{ $data->id ?? '' }}">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="p-3 ps-0 w-100">
+                                            <div class="panel border rounded">
+                                                <div class="panel-heading bg-light p-3">Bank Accounts</div>
+                                                <div class="panel-body p-3">
+                                                    <div class="mb-3">
+                                                        <label for="file_name" class="form-label">File Name </label>
+                                                        <input type="text" class="form-control border-bottom"
+                                                            id="file_name" name="filename_{{ $data->id }}_update"
+                                                            value="{{ old('file_name', $data->file_name ?? '') }}">
+                                                        <span class="warning-msg-block"></span>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="account_number" class="form-label">Account
+                                                            Number</label>
+                                                        <input type="text" class="form-control  border-bottom"
+                                                            id="account_number"
+                                                            name="accountnumber_{{ $data->id }}_update"
+                                                            value="{{ old('account_number', $data->account_number ?? '') }}">
+                                                        <span class="warning-msg-block"></span>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="bank_name" class="form-label">Bank Name</label>
+                                                        <input type="text" class="form-control  border-bottom"
+                                                            id="bank_name" name="bankname_{{ $data->id }}_update"
+                                                            value="{{ old('bank_name', $data->bank_name ?? '') }}">
+                                                        <span class="warning-msg-block"></span>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="bank_branch" class="form-label">Bank Branch</label>
+                                                        <input type="text" class="form-control  border-bottom"
+                                                            id="bank_branch" name="bankbranch_{{ $data->id }}_update"
+                                                            value="{{ old('bank_branch', $data->bank_branch ?? '') }}">
+                                                        <span class="warning-msg-block"></span>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="ifsc_code" class="form-label">IFSC Code</label>
+                                                        <input type="text" class="form-control  border-bottom"
+                                                            id="ifsc_code" name="ifsccode_{{ $data->id }}_update"
+                                                            value="{{ old('ifsc_code', $data->ifsc_code ?? '') }}">
+                                                        <span class="warning-msg-block"></span>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="cheque_name" class="form-label">Cheques in name
+                                                            of</label>
+                                                        <input type="text" class="form-control  border-bottom"
+                                                            id="cheque_name"
+                                                            name="chequename_{{ $data->id }}_update"
+                                                            value="{{ old('cheque_name', $data->cheque_name ?? '') }}">
+                                                        <span class="warning-msg-block"></span>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="upi" class="form-label">UPI Address</label>
+                                                        <input type="text" class="form-control  border-bottom"
+                                                            id="upi" name="upi_{{ $data->id }}_update"
+                                                            value="{{ old('upi', $data->upi ?? '') }}">
+                                                        <span class="warning-msg-block"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
 
                                 {{-- component end --}}
                                 <div class="p-3">
                                     <button type="button" class="btn btn-primary rounded-1" id="extend_bank_accounts"><i
+                                            class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Files</div>
+                                <div class="files_body" id="files_body">
+
+                                    {{-- component start --}}
+                                    @foreach ($mstFileSupplier as $data)
+                                        <div class="d-flex border-bottom">
+                                            <div class="p-3">
+                                                <button type="button" class="btn btn-primary rounded-1 remove_files"
+                                                    data-id="{{ $data->id ?? '' }}"><i
+                                                        class="fa-solid fa-minus"></i></button>
+                                            </div>
+                                            <div class="p-3 ps-0 w-100">
+                                                <div class="panel border rounded">
+                                                    <div class="panel-heading bg-light p-3">Files</div>
+                                                    <div class="panel-body p-3">
+                                                        <div class="mb-3">
+                                                            <label for="file_name" class="form-label">File Name </label>
+                                                            <input type="text" class="form-control  border-bottom"
+                                                                name="filename_{{ $data->id }}_update"
+                                                                id="file_name"
+                                                                value="{{ old('name', $data->name ?? '') }}">
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="image" class="form-label">Upload </label>
+                                                            <div>
+                                                                <label for="image"
+                                                                    class="btn shadow-sm border rounded-1">Choose
+                                                                    File</label>
+                                                                <input type="file" class="form-control"
+                                                                    style="display: none;"
+                                                                    name="image_{{ $data->id }}_update"
+                                                                    id="image">
+                                                                <a href="{{ asset('storage/' . $data->image) }}"
+                                                                    alt="">{{ $data->image }}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    {{-- component end --}}
+                                </div>
+                                <div class="p-3">
+                                    <button type="button" class="btn btn-primary rounded-1" id="extend_files"><i
                                             class="fa-solid fa-plus"></i></button>
                                 </div>
                             </div>
@@ -683,7 +1110,7 @@
                         </label>
                     </div> --}}
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="is_active" id="is_active"
+                        <input class="form-check-input" type="checkbox" value="1" id="is_active" name="is_active"
                             {{ old('is_active', $particularMstSupplier->is_active ?? '') ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_active">
                             Active
@@ -698,24 +1125,77 @@
 
 @section('extrajs')
     <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('block', () => ({
+                driver_cum_owners_show: false,
+                company_show: false,
+                reset() {
+                    this.driver_cum_owners_show = false;
+                    this.company_show = false;
+                },
+                changedType(targetValue) {
+                    console.log("i m called", targetValue);
+                    switch (targetValue) {
+                        case "selectOne":
+                            console.log('i m called');
+                            this.selectOne();
+                            break;
+                        case "driverCumOwners":
+                            console.log('i m called');
+                            this.driverCumOwners();
+                            break;
+                        case "company":
+                            console.log('i m called');
+                            this.company();
+                            break;
+
+                        default:
+                            break;
+                    }
+                },
+                selectOne() {
+                    this.reset();
+                },
+                driverCumOwners() {
+                    this.reset();
+                    this.driver_cum_owners_show = true;
+                },
+                company() {
+                    this.reset();
+                    this.company_show = true;
+                },
+
+                init() {
+                    const selectElement = document.getElementById(
+                        'selectedType'); // Replace 'select-type' with your actual ID
+                    const selectedValue = selectElement.value; // Get the selected value
+                    this.changedType(selectedValue); // Pass it to the function
+                },
+
+            }))
+        });
+
+
         $(document).ready(function() {
 
-
+            
 
             let particularMstSupplier = @json($particularMstSupplier);
             var applicableTaxes = @json($applicableTaxes);
-            var limitAllotBooking = particularMstSupplier.limit_allot_booking;
+            var limitAllotBooking = particularMstSupplier.limit_allot_booking ?? '';
             if (limitAllotBooking != null) {
                 limitAllotBookingArray = limitAllotBooking.split(',');
             }
-            let citiesExtHigCost = particularMstSupplier.cities_ext_hig_cost;
+            let citiesExtHigCost = particularMstSupplier.cities_ext_hig_cost ?? '';
+            console.log(citiesExtHigCost);
             if (citiesExtHigCost != null) {
                 citiesExtHigCostArray = citiesExtHigCost.split(',');
+                console.log(citiesExtHigCostArray);
             }
 
 
 
-            document.getElementById("cities_ext_hig_cost").innerHTML = generateCityOptions();
+
             document.getElementById("start").innerHTML = generateTimeSlots();
             document.getElementById("end").innerHTML = generateTimeSlots();
             document.getElementById("state").innerHTML = generateStateOptions(particularMstSupplier.state);
@@ -728,7 +1208,7 @@
             $("#limit_allot_booking").select2({
                 placeholder: "Select an Option",
                 allowClear: true,
-                data: generateCitySelect2(limitAllotBookingArray)
+                data: generateCitySelect2(limitAllotBookingArray ?? '')
             });
 
             $("#limit_duty_type").select2({
@@ -741,12 +1221,14 @@
             });
             $("#cities_ext_hig_cost").select2({
                 placeholder: "Select an Option",
-                allowClear: true
+                allowClear: true,
+                data: generateCitySelect2(citiesExtHigCostArray ?? '')
             });
 
             // Driver Allowance Setting
             document.querySelectorAll('.dri_allow_set_city').forEach((element) => {
                 const driCity = element.dataset.driCity;
+                console.log(element, driCity, 'i m here');
                 element.innerHTML = generateCityOptions(driCity);
             });
 
@@ -770,7 +1252,34 @@
             // Applicable Taxes Start Here
 
             $(document).on('click', '.remove_appli_tax_body', function() {
-                $(this).closest('.d-flex').remove();
+                console.log('Clicked delete button');
+
+                let taxId = $(this).data('id'); // Get tax ID
+                console.log("Tax ID:", taxId); // Debugging
+
+                let parentDiv = $(this).closest('.d-flex');
+
+                if (taxId === "new") {
+                    // Handle dynamic rows (no database record)
+                    parentDiv.remove();
+                } else if (taxId === undefined || taxId === '' || taxId === null) {
+                    // Handle invalid tax ID
+                } else {
+                    // Handle existing records (send AJAX request to delete from database)
+                    $.ajax({
+                        url: "{{ route('suppliers.delete.applicable.taxes', ':id') }}".replace(
+                            ':id', taxId),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            parentDiv.remove();
+                        },
+                        error: function(response) {}
+                    });
+                }
             });
 
             $('#extend_appli_tax').on('click', function() {
@@ -779,12 +1288,12 @@
 
                 let taxOptions = '<option value="">(Select Tax)</option>';
                 applicableTaxes.forEach(tax => {
-                    taxOptions += `<option value="${tax.id}">${tax.percentage}</option>`;
+                    taxOptions += `<option value="${tax.id}">${tax.name} ${tax.percentage}</option>`;
                 });
 
                 var template = `<div class="d-flex border-bottom">
             <div class="p-3">
-                <button type="button" class="btn btn-primary rounded-1 remove_appli_tax_body" data-index=${childCount}>
+                <button type="button" class="btn btn-primary rounded-1 remove_appli_tax_body" data-index=${childCount} data-id="new">
                     <i class="fa-solid fa-minus"></i>
                 </button>
             </div>
@@ -794,13 +1303,13 @@
                     <div class="panel-body p-3">
                         <div class="mb-3">
                             <label for="appli_tax${childCount}" class="form-label ">Tax</label>
-                            <select class="form-select border-bottom" aria-label="Default select example" name="appli_tax${childCount}"
+                            <select class="form-select border-bottom" aria-label="Default select example" name="applitax_${childCount}_new"
                                 id="appli_tax${childCount}" data-index=${childCount} >
                                                             ${taxOptions}
                             </select>
                         </div>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="1" id="appli_tax_n_ch${childCount}" value="1" name="appli_tax_n_ch${childCount}" data-index=${childCount}>
+                            <input class="form-check-input" type="checkbox" value="1" id="appli_tax_n_ch${childCount}" value="1" name="applitaxnch_${childCount}_new" data-index=${childCount}>
                             <label class="form-check-label" for="appli_tax_n_ch${childCount}">
                                 Not to be charged?
                             </label>
@@ -828,7 +1337,34 @@
             // Applicable Interstate Taxes Start Here
 
             $(document).on('click', '.remove_inter_appli_tax_body', function() {
-                $(this).closest('.d-flex').remove();
+                console.log('Clicked delete button');
+
+                let taxId = $(this).data('id'); // Get tax ID
+                console.log("Tax ID:", taxId); // Debugging
+
+                let parentDiv = $(this).closest('.d-flex');
+
+                if (taxId === "new") {
+                    // Handle dynamic rows (no database record)
+                    parentDiv.remove();
+                } else if (taxId === undefined || taxId === '' || taxId === null) {
+                    // Handle invalid tax ID
+                } else {
+                    // Handle existing records (send AJAX request to delete from database)
+                    $.ajax({
+                        url: "{{ route('suppliers.delete.interstate.taxes', ':id') }}".replace(
+                            ':id', taxId),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            parentDiv.remove();
+                        },
+                        error: function(response) {}
+                    });
+                }
             });
 
             $('#extend_inter_appli_tax').on('click', function() {
@@ -836,11 +1372,11 @@
                 console.log(childCount);
                 let taxOptions = '<option value="">(Select Tax)</option>';
                 applicableTaxes.forEach(tax => {
-                    taxOptions += `<option value="${tax.id}">${tax.percentage}</option>`;
+                    taxOptions += `<option value="${tax.id}">${tax.name} ${tax.percentage}</option>`;
                 });
                 var template = `  <div class="d-flex border-bottom">
                                     <div class="p-3">
-                                        <button type="button" class="btn btn-primary rounded-1 remove_inter_appli_tax_body"><i
+                                        <button type="button" class="btn btn-primary rounded-1 remove_inter_appli_tax_body" data-id="new"><i
                                                 class="fa-solid fa-minus"></i></button>
                                     </div>
                                     <div class="p-3 ps-0 w-100">
@@ -849,15 +1385,15 @@
                                             <div class="panel-body p-3">
                                                 <div class="mb-3">
                                                     <label for="inter_appli_tax${childCount}" class="form-label ">Tax</label>
-                                                      <select class="form-select border-bottom" aria-label="Default select example" name="inter_appli_tax${childCount}"
+                                                      <select class="form-select border-bottom" aria-label="Default select example" name="interapplitax_${childCount}_new"
                                 id="inter_appli_tax${childCount}" data-index=${childCount} >
                                                                                                                    ${taxOptions}
                                                     </select>
                                                     <span class="warning-msg-block"></span>
                                                 </div>
                                                 <div class="form-check mb-3">
-                                                    <input class="form-check-input" type="checkbox" value="1" id="inter_appli_tax_n_ch${childCount}" name="inter_appli_tax_n_ch${childCount}" data-index=${childCount}>
-                                                    <label class="form-check-label" for="inter_appli_tax_n_ch${childCount}">
+                                                    <input class="form-check-input" type="checkbox" value="1" id="inter_appli_tax_n_ch${childCount}" name="interapplitaxnch${childCount}_new" data-index=${childCount}>
+                                                    <label class="form-check-label" for="interapplitaxnch_${childCount}_new">
                                                         Not to be charged?
                                                     </label>
                                                 </div>
@@ -877,6 +1413,7 @@
 
             });
 
+
             // Applicable Interstate Taxes End Here
 
 
@@ -884,7 +1421,32 @@
             // Driver Allowance Settings Start Here
 
             $(document).on('click', '.remove_dri_allow_set', function() {
-                $(this).closest('tr').remove();
+                // $(this).closest('tr').remove();
+                console.log('Clicked delete button');
+
+                let driverAllowanceId = $(this).data('id'); // Get tax ID
+                console.log("Tax ID:", driverAllowanceId); // Debugging
+
+                let parentDiv = $(this).closest('tr');
+
+                if (driverAllowanceId === "new") {
+                    parentDiv.remove();
+                } else {
+                    $.ajax({
+                        url: "{{ route('suppliers.delete.driver.allowance.setting', ':id') }}"
+                            .replace(
+                                ':id', driverAllowanceId),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            parentDiv.remove();
+                        },
+                        error: function(response) {}
+                    });
+                }
             });
 
             $('#extend_dri_allow_set').on('click', function() {
@@ -892,41 +1454,43 @@
                 console.log(childCount);
 
                 var template = `    <tr>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dri_allow_set_city${childCount}"  id="dri_allow_set_city${childCount}" data-index=${childCount}
-                                                        >
-                                                       ${generateCityOptions()}
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dri_allow_set_early_time${childCount}" id="dri_allow_set_early_time${childCount}"
-                                                        data-index=${childCount}
-                                                        >
-                                                        ${generateTimeSlots()}
-                                                    </select>
-                                                </td>
-                            <td>
-                                <select class="form-select border-bottom"
-                                    aria-label="Default select example" name="dri_allow_set_late_time${childCount}" id="dri_allow_set_late_time${childCount}"
-                                    data-index=${childCount}
-                                    >
-                                                                                                ${generateTimeSlots()}
+                    <td>
+                        <select class="form-select border-bottom"
+                            aria-label="Default select example" name="driallowsetcity_${childCount}_new"  id="dri_allow_set_city${childCount}" data-index=${childCount}
+                            >
+                            ${generateCityOptions(particularMstSupplier.base_city_fuel)}
 
-                                </select>
-                            </td>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dri_allow_set_outst_overnig_time${childCount}" id="dri_allow_set_outst_overnig_time${childCount}"
-                                                        data-index=${childCount}
-                                                        >
-                                                                                                                 ${generateTimeSlots()}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select border-bottom"
+                            aria-label="Default select example" name="driallowsetearlytime_${childCount}_new" id="dri_allow_set_early_time${childCount}"
+                            data-index=${childCount}
+                            >
+                                                                                    ${generateTimeSlots()}
 
-                                                    </select>
-                                                </td>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select border-bottom"
+                            aria-label="Default select example" name="driallowsetlatetime_${childCount}_new" id="dri_allow_set_late_time${childCount}"
+                            data-index=${childCount}
+                            >
+                                                                                ${generateTimeSlots()}
+
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select border-bottom"
+                            aria-label="Default select example" name="driallowsetoutstovernigtime_${childCount}_new" id="dri_allow_set_outst_overnig_time${childCount}"
+                            data-index=${childCount}
+                            >
+                                                                                    ${generateTimeSlots()}
+
+                        </select>
+                    </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-danger py-0 remove_dri_allow_set">
+                                                    <button type="button" class="btn btn-danger py-0 remove_dri_allow_set" data-id="new">
                                                         <i class="fa-solid fa-xmark"></i>
                                                     </button>
                                                 </td>
@@ -969,7 +1533,31 @@
 
             // Bank Accounts Start Here
             $(document).on('click', '.remove_bank_accounts', function() {
-                $(this).closest('.d-flex').remove();
+                console.log('Clicked delete button');
+
+                let driverAllowanceId = $(this).data('id'); // Get tax ID
+                console.log("Tax ID:", driverAllowanceId); // Debugging
+
+                let parentDiv = $(this).closest('.d-flex');
+
+                if (driverAllowanceId === "new") {
+                    parentDiv.remove();
+                } else {
+                    $.ajax({
+                        url: "{{ route('suppliers.delete.bank_accounts', ':id') }}"
+                            .replace(
+                                ':id', driverAllowanceId),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            parentDiv.remove();
+                        },
+                        error: function(response) {}
+                    });
+                }
             });
 
             $('#extend_bank_accounts').on('click', function() {
@@ -979,7 +1567,7 @@
                 var template = `    
                  <div class="d-flex border-bottom">
                                     <div class="p-3">
-                                        <button type="button" class="btn btn-primary rounded-1 remove_bank_accounts">
+                                        <button type="button" class="btn btn-primary rounded-1 remove_bank_accounts" data-id="new">
                                             <i class="fa-solid fa-minus"></i>
                                         </button>
                                     </div>
@@ -990,43 +1578,43 @@
                                                 <div class="mb-3">
                                                     <label for="file_name${childCount}" class="form-label">File Name </label>
                                                     <input type="text" class="form-control border-bottom"
-                                                        id="file_name${childCount}" name="file_name${childCount}">
+                                                        id="file_name${childCount}" name="filename_${childCount}_new">
                                                     <span class="warning-msg-block"></span>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="account_number${childCount}" class="form-label">Account Number</label>
                                                     <input type="text" class="form-control  border-bottom"
-                                                        id="account_number${childCount}" name="account_number${childCount}">
+                                                        id="account_number${childCount}" name="accountnumber_${childCount}_new">
                                                     <span class="warning-msg-block"></span>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="bank_name${childCount}" class="form-label">Bank Name</label>
                                                     <input type="text" class="form-control  border-bottom"
-                                                        id="bank_name${childCount}" name="bank_name${childCount}">
+                                                        id="bank_name${childCount}" name="bankname_${childCount}_new">
                                                     <span class="warning-msg-block"></span>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="bank_branch${childCount}" class="form-label">Bank Branch</label>
                                                     <input type="text" class="form-control  border-bottom"
-                                                        id="bank_branch${childCount}" name="bank_branch${childCount}">
+                                                        id="bank_branch${childCount}" name="bankbranch_${childCount}_new">
                                                     <span class="warning-msg-block"></span>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="ifsc_code${childCount}" class="form-label">IFSC Code</label>
                                                     <input type="text" class="form-control  border-bottom"
-                                                        id="ifsc_code${childCount}" name="ifsc_code${childCount}">
+                                                        id="ifsc_code${childCount}" name="ifsccode_${childCount}_new">
                                                     <span class="warning-msg-block"></span>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="cheque_name${childCount}" class="form-label">Cheques in name of</label>
                                                     <input type="text" class="form-control  border-bottom"
-                                                        id="cheque_name${childCount}" name="cheque_name${childCount}">
+                                                        id="cheque_name${childCount}" name="chequename_${childCount}_new">
                                                     <span class="warning-msg-block"></span>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="upi${childCount}" class="form-label">UPI Address</label>
                                                     <input type="text" class="form-control  border-bottom"
-                                                        id="upi${childCount}" name="upi${childCount}">
+                                                        id="upi${childCount}" name="upi_${childCount}_new">
                                                     <span class="warning-msg-block"></span>
                                                 </div>
                                             </div>
@@ -1036,54 +1624,54 @@
                 $('#bank_accounts_tax_body').append(template);
 
 
-                $(`#file_name${childCount}`).rules('add', {
-                    required: true,
-                    messages: {
-                        required: "Select City"
-                    }
-                });
+                // $(`#file_name${childCount}`).rules('add', {
+                //     required: true,
+                //     messages: {
+                //         required: "Select City"
+                //     }
+                // });
 
-                $(`#account_number${childCount}`).rules('add', {
-                    required: true,
-                    messages: {
-                        required: "Select Early Time"
-                    }
-                });
+                // $(`#account_number${childCount}`).rules('add', {
+                //     required: true,
+                //     messages: {
+                //         required: "Select Early Time"
+                //     }
+                // });
 
-                $(`#bank_name${childCount}`).rules('add', {
-                    required: true,
-                    messages: {
-                        required: "Select Late Time"
-                    }
-                });
+                // $(`#bank_name${childCount}`).rules('add', {
+                //     required: true,
+                //     messages: {
+                //         required: "Select Late Time"
+                //     }
+                // });
 
-                $(`#bank_branch${childCount}`).rules('add', {
-                    required: true,
-                    messages: {
-                        required: "Select Outstation Overnight Time"
-                    }
-                });
+                // $(`#bank_branch${childCount}`).rules('add', {
+                //     required: true,
+                //     messages: {
+                //         required: "Select Outstation Overnight Time"
+                //     }
+                // });
 
-                $(`#ifsc_code${childCount}`).rules('add', {
-                    required: true,
-                    messages: {
-                        required: "Select Outstation Overnight Time"
-                    }
-                });
+                // $(`#ifsc_code${childCount}`).rules('add', {
+                //     required: true,
+                //     messages: {
+                //         required: "Select Outstation Overnight Time"
+                //     }
+                // });
 
-                $(`#cheque_name${childCount}`).rules('add', {
-                    required: true,
-                    messages: {
-                        required: "Select Outstation Overnight Time"
-                    }
-                });
+                // $(`#cheque_name${childCount}`).rules('add', {
+                //     required: true,
+                //     messages: {
+                //         required: "Select Outstation Overnight Time"
+                //     }
+                // });
 
-                $(`#upi${childCount}`).rules('add', {
-                    required: true,
-                    messages: {
-                        required: "Select Outstation Overnight Time"
-                    }
-                });
+                // $(`#upi${childCount}`).rules('add', {
+                //     required: true,
+                //     messages: {
+                //         required: "Select Outstation Overnight Time"
+                //     }
+                // });
 
 
             });
@@ -1092,12 +1680,95 @@
 
 
 
+            $(document).on('click', '.remove_files', function() {
+                console.log('Clicked delete button');
+
+                let dutyType = $(this).data('id'); // Get tax ID
+                console.log("Tax ID:", dutyType); // Debugging
+
+                let parentDiv = $(this).closest('.d-flex');
+
+                if (dutyType === "new") {
+                    console.log('javascript dom deleted');
+                    parentDiv.remove();
+                } else {
+                    $.ajax({
+                        url: "{{ route('suppliers.delete.files', ':id') }}".replace(
+                            ':id', dutyType),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            parentDiv.remove();
+                        },
+                        error: function(response) {}
+                    });
+                }
+            });
+
+            $('#extend_files').on('click', function() {
+                const childCount = $('#files_body').find('.d-flex').length + 1;
+                console.log(childCount);
+
+                var template = `      <div class="d-flex border-bottom">
+                                    <div class="p-3">
+                                        <button type="button" class="btn btn-primary rounded-1 remove_files" data-id="new"><i
+                                                class="fa-solid fa-minus"></i></button>
+                                    </div>
+                                    <div class="p-3 ps-0 w-100">
+                                        <div class="panel border rounded">
+                                            <div class="panel-heading bg-light p-3">Files</div>
+                                            <div class="panel-body p-3">
+                                                <div class="mb-3">
+                                                    <label for="filename${childCount}" class="form-label">File Name </label>
+                                                    <input type="text" class="form-control  border-bottom"
+                                                        name="filename_${childCount}_new"
+                                                        id="file_name${childCount}"
+                                                        data-index=${childCount}>
+                                                    <span class="warning-msg-block"></span>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="image${childCount}" class="form-label">Upload </label>
+                                                    <div>
+                                                        <label for="image${childCount}"
+                                                            class="btn shadow-sm border rounded-1">Choose File</label>
+                                                        <input type="file" 
+                                                            class="form-control"
+                                                            style="display: none;"
+                                                            name="image_${childCount}_new"
+                                                        id="image${childCount}"
+                                                        data-index=${childCount}
+                                                            >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`;
+
+                $('#files_body').append(template);
+
+                $(`#image${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Upload File"
+                    }
+                });
+
+
+            });
 
 
 
 
 
 
+
+
+
+            $("#formSupplier").valid();
 
 
         });

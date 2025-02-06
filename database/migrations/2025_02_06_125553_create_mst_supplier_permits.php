@@ -11,19 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mst_supplier_bank_accounts', function (Blueprint $table) {
+        Schema::create('mst_supplier_permits', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->unsignedBigInteger('supplier_id')->nullable();
             $table->foreign('supplier_id')->references('id')->on('mst_suppliers')->onDelete('cascade');
-            $table->string('file_name')->nullable();
-            $table->string('account_number')->nullable();
-            $table->string('bank_name')->nullable();
-            $table->string('bank_branch')->nullable();
-            $table->string('ifsc_code')->nullable();
-            $table->string('cheque_name')->nullable();
-            $table->string('upi')->nullable();
+            $table->string('permits_type')->nullable();
+            $table->string('permits_expiry_date')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mst_supplier_bank_accounts');
+        Schema::dropIfExists('mst_supplier_permits');
     }
 };

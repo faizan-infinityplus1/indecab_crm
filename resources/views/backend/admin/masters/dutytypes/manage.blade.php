@@ -241,7 +241,7 @@
                 changedType(targetValue) {
                     console.log("i m called", targetValue);
                     switch (targetValue) {
-                        case "selectOne":
+                        case "selcetOne":
                             console.log('i m called');
                             this.selectOne();
                             break;

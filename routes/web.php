@@ -67,7 +67,12 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/suppliers/create', [SuppliersController::class, 'create'])->name('suppliers.create');
     Route::post('/suppliers/store', [SuppliersController::class, 'store'])->name('suppliers.store');
     Route::get('/suppliers/edit/{id}', [SuppliersController::class, 'edit'])->name('suppliers.edit');
-    Route::post('/suppliers/update/{id}', [CustomersController::class, 'update'])->name('suppliers.update');
+    Route::post('/suppliers/update/{id}', [SuppliersController::class, 'update'])->name('suppliers.update');
+    Route::delete('/suppliers/delete/applicable-taxes/{id}', [SuppliersController::class, 'deleteApplicableTaxes'])->name('suppliers.delete.applicable.taxes');
+    Route::delete('/suppliers/delete/interstate-taxes/{id}', [SuppliersController::class, 'deleteInterstateTaxes'])->name('suppliers.delete.interstate.taxes');
+    Route::delete('/suppliers/delete/driver-allowance-setting/{id}', [SuppliersController::class, 'deleteDriverAllowanceSetting'])->name('suppliers.delete.driver.allowance.setting');
+    Route::delete('/suppliers/delete/bank-account/{id}', [SuppliersController::class, 'deleteBankAccounts'])->name('suppliers.delete.bank_accounts');
+    Route::delete('/suppliers/delete/files/{id}', [SuppliersController::class, 'deleteFiles'])->name('suppliers.delete.files');
 
 
     Route::get('/suppliers/groups', [SuppliersController::class, 'showSuppliersGroups'])->name('showSuppliersGroups');

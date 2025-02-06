@@ -16,7 +16,7 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form action="{{ route('suppliers.store') }}" method="post">
+                <form action="{{ route('suppliers.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-6">
@@ -42,8 +42,8 @@
                             <div class="mb-3">
                                 <label for="type" class="form-label ">Type </label>
                                 <select class="form-select border-bottom" aria-label="Default select example" name="type"
-                                    id="type">
-                                    <option style="display:none;" value="">Select One</option>
+                                    id="selectedType" @change="changedType($event.target.value)">
+                                    <option value="selectOne">Select One</option>
                                     <option value="driverCumOwners">Driver cum owners (DCO)/Attached</option>
                                     <option value="company">Company</option>
                                 </select>
@@ -197,74 +197,77 @@
                     </div>
 
                     {{-- if select Driver cum owners (DCO)/Attached --}}
-                    <div class="panel border rounded mb-3">
+                    <div class="panel border rounded mb-3" x-show="driver_cum_owners_show">
                         <div class="panel-heading bg-light p-3">Details - Driver cum owners (DCO)/Attached</div>
 
                         <div class="p-3">
                             <div class="mb-3">
-                                <label for="" class="form-label">Avatar</label>
+                                <label for="driver_image" class="form-label">Avatar</label>
                                 <div>
-                                    <label for="qwer" class="btn shadow-sm border rounded-1">Choose File</label>
-                                    <input type="file" name="" id="qwer" affieldinput="[object Object]" class="form-control"
+                                    <label for="driver_image" class="btn shadow-sm border rounded-1">Choose File</label>
+                                    <input type="file" name="driver_image" id="driver_image" class="form-control"
                                         accept="image/png, image/gif, image/jpeg" style="display: none;">
                                 </div>
                             </div>
-                        
+
                             <div class="mb-3">
-                                <label for="" class="form-label ">Vehicle Model</label>
-                                <input type="text" class="form-control  border-bottom" name=""
-                                    id="">
+                                <label for="vehicle_model" class="form-label ">Vehicle Model</label>
+                                <input type="text" class="form-control  border-bottom" name="vehicle_model"
+                                    id="vehicle_model">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label ">Vehicle Number</label>
-                                <input type="text" class="form-control  border-bottom" name=""
-                                    id="">
+                                <label for="vehicle_no" class="form-label ">Vehicle Number</label>
+                                <input type="text" class="form-control  border-bottom" name="vehicle_no"
+                                    id="vehicle_no">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label">Fuel Type</label>
-                                <select class="form-select border-bottom" aria-label="Default select example" name=""
-                                    id=""  >
+                                <label for="vehicle_fuel_type" class="form-label">Fuel Type</label>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    name="vehicle_fuel_type" id="vehicle_fuel_type">
                                     <option value="selectOne">Select an option</option>
-                                    <option value="">Petrol</option>
-                                    <option value="">Diesel</option>
-                                    <option value="">CNG</option>
-                                    <option value="">Electric</option>
+                                    <option value="petrol">Petrol</option>
+                                    <option value="diesel">Diesel</option>
+                                    <option value="cng">CNG</option>
+                                    <option value="electric">Electric</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label">Avatar</label>
+                                <label for="vehicle_image" class="form-label">Vehicle Photo</label>
                                 <div>
-                                    <label for="qwer" class="btn shadow-sm border rounded-1">Choose File</label>
-                                    <input type="file" name="" id="qwer" affieldinput="[object Object]" class="form-control"
+                                    <label for="vehicle_image" class="btn shadow-sm border rounded-1">Choose File</label>
+                                    <input type="file" name="vehicle_image" id="vehicle_image"
+                                        affieldinput="[object Object]" class="form-control"
                                         accept="image/png, image/gif, image/jpeg" style="display: none;">
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label ">Owner Name</label>
-                                <input type="text" class="form-control  border-bottom" name=""
-                                    id="">
+                                <label for="owner_name" class="form-label ">Owner Name</label>
+                                <input type="text" class="form-control  border-bottom" name="owner_name"
+                                    id="owner_name">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label ">Owner Phone Number</label>
-                                <input type="text" class="form-control  border-bottom" name=""
-                                    id="">
+                                <label for="owner_phone_no" class="form-label ">Owner Phone Number</label>
+                                <input type="text" class="form-control  border-bottom" name="owner_phone_no"
+                                    id="owner_phone_no">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="panel border rounded mb-3">
                                 <div class="panel-heading bg-light p-3">Registration</div>
                                 <div class="p-3">
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Registered Owner Name</label>
-                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <label for="regis_owner_name" class="form-label ">Registered Owner Name</label>
+                                        <input type="text" class="form-control  border-bottom" id="regis_owner_name"
+                                            name="regis_owner_name">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Registration Date</label>
-                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <input type="date" class="form-control  border-bottom" id="regis_date"
+                                            name="regis_date">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -273,13 +276,15 @@
                                 <div class="panel-heading bg-light p-3">Parts</div>
                                 <div class="p-3">
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Chassis Number</label>
-                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <label for="parts_chasis_no" class="form-label ">Chassis Number</label>
+                                        <input type="text" class="form-control  border-bottom" name="parts_chasis_no"
+                                            id="parts_chasis_no">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Engine Number</label>
-                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <label for="parts_engine_no" class="form-label ">Engine Number</label>
+                                        <input type="text" class="form-control  border-bottom" name="parts_engine_no"
+                                            id="parts_engine_no">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -288,33 +293,39 @@
                                 <div class="panel-heading bg-light p-3">Insurance</div>
                                 <div class="p-3">
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Company Name</label>
-                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <label for="insaurance_company_name" class="form-label ">Company Name</label>
+                                        <input type="text" class="form-control  border-bottom"
+                                            name="insaurance_company_name" id="insaurance_company_name">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Policy Number</label>
-                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <label for="insurance_policy_no" class="form-label ">Policy Number</label>
+                                        <input type="text" class="form-control  border-bottom"
+                                            name="insurance_policy_no" id="insurance_policy_no">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Issue Date</label>
-                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <label for="insurance_issue_date" class="form-label ">Issue Date</label>
+                                        <input type="date" class="form-control  border-bottom"
+                                            name="insurance_issue_date" id="insurance_issue_date">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Due Date</label>
-                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <label for="insurance_due_date" class="form-label ">Due Date</label>
+                                        <input type="date" class="form-control  border-bottom"
+                                            name="insurance_due_date" id="insurance_due_date">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Premium Amount</label>
-                                        <input type="number" class="form-control  border-bottom" id="">
+                                        <label for="insurance_premium_account" class="form-label ">Premium Amount</label>
+                                        <input type="number" class="form-control  border-bottom"
+                                            name="insurance_premium_account" id="insurance_premium_account">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Cover Amount</label>
-                                        <input type="number" class="form-control  border-bottom" id="">
+                                        <label for="insurance_cover_account" class="form-label ">Cover Amount</label>
+                                        <input type="number" class="form-control  border-bottom"
+                                            name="insurance_cover_account" id="insurance_cover_account">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -323,18 +334,20 @@
                                 <div class="panel-heading bg-light p-3">RTO</div>
                                 <div class="p-3">
                                     <div class="mb-3">
-                                        <label for="" class="form-label">Address </label>
-                                        <textarea class="form-control" rows="5" name="address" id=""></textarea>
+                                        <label for="rto_address" class="form-label">Address </label>
+                                        <textarea class="form-control" rows="5" name="rto_address" id="rto_address"></textarea>
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Tax Efficiency</label>
-                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <label for="rto_tax_efficiency" class="form-label ">Tax Efficiency</label>
+                                        <input type="text" class="form-control  border-bottom"
+                                            name="rto_tax_efficiency" id="rto_tax_efficiency">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Expiry Date</label>
-                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <label for="rto_expiry_date" class="form-label ">Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom" name="rto_expiry_date"
+                                            id="rto_expiry_date">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -343,13 +356,15 @@
                                 <div class="panel-heading bg-light p-3">Fitness</div>
                                 <div class="p-3">
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Number</label>
-                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <label for="fitness_no" class="form-label ">Number</label>
+                                        <input type="text" class="form-control  border-bottom" name="fitness_no"
+                                            id="fitness_no">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Expiry Date</label>
-                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <label for="fitness_expiry_date" class="form-label ">Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom"
+                                            name="fitness_expiry_date" id="fitness_expiry_date">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -358,13 +373,15 @@
                                 <div class="panel-heading bg-light p-3">Authorization</div>
                                 <div class="p-3">
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Number</label>
-                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <label for="auth_number" class="form-label ">Number</label>
+                                        <input type="text" class="form-control  border-bottom" name="auth_number"
+                                            id="auth_number">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Expiry Date</label>
-                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <label for="auth_expiry_date" class="form-label ">Expiry Date</label>
+                                        <input type="date" class="form-control  border-bottom" name="auth_expiry_date"
+                                            id="auth_expiry_date">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -373,13 +390,15 @@
                                 <div class="panel-heading bg-light p-3">Speed Governer</div>
                                 <div class="p-3">
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Details</label>
-                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <label for="speed_details" class="form-label ">Details</label>
+                                        <input type="text" class="form-control  border-bottom" name="speed_details"
+                                            id="speed_details">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Expiry Date</label>
-                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <input type="date" class="form-control  border-bottom"
+                                            name="speed_expiry_date" id="speed_expiry_date">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -389,12 +408,14 @@
                                 <div class="p-3">
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Number</label>
-                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <input type="text" class="form-control  border-bottom" name="puc_number"
+                                            id="puc_number">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Expiry Date</label>
-                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <input type="date" class="form-control  border-bottom" name="puc_expiry_date"
+                                            id="puc_expiry_date">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -403,32 +424,12 @@
                             <div class="panel border rounded mb-3">
                                 <div class="panel-heading bg-light p-3">Permits</div>
                                 {{-- component start --}}
-                                <div class="d-flex border-bottom">
-                                    <div class="p-3">
-                                        <button type="button" class="btn btn-primary rounded-1"><i
-                                                class="fa-solid fa-minus"></i></button>
-                                    </div>
-                                    <div class="p-3 ps-0 w-100">
-                                        <div class="panel border rounded">
-                                            <div class="panel-heading bg-light p-3">Permits</div>
-                                            <div class="panel-body p-3">
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label ">Type</label>
-                                                    <input type="text" class="form-control  border-bottom" id="">
-                                                    <span class="warning-msg-block"></span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label ">Expiry Date</label>
-                                                    <input type="date" class="form-control  border-bottom" id="">
-                                                    <span class="warning-msg-block"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="permits_tax_body" id="permits_tax_body">
+
                                 </div>
                                 {{-- component end --}}
                                 <div class="p-3">
-                                    <button type="button" class="btn btn-primary rounded-1"><i
+                                    <button type="button" class="btn btn-primary rounded-1" id="extend_permits"><i
                                             class="fa-solid fa-plus"></i></button>
                                 </div>
                             </div>
@@ -438,12 +439,14 @@
                                 <div class="p-3">
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Number</label>
-                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <input type="text" class="form-control  border-bottom" name="license_no"
+                                            id="license_no">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Valid Upto</label>
-                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <input type="date" class="form-control  border-bottom"
+                                            name="license_expiry_date" id="license_expiry_date">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -453,29 +456,36 @@
                                 <div class="p-3">
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Display Card Number</label>
-                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <input type="text" class="form-control  border-bottom" name="police_card_no"
+                                            id="police_card_no">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Display Card Expiry Date</label>
-                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <label for="police_expiry_date" class="form-label ">Display Card Expiry
+                                            Date</label>
+                                        <input type="date" class="form-control border-bottom"
+                                            name="police_expiry_date" id="police_expiry_date">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Verification Number</label>
-                                        <input type="text" class="form-control  border-bottom" id="">
+                                        <label for="police_veri_number" class="form-label ">Verification Number</label>
+                                        <input type="text" class="form-control  border-bottom"
+                                            name="police_veri_number" id="police_veri_number">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Verification Expiry Date</label>
-                                        <input type="date" class="form-control  border-bottom" id="">
+                                        <label for="police_veri_expiry_date" class="form-label ">Verification Expiry
+                                            Date</label>
+                                        <input type="date" class="form-control  border-bottom"
+                                            name="police_veri_expiry_date" id="police_veri_expiry_date">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="is_active" id="is_active">
-                                <label class="form-check-label" for="is_active">
+                                <input class="form-check-input" type="checkbox" value="1"
+                                    name="is_covid_vaccinated" id="is_covid_vaccinated">
+                                <label class="form-check-label" for="is_covid_vaccinated">
                                     Is COVID vaccinated
                                 </label>
                             </div>
@@ -486,17 +496,19 @@
                     {{-- Driver cum owners (DCO)/Attached end --}}
 
                     {{-- if select Company --}}
-                    <div class="panel border rounded mb-3">
+                    <div class="panel border rounded mb-3" x-show="company_show">
                         <div class="panel-heading bg-light p-3">Company - Details</div>
                         <div class="p-3">
                             <div class="mb-3">
-                                <label for="" class="form-label ">Owner Name</label>
-                                <input type="text" class="form-control  border-bottom" id="">
+                                <label for="owner_name" class="form-label ">Owner Name</label>
+                                <input type="text" class="form-control border-bottom" name="owner_name"
+                                    id="owner_name">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label ">Vehicle Count</label>
-                                <input type="number" class="form-control  border-bottom" id="">
+                                <label for="vehicle_count" class="form-label ">Vehicle Count</label>
+                                <input type="number" class="form-control  border-bottom" name="vehicle_count"
+                                    id="vehicle_count">
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
@@ -738,6 +750,24 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Files</div>
+                                <div class="files_body" id="files_body">
+
+                                    {{-- component start --}}
+
+                                    {{-- component end --}}
+                                </div>
+                                <div class="p-3">
+                                    <button type="button" class="btn btn-primary rounded-1" id="extend_files"><i
+                                            class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     {{-- =============== --}}
 
@@ -775,7 +805,59 @@
 
 @section('extrajs')
     <script>
-        $(document).ready(function() {
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('block', () => ({
+                driver_cum_owners_show: false,
+                company_show: false,
+                reset() {
+                    this.driver_cum_owners_show = false;
+                    this.company_show = false;
+                },
+                changedType(targetValue) {
+                    console.log("i m called", targetValue);
+                    switch (targetValue) {
+                        case "selectOne":
+                            console.log('i m called');
+                            this.selectOne();
+                            break;
+                        case "driverCumOwners":
+                            console.log('i m called');
+                            this.driverCumOwners();
+                            break;
+                        case "company":
+                            console.log('i m called');
+                            this.company();
+                            break;
+
+                        default:
+                            break;
+                    }
+                },
+                selectOne() {
+                    this.reset();
+                },
+                driverCumOwners() {
+                    this.reset();
+                    this.driver_cum_owners_show = true;
+                },
+                company() {
+                    this.reset();
+                    this.company_show = true;
+                },
+
+                init() {
+                    const selectElement = document.getElementById(
+                        'selectedType'); // Replace 'select-type' with your actual ID
+                    const selectedValue = selectElement.value; // Get the selected value
+                    this.changedType(selectedValue); // Pass it to the function
+                },
+
+            }))
+        });
+
+
+
+
             var applicableTaxes = @json($applicableTaxes);
             // console.log(cities);
             // document.getElementById("limit_allot_booking").innerHTML = generateCityOptions();
@@ -784,14 +866,14 @@
             document.getElementById("end").innerHTML = generateTimeSlots();
             document.getElementById("state").innerHTML = generateStateOptions();
             document.getElementById("gst_state").innerHTML = generateStateOptions();
-            
+
             console.log(generateCitySelect2());
             $("#limit_allot_booking").select2({
                 placeholder: "Select an Option",
                 allowClear: true,
                 data: generateCitySelect2()
             });
-            
+
             $("#limit_duty_type").select2({
                 placeholder: "Select an Option",
                 allowClear: true
@@ -1007,6 +1089,69 @@
 
             // Driver Allowance Settings End Here
 
+            // Files Start Here
+            $(document).on('click', '.remove_files', function() {
+                $(this).closest('.d-flex').remove();
+            });
+
+            $('#extend_files').on('click', function() {
+                const childCount = $('#files_body').find('.d-flex').length + 1;
+                console.log(childCount);
+
+                var template = `      <div class="d-flex border-bottom">
+                                    <div class="p-3">
+                                        <button type="button" class="btn btn-primary rounded-1 remove_files"><i
+                                                class="fa-solid fa-minus"></i></button>
+                                    </div>
+                                    <div class="p-3 ps-0 w-100">
+                                        <div class="panel border rounded">
+                                            <div class="panel-heading bg-light p-3">Files</div>
+                                            <div class="panel-body p-3">
+                                                <div class="mb-3">
+                                                    <label for="file_name${childCount}" class="form-label">File Name </label>
+                                                    <input type="text" class="form-control  border-bottom"
+                                                        name="file_name${childCount}"
+                                                        id="file_name${childCount}"
+                                                        data-index=${childCount}>
+                                                    <span class="warning-msg-block"></span>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="image${childCount}" class="form-label">Upload </label>
+                                                    <div>
+                                                        <label for="image${childCount}"
+                                                            class="btn shadow-sm border rounded-1">Choose File</label>
+                                                        <input type="file" 
+                                                            class="form-control"
+                                                            style="display: none;"
+                                                            name="image${childCount}"
+                                                        id="image${childCount}"
+                                                        data-index=${childCount}
+                                                            >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`;
+
+                $('#files_body').append(template);
+                $(`#file_name${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Enter File Name"
+                    }
+                });
+
+                $(`#image${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Upload File"
+                    }
+                });
+
+
+            });
+
             // Bank Accounts Start Here
             $(document).on('click', '.remove_bank_accounts', function() {
                 $(this).closest('.d-flex').remove();
@@ -1131,6 +1276,95 @@
             // Bank Accounts End Here
 
 
+            // Permits Start Here
+            $(document).on('click', '.remove_permits', function() {
+                $(this).closest('.d-flex').remove();
+            });
+
+            $('#extend_permits').on('click', function() {
+                const childCount = $('#permits_tax_body').find('.d-flex').length + 1;
+                console.log(childCount);
+
+                var template = `    
+                <div class="d-flex border-bottom">
+                                    <div class="p-3">
+                                        <button type="button" class="btn btn-primary rounded-1 remove_permits"><i
+                                                class="fa-solid fa-minus"></i></button>
+                                    </div>
+                                    <div class="p-3 ps-0 w-100">
+                                        <div class="panel border rounded">
+                                            <div class="panel-heading bg-light p-3">Permits</div>
+                                            <div class="panel-body p-3">
+                                                <div class="mb-3">
+                                                    <label for="permits_type${childCount}" class="form-label ">Type</label>
+                                                    <input type="text" class="form-control  border-bottom"
+                                                        id="permits_type${childCount}" name="permits_type${childCount}">
+                                                    <span class="warning-msg-block"></span>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="permits_expiry_date${childCount}" class="form-label ">Expiry Date</label>
+                                                    <input type="date" class="form-control  border-bottom"
+                                                        id="permits_expiry_date${childCount}" name="permits_expiry_date${childCount}">
+                                                    <span class="warning-msg-block"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                $('#permits_tax_body').append(template);
+
+
+                $(`#file_name${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select City"
+                    }
+                });
+
+                $(`#account_number${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select Early Time"
+                    }
+                });
+
+                $(`#bank_name${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select Late Time"
+                    }
+                });
+
+                $(`#bank_branch${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select Outstation Overnight Time"
+                    }
+                });
+
+                $(`#ifsc_code${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select Outstation Overnight Time"
+                    }
+                });
+
+                $(`#cheque_name${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select Outstation Overnight Time"
+                    }
+                });
+
+                $(`#upi${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select Outstation Overnight Time"
+                    }
+                });
+
+
+            });
 
 
 
