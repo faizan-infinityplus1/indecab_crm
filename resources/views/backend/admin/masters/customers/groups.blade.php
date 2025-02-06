@@ -110,25 +110,79 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th width="100">setting</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>A Das</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" >Edit</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>A Das</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" >Edit</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>A Das</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" >Edit</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>A Das</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" >Edit</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
                         <th>Name</th>
+                        <th>setting</th>
                     </tr>
                 </tfoot>
             </table>

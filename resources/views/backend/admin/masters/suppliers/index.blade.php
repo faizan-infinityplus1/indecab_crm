@@ -164,8 +164,8 @@
                         <th>Email</th>
                         <th>Vehicle</th>
                         <th>City</th>
-                        <th>Indecab Go - Username</th>
-                        <th>Tracking</th>
+                        {{-- <th>Indecab Go - Username</th>
+                        <th>Tracking</th> --}}
                         <th>Status</th>
                         <th width="100">setting</th>
                     </tr>
@@ -180,8 +180,6 @@
                         <td>NA</td>
                         <td>NA</td>
                         <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
                         <td>
                             <div class="text-success">Active</div>
                         </td>
@@ -192,9 +190,9 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
+                                    <li><a class="dropdown-item" href="#">Invite Supplier</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -210,8 +208,8 @@
                         <th>Email</th>
                         <th>Vehicle</th>
                         <th>City</th>
-                        <th>Indecab Go - Username</th>
-                        <th>Tracking</th>
+                        {{-- <th>Indecab Go - Username</th>
+                        <th>Tracking</th> --}}
                         <th>Status</th>
                         <th>setting</th>
                     </tr>

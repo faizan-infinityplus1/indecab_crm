@@ -154,9 +154,10 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
+                                    <li><a class="dropdown-item" href="#">Create User</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -174,9 +175,10 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
+                                    <li><a class="dropdown-item" href="#">Create User</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -194,9 +196,10 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
+                                    <li><a class="dropdown-item" href="#">Create User</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
                         </td>

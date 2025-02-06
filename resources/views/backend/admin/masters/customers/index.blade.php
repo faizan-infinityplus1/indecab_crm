@@ -187,9 +187,9 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{ route('customers.edit', $data->id) }}">Edit</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">Manage people</a></li>
+                                    <li><a class="dropdown-item" href="#">Custome fields</a></li>
+                                    <li><a class="dropdown-item" href="#">Create Corporate Account</a></li>
                                 </ul>
                             </div>
                         </td>
