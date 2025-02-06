@@ -3,12 +3,16 @@
 
 
 <div>
-    <div class="container-fluid px-5">
+    <div class="container-fluid p-5">
         {{-- page heading start --}}
         <div class="page-header border-bottom bg-white mb-3">
             <div class="row">
-                <div class="col-md-6">
-                    <h1>New Driver</h1>
+                <div class="col-md-6 position-static" x-show="open">
+                    <div class="position-absolute" style="top: 96px; left: 0px;">
+                        <button type="button" class="btn" onclick="window.history.back()"><i
+                            class="fa-solid fa-angle-left"></i></button>
+                    </div>
+                    <h1 class="h3 pb-3">New Driver</h1>
                 </div>
                 <div class="col-md-6 text-end">
                     {{-- <div class="btn-group" role="group"><a href="#" class="btn btn-primary">Add Duty Type</a></div>
@@ -20,8 +24,8 @@
         <div>
             <form>
                 <div class="mb-3">
-                    <label for="" class="form-label required">Name </label>
-                    <input type="text" class="form-control  border-bottom" id="" required>
+                    <label for="" class="form-label ">Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control  border-bottom" id="" >
                     <span class="warning-msg-block"></span>
                 </div>
                 <div class="mb-3">
@@ -36,8 +40,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="" class="form-label required">Mobile Number</label>
-                            <input type="text" class="form-control  border-bottom" id="" required>
+                            <label for="" class="form-label ">Mobile Number <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control  border-bottom" id="" >
                             <span class="warning-msg-block"></span>
                         </div>
                         <div class="mb-3">
@@ -53,8 +57,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="" class="form-label required">Alternate Mobile number</label>
-                            <input type="text" class="form-control  border-bottom" id="" required>
+                            <label for="" class="form-label ">Alternate Mobile number</label>
+                            <input type="text" class="form-control  border-bottom" id="" >
                             <span class="warning-msg-block"></span>
                         </div>
                         <div class="mb-3">
@@ -122,14 +126,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="" class="form-label required">Salary per month</label>
+                            <label for="" class="form-label ">Salary per month</label>
                             <input type="number" class="form-control  border-bottom" id="">
                             <span class="warning-msg-block"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="" class="form-label required">Daily Wages</label>
+                            <label for="" class="form-label ">Daily Wages</label>
                             <input type="number" class="form-control  border-bottom" id="">
                             <span class="warning-msg-block"></span>
                         </div>

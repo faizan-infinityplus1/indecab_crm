@@ -98,13 +98,13 @@
 </div>
 @endsection --}}
 
-    <div class="card rounded-0">
-        <div class="card-header d-flex justify-content-between ">
-            <div class="col-md-6">
-                <h1>Customers</h1>
+    <div class="card rounded-0 border-0 p-5">
+        <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
+            <div class=>
+                <h4>Customers</h4>
             </div>
-            <div class="col-md-6 text-end d-flex justify-content-end align-items-center gap-2">
-                <div class="btn-group" role="group"><a href="{{ route('customers.index') }}"
+            <div class="text-end d-flex justify-content-end align-items-center gap-2">
+                <div class="btn-group" role="group"><a href="{{ route('showCustomersGroups') }}"
                         class="btn btn-light border">Manage Customer Groups</a></div>
                 <div class="btn-group" role="group"><a href="{{ route('customers.create') }}" class="btn btn-primary">Add
                         Customer</a></div>
@@ -130,7 +130,7 @@
         </div> --}}
             {{-- <div class="btn-group" role="group"><a href="{{route('taxes.manage')}}" class="btn btn-primary">Add Tax Type</a></div> --}}
         </div>
-        <div class="card-body">
+        <div class="card-body px-0">
             @if ($errors->any())
                 <div class="alert alert-danger ">
                     <span class="close" onclick="this.parentElement.style.display='none';"
