@@ -12,7 +12,7 @@
                         <button type="button" class="btn" onclick="window.history.back()"><i
                             class="fa-solid fa-angle-left"></i></button>
                     </div>
-                    <h1 class="h3 pb-3">New Driver</h1>
+                    <h1 class="h3 pb-3">New Person</h1>
                 </div>
                 <div class="col-md-6 text-end">
                     {{-- <div class="btn-group" role="group"><a href="#" class="btn btn-primary">Add Duty Type</a></div>

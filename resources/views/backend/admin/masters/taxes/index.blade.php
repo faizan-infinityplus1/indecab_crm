@@ -118,6 +118,9 @@
                                             View Activity Logs
                                         </a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Edit</a>
+                                    </li>
                                 </ul>
                             </div>
                         </td>

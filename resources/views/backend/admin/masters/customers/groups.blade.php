@@ -61,8 +61,8 @@
 </div>
 @endsection --}}
 
-<div class="card rounded-0 border-0 p-3">
-    <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
+<div class="card rounded-0 border-0 p-5">
+    <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
 
         <h4>Customer Groups</h4>
 
@@ -93,7 +93,7 @@
         {{-- <div class="btn-group" role="group"><a href="{{route('taxes.manage')}}" class="btn btn-primary">Add Tax
                 Type</a></div> --}}
     </div>
-    <div class="card-body">
+    <div class="card-body px-0">
         @if($errors->any())
         <div class="alert alert-danger ">
             <span class="close" onclick="this.parentElement.style.display='none';"
@@ -110,25 +110,79 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th width="100">setting</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>A Das</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" >Edit</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>A Das</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" >Edit</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>A Das</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" >Edit</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>A Das</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" >Edit</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
                         <th>Name</th>
+                        <th>setting</th>
                     </tr>
                 </tfoot>
             </table>

@@ -13,14 +13,14 @@
 
 
 
-<div class="card rounded-0 border-0 p-3">
-    <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
+<div class="card rounded-0 border-0 p-5">
+    <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
         <h4>Billing Items</h4>
         <div class="text-end d-flex justify-content-end align-items-center gap-2">
             <div class="btn-group" role="group"><a href="{{route('billingitems.manage')}}" class="btn btn-primary">Add Billing Item</a></div>
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body px-0">
         @if($errors->any())
         <div class="alert alert-danger ">
             <span class="close" onclick="this.parentElement.style.display='none';"

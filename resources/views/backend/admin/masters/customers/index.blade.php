@@ -98,13 +98,13 @@
 </div>
 @endsection --}}
 
-    <div class="card rounded-0">
-        <div class="card-header d-flex justify-content-between ">
-            <div class="col-md-6">
-                <h1>Customers</h1>
+    <div class="card rounded-0 border-0 p-5">
+        <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
+            <div class=>
+                <h4>Customers</h4>
             </div>
-            <div class="col-md-6 text-end d-flex justify-content-end align-items-center gap-2">
-                <div class="btn-group" role="group"><a href="{{ route('customers.index') }}"
+            <div class="text-end d-flex justify-content-end align-items-center gap-2">
+                <div class="btn-group" role="group"><a href="{{ route('showCustomersGroups') }}"
                         class="btn btn-light border">Manage Customer Groups</a></div>
                 <div class="btn-group" role="group"><a href="{{ route('customers.create') }}" class="btn btn-primary">Add
                         Customer</a></div>
@@ -113,8 +113,9 @@
                         aria-expanded="false">
                         <i class="fa-solid fa-gear"></i>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Merge Two Customers</a></li>
+                    <ul class="dropdown-menu"> 
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
+                            data-bs-target="#merge-two-customer" >Merge Two Customers</a></li>
                         <li><a class="dropdown-item" href="#">Import</a></li>
                         <li><a class="dropdown-item" href="#">Export Customers</a></li>
                         <li><a class="dropdown-item" href="#">Export Pricing</a></li>
@@ -130,7 +131,7 @@
         </div> --}}
             {{-- <div class="btn-group" role="group"><a href="{{route('taxes.manage')}}" class="btn btn-primary">Add Tax Type</a></div> --}}
         </div>
-        <div class="card-body">
+        <div class="card-body px-0">
             @if ($errors->any())
                 <div class="alert alert-danger ">
                     <span class="close" onclick="this.parentElement.style.display='none';"
@@ -187,9 +188,10 @@
                                     <li>
                                         <a class="dropdown-item" href="{{ route('customers.edit', $data->id) }}">Edit</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="{{route('customers.people.index')}}">Manage people</a></li>
+                                    <li><a class="dropdown-item" href="#">Custome fields</a></li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
+                                        data-bs-target="#create-corporate-account">Create Corporate Account</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -213,6 +215,111 @@
             </div>
         </div>
     </div>
+    {{-- modal section --}}
+    {{-- Merge Two Customer --}}
+    <div class="modal fade" id="merge-two-customer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+        <div class="modal-content rounded-0 border-0">
+            <div class="modal-header px-5 sticky-top bg-white">
+                <div>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Merge Two Customer</h1>
+                    <p class="text-black-50 mb-0">Use this to consolidate two customers into single customer. This is useful when you have accidentally created two customers of same name.</p>
+                </div>
+            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+            </div>
+            <div class="modal-body px-5">
+                <form action="" method="post">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="" class="form-label">Source Customers</label>
+                        <select class="form-select border-bottom" aria-label="Default select example" name="" id="">
+                            <option value="selectOne">Select an option</option>
+                            <option value="">Home Address</option>
+                            <option value="">Permanent Address</option>
+                            <option value="">Temporary Address</option>
+                            <option value="">Village Address</option>
+                        </select>
+                        <span class="warning-msg-block"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Destination Customer</label>
+                        <select class="form-select border-bottom" aria-label="Default select example" name="" id="">
+                            <option value="selectOne">Select an option</option>
+                            <option value="">Home Address</option>
+                            <option value="">Permanent Address</option>
+                            <option value="">Temporary Address</option>
+                            <option value="">Village Address</option>
+                        </select>
+                        <span class="warning-msg-block"></span>
+                    </div>
+                    <p class="text-danger">Note: Pricing would not be copied from source customer to destination customer.</p>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-start px-5">
+                <button type="submit" class="btn btn-primary rounded-1">Merge Two Customers</button>
+                <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    {{-- Merge Two Customer --}}
+
+    {{-- Create Corporate Account --}}
+    <div class="modal fade" id="create-corporate-account" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+        <div class="modal-content rounded-0 border-0">
+            <div class="modal-header px-5 sticky-top bg-white">
+                <div>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create Corporate Account</h1>
+                </div>
+            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+            </div>
+            <div class="modal-body px-5">
+                <form action="" method="post">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="" class="form-label ">Email <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control  border-bottom" name="" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Duty Types - Limit ability to add bookings to these Duty Types</label>
+                        <select class="form-select border-bottom" aria-label="Default select example" name="" id="">
+                            <option value="selectOne">Select an option</option>
+                            <option value="">Home Address</option>
+                            <option value="">Permanent Address</option>
+                            <option value="">Temporary Address</option>
+                            <option value="">Village Address</option>
+                        </select>
+                        <span class="warning-msg-block"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Vehicle Group - Limit ability to add bookings to these Vehicle Groups</label>
+                        <select class="form-select border-bottom" aria-label="Default select example" name="" id="">
+                            <option value="selectOne">Select an option</option>
+                            <option value="">Home Address</option>
+                            <option value="">Permanent Address</option>
+                            <option value="">Temporary Address</option>
+                            <option value="">Village Address</option>
+                        </select>
+                        <span class="warning-msg-block"></span>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="1" name="" id="">
+                        <label class="form-check-label" for="">
+                            Copy Pricing?
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-start px-5">
+                <button type="submit" class="btn btn-primary rounded-1">Send Invitation</button>
+                <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    {{-- Create Corporate Account --}}
+    {{-- modal section --}}
 @endsection
 
 

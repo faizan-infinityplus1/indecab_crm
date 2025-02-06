@@ -23,14 +23,14 @@
                     id="formVehiclGroup" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label for="" class="form-label required">Name </label>
+                        <label for="" class="form-label ">Name <span class="text-danger">*</span></label>
                         <input type="text" class="form-control  border-bottom" name="name"
-                            value="{{ old('name', $data->name ?? '') }}" id="name" required>
+                            value="{{ old('name', $data->name ?? '') }}" id="name" >
                         <span class="warning-msg-block"></span>
                     </div>
                     <div class="row">
                         <div class="col-md-8 mb-3">
-                            <label for="" class="form-label required">Description </label>
+                            <label for="" class="form-label ">Description </label>
                             <textarea class="form-control" rows="10" name="description"
                                  id="description" >{{ old('description', $data->description ?? '') }}</textarea>
                         </div>
@@ -47,7 +47,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="" class="form-label required">Seating Capacity (excluding driver)
+                                <label for="" class="form-label ">Seating Capacity (excluding driver)
                                 </label>
                                 <input type="number" class="form-control  border-bottom" name="seat_capacity"
                                     value="{{ old('seat_capacity', $data->seat_capacity ?? '') }}" id="seat_capacity">
@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="" class="form-label required">Luggage count </label>
+                                <label for="" class="form-label ">Luggage count </label>
                                 <input type="number" class="form-control  border-bottom" name="lug_count"
                                     value="{{ old('lug_count', $data->lug_count ?? '') }}" id="lug_count">
                                 <span class="warning-msg-block"></span>

@@ -98,8 +98,8 @@
 
 @endsection --}}
 
-<div class="card rounded-0 border-0 p-3">
-    <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
+<div class="card rounded-0 border-0 p-5">
+    <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
 
         <h4>Vehicles</h4>
 
@@ -126,7 +126,7 @@
         {{-- <div class="btn-group" role="group"><a href="{{route('taxes.manage')}}" class="btn btn-primary">Add Tax
                 Type</a></div> --}}
     </div>
-    <div class="card-body">
+    <div class="card-body px-0">
         @if($errors->any())
         <div class="alert alert-danger ">
             <span class="close" onclick="this.parentElement.style.display='none';"
@@ -166,9 +166,9 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -188,9 +188,9 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -210,9 +210,9 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -232,9 +232,9 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
                         </td>

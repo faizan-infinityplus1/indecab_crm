@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\AdminAuth\LoginController;
+use App\Http\Controllers\Master\CustomersPeopleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Master\BankAccountsController;
@@ -59,7 +60,10 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('/customers/delete/driver-allowance-setting/{id}', [CustomersController::class, 'deleteDriverAllowanceSetting'])->name('customers.delete.driver.allowance.setting');
     Route::delete('/customers/delete/duty-type/{id}', [CustomersController::class, 'deleteDutyType'])->name('customers.delete.duty.type');
     Route::delete('/customers/delete/files/{id}', [CustomersController::class, 'deleteFiles'])->name('customers.delete.files');
-
+    
+    Route::get('/customers/1/people', [CustomersPeopleController::class, 'index'])->name('customers.people.index');
+    Route::get('/customers/1/people/manage', [CustomersPeopleController::class, 'manage'])->name('customers.people.manage');
+    
     Route::get('/customers/groups', [CustomersController::class, 'showCustomersGroups'])->name('showCustomersGroups');
     Route::get('/customers/groups/create', [CustomersController::class, 'createCustomersGroups'])->name('createCustomersGroups');
 

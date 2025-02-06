@@ -26,17 +26,17 @@
                         Note: You will not be able to edit the percentage once this Tax type is created.
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label required">Tax Name </label>
+                        <label for="" class="form-label ">Tax Name <span class="text-danger">*</span></label>
                         <input type="text" class="form-control  border-bottom" name="name"
-                            value="{{ old('name', $data->name ?? '') }}" id="name" required>
+                            value="{{ old('name', $data->name ?? '') }}" id="name" >
                         <span class="warning-msg-block"></span>
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label required">Percentage % </label>
+                        <label for="" class="form-label ">Percentage % <span class="text-danger">*</span></label>
                         <input type="number" class="form-control  border-bottom" name="percentage"
                             value="{{ old('percentage', $data->percentage ?? '') }}" 
                             {{ old('percentage', $data->percentage ?? '') ? 'disabled' : '' }}
-                            id="percentage" required>
+                            id="percentage" >
                         <span class="warning-msg-block"></span>
                     </div>
                     <div class="form-check mb-3">
