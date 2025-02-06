@@ -151,6 +151,7 @@
         @yield('content')
     </div>
     {{-- Modal start here --}}
+    {{-- activity-log --}}
     <div class="modal fade" id="activity-log" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
         <div class="modal-content rounded-0 border-0">
@@ -167,6 +168,8 @@
         </div>
         </div>
     </div>
+    {{-- activity-log --}}
+    
     {{-- modal end here --}}
 
     {{-- Jquery Js --}}
@@ -247,7 +250,7 @@
         
                 
                 const modalBody = document.querySelector('#activity-log .modal-body');
-                const modalTitle = document.querySelector('#exampleModalLabel');
+                const modalTitle = document.querySelector('#activity-log #exampleModalLabel');
         
                 const formatDate = (date) => {
                     const hours = String(date.getHours()).padStart(2, '0');
