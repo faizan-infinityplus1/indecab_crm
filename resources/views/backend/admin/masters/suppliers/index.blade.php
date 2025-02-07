@@ -239,8 +239,6 @@
                             <td>{!! $data->email ?? '<span>NA</span>' !!}</td>
                             <td>NA</td>
                             <td>{!! $data->city ?? '<span>NA</span>' !!}</td>
-                            <td>NA</td>
-                            <td>NA</td>
                             <td>
                                 <div class="{{ $data->is_active == true ? 'text-success' : 'text-danger' }}">
                                     {{ $data->is_active == false ? 'In Active' : 'Active' }}</div>
