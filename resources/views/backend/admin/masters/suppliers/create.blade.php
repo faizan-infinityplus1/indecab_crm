@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="name" class="form-label ">Name </label>
+                                <label for="name" class="form-label ">Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control  border-bottom" name="name" id="name">
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -44,7 +44,7 @@
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="type" class="form-label ">Type </label>
+                                <label for="type" class="form-label ">Type <span class="text-danger">*</span></label>
                                 <select class="form-select border-bottom" aria-label="Default select example" name="type"
                                     id="selectedType" @change="changedType($event.target.value)">
                                     <option value="selectOne">Select One</option>

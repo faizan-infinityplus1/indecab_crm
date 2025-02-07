@@ -26,14 +26,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="" class="form-label required">Model Name </label>
+                            <label for="" class="form-label required">Model Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control  border-bottom" id="" required>
                             <span class="warning-msg-block"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="" class="form-label required"> Vehicle Number </label>
+                            <label for="" class="form-label required"> Vehicle Number <span class="text-danger">*</span></label>
                             <input type="text" class="form-control  border-bottom" id="" required>
                             <span class="warning-msg-block"></span>
                         </div>
@@ -53,12 +53,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="" class="form-label required">Seating Capacity (including driver)</label>
+                            <label for="" class="form-label required">Seating Capacity (including driver) <span class="text-danger">*</span></label>
                             <input type="text" class="form-control  border-bottom" id="" required>
                             <span class="warning-msg-block"></span>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label required">Fuel Type</label>
+                            <label for="" class="form-label required">Fuel Type <span class="text-danger">*</span></label>
                             <select class="form-select border-bottom" aria-label="Default select example" name=""
                                 id=""  required>
                                 <option value="selectOne">Select an option</option>
@@ -70,7 +70,7 @@
                             <span class="warning-msg-block"></span>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label required">Category - Vehicle Group</label>
+                            <label for="" class="form-label required">Category - Vehicle Group <span class="text-danger">*</span></label>
                             <select class="form-select border-bottom" aria-label="Default select example" name="" id="" required>
                                 <option value="">Select an option</option>
                                 <option value="">Sedan</option>

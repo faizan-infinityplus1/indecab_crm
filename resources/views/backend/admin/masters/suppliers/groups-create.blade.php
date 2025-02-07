@@ -3,7 +3,7 @@
     <div x-data="block">
         <div class="container-fluid p-5">
             {{-- page heading start --}}
-            <div class="page-header border-bottom bg-white">
+            <div class="page-header border-bottom bg-white mb-3">
                 <div class="row">
                     <div class="col-md-6 position-static" x-show="open">
                         <div class="position-absolute" style="top: 96px; left: 0px;">
