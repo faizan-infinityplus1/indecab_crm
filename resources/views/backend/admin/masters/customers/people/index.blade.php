@@ -49,20 +49,22 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Phone</th>
-                        <th>Indecab Go - Username</th>
-                        <th>Tracking</th>
-                        <th>Status</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Passenger</th>
+                        <th>Booked By</th>
+                        <th>Add. Contact</th>
                         <th width="100">setting</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Adil Patel</td>
-                        <td>7738373502</td>
-                        <td>User not created</td>
-                        <td>Not Enabled</td>
-                        <td><div class="text-success">Active</div></td>
+                        <td>Kishore</td>
+                        <td>9880820710</td>
+                        <td></td>
+                        <td><div class="text-success">Yes</div></td>
+                        <td>No</td>
+                        <td>No</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -71,19 +73,18 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
-                                    <li><a class="dropdown-item" href="#">Create User</a></li>
                                     <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>Irshad Khan</td>
-                        <td>7017616157</td>
-                        <td>User not created</td>
-                        <td>Not Enabled</td>
-                        <td><div class="text-success">Active</div></td>
+                        <td>Rah</td>
+                        <td></td>
+                        <td></td>
+                        <td><div class="text-success">Yes</div></td>
+                        <td>No</td>
+                        <td>No</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -92,19 +93,18 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
-                                    <li><a class="dropdown-item" href="#">Create User</a></li>
                                     <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>Joshua</td>
-                        <td>9757414625</td>
-                        <td>User not created</td>
-                        <td>Not Enabled</td>
-                        <td><div class="text-success">Active</div></td>
+                        <td>Tarun Jumde</td>
+                        <td>70000 61492</td>
+                        <td></td>
+                        <td>No</td>
+                        <td><div class="text-success">Yes</div></td>
+                        <td>No</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -113,8 +113,6 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
-                                    <li><a class="dropdown-item" href="#">Create User</a></li>
                                     <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
@@ -125,10 +123,11 @@
                 <tfoot>
                     <tr>
                         <th>Name</th>
-                        <th>Phone</th>
-                        <th>Indecab Go - Username</th>
-                        <th>Tracking</th>
-                        <th>Status</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Passenger</th>
+                        <th>Booked By</th>
+                        <th>Add. Contact</th>
                         <th>setting</th>
                     </tr>
                 </tfoot>
