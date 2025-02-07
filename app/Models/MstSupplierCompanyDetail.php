@@ -27,4 +27,8 @@ class MstSupplierCompanyDetail extends Model
             }
         });
     }
+     public function mstSupplier()
+    {
+        return $this->belongsTo(MstSupplier::class, 'id'); // assuming 'customer_id' is the foreign key in MstCustomerGroup
+    }
 }

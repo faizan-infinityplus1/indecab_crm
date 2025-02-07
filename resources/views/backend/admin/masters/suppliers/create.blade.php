@@ -1,16 +1,12 @@
 @extends('layouts.admin-master')
 @section('content')
     <div x-data="block">
-        <div class="container-fluid p-5">
+        <div class="container-fluid px-5">
             {{-- page heading start --}}
             <div class="page-header border-bottom bg-white mb-3">
                 <div class="row">
-                    <div class="col-md-6 position-static" x-show="open">
-                    <div class="position-absolute" style="top: 96px; left: 0px;">
-                        <button type="button" class="btn" onclick="window.history.back()"><i
-                            class="fa-solid fa-angle-left"></i></button>
-                    </div>
-                        <h1 class="h3 pb-3">New Supplier</h1>
+                    <div class="col-md-6" x-show="open">
+                        <h1>New Supplier</h1>
                     </div>
                     <div class="col-md-6 text-end">
                         {{-- <div class="btn-group" role="group"><a href="#" class="btn btn-primary">Add Duty Type</a></div>
@@ -25,7 +21,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="name" class="form-label ">Name <span class="text-danger">*</span></label>
+                                <label for="name" class="form-label ">Name </label>
                                 <input type="text" class="form-control  border-bottom" name="name" id="name">
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -44,7 +40,7 @@
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="type" class="form-label ">Type <span class="text-danger">*</span></label>
+                                <label for="type" class="form-label ">Type </label>
                                 <select class="form-select border-bottom" aria-label="Default select example" name="type"
                                     id="selectedType" @change="changedType($event.target.value)">
                                     <option value="selectOne">Select One</option>
@@ -217,7 +213,7 @@
                             <div class="mb-3">
                                 <label for="vehicle_model" class="form-label ">Vehicle Model</label>
                                 <input type="text" class="form-control  border-bottom" name="vehicle_model"
-                                    id="vehicle_model">
+                                    id="vehicle_model" value="{{$mstSupplierDriverCum->vehicle_model ?? ''}}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -857,7 +853,6 @@
                 },
 
             }))
-        });
 
 
 
