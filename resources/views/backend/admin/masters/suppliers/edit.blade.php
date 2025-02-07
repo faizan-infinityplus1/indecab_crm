@@ -47,9 +47,15 @@
                                 <label for="type" class="form-label ">Type </label>
                                 <select class="form-select border-bottom" aria-label="Default select example" name="type"
                                     id="selectedType" @change="changedType($event.target.value)">
-                                    <option value="selectOne">Select One</option>
-                                    <option value="driverCumOwners">Driver cum owners (DCO)/Attached</option>
-                                    <option value="company">Company</option>
+                                    <option value="selectOne"
+                                        {{ old('selectedType', $particularMstSupplier->type ?? '') == 'selectOne' ? 'selected' : '' }}>
+                                        Select One</option>
+                                    <option value="driverCumOwners"
+                                        {{ old('selectedType', $particularMstSupplier->type ?? '') == 'driverCumOwners' ? 'selected' : '' }}>
+                                        Driver cum owners (DCO)/Attached</option>
+                                    <option value="company"
+                                        {{ old('selectedType', $particularMstSupplier->type ?? '') == 'company' ? 'selected' : '' }}>
+                                        Company</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -115,8 +121,12 @@
                                 <select class="form-select border-bottom" aria-label="Default select example"
                                     name="gst_type" id="gst_type">
                                     <option class="d-none" value="">Select an option</option>
-                                    <option value="registered">Registered</option>
-                                    <option value="un_registered">Un-registered</option>
+                                    <option value="registered"
+                                    {{ old('gst_type', $particularMstSupplier->gst_type ?? '') == 'registered' ? 'selected' : '' }}
+                                    >Registered</option>
+                                    <option value="un_registered"
+                                    {{ old('gst_type', $particularMstSupplier->gst_type ?? '') == 'un_registered' ? 'selected' : '' }}
+                                    >Un-registered</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -213,8 +223,8 @@
                         <span class="warning-msg-block"></span>
                     </div>
 
-                       {{-- if select Driver cum owners (DCO)/Attached --}}
-                       <div class="panel border rounded mb-3" x-show="driver_cum_owners_show">
+                    {{-- if select Driver cum owners (DCO)/Attached --}}
+                    <div class="panel border rounded mb-3" x-show="driver_cum_owners_show">
                         <div class="panel-heading bg-light p-3">Details - Driver cum owners (DCO)/Attached</div>
 
                         <div class="p-3">
@@ -230,13 +240,13 @@
                             <div class="mb-3">
                                 <label for="vehicle_model" class="form-label ">Vehicle Model</label>
                                 <input type="text" class="form-control  border-bottom" name="vehicle_model"
-                                    id="vehicle_model">
+                                    id="vehicle_model" value="{{$particularMstSupplier->mstSupplierDriverCumOwner->vehicle_model ?? ''}}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="vehicle_no" class="form-label ">Vehicle Number</label>
                                 <input type="text" class="form-control  border-bottom" name="vehicle_no"
-                                    id="vehicle_no">
+                                    id="vehicle_no" value="{{$particularMstSupplier->mstSupplierDriverCumOwner->vehicle_no ?? ''}}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -263,13 +273,13 @@
                             <div class="mb-3">
                                 <label for="owner_name" class="form-label ">Owner Name</label>
                                 <input type="text" class="form-control  border-bottom" name="owner_name"
-                                    id="owner_name">
+                                    id="owner_name" value="{{$particularMstSupplier->mstSupplierDriverCumOwner->owner_name ?? ''}}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="owner_phone_no" class="form-label ">Owner Phone Number</label>
                                 <input type="text" class="form-control  border-bottom" name="owner_phone_no"
-                                    id="owner_phone_no">
+                                    id="owner_phone_no" value="{{$particularMstSupplier->mstSupplierDriverCumOwner->owner_phone_no ?? ''}}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="panel border rounded mb-3">
@@ -278,13 +288,15 @@
                                     <div class="mb-3">
                                         <label for="regis_owner_name" class="form-label ">Registered Owner Name</label>
                                         <input type="text" class="form-control  border-bottom" id="regis_owner_name"
-                                            name="regis_owner_name">
+                                            name="regis_owner_name"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->regis_owner_name ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Registration Date</label>
                                         <input type="date" class="form-control  border-bottom" id="regis_date"
-                                            name="regis_date">
+                                            name="regis_date"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->regis_date ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -295,13 +307,15 @@
                                     <div class="mb-3">
                                         <label for="parts_chasis_no" class="form-label ">Chassis Number</label>
                                         <input type="text" class="form-control  border-bottom" name="parts_chasis_no"
-                                            id="parts_chasis_no">
+                                            id="parts_chasis_no"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->parts_chasis_no ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="parts_engine_no" class="form-label ">Engine Number</label>
                                         <input type="text" class="form-control  border-bottom" name="parts_engine_no"
-                                            id="parts_engine_no">
+                                            id="parts_engine_no"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->parts_engine_no ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -312,37 +326,43 @@
                                     <div class="mb-3">
                                         <label for="insaurance_company_name" class="form-label ">Company Name</label>
                                         <input type="text" class="form-control  border-bottom"
-                                            name="insaurance_company_name" id="insaurance_company_name">
+                                            name="insaurance_company_name" id="insaurance_company_name"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->insaurance_company_name ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="insurance_policy_no" class="form-label ">Policy Number</label>
                                         <input type="text" class="form-control  border-bottom"
-                                            name="insurance_policy_no" id="insurance_policy_no">
+                                            name="insurance_policy_no" id="insurance_policy_no"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->insurance_policy_no ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="insurance_issue_date" class="form-label ">Issue Date</label>
                                         <input type="date" class="form-control  border-bottom"
-                                            name="insurance_issue_date" id="insurance_issue_date">
+                                            name="insurance_issue_date" id="insurance_issue_date"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->insurance_issue_date ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="insurance_due_date" class="form-label ">Due Date</label>
                                         <input type="date" class="form-control  border-bottom"
-                                            name="insurance_due_date" id="insurance_due_date">
+                                            name="insurance_due_date" id="insurance_due_date"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->insurance_due_date ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="insurance_premium_account" class="form-label ">Premium Amount</label>
                                         <input type="number" class="form-control  border-bottom"
-                                            name="insurance_premium_account" id="insurance_premium_account">
+                                            name="insurance_premium_account" id="insurance_premium_account"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->insurance_premium_account ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="insurance_cover_account" class="form-label ">Cover Amount</label>
                                         <input type="number" class="form-control  border-bottom"
-                                            name="insurance_cover_account" id="insurance_cover_account">
+                                            name="insurance_cover_account" id="insurance_cover_account"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->insurance_cover_account ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -352,19 +372,22 @@
                                 <div class="p-3">
                                     <div class="mb-3">
                                         <label for="rto_address" class="form-label">Address </label>
-                                        <textarea class="form-control" rows="5" name="rto_address" id="rto_address"></textarea>
+                                        <textarea class="form-control" rows="5" name="rto_address" id="rto_address"
+                                        >{{$particularMstSupplier->mstSupplierDriverCumOwner->rto_address ?? ''}}</textarea>
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="rto_tax_efficiency" class="form-label ">Tax Efficiency</label>
                                         <input type="text" class="form-control  border-bottom"
-                                            name="rto_tax_efficiency" id="rto_tax_efficiency">
+                                            name="rto_tax_efficiency" id="rto_tax_efficiency"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->rto_tax_efficiency ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="rto_expiry_date" class="form-label ">Expiry Date</label>
                                         <input type="date" class="form-control  border-bottom" name="rto_expiry_date"
-                                            id="rto_expiry_date">
+                                            id="rto_expiry_date"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->rto_expiry_date ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -375,13 +398,15 @@
                                     <div class="mb-3">
                                         <label for="fitness_no" class="form-label ">Number</label>
                                         <input type="text" class="form-control  border-bottom" name="fitness_no"
-                                            id="fitness_no">
+                                            id="fitness_no"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->fitness_no ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="fitness_expiry_date" class="form-label ">Expiry Date</label>
                                         <input type="date" class="form-control  border-bottom"
-                                            name="fitness_expiry_date" id="fitness_expiry_date">
+                                            name="fitness_expiry_date" id="fitness_expiry_date"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->fitness_expiry_date ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -392,13 +417,15 @@
                                     <div class="mb-3">
                                         <label for="auth_number" class="form-label ">Number</label>
                                         <input type="text" class="form-control  border-bottom" name="auth_number"
-                                            id="auth_number">
+                                            id="auth_number"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->auth_number ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="auth_expiry_date" class="form-label ">Expiry Date</label>
                                         <input type="date" class="form-control  border-bottom" name="auth_expiry_date"
-                                            id="auth_expiry_date">
+                                            id="auth_expiry_date"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->auth_expiry_date ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -409,13 +436,15 @@
                                     <div class="mb-3">
                                         <label for="speed_details" class="form-label ">Details</label>
                                         <input type="text" class="form-control  border-bottom" name="speed_details"
-                                            id="speed_details">
+                                            id="speed_details"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->speed_details ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Expiry Date</label>
                                         <input type="date" class="form-control  border-bottom"
-                                            name="speed_expiry_date" id="speed_expiry_date">
+                                            name="speed_expiry_date" id="speed_expiry_date"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->speed_expiry_date ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -426,13 +455,15 @@
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Number</label>
                                         <input type="text" class="form-control  border-bottom" name="puc_number"
-                                            id="puc_number">
+                                            id="puc_number"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->puc_number ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Expiry Date</label>
                                         <input type="date" class="form-control  border-bottom" name="puc_expiry_date"
-                                            id="puc_expiry_date">
+                                            id="puc_expiry_date"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->puc_expiry_date ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -457,13 +488,15 @@
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Number</label>
                                         <input type="text" class="form-control  border-bottom" name="license_no"
-                                            id="license_no">
+                                            id="license_no"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->license_no ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Valid Upto</label>
                                         <input type="date" class="form-control  border-bottom"
-                                            name="license_expiry_date" id="license_expiry_date">
+                                            name="license_expiry_date" id="license_expiry_date"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->license_expiry_date ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -474,34 +507,40 @@
                                     <div class="mb-3">
                                         <label for="" class="form-label ">Display Card Number</label>
                                         <input type="text" class="form-control  border-bottom" name="police_card_no"
-                                            id="police_card_no">
+                                            id="police_card_no"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->police_card_no ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="police_expiry_date" class="form-label ">Display Card Expiry
                                             Date</label>
                                         <input type="date" class="form-control border-bottom"
-                                            name="police_expiry_date" id="police_expiry_date">
+                                            name="police_expiry_date" id="police_expiry_date"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->police_expiry_date ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
+                                    {{-- {{dd($particularMstSupplier->mstSupplierDriverCumOwner->police_veri_expiry_date)}} --}}
                                     <div class="mb-3">
                                         <label for="police_veri_number" class="form-label ">Verification Number</label>
                                         <input type="text" class="form-control  border-bottom"
-                                            name="police_veri_number" id="police_veri_number">
+                                            name="police_veri_number" id="police_veri_number"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->police_veri_number ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
+                                   
                                     <div class="mb-3">
                                         <label for="police_veri_expiry_date" class="form-label ">Verification Expiry
                                             Date</label>
                                         <input type="date" class="form-control  border-bottom"
-                                            name="police_veri_expiry_date" id="police_veri_expiry_date">
+                                            name="police_veri_expiry_date" id="police_veri_expiry_date"
+                                            value="{{$particularMstSupplier->mstSupplierDriverCumOwner->police_veri_expiry_date ?? ''}}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" value="1"
-                                    name="is_covid_vaccinated" id="is_covid_vaccinated">
+                                    name="is_covid_vaccinated" id="is_covid_vaccinated"  {{ old('is_covid_vaccinated',$particularMstSupplier->mstSupplierDriverCumOwner->is_covid_vaccinated ?? '') ? 'checked' : '' }}>
                                 <label class="form-check-label" for="is_covid_vaccinated">
                                     Is COVID vaccinated
                                 </label>
@@ -511,7 +550,26 @@
                         </div>
                     </div>
                     {{-- Driver cum owners (DCO)/Attached end --}}
-
+                    {{-- if select Company --}}
+                    <div class="panel border rounded mb-3" x-show="company_show">
+                        <div class="panel-heading bg-light p-3">Company - Details</div>
+                        <div class="p-3">
+                            <div class="mb-3">
+                                <label for="owner_name" class="form-label ">Owner Name</label>
+                                <input type="text" class="form-control border-bottom" name="owner_name"
+                                    id="owner_name"
+                                    value="{{$particularMstSupplier->mstSupplierCompanyDetail->owner_name ?? ''}}">
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="vehicle_count" class="form-label ">Vehicle Count</label>
+                                <input type="number" class="form-control  border-bottom" name="vehicle_count"
+                                    id="vehicle_count" value="{{$particularMstSupplier->mstSupplierCompanyDetail->vehicle_count ?? ''}}">
+                                <span class="warning-msg-block"></span>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Company end --}}
                     <div class="mb-3">
                         <label for="def_tax_classif" class="form-label ">Default Tax Classification - Used in Purchase
                             Invoice
@@ -700,7 +758,8 @@
                                                                 @foreach ($applicableTaxes as $taxesData)
                                                                     <option value="{{ $taxesData->id }}"
                                                                         {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
-                                                                       {{$taxesData->name }} {{ $taxesData->percentage  }}</option>
+                                                                        {{ $taxesData->name }}
+                                                                        {{ $taxesData->percentage }}</option>
                                                                 @endforeach
 
                                                             </select>
@@ -757,7 +816,8 @@
                                                                 @foreach ($applicableTaxes as $taxesData)
                                                                     <option value="{{ $taxesData->id }}"
                                                                         {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
-                                                                        {{$taxesData->name }}  {{ $taxesData->percentage }}</option>
+                                                                        {{ $taxesData->name }}
+                                                                        {{ $taxesData->percentage }}</option>
                                                                 @endforeach
 
                                                             </select>
@@ -954,78 +1014,83 @@
                                 <div class="panel-heading bg-light p-3">Bank Accounts</div>
                                 <div class="bank_accounts_tax_body" id="bank_accounts_tax_body">
 
-                                {{-- component start --}}
-                                @foreach ($mstBankSupplierSetting as $data)
-                                    <div class="d-flex border-bottom">
-                                        <div class="p-3">
-                                            <button type="button" class="btn btn-primary rounded-1 remove_bank_accounts"
-                                                data-id="{{ $data->id ?? '' }}">
-                                                <i class="fa-solid fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <div class="p-3 ps-0 w-100">
-                                            <div class="panel border rounded">
-                                                <div class="panel-heading bg-light p-3">Bank Accounts</div>
-                                                <div class="panel-body p-3">
-                                                    <div class="mb-3">
-                                                        <label for="file_name" class="form-label">File Name </label>
-                                                        <input type="text" class="form-control border-bottom"
-                                                            id="file_name" name="filename_{{ $data->id }}_update"
-                                                            value="{{ old('file_name', $data->file_name ?? '') }}">
-                                                        <span class="warning-msg-block"></span>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="account_number" class="form-label">Account
-                                                            Number</label>
-                                                        <input type="text" class="form-control  border-bottom"
-                                                            id="account_number"
-                                                            name="accountnumber_{{ $data->id }}_update"
-                                                            value="{{ old('account_number', $data->account_number ?? '') }}">
-                                                        <span class="warning-msg-block"></span>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="bank_name" class="form-label">Bank Name</label>
-                                                        <input type="text" class="form-control  border-bottom"
-                                                            id="bank_name" name="bankname_{{ $data->id }}_update"
-                                                            value="{{ old('bank_name', $data->bank_name ?? '') }}">
-                                                        <span class="warning-msg-block"></span>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="bank_branch" class="form-label">Bank Branch</label>
-                                                        <input type="text" class="form-control  border-bottom"
-                                                            id="bank_branch" name="bankbranch_{{ $data->id }}_update"
-                                                            value="{{ old('bank_branch', $data->bank_branch ?? '') }}">
-                                                        <span class="warning-msg-block"></span>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="ifsc_code" class="form-label">IFSC Code</label>
-                                                        <input type="text" class="form-control  border-bottom"
-                                                            id="ifsc_code" name="ifsccode_{{ $data->id }}_update"
-                                                            value="{{ old('ifsc_code', $data->ifsc_code ?? '') }}">
-                                                        <span class="warning-msg-block"></span>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="cheque_name" class="form-label">Cheques in name
-                                                            of</label>
-                                                        <input type="text" class="form-control  border-bottom"
-                                                            id="cheque_name"
-                                                            name="chequename_{{ $data->id }}_update"
-                                                            value="{{ old('cheque_name', $data->cheque_name ?? '') }}">
-                                                        <span class="warning-msg-block"></span>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="upi" class="form-label">UPI Address</label>
-                                                        <input type="text" class="form-control  border-bottom"
-                                                            id="upi" name="upi_{{ $data->id }}_update"
-                                                            value="{{ old('upi', $data->upi ?? '') }}">
-                                                        <span class="warning-msg-block"></span>
+                                    {{-- component start --}}
+                                    @foreach ($mstBankSupplierSetting as $data)
+                                        <div class="d-flex border-bottom">
+                                            <div class="p-3">
+                                                <button type="button"
+                                                    class="btn btn-primary rounded-1 remove_bank_accounts"
+                                                    data-id="{{ $data->id ?? '' }}">
+                                                    <i class="fa-solid fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="p-3 ps-0 w-100">
+                                                <div class="panel border rounded">
+                                                    <div class="panel-heading bg-light p-3">Bank Accounts</div>
+                                                    <div class="panel-body p-3">
+                                                        <div class="mb-3">
+                                                            <label for="file_name" class="form-label">File Name </label>
+                                                            <input type="text" class="form-control border-bottom"
+                                                                id="file_name" name="filename_{{ $data->id }}_update"
+                                                                value="{{ old('file_name', $data->file_name ?? '') }}">
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="account_number" class="form-label">Account
+                                                                Number</label>
+                                                            <input type="text" class="form-control  border-bottom"
+                                                                id="account_number"
+                                                                name="accountnumber_{{ $data->id }}_update"
+                                                                value="{{ old('account_number', $data->account_number ?? '') }}">
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="bank_name" class="form-label">Bank Name</label>
+                                                            <input type="text" class="form-control  border-bottom"
+                                                                id="bank_name"
+                                                                name="bankname_{{ $data->id }}_update"
+                                                                value="{{ old('bank_name', $data->bank_name ?? '') }}">
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="bank_branch" class="form-label">Bank
+                                                                Branch</label>
+                                                            <input type="text" class="form-control  border-bottom"
+                                                                id="bank_branch"
+                                                                name="bankbranch_{{ $data->id }}_update"
+                                                                value="{{ old('bank_branch', $data->bank_branch ?? '') }}">
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="ifsc_code" class="form-label">IFSC Code</label>
+                                                            <input type="text" class="form-control  border-bottom"
+                                                                id="ifsc_code"
+                                                                name="ifsccode_{{ $data->id }}_update"
+                                                                value="{{ old('ifsc_code', $data->ifsc_code ?? '') }}">
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="cheque_name" class="form-label">Cheques in name
+                                                                of</label>
+                                                            <input type="text" class="form-control  border-bottom"
+                                                                id="cheque_name"
+                                                                name="chequename_{{ $data->id }}_update"
+                                                                value="{{ old('cheque_name', $data->cheque_name ?? '') }}">
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="upi" class="form-label">UPI Address</label>
+                                                            <input type="text" class="form-control  border-bottom"
+                                                                id="upi" name="upi_{{ $data->id }}_update"
+                                                                value="{{ old('upi', $data->upi ?? '') }}">
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
-                            </div>
+                                    @endforeach
+                                </div>
 
                                 {{-- component end --}}
                                 <div class="p-3">
@@ -1178,7 +1243,7 @@
 
         $(document).ready(function() {
 
-            
+
 
             let particularMstSupplier = @json($particularMstSupplier);
             var applicableTaxes = @json($applicableTaxes);
@@ -1288,7 +1353,8 @@
 
                 let taxOptions = '<option value="">(Select Tax)</option>';
                 applicableTaxes.forEach(tax => {
-                    taxOptions += `<option value="${tax.id}">${tax.name} ${tax.percentage}</option>`;
+                    taxOptions +=
+                    `<option value="${tax.id}">${tax.name} ${tax.percentage}</option>`;
                 });
 
                 var template = `<div class="d-flex border-bottom">
@@ -1372,7 +1438,8 @@
                 console.log(childCount);
                 let taxOptions = '<option value="">(Select Tax)</option>';
                 applicableTaxes.forEach(tax => {
-                    taxOptions += `<option value="${tax.id}">${tax.name} ${tax.percentage}</option>`;
+                    taxOptions +=
+                    `<option value="${tax.id}">${tax.name} ${tax.percentage}</option>`;
                 });
                 var template = `  <div class="d-flex border-bottom">
                                     <div class="p-3">

@@ -349,13 +349,20 @@ class SuppliersController extends Controller
         $mstCatVehGroup = MstCatVehGroup::active()->get();
         $mstDutyType = MstDutyType::active()->get();
         $applicableTaxes = MstTax::active()->get();
-        $particularMstSupplier = MstSupplier::active()->where('id', $request->id)->first();
+        $particularMstSupplier = MstSupplier::active()->with([
+            'mstSupplierDriverCumOwner', 'mstSupplierCompanyDetail'
+        ])->where('id', $request->id)->first();
+        // dd($particularMstSupplier->mstSupplierDriverCumOwner()->toSql());
+
+        // dd($particularMstSupplier->mstSupplierDriverCumOwner->police_veri_expiry_date);
+        // dd($particularMstSupplier->toArray());
         $mstApplicableTaxesSupplier = MstSupplierApplicableTax::active()->with('mstSupplier')->where('supplier_id', $request->id)->get();
         $mstInterstateTaxesSupplier = MstSupplierInterstateTax::active()->with('mstSupplier')->where('supplier_id', $request->id)->get();
         $mstDriverSupplierSetting = MstSupplierDriverAllowanceSetting::active()->with('mstSupplier')->where('supplier_id', $request->id)->get();
         $mstFileSupplier = MstSupplierFile::active()->with('mstSupplier')->where('supplier_id', $request->id)->get();
-
         $mstBankSupplierSetting = MstSupplierBankAccount::active()->with('mstSupplier')->where('supplier_id', $request->id)->get();
+        // $mstSupplierDriverCum = MstSupplierDriverCumOwner::active()->with('mstSupplier')->where('supplier_id', $request->id)->firstOrFail();
+        // $mstSupplierCompany = MstSupplierCompanyDetail::active()->with('mstSupplier')->where('supplier_id', $request->id)->firstOrFail();
         return view('backend.admin.masters.suppliers.edit', compact('mstCatVehGroup', 'mstDutyType', 'applicableTaxes', 'particularMstSupplier', 'mstApplicableTaxesSupplier', 'mstInterstateTaxesSupplier', 'mstDriverSupplierSetting', 'mstBankSupplierSetting', 'mstFileSupplier'));
     }
 
