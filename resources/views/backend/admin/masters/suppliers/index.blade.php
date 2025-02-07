@@ -118,8 +118,8 @@
     </div>
 </div> --}}
 
-    <div class="card rounded-0 border-0 p-3">
-        <div class="card-header d-flex justify-content-between py-2 bg-transparent page-heading-container flex-wrap">
+    <div class="card rounded-0 border-0 p-5">
+        <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
 
             <h4>Suppliers</h4>
 
