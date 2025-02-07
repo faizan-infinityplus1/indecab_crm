@@ -167,7 +167,17 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
+                                        data-bs-target="#activity-log"
+                                        data-id="1"
+                                        data-name="asdqwe"
+                                        data-created="asd"
+                                        data-updates="asd"
+                                        {{-- data-id="{{ $data->id }}"
+                                        data-name="{{ $data->duty_name }}"
+                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
+                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
+                                        >View Activity Logs</a></li>
                                     <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
@@ -189,7 +199,17 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
+                                        data-bs-target="#activity-log"
+                                        data-id="1"
+                                        data-name="asdqwe"
+                                        data-created="asd"
+                                        data-updates="asd"
+                                        {{-- data-id="{{ $data->id }}"
+                                        data-name="{{ $data->duty_name }}"
+                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
+                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
+                                        >View Activity Logs</a></li>
                                     <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
@@ -211,7 +231,17 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
+                                        data-bs-target="#activity-log"
+                                        data-id="1"
+                                        data-name="asdqwe"
+                                        data-created="asd"
+                                        data-updates="asd"
+                                        {{-- data-id="{{ $data->id }}"
+                                        data-name="{{ $data->duty_name }}"
+                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
+                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
+                                        >View Activity Logs</a></li>
                                     <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
@@ -233,7 +263,17 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">View Activity Logs</a></li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
+                                        data-bs-target="#activity-log"
+                                        data-id="1"
+                                        data-name="asdqwe"
+                                        data-created="asd"
+                                        data-updates="asd"
+                                        {{-- data-id="{{ $data->id }}"
+                                        data-name="{{ $data->duty_name }}"
+                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
+                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
+                                        >View Activity Logs</a></li>
                                     <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>

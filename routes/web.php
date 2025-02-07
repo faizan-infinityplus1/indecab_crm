@@ -96,6 +96,7 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/feedback-forms', [FeedbackFormsController::class, 'index'])->name('feedbackforms.index');
     Route::get('/feedback-forms/manage/{id?}', [FeedbackFormsController::class, 'manage'])->name('feedbackforms.manage');
+    Route::get('/feedback-forms/1', [FeedbackFormsController::class, 'addField'])->name('feedbackforms.addField');
 
     Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');
     Route::get('/employees/manage/{id?}', [EmployeesController::class, 'manage'])->name('employees.manage');

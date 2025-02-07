@@ -83,6 +83,9 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
+                                        <a class="dropdown-item" href="">Edit</a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#activity-log">View Activity Logs</a>
                                     </li>
                                     <li><a class="dropdown-item" href="#">Manage Permission</a></li>
