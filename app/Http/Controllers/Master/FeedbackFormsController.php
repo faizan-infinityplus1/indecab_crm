@@ -15,4 +15,8 @@ class FeedbackFormsController extends Controller
     {
         return view('backend.admin.masters.feedbackforms.manage');
     }
+    public function addField($id = null)
+    {
+        return view('backend.admin.masters.feedbackforms.add-field');
+    }
 }

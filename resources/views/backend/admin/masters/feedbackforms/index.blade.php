@@ -54,10 +54,19 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#activity-log">View Activity Logs</a>
-                                    </li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
+                                        data-bs-target="#activity-log"
+                                        data-id="1"
+                                        data-name="asdqwe"
+                                        data-created="asd"
+                                        data-updates="asd"
+                                        {{-- data-id="{{ $data->id }}"
+                                        data-name="{{ $data->duty_name }}"
+                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
+                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
+                                        >View Activity Logs</a></li>
                                     <li><a class="dropdown-item " href="#">Edit</a></li>
+                                    <li><a class="dropdown-item " href="{{route('feedbackforms.addField')}}">Add Field</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -72,9 +81,17 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#activity-log">View Activity Logs</a>
-                                    </li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
+                                        data-bs-target="#activity-log"
+                                        data-id="1"
+                                        data-name="asdqwe"
+                                        data-created="asd"
+                                        data-updates="asd"
+                                        {{-- data-id="{{ $data->id }}"
+                                        data-name="{{ $data->duty_name }}"
+                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
+                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
+                                        >View Activity Logs</a></li>
                                     <li><a class="dropdown-item " href="#">Edit</a></li>
                                 </ul>
                             </div>
@@ -90,9 +107,17 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#activity-log">View Activity Logs</a>
-                                    </li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
+                                        data-bs-target="#activity-log"
+                                        data-id="1"
+                                        data-name="asdqwe"
+                                        data-created="asd"
+                                        data-updates="asd"
+                                        {{-- data-id="{{ $data->id }}"
+                                        data-name="{{ $data->duty_name }}"
+                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
+                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
+                                        >View Activity Logs</a></li>
                                     <li><a class="dropdown-item " href="#">Edit</a></li>
                                 </ul>
                             </div>
@@ -108,9 +133,17 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#activity-log">View Activity Logs</a>
-                                    </li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
+                                        data-bs-target="#activity-log"
+                                        data-id="1"
+                                        data-name="asdqwe"
+                                        data-created="asd"
+                                        data-updates="asd"
+                                        {{-- data-id="{{ $data->id }}"
+                                        data-name="{{ $data->duty_name }}"
+                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
+                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
+                                        >View Activity Logs</a></li>
                                     <li><a class="dropdown-item " href="#">Edit</a></li>
                                 </ul>
                             </div>
@@ -129,7 +162,7 @@
     </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="activity-log" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="activity-log" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
       <div class="modal-content rounded-0 border-0">
         <div class="modal-header">
@@ -153,7 +186,7 @@
         </div>
       </div>
     </div>
-</div>
+</div> --}}
 
 @endsection
 

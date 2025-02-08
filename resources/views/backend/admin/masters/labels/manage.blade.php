@@ -27,17 +27,18 @@
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label ">Colours <span class="text-danger">*</span></label>
+                        {{-- use value of options as a class in index page label --}}
                         <select class="form-select border-bottom" aria-label="Default select example" name=""
                             id=""  >
                             <option value="selectOne">Select an option</option>
-                            <option value="red">red</option>
-                            <option value="blue">blue</option>
-                            <option value="green">green</option>
-                            <option value="sky-blue">sky-blue</option>
-                            <option value="yellow">yellow</option>
-                            <option value="orange">orange</option>
-                            <option value="purple">purple</option>
-                            <option value="pink">pink</option>
+                            <option value="bg-danger text-white">red</option>
+                            <option value="bg-primary text-white">blue</option>
+                            <option value="bg-success text-white">green</option>
+                            <option value="bg-info">sky-blue</option>
+                            <option value="bg-warning">yellow</option>
+                            <option value="bg-secondary text-white">gray</option>
+                            <option value="bg-dark text-white">black</option>
+                            <option value="bg-danger-subtle">pink</option>
                         </select>
                         <span class="warning-msg-block"></span>
                     </div>

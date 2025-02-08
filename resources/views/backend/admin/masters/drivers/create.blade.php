@@ -29,7 +29,7 @@
                     <span class="warning-msg-block"></span>
                 </div>
                 <div class="mb-3">
-                    <label for="" class="form-label">Upload </label>
+                    <label for="" class="form-label">Avatar </label>
                     <div>
                         <label for="qwer" class="btn shadow-sm border rounded-1">Choose File</label>
                         <input type="file" name="" id="qwer" affieldinput="[object Object]" class="form-control"
