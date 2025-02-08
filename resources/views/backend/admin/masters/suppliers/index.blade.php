@@ -237,9 +237,9 @@
                                 <td> {!! !empty($group->name) ? $group->name : '<span>NA</span>' !!} </td>
                             @endif
                             <td>{!! $data->phone_no ?? '<span>NA</span>' !!}</td>
-                            <td>{!! $data->email ?? '<span>NA</span>' !!}</td>
+                            <td>{!! $data->email_id ?? '<span>NA</span>' !!}</td>
                             <td>NA</td>
-                            <td>{!! $data->city ?? '<span>NA</span>' !!}</td>
+                            <td class="text-capitalize">{!! $data->head_office_city ?? '<span>NA</span>' !!}</td>
                             <td>
                                 <div class="{{ $data->is_active == true ? 'text-success' : 'text-danger' }}">
                                     {{ $data->is_active == false ? 'In Active' : 'Active' }}</div>
