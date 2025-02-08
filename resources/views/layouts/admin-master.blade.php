@@ -90,7 +90,7 @@
                         </ul>
                     </li>
                     <li class="nav_menu_item dropdown">
-                        <a href="#" class="nav_menu_link nav_parent_link text-decoration-none text-white p-3">
+                        <a href="{{route('reports.index')}}" class="nav_menu_link nav_parent_link text-decoration-none text-white p-3">
                             <i class="fa-solid fa-chart-line"></i>
                             Reports
                         </a>

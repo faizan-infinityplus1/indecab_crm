@@ -23,6 +23,7 @@ use App\Http\Controllers\Master\MyDriversController;
 use App\Http\Controllers\Master\SupplierPricingController;
 use App\Http\Controllers\Master\SuppliersController;
 use App\Http\Controllers\Master\VehiclesController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->group(function () {
@@ -119,6 +120,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/pricing', [CustomerPricingController::class, 'index'])->name('customerpricing.index');
 
     Route::get('/pricing/supplier', [SupplierPricingController::class, 'index'])->name('supplierpricing.index');
+
+    // reports
+    Route::get('/report-requests', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/report-requests/recent', [ReportController::class, 'recent'])->name('reports.recent');
+    Route::get('/report-requests/manage', [ReportController::class, 'manage'])->name('reports.manage');
 });
 
 

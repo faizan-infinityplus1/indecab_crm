@@ -54,3 +54,11 @@ ul.dropdown-menu.dropdown-menu-end {
     border-bottom: 1px solid #dee2e6;
     background-color: transparent;
 }
+
+.hover-link {
+    cursor: pointer;
+}
+.hover-link:hover {
+    color: rgb(13 110 253) !important;
+    border-color: rgb(13 110 253) !important;
+}
