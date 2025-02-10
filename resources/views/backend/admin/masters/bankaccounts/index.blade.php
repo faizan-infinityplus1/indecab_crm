@@ -49,12 +49,18 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($data as $data)
                     <tr>
-                        <td>MUMBAI CAB SERVICE</td>
-                        <td>750061101004397</td>
-                        <td>Kokan Mercantile Co-operative Bank</td>
-                        <td>Kokan Mercantile Co-operative Bank IMPS</td>
-                        <td>KKBK0KMCB02</td>
+                        
+                       
+                        
+                        
+                        
+                        <td>{{ $data->account_name }}</td>
+                        <td>{{ $data->account_number }}</td>
+                        <td>{{ $data->bank_name }}</td>
+                        <td>{{ $data->bank_branch }}</td>
+                        <td>{{ $data->ifsc_code }}</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button"
@@ -65,30 +71,14 @@
                                     <li>
                                         <a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#activity-log">View Activity Logs</a>
                                     </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>YES BANK</td>
-                        <td>021363400005509</td>
-                        <td>Yes Bank</td>
-                        <td>GHATKOPAR, MUMBAI</td>
-                        <td>YESB0000213</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
                                     <li>
-                                        <a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#activity-log">View Activity Logs</a>
+                                        <a class="dropdown-item" href="{{ route('bankaccounts.manage', $data->id) }}">Edit</a>
                                     </li>
                                 </ul>
                             </div>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
                 <tfoot>
                     <tr>

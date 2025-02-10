@@ -110,6 +110,9 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/bank-accounts', [BankAccountsController::class, 'index'])->name('bankaccounts.index');
     Route::get('/bank-accounts/manage/{id?}', [BankAccountsController::class, 'manage'])->name('bankaccounts.manage');
+    Route::post('/bank-accounts/store', [BankAccountsController::class, 'store'])->name('bankaccounts.store');
+    Route::get('/bank-accounts/edit/{id}', [BankAccountsController::class, 'edit'])->name('bankaccounts.edit');
+    Route::post('/bank-accounts/update/{id}', [BankAccountsController::class, 'update'])->name('bankaccounts.update');
 
     Route::get('/companies', [CompaniesController::class, 'index'])->name('companies.index');
     Route::get('/companies/manage/{id?}', [CompaniesController::class, 'manage'])->name('companies.manage');

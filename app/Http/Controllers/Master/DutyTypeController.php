@@ -133,7 +133,9 @@ class DutyTypeController extends Controller
         ]);
         if ($dutyType) {
             // connectify('success', 'Product Added', 'Duty Type has been added successfully !');
-            return redirect(route('dutytype.manage', $request->id));
+            // return redirect(route('dutytype.manage', $request->id));
+            $data = MstDutyType::all();
+            return view('backend.admin.masters.dutytypes.index', compact('data'));
         }
     }
 
@@ -144,6 +146,7 @@ class DutyTypeController extends Controller
 
             // return response()->json(['success' => 'Duty Type deleted successfully.']);
             return redirect()->back()->with('success', 'Duty Type deleted successfully.');
+            // return redirect()->route('duty-types.index')->with('success', 'Duty type deleted successfully.');
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to delete tax.'],  $e);
         }

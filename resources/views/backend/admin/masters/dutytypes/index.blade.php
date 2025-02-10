@@ -69,7 +69,8 @@
                                         <a class="dropdown-item" href="{{ route('dutytype.manage', $data->id) }}">Edit</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-danger" href="{{ route('dutytype.delete', $data->id) }}">Delete</a>
+                                        {{-- <a class="dropdown-item text-danger" href="{{ route('dutytype.delete', $data->id) }}">Delete</a> --}}
+                                        <a class="dropdown-item text-danger" href="#" onclick="confirmDelete('{{ route('dutytype.delete', $data->id) }}')">Delete</a>
                                     </li>
                                 </ul>
                             </div>
@@ -104,5 +105,12 @@
     $(".dropdown-toggle").dropdown();
 
 } );
+</script>
+<script>
+    function confirmDelete(url) {
+        if (confirm('Are you sure you want to delete this duty type?')) {
+            window.location.href = url; // Proceed with the delete action if confirmed
+        }
+    }
 </script>
 @endsection
