@@ -15,7 +15,7 @@ class BankAccountsController extends Controller
         return view('backend.admin.masters.bankaccounts.index', compact('data'));
     }
     public function manage($id = null)
-    {$data = $id ?MstDutyType::active()->find($id) : null;
+    {$data = $id ?MstBankAccount::active()->find($id) : null;
         return view('backend.admin.masters.bankaccounts.manage', compact('data'));
     }
     public function store(Request $request)

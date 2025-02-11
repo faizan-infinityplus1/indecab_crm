@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('mst_bank_accounts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('admin_id')->nullable();
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             // account_name
             $table->string('account_name');
             // account_number
