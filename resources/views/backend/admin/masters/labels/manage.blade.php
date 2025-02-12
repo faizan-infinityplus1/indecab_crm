@@ -19,33 +19,49 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form>
+                <form action="{{ $data ? route('labels.update', $data->id) : route('labels.store') }}" method="post"
+                    id="formLabels">
+                    @csrf
                     <div class="mb-3">
-                        <label for="" class="form-label ">Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control  border-bottom" id="" >
-                        <span class="warning-msg-block"></span>
+                        <label for="label_name" class="form-label ">Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control  border-bottom" id="label_name" name="label_name"
+                        value="{{ old('label_name', $data->label_name ?? '') }}">
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label ">Colours <span class="text-danger">*</span></label>
+                        <label for="label_color" class="form-label ">Colours <span class="text-danger">*</span></label>
                         {{-- use value of options as a class in index page label --}}
-                        <select class="form-select border-bottom" aria-label="Default select example" name=""
-                            id=""  >
+                        <select class="form-select border-bottom" aria-label="Default select example" name="label_color"
+                            id="label_color"  >
                             <option value="selectOne">Select an option</option>
-                            <option value="bg-danger text-white">red</option>
-                            <option value="bg-primary text-white">blue</option>
-                            <option value="bg-success text-white">green</option>
-                            <option value="bg-info">sky-blue</option>
-                            <option value="bg-warning">yellow</option>
-                            <option value="bg-secondary text-white">gray</option>
-                            <option value="bg-dark text-white">black</option>
-                            <option value="bg-danger-subtle">pink</option>
+                            <option value="bg-danger text-white"
+                            {{ old('label_color', $data->label_color ?? '') == 'bg-danger text-white' ? 'selected' : '' }}>red</option>
+                            <option value="bg-primary text-white"
+                            {{ old('label_color', $data->label_color ?? '') == 'bg-primary text-white' ? 'selected' : '' }}>blue</option>
+                            <option value="bg-success text-white"
+                            {{ old('label_color', $data->label_color ?? '') == 'bg-success text-white' ? 'selected' : '' }}>green</option>
+                            <option value="bg-info"
+                            {{ old('label_color', $data->label_color ?? '') == 'bg-info' ? 'selected' : '' }}>sky-blue</option>
+                            <option value="bg-warning"
+                            {{ old('label_color', $data->label_color ?? '') == 'bg-warning' ? 'selected' : '' }}>yellow</option>
+                            <option value="bg-secondary text-white"
+                            {{ old('label_color', $data->label_color ?? '') == 'bg-secondary text-white' ? 'selected' : '' }}>gray</option>
+                            <option value="bg-dark text-white"
+                            {{ old('label_color', $data->label_color ?? '') == 'bg-dark text-white' ? 'selected' : '' }}>black</option>
+                            <option value="bg-danger-subtle"
+                            {{ old('label_color', $data->label_color ?? '') == 'bg-danger-subtle' ? 'selected' : '' }}>pink</option>
                         </select>
                         <span class="warning-msg-block"></span>
                     </div>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="" id="">
-                        <label class="form-check-label" for="">
+                        <input class="form-check-input" 
+                        type="checkbox"
+                        id="not_display_in_duties"
+                        name = "not_display_in_duties"
+                        {{
+                        old('not_display_in_duties', $data->not_display_in_duties ?? '') ? 'checked' : '' }}
+                        value="1">
+                        <label class="form-check-label" for="not_display_in_duties">
                             Do not display in duties listing?
                         </label>
                     </div>

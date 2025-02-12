@@ -15,7 +15,8 @@ class BankAccountsController extends Controller
         return view('backend.admin.masters.bankaccounts.index', compact('data'));
     }
     public function manage($id = null)
-    {$data = $id ?MstBankAccount::active()->find($id) : null;
+    {
+        $data = $id ?MstBankAccount::active()->find($id) : null;
         return view('backend.admin.masters.bankaccounts.manage', compact('data'));
     }
     public function store(Request $request)
@@ -32,12 +33,12 @@ class BankAccountsController extends Controller
                 'upi_address' => 'nullable|string',
             ],
             [
-                'account_name.required' => 'Please Select Select Type',
-                'account_number.required' => 'Please Select Select Type',
-                'ifsc_code.required' => 'Please Select Select Type',
-                'bank_name.required' => 'Please Select Select Type',
-                'bank_branch.required' => 'Please Select Select Type',
-                'cheques_in_name.required' => 'Please Select Select Type',
+                'account_name.required' => 'Please Fill Account Name',
+                'account_number.required' => 'Please Fill Account Number',
+                'ifsc_code.required' => 'Please Fill IFSC Code',
+                'bank_name.required' => 'Please Fill Bank Name',
+                'bank_branch.required' => 'Please Fill Branch Name',
+                'cheques_in_name.required' => 'Please Fill Cheques In Name Of',
             ]
         );
         if ($validator->fails()) {
@@ -82,12 +83,12 @@ class BankAccountsController extends Controller
                 'upi_address' => 'nullable|string',
             ],
             [
-                'account_name.required' => 'Please Select Select Type',
-                'account_number.required' => 'Please Select Select Type',
-                'ifsc_code.required' => 'Please Select Select Type',
-                'bank_name.required' => 'Please Select Select Type',
-                'bank_branch.required' => 'Please Select Select Type',
-                'cheques_in_name.required' => 'Please Select Select Type',
+                'account_name.required' => 'Please Fill Account Name',
+                'account_number.required' => 'Please Fill Account Number',
+                'ifsc_code.required' => 'Please Fill IFSC Code',
+                'bank_name.required' => 'Please Fill Bank Name',
+                'bank_branch.required' => 'Please Fill Branch Name',
+                'cheques_in_name.required' => 'Please Fill Cheques In Name Of',
             ]
         );
         if ($validator->fails()) {

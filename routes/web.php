@@ -94,6 +94,9 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/labels', [LabelsController::class, 'index'])->name('labels.index');
     Route::get('/labels/manage/{id?}', [LabelsController::class, 'manage'])->name('labels.manage');
+    Route::post('/labels/store', [LabelsController::class, 'store'])->name('labels.store');
+    Route::get('/labels/edit/{id}', [LabelsController::class, 'edit'])->name('labels.edit');
+    Route::post('/labels/update/{id}', [LabelsController::class, 'update'])->name('labels.update');
 
     Route::get('/feedback-forms', [FeedbackFormsController::class, 'index'])->name('feedbackforms.index');
     Route::get('/feedback-forms/manage/{id?}', [FeedbackFormsController::class, 'manage'])->name('feedbackforms.manage');

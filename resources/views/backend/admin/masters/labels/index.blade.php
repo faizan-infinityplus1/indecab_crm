@@ -44,13 +44,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($data as $data)
                     <tr>
                         <td>
-                            <span class="py-1 px-3 rounded-5 bg-danger text-white" >
-                                Cash Duty
+                            <span class="py-1 px-3 rounded-5 {{ $data->label_color }}" >
+                                {{ $data->label_name }}
                             </span>
                         </td>
-                        <td>No</td>
+                        <td>{{ $data->not_display_in_duties }}</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button"
@@ -73,123 +74,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <span class="py-1 px-3 rounded-5 bg-primary text-white">
-                                Cash Paid By Company
-                            </span>
-                        </td>
-                        <td>No</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
-                                        data-bs-target="#activity-log"
-                                        data-id="1"
-                                        data-name="asdqwe"
-                                        data-created="asd"
-                                        data-updates="asd"
-                                        {{-- data-id="{{ $data->id }}"
-                                        data-name="{{ $data->duty_name }}"
-                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
-                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
-                                        >View Activity Logs</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="py-1 px-3 rounded-5 bg-success text-white">
-                                Corporate
-                            </span>
-                        </td>
-                        <td>No</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
-                                        data-bs-target="#activity-log"
-                                        data-id="1"
-                                        data-name="asdqwe"
-                                        data-created="asd"
-                                        data-updates="asd"
-                                        {{-- data-id="{{ $data->id }}"
-                                        data-name="{{ $data->duty_name }}"
-                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
-                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
-                                        >View Activity Logs</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="py-1 px-3 rounded-5 bg-info">
-                                Corporate  VIP Guest
-                            </span>
-                        </td>
-                        <td>No</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
-                                        data-bs-target="#activity-log"
-                                        data-id="1"
-                                        data-name="asdqwe"
-                                        data-created="asd"
-                                        data-updates="asd"
-                                        {{-- data-id="{{ $data->id }}"
-                                        data-name="{{ $data->duty_name }}"
-                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
-                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
-                                        >View Activity Logs</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="py-1 px-3 rounded-5 bg-warning">
-                                Singh Duty
-                            </span>
-                        </td>
-                        <td>No</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
-                                        data-bs-target="#activity-log"
-                                        data-id="1"
-                                        data-name="asdqwe"
-                                        data-created="asd"
-                                        data-updates="asd"
-                                        {{-- data-id="{{ $data->id }}"
-                                        data-name="{{ $data->duty_name }}"
-                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
-                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
-                                        >View Activity Logs</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    
+                    @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
