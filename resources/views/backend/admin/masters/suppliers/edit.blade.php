@@ -249,15 +249,21 @@
                                     id="vehicle_no" value="{{$particularMstSupplier->mstSupplierDriverCumOwner->vehicle_no ?? ''}}">
                                 <span class="warning-msg-block"></span>
                             </div>
+                          
                             <div class="mb-3">
                                 <label for="vehicle_fuel_type" class="form-label">Fuel Type</label>
                                 <select class="form-select border-bottom" aria-label="Default select example"
                                     name="vehicle_fuel_type" id="vehicle_fuel_type">
-                                    <option value="selectOne">Select an option</option>
-                                    <option value="petrol">Petrol</option>
-                                    <option value="diesel">Diesel</option>
-                                    <option value="cng">CNG</option>
-                                    <option value="electric">Electric</option>
+                                    <option value=""
+                                    >Select an option</option>
+                                    <option value="petrol" 
+                                    {{ old('vehicle_fuel_type', $particularMstSupplier->mstSupplierDriverCumOwner->vehicle_fuel_type ?? '') == 'petrol' ? 'selected' : '' }}>Petrol</option>
+                                    <option value="diesel"
+                                    {{ old('diesel', $particularMstSupplier->mstSupplierDriverCumOwner->vehicle_fuel_type ?? '') == 'diesel' ? 'selected' : '' }}>Diesel</option>
+                                    <option value="cng"
+                                    {{ old('cng', $particularMstSupplier->mstSupplierDriverCumOwner->vehicle_fuel_type ?? '') == 'cng' ? 'selected' : '' }}>CNG</option>
+                                    <option value="electric"
+                                    {{ old('electric', $particularMstSupplier->mstSupplierDriverCumOwner->vehicle_fuel_type ?? '') == 'electric' ? 'selected' : '' }}>Electric</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -271,9 +277,9 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="owner_name" class="form-label ">Owner Name</label>
-                                <input type="text" class="form-control  border-bottom" name="owner_name"
-                                    id="owner_name" value="{{$particularMstSupplier->mstSupplierDriverCumOwner->owner_name ?? ''}}">
+                                <label for="driver_cum_owner_name" class="form-label ">Owner Name</label>
+                                <input type="text" class="form-control  border-bottom" name="driver_cum_owner_name"
+                                    id="driver_cum_owner_name" value="{{$particularMstSupplier->mstSupplierDriverCumOwner->owner_name ?? ''}}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -1264,7 +1270,7 @@
             document.getElementById("start").innerHTML = generateTimeSlots();
             document.getElementById("end").innerHTML = generateTimeSlots();
             document.getElementById("state").innerHTML = generateStateOptions(particularMstSupplier.state);
-            document.getElementById("head_office_city").innerHTML = generateStateOptions(particularMstSupplier
+            document.getElementById("head_office_city").innerHTML = generateCityOptions(particularMstSupplier
                 .head_office_city);
             document.getElementById("gst_state").innerHTML = generateStateOptions(particularMstSupplier.gst_state);
             document.getElementById("start").innerHTML = generateTimeSlots(particularMstSupplier.start);

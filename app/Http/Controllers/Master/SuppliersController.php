@@ -29,8 +29,7 @@ class SuppliersController extends Controller
 {
     public function index()
     {
-        $mstSupplier = MstSupplier::active()->with('supplierGroups')->orderBy('id', 'DESC')->get();
-
+        $mstSupplier = MstSupplier::active()->with('supplierGroups','mstSupplierDriverCumOwnerMany')->orderBy('id', 'DESC')->get();
         return view('backend.admin.masters.suppliers.index', compact('mstSupplier'));
     }
     public function create()
@@ -132,7 +131,6 @@ class SuppliersController extends Controller
                 'gst_addr' => $request->gst_addr,
                 'gst_state' => $request->gst_state,
                 'is_gst_tally' => $request->is_gst_tally ?? false,
-                'revrse_chrg' => $request->revrse_chrg,
                 'branch' => $request->branch,
                 'is_active' => $request->is_active ?? false,
 
@@ -163,7 +161,7 @@ class SuppliersController extends Controller
                     'vehicle_model' => $request->vehicle_model,
                     'vehicle_no' => $request->vehicle_no,
                     'vehicle_fuel_type' => $request->vehicle_fuel_type,
-                    'owner_name' => $request->owner_name,
+                    'owner_name' => $request->driver_cum_owner_name,
                     'owner_phone_no' => $request->owner_phone_no,
                     'regis_owner_name' => $request->regis_owner_name,
                     'regis_date' => $request->regis_date,
@@ -190,7 +188,6 @@ class SuppliersController extends Controller
                     'license_expiry_date' => $request->license_expiry_date,
                     'police_card_no' => $request->police_card_no,
                     'police_expiry_date' => $request->police_expiry_date,
-                    'police_card_no' => $request->police_card_no,
                     'police_veri_number' => $request->police_veri_number,
                     'police_veri_expiry_date' => $request->police_veri_expiry_date,
                     'is_covid_vaccinated' => $request->is_covid_vaccinated ?? false,
@@ -422,7 +419,8 @@ class SuppliersController extends Controller
                 return redirect(route('suppliers.index'))->withInput();
             }
             $supplierId = MstSupplier::where('id', $request->id)->firstOrFail();
-
+          
+            
             $supplierId->update([
                 'name' => $request->name,
                 'address' => $request->address,
@@ -457,13 +455,78 @@ class SuppliersController extends Controller
                 'gst_addr' => $request->gst_addr,
                 'gst_state' => $request->gst_state,
                 'is_gst_tally' => $request->is_gst_tally ?? false,
-                'revrse_chrg' => $request->revrse_chrg,
                 'branch' => $request->branch,
                 'supplier_code' => $request->supplier_code,
                 'is_active' => $request->is_active ?? false,
 
             ]);
             $supplierId = $supplierId->id;
+            if ($request->filled('vehicle_count') || $request->filled('owner_name')) {    
+                MstSupplierCompanyDetail::updateOrCreate(
+                    [
+                        'supplier_id' => $supplierId
+                    ],
+                    [
+                        'vehicle_count'  => $request->vehicle_count ?? '',
+                        'owner_name' => $request->owner_name ?? '',
+                    ]
+                    );
+               
+            }
+            if ($request->has('vehicle_model') && !empty($request->get('vehicle_model'))) {
+                if ($request->hasFile("driver_image")) {
+                    $driverImage = $request->file("driver_image");
+                    $driverImagePath = $driverImage->store('suppliers/supplier-driver-cum-owners/avatars', 'public');
+                }
+                if ($request->hasFile("vehicle_image")) {
+                    $vehicleImage = $request->file("vehicle_image");
+                    $vehicleImagePath = $vehicleImage->store('suppliers/supplier-driver-cum-owners/vehicle-images', 'public');
+                }
+                MstSupplierDriverCumOwner::updateOrCreate(
+                    [
+                        'supplier_id' => $supplierId
+                    ],
+                    [
+                        'supplier_id' => $supplierId,
+                        'driver_image' => $driverImagePath ?? '',
+                        'vehicle_image' => $vehicleImagePath ?? '',
+                        'vehicle_model' => $request->vehicle_model,
+                        'vehicle_no' => $request->vehicle_no,
+                        'vehicle_fuel_type' => $request->vehicle_fuel_type,
+                        'owner_name' => $request->driver_cum_owner_name,
+                        'owner_phone_no' => $request->owner_phone_no,
+                        'regis_owner_name' => $request->regis_owner_name,
+                        'regis_date' => $request->regis_date,
+                        'parts_chasis_no' => $request->parts_chasis_no,
+                        'parts_engine_no' => $request->parts_engine_no,
+                        'insaurance_company_name' => $request->insaurance_company_name,
+                        'insurance_issue_date' => $request->insurance_issue_date,
+                        'insurance_policy_no' => $request->insurance_policy_no,
+                        'insurance_due_date' => $request->insurance_due_date,
+                        'insurance_premium_account' => $request->insurance_premium_account,
+                        'insurance_cover_account' => $request->insurance_cover_account,
+                        'rto_address' => $request->rto_address,
+                        'rto_tax_efficiency' => $request->rto_tax_efficiency,
+                        'rto_expiry_date' => $request->rto_expiry_date,
+                        'fitness_no' => $request->fitness_no,
+                        'fitness_expiry_date' => $request->fitness_expiry_date,
+                        'auth_number' => $request->auth_number,
+                        'auth_expiry_date' => $request->auth_expiry_date,
+                        'speed_details' => $request->speed_details,
+                        'speed_expiry_date' => $request->speed_expiry_date,
+                        'puc_number' => $request->puc_number,
+                        'puc_expiry_date' => $request->puc_expiry_date,
+                        'license_no' => $request->license_no,
+                        'license_expiry_date' => $request->license_expiry_date,
+                        'police_card_no' => $request->police_card_no,
+                        'police_expiry_date' => $request->police_expiry_date,
+                        'police_veri_number' => $request->police_veri_number,
+                        'police_veri_expiry_date' => $request->police_veri_expiry_date,
+                        'is_covid_vaccinated' => $request->is_covid_vaccinated ?? false,
+                    ]
+                    );
+               
+            }
 
             $applicableTaxesData = [];
             $interstateTaxesData = [];
