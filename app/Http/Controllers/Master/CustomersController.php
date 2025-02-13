@@ -44,7 +44,7 @@ class CustomersController extends Controller
             $validator = Validator::make(
                 $request->all(),
                 [
-                    'name' => 'nullable|string',
+                    'name' => 'required|string',
                     'address' => 'nullable|string',
                     'pincode' => 'nullable|numeric',
                     'state' => 'nullable|string',
@@ -89,171 +89,172 @@ class CustomersController extends Controller
                 ]
             );
             if ($validator->fails()) {
-                // dd($request->max_hours);
-                // connectify('error', 'Add Product', $validator->errors()->first());
-                dd($validator->errors()->first());
-                return redirect(route('customers.index'))->withInput();
+                // dd($validator->errors()->first());
+                notify()->error('Connection Found','Welcome to Laravel Notify ⚡️') ;
+
+            
+
+                return redirect(route('customers.index'));
             }
+            // $customer = MstCustomer::create([
+            //     'name' => $request->name,
+            //     'address' => $request->address,
+            //     'pincode' => $request->pincode,
+            //     'state' => $request->state,
+            //     'cust_groups_id' => $request->cust_groups_id,
+            //     'phone_no' => $request->phone_no,
+            //     'email_id' => $request->email_id,
+            //     'pan_no' => $request->pan_no,
+            //     'gst_no' => $request->gst_no,
+            //     'tds_perc' => $request->tds_perc,
+            //     'inv_def' => $request->inv_def,
+            //     'def_disc' => $request->def_disc,
+            //     'base_city_fuel' => $request->base_city_fuel,
+            //     'sales_comis_perc' => $request->sales_comis_perc,
+            //     'country' => $request->country,
+            //     'def_tax_classif' => $request->def_tax_classif,
+            //     'customer_id' => $request->customer_id,
+            //     'gst_name' => $request->gst_name,
+            //     'gst_addr' => $request->gst_addr,
+            //     'gst_state' => $request->gst_state,
+            //     'is_gst_primary' => $request->is_gst_primary ?? false,
+            //     'is_gst_tally' => $request->is_gst_tally ?? false,
+            //     'altern_phone_no' => $request->altern_phone_no,
+            //     'altern_email_id' => $request->altern_email_id,
+            //     'gst_type' => $request->gst_type,
+            //     'serv_tax_no' => $request->serv_tax_no,
+            //     'revrse_chrg' => $request->revrse_chrg,
+            //     'surcharg_perc' => $request->surcharg_perc,
+            //     'def_car_chrg_disc' => $request->def_car_chrg_disc,
+            //     'force_fuel_type' => $request->force_fuel_type,
+            //     'feedback_id' => $request->feedback_id,
+            //     'company_id' => $request->company_id,
+            //     'branch' => $request->branch,
+            //     'notes' => $request->notes,
+            //     'inv_term_cond' => $request->inv_term_cond,
+            //     'cust_code' => $request->cust_code,
+            //     'is_inv_og_hide' => $request->is_inv_og_hide ?? false,
+            //     'is_active' => $request->is_active ?? false,
 
-            $customer = MstCustomer::create([
-                'name' => $request->name,
-                'address' => $request->address,
-                'pincode' => $request->pincode,
-                'state' => $request->state,
-                'cust_groups_id' => $request->cust_groups_id,
-                'phone_no' => $request->phone_no,
-                'email_id' => $request->email_id,
-                'pan_no' => $request->pan_no,
-                'gst_no' => $request->gst_no,
-                'tds_perc' => $request->tds_perc,
-                'inv_def' => $request->inv_def,
-                'def_disc' => $request->def_disc,
-                'base_city_fuel' => $request->base_city_fuel,
-                'sales_comis_perc' => $request->sales_comis_perc,
-                'country' => $request->country,
-                'def_tax_classif' => $request->def_tax_classif,
-                'customer_id' => $request->customer_id,
-                'gst_name' => $request->gst_name,
-                'gst_addr' => $request->gst_addr,
-                'gst_state' => $request->gst_state,
-                'is_gst_primary' => $request->is_gst_primary ?? false,
-                'is_gst_tally' => $request->is_gst_tally ?? false,
-                'altern_phone_no' => $request->altern_phone_no,
-                'altern_email_id' => $request->altern_email_id,
-                'gst_type' => $request->gst_type,
-                'serv_tax_no' => $request->serv_tax_no,
-                'revrse_chrg' => $request->revrse_chrg,
-                'surcharg_perc' => $request->surcharg_perc,
-                'def_car_chrg_disc' => $request->def_car_chrg_disc,
-                'force_fuel_type' => $request->force_fuel_type,
-                'feedback_id' => $request->feedback_id,
-                'company_id' => $request->company_id,
-                'branch' => $request->branch,
-                'notes' => $request->notes,
-                'inv_term_cond' => $request->inv_term_cond,
-                'cust_code' => $request->cust_code,
-                'is_inv_og_hide' => $request->is_inv_og_hide ?? false,
-                'is_active' => $request->is_active ?? false,
-
-            ]);
-            $customerId = $customer->id;
-
-
-            // Process Applicable Taxes
-            $applicableTaxesData = [];
-            for ($i = 1; $request->has("appli_tax$i"); $i++) {
-                $taxId = $request->input("appli_tax{$i}");
-                $isNotCharged = $request->input("appli_tax_n_ch{$i}") ? true : false;
-                // Add to applicable taxes data array
-                $applicableTaxesData[] = [
-                    'admin_id' => Auth::id(),
-                    'customer_id' => $customerId,
-                    'tax_id' => $taxId,
-                    'not_charged' => $isNotCharged,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-                // print_r($applicableTaxesData);
-            }
-            MstCustomerApplicableTaxes::insert($applicableTaxesData);
-            // dd($applicableTaxesData);
+            // ]);
+            // $customerId = $customer->id;
 
 
-            // Process Interstate Taxes
-            $interstateTaxesData = [];
-            for ($i = 1; $request->has("inter_appli_tax$i"); $i++) {
-                $taxId = $request->input("inter_appli_tax$i");
-                $isNotCharged = $request->has("inter_appli_tax_n_ch{$i}") ? 1 : 0;
-                // Add to interstate taxes data array
-                $interstateTaxesData[] = [
-                    'admin_id' => Auth::id(),
-                    'customer_id' => $customerId,
-                    'tax_id' => $taxId,
-                    'not_charged' => $isNotCharged,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-            }
-            MstCustomerInterstateTaxes::insert($interstateTaxesData);
-            // dd($interstateTaxesData);
-            // Driver Allowance Setting
-            $driverAllowSettingData = [];
-            for ($i = 1; $request->has("dri_allow_set_city$i"); $i++) {
-                $cityName = $request->input("dri_allow_set_city$i");
-                $earlyTime = $request->input("dri_allow_set_early_time{$i}");
-                $lateTime = $request->input("dri_allow_set_late_time{$i}");
-                $outstaOvernigTime = $request->input("dri_allow_set_outst_overnig_time{$i}");
-                // Add to interstate taxes data array
-                $driverAllowSettingData[] = [
-                    'admin_id' => Auth::id(),
-                    'customer_id' => $customerId,
-                    'city_name' => $cityName,
-                    'early_time' => $earlyTime,
-                    'late_time' => $lateTime,
-                    'outsta_overnig_time' => $outstaOvernigTime,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-            }
-            MstCustomerDriverAllownanceSetting::insert($driverAllowSettingData);
-            // dd($driverAllowSettingData);
-
-            // Duty Type Types
-            $dutyTypeTypeData = [];
-            for ($i = 1; $request->has("dut_typ_tim$i"); $i++) {
-                $dutyType = $request->input("dut_typ_tim$i");
-                $startTime = $request->input("dut_typ_tim_str{$i}");
-                $endTime = $request->input("dut_typ_tim_end{$i}");
-                // Add to interstate taxes data array
-                $dutyTypeTypeData[] = [
-                    'admin_id' => Auth::id(),
-                    'customer_id' => $customerId,
-                    'duty_type' => $dutyType,
-                    'start_time' => $startTime,
-                    'end_time' => $endTime,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-            }
-            MstCustomerDutyType::insert($dutyTypeTypeData);
-            // dd($dutyTypeTypeData);
-
-            // Files
-            $filesData = [];
-            for ($i = 1; $request->has("file_name$i"); $i++) {
-                $fileName = $request->input("file_name$i");
-
-                if ($request->hasFile("image$i")) {
-                        $file = $request->file("image{$i}");
-                        $filePath = $file->store('customer-images', 'public'); // Store in 'storage/app/public/customer-images'
-
-                    // Add file data to array
-                    $filesData[] = [
-                        'admin_id' => Auth::user()->id,
-                        'customer_id' => $customerId,
-                        'name' => $fileName,
-                        'image' => $filePath, // Save the unique file name
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ];
-                    // dd($filesData);
-                } else {
-
-                    $filesData[] = [
-                        'admin_id' => Auth::user()->id,
-                        'customer_id' => $customerId,
-                        'name' => $fileName,
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ];
-                }
-            }
-
-            MstCustomerFile::insert($filesData);
+            // // Process Applicable Taxes
+            // $applicableTaxesData = [];
+            // for ($i = 1; $request->has("appli_tax$i"); $i++) {
+            //     $taxId = $request->input("appli_tax{$i}");
+            //     $isNotCharged = $request->input("appli_tax_n_ch{$i}") ? true : false;
+            //     // Add to applicable taxes data array
+            //     $applicableTaxesData[] = [
+            //         'admin_id' => Auth::id(),
+            //         'customer_id' => $customerId,
+            //         'tax_id' => $taxId,
+            //         'not_charged' => $isNotCharged,
+            //         'created_at' => now(),
+            //         'updated_at' => now(),
+            //     ];
+            //     // print_r($applicableTaxesData);
+            // }
+            // MstCustomerApplicableTaxes::insert($applicableTaxesData);
+            // // dd($applicableTaxesData);
 
 
+            // // Process Interstate Taxes
+            // $interstateTaxesData = [];
+            // for ($i = 1; $request->has("inter_appli_tax$i"); $i++) {
+            //     $taxId = $request->input("inter_appli_tax$i");
+            //     $isNotCharged = $request->has("inter_appli_tax_n_ch{$i}") ? 1 : 0;
+            //     // Add to interstate taxes data array
+            //     $interstateTaxesData[] = [
+            //         'admin_id' => Auth::id(),
+            //         'customer_id' => $customerId,
+            //         'tax_id' => $taxId,
+            //         'not_charged' => $isNotCharged,
+            //         'created_at' => now(),
+            //         'updated_at' => now(),
+            //     ];
+            // }
+            // MstCustomerInterstateTaxes::insert($interstateTaxesData);
+            // // dd($interstateTaxesData);
+            // // Driver Allowance Setting
+            // $driverAllowSettingData = [];
+            // for ($i = 1; $request->has("dri_allow_set_city$i"); $i++) {
+            //     $cityName = $request->input("dri_allow_set_city$i");
+            //     $earlyTime = $request->input("dri_allow_set_early_time{$i}");
+            //     $lateTime = $request->input("dri_allow_set_late_time{$i}");
+            //     $outstaOvernigTime = $request->input("dri_allow_set_outst_overnig_time{$i}");
+            //     // Add to interstate taxes data array
+            //     $driverAllowSettingData[] = [
+            //         'admin_id' => Auth::id(),
+            //         'customer_id' => $customerId,
+            //         'city_name' => $cityName,
+            //         'early_time' => $earlyTime,
+            //         'late_time' => $lateTime,
+            //         'outsta_overnig_time' => $outstaOvernigTime,
+            //         'created_at' => now(),
+            //         'updated_at' => now(),
+            //     ];
+            // }
+            // MstCustomerDriverAllownanceSetting::insert($driverAllowSettingData);
+            // // dd($driverAllowSettingData);
 
-            return redirect(route('customers.index'));
+            // // Duty Type Types
+            // $dutyTypeTypeData = [];
+            // for ($i = 1; $request->has("dut_typ_tim$i"); $i++) {
+            //     $dutyType = $request->input("dut_typ_tim$i");
+            //     $startTime = $request->input("dut_typ_tim_str{$i}");
+            //     $endTime = $request->input("dut_typ_tim_end{$i}");
+            //     // Add to interstate taxes data array
+            //     $dutyTypeTypeData[] = [
+            //         'admin_id' => Auth::id(),
+            //         'customer_id' => $customerId,
+            //         'duty_type' => $dutyType,
+            //         'start_time' => $startTime,
+            //         'end_time' => $endTime,
+            //         'created_at' => now(),
+            //         'updated_at' => now(),
+            //     ];
+            // }
+            // MstCustomerDutyType::insert($dutyTypeTypeData);
+            // // dd($dutyTypeTypeData);
+
+            // // Files
+            // $filesData = [];
+            // for ($i = 1; $request->has("file_name$i"); $i++) {
+            //     $fileName = $request->input("file_name$i");
+
+            //     if ($request->hasFile("image$i")) {
+            //             $file = $request->file("image{$i}");
+            //             $filePath = $file->store('customer-images', 'public'); // Store in 'storage/app/public/customer-images'
+
+            //         // Add file data to array
+            //         $filesData[] = [
+            //             'admin_id' => Auth::user()->id,
+            //             'customer_id' => $customerId,
+            //             'name' => $fileName,
+            //             'image' => $filePath, // Save the unique file name
+            //             'created_at' => now(),
+            //             'updated_at' => now(),
+            //         ];
+            //         // dd($filesData);
+            //     } else {
+
+            //         $filesData[] = [
+            //             'admin_id' => Auth::user()->id,
+            //             'customer_id' => $customerId,
+            //             'name' => $fileName,
+            //             'created_at' => now(),
+            //             'updated_at' => now(),
+            //         ];
+            //     }
+            // }
+
+            // MstCustomerFile::insert($filesData);
+
+
+
+            // return redirect(route('customers.index'));
         } catch (Exception $e) {
             dd($e);
         }
