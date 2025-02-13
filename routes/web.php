@@ -83,8 +83,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/suppliers/groups', [SuppliersController::class, 'showSuppliersGroups'])->name('showSuppliersGroups');
     Route::get('/suppliers/groups/create', [SuppliersController::class, 'createSuppliersGroups'])->name('createSuppliersGroups');
 
-    Route::get('/drivers', [MyDriversController::class, 'showDrivers'])->name('showDrivers');
-    Route::get('/drivers/create', [MyDriversController::class, 'createDrivers'])->name('createDrivers');
+    Route::get('/drivers', [MyDriversController::class, 'index'])->name('mydrivers.index');
+    Route::get('/drivers/create', [MyDriversController::class, 'create'])->name('mydrivers.create');
+    Route::post('/drivers/store', [MyDriversController::class, 'store'])->name('mydrivers.store');
 
     Route::get('/vehicles', [VehiclesController::class, 'showVehicles'])->name('showVehicles');
     Route::get('/vehicles/create', [VehiclesController::class, 'createVehicles'])->name('createVehicles');

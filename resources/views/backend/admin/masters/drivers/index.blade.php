@@ -103,7 +103,7 @@
         <h4>Drivers</h4>
 
         <div class="text-end d-flex justify-content-end align-items-center gap-2">
-            <div class="btn-group" role="group"><a href="{{route('createDrivers')}}" class="btn btn-primary">Add Driver</a></div>
+            <div class="btn-group" role="group"><a href="{{route('mydrivers.create')}}" class="btn btn-primary">Add Driver</a></div>
             <div class="dropdown">
                 <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">

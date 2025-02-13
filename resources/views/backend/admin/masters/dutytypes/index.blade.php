@@ -45,7 +45,34 @@
                     @foreach($data as $data)
                     <tr>
                         <td>{{ $data->duty_name }}</td>
-                        <td>{{ $data->duty_type }}</td>
+                        <td >
+
+                            @switch($data->duty_type)
+                            @case("hrKmLocal")
+                                HR-KM (Local)
+                                @break
+                    
+                            @case("dayKmOutstation")
+                                Day-KM (Outstation)
+                                @break
+                    
+                            @case("longDurationDaily")
+                                Long Duration - Total KM Daily HR (Monthly Bookings)
+                                @break
+                    
+                            @case("longDurationMonthly")
+                                Long Duration - Total KM & HR (Monthly Bookings)
+                                @break
+                    
+                            @case("flatRate")
+                                Flat Rate
+                                @break
+                    
+                            @default
+                                (Select One)
+                        @endswitch
+
+                        </td>
                         <td>{{ $data->max_km ?? $data->max_kmper_day ?? 0}}</td>
                         <td>{{ $data->max_hours ?? 0}}</td>
                         <td>
@@ -105,6 +132,9 @@
     $(".dropdown-toggle").dropdown();
 
 } );
+
+
+        
 </script>
 <script>
     function confirmDelete(url) {
