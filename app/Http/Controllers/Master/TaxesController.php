@@ -42,7 +42,7 @@ class TaxesController extends Controller
         $tax = MstTax::create([
             'name' => $request->name,
             'percentage' => $request->percentage,
-            'in_active' => $request->in_active ?? false,
+            'active' => $request->active ?? false,
 
         ]);
         if ($tax) {
@@ -75,7 +75,7 @@ class TaxesController extends Controller
         $tax->update([
             'name' => $request->name,
             'percentage' => $request->percentage,
-            'in_active' => $request->in_active ?? false,
+            'active' => $request->active ?? false,
         ]);
         if ($tax) {
             // connectify('success', 'Product Added', 'Duty Type has been added successfully !');

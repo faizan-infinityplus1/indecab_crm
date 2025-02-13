@@ -108,6 +108,9 @@ Route::middleware('auth:admin')->group(function () {
     
     Route::get('/billing-items', [BillingItemsController::class, 'index'])->name('billingitems.index');
     Route::get('/billing-items/manage/{id?}', [BillingItemsController::class, 'manage'])->name('billingitems.manage');
+    Route::post('/billing-items/store', [BillingItemsController::class, 'store'])->name('billingitems.store');
+    Route::get('/billing-items/edit/{id}', [BillingItemsController::class, 'edit'])->name('billingitems.edit');
+    Route::post('/billing-items/update/{id}', [BillingItemsController::class, 'update'])->name('billingitems.update');
 
     Route::get('/branches', [BranchesController::class, 'index'])->name('branches.index');
     Route::get('/branches/manage/{id?}', [BranchesController::class, 'manage'])->name('branches.manage');

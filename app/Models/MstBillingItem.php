@@ -5,14 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class MstTax extends Model
+class MstBillingItem extends Model
 {
-    protected $fillable = [
-        'name',  //required
-        'percentage',
-        'active'
-
+     protected $fillable = [
+        'name',
+        'short_name',
+        'taxable',
+        'allow_driver_to_add',
+        'req_bef_strt_duty',
+        'n_charged_on_customer_invoice',
+        'active',
     ];
+
+    
     public function scopeActive($query)
     {
         return $query->where('admin_id', Auth::user()->id);
@@ -27,4 +32,5 @@ class MstTax extends Model
             }
         });
     }
+    
 }
