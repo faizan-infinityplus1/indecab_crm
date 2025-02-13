@@ -248,9 +248,9 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="owner_name" class="form-label ">Owner Name</label>
-                                <input type="text" class="form-control  border-bottom" name="owner_name"
-                                    id="owner_name">
+                                <label for="driver_cum_owner_name" class="form-label ">Owner Name</label>
+                                <input type="text" class="form-control  border-bottom" name="driver_cum_owner_name"
+                                    id="driver_cum_owner_name">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -400,7 +400,7 @@
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Expiry Date</label>
+                                        <label for="speed_expiry_date" class="form-label ">Expiry Date</label>
                                         <input type="date" class="form-control  border-bottom"
                                             name="speed_expiry_date" id="speed_expiry_date">
                                         <span class="warning-msg-block"></span>
@@ -411,7 +411,7 @@
                                 <div class="panel-heading bg-light p-3">PUC</div>
                                 <div class="p-3">
                                     <div class="mb-3">
-                                        <label for="" class="form-label ">Number</label>
+                                        <label for="puc_number" class="form-label ">Number</label>
                                         <input type="text" class="form-control  border-bottom" name="puc_number"
                                             id="puc_number">
                                         <span class="warning-msg-block"></span>
@@ -795,7 +795,7 @@
                         </label>
                     </div> --}}
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="is_active" id="is_active">
+                        <input class="form-check-input" type="checkbox" value="1" id="is_active">
                         <label class="form-check-label" for="is_active">
                             Active
                         </label>
@@ -869,6 +869,7 @@
             document.getElementById("end").innerHTML = generateTimeSlots();
             document.getElementById("state").innerHTML = generateStateOptions();
             document.getElementById("gst_state").innerHTML = generateStateOptions();
+            document.getElementById("head_office_city").innerHTML = generateCityOptions();
 
             console.log(generateCitySelect2());
             $("#limit_allot_booking").select2({
