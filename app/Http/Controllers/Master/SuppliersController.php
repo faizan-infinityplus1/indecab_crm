@@ -29,8 +29,7 @@ class SuppliersController extends Controller
 {
     public function index()
     {
-        $mstSupplier = MstSupplier::active()->with('supplierGroups')->orderBy('id', 'DESC')->get();
-
+        $mstSupplier = MstSupplier::active()->with('supplierGroups','mstSupplierDriverCumOwnerMany')->orderBy('id', 'DESC')->get();
         return view('backend.admin.masters.suppliers.index', compact('mstSupplier'));
     }
     public function create()

@@ -68,6 +68,11 @@ class MstSupplier extends Model
         return $this->hasMany(MstSupplierGroup::class, 'id');
     }
 
+    public function mstSupplierDriverCumOwnerMany()
+    {
+        return $this->hasMany(MstSupplierDriverCumOwner::class, 'supplier_id', 'id');
+    }
+
     public function mstSupplierDriverCumOwner()
     {
         return $this->hasOne(MstSupplierDriverCumOwner::class, 'supplier_id', 'id');
