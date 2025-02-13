@@ -10,7 +10,7 @@ class MstTax extends Model
     protected $fillable = [
         'name',  //required
         'percentage',
-        'in_active'
+        'active'
 
     ];
     public function scopeActive($query)

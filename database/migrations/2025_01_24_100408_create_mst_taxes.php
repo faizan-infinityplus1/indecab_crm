@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->string('name');
             $table->decimal('percentage', 5, 2)->nullable();
-            $table->boolean('in_active')->default(false);
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
