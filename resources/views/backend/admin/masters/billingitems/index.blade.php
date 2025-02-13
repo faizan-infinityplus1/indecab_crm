@@ -50,13 +50,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($data as $data)
                     <tr>
-                        <td>Car Wash</td>
-                        <td>NA</td>
-                        <td>No</td>
-                        <td>No</td>
-                        <td>No</td>
-                        <td><div class="text-success">Active</div></td>
+                        <td>{{ $data->name }}</td>
+                        <td>{!! !empty($data->short_name) ? $data->short_name : '<span class="text-secondary">NA</span>' !!}</td>
+                        <td>{!! ($data->taxable) ? '<span class="text-success">Yes</span>' : '<span class="text-secondary">No</span>'!!}</td>
+                        <td>{!! ($data->allow_driver_to_add) ? '<span class="text-success">Yes</span>' : '<span class="text-secondary">No</span>'!!}</td>
+                        <td>{!! ($data->n_charged_on_customer_invoice) ? '<span class="text-success">Yes</span>' : '<span class="text-secondary">No</span>'!!}</td>
+                        <td>{!! ($data->active) ? '<span class="text-success">Active</span>' : '<span class="text-danger">Inactive</span>'!!}</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button"
@@ -72,7 +73,8 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    @endforeach
+                    {{-- <tr>
                         <td>Driver Allowance</td>
                         <td>NA</td>
                         <td><div class="text-success">Yes</div></td>
@@ -93,7 +95,7 @@
                                 </ul>
                             </div>
                         </td>
-                    </tr>
+                    </tr> --}}
                 </tbody>
                 <tfoot>
                     <tr>

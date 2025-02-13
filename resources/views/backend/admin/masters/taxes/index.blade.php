@@ -99,7 +99,8 @@
                         <td>{{$data->name}}</td>
                         <td>{{$data->percentage}}</td>
                         <td>
-                            <div class="text-success">Active</div>
+                            {!! ($data->in_active) ? '<span class="text-success">Active</span>' : '<span class="text-danger">Inactive</span>'!!}
+                            {{-- <div class="text-success">Active</div> --}}
                         </td>
                         <td>
                             <div class="dropdown">
