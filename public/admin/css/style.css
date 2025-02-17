@@ -1,0 +1,95 @@
+.nav_menu_container ul li {
+    list-style-type: none;
+}
+
+/* notify start here */
+.notify{
+    z-index: 1111111111111;
+}
+.notify svg{
+    /* font-size: 20px; */
+    width: 35px;
+    height: 35px;
+}
+.notify .leading-5{
+font-size: 15px;
+}
+
+
+/* swal toast start here */
+.swal-toast {
+    min-width: auto !important; /* Remove default width */
+    width: fit-content !important; /* Fit text content */
+    padding: 10px 20px !important; /* Adjust padding */
+    font-size: 14px !important;
+    border-radius: 5px !important;
+}
+.form-select.is-invalid:focus, .was-validated .form-select:invalid:focus {
+    box-shadow: unset !important;
+    border-bottom: 2px solid red !important;
+}
+.form-control.is-invalid:focus, .was-validated .form-control:invalid:focus {
+    box-shadow: unset !important;
+    border-bottom: 2px solid red !important;
+}
+/* swal toast end here */
+.logo_container img {
+    height: 50px;
+}
+
+.page-heading-container {
+    padding-left: 27px;
+    padding-right: 27px;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="date"], select {
+    border-radius: 0px !important;
+    border: none !important;
+    border-bottom: 1px solid #dee2e6 !important   ;
+    /* border-bottom: 1px solid blue; */
+}
+.form-control, textarea.form-control {
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #dee2e6;
+    background-color: transparent;
+}
+.form-control:focus, .form-select:focus {
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid blue !important;
+    border-radius: 0;
+}
+
+/* modal code start */
+.activity-logs-modal {
+    min-width: 900px;
+}
+
+/* modal code end */
+
+
+ul.dropdown-menu.dropdown-menu-end {
+    right: 0;
+    left: auto;
+}
+
+.fa-angle-left{
+    font-size: 24px;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #dee2e6;
+    background-color: transparent;
+}
+
+.hover-link {
+    cursor: pointer;
+}
+.hover-link:hover {
+    color: rgb(13 110 253) !important;
+    border-color: rgb(13 110 253) !important;
+}
