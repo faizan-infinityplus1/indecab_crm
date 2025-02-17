@@ -1,301 +1,294 @@
 @extends ('layouts.admin-master')
 @section('content')
-    <style>
-        .ql-editor {
-            min-height: 5.75rem;
-        }
-    </style>
-    <div x-data="block">
-        <div class="container-fluid p-5">
-            {{-- page heading start --}}
-            <div class="page-header border-bottom bg-white mb-3">
-                <div class="row">
-                    <div class="col-md-6 position-static" x-show="open">
-                        <div class="position-absolute" style="top: 6rem; left: 0rem;">
-                            <button type="button" class="btn" onclick="window.history.back()"><i
-                                    class="fa-solid fa-angle-left"></i></button>
-                        </div>
-                        <h1 class="h3 pb-3">New Customer</h1>
+<style>
+    .ql-editor {
+        min-height: 92px;
+    }
+</style>
+<div x-data="block">
+    <div class="container-fluid p-5">
+        {{-- page heading start --}}
+        <div class="page-header border-bottom bg-white mb-3">
+            <div class="row">
+                <div class="col-md-6 position-static" x-show="open">
+                    <div class="position-absolute" style="top: 96px; left: 0px;">
+                        <button type="button" class="btn" onclick="window.history.back()"><i
+                            class="fa-solid fa-angle-left"></i></button>
                     </div>
-                    <div class="col-md-6 text-end">
-                        {{-- <div class="btn-group" role="group"><a href="#" class="btn btn-primary">Add Duty Type</a></div>
+                    <h1 class="h3 pb-3">New Customer</h1>
+                </div>
+                <div class="col-md-6 text-end">
+                    {{-- <div class="btn-group" role="group"><a href="#" class="btn btn-primary">Add Duty Type</a></div>
                     --}}
-                    </div>
                 </div>
             </div>
-            {{-- page heading end --}}
-            <div>
-                <form action="{{ route('customers.store') }}" method="post" id="formCustomer"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="name" class="form-label ">Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control  border-bottom" name="name" id="name">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Address </label>
-                                <textarea class="form-control" rows="10" name="address" id="address"></textarea>
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="pincode" class="form-label ">Pin Code </label>
-                                <input type="number" class="form-control  border-bottom" maxlength="6" name="pincode"
-                                    id="pincode">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="state" class="form-label ">State</label>
-                                <select class="form-select border-bottom" aria-label="Default select example" name="state"
-                                    id="state">
-
-                                </select>
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="cust_groups_id" class="form-label ">Customer Group</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="cust_groups_id" id="cust_groups_id">
-                                    <option style="display:none;" value="">option one</option>
-                                    @foreach ($customerGroup as $data)
-                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                    @endforeach
-                                </select>
-                                <span class="warning-msg-block"></span>
-                            </div>
+        </div>
+        {{-- page heading end --}}
+        <div>
+            <form action="{{ route('customers.store') }}" method="post" id="formCustomer" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="name" class="form-label ">Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control  border-bottom" name="name" id="name">
+                            <span class="warning-msg-block"></span>
                         </div>
-                        <div class="col-md-6">
-                            <div class="bg-light mb-3 p-3">
-                                <b>GSTIN Billing details -</b> Only to be filled if this customer has different GSTIN
-                                billing details.
-                                <div class="mb-3">
-                                    <label for="gst_name" class="form-label">Billing Name </label>
-                                    <input type="text" class="form-control  border-bottom" name="gst_name"
-                                        id="gst_name">
-                                    <span class="warning-msg-block"></span>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="gst_addr" class="form-label">Billing Address </label>
-                                    <textarea class="form-control" rows="10" name="gst_addr" id="gst_addr"></textarea>
-                                    <span class="warning-msg-block"></span>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="gst_state" class="form-label ">State</label>
-                                    <select class="form-select border-bottom" aria-label="Default select example"
-                                        name="gst_state" id="gst_state">
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address </label>
+                            <textarea class="form-control" rows="10" name="address" id="address"></textarea>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pincode" class="form-label ">Pin Code </label>
+                            <input type="number" class="form-control  border-bottom" maxlength="6" name="pincode"
+                                id="pincode">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="state" class="form-label ">State</label>
+                            <select class="form-select border-bottom" aria-label="Default select example" name="state"
+                                id="state">
 
-                                    </select>
-                                    <span class="warning-msg-block"></span>
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" value="1" name="is_gst_primary"
-                                        id="is_gst_primary">
-                                    <label class="form-check-label" for="is_gst_primary">
-                                        Use billing name as primary name on invoice?
-                                    </label>
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" value="1" name="is_gst_tally"
-                                        id="is_gst_tally">
-                                    <label class="form-check-label" for="is_gst_tally">
-                                        Use billing name in Tally export?
-                                    </label>
-                                </div>
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cust_groups_id" class="form-label ">Customer Group</label>
+                            <select class="form-select border-bottom" aria-label="Default select example"
+                                name="cust_groups_id" id="cust_groups_id">
+                                <option style="display:none;" value="">option one</option>
+                                @foreach ($customerGroup as $data)
+                                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                @endforeach
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="bg-light mb-3 p-3">
+                            <b>GSTIN Billing details -</b> Only to be filled if this customer has different GSTIN
+                            billing details.
+                            <div class="mb-3">
+                                <label for="gst_name" class="form-label">Billing Name </label>
+                                <input type="text" class="form-control  border-bottom" name="gst_name" id="gst_name">
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="gst_addr" class="form-label">Billing Address </label>
+                                <textarea class="form-control" rows="10" name="gst_addr" id="gst_addr"></textarea>
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="gst_state" class="form-label ">State</label>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    name="gst_state" id="gst_state">
+
+                                </select>
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" value="1" name="is_gst_primary"
+                                    id="is_gst_primary">
+                                <label class="form-check-label" for="is_gst_primary">
+                                    Use billing name as primary name on invoice?
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" value="1" name="is_gst_tally"
+                                    id="is_gst_tally">
+                                <label class="form-check-label" for="is_gst_tally">
+                                    Use billing name in Tally export?
+                                </label>
                             </div>
                         </div>
                     </div>
+                </div>
                     {{-- second row --}}
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="phone_no" class="form-label ">Phone Number</label>
-                                <input type="text" class="form-control  border-bottom" name="phone_no"
-                                    id="phone_no">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email_id" class="form-label ">Email Address</label>
-                                <input type="email" class="form-control  border-bottom" name="email_id"
-                                    id="email_id">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="pan_no" class="form-label ">PAN Number</label>
-                                <input type="text" class="form-control  border-bottom" name="pan_no" id="pan_no">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="gst_no" class="form-label ">GSTIN Number</label>
-                                <input type="text" class="form-control  border-bottom" name="gst_no" id="gst_no">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tds_perc" class="form-label ">TDS Percentage %</label>
-                                <input type="number" class="form-control  border-bottom" name="tds_perc"
-                                    id="tds_perc">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="inv_def" class="form-label ">Invoice's default due date after - enter
-                                    number of days</label>
-                                <input type="number" class="form-control  border-bottom" name="inv_def" id="inv_def">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="def_disc" class="form-label ">Default Discount %</label>
-                                <input type="number" class="form-control  border-bottom" name="def_disc"
-                                    id="def_disc">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="base_city_fuel" class="form-label ">Select base city for fuel
-                                    surcharge</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="base_city_fuel" id="base_city_fuel">
-                                    <option class="d-none" value="">Select an option</option>
-
-                                </select>
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="sales_comis_perc" class="form-label ">Sales Commission Percentage %</label>
-                                <input type="number" class="form-control  border-bottom" name="sales_comis_perc"
-                                    id="sales_comis_perc">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label ">Country (Used for exports class
-                                    E-invoice)</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="country" id="country">
-
-                                </select>
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="def_tax_classif" class="form-label ">Default Tax Classification - Used in
-                                    Invoice for Tally</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="def_tax_classif" id="def_tax_classif">
-                                    <option class="d-none" value="">Select an option</option>
-                                    <option value="branch_transfer_outward">Branch Transfer Outward</option>
-                                    <option value="deemed_exports_exempt">Deemed Exports Exempt</option>
-                                    <option value="deemed_exports_nil_rated">Deemed Exports Nil Rated</option>
-                                    <option value="deemed_exports_taxable">Deemed Exports Taxable</option>
-                                    <option value="exports_exempt">Exports Exempt</option>
-                                    <option value="exports_lut_bond">Exports LUT/Bond</option>
-                                </select>
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="customer_id" class="form-label ">Custom Field - Related customer
-                                    Id</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="customer_id" id="customer_id">
-                                    <option class="d-none" value="">Select an option</option>
-                                    @foreach ($mstCustomer as $data)
-                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                    @endforeach
-                                </select>
-                                <span class="warning-msg-block"></span>
-                            </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="phone_no" class="form-label ">Phone Number</label>
+                            <input type="text" class="form-control  border-bottom" name="phone_no" id="phone_no">
+                            <span class="warning-msg-block"></span>
                         </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="altern_phone_no" class="form-label ">Alternate Phone Number</label>
-                                <input type="text" class="form-control  border-bottom" name="altern_phone_no"
-                                    id="altern_phone_no">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="altern_email_id" class="form-label ">Alternate email address</label>
-                                <input type="text" class="form-control  border-bottom" name="altern_email_id"
-                                    id="altern_email_id">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="serv_tax_no" class="form-label ">Service Tax Number</label>
-                                <input type="text" class="form-control  border-bottom" name="serv_tax_no"
-                                    id="serv_tax_no">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="gst_type" class="form-label ">GST Type</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="gst_type" id="gst_type">
-                                    <option class="d-none" value="">Select an option</option>
-                                    <option value="registered">Registered</option>
-                                    <option value="un_registered">Un-registered</option>
-                                </select>
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="revrse_chrg" class="form-label ">Reverse Charge Applicable</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="revrse_chrg" id="revrse_chrg">
-                                    <option class="d-none" value="">Select an option</option>
-                                    <option value="no">No</option>
-                                    <option value="yes">Yes</option>
-                                </select>
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="surcharg_perc" class="form-label ">Surcharge Percentage %</label>
-                                <input type="number" class="form-control  border-bottom" name="surcharg_perc"
-                                    id="surcharg_perc">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="def_car_chrg_disc" class="form-label ">Default Car Hire Charges Discount
-                                    %</label>
-                                <input type="number" class="form-control  border-bottom" name="def_car_chrg_disc"
-                                    id="def_car_chrg_disc">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="force_fuel_type" class="form-label ">Forced Fuel Type</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="force_fuel_type" id="force_fuel_type">
-                                    <option class="d-none" value="">Select an option</option>
-                                    <option value="petrol">Petrol</option>
-                                    <option value="diesel">Diesel</option>
-                                    <option value="cng">CNG</option>
-                                    <option value="electric">Electric</option>
-                                </select>
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="feedback_id" class="form-label ">Default feedback form</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="feedback_id" id="feedback_id">
-                                    <option class="d-none" value="">Select an option</option>
-                                    @foreach ($feedbackForm as $data)
-                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                    @endforeach
-                                </select>
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="company_id" class="form-label ">Default Company</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="company_id" id="company_id">
-                                    <option class="d-none" value="">Select an option</option>
-                                    @foreach ($myCompany as $data)
-                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                    @endforeach
-                                </select>
-                                <span class="warning-msg-block"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="branch" class="form-label">Branches</label>
-                                <input type="text" class="form-control border-bottom" name="branch" id="branch">
-                                <span class="warning-msg-block"></span>
-                            </div>
+                        <div class="mb-3">
+                            <label for="email_id" class="form-label ">Email Address</label>
+                            <input type="email" class="form-control  border-bottom" name="email_id" id="email_id">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pan_no" class="form-label ">PAN Number</label>
+                            <input type="text" class="form-control  border-bottom" name="pan_no" id="pan_no">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gst_no" class="form-label ">GSTIN Number</label>
+                            <input type="text" class="form-control  border-bottom" name="gst_no" id="gst_no">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tds_perc" class="form-label ">TDS Percentage %</label>
+                            <input type="number" class="form-control  border-bottom" name="tds_perc" id="tds_perc">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inv_def" class="form-label ">Invoice's default due date after - enter
+                                number of days</label>
+                            <input type="number" class="form-control  border-bottom" name="inv_def" id="inv_def">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="def_disc" class="form-label ">Default Discount %</label>
+                            <input type="number" class="form-control  border-bottom" name="def_disc" id="def_disc">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="base_city_fuel" class="form-label ">Select base city for fuel
+                                surcharge</label>
+                            <select class="form-select border-bottom" aria-label="Default select example"
+                                name="base_city_fuel" id="base_city_fuel">
+                                <option class="d-none" value="">Select an option</option>
+
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sales_comis_perc" class="form-label ">Sales Commission Percentage %</label>
+                            <input type="number" class="form-control  border-bottom" name="sales_comis_perc"
+                                id="sales_comis_perc">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label ">Country (Used for exports class
+                                E-invoice)</label>
+                            <select class="form-select border-bottom" aria-label="Default select example" name="country"
+                                id="country">
+
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="def_tax_classif" class="form-label ">Default Tax Classification - Used in
+                                Invoice for Tally</label>
+                            <select class="form-select border-bottom" aria-label="Default select example"
+                                name="def_tax_classif" id="def_tax_classif">
+                                <option class="d-none" value="">Select an option</option>
+                                <option value="branch_transfer_outward">Branch Transfer Outward</option>
+                                <option value="deemed_exports_exempt">Deemed Exports Exempt</option>
+                                <option value="deemed_exports_nil_rated">Deemed Exports Nil Rated</option>
+                                <option value="deemed_exports_taxable">Deemed Exports Taxable</option>
+                                <option value="exports_exempt">Exports Exempt</option>
+                                <option value="exports_lut_bond">Exports LUT/Bond</option>
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customer_id" class="form-label ">Custom Field - Related customer
+                                Id</label>
+                            <select class="form-select border-bottom" aria-label="Default select example"
+                                name="customer_id" id="customer_id">
+                                <option class="d-none" value="">Select an option</option>
+                                @foreach ($mstCustomer as $data)
+                                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                @endforeach
+                            </select>
+                            <span class="warning-msg-block"></span>
                         </div>
                     </div>
-                    {{-- <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="altern_phone_no" class="form-label ">Alternate Phone Number</label>
+                            <input type="text" class="form-control  border-bottom" name="altern_phone_no"
+                                id="altern_phone_no">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="altern_email_id" class="form-label ">Alternate email address</label>
+                            <input type="text" class="form-control  border-bottom" name="altern_email_id"
+                                id="altern_email_id">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="serv_tax_no" class="form-label ">Service Tax Number</label>
+                            <input type="text" class="form-control  border-bottom" name="serv_tax_no" id="serv_tax_no">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gst_type" class="form-label ">GST Type</label>
+                            <select class="form-select border-bottom" aria-label="Default select example"
+                                name="gst_type" id="gst_type">
+                                <option class="d-none" value="">Select an option</option>
+                                <option value="registered">Registered</option>
+                                <option value="un_registered">Un-registered</option>
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="revrse_chrg" class="form-label ">Reverse Charge Applicable</label>
+                            <select class="form-select border-bottom" aria-label="Default select example"
+                                name="revrse_chrg" id="revrse_chrg">
+                                <option class="d-none" value="">Select an option</option>
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="surcharg_perc" class="form-label ">Surcharge Percentage %</label>
+                            <input type="number" class="form-control  border-bottom" name="surcharg_perc"
+                                id="surcharg_perc">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="def_car_chrg_disc" class="form-label ">Default Car Hire Charges Discount
+                                %</label>
+                            <input type="number" class="form-control  border-bottom" name="def_car_chrg_disc"
+                                id="def_car_chrg_disc">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="force_fuel_type" class="form-label ">Forced Fuel Type</label>
+                            <select class="form-select border-bottom" aria-label="Default select example"
+                                name="force_fuel_type" id="force_fuel_type">
+                                <option class="d-none" value="">Select an option</option>
+                                <option value="petrol">Petrol</option>
+                                <option value="diesel">Diesel</option>
+                                <option value="cng">CNG</option>
+                                <option value="electric">Electric</option>
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="feedback_id" class="form-label ">Default feedback form</label>
+                            <select class="form-select border-bottom" aria-label="Default select example"
+                                name="feedback_id" id="feedback_id">
+                                <option class="d-none" value="">Select an option</option>
+                                @foreach ($feedbackForm as $data)
+                                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                @endforeach
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="company_id" class="form-label ">Default Company</label>
+                            <select class="form-select border-bottom" aria-label="Default select example"
+                                name="company_id" id="company_id">
+                                <option class="d-none" value="">Select an option</option>
+                                @foreach ($myCompany as $data)
+                                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                @endforeach
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="branch" class="form-label">Branches</label>
+                            <input type="text" class="form-control border-bottom" name="branch" id="branch">
+                            <span class="warning-msg-block"></span>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="row">
                     <div class="col-12">
                         <div class="panel border rounded mb-3">
                             <div class="panel-heading bg-light p-3">Booking/Duties Settings</div>
@@ -453,6 +446,7 @@
                     </div>
                 </div> --}}
 
+<<<<<<< HEAD
                     <div class="row">
 
                         <div class="col-md-6">
@@ -633,6 +627,180 @@
             document.getElementById("country").innerHTML = generateCityOptions();
 
 
+=======
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="panel border rounded mb-3">
+                            <div class="panel-heading bg-light p-3">Applicable Taxes</div>
+
+                            <div class="appli_tax_body" id="appli_tax_body">
+                                {{-- component start --}}
+                                {{-- component end --}}
+
+                            </div>
+                            <div class="p-3">
+                                <button type="button" id="extend_appli_tax" class="btn btn-primary rounded-1"><i
+                                        class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel border rounded mb-3">
+                            <div class="panel-heading bg-light p-3">Applicable Interstate Taxes</div>
+                            <div class="inter_appli_tax_body" id="inter_appli_tax_body">
+
+                                {{-- component start --}}
+
+                                {{-- component end --}}
+                            </div>
+                            <div class="p-3">
+                                <button type="button" id="extend_inter_appli_tax" class="btn btn-primary rounded-1"><i
+                                        class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel border rounded mb-3">
+                            <div class="panel-heading bg-light p-3">Driver Allowance Settings</div>
+                            <div class="p-3">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">City Name</th>
+                                            <th scope="col">Early Time</th>
+                                            <th scope="col">Late Time</th>
+                                            <th scope="col">Outstation Overnight Allowance Time</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="dri_allow_set_tax_body" id="dri_allow_set_tax_body">
+
+                                        {{-- component start --}}
+
+
+                                        {{-- component end --}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="p-3">
+                                <button type="button" class="btn btn-primary rounded-1" id="extend_dri_allow_set"><i
+                                        class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel border rounded mb-3">
+                            <div class="panel-heading bg-light p-3">Duty Type Type Timings</div>
+                            <div class="p-3">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Duty Type Type</th>
+                                            <th scope="col">Start Time</th>
+                                            <th scope="col">End Time</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="dut_typ_tim_body" id="dut_typ_tim_body">
+                                        {{-- component start --}}
+
+                                        {{-- component end --}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="p-3">
+                                <button type="button" class="btn btn-primary rounded-1" id="extend_dut_typ_tim"><i
+                                        class="fa-solid fa-plus"></i> Add Another Timing</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="panel border rounded mb-3">
+                            <div class="panel-heading bg-light p-3">Files</div>
+                            <div class="files_body" id="files_body">
+
+                                {{-- component start --}}
+
+                                {{-- component end --}}
+                            </div>
+                            <div class="p-3">
+                                <button type="button" class="btn btn-primary rounded-1" id="extend_files"><i
+                                        class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="notes" class="form-label">Notes</label>
+                            <textarea class="form-control" rows="5" name="notes" id="notes"></textarea>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="inv_term_cond" class="form-label">Invoice Terms & Conditions</label>
+                            <textarea id="summernote" name="inv_term_cond"></textarea>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-light mb-3 p-3">
+                    You could use this field as unique identifier when integrating with another system. This field would
+                    be available in Duties & Invoice exports.
+                    <div class="mb-3">
+                        <label for="cust_code" class="form-label ">Customer Code</label>
+                        <input type="text" class="form-control  border-bottom" name="cust_code" id="cust_code">
+                        <span class="warning-msg-block"></span>
+                    </div>
+                </div>
+                <div class="bg-light mb-3 p-3">
+                    If you would like to enable booking insurance for your customers contact support@indecab.com to
+                    learn how to enable this.
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" value="1" name="is_inv_og_hide" id="is_inv_og_hide">
+                    <label class="form-check-label" for="is_inv_og_hide">
+                        Always hide 'Original for recipient' on invoice
+                    </label>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active">
+                    <label class="form-check-label" for="is_active">
+                        Active
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary rounded-1">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
+@section('extrajs')
+
+
+<script>
+    $(document).ready(function() {
+           
+            document.getElementById("base_city_fuel").innerHTML = generateCityOptions();
+            document.getElementById("country").innerHTML = generateCityOptions();
+
+           
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
             document.getElementById("state").innerHTML = generateStateOptions();
             document.getElementById("gst_state").innerHTML = generateStateOptions();
             document.getElementById("state").innerHTML = generateStateOptions();
@@ -668,7 +836,11 @@
                 toolbar: [
                     ['style', ['bold', 'italic', 'underline', 'clear']],
                     ['color', ['color']],
+<<<<<<< HEAD
                     ['media', ['picture', 'link', ]]
+=======
+                    ['media', ['picture', 'link',]]
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                 ],
                 placeholder: '',
                 tabsize: 2,
@@ -1021,5 +1193,10 @@
         });
 
         // Files End Here
+<<<<<<< HEAD
     </script>
 @endsection
+=======
+</script>
+@endsection
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d

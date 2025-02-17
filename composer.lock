@@ -5,7 +5,11 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "content-hash": "d6c083b04e73afd8ea1cc978bddab18d",
+=======
+    "content-hash": "63cd2c8226285b1288bb4b03865c12b9",
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
 =======
     "content-hash": "63cd2c8226285b1288bb4b03865c12b9",
 >>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
@@ -1061,6 +1065,7 @@
         {
             "name": "laravel/framework",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v11.41.3",
             "source": {
                 "type": "git",
@@ -1072,6 +1077,8 @@
                 "url": "https://api.github.com/repos/laravel/framework/zipball/3ef433d5865f30a19b6b1be247586068399b59cc",
                 "reference": "3ef433d5865f30a19b6b1be247586068399b59cc",
 =======
+=======
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
             "version": "v11.42.1",
             "source": {
                 "type": "git",
@@ -1082,6 +1089,9 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/ff392f42f6c55cc774ce75553a11c6b031da67f8",
                 "reference": "ff392f42f6c55cc774ce75553a11c6b031da67f8",
+<<<<<<< HEAD
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
+=======
 >>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                 "shasum": ""
             },
@@ -1285,6 +1295,7 @@
                 "source": "https://github.com/laravel/framework"
             },
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2025-01-30T13:25:22+00:00"
         },
         {
@@ -1300,6 +1311,8 @@
                 "url": "https://api.github.com/repos/laravel/prompts/zipball/abeaa2ba4294247d5409490d1ca1bc6248087011",
                 "reference": "abeaa2ba4294247d5409490d1ca1bc6248087011",
 =======
+=======
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
             "time": "2025-02-12T20:58:18+00:00"
         },
         {
@@ -1314,6 +1327,9 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/prompts/zipball/57b8f7efe40333cdb925700891c7d7465325d3b1",
                 "reference": "57b8f7efe40333cdb925700891c7d7465325d3b1",
+<<<<<<< HEAD
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
+=======
 >>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                 "shasum": ""
             },
@@ -1359,6 +1375,7 @@
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "source": "https://github.com/laravel/prompts/tree/v0.3.4"
             },
             "time": "2025-01-24T15:41:01+00:00"
@@ -1376,6 +1393,8 @@
                 "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/2e1a362527783bcab6c316aad51bf36c5513ae44",
                 "reference": "2e1a362527783bcab6c316aad51bf36c5513ae44",
 =======
+=======
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                 "source": "https://github.com/laravel/prompts/tree/v0.3.5"
             },
             "time": "2025-02-11T13:34:40+00:00"
@@ -1392,6 +1411,9 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/f379c13663245f7aa4512a7869f62eb14095f23f",
                 "reference": "f379c13663245f7aa4512a7869f62eb14095f23f",
+<<<<<<< HEAD
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
+=======
 >>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                 "shasum": ""
             },
@@ -1441,7 +1463,11 @@
                 "source": "https://github.com/laravel/serializable-closure"
             },
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2025-01-24T15:42:37+00:00"
+=======
+            "time": "2025-02-11T15:03:05+00:00"
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
 =======
             "time": "2025-02-11T15:03:05+00:00"
 >>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
@@ -6115,6 +6141,7 @@
         {
             "name": "laravel/breeze",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v2.3.3",
             "source": {
                 "type": "git",
@@ -6126,6 +6153,8 @@
                 "url": "https://api.github.com/repos/laravel/breeze/zipball/c40f7fce4fd80e39c7f4317697eeba21d2344003",
                 "reference": "c40f7fce4fd80e39c7f4317697eeba21d2344003",
 =======
+=======
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
             "version": "v2.3.4",
             "source": {
                 "type": "git",
@@ -6136,6 +6165,9 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/breeze/zipball/e456fe0db93d1f9f5ce3b2043739a0777404395c",
                 "reference": "e456fe0db93d1f9f5ce3b2043739a0777404395c",
+<<<<<<< HEAD
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
+=======
 >>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                 "shasum": ""
             },
@@ -6185,7 +6217,11 @@
                 "source": "https://github.com/laravel/breeze"
             },
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2025-01-26T19:08:50+00:00"
+=======
+            "time": "2025-02-11T13:19:28+00:00"
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
 =======
             "time": "2025-02-11T13:19:28+00:00"
 >>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d

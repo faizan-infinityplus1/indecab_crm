@@ -54,6 +54,7 @@
                         </a>
                         <ul class="dropdown-menu mt-2">
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <li><a class="dropdown-item" href="/booking/create">Add Booking</a></li>
                             <li><a class="dropdown-item" href="/incoming/allotted">Incoming</a></li>
                             <li><a class="dropdown-item" href="/need-attention">Needs Attention</a></li>
@@ -69,6 +70,8 @@
                             <li><a class="dropdown-item" href="/duty/cancelled">Cancelled</a></li>
                             <li><a class="dropdown-item" href="/duty/all">All</a></li>
 =======
+=======
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                             <li><a class="dropdown-item" href="#">Add Booking</a></li>
                             <li><a class="dropdown-item" href="#">Incoming</a></li>
                             <li><a class="dropdown-item" href="#">Needs Attention</a></li>
@@ -83,6 +86,9 @@
                             <li><a class="dropdown-item" href="#">Billed</a></li>
                             <li><a class="dropdown-item" href="#">Cancelled</a></li>
                             <li><a class="dropdown-item" href="#">All</a></li>
+<<<<<<< HEAD
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
+=======
 >>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                         </ul>
                     </li>
@@ -93,6 +99,7 @@
                             Operations
                         </a>
                         <ul class="dropdown-menu mt-2">
+<<<<<<< HEAD
 <<<<<<< HEAD
                             <li><a class="dropdown-item" href="/availability">Availability</a></li>
                             <li><a class="dropdown-item" href="/bookings">Bookings</a></li>
@@ -106,6 +113,8 @@
                             <li><a class="dropdown-item" href="/purchased-invoice">Purchase - Invoices</a></li>
                             <li><a class="dropdown-item" href="/purchased-payment">Purchase - Payments</a></li>
 =======
+=======
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                             <li><a class="dropdown-item" href="#">Availability</a></li>
                             <li><a class="dropdown-item" href="#">Bookings</a></li>
                             <li><a class="dropdown-item" href="#">Billing</a></li>
@@ -117,6 +126,9 @@
                             <li><a class="dropdown-item" href="#">Purchase - Duties</a></li>
                             <li><a class="dropdown-item" href="#">Purchase - Invoices</a></li>
                             <li><a class="dropdown-item" href="#">Purchase - Payments</a></li>
+<<<<<<< HEAD
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
+=======
 >>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                             <li>
                                 <hr class="dropdown-divider">
@@ -158,7 +170,11 @@
                                 <hr class="dropdown-divider">
                             </li>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <li><a class="dropdown-item" href="{{ route('showDrivers') }}">My Drivers</a></li>
+=======
+                            <li><a class="dropdown-item" href="{{ route('mydrivers.index') }}">My Drivers</a></li>
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
 =======
                             <li><a class="dropdown-item" href="{{ route('mydrivers.index') }}">My Drivers</a></li>
 >>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
@@ -278,7 +294,10 @@
     {{-- <script src="{{asset('admin/js/datatables.2.2.1.js')}}"></script> --}}
     <script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
             function showAlert(type, message) {
                 Swal.fire({
                     text: message,
@@ -295,6 +314,9 @@
                     }
                 });
             }
+<<<<<<< HEAD
+>>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
+=======
 >>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
         $(document).ready(function() {
             const summernote1 = document.getElementById('summernote');

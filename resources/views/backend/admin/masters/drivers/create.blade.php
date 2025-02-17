@@ -115,8 +115,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            
                             {{-- component end --}}
                             <div class="p-3">
                                 <button type="button" class="btn btn-primary rounded-1"><i
