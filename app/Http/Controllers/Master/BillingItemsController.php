@@ -49,7 +49,7 @@ class BillingItemsController extends Controller
         // dd($request->all());
         if ($billingItems) {
             // connectify('success', 'Product Added', 'Duty Type has been added successfully !');
-            return redirect(route('billingitems.manage'));
+            return redirect(route('billingitems.index'));
         }
     }
 
