@@ -53,26 +53,7 @@
                             Duties
                         </a>
                         <ul class="dropdown-menu mt-2">
-<<<<<<< HEAD
-<<<<<<< HEAD
                             <li><a class="dropdown-item" href="/booking/create">Add Booking</a></li>
-                            <li><a class="dropdown-item" href="/incoming/allotted">Incoming</a></li>
-                            <li><a class="dropdown-item" href="/need-attention">Needs Attention</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/duty-upcoming">Upcoming</a></li>
-                            <li><a class="dropdown-item" href="/duty-booked">Booked</a></li>
-                            <li><a class="dropdown-item" href="/duty-alloted">Allotted</a></li>
-                            <li><a class="dropdown-item" href="/duty-dispatched">Dispatched</a></li>
-                            <li><a class="dropdown-item" href="/duty/completed">Completed</a></li>
-                            <li><a class="dropdown-item" href="/duty/billed">Billed</a></li>
-                            <li><a class="dropdown-item" href="/duty/cancelled">Cancelled</a></li>
-                            <li><a class="dropdown-item" href="/duty/all">All</a></li>
-=======
-=======
->>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
-                            <li><a class="dropdown-item" href="#">Add Booking</a></li>
                             <li><a class="dropdown-item" href="#">Incoming</a></li>
                             <li><a class="dropdown-item" href="#">Needs Attention</a></li>
                             <li>
@@ -86,10 +67,6 @@
                             <li><a class="dropdown-item" href="#">Billed</a></li>
                             <li><a class="dropdown-item" href="#">Cancelled</a></li>
                             <li><a class="dropdown-item" href="#">All</a></li>
-<<<<<<< HEAD
->>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
-=======
->>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                         </ul>
                     </li>
                     <li class="nav_menu_item dropdown">
@@ -99,22 +76,6 @@
                             Operations
                         </a>
                         <ul class="dropdown-menu mt-2">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            <li><a class="dropdown-item" href="/availability">Availability</a></li>
-                            <li><a class="dropdown-item" href="/bookings">Bookings</a></li>
-                            <li><a class="dropdown-item" href="/billed">Billing</a></li>
-                            <li><a class="dropdown-item" href="/receipt">Receipts</a></li>
-                            <li><a class="dropdown-item" href="/payment-gateway">Payment Gateway</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/purchased-duty">Purchase - Duties</a></li>
-                            <li><a class="dropdown-item" href="/purchased-invoice">Purchase - Invoices</a></li>
-                            <li><a class="dropdown-item" href="/purchased-payment">Purchase - Payments</a></li>
-=======
-=======
->>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                             <li><a class="dropdown-item" href="#">Availability</a></li>
                             <li><a class="dropdown-item" href="#">Bookings</a></li>
                             <li><a class="dropdown-item" href="#">Billing</a></li>
@@ -126,10 +87,6 @@
                             <li><a class="dropdown-item" href="#">Purchase - Duties</a></li>
                             <li><a class="dropdown-item" href="#">Purchase - Invoices</a></li>
                             <li><a class="dropdown-item" href="#">Purchase - Payments</a></li>
-<<<<<<< HEAD
->>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
-=======
->>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -169,15 +126,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            <li><a class="dropdown-item" href="{{ route('showDrivers') }}">My Drivers</a></li>
-=======
                             <li><a class="dropdown-item" href="{{ route('mydrivers.index') }}">My Drivers</a></li>
->>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
-=======
-                            <li><a class="dropdown-item" href="{{ route('mydrivers.index') }}">My Drivers</a></li>
->>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
                             <li><a class="dropdown-item" href="{{ route('showVehicles') }}">My Vehicles</a></li>
                             <li><a class="dropdown-item" href="{{ route('dutysupporters.index') }}">Duty
                                     Supporters</a></li>
@@ -293,31 +242,21 @@
 
     {{-- <script src="{{asset('admin/js/datatables.2.2.1.js')}}"></script> --}}
     <script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
-            function showAlert(type, message) {
-                Swal.fire({
-                    text: message,
-                    icon: type, // 'success' or 'error'
-                    toast: true,
-                    position: 'bottom-end', // Bottom-right position
-                    showConfirmButton: false,
-                    timer: 3000,
-                    background: type === 'success' ? '#28a745' :
-                    '#d9534f', // Green for success, Red for error
-                    color: '#fff', // White text
-                    customClass: {
-                        popup: 'swal-toast'
-                    }
-                });
-            }
-<<<<<<< HEAD
->>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
-=======
->>>>>>> 9f87fc24153deb2507372752795db4effc8a0b0d
+        function showAlert(type, message) {
+            Swal.fire({
+                text: message,
+                icon: type, // 'success' or 'error'
+                toast: true,
+                position: 'bottom-end', // Bottom-right position
+                showConfirmButton: false,
+                timer: 3000,
+                background: type === 'success' ? '#28a745' : '#d9534f', // Green for success, Red for error
+                color: '#fff', // White text
+                customClass: {
+                    popup: 'swal-toast'
+                }
+            });
+        }
         $(document).ready(function() {
             const summernote1 = document.getElementById('summernote');
             if (summernote1) {
