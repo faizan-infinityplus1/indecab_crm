@@ -45,8 +45,8 @@ class DutyTypeController extends Controller
         );
         if ($validator->fails()) {
             // dd($request->max_hours);
-            // connectify('error', 'Add Product', $validator->errors()->first());
-            dd($validator->errors()->first());
+            connectify('error', 'Add Product', $validator->errors()->first());
+            // dd($validator->errors()->first());
             return redirect(route('dutytype.manage'))->withInput();
         }
         $dutyType = MstDutyType::create([
@@ -70,8 +70,8 @@ class DutyTypeController extends Controller
             'disdutroute' => $request->disdutroute ?? false,
         ]);
         if ($dutyType) {
-            // connectify('success', 'Product Added', 'Duty Type has been added successfully !');
-            return redirect(route('dutytype.manage'));
+            connectify('success', 'Product Added', 'Duty Type has been added successfully !');
+            return redirect(route('dutytype.index'));
         }
     }
     public function edit(Request $request)

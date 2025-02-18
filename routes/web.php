@@ -92,6 +92,7 @@ Route::middleware('auth:admin')->group(function () {
     
     Route::get('/duty-supporters', [DutySupportersController::class, 'index'])->name('dutysupporters.index');
     Route::get('/duty-supporters/manage/{id?}', [DutySupportersController::class, 'manage'])->name('dutysupporters.manage');
+    Route::post('/duty-supporters/store', [DutySupportersController::class, 'store'])->name('dutysupporters.store');
 
     Route::get('/labels', [LabelsController::class, 'index'])->name('labels.index');
     Route::get('/labels/manage/{id?}', [LabelsController::class, 'manage'])->name('labels.manage');
