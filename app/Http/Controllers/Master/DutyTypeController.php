@@ -46,7 +46,7 @@ class DutyTypeController extends Controller
         if ($validator->fails()) {
             // dd($request->max_hours);
             // connectify('error', 'Add Product', $validator->errors()->first());
-            dd($validator->errors()->first());
+            // dd($validator->errors()->first());
             return redirect(route('dutytype.manage'))->withInput();
         }
         $dutyType = MstDutyType::create([

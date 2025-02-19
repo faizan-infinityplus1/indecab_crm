@@ -58,7 +58,7 @@ class BankAccountsController extends Controller
         ]);
         if ($bankAccount) {
             // connectify('success', 'Product Added', 'Duty Type has been added successfully !');
-            return redirect(route('bankaccounts.manage'));
+            return redirect(route('bankaccounts.index'));
         }
     }
     public function edit(Request $request)

@@ -26,6 +26,13 @@ use App\Http\Controllers\Master\VehiclesController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
+// Duties import
+use App\Http\Controllers\Duties\AddBookingController;
+use App\Http\Controllers\Duties\BookingController;
+use App\Http\Controllers\Duties\DutyController;
+use App\Http\Controllers\Operations\OperationController;
+
+
 Route::middleware('guest:admin')->group(function () {
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('login', [LoginController::class, 'login']);
@@ -92,6 +99,7 @@ Route::middleware('auth:admin')->group(function () {
     
     Route::get('/duty-supporters', [DutySupportersController::class, 'index'])->name('dutysupporters.index');
     Route::get('/duty-supporters/manage/{id?}', [DutySupportersController::class, 'manage'])->name('dutysupporters.manage');
+    Route::post('/duty-supporters/store', [DutySupportersController::class, 'store'])->name('dutysupporters.store');
 
     Route::get('/labels', [LabelsController::class, 'index'])->name('labels.index');
     Route::get('/labels/manage/{id?}', [LabelsController::class, 'manage'])->name('labels.manage');
@@ -135,7 +143,32 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/report-requests', [ReportController::class, 'index'])->name('reports.index');
     Route::get('/report-requests/recent', [ReportController::class, 'recent'])->name('reports.recent');
     Route::get('/report-requests/manage', [ReportController::class, 'manage'])->name('reports.manage');
+    
+    // Route::get('/bookingManage/{id?}', [AddBookController::class, 'manage'])->name('dutytype.manage');
+    Route::get("/booking/create",[BookingController::class,"create"]);
+    Route::get("/incoming/allotted",[DutyController::class,"allotted"]);
+    Route::get("/need-attention",[DutyController::class,"Attention"]);
+    Route::get("/duty-upcoming",[DutyController::class,"Upcoming"]);
+    Route::get("/duty-booked",[DutyController::class,"Booked"]);
+    Route::get("/duty-alloted",[DutyController::class,"DutyAlloted"]);
+    Route::get("/duty-dispatched",[DutyController::class,"Dispatched"]);
+    Route::get("/duty/completed",[DutyController::class,"Completed"]);
+    Route::get("/duty/billed",[DutyController::class,"Billed"]);
+    Route::get("/duty/cancelled",[DutyController::class,"Cancelled"]);
+    Route::get("/duty/all",[DutyController::class,"All"]);
+
+    // Operations Routes
+    Route::get("/availability",[OperationController::class,"Availability"]);
+    Route::get("/bookings",[OperationController::class,"Bookings"]);
+    Route::get("/billed",[OperationController::class,"Billed"]);
+    Route::get("/receipt",[OperationController::class,"Receipt"]);
+    Route::get("/payment-gateway",[OperationController::class,"PaymentGateway"]);
+    Route::get("/purchased-duty",[OperationController::class,"PurchasedDuty"]);
+    Route::get("/purchased-invoice",[OperationController::class,"PurchasedInvoice"]);
+    Route::get("/purchased-payment",[OperationController::class,"PurchasedPayment"]);
+
 });
+
 
 
 require __DIR__ . '/auth.php';

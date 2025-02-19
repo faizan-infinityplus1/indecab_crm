@@ -34,7 +34,7 @@
                         <input type="text" class="form-control  border-bottom" id="name" name="name"
                         value="{{ old('name', $data->name ?? '') }}">
                     </div>  --}}
-                    @if(optional($data)->name)
+                    @if (optional($data)->name)
                         <input type="hidden" name="name" value="{{ $data->name }}">
                     @else
                         <div class="mb-3">
@@ -49,9 +49,10 @@
                         <input type="text" class="form-control  border-bottom" id="short_name" name="short_name"
                             value="{{ old('short_name', $data->short_name ?? '') }}">
                     </div>
-                    
-                    @if(optional($data)->name)
-                        <input type="hidden" name="taxable" {{ old('taxable', $data->taxable ?? '') ? 'checked' : '' }} value="1">
+
+                    @if (optional($data)->name)
+                        <input type="hidden" name="taxable" {{ old('taxable', $data->taxable ?? '') ? 'checked' : '' }}
+                            value="1">
                     @else
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" id="taxable" name = "taxable"
@@ -79,18 +80,20 @@
                             Required before starting duty - Only applicable for driver (Indecab Go App)
                         </label>
                     </div>
-                    @if(optional($data)->name)
-                        <input type="hidden" name="n_charged_on_customer_invoice" {{ old('n_charged_on_customer_invoice', $data->n_charged_on_customer_invoice ?? '') ? 'checked' : '' }} value="1">
-                    @else
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="n_charged_on_customer_invoice"
-                            name = "n_charged_on_customer_invoice"
+                    @if (optional($data)->name)
+                        <input type="hidden" name="n_charged_on_customer_invoice"
                             {{ old('n_charged_on_customer_invoice', $data->n_charged_on_customer_invoice ?? '') ? 'checked' : '' }}
-                            value="1">
-                        <label class="form-check-label" for="n_charged_on_customer_invoice">
-                            Not charged on customer invoice
-                        </label>
-                    </div>
+                            value="{{ old('n_charged_on_customer_invoice', $data->n_charged_on_customer_invoice ?? '') }}">
+                    @else
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="n_charged_on_customer_invoice"
+                                name = "n_charged_on_customer_invoice"
+                                {{ old('n_charged_on_customer_invoice', $data->n_charged_on_customer_invoice ?? '') ? 'checked' : '' }}
+                                value="1">
+                            <label class="form-check-label" for="n_charged_on_customer_invoice">
+                                Not charged on customer invoice
+                            </label>
+                        </div>
                     @endif
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" id="active" checked name = "active"

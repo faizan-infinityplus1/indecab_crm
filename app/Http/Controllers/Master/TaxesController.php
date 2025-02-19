@@ -36,7 +36,7 @@ class TaxesController extends Controller
         if ($validator->fails()) {
             // connectify('error', 'Add Product', $validator->errors()->first());
             dd($validator->errors()->first());
-            return redirect(route('taxes.manage'))->withInput();
+            return redirect(route('taxes.index'));
         }
 
         $tax = MstTax::create([
@@ -47,7 +47,7 @@ class TaxesController extends Controller
         ]);
         if ($tax) {
             // connectify('success', 'Product Added', 'Duty Type has been added successfully !');
-            return redirect(route('taxes.manage'));
+            return redirect(route('taxes.index'));
         }
     }
 

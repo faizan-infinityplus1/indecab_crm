@@ -49,7 +49,7 @@ class BillingItemsController extends Controller
         // dd($request->all());
         if ($billingItems) {
             // connectify('success', 'Product Added', 'Duty Type has been added successfully !');
-            return redirect(route('billingitems.manage'));
+            return redirect(route('billingitems.index'));
         }
     }
 
@@ -92,6 +92,19 @@ class BillingItemsController extends Controller
             // return redirect(route('dutytype.manage', $request->id));
             $data = MstBillingItem::all();
             return view('backend.admin.masters.billingitems.index', compact('data'));
+        }
+    }
+
+    public function delete(Request $request){
+        try {
+            $data = MstBillingItem::findOrFail($request->id);
+            $data->delete();
+
+            // return response()->json(['success' => 'Duty Type deleted successfully.']);
+            return redirect()->back()->with('success', 'Duty Type deleted successfully.');
+            // return redirect()->route('duty-types.index')->with('success', 'Duty type deleted successfully.');
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete tax.'],  $e);
         }
     }
 }

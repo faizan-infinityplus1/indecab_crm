@@ -53,7 +53,7 @@
                             Duties
                         </a>
                         <ul class="dropdown-menu mt-2">
-                            <li><a class="dropdown-item" href="#">Add Booking</a></li>
+                            <li><a class="dropdown-item" href="/booking/create">Add Booking</a></li>
                             <li><a class="dropdown-item" href="#">Incoming</a></li>
                             <li><a class="dropdown-item" href="#">Needs Attention</a></li>
                             <li>
@@ -242,22 +242,21 @@
 
     {{-- <script src="{{asset('admin/js/datatables.2.2.1.js')}}"></script> --}}
     <script>
-            function showAlert(type, message) {
-                Swal.fire({
-                    text: message,
-                    icon: type, // 'success' or 'error'
-                    toast: true,
-                    position: 'bottom-end', // Bottom-right position
-                    showConfirmButton: false,
-                    timer: 3000,
-                    background: type === 'success' ? '#28a745' :
-                    '#d9534f', // Green for success, Red for error
-                    color: '#fff', // White text
-                    customClass: {
-                        popup: 'swal-toast'
-                    }
-                });
-            }
+        function showAlert(type, message) {
+            Swal.fire({
+                text: message,
+                icon: type, // 'success' or 'error'
+                toast: true,
+                position: 'bottom-end', // Bottom-right position
+                showConfirmButton: false,
+                timer: 3000,
+                background: type === 'success' ? '#28a745' : '#d9534f', // Green for success, Red for error
+                color: '#fff', // White text
+                customClass: {
+                    popup: 'swal-toast'
+                }
+            });
+        }
         $(document).ready(function() {
             const summernote1 = document.getElementById('summernote');
             if (summernote1) {
