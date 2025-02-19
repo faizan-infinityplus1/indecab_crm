@@ -453,7 +453,7 @@
                     </div>
                 </div> --}}
 
-                    <<<<<<< HEAD <div class="row">
+                    <div class="row">
 
                         <div class="col-md-6">
                             <div class="panel border rounded mb-3">
@@ -487,470 +487,199 @@
                                 </div>
                             </div>
                         </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="panel border rounded mb-3">
-                        <div class="panel-heading bg-light p-3">Driver Allowance Settings</div>
-                        <div class="p-3">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">City Name</th>
-                                        <th scope="col">Early Time</th>
-                                        <th scope="col">Late Time</th>
-                                        <th scope="col">Outstation Overnight Allowance Time</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody class="dri_allow_set_tax_body" id="dri_allow_set_tax_body">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Driver Allowance Settings</div>
+                                <div class="p-3">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">City Name</th>
+                                                <th scope="col">Early Time</th>
+                                                <th scope="col">Late Time</th>
+                                                <th scope="col">Outstation Overnight Allowance Time</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="dri_allow_set_tax_body" id="dri_allow_set_tax_body">
+
+                                            {{-- component start --}}
+
+
+                                            {{-- component end --}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="p-3">
+                                    <button type="button" class="btn btn-primary rounded-1" id="extend_dri_allow_set"><i
+                                            class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Duty Type Type Timings</div>
+                                <div class="p-3">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Duty Type Type</th>
+                                                <th scope="col">Start Time</th>
+                                                <th scope="col">End Time</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="dut_typ_tim_body" id="dut_typ_tim_body">
+                                            {{-- component start --}}
+
+                                            {{-- component end --}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="p-3">
+                                    <button type="button" class="btn btn-primary rounded-1" id="extend_dut_typ_tim"><i
+                                            class="fa-solid fa-plus"></i> Add Another Timing</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Files</div>
+                                <div class="files_body" id="files_body">
 
                                     {{-- component start --}}
 
-
                                     {{-- component end --}}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="p-3">
-                            <button type="button" class="btn btn-primary rounded-1" id="extend_dri_allow_set"><i
-                                    class="fa-solid fa-plus"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel border rounded mb-3">
-                        <div class="panel-heading bg-light p-3">Duty Type Type Timings</div>
-                        <div class="p-3">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Duty Type Type</th>
-                                        <th scope="col">Start Time</th>
-                                        <th scope="col">End Time</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody class="dut_typ_tim_body" id="dut_typ_tim_body">
-                                    {{-- component start --}}
-
-                                    {{-- component end --}}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="p-3">
-                            <button type="button" class="btn btn-primary rounded-1" id="extend_dut_typ_tim"><i
-                                    class="fa-solid fa-plus"></i> Add Another Timing</button>
+                                </div>
+                                <div class="p-3">
+                                    <button type="button" class="btn btn-primary rounded-1" id="extend_files"><i
+                                            class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="panel border rounded mb-3">
-                        <div class="panel-heading bg-light p-3">Files</div>
-                        <div class="files_body" id="files_body">
 
-                            {{-- component start --}}
 
-                            {{-- component end --}}
+
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="notes" class="form-label">Notes</label>
+                                <textarea class="form-control" rows="5" name="notes" id="notes"></textarea>
+                                <span class="warning-msg-block"></span>
+                            </div>
                         </div>
-                        <div class="p-3">
-                            <button type="button" class="btn btn-primary rounded-1" id="extend_files"><i
-                                    class="fa-solid fa-plus"></i></button>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="inv_term_cond" class="form-label">Invoice Terms & Conditions</label>
+                                <textarea id="summernote" name="inv_term_cond"></textarea>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-
-
-
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="notes" class="form-label">Notes</label>
-                        <textarea class="form-control" rows="5" name="notes" id="notes"></textarea>
-                        <span class="warning-msg-block"></span>
+                    <div class="bg-light mb-3 p-3">
+                        You could use this field as unique identifier when integrating with another system. This field would
+                        be available in Duties & Invoice exports.
+                        <div class="mb-3">
+                            <label for="cust_code" class="form-label ">Customer Code</label>
+                            <input type="text" class="form-control  border-bottom" name="cust_code" id="cust_code">
+                            <span class="warning-msg-block"></span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="inv_term_cond" class="form-label">Invoice Terms & Conditions</label>
-                        <textarea id="summernote" name="inv_term_cond"></textarea>
-
+                    <div class="bg-light mb-3 p-3">
+                        If you would like to enable booking insurance for your customers contact support@indecab.com to
+                        learn how to enable this.
                     </div>
-                </div>
-            </div>
-            <div class="bg-light mb-3 p-3">
-                You could use this field as unique identifier when integrating with another system. This field would
-                be available in Duties & Invoice exports.
-                <div class="mb-3">
-                    <label for="cust_code" class="form-label ">Customer Code</label>
-                    <input type="text" class="form-control  border-bottom" name="cust_code" id="cust_code">
-                    <span class="warning-msg-block"></span>
-                </div>
-            </div>
-            <div class="bg-light mb-3 p-3">
-                If you would like to enable booking insurance for your customers contact support@indecab.com to
-                learn how to enable this.
-            </div>
 
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="1" name="is_inv_og_hide"
-                    id="is_inv_og_hide">
-                <label class="form-check-label" for="is_inv_og_hide">
-                    Always hide 'Original for recipient' on invoice
-                </label>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="1" name="is_inv_og_hide"
+                            id="is_inv_og_hide">
+                        <label class="form-check-label" for="is_inv_og_hide">
+                            Always hide 'Original for recipient' on invoice
+                        </label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active">
+                        <label class="form-check-label" for="is_active">
+                            Active
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary rounded-1">SUBMIT</button>
+                </form>
             </div>
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active">
-                <label class="form-check-label" for="is_active">
-                    Active
-                </label>
-            </div>
-            <button type="submit" class="btn btn-primary rounded-1">SUBMIT</button>
-            </form>
         </div>
-    </div>
     </div>
 @endsection
 @section('extrajs')
-    <<<<<<< HEAD <script src="{{ asset('admin/js/cities.js') }}"></script>
-    <script src="{{ asset('admin/js/states.js') }}"></script>
-    <script src="{{ asset('admin/js/timeslots.js') }}"></script>
-    <script src="{{ asset('admin/js/options.js') }}"></script>
-
     <script>
         $(document).ready(function() {
 
-                    document.getElementById("base_city_fuel").innerHTML = generateCityOptions();
-                    document.getElementById("country").innerHTML = generateCityOptions();
-
-                    div class = "row" >
-
-                    <
-                    div class = "col-md-6" >
-                    <
-                    div class = "panel border rounded mb-3" >
-                    <
-                    div class = "panel-heading bg-light p-3" > Applicable Taxes < /div>
-
-                        <
-                        div class = "appli_tax_body"
-                    id = "appli_tax_body" >
-                        {{-- component start --}}
-                    {{-- component end --}}
-
-                        <
-                        /div> <
-                    div class = "p-3" >
-                    <
-                    button type = "button"
-                    id = "extend_appli_tax"
-                    class = "btn btn-primary rounded-1" > < i
-                    class = "fa-solid fa-plus" > < /i></button >
-                    <
-                    /div> < /
-                    div >
+            document.getElementById("base_city_fuel").innerHTML = generateCityOptions();
+            document.getElementById("country").innerHTML = generateCityOptions();
 
 
-                        <
-                        /div> <
-                    div class = "col-md-6" >
-                    <
-                    div class = "panel border rounded mb-3" >
-                    <
-                    div class = "panel-heading bg-light p-3" > Applicable Interstate Taxes < /div> <
-                    div class = "inter_appli_tax_body"
-                    id = "inter_appli_tax_body" >
+            document.getElementById("state").innerHTML = generateStateOptions();
+            document.getElementById("gst_state").innerHTML = generateStateOptions();
+            document.getElementById("state").innerHTML = generateStateOptions();
 
-                        {{-- component start --}}
+            var applicableTaxes = @json($applicableTaxes);
+            $("#formCustomer").validate({
+                rules: {
+                    name: {
+                        required: false
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Please Enter Name"
+                    }
+                },
+                errorElement: "div",
+                errorClass: "error-message text-danger",
+                highlight: function(element) {
+                    $(element).addClass("is-invalid");
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass("is-invalid");
+                },
+                submitHandler: function(form) {
+                    $('.btnSubmit').attr('disabled', 'disabled');
+                    $(".btnSubmit").html('<span class="fa fa-spinner fa-spin"></span> Loading...');
+                    form.submit();
+                }
+            });
 
-                    {{-- component end --}}
-                        <
-                        /div> <
-                    div class = "p-3" >
-                    <
-                    button type = "button"
-                    id = "extend_inter_appli_tax"
-                    class = "btn btn-primary rounded-1" > < i class = "fa-solid fa-plus" > < /i></button >
-                    <
-                    /div> < /
-                    div > <
-                        /div> < /
-                        div > <
-                        div class = "row" >
-                        <
-                        div class = "col-md-6" >
-                        <
-                        div class = "panel border rounded mb-3" >
-                        <
-                        div class = "panel-heading bg-light p-3" > Driver Allowance Settings < /div> <
-                    div class = "p-3" >
-                    <
-                    table class = "table" >
-                    <
-                    thead >
-                        <
-                        tr >
-                        <
-                        th scope = "col" > City Name < /th> <
-                    th scope = "col" > Early Time < /th> <
-                    th scope = "col" > Late Time < /th> <
-                    th scope = "col" > Outstation Overnight Allowance Time < /th> <
-                    th scope = "col" > < /th> < /
-                        tr > <
-                        /thead> <
-                    tbody class = "dri_allow_set_tax_body"
-                    id = "dri_allow_set_tax_body" >
+            $('#summernote').summernote({
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['media', ['picture', 'link', ]]
+                ],
+                placeholder: '',
+                tabsize: 2,
+                height: 80
+            }); // Applicable Taxes Start Here
 
-                        {{-- component start --}}
+            $(document).on('click', '.remove_appli_tax_body', function() {
+                $(this).closest('.d-flex').remove();
+            });
 
+            $('#extend_appli_tax').on('click', function() {
+                const childCount = $('#appli_tax_body').find('.d-flex').length + 1;
+                console.log(childCount);
 
-                    {{-- component end --}}
-                        <
-                        /tbody> < /
-                        table > <
-                        /div> <
-                    div class = "p-3" >
-                    <
-                    button type = "button"
-                    class = "btn btn-primary rounded-1"
-                    id = "extend_dri_allow_set" > < i
-                    class = "fa-solid fa-plus" > < /i></button >
-                    <
-                    /div> < /
-                    div > <
-                        /div> <
-                    div class = "col-md-6" >
-                    <
-                    div class = "panel border rounded mb-3" >
-                    <
-                    div class = "panel-heading bg-light p-3" > Duty Type Type Timings < /div> <
-                    div class = "p-3" >
-                    <
-                    table class = "table" >
-                    <
-                    thead >
-                        <
-                        tr >
-                        <
-                        th scope = "col" > Duty Type Type < /th> <
-                    th scope = "col" > Start Time < /th> <
-                    th scope = "col" > End Time < /th> <
-                    th scope = "col" > < /th> < /
-                        tr > <
-                        /thead> <
-                    tbody class = "dut_typ_tim_body"
-                    id = "dut_typ_tim_body" >
-                        {{-- component start --}}
+                let taxOptions = '<option value="">(Select Tax)</option>';
+                applicableTaxes.forEach(tax => {
+                    taxOptions += `<option value="${tax.id}">${tax.percentage}</option>`;
+                });
 
-                    {{-- component end --}}
-                        <
-                        /tbody> < /
-                        table > <
-                        /div> <
-                    div class = "p-3" >
-                    <
-                    button type = "button"
-                    class = "btn btn-primary rounded-1"
-                    id = "extend_dut_typ_tim" > < i
-                    class = "fa-solid fa-plus" > < /i> Add Another Timing</button >
-                    <
-                    /div> < /
-                    div > <
-                        /div> < /
-                        div > <
-                        div class = "row" >
-                        <
-                        div class = "col-12" >
-                        <
-                        div class = "panel border rounded mb-3" >
-                        <
-                        div class = "panel-heading bg-light p-3" > Files < /div> <
-                    div class = "files_body"
-                    id = "files_body" >
-
-                        {{-- component start --}}
-
-                    {{-- component end --}}
-                        <
-                        /div> <
-                    div class = "p-3" >
-                    <
-                    button type = "button"
-                    class = "btn btn-primary rounded-1"
-                    id = "extend_files" > < i
-                    class = "fa-solid fa-plus" > < /i></button >
-                    <
-                    /div> < /
-                    div > <
-                        /div> < /
-                        div >
-
-
-
-
-
-                        <
-                        div class = "row" >
-                        <
-                        div class = "col-md-6" >
-                        <
-                        div class = "mb-3" >
-                        <
-                        label
-                    for = "notes"
-                    class = "form-label" > Notes < /label> <
-                    textarea class = "form-control"
-                    rows = "5"
-                    name = "notes"
-                    id = "notes" > < /textarea> <
-                    span class = "warning-msg-block" > < /span> < /
-                    div > <
-                        /div> <
-                    div class = "col-md-6" >
-                    <
-                    div class = "mb-3" >
-                    <
-                    label
-                    for = "inv_term_cond"
-                    class = "form-label" > Invoice Terms & Conditions < /label> <
-                    textarea id = "summernote"
-                    name = "inv_term_cond" > < /textarea>
-
-                        <
-                        /div> < /
-                        div > <
-                        /div> <
-                    div class = "bg-light mb-3 p-3" >
-                    You could use this field as unique identifier when integrating with another system.This field would
-                    be available in Duties & Invoice exports. <
-                        div class = "mb-3" >
-                        <
-                        label
-                    for = "cust_code"
-                    class = "form-label " > Customer Code < /label> <
-                    input type = "text"
-                    class = "form-control  border-bottom"
-                    name = "cust_code"
-                    id = "cust_code" >
-                        <
-                        span class = "warning-msg-block" > < /span> < /
-                        div > <
-                        /div> <
-                    div class = "bg-light mb-3 p-3" >
-                    If you would like to enable booking insurance
-                    for your customers contact support @indecab.com to
-                    learn how to enable this. <
-                        /div>
-
-                        <
-                        div class = "form-check mb-3" >
-                        <
-                        input class = "form-check-input"
-                    type = "checkbox"
-                    value = "1"
-                    name = "is_inv_og_hide"
-                    id = "is_inv_og_hide" >
-                        <
-                        label class = "form-check-label"
-                    for = "is_inv_og_hide" >
-                    Always hide 'Original for recipient'
-                    on invoice
-                        <
-                        /label> < /
-                        div > <
-                        div class = "form-check mb-3" >
-                        <
-                        input class = "form-check-input"
-                    type = "checkbox"
-                    value = "1"
-                    name = "is_active"
-                    id = "is_active" >
-                        <
-                        label class = "form-check-label"
-                    for = "is_active" >
-                    Active
-                        <
-                        /label> < /
-                        div > <
-                        button type = "submit"
-                    class = "btn btn-primary rounded-1" > SUBMIT < /button> < /
-                        form > <
-                        /div> < /
-                        div > <
-                        /div>
-                @endsection
-                @section('extrajs')
-                    <
-                    script >
-                        $(document).ready(function() {
-
-                            document.getElementById("base_city_fuel").innerHTML = generateCityOptions();
-                            document.getElementById("country").innerHTML = generateCityOptions();
-
-
-                            document.getElementById("state").innerHTML = generateStateOptions();
-                            document.getElementById("gst_state").innerHTML = generateStateOptions();
-                            document.getElementById("state").innerHTML = generateStateOptions();
-
-                            var applicableTaxes = @json($applicableTaxes);
-                            $("#formCustomer").validate({
-                                rules: {
-                                    name: {
-                                        required: false
-                                    }
-                                },
-                                messages: {
-                                    name: {
-                                        required: "Please Enter Name"
-                                    }
-                                },
-                                errorElement: "div",
-                                errorClass: "error-message text-danger",
-                                highlight: function(element) {
-                                    $(element).addClass("is-invalid");
-                                },
-                                unhighlight: function(element) {
-                                    $(element).removeClass("is-invalid");
-                                },
-                                submitHandler: function(form) {
-                                    $('.btnSubmit').attr('disabled', 'disabled');
-                                    $(".btnSubmit").html(
-                                        '<span class="fa fa-spinner fa-spin"></span> Loading...');
-                                    form.submit();
-                                }
-                            });
-
-                            $('#summernote').summernote({
-                                toolbar: [
-                                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                                    ['color', ['color']],
-                                    ['media', ['picture', 'link', ]]
-                                ],
-                                placeholder: '',
-                                tabsize: 2,
-                                height: 80
-                            }); // Applicable Taxes Start Here
-
-                            $(document).on('click', '.remove_appli_tax_body', function() {
-                                $(this).closest('.d-flex').remove();
-                            });
-
-                            $('#extend_appli_tax').on('click', function() {
-                                const childCount = $('#appli_tax_body').find('.d-flex').length + 1;
-                                console.log(childCount);
-
-                                let taxOptions = '<option value="">(Select Tax)</option>';
-                                applicableTaxes.forEach(tax => {
-                                    taxOptions +=
-                                        `<option value="${tax.id}">${tax.percentage}</option>`;
-                                });
-
-                                var template = `<div class="d-flex border-bottom">
+                var template = `<div class="d-flex border-bottom">
             <div class="p-3">
                 <button type="button" class="btn btn-primary rounded-1 remove_appli_tax_body" data-index=${childCount}>
                     <i class="fa-solid fa-minus"></i>
@@ -978,37 +707,36 @@
             </div>
         </div>`;
 
-                                $('#appli_tax_body').append(template);
+                $('#appli_tax_body').append(template);
 
-                                // For dynamic select fields
-                                $(`#appli_tax${childCount}`).rules('add', {
-                                    required: true,
-                                    messages: {
-                                        required: "Please select a tax option"
-                                    }
-                                });
+                // For dynamic select fields
+                $(`#appli_tax${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Please select a tax option"
+                    }
+                });
 
-                                // Revalidate the form (to make sure dynamic fields are validated correctly)
+                // Revalidate the form (to make sure dynamic fields are validated correctly)
 
-                            });
+            });
 
-                            // Applicable Taxes End Here
+            // Applicable Taxes End Here
 
-                            // Applicable Interstate Taxes Start Here
+            // Applicable Interstate Taxes Start Here
 
-                            $(document).on('click', '.remove_inter_appli_tax_body', function() {
-                                $(this).closest('.d-flex').remove();
-                            });
+            $(document).on('click', '.remove_inter_appli_tax_body', function() {
+                $(this).closest('.d-flex').remove();
+            });
 
-                            $('#extend_inter_appli_tax').on('click', function() {
-                                const childCount = $('#inter_appli_tax_body').find('.d-flex').length + 1;
-                                console.log(childCount);
-                                let taxOptions = '<option value="">(Select Tax)</option>';
-                                applicableTaxes.forEach(tax => {
-                                    taxOptions +=
-                                        `<option value="${tax.id}">${tax.percentage}</option>`;
-                                });
-                                var template = `  <div class="d-flex border-bottom">
+            $('#extend_inter_appli_tax').on('click', function() {
+                const childCount = $('#inter_appli_tax_body').find('.d-flex').length + 1;
+                console.log(childCount);
+                let taxOptions = '<option value="">(Select Tax)</option>';
+                applicableTaxes.forEach(tax => {
+                    taxOptions += `<option value="${tax.id}">${tax.percentage}</option>`;
+                });
+                var template = `  <div class="d-flex border-bottom">
                                     <div class="p-3">
                                         <button type="button" class="btn btn-primary rounded-1 remove_inter_appli_tax_body"><i
                                                 class="fa-solid fa-minus"></i></button>
@@ -1036,30 +764,30 @@
                                     </div>
                                 </div>`;
 
-                                $('#inter_appli_tax_body').append(template);
+                $('#inter_appli_tax_body').append(template);
 
-                                $(`#inter_appli_tax${childCount}`).rules('add', {
-                                    required: true,
-                                    messages: {
-                                        required: "Please select a tax option"
-                                    }
-                                });
+                $(`#inter_appli_tax${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Please select a tax option"
+                    }
+                });
 
-                            });
+            });
 
-                            // Applicable Interstate Taxes End Here
+            // Applicable Interstate Taxes End Here
 
-                            // Driver Allowance Settings Start Here
+            // Driver Allowance Settings Start Here
 
-                            $(document).on('click', '.remove_dri_allow_set', function() {
-                                $(this).closest('tr').remove();
-                            });
+            $(document).on('click', '.remove_dri_allow_set', function() {
+                $(this).closest('tr').remove();
+            });
 
-                            $('#extend_dri_allow_set').on('click', function() {
-                                const childCount = $('#dri_allow_set_tax_body').find('tr').length + 1;
-                                console.log(childCount);
+            $('#extend_dri_allow_set').on('click', function() {
+                const childCount = $('#dri_allow_set_tax_body').find('tr').length + 1;
+                console.log(childCount);
 
-                                var template = `    <tr>
+                var template = `    <tr>
                                                 <td>
                                                     <select class="form-select border-bottom"
                                                         aria-label="Default select example" name="dri_allow_set_city${childCount}"  id="dri_allow_set_city${childCount}" data-index=${childCount}
@@ -1100,52 +828,52 @@
                                                 </td>
                                             </tr>`;
 
-                                $('#dri_allow_set_tax_body').append(template);
+                $('#dri_allow_set_tax_body').append(template);
 
 
-                                $(`#dri_allow_set_city${childCount}`).rules('add', {
-                                    required: true,
-                                    messages: {
-                                        required: "Select City"
-                                    }
-                                });
+                $(`#dri_allow_set_city${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select City"
+                    }
+                });
 
-                                $(`#dri_allow_set_early_time${childCount}`).rules('add', {
-                                    required: true,
-                                    messages: {
-                                        required: "Select Early Time"
-                                    }
-                                });
+                $(`#dri_allow_set_early_time${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select Early Time"
+                    }
+                });
 
-                                $(`#dri_allow_set_late_time${childCount}`).rules('add', {
-                                    required: true,
-                                    messages: {
-                                        required: "Select Late Time"
-                                    }
-                                });
+                $(`#dri_allow_set_late_time${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select Late Time"
+                    }
+                });
 
-                                $(`#dri_allow_set_outst_overnig_time${childCount}`).rules('add', {
-                                    required: true,
-                                    messages: {
-                                        required: "Select Outstation Overnight Time"
-                                    }
-                                });
+                $(`#dri_allow_set_outst_overnig_time${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select Outstation Overnight Time"
+                    }
+                });
 
-                            });
+            });
 
-                            // Driver Allowance Settings End Here
+            // Driver Allowance Settings End Here
 
-                            // Duty Type Type Timings Start Here
+            // Duty Type Type Timings Start Here
 
-                            $(document).on('click', '.remove_dut_typ_tim', function() {
-                                $(this).closest('tr').remove();
-                            });
+            $(document).on('click', '.remove_dut_typ_tim', function() {
+                $(this).closest('tr').remove();
+            });
 
-                            $('#extend_dut_typ_tim').on('click', function() {
-                                const childCount = $('#dut_typ_tim_body').find('tr').length + 1;
-                                console.log(childCount);
+            $('#extend_dut_typ_tim').on('click', function() {
+                const childCount = $('#dut_typ_tim_body').find('tr').length + 1;
+                console.log(childCount);
 
-                                var template = `      <tr>
+                var template = `      <tr>
                                                 <td>
                                                     <select class="form-select border-bottom"
                                                         aria-label="Default select example" name="dut_typ_tim${childCount}" 
@@ -1188,45 +916,45 @@
                                                 </td>
                                             </tr>`;
 
-                                $('#dut_typ_tim_body').append(template);
+                $('#dut_typ_tim_body').append(template);
 
 
 
-                                $(`#dut_typ_tim${childCount}`).rules('add', {
-                                    required: true,
-                                    messages: {
-                                        required: "Select Duty Type"
-                                    }
-                                });
+                $(`#dut_typ_tim${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select Duty Type"
+                    }
+                });
 
-                                $(`#dut_typ_tim_str${childCount}`).rules('add', {
-                                    required: true,
-                                    messages: {
-                                        required: "Select Start Time"
-                                    }
-                                });
+                $(`#dut_typ_tim_str${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select Start Time"
+                    }
+                });
 
-                                $(`#dut_typ_tim_end${childCount}`).rules('add', {
-                                    required: true,
-                                    messages: {
-                                        required: "Select End Time"
-                                    }
-                                });
-                            });
+                $(`#dut_typ_tim_end${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Select End Time"
+                    }
+                });
+            });
 
-                            // Duty Type Type Timings End Here
+            // Duty Type Type Timings End Here
 
-                            // Files Start Here
+            // Files Start Here
 
-                            $(document).on('click', '.remove_files', function() {
-                                $(this).closest('.d-flex').remove();
-                            });
+            $(document).on('click', '.remove_files', function() {
+                $(this).closest('.d-flex').remove();
+            });
 
-                            $('#extend_files').on('click', function() {
-                                const childCount = $('#files_body').find('.d-flex').length + 1;
-                                console.log(childCount);
+            $('#extend_files').on('click', function() {
+                const childCount = $('#files_body').find('.d-flex').length + 1;
+                console.log(childCount);
 
-                                var template = `      <div class="d-flex border-bottom">
+                var template = `      <div class="d-flex border-bottom">
                                     <div class="p-3">
                                         <button type="button" class="btn btn-primary rounded-1 remove_files"><i
                                                 class="fa-solid fa-minus"></i></button>
@@ -1262,27 +990,27 @@
                                     </div>
                                 </div>`;
 
-                                $('#files_body').append(template);
-                                $(`#file_name${childCount}`).rules('add', {
-                                    required: true,
-                                    messages: {
-                                        required: "Enter File Name"
-                                    }
-                                });
+                $('#files_body').append(template);
+                $(`#file_name${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Enter File Name"
+                    }
+                });
 
-                                $(`#image${childCount}`).rules('add', {
-                                    required: true,
-                                    messages: {
-                                        required: "Upload File"
-                                    }
-                                });
+                $(`#image${childCount}`).rules('add', {
+                    required: true,
+                    messages: {
+                        required: "Upload File"
+                    }
+                });
 
 
-                            });
-                            $("#formCustomer").valid();
+            });
+            $("#formCustomer").valid();
 
-                        });
+        });
 
-                    // Files End Here
+        // Files End Here
     </script>
 @endsection

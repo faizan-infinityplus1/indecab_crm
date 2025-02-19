@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
 use App\Models\MstDutySupporter;
+use App\Models\MstDutySupporterAddress;
+use App\Models\MstDutySupporterFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class DutySupportersController extends Controller
@@ -42,7 +45,7 @@ class DutySupportersController extends Controller
         );
         if ($validator->fails()) {
             dd($validator->errors()->first());
-            return redirect(route('dutysupporters.manage'))->withInput();
+            return redirect(route('dutysupporters.index'))->withInput();
         }
         $dutySupporter = MstDutySupporter::create([
             'name' => $request->name,
@@ -57,6 +60,58 @@ class DutySupportersController extends Controller
             'ref_details' => $request->ref_details,
             'active' => $request->active ?? false,
         ]);
+        $dutySupporterId = $dutySupporter->id;
+
+         // Process Applicable Taxes
+         $addressData = [];
+         for ($i = 1; $request->has("duty_supporter_address_type$i"); $i++) {
+             $dutySupporterAddressType = $request->input("duty_supporter_address_type{$i}");
+             $dutySupporterAddress = $request->input("duty_supporter_address{$i}");
+             // Add to applicable taxes data array
+             $dutySupporterAddressData[] = [
+                 'admin_id' => Auth::id(),
+                 'duty_supporter_id' => $dutySupporterId,
+                 'duty_supporter_address_type' => $dutySupporterAddressType,
+                 'duty_supporter_address' => $dutySupporterAddress,
+                 'created_at' => now(),
+                 'updated_at' => now(),
+             ];
+             // print_r($applicableTaxesData);
+         }
+         MstDutySupporterAddress::insert($dutySupporterAddressData);
+
+         $filesData = [];
+            for ($i = 1; $request->has("file_name$i"); $i++) {
+                $fileName = $request->input("file_name$i");
+
+                if ($request->hasFile("image$i")) {
+                    $file = $request->file("image{$i}");
+                    $filePath = $file->store('suppliers/supplier-images', 'public'); // Store in 'storage/app/public/customer-images'
+
+                    // Add file data to array
+                    $filesData[] = [
+                        'admin_id' => Auth::user()->id,
+                        'duty_supporter_id' => $dutySupporterId,
+                        'file_name' => $fileName,
+                        'image' => $filePath, // Save the unique file name
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                    // dd($filesData);
+                } else {
+
+                    $filesData[] = [
+                        'admin_id' => Auth::user()->id,
+                        'duty_supporter_id' => $dutySupporterId,
+                        'file_name' => $fileName,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+            }
+
+            MstDutySupporterFile::insert($filesData);
+
         if ($dutySupporter) {
             // connectify('success', 'Product Added', 'Duty Type has been added successfully !');
             return redirect(route('dutysupporters.index'));
