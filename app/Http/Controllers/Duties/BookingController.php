@@ -11,7 +11,6 @@ class BookingController extends Controller
     function create()
     {
         $customers = MstCustomer::where('is_active', true)->get();
-        // dd($customers);
         return view("backend.admin.duties.booking.manage", compact('customers'));
     }
 }

@@ -1,0 +1,10 @@
+# new to
+
+php artisan tinker
+on terminal
+Then Below
+ Admin::create([
+                'name' => 'admin',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('123456789'),
+            ]);

@@ -70,7 +70,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('/customers/delete/files/{id}', [CustomersController::class, 'deleteFiles'])->name('customers.delete.files');
 
     Route::get('/customers/{customerId}/people', [CustomersPeopleController::class, 'index'])->name('customers.people.index');
-    Route::get('/customers/{customerId}/people/manage', [CustomersPeopleController::class, 'manage'])->name('customers.people.manage');
+    Route::get('/customers/{customerId}/people/manage/{customerPeopleId?}', [CustomersPeopleController::class, 'manage'])->name('customers.people.manage');
+    Route::post('/customers/{customerId}/people/createOrUpdate', [CustomersPeopleController::class, 'createOrUpdate'])->name('customers.people.createOrUpdate');
 
     Route::get('/customers/groups', [CustomersController::class, 'showCustomersGroups'])->name('showCustomersGroups');
     Route::get('/customers/groups/create', [CustomersController::class, 'createCustomersGroups'])->name('createCustomersGroups');
