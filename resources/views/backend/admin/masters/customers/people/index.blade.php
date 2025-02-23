@@ -19,7 +19,7 @@
         <h4>People</h4>
 
         <div class="text-end d-flex justify-content-end align-items-center gap-2">
-            <div class="btn-group" role="group"><a href="{{route('customers.people.manage')}}" class="btn btn-primary">Add Person</a></div>
+            <div class="btn-group" role="group"><a href="{{route('customers.people.manage', 1)}}" class="btn btn-primary">Add Person</a></div>
             <div class="dropdown">
                 <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">

@@ -68,10 +68,10 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('/customers/delete/driver-allowance-setting/{id}', [CustomersController::class, 'deleteDriverAllowanceSetting'])->name('customers.delete.driver.allowance.setting');
     Route::delete('/customers/delete/duty-type/{id}', [CustomersController::class, 'deleteDutyType'])->name('customers.delete.duty.type');
     Route::delete('/customers/delete/files/{id}', [CustomersController::class, 'deleteFiles'])->name('customers.delete.files');
-    
-    Route::get('/customers/1/people', [CustomersPeopleController::class, 'index'])->name('customers.people.index');
-    Route::get('/customers/1/people/manage', [CustomersPeopleController::class, 'manage'])->name('customers.people.manage');
-    
+
+    Route::get('/customers/{customerId}/people', [CustomersPeopleController::class, 'index'])->name('customers.people.index');
+    Route::get('/customers/{customerId}/people/manage', [CustomersPeopleController::class, 'manage'])->name('customers.people.manage');
+
     Route::get('/customers/groups', [CustomersController::class, 'showCustomersGroups'])->name('showCustomersGroups');
     Route::get('/customers/groups/create', [CustomersController::class, 'createCustomersGroups'])->name('createCustomersGroups');
 
@@ -96,7 +96,7 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/vehicles', [VehiclesController::class, 'showVehicles'])->name('showVehicles');
     Route::get('/vehicles/create', [VehiclesController::class, 'createVehicles'])->name('createVehicles');
-    
+
     Route::get('/duty-supporters', [DutySupportersController::class, 'index'])->name('dutysupporters.index');
     Route::get('/duty-supporters/manage/{id?}', [DutySupportersController::class, 'manage'])->name('dutysupporters.manage');
     Route::post('/duty-supporters/store', [DutySupportersController::class, 'store'])->name('dutysupporters.store');
@@ -113,7 +113,7 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');
     Route::get('/employees/manage/{id?}', [EmployeesController::class, 'manage'])->name('employees.manage');
-    
+
     Route::get('/billing-items', [BillingItemsController::class, 'index'])->name('billingitems.index');
     Route::get('/billing-items/manage/{id?}', [BillingItemsController::class, 'manage'])->name('billingitems.manage');
     Route::post('/billing-items/store', [BillingItemsController::class, 'store'])->name('billingitems.store');
@@ -134,7 +134,7 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/companies/profiles', [CompaniesProfilesController::class, 'index'])->name('companiesprofiles.index');
     Route::get('/companies/profiles/manage/{id?}', [CompaniesProfilesController::class, 'manage'])->name('companiesprofiles.manage');
-    
+
     Route::get('/pricing', [CustomerPricingController::class, 'index'])->name('customerpricing.index');
 
     Route::get('/pricing/supplier', [SupplierPricingController::class, 'index'])->name('supplierpricing.index');
@@ -143,7 +143,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/report-requests', [ReportController::class, 'index'])->name('reports.index');
     Route::get('/report-requests/recent', [ReportController::class, 'recent'])->name('reports.recent');
     Route::get('/report-requests/manage', [ReportController::class, 'manage'])->name('reports.manage');
-    
+
     // Route::get('/bookingManage/{id?}', [AddBookController::class, 'manage'])->name('dutytype.manage');
     Route::get("/booking/create",[BookingController::class,"create"]);
     Route::get("/incoming/allotted",[DutyController::class,"allotted"]);
