@@ -3,18 +3,17 @@
 }
 
 /* notify start here */
-.notify{
+.notify {
     z-index: 1111111111111;
 }
-.notify svg{
+.notify svg {
     /* font-size: 20px; */
     width: 35px;
     height: 35px;
 }
-.notify .leading-5{
-font-size: 15px;
+.notify .leading-5 {
+    font-size: 15px;
 }
-
 
 /* swal toast start here */
 .swal-toast {
@@ -24,11 +23,13 @@ font-size: 15px;
     font-size: 14px !important;
     border-radius: 5px !important;
 }
-.form-select.is-invalid:focus, .was-validated .form-select:invalid:focus {
+.form-select.is-invalid:focus,
+.was-validated .form-select:invalid:focus {
     box-shadow: unset !important;
     border-bottom: 2px solid red !important;
 }
-.form-control.is-invalid:focus, .was-validated .form-control:invalid:focus {
+.form-control.is-invalid:focus,
+.was-validated .form-control:invalid:focus {
     box-shadow: unset !important;
     border-bottom: 2px solid red !important;
 }
@@ -42,19 +43,26 @@ font-size: 15px;
     padding-right: 27px;
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="date"], select {
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+select {
     border-radius: 0px !important;
     border: none !important;
     border-bottom: 1px solid #dee2e6 !important   ;
     /* border-bottom: 1px solid blue; */
 }
-.form-control, textarea.form-control {
+.form-control,
+textarea.form-control {
     border: none;
     border-radius: 0px;
     border-bottom: 1px solid #dee2e6;
     background-color: transparent;
 }
-.form-control:focus, .form-select:focus {
+.form-control:focus,
+.form-select:focus {
     box-shadow: none;
     border: none;
     background-color: transparent;
@@ -69,13 +77,12 @@ input[type="text"], input[type="password"], input[type="email"], input[type="num
 
 /* modal code end */
 
-
 ul.dropdown-menu.dropdown-menu-end {
     right: 0;
     left: auto;
 }
 
-.fa-angle-left{
+.fa-angle-left {
     font-size: 24px;
 }
 
@@ -92,4 +99,39 @@ ul.dropdown-menu.dropdown-menu-end {
 .hover-link:hover {
     color: rgb(13 110 253) !important;
     border-color: rgb(13 110 253) !important;
+}
+
+.come-from-modal.left .modal-dialog,
+.come-from-modal.right .modal-dialog {
+    position: fixed;
+    margin: auto;
+    width: 75%;
+    height: 100%;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+}
+
+.come-from-modal.left .modal-content,
+.come-from-modal.right .modal-content {
+    height: 100%;
+    overflow-y: auto;
+    border-radius: 0px;
+}
+
+.come-from-modal.left .modal-body,
+.come-from-modal.right .modal-body {
+    padding: 15px 15px 80px;
+}
+.come-from-modal.right.fade .modal-dialog {
+    right: 0px;
+    -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+    transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+.come-from-modal.right.fade.in .modal-dialog {
+    right: 0;
 }
