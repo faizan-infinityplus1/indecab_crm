@@ -81,6 +81,7 @@
                         <div class="panel border rounded mb-3">
                             <div class="panel-heading bg-light p-3">Addresses</div>
                             {{-- component start --}}
+                            <div class="" id=""></div>
                             <div class="d-flex border-bottom">
                                 <div class="p-3">
                                     <button type="button" class="btn btn-primary rounded-1"><i
