@@ -138,7 +138,8 @@
                                                         <div class="mb-3">
                                                             <label for="address${childCount}" class="form-label">Address
                                                             </label>
-                                                            <textarea class="form-control" name="address_{{ $data->id }}_update" id="address${childCount}" data-index=address${childCount} rows="5"> {{ old('address', $data->address ?? '') }}</textarea>
+                                                            <textarea class="form-control" name="address_{{ $data->id }}_update" id="address${childCount}"
+                                                                data-index=address${childCount} rows="5"> {{ old('address', $data->address ?? '') }}</textarea>
                                                             <span class="warning-msg-block"></span>
                                                         </div>
                                                     </div>
@@ -322,10 +323,10 @@
                                 {{-- component start --}}
                                 <div id="deduction_tax_body" class="deduction_tax_body">
                                     @foreach ($mstDriverAddress as $addressData)
-                                    <option value="{{ $addressData->id }}"
-                                        {{ old('appli_tax', $addressData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
-                                        {{ $addressData->percentage }}</option>
-                                @endforeach
+                                        <option value="{{ $addressData->id }}"
+                                            {{ old('appli_tax', $addressData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
+                                            {{ $addressData->percentage }}</option>
+                                    @endforeach
                                 </div>
 
                                 {{-- component end --}}
@@ -497,7 +498,7 @@
     </div>
 @endsection
 @section('extrajs')
-<script src="{{ asset('admin/js/cities.js') }}"></script>
+    <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script src="{{ asset('admin/js/states.js') }}"></script>
     <script src="{{ asset('admin/js/timeslots.js') }}"></script>
     <script src="{{ asset('admin/js/options.js') }}"></script>
@@ -512,13 +513,18 @@
             document.getElementById("working_hours_end").innerHTML = generateTimeSlots(particularmstDriver
                 .working_hours_end);
 
-            $("#formMyDrivers").validate({
+
+            $("#formDriver").validate({
                 rules: {
                     name: {
                         required: true
                     },
                     mobile_no: {
-                        required: true
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        pattern: /^[0-9]{10}$/
                     }
                 },
                 messages: {
@@ -526,7 +532,11 @@
                         required: "Please Enter Name"
                     },
                     mobile_no: {
-                        required: "Please Enter Mobile No"
+                        required: "Please Enter Mobile No",
+                        digits: "Please enter only numbers",
+                        minlength: "Mobile number must be exactly 10 digits",
+                        maxlength: "Mobile number must be exactly 10 digits",
+                        pattern: "Please enter a valid 10-digit mobile number"
                     }
                 },
                 errorElement: "div",
@@ -548,6 +558,10 @@
                     form.submit();
                 }
             });
+
+
+
+
 
             // Driver Address Start Here
 
