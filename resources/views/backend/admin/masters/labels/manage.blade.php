@@ -49,12 +49,16 @@
                             {{ old('label_color', $data->label_color ?? '') == 'bg-dark text-white' ? 'selected' : '' }}>black</option>
                             <option value="bg-danger-subtle"
                             {{ old('label_color', $data->label_color ?? '') == 'bg-danger-subtle' ? 'selected' : '' }}>pink</option>
+                            <option value="bg-danger-subtle"
+                            {{ old('label_color', $data->label_color ?? '') == 'bg-danger-subtle' ? 'selected' : '' }}>Purple</option>
+                            <option value="bg-danger-subtle"
+                            {{ old('label_color', $data->label_color ?? '') == 'bg-danger-subtle' ? 'selected' : '' }}>Orange</option>
                         </select>
                         <span class="warning-msg-block"></span>
                     </div>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input" 
+                        <input class="form-check-input"
                         type="checkbox"
                         id="not_display_in_duties"
                         name = "not_display_in_duties"

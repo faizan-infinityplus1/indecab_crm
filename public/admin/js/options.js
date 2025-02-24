@@ -8,7 +8,6 @@ function generateStateOptions(selectedState) {
 }
 
 function generateCityOptions(selectedCity) {
-    console.log(selectedCity);
     return [
         `<option value="" style="display:none;"  >-- Select a City --</option>`,
         ...cities.map(city =>

@@ -36,7 +36,6 @@ class LabelsController extends Controller
         if ($validator->fails()) {
             // dd($request->max_hours);
             // connectify('error', 'Add Product', $validator->errors()->first());
-            dd($validator->errors()->first());
             return redirect(route('labels.manage'))->withInput();
         }
         $bankAccount = MstLabel::create([
@@ -52,7 +51,7 @@ class LabelsController extends Controller
     public function edit(Request $request)
     {
         $bankAccount = MstLabel::findOrFail($request->id);
-        
+
         return view('backend.admin.masters.labels.manage', compact('data'));
     }
 

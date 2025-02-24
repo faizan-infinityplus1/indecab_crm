@@ -1,11 +1,11 @@
 @extends('layouts.admin-master')
 @section('content')
-    <div x-data="block">
+    <div>
         <div class="container-fluid p-5">
             {{-- page heading start --}}
             <div class="page-header border-bottom bg-white mb-3">
                 <div class="row">
-                    <div class="col-md-6 position-static" x-show="open">
+                    <div class="col-md-6 position-static">
                         <div class="position-absolute" style="top: 96px; left: 0px;">
                             <button type="button" class="btn" onclick="window.history.back()"><i
                                     class="fa-solid fa-angle-left"></i></button>
@@ -35,17 +35,21 @@
                 <div class="row mb-3">
                     <div class="col-md-10 col-12">
                         <label for="name" class="control-label">Customer <span class="text-danger">*</span></label>
-                        <select class="form-select border-bottom" name="" id="">
+                        <select class="form-select border-bottom" name="customer" id="customer">
                             <option value="">(Select one)</option>
-                            <option value="">Mumbai</option>
-                            <option value="">Pune</option>
-                            <option value="">Thane</option>
-                            <option value="">Byculla</option>
+                            @foreach ($customers as $customer)
+                                <option value="{{ $customer->id }}" data-name="{{ $customer->name }}"
+                                    data-gstNo="{{ $customer->gst_no }}" data-address="{{ $customer->address }}">
+                                    {{ $customer->name }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-md-2 col-12 mt-4 " role="group">
-                        <button class="btn btn-light border w-100">Add New Customer</button>
+                        <button type="button" class="btn btn-light border w-100" data-bs-toggle="modal"
+                            data-bs-target="#rightSidePanel">Add New Customer</button>
                     </div>
+
                 </div>
 
 
@@ -453,11 +457,48 @@
             </form>
         </div>
     </div>
+    <div class="modal fade come-from-modal right" id="rightSidePanel" tabindex="-1"
+        aria-labelledby="rightSidePanelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen"> <!-- Added 'modal-fullscreen' for full height -->
+            <div class="modal-content h-100">
+                <div class="modal-body p-0 h-100">
+                    <iframe src="{{ route('customers.create') }}/?hide_menu=1" frameborder="0"
+                        class="w-100 h-100"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('extrajs')
+    <script src="{{ asset('admin/js/timeslots.js') }}"></script>
+    <script src="{{ asset('admin/js/options.js') }}"></script>
     <script>
         $(document).ready(function() {
+
+            function formatState(state) {
+                if (!state.id) {
+                    return state.text;
+                }
+                console.log('state', state);
+                console.log('$(state.element).attr("data-customer")', $(state.element).attr("data-customer"));
+                const name = $(state.element).attr("data-name");
+                const gstNo = $(state.element).attr("data-gstNo") || "N/A";
+                const address = $(state.element).attr("data-address");
+                // var baseUrl = "/user/pages/images/flags";
+                var $state = $(
+                    `<div >
+                <div>- ${name}</div>
+                <small class="text-muted">
+                    <strong>GST:</strong> ${gstNo} <strong>| Address:</strong> ${address}
+                </small>
+            </div>`
+                );
+                return $state;
+            };
+            $('#customer').select2({
+                templateResult: formatState,
+            });
             $('.hideElement').hide();
             // function toggleDivs() {
             // }

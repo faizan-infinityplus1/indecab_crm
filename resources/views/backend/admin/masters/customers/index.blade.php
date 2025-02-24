@@ -113,9 +113,9 @@
                         aria-expanded="false">
                         <i class="fa-solid fa-gear"></i>
                     </button>
-                    <ul class="dropdown-menu"> 
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
-                            data-bs-target="#merge-two-customer" >Merge Two Customers</a></li>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                data-bs-target="#merge-two-customer">Merge Two Customers</a></li>
                         <li><a class="dropdown-item" href="#">Import</a></li>
                         <li><a class="dropdown-item" href="#">Export Customers</a></li>
                         <li><a class="dropdown-item" href="#">Export Pricing</a></li>
@@ -160,42 +160,46 @@
                             <tr>
 
                                 <td>{{ $data->name }}</td>
-                                @if ($data->customerGroups->isNotEmpty())                               
-                                <td>
-                                    @foreach ($data->customerGroups as $group)
-                               {!! !empty($group->name) ? $group->name : '<span>NA</span>' !!}
-                               @endforeach
-                                </td>
+                                @if ($data->customerGroups->isNotEmpty())
+                                    <td>
+                                        @foreach ($data->customerGroups as $group)
+                                            {!! !empty($group->name) ? $group->name : '<span>NA</span>' !!}
+                                        @endforeach
+                                    </td>
                                 @else
-                              <td>  {!! !empty($group->name) ? $group->name : '<span>NA</span>' !!} </td>
+                                    <td> {!! !empty($group->name) ? $group->name : '<span>NA</span>' !!} </td>
                                 @endif
 
 
-                        <td>{!! $data->phone_no ?? '<span>NA</span>' !!}</td>
-                        <td>{!! $data->gst_no ?? '<span>NA</span>' !!}</td>
+                                <td>{!! $data->phone_no ?? '<span>NA</span>' !!}</td>
+                                <td>{!! $data->gst_no ?? '<span>NA</span>' !!}</td>
 
-                        <td>
-                            <div class="{{ $data->is_active == true ? 'text-success' : 'text-danger' }}">
-                                {{ $data->is_active == false ? 'In Active' : 'Active' }}</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('customers.edit', $data->id) }}">Edit</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="{{route('customers.people.index')}}">Manage people</a></li>
-                                    <li><a class="dropdown-item" href="#">Custome fields</a></li>
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
-                                        data-bs-target="#create-corporate-account">Create Corporate Account</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                        </tr>
+                                <td>
+                                    <div class="{{ $data->is_active == true ? 'text-success' : 'text-danger' }}">
+                                        {{ $data->is_active == false ? 'In Active' : 'Active' }}</div>
+                                </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="fa-solid fa-gear"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('customers.edit', $data->id) }}">Edit</a>
+                                            </li>
+                                            <li><a class="dropdown-item"
+                                                    href="{{ route('customers.people.index', $data->id) }}">Manage
+                                                    people</a></li>
+                                            <li><a class="dropdown-item" href="#">Custome fields</a></li>
+                                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#create-corporate-account">Create Corporate Account</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
                         @endforeach
 
 
@@ -219,103 +223,113 @@
     {{-- Merge Two Customer --}}
     <div class="modal fade" id="merge-two-customer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-        <div class="modal-content rounded-0 border-0">
-            <div class="modal-header px-5 sticky-top bg-white">
-                <div>
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Merge Two Customer</h1>
-                    <p class="text-black-50 mb-0">Use this to consolidate two customers into single customer. This is useful when you have accidentally created two customers of same name.</p>
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Merge Two Customer</h1>
+                        <p class="text-black-50 mb-0">Use this to consolidate two customers into single customer. This is
+                            useful when you have accidentally created two customers of same name.</p>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                <div class="modal-body px-5">
+                    <form action="" method="post">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="" class="form-label">Source Customers</label>
+                            <select class="form-select border-bottom" aria-label="Default select example" name=""
+                                id="">
+                                <option value="selectOne">Select an option</option>
+                                <option value="">Home Address</option>
+                                <option value="">Permanent Address</option>
+                                <option value="">Temporary Address</option>
+                                <option value="">Village Address</option>
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Destination Customer</label>
+                            <select class="form-select border-bottom" aria-label="Default select example" name=""
+                                id="">
+                                <option value="selectOne">Select an option</option>
+                                <option value="">Home Address</option>
+                                <option value="">Permanent Address</option>
+                                <option value="">Temporary Address</option>
+                                <option value="">Village Address</option>
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <p class="text-danger">Note: Pricing would not be copied from source customer to destination
+                            customer.</p>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-start px-5">
+                    <button type="submit" class="btn btn-primary rounded-1">Merge Two Customers</button>
+                    <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
-            <div class="modal-body px-5">
-                <form action="" method="post">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="" class="form-label">Source Customers</label>
-                        <select class="form-select border-bottom" aria-label="Default select example" name="" id="">
-                            <option value="selectOne">Select an option</option>
-                            <option value="">Home Address</option>
-                            <option value="">Permanent Address</option>
-                            <option value="">Temporary Address</option>
-                            <option value="">Village Address</option>
-                        </select>
-                        <span class="warning-msg-block"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Destination Customer</label>
-                        <select class="form-select border-bottom" aria-label="Default select example" name="" id="">
-                            <option value="selectOne">Select an option</option>
-                            <option value="">Home Address</option>
-                            <option value="">Permanent Address</option>
-                            <option value="">Temporary Address</option>
-                            <option value="">Village Address</option>
-                        </select>
-                        <span class="warning-msg-block"></span>
-                    </div>
-                    <p class="text-danger">Note: Pricing would not be copied from source customer to destination customer.</p>
-                </form>
-            </div>
-            <div class="modal-footer justify-content-start px-5">
-                <button type="submit" class="btn btn-primary rounded-1">Merge Two Customers</button>
-                <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
         </div>
     </div>
     {{-- Merge Two Customer --}}
 
     {{-- Create Corporate Account --}}
-    <div class="modal fade" id="create-corporate-account" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="create-corporate-account" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-        <div class="modal-content rounded-0 border-0">
-            <div class="modal-header px-5 sticky-top bg-white">
-                <div>
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create Corporate Account</h1>
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create Corporate Account</h1>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                <div class="modal-body px-5">
+                    <form action="" method="post">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="" class="form-label ">Email <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control  border-bottom" name="" id="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Duty Types - Limit ability to add bookings to these
+                                Duty Types</label>
+                            <select class="form-select border-bottom" aria-label="Default select example" name=""
+                                id="">
+                                <option value="selectOne">Select an option</option>
+                                <option value="">Home Address</option>
+                                <option value="">Permanent Address</option>
+                                <option value="">Temporary Address</option>
+                                <option value="">Village Address</option>
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Vehicle Group - Limit ability to add bookings to
+                                these Vehicle Groups</label>
+                            <select class="form-select border-bottom" aria-label="Default select example" name=""
+                                id="">
+                                <option value="selectOne">Select an option</option>
+                                <option value="">Home Address</option>
+                                <option value="">Permanent Address</option>
+                                <option value="">Temporary Address</option>
+                                <option value="">Village Address</option>
+                            </select>
+                            <span class="warning-msg-block"></span>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="1" name=""
+                                id="">
+                            <label class="form-check-label" for="">
+                                Copy Pricing?
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-start px-5">
+                    <button type="submit" class="btn btn-primary rounded-1">Send Invitation</button>
+                    <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
-            <div class="modal-body px-5">
-                <form action="" method="post">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="" class="form-label ">Email <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control  border-bottom" name="" id="">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Duty Types - Limit ability to add bookings to these Duty Types</label>
-                        <select class="form-select border-bottom" aria-label="Default select example" name="" id="">
-                            <option value="selectOne">Select an option</option>
-                            <option value="">Home Address</option>
-                            <option value="">Permanent Address</option>
-                            <option value="">Temporary Address</option>
-                            <option value="">Village Address</option>
-                        </select>
-                        <span class="warning-msg-block"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Vehicle Group - Limit ability to add bookings to these Vehicle Groups</label>
-                        <select class="form-select border-bottom" aria-label="Default select example" name="" id="">
-                            <option value="selectOne">Select an option</option>
-                            <option value="">Home Address</option>
-                            <option value="">Permanent Address</option>
-                            <option value="">Temporary Address</option>
-                            <option value="">Village Address</option>
-                        </select>
-                        <span class="warning-msg-block"></span>
-                    </div>
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="1" name="" id="">
-                        <label class="form-check-label" for="">
-                            Copy Pricing?
-                        </label>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer justify-content-start px-5">
-                <button type="submit" class="btn btn-primary rounded-1">Send Invitation</button>
-                <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
         </div>
     </div>
     {{-- Create Corporate Account --}}
@@ -328,7 +342,9 @@
         $(document).ready(function() {
             $('.datatable').DataTable({
                 responsive: true,
-                "order": [[ 'id', "desc" ]] 
+                "order": [
+                    ['id', "desc"]
+                ]
 
             });
             $(".dropdown-toggle").dropdown();

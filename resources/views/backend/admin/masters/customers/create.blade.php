@@ -5,12 +5,12 @@
             min-height: 92px;
         }
     </style>
-    <div x-data="block">
+    <div>
         <div class="container-fluid p-5">
             {{-- page heading start --}}
             <div class="page-header border-bottom bg-white mb-3">
                 <div class="row">
-                    <div class="col-md-6 position-static" x-show="open">
+                    <div class="col-md-6 position-static">
                         <div class="position-absolute" style="top: 96px; left: 0px;">
                             <button type="button" class="btn" onclick="window.history.back()"><i
                                     class="fa-solid fa-angle-left"></i></button>
@@ -617,6 +617,10 @@
     </div>
 @endsection
 @section('extrajs')
+    <script src="{{ asset('admin/js/cities.js') }}"></script>
+    <script src="{{ asset('admin/js/states.js') }}"></script>
+    <script src="{{ asset('admin/js/timeslots.js') }}"></script>
+    <script src="{{ asset('admin/js/options.js') }}"></script>
     <script>
         $(document).ready(function() {
 
@@ -681,32 +685,32 @@
                 });
 
                 var template = `<div class="d-flex border-bottom">
-            <div class="p-3">
-                <button type="button" class="btn btn-primary rounded-1 remove_appli_tax_body" data-index=${childCount}>
-                    <i class="fa-solid fa-minus"></i>
-                </button>
-            </div>
-            <div class="p-3 ps-0 w-100">
-                <div class="panel border rounded">
-                    <div class="panel-heading bg-light p-3">Applicable Taxes</div>
-                    <div class="panel-body p-3">
-                        <div class="mb-3">
-                            <label for="appli_tax${childCount}" class="form-label ">Tax</label>
-                            <select class="form-select border-bottom" aria-label="Default select example" name="appli_tax${childCount}"
-                                id="appli_tax${childCount}" data-index=${childCount} >
-                                                            ${taxOptions}
-                            </select>
-                        </div>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="1" id="appli_tax_n_ch${childCount}" value="1" name="appli_tax_n_ch${childCount}" data-index=${childCount}>
-                            <label class="form-check-label" for="appli_tax_n_ch${childCount}">
-                                Not to be charged?
-                            </label>
-                        </div>
+        <div class="p-3">
+            <button type="button" class="btn btn-primary rounded-1 remove_appli_tax_body" data-index=${childCount}>
+                <i class="fa-solid fa-minus"></i>
+            </button>
+        </div>
+        <div class="p-3 ps-0 w-100">
+            <div class="panel border rounded">
+                <div class="panel-heading bg-light p-3">Applicable Taxes</div>
+                <div class="panel-body p-3">
+                    <div class="mb-3">
+                        <label for="appli_tax${childCount}" class="form-label ">Tax</label>
+                        <select class="form-select border-bottom" aria-label="Default select example" name="appli_tax${childCount}"
+                            id="appli_tax${childCount}" data-index=${childCount} >
+                                                        ${taxOptions}
+                        </select>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="1" id="appli_tax_n_ch${childCount}" value="1" name="appli_tax_n_ch${childCount}" data-index=${childCount}>
+                        <label class="form-check-label" for="appli_tax_n_ch${childCount}">
+                            Not to be charged?
+                        </label>
                     </div>
                 </div>
             </div>
-        </div>`;
+        </div>
+    </div>`;
 
                 $('#appli_tax_body').append(template);
 
@@ -738,32 +742,32 @@
                     taxOptions += `<option value="${tax.id}">${tax.percentage}</option>`;
                 });
                 var template = `  <div class="d-flex border-bottom">
-                                    <div class="p-3">
-                                        <button type="button" class="btn btn-primary rounded-1 remove_inter_appli_tax_body"><i
-                                                class="fa-solid fa-minus"></i></button>
-                                    </div>
-                                    <div class="p-3 ps-0 w-100">
-                                        <div class="panel border rounded">
-                                            <div class="panel-heading bg-light p-3">Applicable Interstate Taxes</div>
-                                            <div class="panel-body p-3">
-                                                <div class="mb-3">
-                                                    <label for="inter_appli_tax${childCount}" class="form-label ">Tax</label>
-                                                      <select class="form-select border-bottom" aria-label="Default select example" name="inter_appli_tax${childCount}"
-                                id="inter_appli_tax${childCount}" data-index=${childCount} >
-                                                                                                                   ${taxOptions}
-                                                    </select>
-                                                    <span class="warning-msg-block"></span>
-                                                </div>
-                                                <div class="form-check mb-3">
-                                                    <input class="form-check-input" type="checkbox" value="1" id="inter_appli_tax_n_ch${childCount}" name="inter_appli_tax_n_ch${childCount}" data-index=${childCount}>
-                                                    <label class="form-check-label" for="inter_appli_tax_n_ch${childCount}">
-                                                        Not to be charged?
-                                                    </label>
-                                                </div>
+                                <div class="p-3">
+                                    <button type="button" class="btn btn-primary rounded-1 remove_inter_appli_tax_body"><i
+                                            class="fa-solid fa-minus"></i></button>
+                                </div>
+                                <div class="p-3 ps-0 w-100">
+                                    <div class="panel border rounded">
+                                        <div class="panel-heading bg-light p-3">Applicable Interstate Taxes</div>
+                                        <div class="panel-body p-3">
+                                            <div class="mb-3">
+                                                <label for="inter_appli_tax${childCount}" class="form-label ">Tax</label>
+                                                  <select class="form-select border-bottom" aria-label="Default select example" name="inter_appli_tax${childCount}"
+                            id="inter_appli_tax${childCount}" data-index=${childCount} >
+                                                                                                               ${taxOptions}
+                                                </select>
+                                                <span class="warning-msg-block"></span>
+                                            </div>
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" value="1" id="inter_appli_tax_n_ch${childCount}" name="inter_appli_tax_n_ch${childCount}" data-index=${childCount}>
+                                                <label class="form-check-label" for="inter_appli_tax_n_ch${childCount}">
+                                                    Not to be charged?
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
-                                </div>`;
+                                </div>
+                            </div>`;
 
                 $('#inter_appli_tax_body').append(template);
 
@@ -789,45 +793,45 @@
                 console.log(childCount);
 
                 var template = `    <tr>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dri_allow_set_city${childCount}"  id="dri_allow_set_city${childCount}" data-index=${childCount}
-                                                        >
-                                                       ${generateCityOptions()}
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dri_allow_set_early_time${childCount}" id="dri_allow_set_early_time${childCount}"
-                                                        data-index=${childCount}
-                                                        >
-                                                        ${generateTimeSlots()}
-                                                    </select>
-                                                </td>
-                            <td>
-                                <select class="form-select border-bottom"
-                                    aria-label="Default select example" name="dri_allow_set_late_time${childCount}" id="dri_allow_set_late_time${childCount}"
-                                    data-index=${childCount}
-                                    >
-                                                                                                ${generateTimeSlots()}
+                                            <td>
+                                                <select class="form-select border-bottom"
+                                                    aria-label="Default select example" name="dri_allow_set_city${childCount}"  id="dri_allow_set_city${childCount}" data-index=${childCount}
+                                                    >
+                                                   ${generateCityOptions()}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="form-select border-bottom"
+                                                    aria-label="Default select example" name="dri_allow_set_early_time${childCount}" id="dri_allow_set_early_time${childCount}"
+                                                    data-index=${childCount}
+                                                    >
+                                                    ${generateTimeSlots()}
+                                                </select>
+                                            </td>
+                        <td>
+                            <select class="form-select border-bottom"
+                                aria-label="Default select example" name="dri_allow_set_late_time${childCount}" id="dri_allow_set_late_time${childCount}"
+                                data-index=${childCount}
+                                >
+                                                                                            ${generateTimeSlots()}
 
-                                </select>
-                            </td>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dri_allow_set_outst_overnig_time${childCount}" id="dri_allow_set_outst_overnig_time${childCount}"
-                                                        data-index=${childCount}
-                                                        >
-                                                                                                                 ${generateTimeSlots()}
+                            </select>
+                        </td>
+                                            <td>
+                                                <select class="form-select border-bottom"
+                                                    aria-label="Default select example" name="dri_allow_set_outst_overnig_time${childCount}" id="dri_allow_set_outst_overnig_time${childCount}"
+                                                    data-index=${childCount}
+                                                    >
+                                                                                                             ${generateTimeSlots()}
 
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-danger py-0 remove_dri_allow_set">
-                                                        <i class="fa-solid fa-xmark"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>`;
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger py-0 remove_dri_allow_set">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </button>
+                                            </td>
+                                        </tr>`;
 
                 $('#dri_allow_set_tax_body').append(template);
 
@@ -875,47 +879,47 @@
                 console.log(childCount);
 
                 var template = `      <tr>
-                                                <td>
-                                                    <select class="form-select border-bottom"
-                                                        aria-label="Default select example" name="dut_typ_tim${childCount}" 
-                                                         id="dut_typ_tim${childCount}"
-                                                         data-index=${childCount}
-                                                        >
-                                                        <option value="">(Select Duty type type)</option>
-                                                        <option value="hrKmLocal">HR-KM (Local)</option>
-                                                        <option value="dayKmOutstation">Day-KM (Outstation)</option>
-                                                        <option value="longDurationDaily">Long Duration - Total KM Daily HR (Monthly
-                                                            Bookings)</option>
-                                                    </select>
-                                                </td>
+                                            <td>
+                                                <select class="form-select border-bottom"
+                                                    aria-label="Default select example" name="dut_typ_tim${childCount}"
+                                                     id="dut_typ_tim${childCount}"
+                                                     data-index=${childCount}
+                                                    >
+                                                    <option value="">(Select Duty type type)</option>
+                                                    <option value="hrKmLocal">HR-KM (Local)</option>
+                                                    <option value="dayKmOutstation">Day-KM (Outstation)</option>
+                                                    <option value="longDurationDaily">Long Duration - Total KM Daily HR (Monthly
+                                                        Bookings)</option>
+                                                </select>
+                                            </td>
 
-                                <td>
-                                    <select class="form-select border-bottom"
-                                        aria-label="Default select example" name="dut_typ_tim_str${childCount}" 
-                                            id="dut_typ_tim_str${childCount}"
-                                            data-index=${childCount}
-                                        >
-                                                                                            ${generateTimeSlots()}
-
-                                    </select>
-                                </td>
-
-                                <td>
-                                    <select class="form-select border-bottom"
-                                        aria-label="Default select example" name="dut_typ_tim_end${childCount}" 
+                            <td>
+                                <select class="form-select border-bottom"
+                                    aria-label="Default select example" name="dut_typ_tim_str${childCount}"
+                                        id="dut_typ_tim_str${childCount}"
                                         data-index=${childCount}
-                                            id="dut_typ_tim_end${childCount}"
-                                        >
-                                                                                            ${generateTimeSlots()}
+                                    >
+                                                                                        ${generateTimeSlots()}
 
-                                    </select>
-                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-danger py-0 remove_dut_typ_tim" >
-                                                        <i class="fa-solid fa-xmark"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>`;
+                                </select>
+                            </td>
+
+                            <td>
+                                <select class="form-select border-bottom"
+                                    aria-label="Default select example" name="dut_typ_tim_end${childCount}"
+                                    data-index=${childCount}
+                                        id="dut_typ_tim_end${childCount}"
+                                    >
+                                                                                        ${generateTimeSlots()}
+
+                                </select>
+                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger py-0 remove_dut_typ_tim" >
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </button>
+                                            </td>
+                                        </tr>`;
 
                 $('#dut_typ_tim_body').append(template);
 
@@ -956,40 +960,40 @@
                 console.log(childCount);
 
                 var template = `      <div class="d-flex border-bottom">
-                                    <div class="p-3">
-                                        <button type="button" class="btn btn-primary rounded-1 remove_files"><i
-                                                class="fa-solid fa-minus"></i></button>
-                                    </div>
-                                    <div class="p-3 ps-0 w-100">
-                                        <div class="panel border rounded">
-                                            <div class="panel-heading bg-light p-3">Files</div>
-                                            <div class="panel-body p-3">
-                                                <div class="mb-3">
-                                                    <label for="file_name${childCount}" class="form-label">File Name </label>
-                                                    <input type="text" class="form-control  border-bottom"
-                                                        name="file_name${childCount}"
-                                                        id="file_name${childCount}"
-                                                        data-index=${childCount}>
-                                                    <span class="warning-msg-block"></span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="image${childCount}" class="form-label">Upload </label>
-                                                    <div>
-                                                        <label for="image${childCount}"
-                                                            class="btn shadow-sm border rounded-1">Choose File</label>
-                                                        <input type="file" 
-                                                            class="form-control"
-                                                            style="display: none;"
-                                                            name="image${childCount}"
-                                                        id="image${childCount}"
-                                                        data-index=${childCount}
-                                                            >
-                                                    </div>
+                                <div class="p-3">
+                                    <button type="button" class="btn btn-primary rounded-1 remove_files"><i
+                                            class="fa-solid fa-minus"></i></button>
+                                </div>
+                                <div class="p-3 ps-0 w-100">
+                                    <div class="panel border rounded">
+                                        <div class="panel-heading bg-light p-3">Files</div>
+                                        <div class="panel-body p-3">
+                                            <div class="mb-3">
+                                                <label for="file_name${childCount}" class="form-label">File Name </label>
+                                                <input type="text" class="form-control  border-bottom"
+                                                    name="file_name${childCount}"
+                                                    id="file_name${childCount}"
+                                                    data-index=${childCount}>
+                                                <span class="warning-msg-block"></span>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="image${childCount}" class="form-label">Upload </label>
+                                                <div>
+                                                    <label for="image${childCount}"
+                                                        class="btn shadow-sm border rounded-1">Choose File</label>
+                                                    <input type="file"
+                                                        class="form-control"
+                                                        style="display: none;"
+                                                        name="image${childCount}"
+                                                    id="image${childCount}"
+                                                    data-index=${childCount}
+                                                        >
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>`;
+                                </div>
+                            </div>`;
 
                 $('#files_body').append(template);
                 $(`#file_name${childCount}`).rules('add', {
