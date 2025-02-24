@@ -509,38 +509,37 @@
                                             <div class="p-3 ps-0 w-100">
                                                 <div class="panel border rounded">
                                                     <div class="panel-heading bg-light p-3">Applicable Taxes</div>
-                        <div class="panel-body p-3">
-                            <div class="mb-3">
-            <label for="appli_tax" class="form-label ">Tax</label>
-            <select class="form-select border-bottom"
-                aria-label="Default select example" name="applitax_{{$data->id}}_update"
-                id="appli_tax"
-                data-index={{$data->id ?? '' }}
-                >
-                <option value="">(Select Tax)</option>
+                                                    <div class="panel-body p-3">
+                                                        <div class="mb-3">
+                                                            <label for="appli_tax" class="form-label ">Tax</label>
+                                                            <select class="form-select border-bottom"
+                                                                aria-label="Default select example"
+                                                                name="applitax_{{ $data->id }}_update" id="appli_tax"
+                                                                data-index={{ $data->id ?? '' }}>
+                                                                <option value="">(Select Tax)</option>
 
-                @foreach ($applicableTaxes as $taxesData)
-                    <option value="{{ $taxesData->id }}"
-                        {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
-                        {{ $taxesData->percentage }}</option>
-                @endforeach
+                                                                @foreach ($applicableTaxes as $taxesData)
+                                                                    <option value="{{ $taxesData->id }}"
+                                                                        {{ old('appli_tax', $taxesData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
+                                                                        {{ $taxesData->percentage }}</option>
+                                                                @endforeach
 
-            </select>
-                                    </div>
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox"
-                                            value="1" id="appli_tax_n_ch" value="1"
-                                            name="applitaxnch_{{$data->id}}_update"
-                                            {{ old('inter_appli_tax_n_ch', $data->not_charged ?? '') ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="appli_tax_n_ch">
-                                            Not to be charged?
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-check mb-3">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="1" id="appli_tax_n_ch" value="1"
+                                                                name="applitaxnch_{{ $data->id }}_update"
+                                                                {{ old('inter_appli_tax_n_ch', $data->not_charged ?? '') ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="appli_tax_n_ch">
+                                                                Not to be charged?
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                     {{-- component end --}}
 
                                 </div>
@@ -574,7 +573,8 @@
                                                         <div class="mb-3">
                                                             <label for="inter_appli_tax" class="form-label ">Tax</label>
                                                             <select class="form-select border-bottom"
-                                                                aria-label="Default select example" name="interapplitax_{{$data->id}}_update"
+                                                                aria-label="Default select example"
+                                                                name="interapplitax_{{ $data->id }}_update"
                                                                 id="inter_appli_tax">
                                                                 @foreach ($applicableTaxes as $taxesData)
                                                                     <option value="{{ $taxesData->id }}"
@@ -588,7 +588,7 @@
                                                         <div class="form-check mb-3">
                                                             <input class="form-check-input" type="checkbox"
                                                                 value="1" id="inter_appli_tax_n_ch"
-                                                                name="interapplitaxnch_{{$data->id}}_update">
+                                                                name="interapplitaxnch_{{ $data->id }}_update">
                                                             <label class="form-check-label" for="inter_appli_tax_n_ch"
                                                                 {{ old('inter_appli_tax_n_ch', $data->not_charged ?? '') ? 'checked' : '' }}>
                                                                 Not to be charged?
@@ -626,7 +626,7 @@
                                         <tbody class="dri_allow_set_tax_body" id="dri_allow_set_tax_body">
 
                                             {{-- component start --}}
-                                         
+
                                             {{-- component start --}}
                                             @foreach ($mstDriverCustomerSetting as $data)
                                                 <tr>
@@ -658,7 +658,8 @@
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <select class="form-select border-bottom dri_allow_set_outst_overnig_time"
+                                                        <select
+                                                            class="form-select border-bottom dri_allow_set_outst_overnig_time"
                                                             aria-label="Default select example"
                                                             name="driallowsetoutstovernigtime_{{ $data->id }}_update"
                                                             id="dri_allow_set_outst_overnig_time"
@@ -705,8 +706,8 @@
                                                 <tr>
                                                     <td>
                                                         <select class="form-select border-bottom"
-                                                            aria-label="Default select example" name="duttyptim_{{$data->id}}_update"
-                                                            id="dut_typ_tim">
+                                                            aria-label="Default select example"
+                                                            name="duttyptim_{{ $data->id }}_update" id="dut_typ_tim">
                                                             <option value="">(Select Duty type type)</option>
                                                             <option value="hrKmLocal"
                                                                 {{ old('dut_typ_tim', $data->duty_type ?? '') == 'hrKmLocal' ? 'selected' : '' }}>
@@ -724,7 +725,8 @@
 
                                                     <td>
                                                         <select class="form-select border-bottom"
-                                                            aria-label="Default select example" name="duttyptimstr_{{$data->id}}_update"
+                                                            aria-label="Default select example"
+                                                            name="duttyptimstr_{{ $data->id }}_update"
                                                             id="dut_typ_tim_str"
                                                             data-start-time="{{ $data->start_time ?? '' }}">
 
@@ -734,7 +736,8 @@
 
                                                     <td>
                                                         <select class="form-select border-bottom"
-                                                            aria-label="Default select example" name="duttyptimend_{{$data->id}}_update"
+                                                            aria-label="Default select example"
+                                                            name="duttyptimend_{{ $data->id }}_update"
                                                             id="dut_typ_tim_end"
                                                             data-end-time="{{ $data->end_time ?? '' }}">>
                                                         </select>
@@ -781,7 +784,7 @@
                                                         <div class="mb-3">
                                                             <label for="file_name" class="form-label">File Name </label>
                                                             <input type="text" class="form-control  border-bottom"
-                                                                name="filename_{{$data->id}}_update" id="file_name"
+                                                                name="filename_{{ $data->id }}_update" id="file_name"
                                                                 value="{{ old('name', $data->name ?? '') }}">
                                                             <span class="warning-msg-block"></span>
                                                         </div>
@@ -792,7 +795,9 @@
                                                                     class="btn shadow-sm border rounded-1">Choose
                                                                     File</label>
                                                                 <input type="file" class="form-control"
-                                                                    style="display: none;" name="image_{{$data->id}}_update" id="image">
+                                                                    style="display: none;"
+                                                                    name="image_{{ $data->id }}_update"
+                                                                    id="image">
                                                                 <a href="{{ asset('storage/' . $data->image) }}"
                                                                     alt="">{{ $data->image }}</a>
                                                             </div>
@@ -881,7 +886,7 @@
 
             // Driver Allowance Setting
 
-              document.querySelectorAll('.dri_allow_set_city').forEach((element) => {
+            document.querySelectorAll('.dri_allow_set_city').forEach((element) => {
                 const driCity = element.dataset.driCity;
                 element.innerHTML = generateCityOptions(driCity);
             });
@@ -909,7 +914,8 @@
             // Function to generate HTML for the options and set the selected attribute based on dynamic variables
 
 
-            document.getElementById("base_city_fuel").innerHTML = generateCityOptions(particularMstCustomer.base_city_fuel);
+            document.getElementById("base_city_fuel").innerHTML = generateCityOptions(particularMstCustomer
+                .base_city_fuel);
             document.getElementById("country").innerHTML = generateCityOptions(particularMstCustomer.country);
             document.getElementById("state").innerHTML = generateStateOptions(particularMstCustomer.state);
             document.getElementById("gst_state").innerHTML = generateStateOptions(particularMstCustomer.gst_state);
@@ -931,7 +937,7 @@
                     }
                 },
                 errorElement: "div",
-                errorClass: "error-message",
+                errorClass: "error-message text-danger",
                 highlight: function(element) {
                     $(element).addClass("is-invalid");
                 },
@@ -978,8 +984,7 @@
                         success: function(response) {
                             parentDiv.remove();
                         },
-                        error: function(response) {
-                        }
+                        error: function(response) {}
                     });
                 }
             });
@@ -1066,8 +1071,7 @@
                         success: function(response) {
                             parentDiv.remove();
                         },
-                        error: function(response) {
-                        }
+                        error: function(response) {}
                     });
                 }
 
@@ -1146,8 +1150,7 @@
                         success: function(response) {
                             parentDiv.remove();
                         },
-                        error: function(response) {
-                        }
+                        error: function(response) {}
                     });
                 }
             });
@@ -1258,8 +1261,7 @@
                         success: function(response) {
                             parentDiv.remove();
                         },
-                        error: function(response) {
-                        }
+                        error: function(response) {}
                     });
                 }
             });
@@ -1364,8 +1366,7 @@
                         success: function(response) {
                             parentDiv.remove();
                         },
-                        error: function(response) {
-                        }
+                        error: function(response) {}
                     });
                 }
             });

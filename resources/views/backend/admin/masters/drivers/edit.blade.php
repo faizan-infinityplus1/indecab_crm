@@ -138,7 +138,8 @@
                                                         <div class="mb-3">
                                                             <label for="address${childCount}" class="form-label">Address
                                                             </label>
-                                                            <textarea class="form-control" name="address_{{ $data->id }}_update" id="address${childCount}" data-index=address${childCount} rows="5"> {{ old('address', $data->address ?? '') }}</textarea>
+                                                            <textarea class="form-control" name="address_{{ $data->id }}_update" id="address${childCount}"
+                                                                data-index=address${childCount} rows="5"> {{ old('address', $data->address ?? '') }}</textarea>
                                                             <span class="warning-msg-block"></span>
                                                         </div>
                                                     </div>
@@ -322,10 +323,10 @@
                                 {{-- component start --}}
                                 <div id="deduction_tax_body" class="deduction_tax_body">
                                     @foreach ($mstDriverAddress as $addressData)
-                                    <option value="{{ $addressData->id }}"
-                                        {{ old('appli_tax', $addressData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
-                                        {{ $addressData->percentage }}</option>
-                                @endforeach
+                                        <option value="{{ $addressData->id }}"
+                                            {{ old('appli_tax', $addressData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
+                                            {{ $addressData->percentage }}</option>
+                                    @endforeach
                                 </div>
 
                                 {{-- component end --}}
@@ -497,7 +498,7 @@
     </div>
 @endsection
 @section('extrajs')
-<script src="{{ asset('admin/js/cities.js') }}"></script>
+    <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script src="{{ asset('admin/js/states.js') }}"></script>
     <script src="{{ asset('admin/js/timeslots.js') }}"></script>
     <script src="{{ asset('admin/js/options.js') }}"></script>
@@ -530,7 +531,7 @@
                     }
                 },
                 errorElement: "div",
-                errorClass: "error-message",
+                errorClass: "error-message text-danger",
                 highlight: function(element) {
                     $(element).addClass("is-invalid");
                 },

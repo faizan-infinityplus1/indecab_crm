@@ -183,6 +183,43 @@
     <script>
         $(document).ready(function() {
 
+            $("#formDutySupporter").validate({
+                rules: {
+                    name: {
+                        required: true
+                    },
+                    type: {
+                        required: true
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Please Enter Name"
+                    },
+                    type: {
+                        required: "Please Select Duty Supporter Type"
+                    }
+                },
+                errorElement: "div",
+                errorClass: "error-message text-danger",
+                highlight: function(element) {
+                    $(element).addClass("is-invalid");
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass("is-invalid");
+                },
+                invalidHandler: function(event, validator) {
+                    if (validator.errorList.length) {
+                        showAlert('error', validator.errorList[0].message);
+                    }
+                },
+                submitHandler: function(form) {
+                    $('.btnSubmit').attr('disabled', 'disabled');
+                    $(".btnSubmit").html('<span class="fa fa-spinner fa-spin"></span> Loading...');
+                    form.submit();
+                }
+            });
+
 
             $(document).on('click', '.remove_address_body', function() {
                 $(this).closest('.d-flex').remove();
