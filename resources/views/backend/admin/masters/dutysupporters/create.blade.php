@@ -190,7 +190,21 @@
                     },
                     type: {
                         required: true
-                    }
+                    },
+                    phone_no: {
+                        required: false,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        pattern: /^[0-9]{10}$/
+                    },
+                    alt_phone_no: {
+                        required: false,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        pattern: /^[0-9]{10}$/
+                    },
                 },
                 messages: {
                     name: {
@@ -198,6 +212,18 @@
                     },
                     type: {
                         required: "Please Select Duty Supporter Type"
+                    },
+                    phone_no: {
+                        digits: "Please enter only numbers",
+                        minlength: "Mobile number must be exactly 10 digits",
+                        maxlength: "Mobile number must be exactly 10 digits",
+                        pattern: "Please enter a valid 10-digit mobile number"
+                    },
+                    alt_phone_no: {
+                        digits: "Please enter only numbers",
+                        minlength: "Mobile number must be exactly 10 digits",
+                        maxlength: "Mobile number must be exactly 10 digits",
+                        pattern: "Please enter a valid 10-digit mobile number"
                     }
                 },
                 errorElement: "div",
@@ -244,7 +270,7 @@
                                         <label for="duty_supporter_address_type" class="form-label">Type</label>
                                         <select class="form-select border-bottom"
                                             aria-label="Default select example" name="duty_supporter_address_type${childCount}"
-                                            id="duty_supporter_address_type" data-index=${childCount}>
+                                            id="duty_supporter_address_type${childCount}" data-index=${childCount}>
                                             <option value="selectOne">Select an option</option>
                                             <option value="home">Home Address</option>
                                             <option value="permanent">Permanent Address</option>

@@ -19,11 +19,13 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form action="" method="post" id="formDutySupporter" enctype="multipart/form-data">
+                <form action="{{ route('dutysupporters.update', $particularMstDutySupporter->id) }}" method="post"
+                    id="formDutySupporter" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label ">Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control  border-bottom" name="name" id="name">
+                        <input type="text" class="form-control  border-bottom" name="name" id="name"
+                            value="{{ old('name', $particularMstDutySupporter->name ?? '') }}">
                         <span class="warning-msg-block"></span>
                     </div>
                     <div class="mb-3">
@@ -31,9 +33,15 @@
                         <select class="form-select border-bottom" aria-label="Default select example" name="type"
                             id="type">
                             <option value="">Select an option</option>
-                            <option value="cleaner">Cleaner</option>
-                            <option value="guide">Guide</option>
-                            <option value="representative">Representative</option>
+                            <option value="cleaner"
+                                {{ old('type', $particularMstDutySupporter->type ?? '') == 'cleaner' ? 'selected' : '' }}>
+                                Cleaner</option>
+                            <option value="guide"
+                                {{ old('type', $particularMstDutySupporter->type ?? '') == 'guide' ? 'selected' : '' }}>
+                                Guide</option>
+                            <option value="representative"
+                                {{ old('type', $particularMstDutySupporter->type ?? '') == 'representative' ? 'selected' : '' }}>
+                                Representative</option>
                         </select>
                         <span class="warning-msg-block"></span>
                     </div>
@@ -43,17 +51,20 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="phone_no" class="form-label ">Mobile Number</label>
-                                <input type="text" class="form-control  border-bottom" name="phone_no" id="phone_no">
+                                <input type="text" class="form-control  border-bottom" name="phone_no" id="phone_no"
+                                    value="{{ old('phone_no', $particularMstDutySupporter->phone_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="pan_no" class="form-label ">PAN Card Number</label>
-                                <input type="text" class="form-control  border-bottom" name="pan_no" id="pan_no">
+                                <input type="text" class="form-control  border-bottom" name="pan_no" id="pan_no"
+                                    value="{{ old('pan_no', $particularMstDutySupporter->pan_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="birth_date" class="form-label ">Birthdate</label>
-                                <input type="date" class="form-control  border-bottom" name="birth_date" id="birth_date">
+                                <input type="date" class="form-control  border-bottom" name="birth_date" id="birth_date"
+                                    value="{{ old('birth_date', $particularMstDutySupporter->birth_date ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
@@ -61,19 +72,22 @@
                             <div class="mb-3">
                                 <label for="alt_phone_no" class="form-label ">Alternate Mobile number</label>
                                 <input type="text" class="form-control  border-bottom" name="alt_phone_no"
-                                    id="alt_phone_no">
+                                    id="alt_phone_no"
+                                    value="{{ old('alt_phone_no', $particularMstDutySupporter->alt_phone_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="aadhar_card" class="form-label ">Aadhar Card Number</label>
                                 <input type="number" class="form-control  border-bottom" name="aadhar_card"
-                                    id="aadhar_card">
+                                    id="aadhar_card"
+                                    value="{{ old('aadhar_card', $particularMstDutySupporter->aadhar_card ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="joining_date" class="form-label ">Joining date</label>
                                 <input type="date" class="form-control  border-bottom" name="joining_date"
-                                    id="joining_date">
+                                    id="joining_date"
+                                    value="{{ old('joining_date', $particularMstDutySupporter->joining_date ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
@@ -99,38 +113,52 @@
                                 <div class="panel-heading bg-light p-3">Addresses</div>
                                 <div class="address_body" id="address_body">
                                     {{-- component start --}}
-                                    {{-- <div class="d-flex border-bottom">
-                                        <div class="p-3">
-                                            <button type="button" class="btn btn-primary rounded-1">
-                                                <i class="fa-solid fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <div class="p-3 ps-0 w-100">
-                                            <div class="panel border rounded">
-                                                <div class="panel-heading bg-light p-3">Addresses</div>
-                                                <div class="panel-body p-3">
-                                                    <div class="mb-3">
-                                                        <label for="" class="form-label">Type</label>
-                                                        <select class="form-select border-bottom"
-                                                            aria-label="Default select example" name=""
-                                                            id="">
-                                                            <option value="selectOne">Select an option</option>
-                                                            <option value="">Home Address</option>
-                                                            <option value="">Permanent Address</option>
-                                                            <option value="">Temporary Address</option>
-                                                            <option value="">Village Address</option>
-                                                        </select>
-                                                        <span class="warning-msg-block"></span>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="" class="form-label">Address </label>
-                                                        <textarea class="form-control" id="" rows="5"></textarea>
-                                                        <span class="warning-msg-block"></span>
+                                    @foreach ($mstAddressesDutySupporter as $data)
+                                        <div class="d-flex border-bottom">
+                                            <div class="p-3">
+                                                <button type="button" class="btn btn-primary rounded-1">
+                                                    <i class="fa-solid fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="p-3 ps-0 w-100">
+                                                <div class="panel border rounded">
+                                                    <div class="panel-heading bg-light p-3">Addresses</div>
+                                                    <div class="panel-body p-3">
+                                                        <div class="mb-3">
+                                                            <label for="duty_supporter_address_type"
+                                                                class="form-label">Type</label>
+                                                            <select class="form-select border-bottom"
+                                                                aria-label="Default select example"
+                                                                name="duty_supporter_address_type_{{ $data->id }}_update"
+                                                                id="duty_supporter_address_type">
+                                                                <option value="selectOne">Select an option</option>
+                                                                <option value="home"
+                                                                    {{ old('duty_supporter_address_type', $data->duty_supporter_address_type ?? '') == 'home' ? 'selected' : '' }}>
+                                                                    Home Address</option>
+                                                                <option value="permanent"
+                                                                    {{ old('duty_supporter_address_type', $data->duty_supporter_address_type ?? '') == 'permanent' ? 'selected' : '' }}>
+                                                                    Permanent Address</option>
+                                                                <option value="temporary"
+                                                                    {{ old('duty_supporter_address_type', $data->duty_supporter_address_type ?? '') == 'temporary' ? 'selected' : '' }}>
+                                                                    Temporary Address</option>
+                                                                <option value="village"
+                                                                    {{ old('duty_supporter_address_type', $data->duty_supporter_address_type ?? '') == 'village' ? 'selected' : '' }}>
+                                                                    Village Address</option>
+                                                            </select>
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="duty_supporter_address${childCount}"
+                                                                class="form-label">Address </label>
+                                                            <textarea class="form-control" name="duty_supporter_address_{{ $data->id }}_update" id="duty_supporter_address"
+                                                                rows="5">{{ old('duty_supporter_address', $data->duty_supporter_address ?? '') }}</textarea>
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    @endforeach
                                     {{-- component end --}}
                                 </div>
                                 <div class="p-3">
@@ -144,7 +172,7 @@
 
                     <div class="mb-3">
                         <label for="ref_details" class="form-label">Reference Details</label>
-                        <textarea class="form-control" name="ref_details" id="ref_details" rows="5"></textarea>
+                        <textarea class="form-control" name="ref_details" id="ref_details" rows="5">{{ old('ref_details', $particularMstDutySupporter->ref_details ?? '') }}</textarea>
                         <span class="warning-msg-block"></span>
                     </div>
 
@@ -156,6 +184,44 @@
 
                                     {{-- component start --}}
 
+                                    @foreach ($mstFilesDutySupporter as $data)
+                                        <div class="d-flex border-bottom">
+                                            <div class="p-3">
+                                                <button type="button" class="btn btn-primary rounded-1 remove_files"
+                                                    data-id="{{ $data->id ?? '' }}"><i
+                                                        class="fa-solid fa-minus"></i></button>
+                                            </div>
+                                            <div class="p-3 ps-0 w-100">
+                                                <div class="panel border rounded">
+                                                    <div class="panel-heading bg-light p-3">Files</div>
+                                                    <div class="panel-body p-3">
+                                                        <div class="mb-3">
+                                                            <label for="file_name" class="form-label">File Name </label>
+                                                            <input type="text" class="form-control  border-bottom"
+                                                                name="file_name_{{ $data->id }}_update"
+                                                                id="file_name"
+                                                                value="{{ old('file_name', $data->file_name ?? '') }}">
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="image" class="form-label">Upload </label>
+                                                            <div>
+                                                                <label for="image"
+                                                                    class="btn shadow-sm border rounded-1">Choose
+                                                                    File</label>
+                                                                <input type="file" class="form-control"
+                                                                    style="display: none;"
+                                                                    name="image_{{ $data->id }}_update"
+                                                                    id="image">
+                                                                <a href="{{ asset('storage/' . $data->image) }}"
+                                                                    alt="">{{ $data->image }}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                     {{-- component end --}}
                                 </div>
                                 <div class="p-3">
@@ -205,8 +271,8 @@
                                     <div class="mb-3">
                                         <label for="duty_supporter_address_type" class="form-label">Type</label>
                                         <select class="form-select border-bottom"
-                                            aria-label="Default select example" name="duty_supporter_address_type${childCount}"
-                                            id="duty_supporter_address_type" data-index=${childCount}>
+                                            aria-label="Default select example" name="duty_supporter_address_type_${childCount}_new"
+                                            id="duty_supporter_address_type${childCount}" data-index=${childCount}>
                                             <option value="selectOne">Select an option</option>
                                             <option value="home">Home Address</option>
                                             <option value="permanent">Permanent Address</option>
@@ -216,8 +282,8 @@
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="duty_supporter_address${childCount}" class="form-label">Address </label>
-                                        <textarea class="form-control" id="duty_supporter_address${childCount}" name="duty_supporter_address${childCount}" rows="5" data-index=${childCount}></textarea>
+                                        <label for="duty_supporter_address_${childCount}_new" class="form-label">Address </label>
+                                        <textarea class="form-control" id="duty_supporter_address${childCount}" name="duty_supporter_address_${childCount}_new" rows="5" data-index=${childCount}></textarea>
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -259,7 +325,7 @@
                                                 <div class="mb-3">
                                                     <label for="file_name${childCount}" class="form-label">File Name </label>
                                                     <input type="text" class="form-control  border-bottom"
-                                                        name="file_name${childCount}"
+                                                        name="file_name_${childCount}_new"
                                                         id="file_name${childCount}"
                                                         data-index=${childCount}>
                                                     <span class="warning-msg-block"></span>
@@ -272,7 +338,7 @@
                                                         <input type="file" 
                                                             class="form-control"
                                                             style="display: none;"
-                                                            name="image${childCount}"
+                                                            name="image_${childCount}_new"
                                                         id="image${childCount}"
                                                         data-index=${childCount}
                                                             >
