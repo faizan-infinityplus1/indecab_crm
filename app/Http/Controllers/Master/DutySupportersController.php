@@ -174,6 +174,62 @@ class DutySupportersController extends Controller
                 ]
             );
 
+            $dutySupporterId = $dutySupporterId->id;
+
+            $addressData = [];
+            $filesData = [];
+
+
+            foreach ($request->keys() as $key) {
+                if (preg_match('/^filename_(\d+)_new$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $fileName = $request->get($key);
+                    $filePath = null;
+
+
+                    if ($request->hasFile("image_{$id}_new")) {
+                        $file = $request->file("image_{$id}_new");
+                        $filePath = $file->store('customer-images', 'public'); // Store in 'storage/app/public/customer-images'
+                    }
+
+                    $filesData[] = [
+                        'admin_id' => Auth::user()->id,
+                        'duty_supporter_id' => $dutySupporterId,
+                        'file_name' => $fileName,
+                        'image' => $filePath, // Save the unique file name
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                } elseif (preg_match('/^filename_(\d+)_update$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $fileName = $request->get($key);
+                    $existingFile = MstDutySupporterFile::find($id);
+
+                    $filePath = $existingFile->image; // Retain old file if no new file is uploaded
+
+                    if ($request->hasFile("image_{$id}_update")) {
+                        $file = $request->file("image_{$id}_update");
+
+                        // Delete old file if exists
+                        if ($existingFile->image) {
+                            Storage::disk('public')->delete($existingFile->image);
+                        }
+
+                        // $filePath = $file->store('storage/images/customer-images', 'public');
+                        $filePath = $file->store('customer-images', 'public');
+                    }
+
+                    // Update existing file
+                    MstDutySupporterFile::where('id', $id)->update([
+                        'admin_id' => Auth::user()->id,
+                        'duty_supporter_id' => $dutySupporterId,
+                        'file_name' => $fileName,
+                        'image' => $filePath, // Save the unique file name
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
+
         } catch (Exception $e) {
             dd($e);
         }
