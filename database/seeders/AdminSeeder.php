@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
     {
         //
 
-        Admin::truncate();
+        // Admin::truncate();
         Admin::create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',

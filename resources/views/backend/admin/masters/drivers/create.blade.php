@@ -20,7 +20,7 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form action="{{ route('mydrivers.store') }}" method="post" id="formMyDrivers"
+                <form action="{{ route('mydrivers.store') }}" method="post" id="formDriver"
                 enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
@@ -405,6 +405,10 @@
     </div>
 @endsection
 @section('extrajs')
+<script src="{{ asset('admin/js/cities.js') }}"></script>
+    <script src="{{ asset('admin/js/states.js') }}"></script>
+    <script src="{{ asset('admin/js/timeslots.js') }}"></script>
+    <script src="{{ asset('admin/js/options.js') }}"></script>
     <script>
         $(document).ready(function() {
             // address_tax_body
@@ -412,7 +416,7 @@
             document.getElementById("working_hours_start").innerHTML = generateTimeSlots();
             document.getElementById("working_hours_end").innerHTML = generateTimeSlots();
 
-            $("#formMyDrivers").validate({
+            $("#formDriver").validate({
                 rules: {
                     name: {
                         required: true

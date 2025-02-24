@@ -20,7 +20,7 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form action="{{ route('mydrivers.update', $particularMstDriver->id) }}" method="post" id="formCustomer"
+                <form action="{{ route('mydrivers.update', $particularMstDriver->id) }}" method="post" id="formDriver"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
@@ -117,7 +117,7 @@
                                                                 class="form-label">Type</label>
                                                             <select class="form-select border-bottom"
                                                                 aria-label="Default select example"
-                                                                name="address_type__{{ $data->id }}_update"
+                                                                name="address_type_{{ $data->id }}_update"
                                                                 id="address_type${childCount}" data-index=${childCount}>
                                                                 <option value="">Select an option</option>
                                                                 <option value="home_address"
@@ -138,9 +138,7 @@
                                                         <div class="mb-3">
                                                             <label for="address${childCount}" class="form-label">Address
                                                             </label>
-                                                            <textarea class="form-control" name="address_{{ $data->id }}_update" id="address${childCount}" data-index=address${childCount} rows="5">
-                                                        {{ old('address', $data->address ?? '') }}
-                                                    </textarea>
+                                                            <textarea class="form-control" name="address_{{ $data->id }}_update" id="address${childCount}" data-index=address${childCount} rows="5"> {{ old('address', $data->address ?? '') }}</textarea>
                                                             <span class="warning-msg-block"></span>
                                                         </div>
                                                     </div>
@@ -323,7 +321,11 @@
                                 <div class="panel-heading bg-light p-3">Deductions</div>
                                 {{-- component start --}}
                                 <div id="deduction_tax_body" class="deduction_tax_body">
-
+                                    @foreach ($mstDriverAddress as $addressData)
+                                    <option value="{{ $addressData->id }}"
+                                        {{ old('appli_tax', $addressData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
+                                        {{ $addressData->percentage }}</option>
+                                @endforeach
                                 </div>
 
                                 {{-- component end --}}
@@ -495,6 +497,10 @@
     </div>
 @endsection
 @section('extrajs')
+<script src="{{ asset('admin/js/cities.js') }}"></script>
+    <script src="{{ asset('admin/js/states.js') }}"></script>
+    <script src="{{ asset('admin/js/timeslots.js') }}"></script>
+    <script src="{{ asset('admin/js/options.js') }}"></script>
     <script>
         $(document).ready(function() {
             // address_tax_body
@@ -567,14 +573,14 @@
                                                     <div class="mb-3">
                                                         <label for="address_file_name${childCount}" class="form-label">File Name </label>
                                                         <input type="text" class="form-control  border-bottom"
-                                                            id="address_file_name${childCount}" name="address_file_name_${childCount}"
+                                                            id="address_file_name${childCount}" name="address_file_name_${childCount}_new"
                                                             data-index=${childCount} >
                                                         <span class="warning-msg-block"></span>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="address_type${childCount}" class="form-label">Type</label>
                                                         <select class="form-select border-bottom"
-                                                            aria-label="Default select example" name="address_type_${childCount}"
+                                                            aria-label="Default select example" name="address_type_${childCount}_new"
                                                             id="address_type${childCount}"
                                                             data-index=${childCount}>
                                                             <option value="">Select an option</option>
@@ -588,7 +594,7 @@
                                                     <div class="mb-3">
                                                         <label for="address${childCount}" class="form-label">Address </label>
                                                         <textarea class="form-control" 
-                                                        name="address_${childCount}"
+                                                        name="address_${childCount}_new"
                                                         id="address${childCount}"
                                                         data-index=address${childCount} rows="5"></textarea>
                                                         <span class="warning-msg-block"></span>
