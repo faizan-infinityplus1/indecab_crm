@@ -326,7 +326,6 @@
 
 @section('extrajs')
     <script>
-        
         $("#city_limit").select2({
             placeholder: "Select an Option",
             allowClear: true
@@ -352,12 +351,12 @@
                         required: function() {
                             // showAlert('success', 'Please Enter Duty Type Name');
                             showAlert('error', 'Please Enter Duty Type Name');
-                            return "Please Enter Duty Type Name"; 
+                            return "Please Enter Duty Type Name";
                         }
                     }
                 },
                 errorElement: "div",
-                errorClass: "error-message",
+                errorClass: "error-message text-danger",
                 highlight: function(element) {
                     $(element).addClass("is-invalid");
                 },

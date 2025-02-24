@@ -104,7 +104,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/duty-supporters', [DutySupportersController::class, 'index'])->name('dutysupporters.index');
     Route::get('/duty-supporters/create', [DutySupportersController::class, 'create'])->name('dutysupporters.create');
     Route::post('/duty-supporters/store', [DutySupportersController::class, 'store'])->name('dutysupporters.store');
-
+    Route::get('/duty-supporters/edit/{id}', [DutySupportersController::class, 'edit'])->name('dutysupporters.edit');
+    Route::post('/duty-supporters/update/{id}', [DutySupportersController::class, 'update'])->name('dutysupporters.update');
+    Route::delete('/duty-supporters/delete/addresses/{id}', [DutySupportersController::class, 'deleteAddresses'])->name('customers.delete.addresses');
+    Route::delete('/duty-supporters/delete/files/{id}', [DutySupportersController::class, 'deleteFiles'])->name('customers.delete.files');
+ 
     Route::get('/labels', [LabelsController::class, 'index'])->name('labels.index');
     Route::get('/labels/manage/{id?}', [LabelsController::class, 'manage'])->name('labels.manage');
     Route::post('/labels/store', [LabelsController::class, 'store'])->name('labels.store');

@@ -117,4 +117,91 @@ class DutySupportersController extends Controller
             return redirect(route('dutysupporters.index'));
         }
     }
+
+    public function edit(Request $request)
+    {
+        // MstDutySupporter
+        $mstDutySupporter = MstDutySupporter::active()->get();
+        // MstDutySupporterAddress
+        $mstAddressesDutySupporter = MstDutySupporterAddress::active()->with('mstDutySupporter')->where('duty_supporter_id', $request->id)->get();
+        // MstDutySupporterFile
+        $mstFilesDutySupporter = MstDutySupporterFile::active()->with('mstDutySupporter')->where('duty_supporter_id', $request->id)->get();
+
+        return view('backend.admin.masters.dutysupporters.edit', compact('mstDutySupporter', 'mstAddressesDutySupporter', 'mstFilesDutySupporter'));
+    }
+    public function update(Request $request)
+    {
+        try{
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'name' => 'required|string',
+                    'type' => 'required|string',
+                    'phone_no' => 'nullable|string',
+                    'alt_phone_no' => 'nullable|string',
+                    'pan_no' => 'nullable|string',
+                    'aadhar_card' => 'nullable|string',
+                    'birth_date' => 'nullable|date',
+                    'joining_date' => 'nullable|date',
+                    'branches' => 'nullable|string',
+                    'ref_details' => 'nullable|string',
+                ],
+                [
+                    'name.required' => 'Please Fill Duty Supporter Name ',
+                    'type.required' => 'Please Select Duty Supporter Type',
+                ]
+            );
+            if ($validator->fails()) {
+                dd($validator->errors()->first());
+                return redirect(route('dutysupporters.index'))->withInput();
+            }
+            
+            $dutySupporterId = MstDutySupporter::where('id', $request->id)->firstOrFail();
+
+            $dutySupporterId->update(
+                [
+                    'name' => $request->name,
+                    'type' => $request->type,
+                    'phone_no' => $request->phone_no,
+                    'alt_phone_no' => $request->alt_phone_no,
+                    'pan_no' => $request->pan_no,
+                    'aadhar_card' => $request->aadhar_card,
+                    'birth_date' => $request->birth_date,
+                    'joining_date' => $request->joining_date,
+                    'branches' => $request->branches,
+                    'ref_details' => $request->ref_details,
+                    'active' => $request->active ?? false,
+                ]
+            );
+
+        } catch (Exception $e) {
+            dd($e);
+        }
+    }
+
+    public function deleteAddress(Request $request)
+    {
+        MstDutySupporterAddress::insert($dutySupporterAddressData);
+        try {
+            // Find the record by ID and delete it
+            $deleteAddresses = MstDutySupporterAddress::findOrFail($request->id);
+            $deleteAddresses->delete();
+
+            return response()->json(['success' => 'Duty Supporters Addresses deleted successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete addresses.'],  $e);
+        }
+    }
+    public function deleteFiles(Request $request)
+    {
+        try {
+            // Find the record by ID and delete it
+            $deleteFiles = MstDutySupporterFile::findOrFail($request->id);
+            $deleteFiles->delete();
+
+            return response()->json(['success' => 'Duty Supporters File deleted successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete file.'],  $e);
+        }
+    }
 }

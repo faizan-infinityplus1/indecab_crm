@@ -20,8 +20,7 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form action="{{ route('mydrivers.store') }}" method="post" id="formDriver"
-                enctype="multipart/form-data">
+                <form action="{{ route('mydrivers.store') }}" method="post" id="formDriver" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label ">Name <span class="text-danger">*</span></label>
@@ -84,7 +83,7 @@
                                 <div class="panel-heading bg-light p-3">Addresses</div>
                                 {{-- component start --}}
                                 <div class="address_tax_body" id="address_tax_body">
-                                   
+
                                 </div>
                                 {{-- component end --}}
                                 <div class="p-3">
@@ -247,7 +246,7 @@
                                 <div id="deduction_tax_body" class="deduction_tax_body">
 
                                 </div>
-                               
+
                                 {{-- component end --}}
                                 <div class="p-3">
                                     <button type="button" class="btn btn-primary rounded-1" id="extend_deduction"><i
@@ -340,9 +339,9 @@
                             <div class="panel border rounded mb-3">
                                 <div class="panel-heading bg-light p-3">Files</div>
                                 {{-- component start --}}
-                               <div id="driver_file_body" class="driver_file_body">
+                                <div id="driver_file_body" class="driver_file_body">
 
-                               </div>
+                                </div>
                                 {{-- component end --}}
                                 <div class="p-3">
                                     <button type="button" class="btn btn-primary rounded-1" id="extend_driver_file"><i
@@ -405,7 +404,7 @@
     </div>
 @endsection
 @section('extrajs')
-<script src="{{ asset('admin/js/cities.js') }}"></script>
+    <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script src="{{ asset('admin/js/states.js') }}"></script>
     <script src="{{ asset('admin/js/timeslots.js') }}"></script>
     <script src="{{ asset('admin/js/options.js') }}"></script>
@@ -434,7 +433,7 @@
                     }
                 },
                 errorElement: "div",
-                errorClass: "error-message",
+                errorClass: "error-message text-danger",
                 highlight: function(element) {
                     $(element).addClass("is-invalid");
                 },
@@ -463,7 +462,7 @@
                 const childCount = $('#address_tax_body').find('.d-flex').length + 1;
                 console.log(childCount);
 
-               
+
 
                 var template = ` <div class="d-flex border-bottom">
                                         <div class="p-3">
@@ -510,7 +509,7 @@
 
                 $('#address_tax_body').append(template);
 
-                
+
             });
 
             // Driver Address End Here
@@ -525,7 +524,7 @@
                 const childCount = $('#deduction_tax_body').find('.d-flex').length + 1;
                 console.log(childCount);
 
-               
+
 
                 var template = `  <div class="d-flex border-bottom">
                                     <div class="p-3">
@@ -559,7 +558,7 @@
 
                 $('#deduction_tax_body').append(template);
 
-                
+
             });
 
             // Driver Deduction End Here
@@ -573,7 +572,7 @@
                 const childCount = $('#driver_file_body').find('.d-flex').length + 1;
                 console.log(childCount);
 
-               
+
 
                 var template = `   <div class="d-flex border-bottom">
                                     <div class="p-3">
@@ -612,7 +611,7 @@
 
                 $('#driver_file_body').append(template);
 
-                
+
             });
 
             // Driver File End Here
