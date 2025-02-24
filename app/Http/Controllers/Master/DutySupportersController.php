@@ -16,9 +16,9 @@ class DutySupportersController extends Controller
     {
         return view('backend.admin.masters.dutysupporters.index');
     }
-    public function manage($id = null)
+    public function create()
     {
-        return view('backend.admin.masters.dutysupporters.manage');
+        return view('backend.admin.masters.dutysupporters.create');
     }
 
     public function store(Request $request)

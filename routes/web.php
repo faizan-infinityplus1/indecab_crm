@@ -99,7 +99,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/vehicles/create', [VehiclesController::class, 'createVehicles'])->name('createVehicles');
 
     Route::get('/duty-supporters', [DutySupportersController::class, 'index'])->name('dutysupporters.index');
-    Route::get('/duty-supporters/manage/{id?}', [DutySupportersController::class, 'manage'])->name('dutysupporters.manage');
+    Route::get('/duty-supporters/create', [DutySupportersController::class, 'create'])->name('dutysupporters.create');
     Route::post('/duty-supporters/store', [DutySupportersController::class, 'store'])->name('dutysupporters.store');
 
     Route::get('/labels', [LabelsController::class, 'index'])->name('labels.index');
