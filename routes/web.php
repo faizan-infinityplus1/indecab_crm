@@ -94,6 +94,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/drivers', [MyDriversController::class, 'index'])->name('mydrivers.index');
     Route::get('/drivers/create', [MyDriversController::class, 'create'])->name('mydrivers.create');
     Route::post('/drivers/store', [MyDriversController::class, 'store'])->name('mydrivers.store');
+    Route::get('/drivers/edit/{id}', [MyDriversController::class, 'edit'])->name('mydrivers.edit');
+    Route::post('/drivers/edit/{id}', [MyDriversController::class, 'update'])->name('mydrivers.update');
+
 
     Route::get('/vehicles', [VehiclesController::class, 'showVehicles'])->name('showVehicles');
     Route::get('/vehicles/create', [VehiclesController::class, 'createVehicles'])->name('createVehicles');

@@ -141,12 +141,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($mstMyDriver as $data)
                     <tr>
-                        <td>Adil Patel</td>
-                        <td>7738373502</td>
-                        {{-- <td>User not created</td>
-                        <td>Not Enabled</td> --}}
-                        <td><div class="text-success">Active</div></td>
+                        <td>{{$data->name}}</td>
+                        <td>{{$data->mobile_no}}</td>
+                        <td>{!! $data->is_active ? '<span class="text-success">Active</span>' : '<span class="text-danger">Inactive</span>' !!}</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -154,87 +153,22 @@
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
-                                        data-bs-target="#activity-log"
-                                        data-id="1"
-                                        data-name="asdqwe"
-                                        data-created="asd"
-                                        data-updates="asd"
-                                        {{-- data-id="{{ $data->id }}"
-                                        data-name="{{ $data->duty_name }}"
-                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
-                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
-                                        >View Activity Logs</a></li>
-                                    {{-- <li><a class="dropdown-item" href="#">Create User</a></li> --}}
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#activity-log">View Activity Logs</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                            href="{{ route('mydrivers.edit', $data->id) }}">Edit</a>
+                                    </li>
                                     <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
                                 </ul>
                             </div>
                         </td>
+                        
                     </tr>
-                    <tr>
-                        <td>Irshad Khan</td>
-                        <td>7017616157</td>
-                        {{-- <td>User not created</td>
-                        <td>Not Enabled</td> --}}
-                        <td><div class="text-success">Active</div></td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
-                                        data-bs-target="#activity-log"
-                                        data-id="1"
-                                        data-name="asdqwe"
-                                        data-created="asd"
-                                        data-updates="asd"
-                                        {{-- data-id="{{ $data->id }}"
-                                        data-name="{{ $data->duty_name }}"
-                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
-                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
-                                        >View Activity Logs</a></li>
-                                    {{-- <li><a class="dropdown-item" href="#">Create User</a></li> --}}
-                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Joshua</td>
-                        <td>9757414625</td>
-                        {{-- <td>User not created</td>
-                        <td>Not Enabled</td> --}}
-                        <td><div class="text-success">Active</div></td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
-                                        data-bs-target="#activity-log"
-                                        data-id="1"
-                                        data-name="asdqwe"
-                                        data-created="asd"
-                                        data-updates="asd"
-                                        {{-- data-id="{{ $data->id }}"
-                                        data-name="{{ $data->duty_name }}"
-                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
-                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
-                                        >View Activity Logs</a></li>
-                                    {{-- <li><a class="dropdown-item" href="#">Create User</a></li> --}}
-                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-
+                    @endforeach
+                 
                 </tbody>
                 <tfoot>
                     <tr>

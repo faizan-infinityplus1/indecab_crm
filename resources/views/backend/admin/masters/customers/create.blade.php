@@ -668,7 +668,8 @@
                 placeholder: '',
                 tabsize: 2,
                 height: 80
-            }); // Applicable Taxes Start Here
+            });
+             // Applicable Taxes Start Here
 
             $(document).on('click', '.remove_appli_tax_body', function() {
                 $(this).closest('.d-flex').remove();
