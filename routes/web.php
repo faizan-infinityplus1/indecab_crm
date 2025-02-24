@@ -96,6 +96,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/drivers/store', [MyDriversController::class, 'store'])->name('mydrivers.store');
     Route::get('/drivers/edit/{id}', [MyDriversController::class, 'edit'])->name('mydrivers.edit');
     Route::post('/drivers/edit/{id}', [MyDriversController::class, 'update'])->name('mydrivers.update');
+    Route::delete('/drivers/delete/addresses/{id}', [MyDriversController::class, 'deleteAddresses'])->name('mydrivers.delete.addresses');
+    Route::delete('/drivers/delete/deductions/{id}', [MyDriversController::class, 'deleteDeductions'])->name('mydrivers.delete.deductions');
+    Route::delete('/drivers/delete/files/{id}', [MyDriversController::class, 'deleteFiles'])->name('mydrivers.delete.files');
 
 
     Route::get('/vehicles', [VehiclesController::class, 'showVehicles'])->name('showVehicles');

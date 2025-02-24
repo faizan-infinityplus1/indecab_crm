@@ -26,4 +26,9 @@ class MstDriverFile extends Model
             }
         });
     }
+    public function mstDriver()
+    {
+        return $this->belongsTo(MstMyDriver::class, 'id');
+    }
+
 }

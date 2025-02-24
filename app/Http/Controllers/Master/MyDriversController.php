@@ -10,6 +10,7 @@ use App\Models\MstMyDriver;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class MyDriversController extends Controller
@@ -177,7 +178,7 @@ class MyDriversController extends Controller
                 $driverFileName = $request->input("driver_file_name$i");
                 if ($request->hasFile("driver_file$i")) {
                     $file = $request->file("driver_file{$i}");
-                    $filePath = $file->store('my-driver-images', 'public'); // Store in 'storage/app/public/customer-images'
+                    $filePath = $file->store('my-drivers', 'public'); // Store in 'storage/app/public/customer-images'
 
                     // Add file data to array
                     $driverFileData[] = [
@@ -209,8 +210,10 @@ class MyDriversController extends Controller
     {
         $particularMstDriver = MstMyDriver::active()->where('id', $request->id)->first();
         $mstDriverAddress = MstDriverAddress::active()->with('mstDriver')->where('driver_id', $request->id)->get();
+        $mstDriverDeduction = MstDriverDeduction::active()->with('mstDriver')->where('driver_id', $request->id)->get();
+        $mstDriverFile = MstDriverFile::active()->with('mstDriver')->where('driver_id', $request->id)->get();
 
-        return view('backend.admin.masters.drivers.edit',compact('particularMstDriver','mstDriverAddress'));
+        return view('backend.admin.masters.drivers.edit',compact('particularMstDriver','mstDriverAddress','mstDriverDeduction','mstDriverFile'));
     }
 
     public function update(Request $request)
@@ -324,8 +327,8 @@ class MyDriversController extends Controller
            
 
             $driverAddressData = [];
-            $interstateTaxesData = [];
-            $driverSettingsData = [];
+            $driverDeductionData = [];
+            $driverFiles = [];
             $bankAccountData = [];
             $filesData = [];
 
@@ -367,200 +370,141 @@ class MyDriversController extends Controller
                 }
 
                 // Handle interstate taxes (Ensure it does not modify applicable taxes)
-                // if (preg_match('/^interapplitax_(\d+)_new$/', $key, $matches)) {
-                //     $id = (int) $matches[1]; // Ensure integer
-                //     $taxId = $request->get($key);
-                //     $isNotCharged = $request->has("interapplitaxnch_{$id}_new");
+                if (preg_match('/^deduction_name_(\d+)_new$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $deductionName = $request->get("deduction_name_{$id}_new");
+                    $deductionAmount = $request->get("deduction_amount_{$id}_new");
 
-                //     $interstateTaxesData[] = [
-                //         'admin_id' => Auth::id(),
-                //         'supplier_id' => $supplierId,
-                //         'tax_id' => $taxId,
-                //         'not_charged' => $isNotCharged,
-                //         'created_at' => now(),
-                //         'updated_at' => now(),
-                //     ];
-                // } elseif (preg_match('/^interapplitax_(\d+)_update$/', $key, $matches)) {
-                //     $id = (int) $matches[1]; // Ensure integer
-                //     $taxId = $request->get($key);
-                //     $isNotCharged = $request->has("interapplitaxnch_{$id}_update");
+                    $driverDeductionData[] = [
+                        'admin_id' => Auth::id(),
+                        'driver_id' => $myDriverId,
+                        'deduction_name' => $deductionName,
+                        'deduction_amount' => $deductionAmount,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                } elseif (preg_match('/^deduction_name_(\d+)_update$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $deductionName = $request->get("deduction_name_{$id}_update");
+                    $deductionAmount = $request->get("deduction_amount_{$id}_update");
 
-                //     // Update record correctly
-                //     MstSupplierInterstateTax::where('id', $id)->update([
-                //         'admin_id' => Auth::id(),
-                //         'supplier_id' => $supplierId,
-                //         'tax_id' => $taxId,
-                //         'not_charged' => $isNotCharged,
-                //         'updated_at' => now(),
-                //     ]);
-                // }
+                    // Update record correctly
+                    MstDriverDeduction::where('id', $id)->update([
+                        'admin_id' => Auth::id(),
+                        'driver_id' => $myDriverId,
+                        'deduction_name' => $deductionName,
+                        'deduction_amount' => $deductionAmount,
+                        'updated_at' => now(),
+                    ]);
+                }
 
 
                 // // Handle Driver Allow Settings
-                // if (preg_match('/^driallowsetcity_(\d+)_new$/', $key, $matches)) {
-                //     $id = (int) $matches[1]; // Ensure integer
-                //     $city = $request->get($key);
-                //     $earlyTime = $request->get("driallowsetearlytime_{$id}_new");
-                //     $lateTime = $request->get("driallowsetlatetime_{$id}_new");
-                //     $overnightTime = $request->get("driallowsetoutstovernigtime_{$id}_new");
+                if (preg_match('/^driver_file_name_(\d+)_new$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $fileName = $request->get("driver_file_name_{$id}_new");
+                    $filePath = null;
 
-                //     $driverSettingsData[] = [
-                //         'admin_id' => Auth::id(),
-                //         'supplier_id' => $supplierId,
-                //         'city_name' => $city,
-                //         'early_time' => $earlyTime,
-                //         'late_time' => $lateTime,
-                //         'outsta_overnig_time' => $overnightTime,
-                //         'created_at' => now(),
-                //         'updated_at' => now(),
-                //     ];
-                // } elseif (preg_match('/^driallowsetcity_(\d+)_update$/', $key, $matches)) {
-                //     $id = (int) $matches[1]; // Ensure integer
-                //     $city = $request->get($key);
-                //     $earlyTime = $request->get("driallowsetearlytime_{$id}_update");
-                //     $lateTime = $request->get("driallowsetlatetime_{$id}_update");
-                //     $overnightTime = $request->get("driallowsetoutstovernigtime_{$id}_update");
+                    if ($request->hasFile("driver_file_{$id}_new")) {
+                        $file = $request->file("driver_file_{$id}_new");
+                        $filePath = $file->store('my-drivers', 'public');
+                    }
+                    $driverFiles[] = [
+                        'admin_id' => Auth::id(),
+                        'driver_id' => $myDriverId,
+                        'driver_file_name' => $fileName,
+                        'driver_file' => $filePath,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                } elseif (preg_match('/^driver_file_name_(\d+)_update$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $fileName = $request->get($key);
+                    $existingFile = MstDriverFile::find($id);
+                    $filePath = $existingFile->driver_file; // Retain old file if no new file is uploaded
 
-                //     // Update record correctly
-                //     MstSupplierDriverAllowanceSetting::where('id', $id)->update([
-                //         'admin_id' => Auth::id(),
-                //         'supplier_id' => $supplierId,
-                //         'city_name' => $city,
-                //         'early_time' => $earlyTime,
-                //         'late_time' => $lateTime,
-                //         'outsta_overnig_time' => $overnightTime,
-                //         'updated_at' => now(),
-                //     ]);
-                // }
+                    if ($request->hasFile("driver_file_{$id}_update")) {
+                        $file = $request->file("driver_file_{$id}_update");
+                        // Delete old file if exists
+                        if ($existingFile->driver_file) {
+                            Storage::disk('public')->delete($existingFile->driver_file);
+                        }
+                        $filePath = $file->store('my-drivers', 'public');
+                    }
+                    // Update record correctly
+                    MstDriverFile::where('id', $id)->update([
+                        'driver_id' => $myDriverId,
+                        'driver_file_name' => $fileName,
+                        'driver_file' => $filePath,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
 
-                // if (preg_match('/^filename_(\d+)_new$/', $key, $matches)) {
-                //     $id = (int) $matches[1]; // Ensure integer
-                //     $fileName = $request->get($key);
-                //     $filePath = null;
-
-
-                //     if ($request->hasFile("image_{$id}_new")) {
-                //         $file = $request->file("image_{$id}_new");
-                //         $filePath = $file->store('suppliers/supplier-images', 'public'); // Store in 'storage/app/public/customer-images'
-                //     }
-
-                //     $filesData[] = [
-                //         'admin_id' => Auth::id(),
-                //         'supplier_id' => $supplierId,
-                //         'name' => $fileName,
-                //         'image' => $filePath,
-                //         'created_at' => now(),
-                //         'updated_at' => now(),
-                //     ];
-                // } elseif (preg_match('/^filename_(\d+)_update$/', $key, $matches)) {
-                //     $id = (int) $matches[1]; // Ensure integer
-                //     $fileName = $request->get($key);
-                //     $existingFile = MstSupplierFile::find($id);
-
-                //     $filePath = $existingFile->image; // Retain old file if no new file is uploaded
-
-                //     if ($request->hasFile("image_{$id}_update")) {
-                //         $file = $request->file("image_{$id}_update");
-
-                //         // Delete old file if exists
-                //         if ($existingFile->image) {
-                //             Storage::disk('public')->delete($existingFile->image);
-                //         }
-
-                //         $filePath = $file->store('customer-images', 'public');
-                //     }
-
-                //     // Update existing file
-                //     MstSupplierFile::where('id', $id)->update([
-                //         'admin_id' => Auth::id(),
-                //         'supplier_id' => $supplierId,
-                //         'name' => $fileName,
-                //         'image' => $filePath,
-                //         'updated_at' => now(),
-                //     ]);
-                // }
-
-                // if (preg_match('/^accountnumber_(\d+)_new$/', $key, $matches)) {
-                //     $id = (int) $matches[1]; // Ensure integer
-                //     log($id);
-                //     log($matches);
-                //     log($key);
-                //     $accountNumber = $request->get($key);
-                //     $fileName = $request->get("filename_{$id}_new");
-                //     $bankName = $request->get("bankname_{$id}_new");
-                //     $bankBranch = $request->get("bankbranch_{$id}_new");
-                //     $ifscCode = $request->get("ifsccode_{$id}_new");
-                //     $chequeName = $request->get("chequename_{$id}_new");
-                //     $upi = $request->get("upi_{$id}_new");
-
-                //     $bankAccountData[] = [
-                //         'admin_id' => Auth::id(),
-                //         'supplier_id' => $supplierId,
-                //         'file_name' => $fileName,
-                //         'account_number' => $accountNumber,
-                //         'bank_name' => $bankName,
-                //         'bank_branch' => $bankBranch,
-                //         'ifsc_code' => $ifscCode,
-                //         'cheque_name' => $chequeName,
-                //         'upi' => $upi,
-                //         'created_at' => now(),
-                //         'updated_at' => now(),
-                //     ];
-                // } elseif (preg_match('/^filename_(\d+)_update$/', $key, $matches)) {
-                //     $id = (int) $matches[1]; // Ensure integer
-                //     $fileName = $request->get($key);
-                //     $accountNumber = $request->get("accountnumber_{$id}_update");
-                //     $bankName = $request->get("bankname_{$id}_update");
-                //     $bankBranch = $request->get("bankbranch_{$id}_update");
-                //     $ifscCode = $request->get("ifsccode_{$id}_update");
-                //     $chequeName = $request->get("chequename_{$id}_update");
-                //     $upi = $request->get("upi_{$id}_update");
-
-                //     MstSupplierBankAccount::where('id', $id)->update([
-                //         'admin_id' => Auth::id(),
-                //         'supplier_id' => $supplierId,
-                //         'file_name' => $fileName,
-                //         'account_number' => $accountNumber,
-                //         'bank_name' => $bankName,
-                //         'bank_branch' => $bankBranch,
-                //         'ifsc_code' => $ifscCode,
-                //         'cheque_name' => $chequeName,
-                //         'upi' => $upi,
-                //         'updated_at' => now(),
-                //     ]);
-                // }
+                
             }
 
+            
 
 
             if (!empty($driverAddressData)) {
                 MstDriverAddress::insert($driverAddressData);
             }
 
-            // if (!empty($filesData)) {
-            //     MstSupplierFile::insert($filesData);
-            // }
+            if (!empty($driverDeductionData)) {
+                MstDriverDeduction::insert($driverDeductionData);
+            }
 
-            // // Insert new applicable taxes
-            // if (!empty($applicableTaxesData)) {
-            //     MstSupplierApplicableTax::insert($applicableTaxesData);
-            // }
-
-            // // Insert new interstate taxes
-            // if (!empty($interstateTaxesData)) {
-            //     MstSupplierInterstateTax::insert($interstateTaxesData);
-            // }
-            // if (!empty($bankAccountData)) {
-            //     MstSupplierBankAccount::insert($bankAccountData);
-            // }
-
-
-
+            if (!empty($driverFiles)) {
+                MstDriverFile::insert($driverFiles);
+            }
 
 
             // return redirect(route('suppliers.index'));
         } catch (Exception $e) {
             dd($e);
+        }
+    }
+
+    public function deleteAddresses(Request $request)
+    {
+        try {
+            // Find the record by ID and delete it
+            $data = MstDriverAddress::findOrFail($request->id);
+            $data->delete();
+
+            return response()->json(['success' => 'Data deleted successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete data.'], 500);
+        }
+    }
+
+    public function deleteDeductions(Request $request)
+    {
+        try {
+            // Find the record by ID and delete it
+            $data = MstDriverDeduction::findOrFail($request->id);
+            $data->delete();
+
+            return response()->json(['success' => 'Data deleted successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete data.'], 500);
+        }
+    }
+
+    public function deleteFiles(Request $request)
+    {
+        try {
+            // Find the record by ID and delete it
+            $data = MstDriverFile::findOrFail($request->id);
+            if ($data->driver_file) {
+                Storage::disk('public')->delete($data->driver_file);
+            }
+            $data->delete();
+
+            return response()->json(['success' => 'Data deleted successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete data.'], 500);
         }
     }
 }

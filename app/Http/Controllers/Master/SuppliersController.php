@@ -768,12 +768,12 @@ class SuppliersController extends Controller
     {
         try {
             // Find the record by ID and delete it
-            $interstateTax = MstSupplierApplicableTax::findOrFail($request->id);
-            $interstateTax->delete();
+            $data = MstSupplierApplicableTax::findOrFail($request->id);
+            $data->delete();
 
-            return response()->json(['success' => 'Applicable Tax deleted successfully.']);
+            return response()->json(['success' => 'Data deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete tax.'], 500);
+            return response()->json(['error' => 'Failed to delete data.'], 500);
         }
     }
 
@@ -781,12 +781,12 @@ class SuppliersController extends Controller
     {
         try {
             // Find the record by ID and delete it
-            $interstateTax = MstSupplierInterstateTax::findOrFail($request->id);
-            $interstateTax->delete();
+            $data = MstSupplierInterstateTax::findOrFail($request->id);
+            $data->delete();
 
-            return response()->json(['success' => 'Inter State tax deleted successfully.']);
+            return response()->json(['success' => 'Data deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete tax.'],  $e);
+            return response()->json(['error' => 'Failed to delete data.'],  $e);
         }
     }
 
@@ -794,12 +794,12 @@ class SuppliersController extends Controller
     {
         try {
             // Find the record by ID and delete it
-            $driverAllowanceSetting = MstSupplierDriverAllowanceSetting::findOrFail($request->id);
-            $driverAllowanceSetting->delete();
+            $data = MstSupplierDriverAllowanceSetting::findOrFail($request->id);
+            $data->delete();
 
-            return response()->json(['success' => 'Driver Allowance Setting deleted successfully.']);
+            return response()->json(['success' => 'Data deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete tax.'],  $e);
+            return response()->json(['error' => 'Failed to delete data.'],  $e);
         }
     }
 
@@ -807,12 +807,12 @@ class SuppliersController extends Controller
     {
         try {
             // Find the record by ID and delete it
-            $driverAllowanceSetting = MstSupplierBankAccount::findOrFail($request->id);
-            $driverAllowanceSetting->delete();
+            $data = MstSupplierBankAccount::findOrFail($request->id);
+            $data->delete();
 
-            return response()->json(['success' => 'Driver Allowance Setting deleted successfully.']);
+            return response()->json(['success' => 'Data deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete tax.'],  $e);
+            return response()->json(['error' => 'Failed to delete data.'],  $e);
         }
     }
 
@@ -820,12 +820,12 @@ class SuppliersController extends Controller
     {
         try {
             // Find the record by ID and delete it
-            $driverAllowanceSetting = MstSupplierFile::findOrFail($request->id);
-            $driverAllowanceSetting->delete();
+            $data = MstSupplierFile::findOrFail($request->id);
+            $data->delete();
 
-            return response()->json(['success' => 'Driver Allowance Setting deleted successfully.']);
+            return response()->json(['success' => 'Data deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete tax.'],  $e);
+            return response()->json(['error' => 'Failed to delete data.'],  $e);
         }
     }
     public function createSuppliersGroups()

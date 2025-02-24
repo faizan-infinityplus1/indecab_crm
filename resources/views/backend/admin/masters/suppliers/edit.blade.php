@@ -1248,9 +1248,6 @@
 
 
         $(document).ready(function() {
-
-
-
             let particularMstSupplier = @json($particularMstSupplier);
             var applicableTaxes = @json($applicableTaxes);
             var limitAllotBooking = particularMstSupplier.limit_allot_booking ?? '';
@@ -1325,21 +1322,21 @@
             $(document).on('click', '.remove_appli_tax_body', function() {
                 console.log('Clicked delete button');
 
-                let taxId = $(this).data('id'); // Get tax ID
-                console.log("Tax ID:", taxId); // Debugging
+                let Id = $(this).data('id'); // Get tax ID
+                console.log("Tax ID:", Id); // Debugging
 
                 let parentDiv = $(this).closest('.d-flex');
 
-                if (taxId === "new") {
+                if (Id === "new") {
                     // Handle dynamic rows (no database record)
                     parentDiv.remove();
-                } else if (taxId === undefined || taxId === '' || taxId === null) {
+                } else if (Id === undefined || Id === '' || Id === null) {
                     // Handle invalid tax ID
                 } else {
                     // Handle existing records (send AJAX request to delete from database)
                     $.ajax({
                         url: "{{ route('suppliers.delete.applicable.taxes', ':id') }}".replace(
-                            ':id', taxId),
+                            ':id', Id),
                         type: 'POST',
                         data: {
                             _method: 'DELETE',
@@ -1411,21 +1408,21 @@
             $(document).on('click', '.remove_inter_appli_tax_body', function() {
                 console.log('Clicked delete button');
 
-                let taxId = $(this).data('id'); // Get tax ID
-                console.log("Tax ID:", taxId); // Debugging
+                let Id = $(this).data('id'); // Get tax ID
+                console.log("Tax ID:", Id); // Debugging
 
                 let parentDiv = $(this).closest('.d-flex');
 
-                if (taxId === "new") {
+                if (Id === "new") {
                     // Handle dynamic rows (no database record)
                     parentDiv.remove();
-                } else if (taxId === undefined || taxId === '' || taxId === null) {
+                } else if (Id === undefined || Id === '' || Id === null) {
                     // Handle invalid tax ID
                 } else {
                     // Handle existing records (send AJAX request to delete from database)
                     $.ajax({
                         url: "{{ route('suppliers.delete.interstate.taxes', ':id') }}".replace(
-                            ':id', taxId),
+                            ':id', Id),
                         type: 'POST',
                         data: {
                             _method: 'DELETE',

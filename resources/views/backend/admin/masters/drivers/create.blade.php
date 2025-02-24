@@ -421,7 +421,11 @@
                         required: true
                     },
                     mobile_no: {
-                        required: true
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        pattern: /^[0-9]{10}$/
                     }
                 },
                 messages: {
@@ -429,7 +433,11 @@
                         required: "Please Enter Name"
                     },
                     mobile_no: {
-                        required: "Please Enter Mobile No"
+                        required: "Please Enter Mobile No",
+                        digits: "Please enter only numbers",
+                        minlength: "Mobile number must be exactly 10 digits",
+                        maxlength: "Mobile number must be exactly 10 digits",
+                        pattern: "Please enter a valid 10-digit mobile number"
                     }
                 },
                 errorElement: "div",

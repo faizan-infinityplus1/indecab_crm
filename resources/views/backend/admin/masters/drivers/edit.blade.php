@@ -95,7 +95,7 @@
                                         <div class="d-flex border-bottom">
                                             <div class="p-3">
                                                 <button type="button"
-                                                    class="btn btn-primary rounded-1 remove_address_tax_body"><i
+                                                    class="btn btn-primary rounded-1 remove_address_tax_body" data-id="{{$data->id}}"><i
                                                         class="fa-solid fa-minus"></i></button>
                                             </div>
                                             <div class="p-3 ps-0 w-100">
@@ -103,22 +103,20 @@
                                                     <div class="panel-heading bg-light p-3">Addresses</div>
                                                     <div class="panel-body p-3">
                                                         <div class="mb-3">
-                                                            <label for="address_file_name${childCount}"
-                                                                class="form-label">File Name </label>
+                                                            <label for="address_file_name" class="form-label">File Name
+                                                            </label>
                                                             <input type="text" class="form-control  border-bottom"
-                                                                id="address_file_name${childCount}"
+                                                                id="address_file_name"
                                                                 name="address_file_name_{{ $data->id }}_update"
-                                                                data-index=${childCount}
                                                                 value="{{ old('address_file_name', $data->address_file_name ?? '') }}">
                                                             <span class="warning-msg-block"></span>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="address_type${childCount}"
-                                                                class="form-label">Type</label>
+                                                            <label for="address_type" class="form-label">Type</label>
                                                             <select class="form-select border-bottom"
                                                                 aria-label="Default select example"
                                                                 name="address_type_{{ $data->id }}_update"
-                                                                id="address_type${childCount}" data-index=${childCount}>
+                                                                id="address_type">
                                                                 <option value="">Select an option</option>
                                                                 <option value="home_address"
                                                                     {{ old('home_address', $data->address_type ?? '') == 'home_address' ? 'selected' : '' }}>
@@ -136,10 +134,10 @@
                                                             <span class="warning-msg-block"></span>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="address${childCount}" class="form-label">Address
+                                                            <label for="address" class="form-label">Address
                                                             </label>
-                                                            <textarea class="form-control" name="address_{{ $data->id }}_update" id="address${childCount}"
-                                                                data-index=address${childCount} rows="5"> {{ old('address', $data->address ?? '') }}</textarea>
+                                                            <textarea class="form-control" name="address_{{ $data->id }}_update" id="address" data-index=address
+                                                                rows="5"> {{ old('address', $data->address ?? '') }}</textarea>
                                                             <span class="warning-msg-block"></span>
                                                         </div>
                                                     </div>
@@ -322,10 +320,37 @@
                                 <div class="panel-heading bg-light p-3">Deductions</div>
                                 {{-- component start --}}
                                 <div id="deduction_tax_body" class="deduction_tax_body">
-                                    @foreach ($mstDriverAddress as $addressData)
-                                        <option value="{{ $addressData->id }}"
-                                            {{ old('appli_tax', $addressData->id ?? '') == $data->tax_id ? 'selected' : '' }}>
-                                            {{ $addressData->percentage }}</option>
+                                    @foreach ($mstDriverDeduction as $data)
+                                        <div class="d-flex border-bottom">
+                                            <div class="p-3">
+                                                <button type="button"
+                                                    class="btn btn-primary rounded-1 remove_deduction_body" data-id={{$data->id}}><i
+                                                        class="fa-solid fa-minus"></i></button>
+                                            </div>
+                                            <div class="p-3 ps-0 w-100">
+                                                <div class="panel border rounded">
+                                                    <div class="panel-heading bg-light p-3">Deductions</div>
+                                                    <div class="panel-body p-3">
+                                                        <div class="mb-3">
+                                                            <label for="deduction_name_" class="form-label">Name</label>
+                                                            <input type="text" class="form-control  border-bottom"
+                                                                name="deduction_name_{{ $data->id }}_update"
+                                                                id="deduction_name" value="{{ $data->deduction_name }}">
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="deduction_amount"
+                                                                class="form-label ">Amount</label>
+                                                            <input type="number" class="form-control border-bottom"
+                                                                name="deduction_amount_{{ $data->id }}_update"
+                                                                id="deduction_amount"
+                                                                value="{{ $data->deduction_amount }}">
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </div>
 
@@ -430,7 +455,43 @@
                                 <div class="panel-heading bg-light p-3">Files</div>
                                 {{-- component start --}}
                                 <div id="driver_file_body" class="driver_file_body">
+                                    @foreach ($mstDriverFile as $data)
+                                        <div class="d-flex border-bottom">
+                                            <div class="p-3">
+                                                <button type="button"
+                                                    class="btn btn-primary rounded-1 remove_driver_file_body" data-id={{$data->id}}><i
+                                                        class="fa-solid fa-minus"></i></button>
+                                            </div>
+                                            <div class="p-3 ps-0 w-100">
+                                                <div class="panel border rounded">
 
+                                                    <div class="panel-body p-3">
+                                                        <div class="mb-3">
+                                                            <label for="driver_file_name" class="form-label">File Name
+                                                            </label>
+                                                            <input type="text" class="form-control  border-bottom"
+                                                                name="driver_file_name_{{ $data->id }}_update"
+                                                                id="driver_file_name"
+                                                                value="{{$data->driver_file_name}}">
+                                                            <span class="warning-msg-block"></span>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="driver_file" class="form-label">Upload </label>
+                                                            <div>
+                                                                <label for="qwer"
+                                                                    class="btn shadow-sm border rounded-1">Choose
+                                                                    File</label>
+                                                                <input type="file" class="form-control"
+                                                                    accept="image/png, image/gif, image/jpeg"
+                                                                    name="driver_file_{{ $data->id }}_update"
+                                                                    id="driver_file">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
                                 {{-- component end --}}
                                 <div class="p-3">
@@ -560,13 +621,41 @@
             });
 
 
-
-
-
             // Driver Address Start Here
 
             $(document).on('click', '.remove_address_tax_body', function() {
-                $(this).closest('.d-flex').remove();
+                // console.log('Clicked delete button');
+
+                let Id = $(this).data('id'); // Get tax ID
+                // console.log("Tax ID:", Id); // Debugging
+
+                let parentDiv = $(this).closest('.d-flex');
+
+                if (Id === "new") {
+                    // Handle dynamic rows (no database record)
+                    parentDiv.remove();
+                } else if (Id === undefined || Id === '' || Id === null) {
+                    // Handle invalid tax ID
+                } else {
+                    // Handle existing records (send AJAX request to delete from database)
+                    $.ajax({
+                        url: "{{ route('mydrivers.delete.addresses', ':id') }}".replace(
+                            ':id', Id),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                           if(response.success){
+                            showAlert('success', response.success);
+
+                               parentDiv.remove();
+                           }
+                        },
+                        error: function(response) {}
+                    });
+                }
             });
 
             $('#extend_address').on('click', function() {
@@ -576,47 +665,47 @@
 
 
                 var template = ` <div class="d-flex border-bottom">
-                                        <div class="p-3">
-                                            <button type="button" class="btn btn-primary rounded-1 remove_address_tax_body"><i
-                                                    class="fa-solid fa-minus"></i></button>
-                                        </div>
-                                        <div class="p-3 ps-0 w-100">
-                                            <div class="panel border rounded">
-                                                <div class="panel-heading bg-light p-3">Addresses</div>
-                                                <div class="panel-body p-3">
-                                                    <div class="mb-3">
-                                                        <label for="address_file_name${childCount}" class="form-label">File Name </label>
-                                                        <input type="text" class="form-control  border-bottom"
-                                                            id="address_file_name${childCount}" name="address_file_name_${childCount}_new"
-                                                            data-index=${childCount} >
-                                                        <span class="warning-msg-block"></span>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="address_type${childCount}" class="form-label">Type</label>
-                                                        <select class="form-select border-bottom"
-                                                            aria-label="Default select example" name="address_type_${childCount}_new"
-                                                            id="address_type${childCount}"
-                                                            data-index=${childCount}>
-                                                            <option value="">Select an option</option>
-                                                            <option value="home_address">Home Address</option>
-                                                            <option value="permanent_address">Permanent Address</option>
-                                                            <option value="temporary_address">Temporary Address</option>
-                                                            <option value="village_address">Village Address</option>
-                                                        </select>
-                                                        <span class="warning-msg-block"></span>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="address${childCount}" class="form-label">Address </label>
-                                                        <textarea class="form-control" 
-                                                        name="address_${childCount}_new"
-                                                        id="address${childCount}"
-                                                        data-index=address${childCount} rows="5"></textarea>
-                                                        <span class="warning-msg-block"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>`;
+                        <div class="p-3">
+                            <button type="button" class="btn btn-primary rounded-1 remove_address_tax_body" data-id="new"><i
+                                    class="fa-solid fa-minus"></i></button>
+                        </div>
+                        <div class="p-3 ps-0 w-100">
+                            <div class="panel border rounded">
+                                <div class="panel-heading bg-light p-3">Addresses</div>
+                                <div class="panel-body p-3">
+                                    <div class="mb-3">
+                                        <label for="address_file_name${childCount}" class="form-label">File Name </label>
+                                        <input type="text" class="form-control  border-bottom"
+                                            id="address_file_name${childCount}" name="address_file_name_${childCount}_new"
+                                            data-index=${childCount} >
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="address_type${childCount}" class="form-label">Type</label>
+                                        <select class="form-select border-bottom"
+                                            aria-label="Default select example" name="address_type_${childCount}_new"
+                                            id="address_type${childCount}"
+                                            data-index=${childCount}>
+                                            <option value="">Select an option</option>
+                                            <option value="home_address">Home Address</option>
+                                            <option value="permanent_address">Permanent Address</option>
+                                            <option value="temporary_address">Temporary Address</option>
+                                            <option value="village_address">Village Address</option>
+                                        </select>
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="address${childCount}" class="form-label">Address </label>
+                                        <textarea class="form-control" 
+                                        name="address_${childCount}_new"
+                                        id="address${childCount}"
+                                        data-index=address${childCount} rows="5"></textarea>
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
 
                 $('#address_tax_body').append(template);
 
@@ -628,7 +717,38 @@
             // Driver Dedcution Start Here
 
             $(document).on('click', '.remove_deduction_body', function() {
-                $(this).closest('.d-flex').remove();
+                  // console.log('Clicked delete button');
+
+                  let Id = $(this).data('id'); // Get tax ID
+                // console.log("Tax ID:", Id); // Debugging
+
+                let parentDiv = $(this).closest('.d-flex');
+
+                if (Id === "new") {
+                    // Handle dynamic rows (no database record)
+                    parentDiv.remove();
+                } else if (Id === undefined || Id === '' || Id === null) {
+                    // Handle invalid tax ID
+                } else {
+                    // Handle existing records (send AJAX request to delete from database)
+                    $.ajax({
+                        url: "{{ route('mydrivers.delete.deductions', ':id') }}".replace(
+                            ':id', Id),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                           if(response.success){
+                            showAlert('success', response.success);
+
+                               parentDiv.remove();
+                           }
+                        },
+                        error: function(response) {}
+                    });
+                }
             });
 
             $('#extend_deduction').on('click', function() {
@@ -638,34 +758,34 @@
 
 
                 var template = `  <div class="d-flex border-bottom">
-                                    <div class="p-3">
-                                        <button type="button" class="btn btn-primary rounded-1 remove_deduction_body"><i
-                                                class="fa-solid fa-minus"></i></button>
+                        <div class="p-3">
+                            <button type="button" class="btn btn-primary rounded-1 remove_deduction_body" data-id="new"><i
+                                    class="fa-solid fa-minus"></i></button>
+                        </div>
+                        <div class="p-3 ps-0 w-100">
+                            <div class="panel border rounded">
+                                <div class="panel-heading bg-light p-3">Deductions</div>
+                                <div class="panel-body p-3">
+                                    <div class="mb-3">
+                                        <label for="deduction_name_${childCount}" class="form-label">Name</label>
+                                        <input type="text" class="form-control  border-bottom"
+                                        name="deduction_name_${childCount}_new"
+                                            id="deduction_name${childCount}"
+                                            data-index=${childCount}>
+                                        <span class="warning-msg-block"></span>
                                     </div>
-                                    <div class="p-3 ps-0 w-100">
-                                        <div class="panel border rounded">
-                                            <div class="panel-heading bg-light p-3">Deductions</div>
-                                            <div class="panel-body p-3">
-                                                <div class="mb-3">
-                                                    <label for="deduction_name${childCount}" class="form-label">Name</label>
-                                                    <input type="text" class="form-control  border-bottom"
-                                                    name="deduction_name_${childCount}"
-                                                        id="deduction_name${childCount}"
-                                                        data-index=${childCount}>
-                                                    <span class="warning-msg-block"></span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="deduction_amount${childCount}" class="form-label ">Amount</label>
-                                                    <input type="number" class="form-control border-bottom"
-                                                    name="deduction_amount_${childCount}"    
-                                                    id="deduction_amount${childCount}"
-                                                    data-index=${childCount}>
-                                                    <span class="warning-msg-block"></span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="mb-3">
+                                        <label for="deduction_amount${childCount}" class="form-label ">Amount</label>
+                                        <input type="number" class="form-control border-bottom"
+                                        name="deduction_amount_${childCount}_new"    
+                                        id="deduction_amount${childCount}"
+                                        data-index=${childCount}>
+                                        <span class="warning-msg-block"></span>
                                     </div>
-                                </div>`;
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
 
                 $('#deduction_tax_body').append(template);
 
@@ -676,7 +796,38 @@
 
             // Driver File Start Here
             $(document).on('click', '.remove_driver_file_body', function() {
-                $(this).closest('.d-flex').remove();
+                 // console.log('Clicked delete button');
+
+                 let Id = $(this).data('id'); // Get tax ID
+                // console.log("Tax ID:", Id); // Debugging
+
+                let parentDiv = $(this).closest('.d-flex');
+
+                if (Id === "new") {
+                    // Handle dynamic rows (no database record)
+                    parentDiv.remove();
+                } else if (Id === undefined || Id === '' || Id === null) {
+                    // Handle invalid tax ID
+                } else {
+                    // Handle existing records (send AJAX request to delete from database)
+                    $.ajax({
+                        url: "{{ route('mydrivers.delete.files', ':id') }}".replace(
+                            ':id', Id),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE',
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                           if(response.success){
+                            showAlert('success', response.success);
+
+                               parentDiv.remove();
+                           }
+                        },
+                        error: function(response) {}
+                    });
+                }
             });
 
             $('#extend_driver_file').on('click', function() {
@@ -686,39 +837,39 @@
 
 
                 var template = `   <div class="d-flex border-bottom">
-                                    <div class="p-3">
-                                        <button type="button" class="btn btn-primary rounded-1 remove_driver_file_body"><i
-                                                class="fa-solid fa-minus"></i></button>
+                    <div class="p-3">
+                        <button type="button" class="btn btn-primary rounded-1 remove_driver_file_body" data-id="new"><i
+                                class="fa-solid fa-minus"></i></button>
+                    </div>
+                    <div class="p-3 ps-0 w-100">
+                        <div class="panel border rounded">
+                            
+                            <div class="panel-body p-3">
+                                <div class="mb-3">
+                                    <label for="driver_file_name${childCount}" class="form-label">File Name </label>
+                                    <input type="text" class="form-control  border-bottom"
+                                    name="driver_file_name_${childCount}_new"    
+                                    id="driver_file_name${childCount}"
+                                    data-index=${childCount}>
+                                    <span class="warning-msg-block"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Upload </label>
+                                    <div>
+                                        <label for="qwer"
+                                            class="btn shadow-sm border rounded-1">Choose File</label>
+                                        <input type="file" 
+                                            class="form-control"
+                                            accept="image/png, image/gif, image/jpeg"
+                                            name="driver_file_${childCount}_new"
+                                            id="driver_file${childCount}"
+                                            data-index=${childCount}>
                                     </div>
-                                    <div class="p-3 ps-0 w-100">
-                                        <div class="panel border rounded">
-                                          
-                                            <div class="panel-body p-3">
-                                                <div class="mb-3">
-                                                    <label for="driver_file_name${childCount}" class="form-label">File Name </label>
-                                                    <input type="text" class="form-control  border-bottom"
-                                                    name=driver_file_name_${childCount}    
-                                                    id="driver_file_name${childCount}"
-                                                    data-index=${childCount}>
-                                                    <span class="warning-msg-block"></span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label">Upload </label>
-                                                    <div>
-                                                        <label for="qwer"
-                                                            class="btn shadow-sm border rounded-1">Choose File</label>
-                                                        <input type="file" 
-                                                            class="form-control"
-                                                            accept="image/png, image/gif, image/jpeg"
-                                                            name="driver_file_${childCount}"
-                                                            id="driver_file${childCount}"
-                                                            data-index=${childCount}>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
 
                 $('#driver_file_body').append(template);
 
