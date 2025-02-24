@@ -68,7 +68,7 @@ class DutySupportersController extends Controller
              $dutySupporterAddressType = $request->input("duty_supporter_address_type{$i}");
              $dutySupporterAddress = $request->input("duty_supporter_address{$i}");
              // Add to applicable taxes data array
-             $dutySupporterAddressData[] = [
+             $addressData[] = [
                  'admin_id' => Auth::id(),
                  'duty_supporter_id' => $dutySupporterId,
                  'duty_supporter_address_type' => $dutySupporterAddressType,
@@ -78,7 +78,7 @@ class DutySupportersController extends Controller
              ];
              // print_r($applicableTaxesData);
          }
-         MstDutySupporterAddress::insert($dutySupporterAddressData);
+         MstDutySupporterAddress::insert($addressData);
 
          $filesData = [];
             for ($i = 1; $request->has("file_name$i"); $i++) {
@@ -114,6 +114,7 @@ class DutySupportersController extends Controller
 
         if ($dutySupporter) {
             // connectify('success', 'Product Added', 'Duty Type has been added successfully !');
+            notify()->success('Data Added Successfully', 'Success');
             return redirect(route('dutysupporters.index'));
         }
     }
@@ -122,12 +123,14 @@ class DutySupportersController extends Controller
     {
         // MstDutySupporter
         $mstDutySupporter = MstDutySupporter::active()->get();
+
+        $particularMstDutySupporter = MstDutySupporter::active()->where('id', $request->id)->first();
         // MstDutySupporterAddress
         $mstAddressesDutySupporter = MstDutySupporterAddress::active()->with('mstDutySupporter')->where('duty_supporter_id', $request->id)->get();
         // MstDutySupporterFile
         $mstFilesDutySupporter = MstDutySupporterFile::active()->with('mstDutySupporter')->where('duty_supporter_id', $request->id)->get();
 
-        return view('backend.admin.masters.dutysupporters.edit', compact('mstDutySupporter', 'mstAddressesDutySupporter', 'mstFilesDutySupporter'));
+        return view('backend.admin.masters.dutysupporters.edit', compact('mstDutySupporter', 'particularMstDutySupporter', 'mstAddressesDutySupporter', 'mstFilesDutySupporter'));
     }
     public function update(Request $request)
     {
@@ -181,7 +184,37 @@ class DutySupportersController extends Controller
 
 
             foreach ($request->keys() as $key) {
-                if (preg_match('/^filename_(\d+)_new$/', $key, $matches)) {
+                if (preg_match('/^duty_supporter_address_type_(\d+)_new$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $dutySupporterAddress = $request->input("duty_supporter_address_{$id}_new");
+                    $dutySupporterAddressType = $request->input("duty_supporter_address_type_{$id}_new");
+
+                    $addressData[] = [
+                        'admin_id' => Auth::id(),
+                        'duty_supporter_id' => $dutySupporterId,
+                        'duty_supporter_address_type' => $dutySupporterAddressType,
+                        'duty_supporter_address' => $dutySupporterAddress,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                } elseif (preg_match('/^duty_supporter_address_type_(\d+)_update$/', $key, $matches)) {
+                    $id = (int) $matches[1]; // Ensure integer
+                    $dutySupporterAddress = $request->input("duty_supporter_address_{$id}_update");
+
+                    $dutySupporterAddressType = $request->input("duty_supporter_address_type_{$id}_update");
+
+                    // Update record correctly
+                    MstDutySupporterAddress::where('id', $id)->update([
+                        'admin_id' => Auth::id(),
+                        'duty_supporter_id' => $dutySupporterId,
+                        'duty_supporter_address_type' => $dutySupporterAddressType,
+                        'duty_supporter_address' => $dutySupporterAddress,
+                        'updated_at' => now(),
+                    ]);
+                }
+
+                if (preg_match('/^file_name_(\d+)_new$/', $key, $matches)) {
+                    // dd('i m here');
                     $id = (int) $matches[1]; // Ensure integer
                     $fileName = $request->get($key);
                     $filePath = null;
@@ -200,7 +233,7 @@ class DutySupportersController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
-                } elseif (preg_match('/^filename_(\d+)_update$/', $key, $matches)) {
+                } elseif (preg_match('/^file_name_(\d+)_update$/', $key, $matches)) {
                     $id = (int) $matches[1]; // Ensure integer
                     $fileName = $request->get($key);
                     $existingFile = MstDutySupporterFile::find($id);
@@ -230,6 +263,13 @@ class DutySupportersController extends Controller
                 }
             }
 
+            if (!empty($addressData)) {
+                MstDutySupporterAddress::insert($addressData);
+            }
+            if (!empty($filesData)) {
+                MstDutySupporterFile::insert($filesData);
+            }
+
         } catch (Exception $e) {
             dd($e);
         }
@@ -237,7 +277,7 @@ class DutySupportersController extends Controller
 
     public function deleteAddress(Request $request)
     {
-        MstDutySupporterAddress::insert($dutySupporterAddressData);
+        // MstDutySupporterAddress::insert($dutySupporterAddressData);
         try {
             // Find the record by ID and delete it
             $deleteAddresses = MstDutySupporterAddress::findOrFail($request->id);

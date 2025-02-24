@@ -106,8 +106,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/duty-supporters/store', [DutySupportersController::class, 'store'])->name('dutysupporters.store');
     Route::get('/duty-supporters/edit/{id}', [DutySupportersController::class, 'edit'])->name('dutysupporters.edit');
     Route::post('/duty-supporters/update/{id}', [DutySupportersController::class, 'update'])->name('dutysupporters.update');
-    Route::delete('/duty-supporters/delete/addresses/{id}', [DutySupportersController::class, 'deleteAddresses'])->name('customers.delete.addresses');
-    Route::delete('/duty-supporters/delete/files/{id}', [DutySupportersController::class, 'deleteFiles'])->name('customers.delete.files');
+    Route::get('/duty-supporters/delete/addresses/{id}', [DutySupportersController::class, 'deleteAddress'])->name('customers.delete.addresses');
+    Route::get('/duty-supporters/delete/files/{id}', [DutySupportersController::class, 'deleteFiles'])->name('customers.delete.files');
  
     Route::get('/labels', [LabelsController::class, 'index'])->name('labels.index');
     Route::get('/labels/manage/{id?}', [LabelsController::class, 'manage'])->name('labels.manage');
