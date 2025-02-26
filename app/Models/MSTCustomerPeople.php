@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class MSTCustomerPeople extends Model
+class MstCustomerPeople extends Model
 {
-    /** @use HasFactory<\Database\Factories\MSTCustomerPeopleFactory> */
+    /** @use HasFactory<\Database\Factories\MstCustomerPeopleFactory> */
     use HasFactory;
 
     protected $fillable = [
