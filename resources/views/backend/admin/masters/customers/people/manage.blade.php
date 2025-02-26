@@ -87,34 +87,12 @@
                             <div class="panel border rounded mb-3">
                                 <div class="panel-heading bg-light p-3">Addresses</div>
                                 {{-- component start --}}
-                                <div class="d-flex border-bottom">
-                                    <div class="p-3">
-                                        <button type="button" class="btn btn-primary rounded-1"><i
-                                                class="fa-solid fa-minus"></i></button>
-                                    </div>
-                                    <div class="p-3 ps-0 w-100">
-                                        <div class="panel border rounded">
-                                            <div class="panel-heading bg-light p-3">Addresses</div>
-                                            <div class="panel-body p-3">
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label">Name</label>
-                                                    <input type="text" class="form-control  border-bottom"
-                                                        id="" placeholder="Type your address">
-                                                    <span class="warning-msg-block"></span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label">Address</label>
-                                                    <input type="text" class="form-control  border-bottom"
-                                                        id="" placeholder="Type your address">
-                                                    <span class="warning-msg-block"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="d-flex border-bottom" id="addressContainer">
+
                                 </div>
                                 {{-- component end --}}
                                 <div class="p-3">
-                                    <button type="button" class="btn btn-primary rounded-1"><i
+                                    <button type="button" onclick="addAddress()" class="btn btn-primary rounded-1"><i
                                             class="fa-solid fa-plus"></i></button>
                                 </div>
                             </div>
@@ -198,6 +176,50 @@
 
 @section('extrajs')
     <script>
+        // address logic start from here
+        let addressIndex = 0;
+
+        function addAddress(address = {}) {
+            // console.log(' i m here');
+            addressIndex++;
+            const addressContainer = document.getElementById("addressContainer");
+            const addressDiv = document.createElement("div");
+            addressDiv.setAttribute("address-data-index", addressIndex);
+            let addressHtml = `
+                <div class="p-3">
+                    <button type="button" onclick="removeAddress(${addressIndex})" class="btn btn-primary rounded-1"><i
+                            class="fa-solid fa-minus"></i></button>
+                </div>
+                <div class="p-3 ps-0 w-100">
+                    <div class="panel border rounded">
+                        <div class="panel-heading bg-light p-3">Addresses</div>
+                        <div class="panel-body p-3">
+                            <div class="mb-3">
+                                <input type="hidden" name="addresses[${addressIndex}][id]" value="${address.id || ''}" />
+                                <label for="" class="form-label">Name</label>
+                                <input type="text" class="form-control  border-bottom"
+                                    id="" name="addresses[${addressIndex}][name]" value="${address.name || ''}"  placeholder="Type your address" required>
+                                <span class="warning-msg-block"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Address</label>
+                                <input type="text" class="form-control  border-bottom"
+                                    id="" name="addresses[${addressIndex}][full_address]" value="${address.full_address || ''}"  placeholder="Type your address" required>
+                                <span class="warning-msg-block"></span>
+                            </div>
+                        </div>
+                    </div>
+            </div>`;
+            addressDiv.innerHTML = addressHtml;
+            addressContainer.appendChild(addressDiv);
+        }
+        // Function to remove an address field
+        function removeAddress(index) {
+            document.querySelector(`[address-data-index="${index}"]`).remove();
+        }
+
+        const customerPeopleAddresses = {!! json_encode($customerPeople->addresses) !!};
+        customerPeopleAddresses.forEach(address => addAddress(address));
         $(document).ready(function() {
             $('#labels').select2({
                 placeholder: "Select an option",

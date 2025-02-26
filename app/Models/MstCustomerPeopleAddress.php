@@ -6,26 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class MstCustomerPeople extends Model
+class MstCustomerPeopleAddress extends Model
 {
-    /** @use HasFactory<\Database\Factories\MstCustomerPeopleFactory> */
+    /** @use HasFactory<\Database\Factories\MstCustomerPeopleAddressFactory> */
     use HasFactory;
-
     protected $fillable = [
-        'customer_id',
         'name',
-        'phone_no',
-        'email',
-        'alternate_phone_no',
-        'alternate_email',
-        'notes',
-        'labels',
-        'isPassenger',
-        'isBookedBy',
-        'isAdditionalContact',
-        'isEmergencyContact',
+        'full_address',
     ];
-
     public function scopeActive($query)
     {
         return $query->where('admin_id', Auth::user()->id);
@@ -41,8 +29,8 @@ class MstCustomerPeople extends Model
         });
     }
 
-    public function addresses()
+    public function customer()
     {
-        return $this->hasMany(MstCustomerPeopleAddress::class, 'customer_people_id');
+        return $this->belongsTo(MstCustomerPeople::class, 'customer_people_id');
     }
 }
