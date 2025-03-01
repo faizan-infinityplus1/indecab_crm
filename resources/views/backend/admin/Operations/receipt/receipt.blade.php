@@ -4,7 +4,7 @@
         <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
             <h4>Receipts</h4>
             <div class="text-end d-flex justify-content-end align-items-center gap-2">
-                <div class="btn-group" role="group"><a href="{{ route('employees.manage') }}" class="btn btn-primary">Add New
+                <div class="btn-group" role="group"><a href="{{ route('employees.create') }}" class="btn btn-primary">Add New
                         Receipt</a></div>
                 <div class="dropdown">
                     <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"

@@ -111,7 +111,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/duty-supporters/update/{id}', [DutySupportersController::class, 'update'])->name('dutysupporters.update');
     Route::get('/duty-supporters/delete/addresses/{id}', [DutySupportersController::class, 'deleteAddress'])->name('customers.delete.addresses');
     Route::get('/duty-supporters/delete/files/{id}', [DutySupportersController::class, 'deleteFiles'])->name('customers.delete.files');
- 
+
     Route::get('/labels', [LabelsController::class, 'index'])->name('labels.index');
     Route::get('/labels/manage/{id?}', [LabelsController::class, 'manage'])->name('labels.manage');
     Route::post('/labels/store', [LabelsController::class, 'store'])->name('labels.store');
@@ -123,7 +123,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/feedback-forms/1', [FeedbackFormsController::class, 'addField'])->name('feedbackforms.addField');
 
     Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');
-    Route::get('/employees/manage/{id?}', [EmployeesController::class, 'manage'])->name('employees.manage');
+    Route::get('/employees/create', [EmployeesController::class, 'create'])->name('employees.create');
+    Route::post('/employees/store', [EmployeesController::class, 'store'])->name('employees.store');
 
     Route::get('/billing-items', [BillingItemsController::class, 'index'])->name('billingitems.index');
     Route::get('/billing-items/manage/{id?}', [BillingItemsController::class, 'manage'])->name('billingitems.manage');
@@ -156,27 +157,27 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/report-requests/manage', [ReportController::class, 'manage'])->name('reports.manage');
 
     // Route::get('/bookingManage/{id?}', [AddBookController::class, 'manage'])->name('dutytype.manage');
-    Route::get("/booking/create",[BookingController::class,"create"]);
-    Route::get("/incoming/allotted",[DutyController::class,"allotted"]);
-    Route::get("/need-attention",[DutyController::class,"Attention"]);
-    Route::get("/duty-upcoming",[DutyController::class,"Upcoming"]);
-    Route::get("/duty-booked",[DutyController::class,"Booked"]);
-    Route::get("/duty-alloted",[DutyController::class,"DutyAlloted"]);
-    Route::get("/duty-dispatched",[DutyController::class,"Dispatched"]);
-    Route::get("/duty/completed",[DutyController::class,"Completed"]);
-    Route::get("/duty/billed",[DutyController::class,"Billed"]);
-    Route::get("/duty/cancelled",[DutyController::class,"Cancelled"]);
-    Route::get("/duty/all",[DutyController::class,"All"]);
+    Route::get("/booking/create", [BookingController::class, "create"]);
+    Route::get("/incoming/allotted", [DutyController::class, "allotted"]);
+    Route::get("/need-attention", [DutyController::class, "Attention"]);
+    Route::get("/duty-upcoming", [DutyController::class, "Upcoming"]);
+    Route::get("/duty-booked", [DutyController::class, "Booked"]);
+    Route::get("/duty-alloted", [DutyController::class, "DutyAlloted"]);
+    Route::get("/duty-dispatched", [DutyController::class, "Dispatched"]);
+    Route::get("/duty/completed", [DutyController::class, "Completed"]);
+    Route::get("/duty/billed", [DutyController::class, "Billed"]);
+    Route::get("/duty/cancelled", [DutyController::class, "Cancelled"]);
+    Route::get("/duty/all", [DutyController::class, "All"]);
 
     // Operations Routes
-    Route::get("/availability",[OperationController::class,"Availability"]);
-    Route::get("/bookings",[OperationController::class,"Bookings"]);
-    Route::get("/billed",[OperationController::class,"Billed"]);
-    Route::get("/receipt",[OperationController::class,"Receipt"]);
-    Route::get("/payment-gateway",[OperationController::class,"PaymentGateway"]);
-    Route::get("/purchased-duty",[OperationController::class,"PurchasedDuty"]);
-    Route::get("/purchased-invoice",[OperationController::class,"PurchasedInvoice"]);
-    Route::get("/purchased-payment",[OperationController::class,"PurchasedPayment"]);
+    Route::get("/availability", [OperationController::class, "Availability"]);
+    Route::get("/bookings", [OperationController::class, "Bookings"]);
+    Route::get("/billed", [OperationController::class, "Billed"]);
+    Route::get("/receipt", [OperationController::class, "Receipt"]);
+    Route::get("/payment-gateway", [OperationController::class, "PaymentGateway"]);
+    Route::get("/purchased-duty", [OperationController::class, "PurchasedDuty"]);
+    Route::get("/purchased-invoice", [OperationController::class, "PurchasedInvoice"]);
+    Route::get("/purchased-payment", [OperationController::class, "PurchasedPayment"]);
 
 });
 
