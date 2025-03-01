@@ -64,7 +64,7 @@ class CustomersController extends Controller
                     'gst_name' => 'nullable|string',
                     'gst_addr' => 'nullable|string',
                     'gst_state' => 'nullable|string',
-                    // 'is_gst_primary' 
+                    // 'is_gst_primary'
                     // 'is_gst_tally'
                     'altern_phone_no' => 'nullable|numeric',
                     'altern_email_id' => 'nullable|string',
@@ -248,18 +248,13 @@ class CustomersController extends Controller
             }
 
             MstCustomerFile::insert($filesData);
-
-
             notify()->success('Data Added Successfully','Success') ;
 
             return redirect(route('customers.index'));
         } catch (Exception $e) {
             notify()->error('Something Went Wrong Please Try Again Later','Error') ;
-
-            
-
             return redirect(route('customers.index'));
-        
+
         }
     }
     public function edit(Request $request)
@@ -304,7 +299,7 @@ class CustomersController extends Controller
                     'gst_name' => 'nullable|string',
                     'gst_addr' => 'nullable|string',
                     'gst_state' => 'nullable|string',
-                    // 'is_gst_primary' 
+                    // 'is_gst_primary'
                     // 'is_gst_tally'
                     'altern_phone_no' => 'nullable|numeric',
                     'altern_email_id' => 'nullable|string',
@@ -485,7 +480,7 @@ class CustomersController extends Controller
                     ]);
                 }
 
-                // Handle Duty Type taxes 
+                // Handle Duty Type taxes
                 if (preg_match('/^duttyptim_(\d+)_new$/', $key, $matches)) {
                     $id = (int) $matches[1]; // Ensure integer
                     $dutyType = $request->get($key);
