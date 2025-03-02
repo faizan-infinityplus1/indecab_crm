@@ -445,25 +445,25 @@
     <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script>
         function showInputField() {
-        var selectElement = document.getElementById("customSelect");
-        var customInput = document.getElementById("customInput");
+            var selectElement = document.getElementById("customSelect");
+            var customInput = document.getElementById("customInput");
 
-        // Check if the user is focusing on the select box, if yes, show the input field
-        if (selectElement === document.activeElement) {
-            customInput.style.display = "inline";
+            // Check if the user is focusing on the select box, if yes, show the input field
+            if (selectElement === document.activeElement) {
+                customInput.style.display = "inline";
+            }
         }
-    }
 
-    // Detect if the user types in the input field
-    document.getElementById("customInput").addEventListener("focus", function() {
-        var selectElement = document.getElementById("customSelect");
-        selectElement.style.display = "none";  // Hide the select dropdown when typing in the input field
-    });
+        // Detect if the user types in the input field
+        document.getElementById("customInput").addEventListener("focus", function() {
+            var selectElement = document.getElementById("customSelect");
+            selectElement.style.display = "none"; // Hide the select dropdown when typing in the input field
+        });
 
-    document.getElementById("customInput").addEventListener("blur", function() {
-        var selectElement = document.getElementById("customSelect");
-        selectElement.style.display = "inline";  // Show the select dropdown again when focus leaves the input
-    });
+        document.getElementById("customInput").addEventListener("blur", function() {
+            var selectElement = document.getElementById("customSelect");
+            selectElement.style.display = "inline"; // Show the select dropdown again when focus leaves the input
+        });
         $(document).ready(function() {
 
             function formatState(state) {
