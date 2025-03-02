@@ -100,43 +100,11 @@
                             </div>
 
                             {{-- component add addtion contact --}}
-                            <div id="mainContactContainer" style="display: none;">
+                            <div id="mainContactContainer">
                                 <div id="contactContainer">
-                                    <div class="row mb-3">
-                                        <div class="col-md-3">
-                                            <label for="" class="control-label">Additional Contact Name</label>
-                                            <select class="form-select border-bottom" name="" id="">
-                                                <option value="">(Select one)</option>
-                                                <option value="">A</option>
-                                                <option value="">B</option>
-                                                <option value="">C</option>
-                                                <option value="">D</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="" class="control-label">Phone Number
-                                                    <span></span></label>
-                                                <input type="text" class="form-control" name="" id="">
-                                                <span class="help-block"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="" class="control-label">Email
-                                                    <span></span></label>
-                                                <input type="text" class="form-control" name=""
-                                                    id="">
-                                                <span class="help-block"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1 hidden-xs" style="margin-top: 22px">
-                                            <button class="btn btn-sm btn-danger icon-cancel autoform-remove-item"
-                                                type="button" tabindex="-1">X</button>
-                                        </div>
-                                    </div>
+
                                 </div>
-                                <button type="button" onclick="addContact()" class="btn btn-primary rounded-1 mb-3">
+                                <button type="button" id="addContactId" onclick="addContact()" class="btn btn-primary rounded-1 mb-3" style="display: none;">
                                     + Add another Contact
                                 </button>
                             </div>
@@ -527,7 +495,8 @@
                 $(this).hide();
 
                 // Show the container
-                $("#mainContactContainer").show();
+                $("#addContactId").show();
+                addContact();
             });
         })
         document.getElementById("rep_time").innerHTML = generateTimeSlots();
