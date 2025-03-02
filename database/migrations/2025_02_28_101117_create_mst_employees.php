@@ -20,8 +20,7 @@ return new class extends Migration {
             $table->string('email');
             $table->integer('created_employee_id')->nullable();
             $table->date('date_of_joining')->nullable();
-            $table->string('employee_photo_name')->nullable();
-            $table->string('employee_photo_path')->nullable();
+            $table->string('employee_photo')->nullable();
             $table->string('designation')->nullable();
             $table->string('gender')->nullable();
             $table->date('dob')->nullable();
@@ -50,7 +49,7 @@ return new class extends Migration {
             $table->date('police_verifi_exp_date')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('bank_account_number')->nullable();
-            $table->integer('bank_ifsc_code')->nullable();
+            $table->bigInteger('bank_ifsc_code')->nullable();
             $table->string('branches')->nullable();
             $table->string('associate_to_sister_company')->nullable();
             $table->string('visible_customers')->nullable();

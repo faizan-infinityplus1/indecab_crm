@@ -25,8 +25,8 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="mb-3 d-flex">
-                    <label for="" class="form-label me-4 d-inline-block" style="width: 81px;">Duty Type</label>
-                    <select class="form-select border-bottom" aria-label="Default select example" name="" id="dutytype">
+                    <label for="dutytype" class="form-label me-4 d-inline-block" style="width: 81px;">Duty Type</label>
+                    <select class="form-select border-bottom" aria-label="Default select example" name="dutytype" id="dutytype">
                         {{-- default options start --}}
                         <option value="1" selected>Extras</option>
                         <option value="2">Allowances</option>
@@ -36,9 +36,12 @@
                         <option value="6">IC - Outstation one way</option>
                         <option value="7">IC - Outstation Round-trip</option>
                         <option value="8">IC - Hourly Rentals</option>
+
                         {{-- default options end --}}
                         {{-- options will apear from duty type here --}}
-
+                        @foreach ($mstDutyType as $data)
+                        <option value="{{ $data->id }}">{{ $data->duty_type }}</option>
+                        @endforeach
                         {{-- options will apear from duty type here --}}
                     </select>
                     <span class="warning-msg-block"></span>
@@ -74,7 +77,7 @@
                     <tr>
                         <th>Vehicle Groups</th>
 
-                        @switch(value)
+                        {{-- @switch($value)
                             @case(1)
                             <th>Extra KM</th>
                             <th>Extra HR</th>
@@ -113,7 +116,7 @@
                             @case(7)
                             <th>IC - Outstation Round-trip</th>
                             <th>IC - Outstation Round-trip Extra KM</th>
-    
+
                                 @break
                             @case(8)
                             <th>IC - Hourly Rentals</th>
@@ -123,8 +126,8 @@
                             @default
                             <th>Extra KM</th>
                             <th>Extra HR</th>
-                        @endswitch
-                        
+                        @endswitch --}}
+
                     </tr>
                 </thead>
                 <tbody>

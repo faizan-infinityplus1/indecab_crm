@@ -125,6 +125,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');
     Route::get('/employees/create', [EmployeesController::class, 'create'])->name('employees.create');
     Route::post('/employees/store', [EmployeesController::class, 'store'])->name('employees.store');
+    Route::get('/employees/delete/{id}', [EmployeesController::class, 'delete'])->name('employees.delete');
+    Route::get('/employees/delete/files/{id}', [EmployeesController::class, 'deleteFiles'])->name('employees.delete.files');
 
     Route::get('/billing-items', [BillingItemsController::class, 'index'])->name('billingitems.index');
     Route::get('/billing-items/manage/{id?}', [BillingItemsController::class, 'manage'])->name('billingitems.manage');

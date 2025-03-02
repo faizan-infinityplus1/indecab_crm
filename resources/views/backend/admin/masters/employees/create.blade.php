@@ -48,10 +48,10 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="" class="form-label">Photo</label>
+                                <label for="employee_photo" class="form-label">Photo</label>
                                 <div>
-                                    <label for="qwer" class="btn shadow-sm border rounded-1">Choose File</label>
-                                    <input type="file" name="" id="qwer" affieldinput="[object Object]"
+                                    <label for="employee_photo" class="btn shadow-sm border rounded-1">Choose File</label>
+                                    <input type="file" name="employee_photo" id="employee_photo" affieldinput="[object Object]"
                                         class="form-control" accept="image/png, image/gif, image/jpeg"
                                         style="display: none;">
                                 </div>
