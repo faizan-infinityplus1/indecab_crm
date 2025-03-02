@@ -58,8 +58,7 @@
                     <div class="panel-heading bg-light p-3">
                         <div class="row">
                             <div class="col-md-8">
-                                Booked By / Passenger <span class="text-muted"> -
-                                    Loading...</span>
+                                Booked By / Passenger <span class="text-muted"></span>
                             </div>
                             <div class="col-md-4 text-end">
                                 <a class="text-decoration-none" id="toggleLink">Add additional contacts</a>
