@@ -12,12 +12,12 @@ class VehiclesController extends Controller
     {
         return view('backend.admin.masters.vehicles.index');
     }
-    public function manage()
+    public function manage(Request $request)
     {
         $vehicleId = $request->customerPeopleId ?? -1;
         // ->with('addresses')
         $mstVehicle = MstVehicle::active()->where('id', $vehicleId)->first();
-        return view('backend.admin.masters.vehicles.manage',compact('mstVehicle'));
+        return view('backend.admin.masters.vehicles.manage',compact('mstVehicle','vehicleId'));
     }
     // public function manage(Request $request)
     // {

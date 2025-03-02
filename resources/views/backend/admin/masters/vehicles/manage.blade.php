@@ -22,12 +22,12 @@
         </div>
         {{-- page heading end --}}
         <div>
-            <form method="POST" action={{ route('vehicles.createOrUpdate', $customerId) }} id="formManageVehicle">
+            <form method="POST" action={{ route('vehicles.createOrUpdate', $vehicleId) }} id="formManageVehicle">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="model_name" class="form-label required">Model Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control  border-bottom" id="model_name" required>
+                            <input type="text" name="model_name" class="form-control  border-bottom" id="model_name" required>
                             <span class="warning-msg-block"></span>
                         </div>
                     </div>
