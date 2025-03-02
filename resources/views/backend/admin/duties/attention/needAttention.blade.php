@@ -4,7 +4,7 @@
         <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
             <h4>Duties</h4>
             <div class="text-end d-flex justify-content-end align-items-center gap-2">
-                <div class="btn-group" role="group"><a href="{{ route('employees.manage') }}" class="btn btn-primary">ADD
+                <div class="btn-group" role="group"><a href="{{ route('employees.create') }}" class="btn btn-primary">ADD
                         BOOKING</a></div>
                 <div class="dropdown">
                     <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -91,7 +91,8 @@
             <div class="col-lg-5 col-md-6 col-12">
                 <div class="row g-2">
                     <div class="col-12 col-sm-1 text-center d-flex align-items-center justify-content-center">
-                        <span class="text-muted fs-5"><</span>
+                        <span class="text-muted fs-5">
+                            << /span>
                     </div>
                     <div class="col-12 col-sm-3">
                         <input class="form-control border-bottom" type="text" placeholder="DD/MM/YYYY" value="">
@@ -115,7 +116,7 @@
         <div class="mb-3 px-3 ">
             <span class="badge bg-danger">Attention</span>
         </div>
-        
+
         <div class="well mb-3">
             <p class="text-center">No duties.</p>
         </div>
