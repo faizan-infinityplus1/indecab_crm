@@ -47,7 +47,7 @@ class MstCustomer extends Model
         'is_inv_og_hide',
         'is_active'
     ];
-    
+
     public function scopeActive($query)
     {
         return $query->where('admin_id', Auth::user()->id);
@@ -69,6 +69,9 @@ class MstCustomer extends Model
     }
     public function mstCustomerDutyType(){
         return $this->hasMany(MstCustomerDutyType::class, 'customer_id'); // assuming 'customer_id' is the foreign key in MstCustomerGroup
-
+    }
+    public function people()
+    {
+        return $this->hasMany(MstCustomerPeople::class, 'customer_id');
     }
 }
