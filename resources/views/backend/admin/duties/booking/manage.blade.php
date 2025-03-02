@@ -429,6 +429,16 @@
             </div>
         </div>
     </div>
+    <div>
+        <label for="customSelect">Choose an option or type your own:</label>
+        <select id="customSelect" class="form-select" onfocus="showInputField()">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+            <option value="option4">Option 4</option>
+        </select>
+        <input type="text" id="customInput" placeholder="Type your own option..." style="display: none;">
+    </div>
 @endsection
 
 @section('extrajs')
@@ -436,6 +446,26 @@
     <script src="{{ asset('admin/js/options.js') }}"></script>
     <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script>
+        function showInputField() {
+        var selectElement = document.getElementById("customSelect");
+        var customInput = document.getElementById("customInput");
+
+        // Check if the user is focusing on the select box, if yes, show the input field
+        if (selectElement === document.activeElement) {
+            customInput.style.display = "inline";
+        }
+    }
+
+    // Detect if the user types in the input field
+    document.getElementById("customInput").addEventListener("focus", function() {
+        var selectElement = document.getElementById("customSelect");
+        selectElement.style.display = "none";  // Hide the select dropdown when typing in the input field
+    });
+
+    document.getElementById("customInput").addEventListener("blur", function() {
+        var selectElement = document.getElementById("customSelect");
+        selectElement.style.display = "inline";  // Show the select dropdown again when focus leaves the input
+    });
         $(document).ready(function() {
 
             function formatState(state) {
@@ -498,6 +528,7 @@
                 $("#addContactId").show();
                 addContact();
             });
+            addPassenger();
         })
         document.getElementById("rep_time").innerHTML = generateTimeSlots();
         document.getElementById("drop_time").innerHTML = generateTimeSlots();
@@ -507,7 +538,7 @@
         let contactIndex = 0;
 
         function addContact(contact = {}) {
-            console.log("i am here");
+            // console.log("i am here");
 
             contactIndex++;
             const contactContainer = document.getElementById("contactContainer");
