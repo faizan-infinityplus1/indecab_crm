@@ -104,7 +104,8 @@
                                 <div id="contactContainer">
 
                                 </div>
-                                <button type="button" id="addContactId" onclick="addContact()" class="btn btn-primary rounded-1 mb-3" style="display: none;">
+                                <button type="button" id="addContactId" onclick="addContact()"
+                                    class="btn btn-primary rounded-1 mb-3" style="display: none;">
                                     + Add another Contact
                                 </button>
                             </div>
@@ -209,24 +210,22 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Vehicle Group <span
                                     class="text-danger">*</span></label>
-                            <select class="form-select border-bottom" name="" id="">
+                            <select class="form-select border-bottom" name="vehicleGroup" id="vehicleGroup">
                                 <option value="">(Select one)</option>
-                                <option value="">Mumbai</option>
-                                <option value="">Pune</option>
-                                <option value="">Thane</option>
-                                <option value="">Byculla</option>
+                                @foreach ($vehicleGroup as $vehicle)
+                                    <option value="{{ $vehicle->id }}">{{ $vehicle->name }}</option>
+                                @endforeach
                             </select>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Duty Type <span
                                     class="text-danger">*</span></label>
-                            <select class="form-select border-bottom" name="" id="">
+                            <select class="form-select border-bottom" name="dutyType" id="dutyType">
                                 <option value="">(Select one)</option>
-                                <option value="">Mumbai</option>
-                                <option value="">Pune</option>
-                                <option value="">Thane</option>
-                                <option value="">Byculla</option>
+                                @foreach ($dutyTypes as $dutyType)
+                                    <option value="{{ $dutyType->id }}">{{ $dutyType->duty_name }}</option>
+                                @endforeach
                             </select>
                             <span class="help-block"></span>
                         </div>
