@@ -74,7 +74,7 @@
                     <tr>
                         <th>Vehicle Groups</th>
 
-                        @switch(value)
+                        {{-- @switch(value)
                             @case(1)
                             <th>Extra KM</th>
                             <th>Extra HR</th>
@@ -123,7 +123,7 @@
                             @default
                             <th>Extra KM</th>
                             <th>Extra HR</th>
-                        @endswitch
+                        @endswitch --}}
                         
                     </tr>
                 </thead>
