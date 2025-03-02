@@ -88,11 +88,11 @@
                                 <div class="panel-heading bg-light p-3">Addresses</div>
                                 {{-- component start --}}
                                 <div id="addressContainer"></div>
-                                </div>
                                 {{-- component end --}}
                                 <div class="p-3">
                                     <button type="button" onclick="addAddress()" class="btn btn-primary rounded-1"><i
-                                            class="fa-solid fa-plus"></i></button>
+                                        class="fa-solid fa-plus"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
