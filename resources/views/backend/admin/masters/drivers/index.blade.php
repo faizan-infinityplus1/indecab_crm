@@ -137,7 +137,7 @@
                         {{-- <th>Indecab Go - Username</th>
                         <th>Tracking</th> --}}
                         <th>Status</th>
-                        <th width="100">setting</th>
+                        <th width="100">Setting</th>
                     </tr>
                 </thead>
                 <tbody>

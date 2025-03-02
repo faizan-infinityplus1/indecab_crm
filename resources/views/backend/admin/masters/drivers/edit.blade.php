@@ -95,7 +95,8 @@
                                         <div class="d-flex border-bottom">
                                             <div class="p-3">
                                                 <button type="button"
-                                                    class="btn btn-primary rounded-1 remove_address_tax_body" data-id="{{$data->id}}"><i
+                                                    class="btn btn-primary rounded-1 remove_address_tax_body"
+                                                    data-id="{{ $data->id }}"><i
                                                         class="fa-solid fa-minus"></i></button>
                                             </div>
                                             <div class="p-3 ps-0 w-100">
@@ -324,8 +325,8 @@
                                         <div class="d-flex border-bottom">
                                             <div class="p-3">
                                                 <button type="button"
-                                                    class="btn btn-primary rounded-1 remove_deduction_body" data-id={{$data->id}}><i
-                                                        class="fa-solid fa-minus"></i></button>
+                                                    class="btn btn-primary rounded-1 remove_deduction_body"
+                                                    data-id={{ $data->id }}><i class="fa-solid fa-minus"></i></button>
                                             </div>
                                             <div class="p-3 ps-0 w-100">
                                                 <div class="panel border rounded">
@@ -459,8 +460,8 @@
                                         <div class="d-flex border-bottom">
                                             <div class="p-3">
                                                 <button type="button"
-                                                    class="btn btn-primary rounded-1 remove_driver_file_body" data-id={{$data->id}}><i
-                                                        class="fa-solid fa-minus"></i></button>
+                                                    class="btn btn-primary rounded-1 remove_driver_file_body"
+                                                    data-id={{ $data->id }}><i class="fa-solid fa-minus"></i></button>
                                             </div>
                                             <div class="p-3 ps-0 w-100">
                                                 <div class="panel border rounded">
@@ -472,7 +473,7 @@
                                                             <input type="text" class="form-control  border-bottom"
                                                                 name="driver_file_name_{{ $data->id }}_update"
                                                                 id="driver_file_name"
-                                                                value="{{$data->driver_file_name}}">
+                                                                value="{{ $data->driver_file_name }}">
                                                             <span class="warning-msg-block"></span>
                                                         </div>
                                                         <div class="mb-3">
@@ -565,15 +566,10 @@
     <script src="{{ asset('admin/js/options.js') }}"></script>
     <script>
         $(document).ready(function() {
-            // address_tax_body
-            let particularmstDriver = @json($particularMstDriver);
-            document.getElementById("daily_working_hours").innerHTML = generateTimeSlots(particularmstDriver
-                .daily_working_hours);
-            document.getElementById("working_hours_start").innerHTML = generateTimeSlots(particularmstDriver
-                .working_hours_start);
-            document.getElementById("working_hours_end").innerHTML = generateTimeSlots(particularmstDriver
-                .working_hours_end);
 
+            $.validator.addMethod("validMobile", function(value, element) {
+                return this.optional(element) || /^[0-9]{10}$/.test(value);
+            }, "Please enter a valid 10-digit number");
 
             $("#formDriver").validate({
                 rules: {
@@ -585,28 +581,64 @@
                         digits: true,
                         minlength: 10,
                         maxlength: 10,
-                        pattern: /^[0-9]{10}$/
+                        validMobile: true
+                    },
+                    alternate_mobile_no: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        validMobile: true
+                    },
+                    pan_no: {
+                        required: false,
+                        minlength: 10,
+                        maxlength: 10,
+                    },
+                    aadhar_no: {
+                        required: false,
+                        minlength: 12,
+                        maxlength: 12,
                     }
                 },
                 messages: {
                     name: {
-                        required: "Please Enter Name"
+                        required: "Name is required"
                     },
                     mobile_no: {
-                        required: "Please Enter Mobile No",
+                        required: "Mobile number is required",
                         digits: "Please enter only numbers",
                         minlength: "Mobile number must be exactly 10 digits",
-                        maxlength: "Mobile number must be exactly 10 digits",
-                        pattern: "Please enter a valid 10-digit mobile number"
+                        maxlength: "Mobile number must be exactly 10 digits", // Fixed typo
+                        validMobile: "Please enter a valid 10-digit mobile number"
+                    },
+                    alternate_mobile_no: {
+                        required: "Alternate mobile number is required",
+                        digits: "Please enter only numbers",
+                        minlength: "Alternate mobile number must be exactly 10 digits",
+                        maxlength: "Alternate mobile number be exactly 10 digits",
+                        validMobile: "Please enter a valid 10-digit alternate mobile number"
+                    },
+                    pan_no: {
+                        minlength: "PAN Card number must be at least 10 characters",
+                        maxlength: "PAN Card number must be at least 10 characters",
+                    },
+                    aadhar_no: {
+                        minlength: "Aadhaar Card number must be at least 12 characters",
+                        maxlength: "Aadhaar Card number must be at least 12 characters",
                     }
                 },
                 errorElement: "div",
                 errorClass: "error-message text-danger",
                 highlight: function(element) {
                     $(element).addClass("is-invalid");
+                    $(element).closest(".validator-error").find("label").css("color",
+                    "red"); // Fixed selector
                 },
                 unhighlight: function(element) {
                     $(element).removeClass("is-invalid");
+                    $(element).closest(".validator-error").find("label").css("color",
+                    "black"); // Fixed selector
                 },
                 invalidHandler: function(event, validator) {
                     if (validator.errorList.length) {
@@ -620,6 +652,14 @@
                 }
             });
 
+            // address_tax_body
+            let particularmstDriver = @json($particularMstDriver);
+            document.getElementById("daily_working_hours").innerHTML = generateTimeSlots(particularmstDriver
+                .daily_working_hours);
+            document.getElementById("working_hours_start").innerHTML = generateTimeSlots(particularmstDriver
+                .working_hours_start);
+            document.getElementById("working_hours_end").innerHTML = generateTimeSlots(particularmstDriver
+                .working_hours_end);
 
             // Driver Address Start Here
 
@@ -647,11 +687,11 @@
                             _token: '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                           if(response.success){
-                            showAlert('success', response.success);
+                            if (response.success) {
+                                showAlert('success', response.success);
 
-                               parentDiv.remove();
-                           }
+                                parentDiv.remove();
+                            }
                         },
                         error: function(response) {}
                     });
@@ -717,9 +757,9 @@
             // Driver Dedcution Start Here
 
             $(document).on('click', '.remove_deduction_body', function() {
-                  // console.log('Clicked delete button');
+                // console.log('Clicked delete button');
 
-                  let Id = $(this).data('id'); // Get tax ID
+                let Id = $(this).data('id'); // Get tax ID
                 // console.log("Tax ID:", Id); // Debugging
 
                 let parentDiv = $(this).closest('.d-flex');
@@ -740,11 +780,11 @@
                             _token: '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                           if(response.success){
-                            showAlert('success', response.success);
+                            if (response.success) {
+                                showAlert('success', response.success);
 
-                               parentDiv.remove();
-                           }
+                                parentDiv.remove();
+                            }
                         },
                         error: function(response) {}
                     });
@@ -796,9 +836,9 @@
 
             // Driver File Start Here
             $(document).on('click', '.remove_driver_file_body', function() {
-                 // console.log('Clicked delete button');
+                // console.log('Clicked delete button');
 
-                 let Id = $(this).data('id'); // Get tax ID
+                let Id = $(this).data('id'); // Get tax ID
                 // console.log("Tax ID:", Id); // Debugging
 
                 let parentDiv = $(this).closest('.d-flex');
@@ -819,11 +859,11 @@
                             _token: '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                           if(response.success){
-                            showAlert('success', response.success);
+                            if (response.success) {
+                                showAlert('success', response.success);
 
-                               parentDiv.remove();
-                           }
+                                parentDiv.remove();
+                            }
                         },
                         error: function(response) {}
                     });

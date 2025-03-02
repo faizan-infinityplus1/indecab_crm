@@ -199,8 +199,7 @@ class MyDriversController extends Controller
 
             return redirect(route('mydrivers.index'));
         } catch (Exception $e) {
-            dd($e);
-            notify()->error('Whoops!! Something Went Wrong', 'Success');
+            notify()->error('Whoops!! Something Went Wrong', 'Error');
 
 
             return redirect(route('mydrivers.index'));
@@ -324,15 +323,9 @@ class MyDriversController extends Controller
                 'is_active' => $request->is_active ?? false,
             ]);
             $myDriverId = $driverId->id;
-           
-
             $driverAddressData = [];
             $driverDeductionData = [];
             $driverFiles = [];
-            $bankAccountData = [];
-            $filesData = [];
-
-
 
             foreach ($request->keys() as $key) {
                 // Handle applicable taxes
@@ -398,8 +391,6 @@ class MyDriversController extends Controller
                     ]);
                 }
 
-
-                // // Handle Driver Allow Settings
                 if (preg_match('/^driver_file_name_(\d+)_new$/', $key, $matches)) {
                     $id = (int) $matches[1]; // Ensure integer
                     $fileName = $request->get("driver_file_name_{$id}_new");
@@ -440,12 +431,7 @@ class MyDriversController extends Controller
                         'updated_at' => now(),
                     ]);
                 }
-
-                
             }
-
-            
-
 
             if (!empty($driverAddressData)) {
                 MstDriverAddress::insert($driverAddressData);
@@ -458,21 +444,19 @@ class MyDriversController extends Controller
             if (!empty($driverFiles)) {
                 MstDriverFile::insert($driverFiles);
             }
-
-
-            // return redirect(route('suppliers.index'));
+            notify()->success('Data Added Successfully', 'Success');
+            return redirect(route('mydrivers.index'));
         } catch (Exception $e) {
-            dd($e);
+            notify()->error('Whoops!! Something Went Wrong', 'Error');
+            return redirect(route('mydrivers.index'));
         }
     }
 
     public function deleteAddresses(Request $request)
     {
         try {
-            // Find the record by ID and delete it
             $data = MstDriverAddress::findOrFail($request->id);
             $data->delete();
-
             return response()->json(['success' => 'Data deleted successfully.']);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to delete data.'], 500);
@@ -485,7 +469,6 @@ class MyDriversController extends Controller
             // Find the record by ID and delete it
             $data = MstDriverDeduction::findOrFail($request->id);
             $data->delete();
-
             return response()->json(['success' => 'Data deleted successfully.']);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to delete data.'], 500);
@@ -501,7 +484,6 @@ class MyDriversController extends Controller
                 Storage::disk('public')->delete($data->driver_file);
             }
             $data->delete();
-
             return response()->json(['success' => 'Data deleted successfully.']);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to delete data.'], 500);

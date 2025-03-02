@@ -218,8 +218,11 @@
             document.querySelector(`[address-data-index="${index}"]`).remove();
         }
 
-        const customerPeopleAddresses = {!! json_encode($customerPeople->addresses) !!};
-        customerPeopleAddresses.forEach(address => addAddress(address));
+        const customerPeople = {!! json_encode($customerPeople) !!};
+        if (customerPeople && customerPeople.addresses) {
+            customerPeopleAddresses = customerPeople.addresses;
+            customerPeopleAddresses.forEach(address => addAddress(address));
+        }
         $(document).ready(function() {
             $('#labels').select2({
                 placeholder: "Select an option",

@@ -480,8 +480,24 @@
                 if (!state.id) {
                     return state.text;
                 }
-                console.log('state', state);
-                console.log('$(state.element).attr("data-customer")', $(state.element).attr("data-customer"));
+                const name = $(state.element).attr("data-name");
+                const gstNo = $(state.element).attr("data-gstNo") || "N/A";
+                const address = $(state.element).attr("data-address");
+                // var baseUrl = "/user/pages/images/flags";
+                var $state = $(
+                    `<div >
+                <div>- ${name}</div>
+                <small class="text-muted">
+                    <strong>GST:</strong> ${gstNo} <strong>| Address:</strong> ${address}
+                </small>
+            </div>`
+                );
+                return $state;
+            };
+            function formatTemplateState(state) {
+                if (!state.id) {
+                    return state.text;
+                }
                 const name = $(state.element).attr("data-name");
                 const gstNo = $(state.element).attr("data-gstNo") || "N/A";
                 const address = $(state.element).attr("data-address");
@@ -498,6 +514,7 @@
             };
             $('#customer').select2({
                 templateResult: formatState,
+                templateSelection: formatTemplateState,
             });
             $('.hideElement').hide();
             // function toggleDivs() {

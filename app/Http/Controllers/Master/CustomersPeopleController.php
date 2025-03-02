@@ -24,6 +24,8 @@ class CustomersPeopleController extends Controller
         $customerId = $request->customerId;
         $customerPeopleId = $request->customerPeopleId ?? -1;
         $customerPeople = MSTCustomerPeople::where('id', $customerPeopleId)->with('addresses')->first();
+        // $collection ? $collection : []
+        // dd($customerPeople);
         $labels = MstLabel::all();
         // dd($customerPeople);
         return view('backend.admin.masters.customers.people.manage', compact('labels', 'customerId', 'customerPeople'));
@@ -58,8 +60,8 @@ class CustomersPeopleController extends Controller
             ]
         );
         if ($validator->fails()) {
-            dd($validator->errors()->first());
-            // connectify('error', 'Add Product', $validator->errors()->first());
+            // dd($validator->errors()->first());
+            connectify('error', 'Add Product', $validator->errors()->first());
             return redirect(route('customers.index'))->withInput();
         }
         $customerPeople = MSTCustomerPeople::updateOrCreate(
