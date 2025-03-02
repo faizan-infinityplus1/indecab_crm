@@ -101,8 +101,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('/drivers/delete/files/{id}', [MyDriversController::class, 'deleteFiles'])->name('mydrivers.delete.files');
 
 
-    Route::get('/vehicles', [VehiclesController::class, 'index'])->name('showVehicles');
-    Route::get('/vehicles/create', [VehiclesController::class, 'create'])->name('createVehicles');
+    Route::get('/vehicles', [VehiclesController::class, 'index'])->name('vehicles.index');
+    Route::get('/vehicles/manage', [VehiclesController::class, 'manage'])->name('vehicles.manage');
+    Route::post('/vehicles/{vehicleId}/createOrUpdate', [VehiclesController::class, 'createOrUpdate'])->name('vehicles.createOrUpdate');
 
     Route::get('/duty-supporters', [DutySupportersController::class, 'index'])->name('dutysupporters.index');
     Route::get('/duty-supporters/create', [DutySupportersController::class, 'create'])->name('dutysupporters.create');
