@@ -486,11 +486,12 @@
                 // var baseUrl = "/user/pages/images/flags";
                 var $state = $(
                     `<div >
-                <div>- ${name}</div>
-                <small class="text-muted">
-                    <strong>GST:</strong> ${gstNo} <strong>| Address:</strong> ${address}
-                </small>
-            </div>`
+                        <div>- ${name}
+                            <small class="text-black-50">
+                                <strong>(GST:</strong> ${gstNo} <strong>| Address:</strong> ${address})
+                            </small>
+                        </div>
+                    </div>`
                 );
                 return $state;
             };
@@ -504,11 +505,12 @@
                 // var baseUrl = "/user/pages/images/flags";
                 var $state = $(
                     `<div >
-                <div>- ${name}</div>
-                <small class="text-muted">
-                    <strong>GST:</strong> ${gstNo} <strong>| Address:</strong> ${address}
-                </small>
-            </div>`
+                        <div>- ${name}
+                            <small class="text-black-50">
+                                <strong>(GST:</strong> ${gstNo} <strong>| Address:</strong> ${address})
+                            </small>
+                        </div>
+                    </div>`
                 );
                 return $state;
             };
