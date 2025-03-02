@@ -72,7 +72,7 @@
                             <div class="row mb-3">
                                 <div class="col-md-3">
                                     <label for="" class="control-label">Booked By Name</label>
-                                    <select class="form-select border-bottom" name="" id="">
+                                    <select class="form-select border-bottom" name="bookedBy" id="bookedBy">
                                         {{-- <option value="">(Select one)</option>
                                         <option value="">Mumbai</option>
                                         <option value="">Pune</option>
@@ -444,6 +444,8 @@
     <script src="{{ asset('admin/js/options.js') }}"></script>
     <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script>
+
+        const customers = {!! json_encode($customers) !!};
         function showInputField() {
             var selectElement = document.getElementById("customSelect");
             var customInput = document.getElementById("customInput");
