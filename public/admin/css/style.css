@@ -135,3 +135,17 @@ ul.dropdown-menu.dropdown-menu-end {
 .come-from-modal.right.fade.in .modal-dialog {
     right: 0;
 }
+
+
+.select2-container--default .select2-selection--single {
+    border: none !important;
+    border-bottom: 1px solid #dee2e6 !important;
+    border-radius: 0px !important;
+    padding: .375rem .75rem !important;
+    height: 37px;
+    outline: none !important;
+}
+
+.select2-container--default .select2-selection--single:focus {
+    border-bottom: 1px solid blue !important;
+}

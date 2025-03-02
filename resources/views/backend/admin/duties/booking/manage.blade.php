@@ -36,7 +36,7 @@
                     <div class="col-md-10 col-12">
                         <label for="name" class="control-label">Customer <span class="text-danger">*</span></label>
                         <select class="form-select border-bottom" name="customer" id="customer">
-                            <option value="">(Select one)</option>
+                            <option></option>
                             @foreach ($customers as $customer)
                                 <option value="{{ $customer->id }}" data-name="{{ $customer->name }}"
                                     data-gstNo="{{ $customer->gst_no }}" data-address="{{ $customer->address }}">
@@ -54,7 +54,7 @@
 
 
                 {{-- Pannel Heading --}}
-                <div class="panel border rounded mb-3">
+                <div class="panel border rounded mb-3" id="bookingFormBookedBy" style="display: none;">
                     <div class="panel-heading bg-light p-3">
                         <div class="row">
                             <div class="col-md-8">
@@ -72,19 +72,16 @@
                             <div class="row mb-3">
                                 <div class="col-md-3">
                                     <label for="" class="control-label">Booked By Name</label>
-                                    <select class="form-select border-bottom" name="bookedBy" id="bookedBy">
-                                        {{-- <option value="">(Select one)</option>
-                                        <option value="">Mumbai</option>
-                                        <option value="">Pune</option>
-                                        <option value="">Thane</option>
-                                        <option value="">Byculla</option> --}}
+                                    <select class="form-select border-bottom" name="bookedByCustomer" id="bookedByCustomer">
+
                                     </select>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="" class="control-label">Booked By Phone Number
                                             <span></span></label>
-                                        <input type="text" class="form-control" name="" id="">
+                                        <input type="text" class="form-control" name="bookedByCustomerPhone"
+                                            id="bookedByCustomerPhone">
                                         <span class="help-block"></span>
                                     </div>
                                 </div>
@@ -92,7 +89,8 @@
                                     <div class="form-group">
                                         <label for="" class="control-label">Booked By Email
                                             <span></span></label>
-                                        <input type="text" class="form-control" name="" id="">
+                                        <input type="text" class="form-control" name="bookedByCustomerEmail"
+                                            id="bookedByCustomerEmail">
                                         <span class="help-block"></span>
                                     </div>
                                 </div>
@@ -111,73 +109,6 @@
                             {{-- component add addtion contact end here --}}
                             <div>
                                 <div id="passengerContainer">
-                                    {{-- <div class="row">
-                                        <div class="col-md-3 mb-3">
-                                            <div class="form-group">
-                                                <label for="" class="control-label">Passenger Name <span></span></label>
-                                                <div class="awesomplete">
-                                                    <select class="form-select border-bottom" name="" id="">
-
-                                                    </select>
-                                                    <span class="help-block"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="" class="control-label">Passenger Phone Name
-                                                    <span></span></label>
-                                                <input type="text" class="form-control" name="" id="">
-                                                <span class="help-block"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="" class="control-label">Passenger Email
-                                                    <span></span></label>
-                                                <input type="text" class="form-control" name="" id="">
-                                                <span class="help-block"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1 hidden-xs" style="margin-top: 22px">
-                                            <button class="btn btn-sm btn-danger icon-cancel autoform-remove-item" type="button"
-                                                tabindex="-1">X</button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3 mb-3">
-                                            <div class="form-group">
-                                                <label for="" class="control-label">Passenger Name</label>
-                                                <div class="awesomplete">
-                                                    <select class="form-select border-bottom" name="" id="">
-
-                                                    </select>
-                                                    <span class="help-block"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="" class="control-label">Passenger Phone Name
-                                                </label>
-                                                <input type="text" class="form-control" name="" id="">
-                                                <span class="help-block"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="" class="control-label">Passenger Email
-                                                </label>
-                                                <input type="text" class="form-control" name="" id="">
-                                                <span class="help-block"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1 hidden-xs" style="margin-top: 22px">
-                                            <button class="btn btn-sm btn-danger icon-cancel autoform-remove-item" type="button"
-                                                tabindex="-1">X</button>
-
-                                        </div>
-                                    </div> --}}
                                 </div>
                                 <button type="button" onclick="addPassenger()" class="btn btn-primary rounded-1 mb-3">
                                     + Add another passenger
@@ -427,16 +358,6 @@
             </div>
         </div>
     </div>
-    <div>
-        <label for="customSelect">Choose an option or type your own:</label>
-        <select id="customSelect" class="form-select" onfocus="showInputField()">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-            <option value="option4">Option 4</option>
-        </select>
-        <input type="text" id="customInput" placeholder="Type your own option..." style="display: none;">
-    </div>
 @endsection
 
 @section('extrajs')
@@ -444,236 +365,7 @@
     <script src="{{ asset('admin/js/options.js') }}"></script>
     <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script>
-
         const customers = {!! json_encode($customers) !!};
-        function showInputField() {
-            var selectElement = document.getElementById("customSelect");
-            var customInput = document.getElementById("customInput");
-
-            // Check if the user is focusing on the select box, if yes, show the input field
-            if (selectElement === document.activeElement) {
-                customInput.style.display = "inline";
-            }
-        }
-
-        // Detect if the user types in the input field
-        document.getElementById("customInput").addEventListener("focus", function() {
-            var selectElement = document.getElementById("customSelect");
-            selectElement.style.display = "none"; // Hide the select dropdown when typing in the input field
-        });
-
-        document.getElementById("customInput").addEventListener("blur", function() {
-            var selectElement = document.getElementById("customSelect");
-            selectElement.style.display = "inline"; // Show the select dropdown again when focus leaves the input
-        });
-        $(document).ready(function() {
-
-            function formatState(state) {
-                if (!state.id) {
-                    return state.text;
-                }
-                const name = $(state.element).attr("data-name");
-                const gstNo = $(state.element).attr("data-gstNo") || "N/A";
-                const address = $(state.element).attr("data-address");
-                // var baseUrl = "/user/pages/images/flags";
-                var $state = $(
-                    `<div >
-                        <div>- ${name}
-                            <small class="text-black-50">
-                                <strong>(GST:</strong> ${gstNo} <strong>| Address:</strong> ${address})
-                            </small>
-                        </div>
-                    </div>`
-                );
-                return $state;
-            };
-
-            function formatTemplateState(state) {
-                if (!state.id) {
-                    return state.text;
-                }
-                const name = $(state.element).attr("data-name");
-                const gstNo = $(state.element).attr("data-gstNo") || "N/A";
-                const address = $(state.element).attr("data-address");
-                // var baseUrl = "/user/pages/images/flags";
-                var $state = $(
-                    `<div >
-                        <div>- ${name}
-                            <small class="text-black-50">
-                                <strong>(GST:</strong> ${gstNo} <strong>| Address:</strong> ${address})
-                            </small>
-                        </div>
-                    </div>`
-                );
-                return $state;
-            };
-            $('#customer').select2({
-                templateResult: formatState,
-                templateSelection: formatTemplateState,
-            });
-            $('.hideElement').hide();
-            // function toggleDivs() {
-            // }
-            $(".toggleDivs").on("click", function() {
-                $('.hideElement').show();
-            })
-
-
-
-            $("#toggleLink").click(function() {
-                // Hide the link
-                $(this).hide();
-
-                // Show the container
-                $("#addContactId").show();
-                addContact();
-            });
-            addPassenger();
-        })
-        document.getElementById("rep_time").innerHTML = generateTimeSlots();
-        document.getElementById("drop_time").innerHTML = generateTimeSlots();
-
-
-        // =========== Add Passenger Start ==============
-        let contactIndex = 0;
-
-        function addContact(contact = {}) {
-            // console.log("i am here");
-
-            contactIndex++;
-            const contactContainer = document.getElementById("contactContainer");
-            const contactDiv = document.createElement("section");
-            contactDiv.setAttribute("contact-data-index", contactIndex);
-            let contactHtml = `<div class="row mb-3">
-                                    <div class="col-md-3">
-                                        <label for="" class="control-label">Additional Contact Name</label>
-                                        <select class="form-select border-bottom" name="" id="">
-                                            <option value="">(Select one)</option>
-                                            <option value="">A</option>
-                                            <option value="">B</option>
-                                            <option value="">C</option>
-                                            <option value="">D</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="" class="control-label">Phone Number
-                                                <span></span></label>
-                                            <input type="text" class="form-control" name="" id="">
-                                            <span class="help-block"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="" class="control-label">Email
-                                                <span></span></label>
-                                            <input type="text" class="form-control" name="" id="">
-                                            <span class="help-block"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1 hidden-xs" style="margin-top: 22px">
-                                            <button  type="button" onclick="removeContact(${contactIndex})" class="btn btn-sm btn-danger icon-cancel autoform-remove-item" type="button"
-                                                tabindex="-1">X</button>
-                                        </div>
-                                </div>`;
-            contactDiv.innerHTML = contactHtml;
-            contactContainer.appendChild(contactDiv);
-        }
-        // Function to remove an contact field
-        function removeContact(index) {
-            document.querySelector(`[contact-data-index="${index}"]`).remove();
-        }
-        // =========== Add Passenger End ==============
-
-
-        // =========== Add Passenger Start ==============
-        let passengerIndex = 0;
-
-        function addPassenger(passenger = {}) {
-            passengerIndex++;
-            const passengerContainer = document.getElementById("passengerContainer");
-            const passengerDiv = document.createElement("section");
-            passengerDiv.setAttribute("passenger-data-index", passengerIndex);
-            let passengerHtml = `<div class="row">
-                                    <div class="col-md-3 mb-3">
-                                        <div class="form-group">
-                                            <label for="" class="control-label">Passenger Name <span></span></label>
-                                            <div class="awesomplete">
-                                                <select class="form-select border-bottom" name="" id="">
-                                                    {{-- <option value="">(Select one)</option>
-                                                    <option value="">Mumbai</option>
-                                                    <option value="">Pune</option>
-                                                    <option value="">Thane</option>
-                                                    <option value="">Byculla</option> --}}
-                                                </select>
-                                                <span class="help-block"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="" class="control-label">Passenger Phone Name
-                                                <span></span></label>
-                                            <input type="text" class="form-control" name="" id="">
-                                            <span class="help-block"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="" class="control-label">Passenger Email
-                                                <span></span></label>
-                                            <input type="text" class="form-control" name="" id="">
-                                            <span class="help-block"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1 hidden-xs" style="margin-top: 22px">
-                                        <button type="button" onclick="removePassenger(${passengerIndex})"  class="btn btn-sm btn-danger icon-cancel autoform-remove-item" type="button"
-                                            tabindex="-1">X</button>
-                                    </div>
-                                </div>`;
-            passengerDiv.innerHTML = passengerHtml;
-            passengerContainer.appendChild(passengerDiv);
-        }
-        // Function to remove an Passenger field
-        function removePassenger(index) {
-            document.querySelector(`[passenger-data-index="${index}"]`).remove();
-        }
-        // =========== Add Passenger End ==============
-
-        $('#fromservice').html(generateCityOptions());
-        $('#toservice').html(generateCityOptions());
     </script>
+    <script src="{{ asset('admin/js/bookingcab.js') }}"></script>
 @endsection
-
-{{-- @section('extrajs')
-    <script>
-        $(document).ready(function() {
-            $("#formTaxes").validate({
-                rules: {
-                    name: {
-                        required: true
-                    },
-                    percentage: {
-                        required: true
-                    }
-                },
-                messages: {
-
-                    name: {
-                        required: "Please Enter Tax Name"
-                    },
-
-                    percentage: {
-                        required: "Please Enter Tax Percentage"
-                    }
-                },
-                submitHandler: function(form) {
-                    $('.btnSubmit').attr('disabled', 'disabled');
-                    $(".btnSubmit").html('<span class="fa fa-spinner fa-spin"></span> Loading...');
-                    form.submit();
-                }
-            });
-
-        });
-    </script>
-@endsection --}}
