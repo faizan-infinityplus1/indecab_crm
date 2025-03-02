@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Master;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\MstEmployee;
+use App\Models\MstCustomer;
 use App\Models\MstEmployeeFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +19,7 @@ class EmployeesController extends Controller
     }
     public function create($id = null)
     {
-        $mstCustomer = MstEmployee::active()->get();
+        $mstCustomer = MstCustomer::active()->get();
         return view('backend.admin.masters.employees.create', compact('mstCustomer'));
     }
 
@@ -131,7 +132,6 @@ class EmployeesController extends Controller
             $filesData = [];
             for ($i = 1; $request->has("file_name$i"); $i++) {
                 $fileName = $request->input("file_name$i");
-
                 if ($request->hasFile("image$i")) {
                     $file = $request->file("image{$i}");
                     $filePath = $file->store('employee-images', 'public'); // Store in 'storage/app/public/customer-images'
@@ -167,6 +167,31 @@ class EmployeesController extends Controller
         } catch (Exception $e) {
             notify()->error($e, 'Error');
             return redirect(route('employees.index'));
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        try {
+            $employee = MstEmployee::findOrFail($request->id);
+            $employee->delete();
+
+            return redirect()->back()->with('success', 'Employee deleted successfully.');
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete Employee.'], $e);
+        }
+    }
+    public function deleteFiles(Request $request)
+    {
+        try {
+            // Find the record by ID and delete it
+            $deleteFiles = MstEmployeeFile::findOrFail($request->id);
+            $deleteFiles->delete();
+
+            return response()->json(['success' => 'Employee file deleted successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete employee file.'], $e);
         }
     }
 }
