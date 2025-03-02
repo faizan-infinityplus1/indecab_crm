@@ -62,7 +62,7 @@
                                     Loading...</span>
                             </div>
                             <div class="col-md-4 text-end">
-                                <a class="text-decoration-none" href="#">Add additional contacts</a>
+                                <a class="text-decoration-none" id="toggleLink">Add additional contacts</a>
                             </div>
                         </div>
                     </div>
@@ -100,119 +100,122 @@
                             </div>
 
                             {{-- component add addtion contact --}}
-                            <div class="row mb-3">
-                                <div class="col-md-3">
-                                    <label for="" class="control-label">Additional Contact Name</label>
-                                    <select class="form-select border-bottom" name="" id="">
-                                        <option value="">(Select one)</option>
-                                        <option value="">A</option>
-                                        <option value="">B</option>
-                                        <option value="">C</option>
-                                        <option value="">D</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="" class="control-label">Phone Number
-                                            <span></span></label>
-                                        <input type="text" class="form-control" name="" id="">
-                                        <span class="help-block"></span>
+                            <div id="mainContactContainer" style="display: none;">
+                                <div id="contactContainer">
+                                    <div class="row mb-3">
+                                        <div class="col-md-3">
+                                            <label for="" class="control-label">Additional Contact Name</label>
+                                            <select class="form-select border-bottom" name="" id="">
+                                                <option value="">(Select one)</option>
+                                                <option value="">A</option>
+                                                <option value="">B</option>
+                                                <option value="">C</option>
+                                                <option value="">D</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="" class="control-label">Phone Number
+                                                    <span></span></label>
+                                                <input type="text" class="form-control" name="" id="">
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="" class="control-label">Email
+                                                    <span></span></label>
+                                                <input type="text" class="form-control" name=""
+                                                    id="">
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 hidden-xs" style="margin-top: 22px">
+                                            <button class="btn btn-sm btn-danger icon-cancel autoform-remove-item"
+                                                type="button" tabindex="-1">X</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="" class="control-label">Email
-                                            <span></span></label>
-                                        <input type="text" class="form-control" name="" id="">
-                                        <span class="help-block"></span>
-                                    </div>
-                                </div>
+                                <button type="button" onclick="addContact()" class="btn btn-primary rounded-1 mb-3">
+                                    + Add another Contact
+                                </button>
                             </div>
-                            <button class="btn btn-primary rounded-1 mb-3">
-                                + Add another passenger
-                            </button>
                             {{-- component add addtion contact end here --}}
+                            <div>
+                                <div id="passengerContainer">
+                                    {{-- <div class="row">
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label for="" class="control-label">Passenger Name <span></span></label>
+                                                <div class="awesomplete">
+                                                    <select class="form-select border-bottom" name="" id="">
 
-                            <div class="row">
-                                <div class="col-md-3 mb-3">
-                                    <div class="form-group">
-                                        <label for="" class="control-label">Passenger Name <span></span></label>
-                                        <div class="awesomplete">
-                                            <select class="form-select border-bottom" name="" id="">
-                                                {{-- <option value="">(Select one)</option>
-                                                <option value="">Mumbai</option>
-                                                <option value="">Pune</option>
-                                                <option value="">Thane</option>
-                                                <option value="">Byculla</option> --}}
-                                            </select>
-                                            <span class="help-block"></span>
+                                                    </select>
+                                                    <span class="help-block"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="" class="control-label">Passenger Phone Name
+                                                    <span></span></label>
+                                                <input type="text" class="form-control" name="" id="">
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="" class="control-label">Passenger Email
+                                                    <span></span></label>
+                                                <input type="text" class="form-control" name="" id="">
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 hidden-xs" style="margin-top: 22px">
+                                            <button class="btn btn-sm btn-danger icon-cancel autoform-remove-item" type="button"
+                                                tabindex="-1">X</button>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="" class="control-label">Passenger Phone Name
-                                            <span></span></label>
-                                        <input type="text" class="form-control" name="" id="">
-                                        <span class="help-block"></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="" class="control-label">Passenger Email
-                                            <span></span></label>
-                                        <input type="text" class="form-control" name="" id="">
-                                        <span class="help-block"></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-1 hidden-xs" style="margin-top: 22px">
-                                    <button class="btn btn-sm btn-danger icon-cancel autoform-remove-item" type="button"
-                                        tabindex="-1">X</button>
-                                </div>
-                            </div>
-                            {{-- component start here --}}
-                            <div class="row">
-                                <div class="col-md-3 mb-3">
-                                    <div class="form-group">
-                                        <label for="" class="control-label">Passenger Name</label>
-                                        <div class="awesomplete">
-                                            <select class="form-select border-bottom" name="" id="">
-                                                {{-- <option value="">(Select one)</option>
-                                                <option value="">Mumbai</option>
-                                                <option value="">Pune</option>
-                                                <option value="">Thane</option>
-                                                <option value="">Byculla</option> --}}
-                                            </select>
-                                            <span class="help-block"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="" class="control-label">Passenger Phone Name
-                                        </label>
-                                        <input type="text" class="form-control" name="" id="">
-                                        <span class="help-block"></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="" class="control-label">Passenger Email
-                                        </label>
-                                        <input type="text" class="form-control" name="" id="">
-                                        <span class="help-block"></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-1 hidden-xs" style="margin-top: 22px">
-                                    <button class="btn btn-sm btn-danger icon-cancel autoform-remove-item" type="button"
-                                        tabindex="-1">X</button>
+                                    <div class="row">
+                                        <div class="col-md-3 mb-3">
+                                            <div class="form-group">
+                                                <label for="" class="control-label">Passenger Name</label>
+                                                <div class="awesomplete">
+                                                    <select class="form-select border-bottom" name="" id="">
 
+                                                    </select>
+                                                    <span class="help-block"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="" class="control-label">Passenger Phone Name
+                                                </label>
+                                                <input type="text" class="form-control" name="" id="">
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="" class="control-label">Passenger Email
+                                                </label>
+                                                <input type="text" class="form-control" name="" id="">
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 hidden-xs" style="margin-top: 22px">
+                                            <button class="btn btn-sm btn-danger icon-cancel autoform-remove-item" type="button"
+                                                tabindex="-1">X</button>
+
+                                        </div>
+                                    </div> --}}
                                 </div>
+                                <button type="button" onclick="addPassenger()" class="btn btn-primary rounded-1 mb-3">
+                                    + Add another passenger
+                                </button>
                             </div>
-                            {{-- component end here --}}
-                            <button class="btn btn-primary rounded-1 mb-3">
-                                + Add another passenger
-                            </button>
+
                         </div>
                     </div>
                 </div>
@@ -516,10 +519,127 @@
             $(".toggleDivs").on("click", function() {
                 $('.hideElement').show();
             })
-        });
+
+
+
+            $("#toggleLink").click(function() {
+                // Hide the link
+                $(this).hide();
+
+                // Show the container
+                $("#mainContactContainer").show();
+            });
+        })
         document.getElementById("rep_time").innerHTML = generateTimeSlots();
         document.getElementById("drop_time").innerHTML = generateTimeSlots();
-        // generate city names
+
+
+        // =========== Add Passenger Start ==============
+        let contactIndex = 0;
+
+        function addContact(contact = {}) {
+            console.log("i am here");
+
+            contactIndex++;
+            const contactContainer = document.getElementById("contactContainer");
+            const contactDiv = document.createElement("section");
+            contactDiv.setAttribute("contact-data-index", contactIndex);
+            let contactHtml = `<div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label for="" class="control-label">Additional Contact Name</label>
+                                        <select class="form-select border-bottom" name="" id="">
+                                            <option value="">(Select one)</option>
+                                            <option value="">A</option>
+                                            <option value="">B</option>
+                                            <option value="">C</option>
+                                            <option value="">D</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="" class="control-label">Phone Number
+                                                <span></span></label>
+                                            <input type="text" class="form-control" name="" id="">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="" class="control-label">Email
+                                                <span></span></label>
+                                            <input type="text" class="form-control" name="" id="">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1 hidden-xs" style="margin-top: 22px">
+                                            <button  type="button" onclick="removeContact(${contactIndex})" class="btn btn-sm btn-danger icon-cancel autoform-remove-item" type="button"
+                                                tabindex="-1">X</button>
+                                        </div>
+                                </div>`;
+            contactDiv.innerHTML = contactHtml;
+            contactContainer.appendChild(contactDiv);
+        }
+        // Function to remove an contact field
+        function removeContact(index) {
+            document.querySelector(`[contact-data-index="${index}"]`).remove();
+        }
+        // =========== Add Passenger End ==============
+
+
+        // =========== Add Passenger Start ==============
+        let passengerIndex = 0;
+
+        function addPassenger(passenger = {}) {
+            passengerIndex++;
+            const passengerContainer = document.getElementById("passengerContainer");
+            const passengerDiv = document.createElement("section");
+            passengerDiv.setAttribute("passenger-data-index", passengerIndex);
+            let passengerHtml = `<div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <div class="form-group">
+                                            <label for="" class="control-label">Passenger Name <span></span></label>
+                                            <div class="awesomplete">
+                                                <select class="form-select border-bottom" name="" id="">
+                                                    {{-- <option value="">(Select one)</option>
+                                                    <option value="">Mumbai</option>
+                                                    <option value="">Pune</option>
+                                                    <option value="">Thane</option>
+                                                    <option value="">Byculla</option> --}}
+                                                </select>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="" class="control-label">Passenger Phone Name
+                                                <span></span></label>
+                                            <input type="text" class="form-control" name="" id="">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="" class="control-label">Passenger Email
+                                                <span></span></label>
+                                            <input type="text" class="form-control" name="" id="">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1 hidden-xs" style="margin-top: 22px">
+                                        <button type="button" onclick="removePassenger(${passengerIndex})"  class="btn btn-sm btn-danger icon-cancel autoform-remove-item" type="button"
+                                            tabindex="-1">X</button>
+                                    </div>
+                                </div>`;
+            passengerDiv.innerHTML = passengerHtml;
+            passengerContainer.appendChild(passengerDiv);
+        }
+        // Function to remove an Passenger field
+        function removePassenger(index) {
+            document.querySelector(`[passenger-data-index="${index}"]`).remove();
+        }
+        // =========== Add Passenger End ==============
+
         $('#fromservice').html(generateCityOptions());
         $('#toservice').html(generateCityOptions());
     </script>
