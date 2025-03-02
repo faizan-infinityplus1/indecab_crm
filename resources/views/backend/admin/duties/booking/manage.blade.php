@@ -569,7 +569,7 @@
                                         <div class="form-group">
                                             <label for="" class="control-label">Passenger Name <span></span></label>
                                             <div class="awesomplete">
-                                                <select class="form-select border-bottom passenger_name" name="" id="passenger_name">
+                                                <select class="form-select border-bottom passenger_name${passengerIndex}" name="" id="passenger_name${passengerIndex}">
                                                     {{-- <option value="">(Select one)</option>
                                                     <option value="">Mumbai</option>
                                                     <option value="">Pune</option>
@@ -603,7 +603,7 @@
                                 </div>`;
             passengerDiv.innerHTML = passengerHtml;
             passengerContainer.appendChild(passengerDiv);
-            initializeSelect2();
+            initializeSelect2(passengerIndex);
         }
         // Function to remove an Passenger field
         function removePassenger(index) {
@@ -614,8 +614,8 @@
         $('#fromservice').html(generateCityOptions());
         $('#toservice').html(generateCityOptions());
 
-        function initializeSelect2() {
-            $(".passenger_name").select2({
+        function initializeSelect2(passengerIndex) {
+            $(`.passenger_name${passengerIndex}`).select2({
                 tags: true,
                 placeholder: "",
             });
