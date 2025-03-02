@@ -104,7 +104,7 @@
         <h4>Vehicles</h4>
 
         <div class="text-end d-flex justify-content-end align-items-center gap-2">
-            <div class="btn-group" role="group"><a href="{{route('createVehicles')}}" class="btn btn-primary">Add Vehicle</a></div>
+            <div class="btn-group" role="group"><a href="{{route('vehicles.manage')}}" class="btn btn-primary">Add Vehicle</a></div>
             <div class="dropdown">
                 <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">

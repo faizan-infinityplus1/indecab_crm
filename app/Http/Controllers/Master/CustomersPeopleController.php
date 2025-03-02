@@ -50,7 +50,7 @@ class CustomersPeopleController extends Controller
                 'isBookedBy' => 'nullable|numeric',
                 'isAdditionalContact' => 'nullable|string',
                 'isEmergencyContact' => 'nullable|string',
-                'addresses' => 'required|array',
+                'addresses' => 'nullable|array',
                 'addresses.*.id' => 'nullable|integer|exists:mst_customer_people_addresses,id',
                 'addresses.*.name' => 'required|string',
                 'addresses.*.full_address' => 'required|string',
@@ -95,6 +95,7 @@ class CustomersPeopleController extends Controller
         MstCustomerPeopleAddress::whereIn('id', $addressesToDelete)->delete();
 
         // Loop through addresses from the request
+        if(isset($request->addresses)){
         foreach ($request->addresses as $addressData) {
             if (isset($addressData['id'])) {
                 // Update existing address
@@ -104,6 +105,7 @@ class CustomersPeopleController extends Controller
                 $customerPeople->addresses()->create($addressData);
             }
         }
+    }
 
         // dd($customerPeople);
         if ($customerPeople) {

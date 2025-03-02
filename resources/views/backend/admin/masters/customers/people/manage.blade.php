@@ -3,7 +3,7 @@
     <div>
         <div class="container-fluid p-5">
             {{-- page heading start --}}
-            <div class="page-header border-bottom bg-white mb-3">
+            <div class="page-header border-bottom bg-white mb-3 validator-error">
                 <div class="row">
                     <div class="col-md-6 position-static" x-show="open">
                         <div class="position-absolute" style="top: 96px; left: 0px;">
@@ -20,9 +20,9 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form method="POST" action={{ route('customers.people.createOrUpdate', $customerId) }}>
+                <form method="POST" action={{ route('customers.people.createOrUpdate', $customerId) }} id="formManagePeople">
                     @csrf
-                    <div class="mb-3">
+                    <div class="mb-3 validator-error">
                         <label for="" class="form-label ">Name <span class="text-danger">*</span></label>
                         <input type="number" hidden class="form-control  border-bottom" id=""
                             name="customerPeopleId" value="{{ old('customerPeopleId', $customerPeople->id ?? -1) }}">
@@ -33,13 +33,13 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="mb-3">
+                            <div class="mb-3 validator-error">
                                 <label for="" class="form-label ">Phone number</label>
                                 <input type="text" class="form-control  border-bottom" id="" name="phone_no"
                                     value="{{ old('phone_no', $customerPeople->phone_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 validator-error">
                                 <label for="" class="form-label ">Alternate phone number</label>
                                 <input type="text" class="form-control  border-bottom" id=""
                                     name="alternate_phone_no"
@@ -48,13 +48,13 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="mb-3">
+                            <div class="mb-3 validator-error">
                                 <label for="" class="form-label ">Email</label>
                                 <input type="text" class="form-control  border-bottom" id="" name="email"
                                     value="{{ old('email', $customerPeople->email ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 validator-error">
                                 <label for="" class="form-label ">Alternate email</label>
                                 <input type="text" class="form-control  border-bottom" id=""
                                     name="alternate_email"
@@ -64,13 +64,13 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 validator-error">
                         <label for="" class="form-label">Notes (This note will only visible in invoice & booking if
                             passenger has email id) </label>
                         <textarea class="form-control" id="" rows="5" name="notes">{{ old('notes', $customerPeople->notes ?? '') }}</textarea>
                         <span class="warning-msg-block"></span>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 validator-error">
                         <label for="" class="form-label">Labels - Applied to booking</label>
                         <select class="form-select border-bottom" aria-label="Default select example" name="labels[]"
                             id="labels" multiple="multiple">
@@ -84,7 +84,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <div class="panel border rounded mb-3">
+                            <div class="panel border rounded mb-3 validator-error">
                                 <div class="panel-heading bg-light p-3">Addresses</div>
                                 {{-- component start --}}
                                 <div id="addressContainer"></div>
@@ -95,11 +95,13 @@
                                     </div>
                                 </div>
                             </div>
+
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <div class="panel border rounded mb-3">
+                            <div class="panel border rounded mb-3 validator-error">
                                 <div class="panel-heading bg-light p-3">Custom Fields</div>
                                 {{-- component start --}}
                                 <div class="d-flex border-bottom">
@@ -110,7 +112,7 @@
                                     <div class="p-3 ps-0 w-100">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <div class="mb-3">
+                                                <div class="mb-3 validator-error">
                                                     <select class="form-select border-bottom"
                                                         aria-label="Default select example" name=""
                                                         id="">
@@ -119,7 +121,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <div class="mb-3">
+                                                <div class="mb-3 validator-error">
                                                     <input type="text" class="form-control  border-bottom"
                                                         id="">
                                                 </div>
@@ -134,7 +136,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-check mb-3">
+                    <div class="form-check mb-3 validator-error">
                         <input class="form-check-input" type="checkbox" value="1" id=""
                             name="isPassenger"
                             {{ old('isPassenger', $customerPeople->isPassenger ?? 0) ? 'checked' : '' }}>
@@ -142,14 +144,14 @@
                             Passenger
                         </label>
                     </div>
-                    <div class="form-check mb-3">
+                    <div class="form-check mb-3 validator-error">
                         <input class="form-check-input" type="checkbox" value="1" id="" name="isBookedBy"
                             {{ old('isBookedBy', $customerPeople->isBookedBy ?? 0) ? 'checked' : '' }}>
                         <label class="form-check-label" for="">
                             Booked By
                         </label>
                     </div>
-                    <div class="form-check mb-3">
+                    <div class="form-check mb-3 validator-error">
                         <input class="form-check-input" type="checkbox" value="1" id=""
                             name="isAdditionalContact"
                             {{ old('isAdditionalContact', $customerPeople->isAdditionalContact ?? 0) ? 'checked' : '' }}>
@@ -157,7 +159,7 @@
                             Additional Contact
                         </label>
                     </div>
-                    <div class="form-check mb-3">
+                    <div class="form-check mb-3 validator-error">
                         <input class="form-check-input" type="checkbox" value="1" id=""
                             name="isEmergencyContact"
                             {{ old('isEmergencyContact', $customerPeople->isEmergencyContact ?? 0) ? 'checked' : '' }}>
@@ -175,6 +177,45 @@
 
 @section('extrajs')
     <script>
+          $("#formManagePeople").validate({
+                rules: {
+                    name: {
+                        required: true
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Name is required"
+                    },
+                   
+                },
+                errorElement: "div",
+                errorClass: "error-message text-danger",
+                highlight: function(element) {
+                    $(element).addClass("is-invalid");
+                    $(element).closest(".validator-error").find("label").css("color",
+                    "red"); // Fixed selector
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass("is-invalid");
+                    $(element).closest(".validator-error").find("label").css("color",
+                    "black"); // Fixed selector
+                },
+                invalidHandler: function(event, validator) {
+                    if (validator.errorList.length) {
+                        showAlert('error', validator.errorList[0].message);
+                    }
+                },
+                submitHandler: function(form) {
+                    $('.btnSubmit').attr('disabled', 'disabled');
+                    $(".btnSubmit").html('<span class="fa fa-spinner fa-spin"></span> Loading...');
+                    form.submit();
+                }
+            });
+
+
+
+
         // address logic start from here
         let addressIndex = 0;
 
@@ -182,10 +223,10 @@
             // console.log(' i m here');
             addressIndex++;
             const addressContainer = document.getElementById("addressContainer");
-            const addressDiv = document.createElement("section");
+            const addressDiv = document.createElement("div");
             addressDiv.setAttribute("address-data-index", addressIndex);
             let addressHtml = `
-                                <div class="d-flex border-bottom" >
+                <div class="d-flex border-bottom" >
 
                 <div class="p-3">
                     <button type="button" onclick="removeAddress(${addressIndex})" class="btn btn-primary rounded-1"><i
@@ -195,15 +236,15 @@
                     <div class="panel border rounded">
                         <div class="panel-heading bg-light p-3">Addresses</div>
                         <div class="panel-body p-3">
-                            <div class="mb-3">
+                            <div class="mb-3 validator-error">
                                 <input type="hidden" name="addresses[${addressIndex}][id]" value="${address.id || ''}" />
-                                <label for="" class="form-label">Name</label>
+                                <label for="" class="form-label">Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control  border-bottom"
                                     id="" name="addresses[${addressIndex}][name]" value="${address.name || ''}"  placeholder="Type your address" required>
                                 <span class="warning-msg-block"></span>
                             </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Address</label>
+                            <div class="mb-3 validator-error">
+                                <label for="" class="form-label">Address <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control  border-bottom"
                                     id="" name="addresses[${addressIndex}][full_address]" value="${address.full_address || ''}"  placeholder="Type your address" required>
                                 <span class="warning-msg-block"></span>
@@ -211,7 +252,7 @@
                         </div>
                     </div>
             </div>
-            </div>`;
+            `;
             addressDiv.innerHTML = addressHtml;
             addressContainer.appendChild(addressDiv);
         }

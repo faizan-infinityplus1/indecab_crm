@@ -127,7 +127,7 @@
                                 </li>
                                 <li><a class="dropdown-item" href="{{ route('mydrivers.index') }}">My Drivers</a>
                                 </li>
-                                <li><a class="dropdown-item" href="{{ route('showVehicles') }}">My Vehicles</a></li>
+                                <li><a class="dropdown-item" href="{{ route('vehicles.index') }}">My Vehicles</a></li>
                                 <li><a class="dropdown-item" href="{{ route('dutysupporters.index') }}">Duty
                                         Supporters</a></li>
                                 <li><a class="dropdown-item" href="{{ route('labels.index') }}">Labels</a></li>
