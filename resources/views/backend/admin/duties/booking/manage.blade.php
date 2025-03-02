@@ -488,17 +488,6 @@
 
 
 
-            $("#toggleLink").click(function() {
-                // Hide the link
-                $(this).hide();
-
-                // Show the container
-                $("#addContactId").show();
-                addContact();
-            });
-
-
-
         })
         document.getElementById("rep_time").innerHTML = generateTimeSlots();
         document.getElementById("drop_time").innerHTML = generateTimeSlots();
@@ -517,7 +506,7 @@
             let contactHtml = `<div class="row mb-3">
                                     <div class="col-md-3">
                                         <label for="" class="control-label">Additional Contact Name</label>
-                                        <select class="form-select border-bottom" name="" id="">
+                                        <select class="form-select border-bottom contact_name${contactIndex}" name="" id="contact_name${contactIndex}">
                                             <option value="">(Select one)</option>
                                             <option value="">A</option>
                                             <option value="">B</option>
@@ -548,6 +537,7 @@
                                 </div>`;
             contactDiv.innerHTML = contactHtml;
             contactContainer.appendChild(contactDiv);
+            initializeSelect3(contactIndex);
         }
         // Function to remove an contact field
         function removeContact(index) {
@@ -620,11 +610,30 @@
                 placeholder: "",
             });
         }
+        function initializeSelect3(contactIndex) {
+            $(`.contact_name${contactIndex}`).select2({
+                tags: true,
+                placeholder: "",
+            });
+        }
 
         $(document).ready(function() {
-            initializeSelect2();
+            initializeSelect2(passengerIndex);
             addPassenger();
+
+
+            $("#toggleLink").click(function() {
+                // Hide the link
+                $(this).hide();
+
+                // Show the container
+                $("#addContactId").show();
+                initializeSelect3(contactIndex);
+                addContact();
+            });
         });
+
+
 
     </script>
 @endsection
