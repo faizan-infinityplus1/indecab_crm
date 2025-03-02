@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class VehiclesController extends Controller
 {
-    public function showVehicles()
+    public function index()
     {
         return view('backend.admin.masters.vehicles.index');
     }
-    public function createVehicles()
+    public function create()
     {
         return view('backend.admin.masters.vehicles.create');
     }
