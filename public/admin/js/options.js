@@ -7,7 +7,7 @@ function generateStateOptions(selectedState) {
     ].join("\n");
 }
 
-function generateCityOptions(selectedCity) {
+function generateCityOptions(selectedCity = '') {
     return [
         `<option value="" style="display:none;"  >-- Select a City --</option>`,
         ...cities.map(city =>
@@ -15,7 +15,7 @@ function generateCityOptions(selectedCity) {
         )
     ].join("\n");
 }
-function generateCitySelect2(selectedValues=[]) {
+function generateCitySelect2(selectedValues = []) {
     return cities.map(city => {
         return {
             id: city.value, text: city.name, "selected": selectedValues.includes(city.value)

@@ -225,23 +225,13 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">From (Service Location) <span
                                     class="text-danger">*</span></label>
-                            <select class="form-select border-bottom" name="" id="">
-                                <option value="">(Select one)</option>
-                                <option value="">Mumbai</option>
-                                <option value="">Pune</option>
-                                <option value="">Thane</option>
-                                <option value="">Byculla</option>
+                            <select class="form-select border-bottom" name="fromservice" id="fromservice">
                             </select>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">To</label>
-                            <select class="form-select border-bottom" name="" id="">
-                                <option value="">(Select one)</option>
-                                <option value="">Mumbai</option>
-                                <option value="">Pune</option>
-                                <option value="">Thane</option>
-                                <option value="">Byculla</option>
+                            <select class="form-select border-bottom" name="toservice" id="toservice">
                             </select>
                             <span class="help-block"></span>
                         </div>
@@ -473,6 +463,7 @@
 @section('extrajs')
     <script src="{{ asset('admin/js/timeslots.js') }}"></script>
     <script src="{{ asset('admin/js/options.js') }}"></script>
+    <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script>
         $(document).ready(function() {
 
@@ -495,6 +486,7 @@
                 );
                 return $state;
             };
+
             function formatTemplateState(state) {
                 if (!state.id) {
                     return state.text;
@@ -524,9 +516,12 @@
             $(".toggleDivs").on("click", function() {
                 $('.hideElement').show();
             })
-        })
+        });
         document.getElementById("rep_time").innerHTML = generateTimeSlots();
         document.getElementById("drop_time").innerHTML = generateTimeSlots();
+        // generate city names
+        $('#fromservice').html(generateCityOptions());
+        $('#toservice').html(generateCityOptions());
     </script>
 @endsection
 
