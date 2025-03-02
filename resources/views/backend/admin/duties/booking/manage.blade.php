@@ -428,16 +428,6 @@
             </div>
         </div>
     </div>
-    <div>
-        <label for="customSelect">Choose an option or type your own:</label>
-        <select id="customSelect" class="form-select" onfocus="showInputField()">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-            <option value="option4">Option 4</option>
-        </select>
-        <input type="text" id="customInput" placeholder="Type your own option..." style="display: none;">
-    </div>
 @endsection
 
 @section('extrajs')
@@ -445,26 +435,6 @@
     <script src="{{ asset('admin/js/options.js') }}"></script>
     <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script>
-        function showInputField() {
-        var selectElement = document.getElementById("customSelect");
-        var customInput = document.getElementById("customInput");
-
-        // Check if the user is focusing on the select box, if yes, show the input field
-        if (selectElement === document.activeElement) {
-            customInput.style.display = "inline";
-        }
-    }
-
-    // Detect if the user types in the input field
-    document.getElementById("customInput").addEventListener("focus", function() {
-        var selectElement = document.getElementById("customSelect");
-        selectElement.style.display = "none";  // Hide the select dropdown when typing in the input field
-    });
-
-    document.getElementById("customInput").addEventListener("blur", function() {
-        var selectElement = document.getElementById("customSelect");
-        selectElement.style.display = "inline";  // Show the select dropdown again when focus leaves the input
-    });
         $(document).ready(function() {
 
             function formatState(state) {
@@ -527,7 +497,9 @@
                 $("#addContactId").show();
                 addContact();
             });
-            addPassenger();
+
+
+
         })
         document.getElementById("rep_time").innerHTML = generateTimeSlots();
         document.getElementById("drop_time").innerHTML = generateTimeSlots();
@@ -598,7 +570,7 @@
                                         <div class="form-group">
                                             <label for="" class="control-label">Passenger Name <span></span></label>
                                             <div class="awesomplete">
-                                                <select class="form-select border-bottom" name="" id="">
+                                                <select class="form-select border-bottom passenger_name" name="" id="passenger_name">
                                                     {{-- <option value="">(Select one)</option>
                                                     <option value="">Mumbai</option>
                                                     <option value="">Pune</option>
@@ -632,6 +604,7 @@
                                 </div>`;
             passengerDiv.innerHTML = passengerHtml;
             passengerContainer.appendChild(passengerDiv);
+            initializeSelect2();
         }
         // Function to remove an Passenger field
         function removePassenger(index) {
@@ -641,6 +614,19 @@
 
         $('#fromservice').html(generateCityOptions());
         $('#toservice').html(generateCityOptions());
+
+        function initializeSelect2() {
+            $(".passenger_name").select2({
+                tags: true,
+                placeholder: "",
+            });
+        }
+
+        $(document).ready(function() {
+            initializeSelect2();
+            addPassenger();
+        });
+
     </script>
 @endsection
 
