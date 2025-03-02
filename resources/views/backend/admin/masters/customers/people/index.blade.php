@@ -65,10 +65,15 @@
                                 <td>{{ $people->phone_no }}</td>
                                 <td>{{ $people->email }}</td>
                                 <td>
-                                    <div class="text-success">{{ $people->isPassenger }}</div>
+                                    <div class="text-success">{!! $people->isPassenger ? '<span class="text-success">Yes</span>' : '<span class="text-danger">No</span>' !!}
+                                    </div>
                                 </td>
-                                <td>{{ $people->isBookedBy }}</td>
-                                <td>{{ $people->isAdditionalContact }}</td>
+                                <td>
+                                    {!! $people->isBookedBy ? '<span class="text-success">Yes</span>' : '<span class="text-danger">No</span>' !!}
+                                </td>
+                                <td>
+                                    {!! $people->isAdditionalContact ? '<span class="text-success">Yes</span>' : '<span class="text-danger">No</span>' !!}
+                                  </td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"

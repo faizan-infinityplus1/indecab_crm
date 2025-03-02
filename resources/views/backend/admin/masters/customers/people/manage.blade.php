@@ -87,8 +87,7 @@
                             <div class="panel border rounded mb-3">
                                 <div class="panel-heading bg-light p-3">Addresses</div>
                                 {{-- component start --}}
-                                <div class="d-flex border-bottom" id="addressContainer">
-
+                                <div id="addressContainer"></div>
                                 </div>
                                 {{-- component end --}}
                                 <div class="p-3">
@@ -183,9 +182,11 @@
             // console.log(' i m here');
             addressIndex++;
             const addressContainer = document.getElementById("addressContainer");
-            const addressDiv = document.createElement("div");
+            const addressDiv = document.createElement("section");
             addressDiv.setAttribute("address-data-index", addressIndex);
             let addressHtml = `
+                                <div class="d-flex border-bottom" >
+
                 <div class="p-3">
                     <button type="button" onclick="removeAddress(${addressIndex})" class="btn btn-primary rounded-1"><i
                             class="fa-solid fa-minus"></i></button>
@@ -209,6 +210,7 @@
                             </div>
                         </div>
                     </div>
+            </div>
             </div>`;
             addressDiv.innerHTML = addressHtml;
             addressContainer.appendChild(addressDiv);
