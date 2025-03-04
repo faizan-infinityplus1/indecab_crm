@@ -47,8 +47,9 @@
                         <hr>
                     @endforeach
                 @else
-                    <div class="col-12 text-center">
-                        <p class="text-danger">No Company Found.</p>
+                    <div class="bg-light mb-3 p-3 text-center">
+                        Get started by adding <a href="{{route('companies.manage')}}"
+                            class="text-decoration-none">Companies</a> for your business.
                     </div>
                 @endif
 
