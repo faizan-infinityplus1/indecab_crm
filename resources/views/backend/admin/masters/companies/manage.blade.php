@@ -60,16 +60,16 @@
                                 <select class="form-select border-bottom" aria-label="Default select example"
                                     id="business_type" name="business_type">
                                     <option value="selectOne">Select an option</option>
-                                    <option value=""
-                                        {{ old('Proprietorship', $mstMyCompany->business_type ?? '') == 'proprietorship' ? 'selected' : '' }}>
+                                    <option value="proprietorship"
+                                        {{ old('proprietorship', $mstMyCompany->business_type ?? '') == 'proprietorship' ? 'selected' : '' }}>
                                         Proprietorship</option>
-                                    <option value=""
+                                    <option value="partnership"
                                         {{ old('partnership', $mstMyCompany->business_type ?? '') == 'partnership' ? 'selected' : '' }}>
                                         Partnership</option>
-                                    <option value=""
+                                    <option value="llp"
                                         {{ old('llp', $mstMyCompany->business_type ?? '') == 'llp' ? 'selected' : '' }}>
                                         Limited Liability Partnership (LLP)</option>
-                                    <option value=""
+                                    <option value="pvt_ltd"
                                         {{ old('pvt_ltd', $mstMyCompany->business_type ?? '') == 'pvt_ltd' ? 'selected' : '' }}>
                                         Private Limited</option>
                                 </select>
@@ -125,75 +125,68 @@
                             </div>
                             <div class="mb-3 validator-error">
                                 <label for="vat" class="form-label">VAT TIN Number</label>
-                                <input type="text" class="form-control  border-bottom" id="vat"
-                                name="vat"
-                                value="{{ old('vat', $mstMyCompany->vat ?? '') }}">
+                                <input type="text" class="form-control  border-bottom" id="vat" name="vat"
+                                    value="{{ old('vat', $mstMyCompany->vat ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3 validator-error">
                                 <label for="service_tax_no" class="form-label">Service Tax Number</label>
                                 <input type="text" class="form-control  border-bottom" id="service_tax_no"
-                                name="service_tax_no"
-                                value="{{ old('service_tax_no', $mstMyCompany->service_tax_no ?? '') }}">
+                                    name="service_tax_no"
+                                    value="{{ old('service_tax_no', $mstMyCompany->service_tax_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3 validator-error">
                                 <label for="cin_no" class="form-label">CIN Number</label>
-                                <input type="text" class="form-control  border-bottom" id="cin_no"
-                                name="cin_no"
-                                value="{{ old('cin_no', $mstMyCompany->cin_no ?? '') }}">
+                                <input type="text" class="form-control  border-bottom" id="cin_no" name="cin_no"
+                                    value="{{ old('cin_no', $mstMyCompany->cin_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3 validator-error">
                                 <label for="sac_hsn_code" class="form-label">SAC/HSN/Accounting code</label>
                                 <input type="text" class="form-control  border-bottom" id="sac_hsn_code"
-                                name="sac_hsn_code"
-                                value="{{ old('sac_hsn_code', $mstMyCompany->sac_hsn_code ?? '') }}">
+                                    name="sac_hsn_code"
+                                    value="{{ old('sac_hsn_code', $mstMyCompany->sac_hsn_code ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3 validator-error">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="text" class="form-control  border-bottom" id="email"
-                                name="email"
-                                value="{{ old('email', $mstMyCompany->email ?? '') }}">
+                                <input type="text" class="form-control  border-bottom" id="email" name="email"
+                                    value="{{ old('email', $mstMyCompany->email ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3 validator-error">
                                 <label for="state" class="form-label ">States of operations</label>
                                 <select class="form-select border-bottom" aria-label="Default select example"
                                     name="state" id="state">
-                                    
+
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3 validator-error">
                                 <label for="pincode" class="form-label">Pincode</label>
-                                <input type="text" class="form-control  border-bottom" id="pincode"
-                                name="pincode"
-                                value="{{ old('pincode', $mstMyCompany->pincode ?? '') }}">
+                                <input type="text" class="form-control  border-bottom" id="pincode" name="pincode"
+                                    value="{{ old('pincode', $mstMyCompany->pincode ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3 validator-error">
                                 <label for="cst_tin_no" class="form-label">CST TIN Number</label>
                                 <input type="text" class="form-control  border-bottom" id="cst_tin_no"
-                                name="cst_tin_no"
-                                value="{{ old('cst_tin_no', $mstMyCompany->cst_tin_no ?? '') }}">
+                                    name="cst_tin_no" value="{{ old('cst_tin_no', $mstMyCompany->cst_tin_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3 validator-error">
                                 <label for="pan_no" class="form-label">PAN Number</label>
-                                <input type="text" class="form-control  border-bottom" id="pan_no"
-                                name="pan_no"
-                                value="{{ old('pan_no', $mstMyCompany->pan_no ?? '') }}">
+                                <input type="text" class="form-control  border-bottom" id="pan_no" name="pan_no"
+                                    value="{{ old('pan_no', $mstMyCompany->pan_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3 validator-error">
                                 <label for="gst_no" class="form-label">GSTIN Number</label>
-                                <input type="text" class="form-control  border-bottom" id="gst_no"
-                                name="gst_no"
-                                value="{{ old('gst_no', $mstMyCompany->gst_no ?? '') }}">
+                                <input type="text" class="form-control  border-bottom" id="gst_no" name="gst_no"
+                                    value="{{ old('gst_no', $mstMyCompany->gst_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
@@ -218,24 +211,23 @@
                             </div>
                             <div class="mb-3 validator-error">
                                 <label for="" class="form-label">Duty Slip - Terms & Conditions</label>
-                                <textarea class="form-control" id="term_condition"
-                                name="term_condition"
-                                 rows="5">{{ old('term_condition', $mstMyCompany->term_condition ?? '') }}</textarea>
+                                <textarea class="form-control" id="term_condition" name="term_condition" rows="5">{{ old('term_condition', $mstMyCompany->term_condition ?? '') }}</textarea>
                                 <span class="warning-msg-block"></span>
                             </div>
 
                         </div>
                     </div>
                     <div class="form-check mb-3 validator-error">
-                        <input class="form-check-input" type="checkbox"  value="1" name="is_active" id="is_active"
-                        {{ old('is_active', $particularMstCustomer->is_active ?? '') ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active"
+                            {{ old('is_active', $mstMyCompany->is_active ?? '') ? 'checked' : '' }}>
                         <label class="form-check-label" for="">
                             Active
                         </label>
                     </div>
                     <div class="form-check mb-3 validator-error">
-                        <input class="form-check-input" type="checkbox"  value="1" name="is_inv_company" id="is_inv_company"
-                        {{ old('is_inv_company', $particularMstCustomer->is_inv_company ?? '') ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" value="1" name="is_inv_company"
+                            id="is_inv_company"
+                            {{ old('is_inv_company', $mstMyCompany->is_inv_company ?? '') ? 'checked' : '' }}>
                         <label class="form-check-label" for="">
                             Is Proforma Invoice Company?
                         </label>
@@ -257,6 +249,15 @@
 
         $(document).ready(function() {
 
+            $.validator.addMethod("validMobile", function(value, element) {
+                return this.optional(element) || /^[0-9]{10}$/.test(value);
+            }, "Please enter a valid 10-digit number");
+
+            $.validator.addMethod("validEmail", function(value, element) {
+                return this.optional(element) || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+                    value);
+            }, "Please enter a valid email address");
+
             $("#formMyCompany").validate({
                 rules: {
                     name: {
@@ -264,9 +265,48 @@
                     },
                     code: {
                         required: true,
-                       
+
+                    },
+                    phone_no: {
+                        required: false,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        validMobile: true
+                    },
+                    alternate_phone_no: {
+                        required: false,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        validMobile: true
+                    },
+                    pincode: {
+                        required: false,
+                        digits: true,
+                        minlength: 6,
+                        maxlength: 6
+                    },
+                    email: {
+                        required: false,
+                        validEmail: true
+                    },
+                    pan_no: {
+                        required: false,
+                        minlength: 10,
+                        maxlength: 10,
+                    },
+                    aadhar_no: {
+                        required: false,
+                        minlength: 12,
+                        maxlength: 12,
+                    },
+                    gst_no: {
+                        required: false,
+                        minlength: 15,
+                        maxlength: 15,
                     }
-                  
+
                 },
                 messages: {
                     name: {
@@ -275,16 +315,54 @@
                     code: {
                         required: "Code is required",
                     },
+                    phone_no: {
+                        required: "Mobile number is required",
+                        digits: "Please enter only numbers",
+                        minlength: "Mobile number must be exactly 10 digits",
+                        maxlength: "Mobile number must be exactly 10 digits", // Fixed typo
+                        validMobile: "Please enter a valid 10-digit mobile number"
+                    },
+                    alternate_phone_no: {
+                        required: "Alternate mobile number is required",
+                        digits: "Please enter only numbers",
+                        minlength: "Alternate mobile number must be exactly 10 digits",
+                        maxlength: "Alternate mobile number be exactly 10 digits",
+                        validMobile: "Please enter a valid 10-digit alternate mobile number"
+                    },
+                    pincode: {
+                        required: "Pincode is required",
+                        digits: "Please enter only numbers",
+                        minlength: "Pincode must be exactly 6 digits",
+                        maxlength: "Pincode must be exactly 6 digits"
+                    },
+                    email: {
+                        required: "Email is required",
+                        email: "Please enter a valid email address"
+                    },
+                    pan_no: {
+                        minlength: "PAN Card number must be at least 10 characters",
+                        maxlength: "PAN Card number must be at least 10 characters",
+                    },
+                    aadhar_no: {
+                        minlength: "Aadhaar Card number must be at least 12 characters",
+                        maxlength: "Aadhaar Card number must be at least 12 characters",
+                    },
+                    gst_no: {
+                        minlength: "Gst number must be at least 15 characters",
+                        maxlength: "Gst Card number must be at least 15 characters",
+                    }
                 },
                 errorElement: "div",
                 errorClass: "error-message text-danger",
                 highlight: function(element) {
                     $(element).addClass("is-invalid");
-                    $(element).closest(".validator-error").find("label").css("color", "red"); // Fixed selector
+                    $(element).closest(".validator-error").find("label").css("color",
+                        "red"); // Fixed selector
                 },
                 unhighlight: function(element) {
                     $(element).removeClass("is-invalid");
-                    $(element).closest(".validator-error").find("label").css("color", "black"); // Fixed selector
+                    $(element).closest(".validator-error").find("label").css("color",
+                        "black"); // Fixed selector
                 },
                 invalidHandler: function(event, validator) {
                     if (validator.errorList.length) {
@@ -299,10 +377,10 @@
             });
 
 
-            let city = mstMyCompany.city || ""; 
+            let city = mstMyCompany.city || "";
             document.getElementById("city").innerHTML = generateCityOptions(city);
 
-            let state = mstMyCompany.state || ""; 
+            let state = mstMyCompany.state || "";
             document.getElementById("state").innerHTML = generateStateOptions(state);
         });
     </script>
