@@ -90,7 +90,7 @@ class CustomersController extends Controller
             );
             if ($validator->fails()) {
                 // dd($validator->errors()->first());
-                notify()->error($validator->errors()->first(),'Error') ;
+                notify()->error($validator->errors()->first(), 'Error');
                 return redirect(route('customers.index'));
             }
             $customer = MstCustomer::create([
@@ -222,8 +222,8 @@ class CustomersController extends Controller
                 $fileName = $request->input("file_name$i");
 
                 if ($request->hasFile("image$i")) {
-                        $file = $request->file("image{$i}");
-                        $filePath = $file->store('customer-images', 'public'); // Store in 'storage/app/public/customer-images'
+                    $file = $request->file("image{$i}");
+                    $filePath = $file->store('customer-images', 'public'); // Store in 'storage/app/public/customer-images'
 
                     // Add file data to array
                     $filesData[] = [
@@ -248,11 +248,31 @@ class CustomersController extends Controller
             }
 
             MstCustomerFile::insert($filesData);
-            notify()->success('Data Added Successfully','Success') ;
+            notify()->success('Data Added Successfully', 'Success');
 
-            return redirect(route('customers.index'));
+            if ($request->query('hide_menu') == 1) {
+                // This will display 'i m here' and then stop the code execution.
+                dd('I\'m here');
+                // Redirection if hide_menu is 1
+                return redirect()->route('customers.create');
+            } else {
+                // This will display 'i m here1' and then stop the code execution.
+                dd('I\'m here1');
+                // Redirection if hide_menu is not 1
+                return redirect()->route('customers.index');
+            }
+
+            // if (request()->query('hide_menu') == 1) {
+            //     dd('i m here');
+            //     return redirect(route('customers.create'));
+            // } else {
+            //     dd('i m here1');
+            //     return redirect(route('customers.index'));
+            // }
+
+            // return redirect(route('customers.index'));
         } catch (Exception $e) {
-            notify()->error('Something Went Wrong Please Try Again Later','Error') ;
+            notify()->error('Something Went Wrong Please Try Again Later', 'Error');
             return redirect(route('customers.index'));
 
         }
@@ -652,7 +672,7 @@ class CustomersController extends Controller
 
             return response()->json(['success' => 'Inter State tax deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete tax.'],  $e);
+            return response()->json(['error' => 'Failed to delete tax.'], $e);
         }
     }
 
@@ -665,7 +685,7 @@ class CustomersController extends Controller
 
             return response()->json(['success' => 'Driver Allowance Setting deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete tax.'],  $e);
+            return response()->json(['error' => 'Failed to delete tax.'], $e);
         }
     }
 
@@ -678,7 +698,7 @@ class CustomersController extends Controller
 
             return response()->json(['success' => 'Duty Type deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete tax.'],  $e);
+            return response()->json(['error' => 'Failed to delete tax.'], $e);
         }
     }
 
@@ -691,7 +711,7 @@ class CustomersController extends Controller
 
             return response()->json(['success' => 'Duty Type deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete tax.'],  $e);
+            return response()->json(['error' => 'Failed to delete tax.'], $e);
         }
     }
 

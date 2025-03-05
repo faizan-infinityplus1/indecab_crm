@@ -21,6 +21,7 @@ class MstEmployee extends Model
         'blood_group',
         'aadhar_no',
         'pan_no',
+        'pf_no',
         'uan_no',
         'dl_no',
         'dl_exp_date',

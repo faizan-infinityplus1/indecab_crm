@@ -126,6 +126,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');
     Route::get('/employees/create', [EmployeesController::class, 'create'])->name('employees.create');
     Route::post('/employees/store', [EmployeesController::class, 'store'])->name('employees.store');
+    Route::get('/employees/edit/{id}', [EmployeesController::class, 'edit'])->name('employees.edit');
+    Route::post('/employees/update/{id}', [EmployeesController::class, 'update'])->name('employees.update');
     Route::get('/employees/delete/{id}', [EmployeesController::class, 'delete'])->name('employees.delete');
     Route::get('/employees/delete/files/{id}', [EmployeesController::class, 'deleteFiles'])->name('employees.delete.files');
 

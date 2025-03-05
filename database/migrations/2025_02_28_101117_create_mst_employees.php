@@ -27,6 +27,7 @@ return new class extends Migration {
             $table->string('blood_group')->nullable();
             $table->string('aadhar_no')->nullable();
             $table->string('pan_no')->nullable();
+            $table->string('pf_no')->nullable();
             $table->string('uan_no')->nullable();
             $table->string('dl_no')->nullable();
             $table->date('dl_exp_date')->nullable();

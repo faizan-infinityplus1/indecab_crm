@@ -47,10 +47,10 @@
                     @endforeach
                 </div>
             @endif
-            <div class="bg-light mb-3 p-3 text-center">
+            {{-- <div class="bg-light mb-3 p-3 text-center">
                 Get started by adding <a href="{{ route('employees.create') }}" class="text-decoration-none">employees</a>
                 for your business.
-            </div>
+            </div> --}}
 
             <div class="table-responsive">
                 <table class="table table-striped table-hover datatable" style="width:100%;">

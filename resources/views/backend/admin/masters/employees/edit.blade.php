@@ -10,7 +10,7 @@
                             <button type="button" class="btn" onclick="window.history.back()"><i
                                     class="fa-solid fa-angle-left"></i></button>
                         </div>
-                        <h1 class="h3 pb-3">New Employee</h1>
+                        <h1 class="h3 pb-3">Edit Employee</h1>
                     </div>
                     <div class="col-md-6 text-end">
                         {{-- <div class="btn-group" role="group"><a href="#" class="btn btn-primary">Add Duty Type</a></div>
@@ -20,29 +20,31 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form action="{{ route('employees.store') }}" method="post" id="formEmployee"
+                <form action="{{ route('employees.update', $particularMstEmployee->id) }}" method="post" id="formEmployee"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="name" class="form-label ">Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control  border-bottom"  name="name" id="name">
-                                <span class="warning-msg-block"></span>
+                                <input type="text" class="form-control  border-bottom"  name="name" id="name"
+                                value="{{ old('name', $particularMstEmployee->name ?? '') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="phone_no" class="form-label">Mobile Number</label>
-                                <input type="text" class="form-control  border-bottom" name="phone_no" id="phone_no">
-                                <span class="warning-msg-block"></span>
+                                <input type="text" class="form-control  border-bottom" name="phone_no" id="phone_no"
+                                value="{{ old('phone_no', $particularMstEmployee->phone_no ?? '') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="alt_phone_no" class="form-label">Alternate phone number</label>
-                                <input type="text" class="form-control  border-bottom" name="alt_phone_no" id="alt_phone_no">
+                                <input type="text" class="form-control  border-bottom" name="alt_phone_no" id="alt_phone_no"
+                                value="{{ old('alt_phone_no', $particularMstEmployee->alt_phone_no ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label ">Email <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control  border-bottom" name="email" id="email">
+                                <input type="text" class="form-control  border-bottom" name="email" id="email"
+                                value="{{ old('email', $particularMstEmployee->email ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
@@ -63,19 +65,22 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="created_employee_id" class="form-label ">Employee ID</label>
-                                <input type="text" class="form-control  border-bottom" name="created_employee_id" id="created_employee_id">
+                                <input type="text" class="form-control  border-bottom" name="created_employee_id" id="created_employee_id"
+                                value="{{ old('created_employee_id', $particularMstEmployee->created_employee_id ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="date_of_joining" class="form-label ">Date of Joining</label>
-                                <input type="date" class="form-control  border-bottom" name="date_of_joining" id="date_of_joining">
+                                <input type="date" class="form-control  border-bottom" name="date_of_joining" id="date_of_joining"
+                                value="{{ old('date_of_joining', $particularMstEmployee->date_of_joining ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="designation" class="form-label">Designation</label>
-                                <input type="text" class="form-control  border-bottom" name="designation" id="designation">
+                                <input type="text" class="form-control  border-bottom" name="designation" id="designation"
+                                value="{{ old('designation', $particularMstEmployee->designation ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -98,17 +103,20 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="dob" class="form-label ">Date of Birth</label>
-                                        <input type="date" class="form-control  border-bottom" name="dob" id="dob">
+                                        <input type="date" class="form-control  border-bottom" name="dob" id="dob"
+                                        value="{{ old('dob', $particularMstEmployee->dob ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="aadhar_no" class="form-label ">Aadhar Number</label>
-                                        <input type="text" class="form-control  border-bottom" name="aadhar_no" id="aadhar_no">
+                                        <input type="text" class="form-control  border-bottom" name="aadhar_no" id="aadhar_no"
+                                        value="{{ old('aadhar_no', $particularMstEmployee->aadhar_no ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="pf_no" class="form-label ">PF Number</label>
-                                        <input type="text" class="form-control  border-bottom" name="pf_no" id="pf_no">
+                                        <label for="" class="form-label ">PF Number</label>
+                                        <input type="text" class="form-control  border-bottom" id=""
+                                        value="{{ old('name', $particularMstEmployee->name ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     {{-- <div class="mb-3">
@@ -118,12 +126,14 @@
                                     </div> --}}
                                     <div class="mb-3">
                                         <label for="dl_no" class="form-label ">DL Number</label>
-                                        <input type="text" class="form-control  border-bottom" name="dl_no" id="dl_no">
+                                        <input type="text" class="form-control  border-bottom" name="dl_no" id="dl_no"
+                                        value="{{ old('name', $particularMstEmployee->name ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="badge_no" class="form-label ">Badge Number</label>
-                                        <input type="text" class="form-control  border-bottom" name="badge_no" id="badge_no">
+                                        <input type="text" class="form-control  border-bottom" name="badge_no" id="badge_no"
+                                        value="{{ old('name', $particularMstEmployee->name ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
@@ -371,9 +381,9 @@
                                              name="visible_customers" id="visible_customers">
                                             <option value="selectOne">Select an option</option>
                                             {{-- ================================= --}}
-                                            @foreach ($mstCustomer as $data)
+                                            {{-- @foreach ($mstCustomer as $data)
                                                 <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                            @endforeach
+                                            @endforeach --}}
                                             {{-- ================================= --}}
                                         </select>
                                         <span class="warning-msg-block"></span>

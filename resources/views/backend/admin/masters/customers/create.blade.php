@@ -605,7 +605,7 @@
                         </label>
                     </div>
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active">
+                        <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>
                         <label class="form-check-label" for="is_active">
                             Active
                         </label>

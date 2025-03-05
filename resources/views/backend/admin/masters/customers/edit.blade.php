@@ -859,7 +859,7 @@
                         <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active"
                             {{ old('is_active', $particularMstCustomer->is_active ?? '') ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_active">
-                            In-Active
+                            Active
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary rounded-1">SUBMIT</button>
@@ -1277,7 +1277,7 @@
                 var template = `      <tr>
                                             <td>
                                                 <select class="form-select border-bottom"
-                                                    aria-label="Default select example" name="duttyptim_${childCount}_new" 
+                                                    aria-label="Default select example" name="duttyptim_${childCount}_new"
                                                      id="dut_typ_tim${childCount}"
                                                      data-index=${childCount}
                                                     >
@@ -1291,7 +1291,7 @@
 
                                             <td>
                                                 <select class="form-select border-bottom"
-                                                    aria-label="Default select example" name="duttyptimstr_${childCount}_new" 
+                                                    aria-label="Default select example" name="duttyptimstr_${childCount}_new"
                                                      id="dut_typ_tim_str${childCount}"
                                                      data-index=${childCount}
                                                     >
@@ -1302,7 +1302,7 @@
 
                                             <td>
                                                 <select class="form-select border-bottom"
-                                                    aria-label="Default select example" name="duttyptimend_${childCount}_new" 
+                                                    aria-label="Default select example" name="duttyptimend_${childCount}_new"
                                                     data-index=${childCount}
                                                      id="dut_typ_tim_end${childCount}"
                                                     >
@@ -1401,7 +1401,7 @@
                                                     <div>
                                                         <label for="image${childCount}"
                                                             class="btn shadow-sm border rounded-1">Choose File</label>
-                                                        <input type="file" 
+                                                        <input type="file"
                                                             class="form-control"
                                                             style="display: none;"
                                                             name="image_${childCount}_new"
