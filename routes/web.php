@@ -10,7 +10,6 @@ use App\Http\Controllers\Master\BillingItemsController;
 use App\Http\Controllers\Master\BranchesController;
 use App\Http\Controllers\Master\DutyTypeController;
 use App\Http\Controllers\Master\CategoriesVehicleGroupsController;
-use App\Http\Controllers\Master\CompaniesController;
 use App\Http\Controllers\Master\CompaniesProfilesController;
 use App\Http\Controllers\Master\CustomerPricingController;
 use App\Http\Controllers\Master\TaxesController;
@@ -30,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Duties\AddBookingController;
 use App\Http\Controllers\Duties\BookingController;
 use App\Http\Controllers\Duties\DutyController;
+use App\Http\Controllers\Master\MyCompaniesController;
 use App\Http\Controllers\Operations\OperationController;
 
 
@@ -43,7 +43,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/duty-types', [DutyTypeController::class, 'index'])->name('dutytype.index');
     Route::get('/duty-types/manage/{id?}', [DutyTypeController::class, 'manage'])->name('dutytype.manage');
     Route::post('/duty-types/store', [DutyTypeController::class, 'store'])->name('dutytype.store');
-    Route::get('/duty-types/edit/{id}', [DutyTypeController::class, 'edit'])->name('dutytype.edit');
     Route::post('/duty-types/update/{id}', [DutyTypeController::class, 'update'])->name('dutytype.update');
     Route::get('/duty-types/delete/{id}', [DutyTypeController::class, 'delete'])->name('dutytype.delete');
 
@@ -110,8 +109,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/duty-supporters/store', [DutySupportersController::class, 'store'])->name('dutysupporters.store');
     Route::get('/duty-supporters/edit/{id}', [DutySupportersController::class, 'edit'])->name('dutysupporters.edit');
     Route::post('/duty-supporters/update/{id}', [DutySupportersController::class, 'update'])->name('dutysupporters.update');
-    Route::get('/duty-supporters/delete/addresses/{id}', [DutySupportersController::class, 'deleteAddress'])->name('customers.delete.addresses');
-    Route::get('/duty-supporters/delete/files/{id}', [DutySupportersController::class, 'deleteFiles'])->name('customers.delete.files');
+    Route::get('/duty-supporters/delete/addresses/{id}', [DutySupportersController::class, 'deleteAddress'])->name('dutysupporters.delete.addresses');
+    Route::get('/duty-supporters/delete/files/{id}', [DutySupportersController::class, 'deleteFiles'])->name('dutysupporters.delete.files');
 
     Route::get('/labels', [LabelsController::class, 'index'])->name('labels.index');
     Route::get('/labels/manage/{id?}', [LabelsController::class, 'manage'])->name('labels.manage');
@@ -146,8 +145,10 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/bank-accounts/edit/{id}', [BankAccountsController::class, 'edit'])->name('bankaccounts.edit');
     Route::post('/bank-accounts/update/{id}', [BankAccountsController::class, 'update'])->name('bankaccounts.update');
 
-    Route::get('/companies', [CompaniesController::class, 'index'])->name('companies.index');
-    Route::get('/companies/manage/{id?}', [CompaniesController::class, 'manage'])->name('companies.manage');
+    Route::get('/companies', [MyCompaniesController::class, 'index'])->name('companies.index');
+    Route::get('/companies/manage/{id?}', [MyCompaniesController::class, 'manage'])->name('companies.manage');
+    Route::post('/companies/store', [MyCompaniesController::class, 'store'])->name('companies.store');
+    Route::post('/companies/update/{id}', [MyCompaniesController::class, 'update'])->name('companies.update');
 
     Route::get('/companies/profiles', [CompaniesProfilesController::class, 'index'])->name('companiesprofiles.index');
     Route::get('/companies/profiles/manage/{id?}', [CompaniesProfilesController::class, 'manage'])->name('companiesprofiles.manage');
