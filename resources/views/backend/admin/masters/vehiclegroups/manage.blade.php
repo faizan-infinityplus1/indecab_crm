@@ -16,7 +16,7 @@
                         {{-- <div class="btn-group" role="group"><a href="#" class="btn btn-primary">Add Duty Type</a></div> --}}
                     </div>
                 </div>
-            </div> 
+            </div>
             {{-- page heading end --}}
             <div>
                 <form action="{{ $data ? route('vehiclegroups.update', $data->id) : route('vehiclegroups.store') }}" method="post"
@@ -86,13 +86,21 @@
                     name: {
                         required: true
                     },
-                  
+
                 },
                 messages: {
 
                     name: {
                         required: "Please Enter Vehicle Group Name"
                     }
+                },
+                errorElement: "div",
+                errorClass: "error-message text-danger",
+                highlight: function(element) {
+                    $(element).addClass("is-invalid");
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass("is-invalid");
                 },
                 submitHandler: function(form) {
                     $('.btnSubmit').attr('disabled', 'disabled');

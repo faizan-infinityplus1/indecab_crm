@@ -425,14 +425,14 @@
                         digits: true,
                         minlength: 10,
                         maxlength: 10,
-                        validMobile: true 
+                        validMobile: true
                     },
                     alternate_mobile_no: {
-                        required: true,
+                        required: false,
                         digits: true,
                         minlength: 10,
                         maxlength: 10,
-                        validMobile: true 
+                        validMobile: true
                     },
                     pan_no: {
                         required: false,
@@ -457,7 +457,7 @@
                         validMobile: "Please enter a valid 10-digit mobile number"
                     },
                     alternate_mobile_no: {
-                        required: "Alternate mobile number is required",
+                        // required: "Alternate mobile number is required",
                         digits: "Please enter only numbers",
                         minlength: "Alternate mobile number must be exactly 10 digits",
                         maxlength: "Alternate mobile number be exactly 10 digits",
@@ -500,7 +500,7 @@
             document.getElementById("working_hours_end").innerHTML = generateTimeSlots();
 
             // Add custom method for validating a 10-digit number
-            
+
 
             // Driver Address Start Here
 
@@ -546,7 +546,7 @@
                                                     </div>
                                                     <div class="mb-3 validator-error">
                                                         <label for="address${childCount}" class="form-label">Address </label>
-                                                        <textarea class="form-control" 
+                                                        <textarea class="form-control"
                                                         name="address${childCount}"
                                                         id="address${childCount}"
                                                         data-index=address${childCount} rows="5"></textarea>
@@ -596,7 +596,7 @@
                                                 <div class="mb-3 validator-error">
                                                     <label for="deduction_amount${childCount}" class="form-label ">Amount</label>
                                                     <input type="number" class="form-control border-bottom"
-                                                    name="deduction_amount${childCount}"    
+                                                    name="deduction_amount${childCount}"
                                                     id="deduction_amount${childCount}"
                                                     data-index=${childCount}>
                                                     <span class="warning-msg-block"></span>
@@ -631,12 +631,12 @@
                                     </div>
                                     <div class="p-3 ps-0 w-100">
                                         <div class="panel border rounded">
-                                          
+
                                             <div class="panel-body p-3">
                                                 <div class="mb-3 validator-error">
                                                     <label for="driver_file_name${childCount}" class="form-label">File Name </label>
                                                     <input type="text" class="form-control  border-bottom"
-                                                    name=driver_file_name${childCount}    
+                                                    name=driver_file_name${childCount}
                                                     id="driver_file_name${childCount}"
                                                     data-index=${childCount}>
                                                     <span class="warning-msg-block"></span>
@@ -646,7 +646,7 @@
                                                     <div>
                                                         <label for="qwer"
                                                             class="btn shadow-sm border rounded-1">Choose File</label>
-                                                        <input type="file" 
+                                                        <input type="file"
                                                             class="form-control"
                                                             accept="image/png, image/gif, image/jpeg"
                                                             name="driver_file${childCount}"

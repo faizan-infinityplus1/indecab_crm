@@ -23,6 +23,7 @@
         {{-- page heading end --}}
         <div>
             <form method="POST" action={{ route('vehicles.createOrUpdate', $vehicleId) }} id="formManageVehicle">
+                @csrf
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
@@ -39,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="mb-3">
                     <label for="" class="form-label">Avatar </label>
                     <p>Select a image/png, image/jpeg or image/jpg file to upload</p>
@@ -181,7 +182,7 @@
                         </div>
                     </div>
                 </div>
-                
+
 
                 <div class="row">
                     <div class="col-md-6">
@@ -460,7 +461,7 @@
 
                 {{-- ================= --}}
 
-              
+
             </form>
         </div>
     </div>

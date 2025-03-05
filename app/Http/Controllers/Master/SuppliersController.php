@@ -29,7 +29,7 @@ class SuppliersController extends Controller
 {
     public function index()
     {
-        $mstSupplier = MstSupplier::active()->with('supplierGroups','mstSupplierDriverCumOwnerMany')->orderBy('id', 'DESC')->get();
+        $mstSupplier = MstSupplier::active()->with('supplierGroups', 'mstSupplierDriverCumOwnerMany')->orderBy('id', 'DESC')->get();
         return view('backend.admin.masters.suppliers.index', compact('mstSupplier'));
     }
     public function create()
@@ -136,13 +136,13 @@ class SuppliersController extends Controller
 
             ]);
             $supplierId = $supplier->id;
-            if ($request->filled('vehicle_count') || $request->filled('owner_name')) {    
+            if ($request->filled('vehicle_count') || $request->filled('owner_name')) {
                 MstSupplierCompanyDetail::create([
                     'supplier_id' => $supplierId,
                     'vehicle_count' => $request->vehicle_count ?? '',
                     'owner_name' => $request->owner_name ?? '',
                 ]);
-            
+
             }
             if ($request->has('vehicle_model') && !empty($request->get('vehicle_model'))) {
                 if ($request->hasFile("driver_image")) {
@@ -314,30 +314,31 @@ class SuppliersController extends Controller
 
             MstSupplierFile::insert($filesData);
 
-             // // Process Applicable Taxes
-             $permitsTaxData = [];
-             for ($i = 1; $request->has("permits_type$i"); $i++) {
-                 $permitType = $request->input("permits_type{$i}");
-                 $permitExpiryDate = $request->input("permits_expiry_date{$i}");
-                 // Add to applicable taxes data array
-                 $permitsTaxData[] = [
-                     'admin_id' => Auth::id(),
-                     'supplier_id' => $supplierId,
-                     'permits_type' => $permitType,
-                     'permits_expiry_date' => $permitExpiryDate,
-                     'created_at' => now(),
-                     'updated_at' => now(),
-                 ];
-                 // print_r($applicableTaxesData);
-             }
-             MstSupplierPermit::insert($permitsTaxData);
+            // // Process Applicable Taxes
+            $permitsTaxData = [];
+            for ($i = 1; $request->has("permits_type$i"); $i++) {
+                $permitType = $request->input("permits_type{$i}");
+                $permitExpiryDate = $request->input("permits_expiry_date{$i}");
+                // Add to applicable taxes data array
+                $permitsTaxData[] = [
+                    'admin_id' => Auth::id(),
+                    'supplier_id' => $supplierId,
+                    'permits_type' => $permitType,
+                    'permits_expiry_date' => $permitExpiryDate,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+                // print_r($applicableTaxesData);
+            }
+            MstSupplierPermit::insert($permitsTaxData);
 
 
 
 
             return redirect(route('suppliers.index'));
         } catch (Exception $e) {
-            dd($e);
+            notify()->error('Something Went Wrong Please Try Again Later', 'Error');
+            return redirect(route('suppliers.index'));
         }
     }
 
@@ -347,7 +348,8 @@ class SuppliersController extends Controller
         $mstDutyType = MstDutyType::active()->get();
         $applicableTaxes = MstTax::active()->get();
         $particularMstSupplier = MstSupplier::active()->with([
-            'mstSupplierDriverCumOwner', 'mstSupplierCompanyDetail'
+            'mstSupplierDriverCumOwner',
+            'mstSupplierCompanyDetail'
         ])->where('id', $request->id)->first();
         // dd($particularMstSupplier->mstSupplierDriverCumOwner()->toSql());
 
@@ -419,8 +421,8 @@ class SuppliersController extends Controller
                 return redirect(route('suppliers.index'))->withInput();
             }
             $supplierId = MstSupplier::where('id', $request->id)->firstOrFail();
-          
-            
+
+
             $supplierId->update([
                 'name' => $request->name,
                 'address' => $request->address,
@@ -461,17 +463,17 @@ class SuppliersController extends Controller
 
             ]);
             $supplierId = $supplierId->id;
-            if ($request->filled('vehicle_count') || $request->filled('owner_name')) {    
+            if ($request->filled('vehicle_count') || $request->filled('owner_name')) {
                 MstSupplierCompanyDetail::updateOrCreate(
                     [
                         'supplier_id' => $supplierId
                     ],
                     [
-                        'vehicle_count'  => $request->vehicle_count ?? '',
+                        'vehicle_count' => $request->vehicle_count ?? '',
                         'owner_name' => $request->owner_name ?? '',
                     ]
-                    );
-               
+                );
+
             }
             if ($request->has('vehicle_model') && !empty($request->get('vehicle_model'))) {
                 if ($request->hasFile("driver_image")) {
@@ -524,8 +526,8 @@ class SuppliersController extends Controller
                         'police_veri_expiry_date' => $request->police_veri_expiry_date,
                         'is_covid_vaccinated' => $request->is_covid_vaccinated ?? false,
                     ]
-                    );
-               
+                );
+
             }
 
             $applicableTaxesData = [];
@@ -786,7 +788,7 @@ class SuppliersController extends Controller
 
             return response()->json(['success' => 'Data deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete data.'],  $e);
+            return response()->json(['error' => 'Failed to delete data.'], $e);
         }
     }
 
@@ -799,7 +801,7 @@ class SuppliersController extends Controller
 
             return response()->json(['success' => 'Data deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete data.'],  $e);
+            return response()->json(['error' => 'Failed to delete data.'], $e);
         }
     }
 
@@ -812,7 +814,7 @@ class SuppliersController extends Controller
 
             return response()->json(['success' => 'Data deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete data.'],  $e);
+            return response()->json(['error' => 'Failed to delete data.'], $e);
         }
     }
 
@@ -825,7 +827,7 @@ class SuppliersController extends Controller
 
             return response()->json(['success' => 'Data deleted successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to delete data.'],  $e);
+            return response()->json(['error' => 'Failed to delete data.'], $e);
         }
     }
     public function createSuppliersGroups()

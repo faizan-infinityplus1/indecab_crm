@@ -636,7 +636,7 @@
             $("#formCustomer").validate({
                 rules: {
                     name: {
-                        required: false
+                        required: true
                     }
                 },
                 messages: {
