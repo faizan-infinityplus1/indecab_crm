@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\MstCatVehGroup;
 use App\Models\MstCustomer;
 use App\Models\MstDutyType;
+use App\Models\MstLabel;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -15,7 +16,7 @@ class BookingController extends Controller
         $customers = MstCustomer::where('is_active', true)->with('people')->get();
         $vehicleGroup = MstCatVehGroup::get();
         $dutyTypes = MstDutyType::get();
-        // dd($dutyTypes);
-        return view("backend.admin.duties.booking.manage", compact('customers', 'vehicleGroup', 'dutyTypes'));
+        $labels = MstLabel::get();
+        return view("backend.admin.duties.booking.manage", compact('customers', 'vehicleGroup', 'dutyTypes', 'labels'));
     }
 }

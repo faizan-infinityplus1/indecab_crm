@@ -23,8 +23,10 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
         ]);
         $this->call(MstCustomersTableSeeder::class);
+        $this->call(MstCatVehGroupsTableSeeder::class);
         $this->call(MstLabelsTableSeeder::class);
         $this->call(MstEmployeesTableSeeder::class);
         $this->call(MstMyCompaniesTableSeeder::class);
+        $this->call(MstDutyTypesTableSeeder::class);
     }
 }
