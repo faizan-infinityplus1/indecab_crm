@@ -371,14 +371,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Uqaab Graphics</td>
-                                    <td>UG</td>
-                                </tr>
-                                <tr>
-                                    <td>Uqaab Holidays</td>
-                                    <td>UH</td>
-                                </tr>
+                                @foreach ($mstMyCompany as $company)
+                                    <tr>
+                                        <td>
+                                            {{ $company->name }}
+                                        </td>
+                                        <td>
+                                            {{ $company->code }}
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                             {{-- <tfoot>
                                 <tr>
