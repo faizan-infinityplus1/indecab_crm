@@ -248,9 +248,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row d-flex align-items-center justify-content-between">
+                        <div class="row d-flex align-items-center justify-content-between mb-3">
                             <div class="col-md-6">
-                                <p>Employee: <b>employee name</b></p>
+                                <p class="mb-0">Employee: <b>employee name</b></p>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-end">
                                 <button type="reset" class="btn btn-light border text-uppercase">Select None</button>
@@ -261,6 +261,7 @@
 
                         <table class="table border-top">
                             <tbody>
+                                {{-- Employees --}}
                                 <tr>
                                     <td colspan="3">
                                         <b>Employees</b>
@@ -287,8 +288,463 @@
                                         <div class="text-decoration-underline">
                                             1 other role
                                         </div>
-                                        <small class="d-flex bg-dark text-light p-2 width-200">
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
                                             <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View employees
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Employees administration</div>
+                                        <i class="text-black-50 fs-6">Ability to perform administrative tasks like reset
+                                            password, disable employee</i>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            1 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View employees
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Auto Login</div>
+                                        <i class="text-black-50 fs-6">This permission is required to autologin your
+                                            passenger/employees into the system using Auto-Login/SSO functionality..</i>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View employees
+                                                    </li>
+                                                    <li>
+                                                        Manage employees
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                {{-- Duties --}}
+                                <tr>
+                                    <td colspan="3">
+                                        <b>Duties</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Edit Duty</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            3 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                    <li>
+                                                        View Bookings
+                                                    </li>
+                                                    <li>
+                                                        Manage duty labels
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Manage duty labels</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                    <li>
+                                                        View Bookings
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Allot vehicle & drivers to duty</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                    <li>
+                                                        View Bookings
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Skip duty</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                    <li>
+                                                        View Bookings
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Cancel duty</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                    <li>
+                                                        View Bookings
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Send info duty</div>
+                                        <i class="text-black-50 fs-6">Ability to send allotted duty information to driver,
+                                            passenger, customer, booked by and other custom phone numbers and email
+                                            addresses.</i>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                    <li>
+                                                        View Bookings
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">View duty slip</div>
+                                        <i class="text-black-50 fs-6">Ability to view the duty slips.</i>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                    <li>
+                                                        View Bookings
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Generate duty slip</div>
+                                        <i class="text-black-50 fs-6">Ability to manually generate and edit the duty
+                                            slips.</i>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                    <li>
+                                                        View Bookings
+                                                    </li>
+                                                    <li>
+                                                        View duty slip
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Make duty slip adjustments</div>
+                                        <i class="text-black-50 fs-6">Ability to make adjustments to duty slip.</i>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                    <li>
+                                                        View Bookings
+                                                    </li>
+                                                    <li>
+                                                        View duty slip
+                                                    </li>
+                                                    <li>
+                                                        Generate duty slip
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Approve duty slip</div>
+                                        <i class="text-black-50 fs-6">Ability to approve duty slips.</i>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                    <li>
+                                                        View Bookings
+                                                    </li>
+                                                    <li>
+                                                        View duty slip
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Export duties</div>
+                                        {{-- <i class="text-black-50 fs-6">Ability to approve duty slips.</i> --}}
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                    <li>
+                                                        View Bookings
+                                                    </li>
+                                                    <li>
+                                                        View Export Profiles
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Send/Receive chats with Network Associates</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                    <li>
+                                                        View Bookings
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                {{-- Bookings --}}
+                                <tr>
+                                    <td colspan="3">
+                                        <b>Bookings</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">View Bookings</div>
+                                        <i class="text-black-50 fs-6">Ability to view bookings. Permission to add/delete
+                                            booking should be explicitly granted.</i>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                    <li>
+                                                        View Bookings
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </small>
                                     </td>
                                     <td>
