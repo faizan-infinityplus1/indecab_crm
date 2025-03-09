@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateBookingRequest;
 use App\Models\MstCatVehGroup;
 use App\Models\MstCustomer;
 use App\Models\MstDutyType;
+use App\Models\MstMyCompany;
 use App\Models\MstLabel;
 
 class BookingController extends Controller
@@ -31,7 +32,8 @@ class BookingController extends Controller
         $vehicleGroup = MstCatVehGroup::get();
         $dutyTypes = MstDutyType::get();
         $labels = MstLabel::get();
-        return view("backend.admin.duties.booking.manage", compact('customers', 'vehicleGroup', 'dutyTypes', 'labels'));
+        $mstMyCompany = MstMyCompany::all();
+        return view("backend.admin.duties.booking.manage", compact('customers', 'vehicleGroup', 'dutyTypes', 'labels', 'mstMyCompany'));
     }
 
     /**

@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <p class="text-md-end text-center">
-                            Create booking for <b>Mumbai Cab Service</b>. <a data-bs-toggle="modal"
+                            Create booking for <b>Mumbai Cab Service</b>. <a href="" data-bs-toggle="modal"
                                 data-bs-target="#sister-companies">Change</a>
                             <span class="help-block"></span>
                         </p>
@@ -346,28 +346,64 @@
         </div>
     </div>
 
-    <!-- Activity logs Modal Start-->
-    <div class="modal fade" id="activity-log" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Sister Companies Modal Start-->
+    <div class="modal fade" id="sister-companies" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
             <div class="modal-content rounded-0 border-0">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Activity logs</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sister Companies</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div>
                         <p>
-                            you have created Duty type at 14:06 on 04-07-2024
+                            Showing list of active sister companies.
                         </p>
                     </div>
-                    <div class="bg-light p-3">
-                        <p class="text-center m-0">
-                            No log records found.
-                        </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover datatable" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Code</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($mstMyCompany as $company)
+                                    <tr>
+                                        <td>
+                                            {{ $company->name }}
+                                        </td>
+                                        <td>
+                                            {{ $company->code }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                            {{-- <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone Number</th>
+                                </tr>
+                            </tfoot> --}}
+                        </table>
+                    </div>
+                    <div>
+                        <i class="text-black-50">
+                            Please click on the company name to select.
+                        </i>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start">
-                    <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+
+                <div class="modal-footer justify-content-start position-sticky bottom-0  bg-white">
+                    <div>
+                        <button type="button" class="btn btn-light border rounded-1"
+                            data-bs-dismiss="modal">Reset</button>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                    </div>
+                    {{-- <button type="button" class="btn btn-light border border-secondary-subtle rounded-1" data-bs-dismiss="modal">Download Import Format</button> --}}
                 </div>
             </div>
         </div>
@@ -383,4 +419,11 @@
         const customers = {!! json_encode($customers) !!};
     </script>
     <script src="{{ asset('admin/js/bookingcab.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.datatable').DataTable({
+                responsive: true
+            });
+        });
+    </script>
 @endsection
