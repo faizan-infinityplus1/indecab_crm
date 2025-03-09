@@ -249,7 +249,7 @@
 
         $(document).ready(function() {
 
-            $.validator.addMethod("validMobile", function(value, element) {
+            $.validator.addMethod("validPhone", function(value, element) {
                 return this.optional(element) || /^[0-9]{10}$/.test(value);
             }, "Please enter a valid 10-digit number");
 
@@ -272,14 +272,14 @@
                         digits: true,
                         minlength: 10,
                         maxlength: 10,
-                        validMobile: true
+                        validPhone: true
                     },
                     alternate_phone_no: {
                         required: false,
                         digits: true,
                         minlength: 10,
                         maxlength: 10,
-                        validMobile: true
+                        validPhone: true
                     },
                     pincode: {
                         required: false,

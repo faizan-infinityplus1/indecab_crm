@@ -54,7 +54,7 @@ return new class extends Migration {
             $table->string('branches')->nullable();
             $table->string('associate_to_sister_company')->nullable();
             $table->string('visible_customers')->nullable();
-            $table->boolean('is_api_user')->default(false);
+            // $table->boolean('is_api_user')->default(false);
             $table->timestamps();
         });
     }
