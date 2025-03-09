@@ -37,7 +37,7 @@
                             </div>
                             <div class="mb-3 validator-error">
                                 <label for="alt_phone_no" class="form-label">Alternate phone number</label>
-                                <input type="text" class="form-control  border-bottom" name="alt_phone_no"
+                                <input type="text" class="form-control border-bottom" name="alt_phone_no"
                                     id="alt_phone_no">
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -381,19 +381,20 @@
                                 <div class="panel-heading bg-light p-3">Account Access/Visibility & Settings</div>
                                 <div class="p-3">
                                     <div class="mb-3 validator-error">
-                                        <label for="branches" class="form-label">Branches</label>
-                                        <select class="form-select border-bottom" aria-label="Default select example"
-                                            name="branches" id="branches">
-                                            <option value="selectOne">Select an option</option>
-                                        </select>
+                                        <label for="branches" class="form-label ">Branches</label>
+                                        <input type="text" class="form-control  border-bottom" name="branches"
+                                            id="branches">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3 validator-error">
                                         <label for="associate_to_sister_company" class="form-label">Associate to Sister
                                             Company</label>
                                         <select class="form-select border-bottom" aria-label="Default select example"
-                                            name="associate_to_sister_company" id="associate_to_sister_company">
-                                            <option value="selectOne">Select an option</option>
+                                            name="company_id" id="associate_to_sister_company">
+                                            <option value="">Select an option</option>
+                                            @foreach ($mstCompany as $data )
+                                            <option value="{{ $data->id }}">{{$data->name}}</option>
+                                            @endforeach
                                         </select>
                                         <span class="warning-msg-block"></span>
                                     </div>
@@ -402,13 +403,10 @@
                                             for
                                             all)</label>
                                         <select class="form-select border-bottom" aria-label="Default select example"
-                                            name="visible_customers" id="visible_customers">
-                                            <option value="selectOne">Select an option</option>
-
-                                            @foreach ($mstCustomer as $data)
-                                                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                            name="customers_id[]" id="visible_customers" multiple="multiple">
+                                            @foreach ($mstCustomer as $data )
+                                            <option value="{{ $data->id }}" >{{$data->name}}</option>
                                             @endforeach
-
                                         </select>
                                         <span class="warning-msg-block"></span>
                                     </div>
@@ -546,18 +544,18 @@
                         digits: "Please enter only numbers",
                         minlength: "Mobile number must be exactly 10 digits",
                         maxlength: "Mobile number must be exactly 10 digits"
-                        
+
                     },
                     aadhar_no: {
                         digits: "Please enter only numbers",
                         minlength: "Aadhar number must be exactly 12 digits",
                         maxlength: "Aadhar number must be exactly 12 digits"
-                       
+
                     },
                     pan_no: {
                         minlength: "PAN number must be exactly 10 characters",
                         maxlength: "PAN number must be exactly 10 characters"
-                      
+
                     },
                     email: {
                         required: "Please enter an email"
@@ -587,6 +585,10 @@
                 }
             });
 
+            $("#visible_customers").select2({
+                placeholder: "Select an Option",
+                allowClear: true
+            });
 
             // Files Component Start Here
             $(document).on('click', '.remove_files', function() {

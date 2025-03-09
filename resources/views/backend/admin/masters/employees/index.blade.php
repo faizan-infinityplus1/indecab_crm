@@ -95,7 +95,7 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a class="dropdown-item" href="">Edit</a>
+                                                <a class="dropdown-item" href="{{ route('employees.edit', $data->id) }}">Edit</a>
                                             </li>
                                             <li>
                                                 <p class="dropdown-item mb-0" data-bs-toggle="modal"

@@ -14,6 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->foreign('company_id')->references('id')->on('mst_my_companies')->onDelete('cascade');
+            $table->string('customers_id')->nullable();
             $table->string('name');
             $table->string('phone_no')->nullable();
             $table->string('alt_phone_no')->nullable();
