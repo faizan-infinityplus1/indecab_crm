@@ -277,7 +277,8 @@
                                     <div class="mb-3">
                                         <label for="license_state" class="form-label ">State</label>
                                         <input type="text" class="form-control border-bottom" name="license_state"
-                                            id="license_state"  value="{{ old('license_state', $particularMstEmployee->license_state ?? '') }}">
+                                            id="license_state"
+                                            value="{{ old('license_state', $particularMstEmployee->license_state ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
@@ -362,47 +363,47 @@
                                 <div class="panel-heading bg-light p-3">Files</div>
                                 {{-- component start --}}
                                 @foreach ($mstFilesEmployee as $data)
-                                
-                                <div class="d-flex border-bottom">
-                                    <div class="p-3">
-                                        <button type="button" class="btn btn-primary rounded-1 remove_files"  data-id="{{ $data->id ?? '' }}"><i
-                                                class="fa-solid fa-minus"></i></button>
-                                    </div>
-                                    <div class="p-3 ps-0 w-100">
-                                        <div class="panel border rounded">
-                                            <div
-                                                class="panel-heading bg-light py-2 px-3 d-flex justify-content-between align-items-center">
-                                                <div>Files</div>
-                                                <div>
-                                                    <button type="button" class="btn btn-danger"><i
-                                                            class="fa-solid fa-xmark"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="panel-body p-3">
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label">File Name </label>
-                                                    <input type="text" class="form-control  border-bottom"
-                                                    name="filename_{{ $data->id }}_update" id="file_name"
-                                                    value="{{ old('name', $data->name ?? '') }}">
-                                                    <span class="warning-msg-block"></span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="" class="form-label">Upload </label>
+                                    <div class="d-flex border-bottom">
+                                        <div class="p-3">
+                                            <button type="button" class="btn btn-primary rounded-1 remove_files"
+                                                data-id="{{ $data->id ?? '' }}"><i
+                                                    class="fa-solid fa-minus"></i></button>
+                                        </div>
+                                        <div class="p-3 ps-0 w-100">
+                                            <div class="panel border rounded">
+                                                <div
+                                                    class="panel-heading bg-light py-2 px-3 d-flex justify-content-between align-items-center">
+                                                    <div>Files</div>
                                                     <div>
-                                                        <label for="qwer"
-                                                            class="btn shadow-sm border rounded-1">Choose
-                                                            File</label>
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-id="{{ $data->id ?? '' }}"><i
+                                                                class="fa-solid fa-xmark"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-body p-3">
+                                                    <div class="mb-3">
+                                                        <label for="" class="form-label">File Name </label>
+                                                        <input type="text" class="form-control  border-bottom"
+                                                            name="filename_{{ $data->id }}_update" id="file_name"
+                                                            value="{{ old('name', $data->name ?? '') }}">
+                                                        <span class="warning-msg-block"></span>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="" class="form-label">Upload </label>
+                                                        <div>
+                                                            <label for="qwer"
+                                                                class="btn shadow-sm border rounded-1">Choose
+                                                                File</label>
                                                             <input type="file" class="form-control"
-                                                            style="display: none;"
-                                                            name="image_{{ $data->id }}_update"
-                                                            id="image">
+                                                                style="display: none;"
+                                                                name="image_{{ $data->id }}_update" id="image">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
 
                                 {{-- component end --}}
                                 <div class="files_body" id="files_body">
@@ -675,7 +676,7 @@
 
                 var template = `<div class="d-flex border-bottom">
                                     <div class="p-3">
-                                        <button type="button" class="btn btn-primary rounded-1 remove_files"><i
+                                        <button type="button" class="btn btn-primary rounded-1 remove_files" data-index=${childCount} data-id="new"><i
                                                 class="fa-solid fa-minus"></i></button>
                                     </div>
                                     <div class="p-3 ps-0 w-100">
