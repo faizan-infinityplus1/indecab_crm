@@ -16,7 +16,8 @@ class EmployeesController extends Controller
 {
     public function index()
     {
-        return view('backend.admin.masters.employees.index');
+        $data = MstEmployee::all();
+        return view('backend.admin.masters.employees.index', compact('data'));
     }
     public function create($id = null)
     {
@@ -178,7 +179,7 @@ class EmployeesController extends Controller
         $mstEmployee = MstEmployee::active()->get();
         $particularMstEmployee = MstEmployee::active()->where('id', $request->id)->first();
         $mstFilesEmployee = MstEmployeeFile::active()->with('mstEmployee')->where('employee_id', $request->id)->get();
-        return view('backend.admin.masters.employees.edit', compact('mstEmployee', 'mstFilesEmployee'));
+        return view('backend.admin.masters.employees.edit', compact('mstEmployee', 'particularMstEmployee', 'mstFilesEmployee'));
     }
     public function update(Request $request)
     {

@@ -24,7 +24,8 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <p class="text-md-end text-center">
-                            Create booking for <b>Mumbai Cab Service</b>. <a href="#">Change</a>
+                            Create booking for <b>Mumbai Cab Service</b>. <a data-bs-toggle="modal"
+                                data-bs-target="#sister-companies">Change</a>
                             <span class="help-block"></span>
                         </p>
                     </div>
@@ -307,7 +308,8 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="" class="control-label">Labels</label>
-                            <select class="form-select border-bottom" name="labels[]" id="labels" multiple="multiple">
+                            <select class="form-select border-bottom" name="labels[]" id="labels"
+                                multiple="multiple">
                                 @foreach ($labels as $label)
                                     <option value="{{ $label->id }}">{{ $label->label_name }}</option>
                                 @endforeach
@@ -343,6 +345,34 @@
             </div>
         </div>
     </div>
+
+    <!-- Activity logs Modal Start-->
+    <div class="modal fade" id="activity-log" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Activity logs</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>
+                            you have created Duty type at 14:06 on 04-07-2024
+                        </p>
+                    </div>
+                    <div class="bg-light p-3">
+                        <p class="text-center m-0">
+                            No log records found.
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start">
+                    <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Activity logs Modal End-->
 @endsection
 
 @section('extrajs')
