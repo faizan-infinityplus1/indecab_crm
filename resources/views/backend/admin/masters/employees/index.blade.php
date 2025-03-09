@@ -95,7 +95,8 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a class="dropdown-item" href="{{ route('employees.edit', $data->id) }}">Edit</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('employees.edit', $data->id) }}">Edit</a>
                                             </li>
                                             <li>
                                                 <p class="dropdown-item mb-0" data-bs-toggle="modal"
@@ -727,6 +728,32 @@
                                         <div class="permission-name">View Bookings</div>
                                         <i class="text-black-50 fs-6">Ability to view bookings. Permission to add/delete
                                             booking should be explicitly granted.</i>
+                                    </td>
+                                    <td>
+                                        <div class="text-decoration-underline">
+                                            2 other role
+                                        </div>
+                                        <small
+                                            class="d-flex flex-column align-items-start bg-dark text-light p-2 width-200">
+                                            <i>Following permissions will be enabled along with this roles:</i>
+                                            <div>
+                                                <ul class="p-0 m-0">
+                                                    <li>
+                                                        View Basic Driver Information
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="permission-name">Manage Bookings</div>
+                                        <i class="text-black-50 fs-6">Ability to add/create and view bookings. Permission
+                                            to delete booking should be explicitly granted.</i>
                                     </td>
                                     <td>
                                         <div class="text-decoration-underline">
