@@ -394,7 +394,8 @@
                         </i>
                     </div>
                 </div>
-                <div class="modal-footer position-sticky bottom-0  bg-white">
+
+                <div class="modal-footer justify-content-start position-sticky bottom-0  bg-white">
                     <div>
                         <button type="button" class="btn btn-light border rounded-1"
                             data-bs-dismiss="modal">Reset</button>
