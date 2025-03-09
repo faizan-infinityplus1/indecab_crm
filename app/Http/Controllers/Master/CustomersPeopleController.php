@@ -95,17 +95,17 @@ class CustomersPeopleController extends Controller
         MstCustomerPeopleAddress::whereIn('id', $addressesToDelete)->delete();
 
         // Loop through addresses from the request
-        if(isset($request->addresses)){
-        foreach ($request->addresses as $addressData) {
-            if (isset($addressData['id'])) {
-                // Update existing address
-                MstCustomerPeopleAddress::where('id', $addressData['id'])->update($addressData);
-            } else {
-                // Add new address
-                $customerPeople->addresses()->create($addressData);
+        if (isset($request->addresses)) {
+            foreach ($request->addresses as $addressData) {
+                if (isset($addressData['id'])) {
+                    // Update existing address
+                    MstCustomerPeopleAddress::where('id', $addressData['id'])->update($addressData);
+                } else {
+                    // Add new address
+                    $customerPeople->addresses()->create($addressData);
+                }
             }
         }
-    }
 
         // dd($customerPeople);
         if ($customerPeople) {
