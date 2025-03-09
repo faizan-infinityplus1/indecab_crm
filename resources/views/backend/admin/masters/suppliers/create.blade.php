@@ -20,7 +20,7 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form action="{{ route('suppliers.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('suppliers.store') }}" method="post" enctype="multipart/form-data" id="formSupplier">
                     @csrf
                     <div class="row">
                         <div class="col-6">
@@ -1124,7 +1124,7 @@
                                                     <div>
                                                         <label for="image${childCount}"
                                                             class="btn shadow-sm border rounded-1">Choose File</label>
-                                                        <input type="file" 
+                                                        <input type="file"
                                                             class="form-control"
                                                             style="display: none;"
                                                             name="image${childCount}"
@@ -1165,7 +1165,7 @@
                 const childCount = $('#bank_accounts_tax_body').find('tr').length + 1;
                 console.log(childCount);
 
-                var template = `    
+                var template = `
                  <div class="d-flex border-bottom">
                                     <div class="p-3">
                                         <button type="button" class="btn btn-primary rounded-1 remove_bank_accounts">
@@ -1289,7 +1289,7 @@
                 const childCount = $('#permits_tax_body').find('.d-flex').length + 1;
                 console.log(childCount);
 
-                var template = `    
+                var template = `
                 <div class="d-flex border-bottom">
                                     <div class="p-3">
                                         <button type="button" class="btn btn-primary rounded-1 remove_permits"><i
@@ -1377,6 +1377,41 @@
 
 
 
+
+        });
+
+        $(document).ready(function() {
+            $("#formSupplier").validate({
+                rules: {
+                    name: {
+                        required: true
+                    },
+                    selectedType: {
+                        required: true
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Please Enter Name"
+                    }
+                    selectedType: {
+                        required: "Please Select Type"
+                    }
+                },
+                errorElement: "div",
+                errorClass: "error-message text-danger",
+                highlight: function(element) {
+                    $(element).addClass("is-invalid");
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass("is-invalid");
+                },
+                submitHandler: function(form) {
+                    $('.btnSubmit').attr('disabled', 'disabled');
+                    $(".btnSubmit").html('<span class="fa fa-spinner fa-spin"></span> Loading...');
+                    form.submit();
+                }
+            });
 
         });
     </script>

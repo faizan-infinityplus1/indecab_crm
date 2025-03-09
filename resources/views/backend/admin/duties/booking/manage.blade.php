@@ -119,8 +119,6 @@
                     </div>
                 </div>
 
-
-
                 {{-- Pannel bottom section --}}
                 <div>
                     <div class="row">
@@ -206,24 +204,12 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="" class="control-label">Reporting Address <span></span></label>
-                            <select class="form-select border-bottom" name="" id="">
-                                {{-- <option value="">(Select one)</option>
-                                <option value="">Mumbai</option>
-                                <option value="">Pune</option>
-                                <option value="">Thane</option>
-                                <option value="">Byculla</option> --}}
-                            </select>
+                            <textarea class="form-control" name="reportinAddress" id="reportinAddress" rows="4"></textarea>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="" class="control-label">Drop Address<span></span></label>
-                            <select class="form-select border-bottom" name="" id="">
-                                {{-- <option value="">(Select one)</option>
-                                <option value="">Mumbai</option>
-                                <option value="">Pune</option>
-                                <option value="">Thane</option>
-                                <option value="">Byculla</option> --}}
-                            </select>
+                            <textarea class="form-control" name="dropAddress" id="dropAddress" rows="4"></textarea>
                             <span class="help-block"></span>
                         </div>
                     </div>
@@ -321,11 +307,10 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="" class="control-label">Labels</label>
-                            <select class="form-select border-bottom" name="" id="">
-                                <option value=""> Company / Customer </option>
-                                <option value="">Company </option>
-                                <option value="">Company </option>
-                                <option value="">Personal</option>
+                            <select class="form-select border-bottom" name="labels[]" id="labels" multiple="multiple">
+                                @foreach ($labels as $label)
+                                    <option value="{{ $label->id }}">{{ $label->label_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

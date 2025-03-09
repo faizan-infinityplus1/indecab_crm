@@ -31,14 +31,14 @@
                             value="{{ old('name', $data->name ?? '') }}" id="name" >
                         <span class="warning-msg-block"></span>
                     </div>
-                    
+
                     @if(optional($data)->name)
                     <div class="mb-3">
                         <label for="percentage" class="form-label ">Percentage % <span class="text-danger">*</span></label>
                         <input type="hidden" class="form-control  border-bottom" name="percentage"
                             value="{{$data->percentage }}" >
                         <input type="number" class="form-control  border-bottom" name="percentage"
-                        value="{{$data->percentage}}" 
+                        value="{{$data->percentage}}"
                         {{ old('percentage', $data->percentage ?? '') ? 'disabled' : '' }}
                         id="percentage" >
                     </div>
@@ -47,14 +47,14 @@
                     <div class="mb-3">
                         <label for="percentage" class="form-label ">Percentage % <span class="text-danger">*</span></label>
                         <input type="number" class="form-control  border-bottom" name="percentage"
-                            value="{{ old('percentage', $data->percentage ?? '') }}" 
+                            value="{{ old('percentage', $data->percentage ?? '') }}"
                             {{ old('percentage', $data->percentage ?? '') ? 'disabled' : '' }}
                             id="percentage" >
                         <span class="warning-msg-block"></span>
                     </div>
                     @endif
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="active" name="active" 
+                        <input class="form-check-input" type="checkbox" id="active" name="active"
                             {{ old('active', $data->active ?? 'checked') ? 'checked' : '' }} value="1">
                         <label class="form-check-label" for="active">
                             Active
@@ -92,6 +92,14 @@
                     percentage: {
                         required: "Please Enter Tax Percentage"
                     }
+                },
+                errorElement: "div",
+                errorClass: "error-message text-danger",
+                highlight: function(element) {
+                    $(element).addClass("is-invalid");
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass("is-invalid");
                 },
                 submitHandler: function(form) {
                     $('.btnSubmit').attr('disabled', 'disabled');

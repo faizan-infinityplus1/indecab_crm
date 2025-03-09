@@ -14,11 +14,7 @@ class MstEmployeesTableSeeder extends Seeder
      */
     public function run()
     {
-        
 
-        \DB::table('mst_employees')->delete();
-        
-        
-        
+
     }
 }
