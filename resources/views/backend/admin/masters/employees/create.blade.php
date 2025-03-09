@@ -509,7 +509,7 @@
                         validPhone: true
                     },
                     alt_phone_no: {
-                        required: true,
+                        required: false,
                         digits: true,
                         minlength: 10,
                         maxlength: 10,

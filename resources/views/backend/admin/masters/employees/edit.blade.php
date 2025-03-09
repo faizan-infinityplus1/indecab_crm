@@ -458,6 +458,19 @@
     <script>
         $(document).ready(function() {
             // code for validation
+            $.validator.addMethod("validPhone", function(value, element) {
+                return this.optional(element) || /^[0-9]{10}$/.test(value);
+            }, "Please enter a valid 10-digit number");
+
+            $.validator.addMethod("validEmail", function(value, element) {
+                return this.optional(element) || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+                    value);
+            }, "Please enter a valid email address");
+
+            $.validator.addMethod("validAadhaar", function(value, element) {
+                return this.optional(element) || /^[0-9]{12}$/.test(value);
+            }, "Please enter a valid 12-digit aadhar number");
+
             $("#formEmployee").validate({
                 rules: {
                     name: {
@@ -468,71 +481,74 @@
                         digits: true,
                         minlength: 10,
                         maxlength: 10,
-                        pattern: /^[0-9]{10}$/
+                        validPhone: true
                     },
                     alt_phone_no: {
                         required: false,
                         digits: true,
                         minlength: 10,
                         maxlength: 10,
-                        pattern: /^[0-9]{10}$/
+                        validPhone: true
                     },
                     aadhar_no: {
                         required: false,
                         digits: true,
                         minlength: 12,
                         maxlength: 12,
-                        pattern: /^[0-9]{12}$/
+                        validAadhaar: true
                     },
                     pan_no: {
                         required: false,
-                        digits: false,
                         minlength: 10,
                         maxlength: 10,
-                        pattern: /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/
                     },
                     email: {
-                        required: true
-                    },
+                        required: true,
+                        validEmail: true
+                    }
                 },
                 messages: {
                     name: {
-                        required: "Please Enter Name"
+                        required: "Please enter name"
                     },
                     phone_no: {
                         digits: "Please enter only numbers",
                         minlength: "Mobile number must be exactly 10 digits",
                         maxlength: "Mobile number must be exactly 10 digits",
-                        pattern: "Please enter a valid 10-digit mobile number"
+                        regex: "Please enter a valid 10-digit mobile number"
                     },
                     alt_phone_no: {
                         digits: "Please enter only numbers",
                         minlength: "Mobile number must be exactly 10 digits",
-                        maxlength: "Mobile number must be exactly 10 digits",
-                        pattern: "Please enter a valid 10-digit mobile number"
+                        maxlength: "Mobile number must be exactly 10 digits"
+                        
                     },
                     aadhar_no: {
                         digits: "Please enter only numbers",
                         minlength: "Aadhar number must be exactly 12 digits",
-                        maxlength: "Aadhar number must be exactly 12 digits",
-                        pattern: "Please enter a valid 12-digit Aadhar number"
+                        maxlength: "Aadhar number must be exactly 12 digits"
+                       
                     },
                     pan_no: {
-                        minlength: "Pan number must be exactly 10 digits",
-                        maxlength: "Pan number must be exactly 10 digits",
-                        pattern: "Please enter a valid Pan number"
+                        minlength: "PAN number must be exactly 10 characters",
+                        maxlength: "PAN number must be exactly 10 characters"
+                      
                     },
                     email: {
-                        required: "Please Enter Email"
+                        required: "Please enter an email"
                     }
                 },
                 errorElement: "div",
                 errorClass: "error-message text-danger",
                 highlight: function(element) {
                     $(element).addClass("is-invalid");
+                    $(element).closest(".validator-error").find("label").css("color",
+                        "red"); // Fixed selector
                 },
                 unhighlight: function(element) {
                     $(element).removeClass("is-invalid");
+                    $(element).closest(".validator-error").find("label").css("color",
+                        "black"); // Fixed selector
                 },
                 invalidHandler: function(event, validator) {
                     if (validator.errorList.length) {
@@ -545,6 +561,7 @@
                     form.submit();
                 }
             });
+
 
 
             // Files Component Start Here

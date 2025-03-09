@@ -126,7 +126,7 @@ class EmployeesController extends Controller
                 'branches' => $request->branches,
                 'associate_to_sister_company' => $request->associate_to_sister_company,
                 'visible_customers' => $request->visible_customers,
-                'is_api_user' => $request->is_api_user ?? false,
+                // 'is_api_user' => $request->is_api_user ?? false,
 
 
             ]);
@@ -235,9 +235,7 @@ class EmployeesController extends Controller
                 ]
             );
             if ($validator->fails()) {
-                // dd($request->max_hours);
-                // connectify('error', 'Add Product', $validator->errors()->first());
-                dd($validator->errors()->first());
+                notify()->error($validator->errors()->first(), 'Error');
                 return redirect(route('employees.index'))->withInput();
             }
             $employeeId = MstEmployee::where('id', $request->id)->firstOrFail();
@@ -283,7 +281,7 @@ class EmployeesController extends Controller
                 'branches' => $request->branches,
                 'associate_to_sister_company' => $request->associate_to_sister_company,
                 'visible_customers' => $request->visible_customers,
-                'is_api_user' => $request->is_api_user ?? false,
+                // 'is_api_user' => $request->is_api_user ?? false,
             ]);
             // dd($mstCustomer);
             $employeeId = $employeeId->id;
