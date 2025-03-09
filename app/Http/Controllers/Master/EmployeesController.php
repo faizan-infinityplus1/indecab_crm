@@ -369,8 +369,9 @@ class EmployeesController extends Controller
 
 
 
+            notify()->success('Data Updated Successfully', 'Success');
 
-            return redirect(route('employees.edit', $request->id));
+            return redirect(route('employees.index', $request->id));
 
 
 
@@ -396,9 +397,11 @@ class EmployeesController extends Controller
     {
         try {
             // Find the record by ID and delete it
-            $deleteFiles = MstEmployeeFile::findOrFail($request->id);
-            $deleteFiles->delete();
-
+            $data = MstEmployeeFile::findOrFail($request->id);
+            if ($data->image) {
+                Storage::disk('public')->delete($data->image);
+            }
+            $data->delete();
             return response()->json(['success' => 'Employee file deleted successfully.']);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to delete employee file.'], $e);
