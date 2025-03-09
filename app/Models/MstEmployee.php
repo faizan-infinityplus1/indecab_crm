@@ -9,6 +9,8 @@ class MstEmployee extends Model
 {
     protected $fillable = [
         'name',
+        'company_id',
+        'customers_id',
         'phone_no',
         'alt_phone_no',
         'email',

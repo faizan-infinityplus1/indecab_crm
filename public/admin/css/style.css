@@ -6,33 +6,41 @@
 .notify {
     z-index: 1111111111111;
 }
+
 .notify svg {
     /* font-size: 20px; */
     width: 35px;
     height: 35px;
 }
+
 .notify .leading-5 {
     font-size: 15px;
 }
 
 /* swal toast start here */
 .swal-toast {
-    min-width: auto !important; /* Remove default width */
-    width: fit-content !important; /* Fit text content */
-    padding: 10px 20px !important; /* Adjust padding */
+    min-width: auto !important;
+    /* Remove default width */
+    width: fit-content !important;
+    /* Fit text content */
+    padding: 10px 20px !important;
+    /* Adjust padding */
     font-size: 14px !important;
     border-radius: 5px !important;
 }
+
 .form-select.is-invalid:focus,
 .was-validated .form-select:invalid:focus {
     box-shadow: unset !important;
     border-bottom: 2px solid red !important;
 }
+
 .form-control.is-invalid:focus,
 .was-validated .form-control:invalid:focus {
     box-shadow: unset !important;
     border-bottom: 2px solid red !important;
 }
+
 /* swal toast end here */
 .logo_container img {
     height: 50px;
@@ -51,9 +59,10 @@ input[type="date"],
 select {
     border-radius: 0px !important;
     border: none !important;
-    border-bottom: 1px solid #dee2e6 !important   ;
+    border-bottom: 1px solid #dee2e6 !important;
     /* border-bottom: 1px solid blue; */
 }
+
 .form-control,
 textarea.form-control {
     border: none;
@@ -61,6 +70,7 @@ textarea.form-control {
     border-bottom: 1px solid #dee2e6;
     background-color: transparent;
 }
+
 .form-control:focus,
 .form-select:focus {
     box-shadow: none;
@@ -96,6 +106,7 @@ ul.dropdown-menu.dropdown-menu-end {
 .hover-link {
     cursor: pointer;
 }
+
 .hover-link:hover {
     color: rgb(13 110 253) !important;
     border-color: rgb(13 110 253) !important;
@@ -124,6 +135,7 @@ ul.dropdown-menu.dropdown-menu-end {
 .come-from-modal.right .modal-body {
     padding: 15px 15px 80px;
 }
+
 .come-from-modal.right.fade .modal-dialog {
     right: 0px;
     -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
@@ -148,4 +160,8 @@ ul.dropdown-menu.dropdown-menu-end {
 
 .select2-container--default .select2-selection--single:focus {
     border-bottom: 1px solid blue !important;
+}
+
+.width-200 {
+    width: 200px;
 }

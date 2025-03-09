@@ -9,6 +9,7 @@ use App\Models\BookingBookedBy;
 use App\Models\MstCatVehGroup;
 use App\Models\MstCustomer;
 use App\Models\MstDutyType;
+use App\Models\MstMyCompany;
 use App\Models\MstLabel;
 use Illuminate\Validation\ValidationException;
 
@@ -35,7 +36,8 @@ class BookingController extends Controller
         $vehicleGroup = MstCatVehGroup::get();
         $dutyTypes = MstDutyType::get();
         $labels = MstLabel::get();
-        return view("backend.admin.duties.booking.manage", compact('booking', 'customers', 'vehicleGroup', 'dutyTypes', 'labels', 'bookingId'));
+        $mstMyCompany = MstMyCompany::all();
+        return view("backend.admin.duties.booking.manage", compact('booking', 'customers', 'vehicleGroup', 'dutyTypes', 'labels', 'mstMyCompany', 'bookingId'));
     }
 
     /**

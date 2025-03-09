@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\MstEmployee;
 use App\Models\MstCustomer;
 use App\Models\MstEmployeeFile;
+use App\Models\MstMyCompany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Exception;
@@ -16,12 +17,14 @@ class EmployeesController extends Controller
 {
     public function index()
     {
-        return view('backend.admin.masters.employees.index');
+        $data = MstEmployee::all();
+        return view('backend.admin.masters.employees.index', compact('data'));
     }
     public function create($id = null)
     {
         $mstCustomer = MstCustomer::active()->get();
-        return view('backend.admin.masters.employees.create', compact('mstCustomer'));
+        $mstCompany = MstMyCompany::active()->get();
+        return view('backend.admin.masters.employees.create', compact('mstCustomer', 'mstCompany'));
     }
 
     public function store(Request $request)
@@ -34,7 +37,7 @@ class EmployeesController extends Controller
                     'phone_no' => 'nullable|string',
                     'alt_phone_no' => 'nullable|string',
                     'email' => 'required|string',
-                    'employee_id' => 'nullable|numeric',
+                    'created_employee_id' => 'nullable|numeric',
                     'date_of_joining' => 'nullable|date',
                     'employee_photo_name' => 'nullable|string',
                     'employee_photo_path' => 'nullable|string',
@@ -69,9 +72,8 @@ class EmployeesController extends Controller
                     'bank_account_number' => 'nullable|string',
                     'bank_ifsc_code' => 'nullable|numeric',
                     'branches' => 'nullable|string',
-                    'associate_to_sister_company' => 'nullable|string',
-                    'visible_customers' => 'nullable|string',
-                    // 'is_api_user' => '',
+                    'company_id' => 'nullable',
+                    'customers_id' => 'nullable|array',
                 ],
                 [
                     'name.required' => 'Please Employee Name ',
@@ -83,7 +85,11 @@ class EmployeesController extends Controller
                 notify()->error($validator->errors()->first(), 'Error');
                 return redirect(route('employees.index'));
             }
-
+            $employeeFilePath = null;
+            if ($request->hasFile("employee_photo")) {
+                $file = $request->file("employee_photo");
+                $employeeFilePath = $file->store('my-employees/images/', 'public');
+            }
             $employee = MstEmployee::create([
                 'name' => $request->name,
                 'phone_no' => $request->phone_no,
@@ -126,8 +132,9 @@ class EmployeesController extends Controller
                 'branches' => $request->branches,
                 'associate_to_sister_company' => $request->associate_to_sister_company,
                 'visible_customers' => $request->visible_customers,
-                'is_api_user' => $request->is_api_user ?? false,
-
+                'employee_photo' => $employeeFilePath,
+                'company_id' => $request->company_id,
+                'customers_id' => is_array($request->customers_id) ? implode(',', $request->customers_id) : $request->customers_id,
 
             ]);
             $employeeId = $employee->id;
@@ -137,7 +144,7 @@ class EmployeesController extends Controller
                 $fileName = $request->input("file_name$i");
                 if ($request->hasFile("image$i")) {
                     $file = $request->file("image{$i}");
-                    $filePath = $file->store('employee-images', 'public'); // Store in 'storage/app/public/customer-images'
+                    $filePath = $file->store('my-employees/files', 'public'); // Store in 'storage/app/public/customer-images'
 
                     // Add file data to array
                     $filesData[] = [
@@ -166,7 +173,6 @@ class EmployeesController extends Controller
             notify()->success('Data Added Successfully', 'Success');
 
             return redirect(route('employees.index'));
-
         } catch (Exception $e) {
             notify()->error($e, 'Error');
             return redirect(route('employees.index'));
@@ -176,14 +182,15 @@ class EmployeesController extends Controller
     public function edit(Request $request)
     {
         $mstEmployee = MstEmployee::active()->get();
+        $mstCompany = MstMyCompany::active()->get();
+        $mstCustomer = MstCustomer::active()->get();
         $particularMstEmployee = MstEmployee::active()->where('id', $request->id)->first();
         $mstFilesEmployee = MstEmployeeFile::active()->with('mstEmployee')->where('employee_id', $request->id)->get();
-        return view('backend.admin.masters.employees.edit', compact('mstEmployee', 'mstFilesEmployee'));
+        return view('backend.admin.masters.employees.edit', compact('mstEmployee', 'particularMstEmployee', 'mstFilesEmployee', 'mstCompany', 'mstCustomer'));
     }
     public function update(Request $request)
     {
         try {
-
             $validator = Validator::make(
                 $request->all(),
                 [
@@ -200,6 +207,7 @@ class EmployeesController extends Controller
                     'dob' => 'nullable|date',
                     'blood_group' => 'nullable|string',
                     'aadhar_no' => 'nullable|numeric',
+                    'pf_no' => 'nullable|string',
                     'pan_no' => 'nullable|string',
                     'uan_no' => 'nullable|string',
                     'dl_no' => 'nullable|string',
@@ -227,7 +235,8 @@ class EmployeesController extends Controller
                     'branches' => 'nullable|string',
                     'associate_to_sister_company' => 'nullable|string',
                     'visible_customers' => 'nullable|string',
-                    // 'is_api_user' => '',
+                    'company_id' => 'nullable',
+                    'customers_id' => 'nullable|array',
                 ],
                 [
                     'name.required' => 'Please Employee Name ',
@@ -235,14 +244,22 @@ class EmployeesController extends Controller
                 ]
             );
             if ($validator->fails()) {
-                // dd($request->max_hours);
-                // connectify('error', 'Add Product', $validator->errors()->first());
-                dd($validator->errors()->first());
+                notify()->error($validator->errors()->first(), 'Error');
                 return redirect(route('employees.index'))->withInput();
             }
-            $employeeId = MstEmployee::where('id', $request->id)->firstOrFail();
-
-            $employeeId->update([
+            $employeeData = MstEmployee::where('id', $request->id)->firstOrFail();
+            $filePath = $employeeData->employee_photo; 
+            $employeeFilePath = null;
+            if ($request->hasFile("employee_photo")) {
+                $file = $request->file("employee_photo");
+                if ($employeeData->employee_photo) {
+                    Storage::disk('public')->delete($employeeData->employee_photo);
+                }
+                $employeeFilePath = $file->store('my-employees/images/', 'public');
+            }
+            // Update record correctly
+           
+            $employeeData->update([
                 'name' => $request->name,
                 'phone_no' => $request->phone_no,
                 'alt_phone_no' => $request->alt_phone_no,
@@ -258,6 +275,7 @@ class EmployeesController extends Controller
                 'aadhar_no' => $request->aadhar_no,
                 'pan_no' => $request->pan_no,
                 'uan_no' => $request->uan_no,
+                'pf_no' => $request->pf_no,
                 'dl_no' => $request->dl_no,
                 'dl_exp_date' => $request->dl_exp_date,
                 'badge_no' => $request->badge_no,
@@ -283,10 +301,12 @@ class EmployeesController extends Controller
                 'branches' => $request->branches,
                 'associate_to_sister_company' => $request->associate_to_sister_company,
                 'visible_customers' => $request->visible_customers,
-                'is_api_user' => $request->is_api_user ?? false,
+                'employee_photo' => $employeeFilePath,
+                'company_id' => $request->company_id,
+                'customers_id' => is_array($request->customers_id) ? implode(',', $request->customers_id) : $request->customers_id,
             ]);
-            // dd($mstCustomer);
-            $employeeId = $employeeId->id;
+            // dd($employeeData);
+            $employeeId = $employeeData->id;
 
             $filesData = [];
 
@@ -294,7 +314,7 @@ class EmployeesController extends Controller
 
             foreach ($request->keys() as $key) {
 
-                if (preg_match('/^filename_(\d+)_new$/', $key, $matches)) {
+                if (preg_match('/^file_name_(\d+)_new$/', $key, $matches)) {
                     $id = (int) $matches[1]; // Ensure integer
                     $fileName = $request->get($key);
                     $filePath = null;
@@ -302,7 +322,7 @@ class EmployeesController extends Controller
 
                     if ($request->hasFile("image_{$id}_new")) {
                         $file = $request->file("image_{$id}_new");
-                        $filePath = $file->store('customer-images', 'public'); // Store in 'storage/app/public/customer-images'
+                        $filePath = $file->store('my-employees/files', 'public'); // Store in 'storage/app/public/customer-images'
                     }
 
                     $filesData[] = [
@@ -313,7 +333,7 @@ class EmployeesController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
-                } elseif (preg_match('/^filename_(\d+)_update$/', $key, $matches)) {
+                } elseif (preg_match('/^file_name_(\d+)_update$/', $key, $matches)) {
                     $id = (int) $matches[1]; // Ensure integer
                     $fileName = $request->get($key);
                     $existingFile = MstEmployeeFile::find($id);
@@ -329,7 +349,7 @@ class EmployeesController extends Controller
                         }
 
                         // $filePath = $file->store('storage/images/customer-images', 'public');
-                        $filePath = $file->store('customer-images', 'public');
+                        $filePath = $file->store('my-employees/files', 'public');
                     }
 
                     // Update existing file
@@ -349,8 +369,9 @@ class EmployeesController extends Controller
 
 
 
+            notify()->success('Data Updated Successfully', 'Success');
 
-            return redirect(route('employees.edit', $request->id));
+            return redirect(route('employees.index', $request->id));
 
 
 
@@ -368,7 +389,6 @@ class EmployeesController extends Controller
             $employee->delete();
 
             return redirect()->back()->with('success', 'Employee deleted successfully.');
-
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to delete Employee.'], $e);
         }
@@ -377,9 +397,11 @@ class EmployeesController extends Controller
     {
         try {
             // Find the record by ID and delete it
-            $deleteFiles = MstEmployeeFile::findOrFail($request->id);
-            $deleteFiles->delete();
-
+            $data = MstEmployeeFile::findOrFail($request->id);
+            if ($data->image) {
+                Storage::disk('public')->delete($data->image);
+            }
+            $data->delete();
             return response()->json(['success' => 'Employee file deleted successfully.']);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to delete employee file.'], $e);
