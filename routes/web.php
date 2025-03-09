@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminAuth\LoginController;
 use App\Http\Controllers\Master\CustomersPeopleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Master\BankAccountsController;
 use App\Http\Controllers\Master\BillingItemsController;
 use App\Http\Controllers\Master\BranchesController;
@@ -26,8 +27,6 @@ use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 // Duties import
-use App\Http\Controllers\Duties\AddBookingController;
-use App\Http\Controllers\Duties\BookingController;
 use App\Http\Controllers\Duties\DutyController;
 use App\Http\Controllers\Master\MyCompaniesController;
 use App\Http\Controllers\Operations\OperationController;
@@ -163,7 +162,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/report-requests/manage', [ReportController::class, 'manage'])->name('reports.manage');
 
     // Route::get('/bookingManage/{id?}', [AddBookController::class, 'manage'])->name('dutytype.manage');
-    Route::get("/booking/create", [BookingController::class, "create"]);
+    Route::get("/booking/create", [BookingController::class, "create"])->name("booking.create");
+    Route::post("/booking/createOrUpdate/{id?}", [BookingController::class, "store"])->name("booking.createOrUpdate");
     Route::get("/incoming/allotted", [DutyController::class, "allotted"]);
     Route::get("/need-attention", [DutyController::class, "Attention"]);
     Route::get("/duty-upcoming", [DutyController::class, "Upcoming"]);
