@@ -29,15 +29,16 @@ return new class extends Migration
             $table->string('reporting_address')->nullable();
             $table->string('drop_address')->nullable();
             $table->string('short_reporting_address')->nullable();
-            $table->string('ticketNumber')->nullable();
+            $table->string('ticket_number')->nullable();
             $table->string('bill_to')->nullable();
             $table->integer('price');
             $table->integer('per_extra_km_rate')->nullable();
             $table->integer('per_extra_hr_rate')->nullable();
             $table->string('remarks')->nullable();
+            $table->string('driver_remark')->nullable();
             $table->string('operator_notes')->nullable();
             $table->string('labels')->nullable();
-            $table->boolean('isConfirmedBooking')->default(false);
+            $table->boolean('is_confirmed_booking')->default(false);
             $table->timestamps();
         });
     }

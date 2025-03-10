@@ -167,7 +167,7 @@ Route::middleware('auth:admin')->group(function () {
 
     // Route::get('/bookingManage/{id?}', [AddBookController::class, 'manage'])->name('dutytype.manage');
     Route::get("/booking/create", [BookingController::class, "create"])->name("booking.create");
-    Route::post("/booking/createOrUpdate/{id?}", [BookingController::class, "store"])->name("booking.createOrUpdate");
+    Route::post("/booking/createOrUpdate/{bookingId?}", [BookingController::class, "store"])->name("booking.createOrUpdate");
     Route::get("/incoming/allotted", [DutyController::class, "allotted"]);
     Route::get("/need-attention", [DutyController::class, "Attention"]);
     Route::get("/duty-upcoming", [DutyController::class, "Upcoming"]);

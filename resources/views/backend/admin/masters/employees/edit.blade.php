@@ -393,7 +393,7 @@
                                                     <div class="mb-3">
                                                         <label for="" class="form-label">Upload </label>
                                                         <div>
-                                                            <label for="qwer"
+                                                            <label for="image"
                                                                 class="btn shadow-sm border rounded-1">Choose
                                                                 File</label>
                                                             <input type="file" class="form-control"

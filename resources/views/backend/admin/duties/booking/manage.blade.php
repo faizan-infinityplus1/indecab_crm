@@ -17,8 +17,11 @@
                 </div>
             </div>
 
-            <form action="" method="post">
+            <form action={{ route('booking.createOrUpdate', $bookingId) }} method="post">
                 {{-- Create booking for Mumbai Cab Service. Change  --}}
+                @csrf
+                <input type="number" hidden class="form-control  border-bottom" id="" name="booking_id"
+                    value="{{ old('booking_id', $booking->id ?? -1) }}">
                 <div class="row mb-3">
                     <div class="col-md-6 col-12">
                     </div>
@@ -36,7 +39,8 @@
                 <div class="row mb-3">
                     <div class="col-md-10 col-12">
                         <label for="name" class="control-label">Customer <span class="text-danger">*</span></label>
-                        <select class="form-select border-bottom" name="customer" id="customer">
+                        <select class="form-select border-bottom" name="customer_id" id="customer"
+                            value="{{ old('customer_id', $booking->customer_id ?? '') }}">
                             <option></option>
                             @foreach ($customers as $customer)
                                 <option value="{{ $customer->id }}" data-name="{{ $customer->name }}"
@@ -72,8 +76,13 @@
                         <div class="js-booking-form-bookedBy">
                             <div class="row mb-3">
                                 <div class="col-md-3">
+                                    <input type="hidden" name="type" value="bookedBy">
+                                    <input type="hidden" name="booked_by_customer_id" id="booked_by_customer_id">
+                                    <input type="hidden" name="booked_by_id" id="booked_by_id" value="{{ old('id', $bookedByCustomer->id ?? '') }}">
                                     <label for="" class="control-label">Booked By Name</label>
-                                    <select class="form-select border-bottom" name="bookedByCustomer" id="bookedByCustomer">
+                                    <select class="form-select border-bottom" name="booked_by_customer_name"
+                                        id="booked_by_customer_name"
+                                        value="{{ old('booked_by_customer_name', $bookedByCustomer->booked_by_customer_name ?? '') }}">
 
                                     </select>
                                 </div>
@@ -81,8 +90,9 @@
                                     <div class="form-group">
                                         <label for="" class="control-label">Booked By Phone Number
                                             <span></span></label>
-                                        <input type="text" class="form-control" name="bookedByCustomerPhone"
-                                            id="bookedByCustomerPhone">
+                                        <input type="text" class="form-control" name="booked_by_customer_phone"
+                                            id="booked_by_customer_phone"
+                                            value="{{ old('booked_by_customer_phone', $bookedByCustomer->booked_by_customer_phone ?? '') }}">
                                         <span class="help-block"></span>
                                     </div>
                                 </div>
@@ -90,8 +100,9 @@
                                     <div class="form-group">
                                         <label for="" class="control-label">Booked By Email
                                             <span></span></label>
-                                        <input type="text" class="form-control" name="bookedByCustomerEmail"
-                                            id="bookedByCustomerEmail">
+                                        <input type="text" class="form-control" name="booked_by_customer_email"
+                                            id="booked_by_customer_email"
+                                            value="{{ old('booked_by_customer_email', $bookedByCustomer->booked_by_customer_email ?? '') }}">
                                         <span class="help-block"></span>
                                     </div>
                                 </div>
@@ -126,20 +137,23 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">From (Service Location) <span
                                     class="text-danger">*</span></label>
-                            <select class="form-select border-bottom" name="fromservice" id="fromservice">
+                            <select class="form-select border-bottom" name="from_service" id="fromservice"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}" required>
                             </select>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">To</label>
-                            <select class="form-select border-bottom" name="toservice" id="toservice">
+                            <select class="form-select border-bottom" name="to_service" id="toservice"
+                                value="{{ old('to_service', $booking->to_service ?? '') }}" required>
                             </select>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Vehicle Group <span
                                     class="text-danger">*</span></label>
-                            <select class="form-select border-bottom" name="vehicleGroup" id="vehicleGroup">
+                            <select class="form-select border-bottom" name="vehicle_group" id="vehicleGroup"
+                                value="{{ old('vehicle_group', $booking->vehicle_group ?? '') }}" required>
                                 <option value="">(Select one)</option>
                                 @foreach ($vehicleGroup as $vehicle)
                                     <option value="{{ $vehicle->id }}">{{ $vehicle->name }}</option>
@@ -150,7 +164,8 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Duty Type <span
                                     class="text-danger">*</span></label>
-                            <select class="form-select border-bottom" name="dutyType" id="dutyType">
+                            <select class="form-select border-bottom" name="duty_type" id="dutyType"
+                                value="{{ old('duty_type', $booking->duty_type ?? '') }}" required>
                                 <option value="">(Select one)</option>
                                 @foreach ($dutyTypes as $dutyType)
                                     <option value="{{ $dutyType->id }}">{{ $dutyType->duty_name }}</option>
@@ -163,13 +178,18 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Start Date <span
                                     class="text-danger">*</span></label>
-                            <input type="date" class="form-control  border-bottom">
+
+                            <input type="date" class="form-control  border-bottom" name="start_date"
+                                value="{{ old('start_date', $booking->start_date ?? now()->format('Y-m-d')) }}"
+                                min="<?= date('Y-m-d') ?>" required>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">End Date <span
                                     class="text-danger">*</span></label>
-                            <input type="date" class="form-control  border-bottom">
+                            <input type="date" class="form-control  border-bottom" name="end_date"
+                                value="{{ old('end_date', $booking->end_date ?? now()->format('Y-m-d')) }}"
+                                min="<?= date('Y-m-d') ?>" required>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-3">
@@ -178,7 +198,8 @@
                                     <label class="control-label">Rep. Time <span class="text-danger">*</span></label>
                                     {{-- <input type="text" class="form-control  border-bottom"> --}}
                                     <select class="form-select border-bottom" aria-label="Default select example"
-                                        name="" id="rep_time">
+                                        name="reporting_time" id="rep_time"
+                                        value="{{ old('from_service', $booking->from_service ?? '') }}" required>
 
                                     </select>
                                     <span class="help-block"></span>
@@ -187,7 +208,8 @@
                                     <label class="control-label">Est. Drop Time</label>
                                     {{-- <input type="text" class="form-control  border-bottom"> --}}
                                     <select class="form-select border-bottom" aria-label="Default select example"
-                                        name="" id="drop_time">
+                                        name="drop_time" id="drop_time"
+                                        value="{{ old('from_service', $booking->from_service ?? '') }}">
 
                                     </select>
                                     <span class="help-block"></span>
@@ -197,7 +219,9 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Start from garage before (in min) <span
                                     class="text-danger">*</span></label>
-                            <input type="number" class="form-control" min="0" max="1440" value="60">
+                            <input type="number" class="form-control" min="0" max="1440" value="60"
+                                name="garage_time" value="{{ old('from_service', $booking->from_service ?? '') }}"
+                                required>
                             <span class="help-block"></span>
                         </div>
                     </div>
@@ -205,12 +229,14 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="" class="control-label">Reporting Address <span></span></label>
-                            <textarea class="form-control" name="reportinAddress" id="reportinAddress" rows="4"></textarea>
+                            <textarea class="form-control" name="reporting_address" id="reportinAddress" rows="4"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}"></textarea>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="" class="control-label">Drop Address<span></span></label>
-                            <textarea class="form-control" name="dropAddress" id="dropAddress" rows="4"></textarea>
+                            <textarea class="form-control" name="drop_address" id="dropAddress" rows="4"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}"></textarea>
                             <span class="help-block"></span>
                         </div>
                     </div>
@@ -219,50 +245,49 @@
                         <div class="col-md-4 mb-3">
                             <label for="" class="control-label">Short Reporting Address (to be shown in duty
                                 listing)</label>
-                            <input type="text" name="" id="" class="form-control" maxlength="80">
+                            <input type="text" name="short_reporting_address" id="" class="form-control"
+                                maxlength="80" value="{{ old('from_service', $booking->from_service ?? '') }}" />
                             <div class="help-block"></div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="" class="control-label">Flight/Train Number</label>
-                            <input type="text" name="" id="" class="form-control" maxlength="80">
+                            <input type="text" name="ticket_number" id="" class="form-control"
+                                maxlength="80" value="{{ old('from_service', $booking->from_service ?? '') }}">
                             <div class="help-block"></div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="" class="control-label">No branches added.</label>
-                            {{-- <label for="" class="control-label">No branches added.</label> --}}
-                            {{-- <select class="form-select border-bottom" name="" id="">
-                                <option value=""> Company / Customer (Default)</option>
-                                <option value="">Company (Credit Card)</option>
-                                <option value="">Company (Direct Payment)</option>
-                                <option value="">Personal</option>
-                            </select> --}}
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Bill To </label>
-                            <select class="form-select border-bottom" name="" id="">
-                                <option value=""> Company / Customer (Default)</option>
-                                <option value="">Company (Credit Card)</option>
-                                <option value="">Company (Direct Payment)</option>
-                                <option value="">Personal</option>
+                            <select class="form-select border-bottom" name="bill_to" id=""
+                                value="{{ old('from_service', $booking->from_service ?? '') }}">
+                                <option value="Company / Customer (Default)">Company / Customer (Default)</option>
+                                <option value="Company (Credit Card)">Company (Credit Card)</option>
+                                <option value="Company (Direct Payment)">Company (Direct Payment)</option>
+                                <option value="Personal">Personal</option>
                             </select>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Price <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" name="price"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}" required>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label for="" class="control-label">Per Extra KM Rate</label>
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" name="per_km_rate"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}">
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label for="" class="control-label">Per Extra Hr Rate</label>
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" name="per_extra_hr_rate"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}">
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-2 mb-3">
@@ -278,27 +303,24 @@
                     <div class="row ">
                         <div class="col-md-4 mb-3">
                             <label for="" class="from-label">Remarks</label>
-                            <textarea class="form-control" name="" id="" rows="4"></textarea>
+                            <textarea class="form-control" name="remarks" id="" rows="4"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}"></textarea>
                             <span class="help-block"></span>
                         </div>
-                        <div class="col-md-4 mb-3 hideElement">
+                        <div class="col-md-4 mb-3">
                             <label for="" class="from-label">Driver/Supplier Remarks </label>
-                            <textarea class="form-control" name="" id="" rows="4"></textarea>
+                            <textarea class="form-control" name="driver_remark" id="" rows="4"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}"></textarea>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="" class="control-label">Operator notes</label>
-                            <textarea class="form-control" name="" id="" rows="4"></textarea>
+                            <textarea class="form-control" name="operator_notes" id="" rows="4"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}"></textarea>
                             <span class="help-block"></span>
                         </div>
                     </div>
 
-                    <p class="mb-3">
-                        <a class="text-md-start text-center text-decoration-none toggleDivs cursor-pointer">Add
-                            separate remarks
-                            for
-                            driver/supplier.</a>
-                    </p>
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <b>Booking attachments:</b>
@@ -308,8 +330,8 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="" class="control-label">Labels</label>
-                            <select class="form-select border-bottom" name="labels[]" id="labels"
-                                multiple="multiple">
+                            <select class="form-select border-bottom" name="labels[]" id="labels" multiple="multiple"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}">
                                 @foreach ($labels as $label)
                                     <option value="{{ $label->id }}">{{ $label->label_name }}</option>
                                 @endforeach
@@ -318,9 +340,10 @@
                     </div>
                     {{-- check-box --}}
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="1" name="is_gst_primary"
-                            id="is_gst_primary">
-                        <label class="form-check-label" for="is_gst_primary">
+                        <input class="form-check-input" type="checkbox"
+                            value="{{ old('from_service', $booking->from_service ?? 1) }}"
+                            name="is_confirmed_booking" id="is_confirmed_booking">
+                        <label class="form-check-label" for="is_confirmed_booking">
                             Mark as unconfirmed booking
                         </label>
                     </div>
