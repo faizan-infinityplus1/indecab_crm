@@ -58,6 +58,8 @@
                                         affieldinput="[object Object]" class="form-control"
                                         accept="image/png, image/gif, image/jpeg" style="display: none;">
                                     <span id="photo_file-name" class="ml-2 text-muted"></span>
+                                    <div><img src="{{ asset('/storage/' . $particularMstEmployee->employee_photo) }}"
+                                            alt="" class="border mt-3"></div>
                                 </div>
                             </div>
                         </div>

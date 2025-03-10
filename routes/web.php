@@ -23,6 +23,7 @@ use App\Http\Controllers\Master\MyDriversController;
 use App\Http\Controllers\Master\SupplierPricingController;
 use App\Http\Controllers\Master\SuppliersController;
 use App\Http\Controllers\Master\VehiclesController;
+use App\Http\Controllers\Master\EmployeePermissionsController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -129,6 +130,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/employees/delete/{id}', [EmployeesController::class, 'delete'])->name('employees.delete');
     Route::delete('/employees/delete/files/{id}', [EmployeesController::class, 'deleteFiles'])->name('employees.delete.files');
 
+    Route::get('/employees/permission-profiles', [EmployeePermissionsController::class, 'index'])->name('employeepermissions.index');
+    Route::get('/employees/permission-profiles/create', [EmployeePermissionsController::class, 'create'])->name('employeepermissions.create');
+
     Route::get('/billing-items', [BillingItemsController::class, 'index'])->name('billingitems.index');
     Route::get('/billing-items/manage/{id?}', [BillingItemsController::class, 'manage'])->name('billingitems.manage');
     Route::post('/billing-items/store', [BillingItemsController::class, 'store'])->name('billingitems.store');
@@ -174,6 +178,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get("/duty/billed", [DutyController::class, "Billed"]);
     Route::get("/duty/cancelled", [DutyController::class, "Cancelled"]);
     Route::get("/duty/all", [DutyController::class, "All"]);
+    Route::get("/duties/all", [DutyController::class, "allDuties"])->name('duties.all');
+    ;
 
     // Operations Routes
     Route::get("/availability", [OperationController::class, "Availability"]);

@@ -7,34 +7,50 @@ use Illuminate\Http\Request;
 
 class DutyController extends Controller
 {
-    public function allotted(){
+    public function allotted()
+    {
         return view("backend.admin.duties.incoming.incoming");
     }
-    public function Attention(){
+    public function Attention()
+    {
         return view("backend.admin.duties.attention.needAttention");
     }
-    public function Upcoming(){
+    public function Upcoming()
+    {
         return view("backend.admin.duties.upcoming.upcoming");
     }
-    public function Booked(){
+    public function Booked()
+    {
         return view("backend.admin.duties.booked.booked");
     }
-    public function DutyAlloted(){
+    public function DutyAlloted()
+    {
         return view("backend.admin.duties.alloted.alloted");
     }
-    public function Dispatched(){
+    public function Dispatched()
+    {
         return view("backend.admin.duties.dispatched.dispatched");
     }
-    public function Completed(){
+    public function Completed()
+    {
         return view("backend.admin.duties.completed.completed");
     }
-    public function Billed(){
+    public function Billed()
+    {
         return view("backend.admin.duties.billed.billed");
     }
-    public function Cancelled(){
+    public function Cancelled()
+    {
         return view("backend.admin.duties.cancelled.cancelled");
     }
-    public function All(){
+    public function All()
+    {
         return view("backend.admin.duties.all.all");
+    }
+
+    // ================
+    public function allDuties()
+    {
+        return view("backend.admin.duties.all.index");
     }
 }
