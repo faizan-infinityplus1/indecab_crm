@@ -32,7 +32,7 @@
         </div>
         <div class="duties-nav-container">
             <ul class="nav nav-tabs border-0">
-                <li class=""><a href="{{ route('duties.upcoming') }}"
+                <li class="active"><a href="{{ route('duties.upcoming') }}"
                         class="p-3 d-inline-block text-decoration-none duties-nav-tabs">Upcoming</a>
                 </li>
                 <li class=""><a href="{{ route('duties.booked') }}"
@@ -53,7 +53,7 @@
                 <li class=""><a href="{{ route('duties.cancelled') }}"
                         class="p-3 d-inline-block text-decoration-none duties-nav-tabs">Cancelled</a>
                 </li>
-                <li class="active"><a href="{{ route('duties.all') }}" class="p-3 d-inline-block text-decoration-none duties-nav-tabs">All</a>
+                <li class=""><a href="{{ route('duties.all') }}" class="p-3 d-inline-block text-decoration-none duties-nav-tabs">All</a>
                 </li>
                 <li class="">
                     <a href="{{ route('duties.incoming') }}" class="p-3 d-inline-block text-decoration-none duties-nav-tabs">

@@ -18,7 +18,7 @@
             <h4>Permission profile</h4>
             <div class="text-end d-flex justify-content-end align-items-center gap-2">
                 <div class="btn-group" role="group">
-                    <a href="{{ route('employees.create') }}" class="btn btn-primary">Add Permission profile</a>
+                    <a href="{{ route('employeepermissions.create') }}" class="btn btn-primary">Add Permission profile</a>
                 </div>
             </div>
         </div>

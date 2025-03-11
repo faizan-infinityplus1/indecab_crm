@@ -1197,6 +1197,384 @@
                                     <b>Credit debit notes</b>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <div class="permission-name">View Credit/Debit Notes</div>
+                                </td>
+                                <td>
+                                    <div class="text-decoration-underline other-permissions">
+                                        3 other role
+                                    </div>
+                                    <small
+                                        class="flex-column align-items-start bg-dark text-light p-2 width-200 position-absolute other-permissions-description">
+                                        <i>Following permissions will be enabled along with this roles:</i>
+                                        <div>
+                                            <ul class="p-0 m-0">
+                                                <li>
+                                                    View Basic Driver Information
+                                                </li>
+                                                <li>
+                                                    View Bookings
+                                                </li>
+                                                <li>
+                                                    View duty slip
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="permission-name">Manage Credit/Debit Notes</div>
+                                </td>
+                                <td>
+                                    <div class="text-decoration-underline other-permissions">
+                                        3 other role
+                                    </div>
+                                    <small
+                                        class="flex-column align-items-start bg-dark text-light p-2 width-200 position-absolute other-permissions-description">
+                                        <i>Following permissions will be enabled along with this roles:</i>
+                                        <div>
+                                            <ul class="p-0 m-0">
+                                                <li>
+                                                    View Basic Driver Information
+                                                </li>
+                                                <li>
+                                                    View Bookings
+                                                </li>
+                                                <li>
+                                                    View duty slip
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="permission-name">Download/Print Credit/Debit Notes</div>
+                                </td>
+                                <td>
+                                    <div class="text-decoration-underline other-permissions">
+                                        3 other role
+                                    </div>
+                                    <small
+                                        class="flex-column align-items-start bg-dark text-light p-2 width-200 position-absolute other-permissions-description">
+                                        <i>Following permissions will be enabled along with this roles:</i>
+                                        <div>
+                                            <ul class="p-0 m-0">
+                                                <li>
+                                                    View Basic Driver Information
+                                                </li>
+                                                <li>
+                                                    View Bookings
+                                                </li>
+                                                <li>
+                                                    View duty slip
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="permission-name">Cancel Credit/Debit Notes</div>
+                                </td>
+                                <td>
+                                    <div class="text-decoration-underline other-permissions">
+                                        3 other role
+                                    </div>
+                                    <small
+                                        class="flex-column align-items-start bg-dark text-light p-2 width-200 position-absolute other-permissions-description">
+                                        <i>Following permissions will be enabled along with this roles:</i>
+                                        <div>
+                                            <ul class="p-0 m-0">
+                                                <li>
+                                                    View Basic Driver Information
+                                                </li>
+                                                <li>
+                                                    View Bookings
+                                                </li>
+                                                <li>
+                                                    View duty slip
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="permission-name">Export Credit/Debit Notes</div>
+                                </td>
+                                <td>
+                                    <div class="text-decoration-underline other-permissions">
+                                        3 other role
+                                    </div>
+                                    <small
+                                        class="flex-column align-items-start bg-dark text-light p-2 width-200 position-absolute other-permissions-description">
+                                        <i>Following permissions will be enabled along with this roles:</i>
+                                        <div>
+                                            <ul class="p-0 m-0">
+                                                <li>
+                                                    View Basic Driver Information
+                                                </li>
+                                                <li>
+                                                    View Bookings
+                                                </li>
+                                                <li>
+                                                    View duty slip
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="permission-name">Email Credit/Debit Notes</div>
+                                </td>
+                                <td>
+                                    <div class="text-decoration-underline other-permissions">
+                                        3 other role
+                                    </div>
+                                    <small
+                                        class="flex-column align-items-start bg-dark text-light p-2 width-200 position-absolute other-permissions-description">
+                                        <i>Following permissions will be enabled along with this roles:</i>
+                                        <div>
+                                            <ul class="p-0 m-0">
+                                                <li>
+                                                    View Basic Driver Information
+                                                </li>
+                                                <li>
+                                                    View Bookings
+                                                </li>
+                                                <li>
+                                                    View duty slip
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            {{-- Purchases --}}
+                            <tr>
+                                <td colspan="3">
+                                    <b>Purchases</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="permission-name">View Purchases</div>
+                                </td>
+                                <td>
+                                    <div class="text-decoration-underline other-permissions">
+                                        1 other role
+                                    </div>
+                                    <small
+                                        class="flex-column align-items-start bg-dark text-light p-2 width-200 position-absolute other-permissions-description">
+                                        <i>Following permissions will be enabled along with this roles:</i>
+                                        <div>
+                                            <ul class="p-0 m-0">
+                                                <li>
+                                                    View Basic Driver Information
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="permission-name">Manage Purchases</div>
+                                </td>
+                                <td>
+                                    <div class="text-decoration-underline other-permissions">
+                                        3 other role
+                                    </div>
+                                    <small
+                                        class="flex-column align-items-start bg-dark text-light p-2 width-200 position-absolute other-permissions-description">
+                                        <i>Following permissions will be enabled along with this roles:</i>
+                                        <div>
+                                            <ul class="p-0 m-0">
+                                                <li>
+                                                    View Basic Driver Information
+                                                </li>
+                                                <li>
+                                                    View Purchases
+                                                </li>
+                                                <li>
+                                                    Manage Purchase Duties
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="permission-name">Approve Purchase Invoice</div>
+                                </td>
+                                <td>
+                                    <div class="text-decoration-underline other-permissions">
+                                        2 other role
+                                    </div>
+                                    <small
+                                        class="flex-column align-items-start bg-dark text-light p-2 width-200 position-absolute other-permissions-description">
+                                        <i>Following permissions will be enabled along with this roles:</i>
+                                        <div>
+                                            <ul class="p-0 m-0">
+                                                <li>
+                                                    View Basic Driver Information
+                                                </li>
+                                                <li>
+                                                    View Purchases
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="permission-name">Export Purchases</div>
+                                </td>
+                                <td>
+                                    <div class="text-decoration-underline other-permissions">
+                                        2 other role
+                                    </div>
+                                    <small
+                                        class="flex-column align-items-start bg-dark text-light p-2 width-200 position-absolute other-permissions-description">
+                                        <i>Following permissions will be enabled along with this roles:</i>
+                                        <div>
+                                            <ul class="p-0 m-0">
+                                                <li>
+                                                    View Basic Driver Information
+                                                </li>
+                                                <li>
+                                                    View Purchases
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="permission-name">Download/Print Purchases</div>
+                                </td>
+                                <td>
+                                    <div class="text-decoration-underline other-permissions">
+                                        2 other role
+                                    </div>
+                                    <small
+                                        class="flex-column align-items-start bg-dark text-light p-2 width-200 position-absolute other-permissions-description">
+                                        <i>Following permissions will be enabled along with this roles:</i>
+                                        <div>
+                                            <ul class="p-0 m-0">
+                                                <li>
+                                                    View Basic Driver Information
+                                                </li>
+                                                <li>
+                                                    View Purchases
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="permission-name">Email Purchases</div>
+                                </td>
+                                <td>
+                                    <div class="text-decoration-underline other-permissions">
+                                        3 other role
+                                    </div>
+                                    <small
+                                        class="flex-column align-items-start bg-dark text-light p-2 width-200 position-absolute other-permissions-description">
+                                        <i>Following permissions will be enabled along with this roles:</i>
+                                        <div>
+                                            <ul class="p-0 m-0">
+                                                <li>
+                                                    View Basic Driver Information
+                                                </li>
+                                                <li>
+                                                    View Purchases
+                                                </li>
+                                                <li>
+                                                    Download/Print Purchases
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="permission-name">Cancel Purchases</div>
+                                </td>
+                                <td>
+                                    <div class="text-decoration-underline other-permissions">
+                                        2 other role
+                                    </div>
+                                    <small
+                                        class="flex-column align-items-start bg-dark text-light p-2 width-200 position-absolute other-permissions-description">
+                                        <i>Following permissions will be enabled along with this roles:</i>
+                                        <div>
+                                            <ul class="p-0 m-0">
+                                                <li>
+                                                    View Basic Driver Information
+                                                </li>
+                                                <li>
+                                                    View Purchases
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="" id="">
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </form>
