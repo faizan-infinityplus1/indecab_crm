@@ -49,8 +49,54 @@ class DutyController extends Controller
     }
 
     // ================
+    // upcomingDuties
+    public function upcomingDuties()
+    {
+        return view("backend.admin.duties.upcoming.index");
+    }
+    // bookedDuties
+    public function bookedDuties()
+    {
+        return view("backend.admin.duties.booked.index");
+    }
+    // allottedDuties
+    public function allottedDuties()
+    {
+        return view("backend.admin.duties.alloted.index");
+    }
+    // dispatchedDuties
+    public function dispatchedDuties()
+    {
+        return view("backend.admin.duties.dispatched.index");
+    }
+    // completedDuties
+    public function completedDuties()
+    {
+        return view("backend.admin.duties.completed.index");
+    }
+    // billedDuties
+    public function billedDuties()
+    {
+        return view("backend.admin.duties.billed.index");
+    }
+    // cancelledDuties
+    public function cancelledDuties()
+    {
+        return view("backend.admin.duties.cancelled.index");
+    }
+    // allDuties
     public function allDuties()
     {
         return view("backend.admin.duties.all.index");
+    }
+    // incomingDuties
+    public function incomingDuties()
+    {
+        return view("backend.admin.duties.incoming.index");
+    }
+    // needsattentionDuties
+    public function needsattentionDuties()
+    {
+        return view("backend.admin.duties.attention.index");
     }
 }

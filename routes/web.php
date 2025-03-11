@@ -178,7 +178,16 @@ Route::middleware('auth:admin')->group(function () {
     Route::get("/duty/billed", [DutyController::class, "Billed"]);
     Route::get("/duty/cancelled", [DutyController::class, "Cancelled"]);
     Route::get("/duty/all", [DutyController::class, "All"]);
+    Route::get("/duties/upcoming", [DutyController::class, "upcomingDuties"])->name('duties.upcoming');
+    Route::get("/duties/booked", [DutyController::class, "bookedDuties"])->name('duties.booked');
+    Route::get("/duties/allotted", [DutyController::class, "allottedDuties"])->name('duties.allotted');
+    Route::get("/duties/dispatched", [DutyController::class, "dispatchedDuties"])->name('duties.dispatched');
+    Route::get("/duties/completed", [DutyController::class, "completedDuties"])->name('duties.completed');
+    Route::get("/duties/billed", [DutyController::class, "billedDuties"])->name('duties.billed');
+    Route::get("/duties/cancelled", [DutyController::class, "cancelledDuties"])->name('duties.cancelled');
     Route::get("/duties/all", [DutyController::class, "allDuties"])->name('duties.all');
+    Route::get("/duties/incoming", [DutyController::class, "incomingDuties"])->name('duties.incoming');
+    Route::get("/duties/need-attention", [DutyController::class, "needsattentionDuties"])->name('duties.needsattention');
     ;
 
     // Operations Routes
