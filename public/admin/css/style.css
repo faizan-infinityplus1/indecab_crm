@@ -166,6 +166,14 @@ ul.dropdown-menu.dropdown-menu-end {
     width: 200px;
 }
 
+/* .other-permissions:hover {
+    background-color: red;
+}
+
+.other-permissions:hover .other-permissions-description {
+    background-color: red;
+} */
+
 .other-permissions-description {
     /* display: none; */
 }
