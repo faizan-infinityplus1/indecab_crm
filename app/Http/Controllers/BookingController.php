@@ -36,8 +36,11 @@ class BookingController extends Controller
         $vehicleGroup = MstCatVehGroup::get();
         $dutyTypes = MstDutyType::get();
         $labels = MstLabel::get();
-        $mstMyCompany = MstMyCompany::all();
-        return view("backend.admin.duties.booking.manage", compact('booking', 'customers', 'vehicleGroup', 'dutyTypes', 'labels', 'mstMyCompany', 'bookingId'));
+        $mstMyCompany = MstMyCompany::where('is_active', true)->get();
+        $defaultCompanyId = MstMyCompany::where('is_active', true)
+            ->where('is_primary', true)
+            ->value('id') ?? 1;
+        return view("backend.admin.duties.booking.manage", compact('booking', 'customers', 'vehicleGroup', 'dutyTypes', 'labels', 'mstMyCompany', 'bookingId', 'defaultCompanyId'));
     }
 
     /**
@@ -49,6 +52,7 @@ class BookingController extends Controller
         try {
             // Validate request (handled by FormRequest)
             $validatedData = $request->validated();
+            // dd($validatedData);
 
             // If validation passes, dump the validated data
             $validatedData['labels'] = implode(',', $validatedData['labels'] ?? []);
