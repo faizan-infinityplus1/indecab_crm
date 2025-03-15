@@ -22,6 +22,8 @@
                 @csrf
                 <input type="number" hidden class="form-control  border-bottom" id="" name="booking_id"
                     value="{{ old('booking_id', $booking->id ?? -1) }}">
+                <input type="number" hidden class="form-control  border-bottom" id="" name="company_id"
+                    value="{{ old('company_id', $booking->company_id ?? $defaultCompanyId) }}">
                 <div class="row mb-3">
                     <div class="col-md-6 col-12">
                     </div>
@@ -78,7 +80,8 @@
                                 <div class="col-md-3">
                                     <input type="hidden" name="type" value="bookedBy">
                                     <input type="hidden" name="booked_by_customer_id" id="booked_by_customer_id">
-                                    <input type="hidden" name="booked_by_id" id="booked_by_id" value="{{ old('id', $bookedByCustomer->id ?? '') }}">
+                                    <input type="hidden" name="booked_by_id" id="booked_by_id"
+                                        value="{{ old('id', $bookedByCustomer->id ?? '') }}">
                                     <label for="" class="control-label">Booked By Name</label>
                                     <select class="form-select border-bottom" name="booked_by_customer_name"
                                         id="booked_by_customer_name"
@@ -341,8 +344,8 @@
                     {{-- check-box --}}
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox"
-                            value="{{ old('from_service', $booking->from_service ?? 1) }}"
-                            name="is_confirmed_booking" id="is_confirmed_booking">
+                            value="{{ old('from_service', $booking->from_service ?? 1) }}" name="is_confirmed_booking"
+                            id="is_confirmed_booking">
                         <label class="form-check-label" for="is_confirmed_booking">
                             Mark as unconfirmed booking
                         </label>

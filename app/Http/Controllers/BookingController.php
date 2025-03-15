@@ -37,7 +37,8 @@ class BookingController extends Controller
         $dutyTypes = MstDutyType::get();
         $labels = MstLabel::get();
         $mstMyCompany = MstMyCompany::all();
-        return view("backend.admin.duties.booking.manage", compact('booking', 'customers', 'vehicleGroup', 'dutyTypes', 'labels', 'mstMyCompany', 'bookingId'));
+        $defaultCompanyId = 1;
+        return view("backend.admin.duties.booking.manage", compact('booking', 'customers', 'vehicleGroup', 'dutyTypes', 'labels', 'mstMyCompany', 'bookingId', 'defaultCompanyId'));
     }
 
     /**
