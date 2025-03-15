@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('mst_customers')->onDelete('cascade');
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('mst_my_companies')->onDelete('cascade');
             $table->string('from_service');
             $table->string('to_service');
             $table->string('vehicle_group');

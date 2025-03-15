@@ -26,6 +26,7 @@ class StoreBookingRequest extends FormRequest
         // dd($this->all());
         return [
             'customer_id'  => 'required|integer|exists:mst_customers,id',
+            'company_id'  => 'required|integer|exists:mst_my_companies,id',
             'booked_by_id' => 'nullable|integer|exists:booking_booked_bies,id',
             'booked_by_customer_id' => 'required|integer',
             'booked_by_customer_name' => 'required|string',
@@ -74,8 +75,8 @@ class StoreBookingRequest extends FormRequest
     {
         return [
             function (Validator $validator) {
-                // dd($validator->errors());
                 Log::info(['after' => $this->all(), 'errors' => $validator->errors()]);
+                // dd($validator->errors());
             }
 
         ];

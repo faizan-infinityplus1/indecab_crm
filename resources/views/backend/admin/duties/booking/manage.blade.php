@@ -20,17 +20,17 @@
             <form action={{ route('booking.createOrUpdate', $bookingId) }} method="post">
                 {{-- Create booking for Mumbai Cab Service. Change  --}}
                 @csrf
-                <input type="number" hidden class="form-control  border-bottom" id="" name="booking_id"
+                <input type="number" hidden class="form-control  border-bottom" id="booking_id" name="booking_id"
                     value="{{ old('booking_id', $booking->id ?? -1) }}">
-                <input type="number" hidden class="form-control  border-bottom" id="" name="company_id"
+                <input type="number" hidden class="form-control  border-bottom" id="company_id" name="company_id"
                     value="{{ old('company_id', $booking->company_id ?? $defaultCompanyId) }}">
                 <div class="row mb-3">
                     <div class="col-md-6 col-12">
                     </div>
                     <div class="col-md-6 col-12">
                         <p class="text-md-end text-center">
-                            Create booking for <b>Mumbai Cab Service</b>. <a href="" data-bs-toggle="modal"
-                                data-bs-target="#sister-companies">Change</a>
+                            Create booking for <b><span id="company_name">Mumbai Cab Service</span></b>. <button href=""
+                                data-bs-toggle="modal" data-bs-target="#sister-companies">Change</button>
                             <span class="help-block"></span>
                         </p>
                     </div>
@@ -373,12 +373,12 @@
     </div>
 
     <!-- Sister Companies Modal Start-->
-    <div class="modal fade" id="sister-companies" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="sister-companies" tabindex="-1" aria-labelledby="sister-companiesLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
             <div class="modal-content rounded-0 border-0">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sister Companies</h1>
+                    <h1 class="modal-title fs-5" id="sister-companiesLabel">Sister Companies</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -398,7 +398,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($mstMyCompany as $company)
-                                    <tr>
+                                    <tr onclick="selectCompany({{ $company->id }}, '{{ $company->name }}')" data-bs-dismiss="modal">
                                         <td>
                                             {{ $company->name }}
                                         </td>
@@ -408,12 +408,7 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                            {{-- <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Phone Number</th>
-                                </tr>
-                            </tfoot> --}}
+
                         </table>
                     </div>
                     <div>
@@ -425,8 +420,6 @@
 
                 <div class="modal-footer justify-content-start position-sticky bottom-0  bg-white">
                     <div>
-                        <button type="button" class="btn btn-light border rounded-1"
-                            data-bs-dismiss="modal">Reset</button>
                         <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                     </div>
                     {{-- <button type="button" class="btn btn-light border border-secondary-subtle rounded-1" data-bs-dismiss="modal">Download Import Format</button> --}}
@@ -443,6 +436,9 @@
     <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script>
         const customers = {!! json_encode($customers) !!};
+        const booking = {!! json_encode($booking) !!};
+        const defaultCompanyId = {!! json_encode($defaultCompanyId) !!};
+        const companies = {!! json_encode($mstMyCompany) !!};
     </script>
     <script src="{{ asset('admin/js/bookingcab.js') }}"></script>
     <script>

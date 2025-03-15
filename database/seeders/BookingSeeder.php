@@ -19,6 +19,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 1,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -49,6 +50,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 2,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -79,6 +81,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 3,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -109,6 +112,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 4,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -139,6 +143,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 5,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -169,6 +174,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 6,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -199,6 +205,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 7,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -229,6 +236,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 8,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -259,6 +267,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 9,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -289,6 +298,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 10,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -319,6 +329,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 11,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -349,6 +360,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 12,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -379,6 +391,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 13,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -409,6 +422,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 14,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
@@ -439,6 +453,7 @@ class BookingSeeder extends Seeder
             array (
                 'id' => 15,
                 'admin_id' => 1,
+                'company_id' => 1,
                 'customer_id' => 1,
                 'from_service' => 'alirajpur',
                 'to_service' => 'alirajpur',
