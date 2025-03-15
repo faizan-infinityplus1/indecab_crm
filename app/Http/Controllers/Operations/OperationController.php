@@ -7,28 +7,36 @@ use Illuminate\Http\Request;
 
 class OperationController extends Controller
 {
-    public function Availability(){
+    public function Availability()
+    {
         return view("backend.admin.Operations.availability.availability");
     }
-    public function Bookings(){
+    public function Bookings()
+    {
         return view("backend.admin.Operations.bookings.bookings");
     }
-    public function Billed(){
+    public function Billed()
+    {
         return view("backend.admin.Operations.billed.billed");
     }
-    public function Receipt(){
+    public function Receipt()
+    {
         return view("backend.admin.Operations.receipt.receipt");
     }
-    public function PaymentGateway(){
+    public function PaymentGateway()
+    {
         return view("backend.admin.Operations.paymentGateway.paymentGateway");
     }
-    public function PurchasedDuty(){
+    public function PurchasedDuty()
+    {
         return view("backend.admin.Operations.purchasedDuty.purchasedDuty");
     }
-    public function PurchasedInvoice(){
+    public function PurchasedInvoice()
+    {
         return view("backend.admin.Operations.purchasedInvoice.purchasedInvoice");
     }
-    public function PurchasedPayment(){
+    public function PurchasedPayment()
+    {
         return view("backend.admin.Operations.purchasedPayment.purchasedPayment");
     }
 }

@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Duties\DutyController;
 use App\Http\Controllers\Master\MyCompaniesController;
 use App\Http\Controllers\Operations\OperationController;
+use App\Http\Controllers\Operations\BookingsController;
 
 
 Route::middleware('guest:admin')->group(function () {
@@ -192,7 +193,12 @@ Route::middleware('auth:admin')->group(function () {
 
     // Operations Routes
     Route::get("/availability", [OperationController::class, "Availability"]);
-    Route::get("/bookings", [OperationController::class, "Bookings"]);
+    Route::get("/bookings/all", [BookingsController::class, "allBookings"])->name('bookings.all');
+    Route::get("/bookings/booked", [BookingsController::class, "bookedBookings"])->name('bookings.booked');
+    Route::get("/bookings/on-going", [BookingsController::class, "onGoingBookings"])->name('bookings.on-going');
+    Route::get("/bookings/completed", [BookingsController::class, "completedBookings"])->name('bookings.completed');
+    Route::get("/bookings/billed", [BookingsController::class, "billedBookings"])->name('bookings.billed');
+    Route::get("/bookings/cancelled", [BookingsController::class, "cancelledBookings"])->name('bookings.cancelled');
     Route::get("/billed", [OperationController::class, "Billed"]);
     Route::get("/receipt", [OperationController::class, "Receipt"]);
     Route::get("/payment-gateway", [OperationController::class, "PaymentGateway"]);
