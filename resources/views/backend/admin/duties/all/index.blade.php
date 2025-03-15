@@ -17,7 +17,8 @@
         <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
             <h4>Duties</h4>
             <div class="text-end d-flex justify-content-end align-items-center gap-2">
-                <div class="btn-group" role="group"><a href="{{ route('booking.create') }}" class="btn btn-primary">Add Booking</a></div>
+                <div class="btn-group" role="group"><a href="{{ route('booking.create') }}" class="btn btn-primary">Add
+                        Booking</a></div>
                 <div class="dropdown">
                     <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -53,15 +54,18 @@
                 <li class=""><a href="{{ route('duties.cancelled') }}"
                         class="p-3 d-inline-block text-decoration-none duties-nav-tabs">Cancelled</a>
                 </li>
-                <li class="active"><a href="{{ route('duties.all') }}" class="p-3 d-inline-block text-decoration-none duties-nav-tabs">All</a>
+                <li class="active"><a href="{{ route('duties.all') }}"
+                        class="p-3 d-inline-block text-decoration-none duties-nav-tabs">All</a>
                 </li>
                 <li class="">
-                    <a href="{{ route('duties.incoming') }}" class="p-3 d-inline-block text-decoration-none duties-nav-tabs">
+                    <a href="{{ route('duties.incoming') }}"
+                        class="p-3 d-inline-block text-decoration-none duties-nav-tabs">
                         Incoming
                     </a>
                 </li>
                 <li class="">
-                    <a href="{{ route('duties.needsattention') }}" class="p-3 d-inline-block text-decoration-none duties-nav-tabs">
+                    <a href="{{ route('duties.needsattention') }}"
+                        class="p-3 d-inline-block text-decoration-none duties-nav-tabs">
                         Needs Attention
                     </a>
                 </li>
@@ -135,128 +139,130 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <i class="fa-solid fa-phone text-success"></i>
-                            </td>
-                            <td>Date</td>
-                            <td>Customer</td>
-                            <td>Passenger</td>
-                            <td>Vehicle Group</td>
-                            <td>Vehicle</td>
-                            <td>Driver/Supplier</td>
-                            <td>Duty Type</td>
-                            <td>Rep.Address</td>
-                            <td>Drop Address</td>
-                            <td>Remarks</td>
-                            <td>Operator Notes</td>
-                            <td>City</td>
-                            <td>Rep.Time</td>
-                            <td>Labels</td>
-                            <td>Status</td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="fa-solid fa-gear"></i>
-                                    </button>
-                                    {{-- Booked --}}
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#" class="dropdown-item">Details</a></li>
-                                        <li><a href="#" class="dropdown-item">Unconfirm duty</a></li>
-                                        <li><a href="#" class="dropdown-item">Add/Remove labels</a></li>
-                                        <li><a href="#" class="dropdown-item">Edit duty</a></li>
-                                        <li><a href="#" class="dropdown-item">Allot vehicle &amp; driver</a></li>
-                                        <li><a href="#" class="dropdown-item">Send to Associate</a></li>
-                                        <li><a href="#" class="dropdown-item">Allot supporters</a></li>
-                                        <li><a href="#" class="dropdown-item">Print duty slip</a></li>
-                                        <li><a href="#" class="dropdown-item">View Booking</a></li>
-                                        <li><a href="#" class="dropdown-item">Cancel Duty</a></li>
-                                    </ul>
-                                    {{-- Details needed --}}
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#" class="dropdown-item">Details</a></li>
-                                        <li><a href="#" class="dropdown-item">Add Supplier Details</a></li>
-                                        <li><a href="#" class="dropdown-item">Add/Remove labels</a></li>
-                                        <li><a href="#" class="dropdown-item">Edit duty</a></li>
-                                        <li><a href="#" class="dropdown-item">Allot supporters</a></li>
-                                        <li><a href="#" class="dropdown-item">Re-allot</a></li>
-                                        <li><a href="#" class="dropdown-item">Send to Associate</a></li>
-                                        <li><a href="#" class="dropdown-item">Clear Allotment</a></li>
-                                        <li><a href="#" class="dropdown-item">Send details to supplier</a></li>
-                                        <li><a href="#" class="dropdown-item">Print duty slip</a></li>
-                                        <li><a href="#" class="dropdown-item">Create placard</a></li>
-                                        <li><a href="#" class="dropdown-item">View Booking</a></li>
-                                        <li><a href="#" class="dropdown-item">Cancel Duty</a></li>
-                                    </ul>
-                                    {{-- Allotted --}}
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#" class="">Details</a></li>
-                                        <li><a href="#" class="">Update Supplier Details</a></li>
-                                        <li><a href="#" class="">Add/Remove labels</a></li>
-                                        <li><a href="#" class="">Edit duty</a></li>
-                                        <li><a href="#" class="">Allot supporters</a></li>
-                                        <li><a href="#" class="">Re-allot</a></li>
-                                        <li><a href="#" class="">Send to Associate</a></li>
-                                        <li><a href="#" class="">Clear Allotment</a></li>
-                                        <li><a href="#" class="">Send info</a></li>
-                                        <li><a href="#" class="">Send driver/supplier location</a></li>
-                                        <li><a href="#" class="">Mark as driver/supplier arrived</a></li>
-                                        <li><a href="#" class="">Send details to supplier</a></li>
-                                        <li><a href="#" class="">Print duty slip</a></li>
-                                        <li><a href="#" class="">Create placard</a></li>
-                                        <li><a href="#" class="">Mark as dispatched</a></li>
-                                        <li><a href="#" class="">Close Duty</a></li>
-                                        <li><a href="#" class="">Add Advance Purchase Payment</a></li>
-                                        <li><a href="#" class="">View Booking</a></li>
-                                        <li><a href="#" class="">Cancel Duty</a></li>
-                                    </ul>
-                                    {{-- Completed --}}
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#" class="">Details</a></li>
-                                        <li><a href="#" class="">View duty slip</a></li>
-                                        <li><a href="#" class="">Edit duty slip</a></li>
-                                        <li><a href="#" class="">Clear duty slip</a></li>
-                                        <li><a href="#" class="">Add/Remove labels</a></li>
-                                        <li><a href="#" class="">Allot supporters</a></li>
-                                        <li><a href="#" class="">Print duty slip</a></li>
-                                        <li><a href="#" class="">Add Advance Purchase Payment</a></li>
-                                        <li><a href="#" class="">Request customer feedback</a></li>
-                                        <li><a href="#" class="">View Booking</a></li>
-                                    </ul>
-                                    {{-- Billed --}}
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#" class="">Details</a></li>
-                                        <li><a href="#" class="">View duty slip</a></li>
-                                        <li><a href="#" class="">Add/Remove labels</a></li>
-                                        <li><a href="#" class="">Allot supporters</a>
-                                        </li>
-                                        <li><a href="#" class="">Print duty slip</a></li>
-                                        <li><a href="#" class="">Add Advance Purchase
-                                                Payment</a></li>
-                                        <li><a href="#" class="">Add Petty Cash</a></li>
-                                        <li><a href="#" class="">View Booking</a></li>
-                                        <li><a href="#" class="">View Invoice</a></li>
-                                    </ul>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#" class="">Details</a></li>
-                                        <li><a href="#" class="">Add/Remove labels</a></li>
-                                        <li><a href="#" class="">View Booking</a></li>
-                                        <li><a href="#" class="">Restore Duty</a></li>
-                                    </ul>
-                                    {{-- Cancelled --}}
-                                    <ul class="dropdown-menu">
-                                        <li> <a class="dropdown-item" href="#">Edit</a> </li>
-                                        <li><a class="dropdown-item" href="#">Manage people</a></li>
-                                        <li><a class="dropdown-item" href="#">Custome fields</a></li>
-                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#create-corporate-account">Create Corporate Account</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-
+                        @foreach ($data as $data)
+                            <tr>
+                                <td>
+                                    <i class="fa-solid fa-phone text-success"></i>
+                                </td>
+                                <td>{{ $data->end_date }}</td>
+                                <td>Customer</td>
+                                <td>Passenger</td>
+                                <td>Vehicle Group</td>
+                                <td>Vehicle</td>
+                                <td>Driver/Supplier</td>
+                                <td>Duty Type</td>
+                                <td>Rep.Address</td>
+                                <td>Drop Address</td>
+                                <td>Remarks</td>
+                                <td>Operator Notes</td>
+                                <td>City</td>
+                                <td>Rep.Time</td>
+                                <td>Labels</td>
+                                <td>Status</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="fa-solid fa-gear"></i>
+                                        </button>
+                                        {{-- Booked --}}
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#" class="dropdown-item">Details</a></li>
+                                            <li><a href="#" class="dropdown-item">Unconfirm duty</a></li>
+                                            <li><a href="#" class="dropdown-item">Add/Remove labels</a></li>
+                                            <li><a href="#" class="dropdown-item">Edit duty</a></li>
+                                            <li><a href="#" class="dropdown-item">Allot vehicle &amp; driver</a>
+                                            </li>
+                                            <li><a href="#" class="dropdown-item">Send to Associate</a></li>
+                                            <li><a href="#" class="dropdown-item">Allot supporters</a></li>
+                                            <li><a href="#" class="dropdown-item">Print duty slip</a></li>
+                                            <li><a href="#" class="dropdown-item">View Booking</a></li>
+                                            <li><a href="#" class="dropdown-item">Cancel Duty</a></li>
+                                        </ul>
+                                        {{-- Details needed --}}
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#" class="dropdown-item">Details</a></li>
+                                            <li><a href="#" class="dropdown-item">Add Supplier Details</a></li>
+                                            <li><a href="#" class="dropdown-item">Add/Remove labels</a></li>
+                                            <li><a href="#" class="dropdown-item">Edit duty</a></li>
+                                            <li><a href="#" class="dropdown-item">Allot supporters</a></li>
+                                            <li><a href="#" class="dropdown-item">Re-allot</a></li>
+                                            <li><a href="#" class="dropdown-item">Send to Associate</a></li>
+                                            <li><a href="#" class="dropdown-item">Clear Allotment</a></li>
+                                            <li><a href="#" class="dropdown-item">Send details to supplier</a></li>
+                                            <li><a href="#" class="dropdown-item">Print duty slip</a></li>
+                                            <li><a href="#" class="dropdown-item">Create placard</a></li>
+                                            <li><a href="#" class="dropdown-item">View Booking</a></li>
+                                            <li><a href="#" class="dropdown-item">Cancel Duty</a></li>
+                                        </ul>
+                                        {{-- Allotted --}}
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#" class="">Details</a></li>
+                                            <li><a href="#" class="">Update Supplier Details</a></li>
+                                            <li><a href="#" class="">Add/Remove labels</a></li>
+                                            <li><a href="#" class="">Edit duty</a></li>
+                                            <li><a href="#" class="">Allot supporters</a></li>
+                                            <li><a href="#" class="">Re-allot</a></li>
+                                            <li><a href="#" class="">Send to Associate</a></li>
+                                            <li><a href="#" class="">Clear Allotment</a></li>
+                                            <li><a href="#" class="">Send info</a></li>
+                                            <li><a href="#" class="">Send driver/supplier location</a></li>
+                                            <li><a href="#" class="">Mark as driver/supplier arrived</a></li>
+                                            <li><a href="#" class="">Send details to supplier</a></li>
+                                            <li><a href="#" class="">Print duty slip</a></li>
+                                            <li><a href="#" class="">Create placard</a></li>
+                                            <li><a href="#" class="">Mark as dispatched</a></li>
+                                            <li><a href="#" class="">Close Duty</a></li>
+                                            <li><a href="#" class="">Add Advance Purchase Payment</a></li>
+                                            <li><a href="#" class="">View Booking</a></li>
+                                            <li><a href="#" class="">Cancel Duty</a></li>
+                                        </ul>
+                                        {{-- Completed --}}
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#" class="">Details</a></li>
+                                            <li><a href="#" class="">View duty slip</a></li>
+                                            <li><a href="#" class="">Edit duty slip</a></li>
+                                            <li><a href="#" class="">Clear duty slip</a></li>
+                                            <li><a href="#" class="">Add/Remove labels</a></li>
+                                            <li><a href="#" class="">Allot supporters</a></li>
+                                            <li><a href="#" class="">Print duty slip</a></li>
+                                            <li><a href="#" class="">Add Advance Purchase Payment</a></li>
+                                            <li><a href="#" class="">Request customer feedback</a></li>
+                                            <li><a href="#" class="">View Booking</a></li>
+                                        </ul>
+                                        {{-- Billed --}}
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#" class="">Details</a></li>
+                                            <li><a href="#" class="">View duty slip</a></li>
+                                            <li><a href="#" class="">Add/Remove labels</a></li>
+                                            <li><a href="#" class="">Allot supporters</a>
+                                            </li>
+                                            <li><a href="#" class="">Print duty slip</a></li>
+                                            <li><a href="#" class="">Add Advance Purchase
+                                                    Payment</a></li>
+                                            <li><a href="#" class="">Add Petty Cash</a></li>
+                                            <li><a href="#" class="">View Booking</a></li>
+                                            <li><a href="#" class="">View Invoice</a></li>
+                                        </ul>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#" class="">Details</a></li>
+                                            <li><a href="#" class="">Add/Remove labels</a></li>
+                                            <li><a href="#" class="">View Booking</a></li>
+                                            <li><a href="#" class="">Restore Duty</a></li>
+                                        </ul>
+                                        {{-- Cancelled --}}
+                                        <ul class="dropdown-menu">
+                                            <li> <a class="dropdown-item" href="#">Edit</a> </li>
+                                            <li><a class="dropdown-item" href="#">Manage people</a></li>
+                                            <li><a class="dropdown-item" href="#">Custome fields</a></li>
+                                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#create-corporate-account">Create Corporate Account</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
