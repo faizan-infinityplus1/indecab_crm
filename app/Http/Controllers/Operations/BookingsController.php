@@ -3,13 +3,30 @@
 namespace App\Http\Controllers\Operations;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
+use App\Models\MstCustomer;
+use App\Models\MstCatVehGroup;
+use App\Models\MstDutyType;
+use App\Models\MstLabel;
+use App\Models\MstMyCompany;
 use Illuminate\Http\Request;
 
 class BookingsController extends Controller
 {
     public function allBookings()
     {
-        return view("backend.admin.Operations.bookings.all.index");
+        $data = Booking::all();
+        // $customers = MstCustomer::all();
+        // $customers = MstCustomer::with('booking')->get();
+        $bookings = Booking::with("customers")->get();
+        // dd($bookings);
+        // dd($data);
+        $vehicleGroup = MstCatVehGroup::get();
+        $dutyTypes = MstDutyType::get();
+        $labels = MstLabel::get();
+        $mstMyCompany = MstMyCompany::where('is_active', true)->get();
+        // return view("backend.admin.duties.booking.manage", compact('booking', 'customers', 'vehicleGroup', 'dutyTypes', 'labels', 'mstMyCompany', 'bookingId', 'defaultCompanyId'));
+        return view("backend.admin.Operations.bookings.all.index", compact("data", 'bookings', 'vehicleGroup', 'dutyTypes', 'labels'));
     }
     public function bookedBookings()
     {

@@ -113,31 +113,38 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Date</td>
-                            <td>Customer</td>
-                            <td>Booked By</td>
-                            <td>Passenger</td>
-                            <td>Vehicle Group</td>
-                            <td>Duty Type</td>
-                            <td>Status</td>
-                            <td>Duties</td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="fa-solid fa-gear"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#" class="dropdown-item">Add Advance Payment Receipt</a></li>
-                                        <li><a href="#" class="dropdown-item">Edit Booking</a></li>
-                                        <li><a href="#" class="dropdown-item">Delete Booking</a></li>
-                                        <li><a href="#" class="dropdown-item">Send confirmation</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-
+                        @foreach ($data as $data)
+                            <tr>
+                                <td>{{ $data->start_date }} to {{ $data->end_date }}</td>
+                                {{-- @foreach ($customers->booking as $customers)
+                                @endforeach --}}
+                                {{-- <td>{{ $customers->name }}customer_idCustomer</td> --}}
+                                {{-- @foreach ($bookings as $bookings)
+                                    <td>{{ $customers->name }}customer_idCustomer</td>
+                                @endforeach --}}
+                                <td>Customer</td>
+                                <td>Booked By</td>
+                                <td>Passenger</td>
+                                <td>Vehicle Group</td>
+                                <td>Duty Type</td>
+                                <td>Status</td>
+                                <td>Duties</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="fa-solid fa-gear"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#" class="dropdown-item">Add Advance Payment Receipt</a></li>
+                                            <li><a href="#" class="dropdown-item">Edit Booking</a></li>
+                                            <li><a href="#" class="dropdown-item">Delete Booking</a></li>
+                                            <li><a href="#" class="dropdown-item">Send confirmation</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>

@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <form action={{ route('booking.createOrUpdate', $bookingId) }} method="post">
+            <form action={{ route('booking.createOrUpdate', $bookingId) }} method="post" enctype="multipart/form-data">
                 {{-- Create booking for Mumbai Cab Service. Change  --}}
                 @csrf
                 <input type="number" hidden class="form-control  border-bottom" id="booking_id" name="booking_id"
@@ -29,8 +29,8 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <p class="text-md-end text-center">
-                            Create booking for <b><span id="company_name">Mumbai Cab Service</span></b>. <button href=""
-                                data-bs-toggle="modal" data-bs-target="#sister-companies">Change</button>
+                            Create booking for <b><span id="company_name">Mumbai Cab Service</span></b>. <button
+                                href="" data-bs-toggle="modal" data-bs-target="#sister-companies">Change</button>
                             <span class="help-block"></span>
                         </p>
                     </div>
@@ -325,9 +325,22 @@
                     </div>
 
                     <div class="row">
+                        {{-- <div class="col-md-4 mb-3">
+                            <b>Booking attachments:</b>
+                            <label for="booking_attachments" class="text-primary">Upload attachment</label>.
+                            <input type="file" name="booking_attachments[]" id="booking_attachments" class="d-none">
+                            <div>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                                <input type="button" id="removeImage1" value="x" class="btn-rmv1" />
+                            </div>
+                        </div> --}}
                         <div class="col-md-4 mb-3">
                             <b>Booking attachments:</b>
-                            <a class="text-md-start text-center text-decoration-none">Upload attachment.</a>
+                            <label for="booking_attachments" class="text-primary">Upload attachment</label>
+                            <input type="file" name="booking_attachments[]" id="booking_attachments" class="d-none"
+                                multiple>
+
+                            <div id="fileList"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -355,7 +368,19 @@
                             class="text-decoration-none">support@indecab.com</a> to
                         learn how to enable this.
                     </div>
-                    <button type="submit" class="btn btn-primary rounded-1">SAVE</button>
+                    <div class="upload-section">
+                        <label for="fileUpload">Booking Attachments:</label>
+                        <!-- 'Upload Attachment' button triggers the hidden file input -->
+                        <label class="upload-btn" for="fileUpload">Upload Attachment</label>
+
+                        <!-- Multiple files allowed -->
+                        <input type="file" id="fileUpload" name="attachments[]" multiple>
+
+                        <!-- Display list of selected files -->
+                        <ul id="fileList" class="file-list"></ul>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary rounded-1">asdasdasd</button>
                 </div>
             </form>
         </div>
@@ -398,7 +423,8 @@
                             </thead>
                             <tbody>
                                 @foreach ($mstMyCompany as $company)
-                                    <tr onclick="selectCompany({{ $company->id }}, '{{ $company->name }}')" data-bs-dismiss="modal">
+                                    <tr onclick="selectCompany({{ $company->id }}, '{{ $company->name }}')"
+                                        data-bs-dismiss="modal">
                                         <td>
                                             {{ $company->name }}
                                         </td>
@@ -447,5 +473,84 @@
                 responsive: true
             });
         });
+        // document.getElementById("booking_attachments").addEventListener("change", function(event) {
+        //     let fileListDiv = document.getElementById("fileList");
+
+        //     Array.from(event.target.files).forEach((file, index) => {
+        //         let fileWrapper = document.createElement("div");
+        //         fileWrapper.classList.add("booking-attachments-file-item");
+
+        //         let fileName = document.createElement("p");
+        //         fileName.classList.add("mb-0");
+        //         fileName.textContent = file.name;
+
+        //         let removeBtn = document.createElement("button");
+        //         removeBtn.textContent = "x";
+        //         removeBtn.classList.add("btn-rmv1");
+        //         removeBtn.onclick = function() {
+        //             fileWrapper.remove();
+        //         };
+
+        //         fileWrapper.appendChild(fileName);
+        //         fileWrapper.appendChild(removeBtn);
+        //         fileListDiv.appendChild(fileWrapper);
+        //     });
+
+        //     // Reset input to allow re-selection of the same files
+        //     event.target.value = "";
+        // });
+        const fileUpload = document.getElementById('fileUpload');
+        const fileList = document.getElementById('fileList');
+
+        // We'll maintain an array of selected files here
+        let selectedFiles = [];
+
+        // Listen for changes in the file input
+        fileUpload.addEventListener('change', (e) => {
+            // Convert the FileList to an array
+            const newFiles = Array.from(e.target.files);
+
+            // Merge newly selected files with previously selected files
+            selectedFiles = selectedFiles.concat(newFiles);
+
+            // Render the file list in the UI
+            renderFileList();
+        });
+
+        // Display file names and a "Remove" button for each
+        function renderFileList() {
+            fileList.innerHTML = '';
+
+            selectedFiles.forEach((file, index) => {
+                const li = document.createElement('li');
+                li.textContent = file.name;
+
+                // Remove button
+                const removeBtn = document.createElement('span');
+                removeBtn.textContent = 'Remove';
+                removeBtn.classList.add('remove-file');
+                removeBtn.addEventListener('click', () => removeFile(index));
+
+                li.appendChild(removeBtn);
+                fileList.appendChild(li);
+            });
+        }
+
+        // Remove file from the array and re-render
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            renderFileList();
+            rebuildFileInput();
+        }
+
+        // Rebuild the underlying FileList in the <input> after removing files
+        function rebuildFileInput() {
+            // Create a new DataTransfer to build the updated FileList
+            const dataTransfer = new DataTransfer();
+            selectedFiles.forEach(file => {
+                dataTransfer.items.add(file);
+            });
+            fileUpload.files = dataTransfer.files;
+        }
     </script>
 @endsection
