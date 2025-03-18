@@ -1,10 +1,11 @@
-// const customers = {!! json_encode($customers)!!};
-console.log("customers", customers);
 let selectedCustomer = null;
 let passengerDetails = null;
 let bookedByCustomerDetails = null;
 let additionalContactDetails = null;
 let emergencyContactDetails = null;
+
+let selectedCompany = booking?.company_id ?? defaultCompanyId;
+
 function people(customer) {
     const passengers = [];
     const bookedByCustomers = [];
@@ -82,30 +83,30 @@ $("#customer").on("change", function () {
     additionalContactDetails = additionalContacts;
     emergencyContactDetails = emergencyContacts;
     bookedByCustomerDetails = bookedByCustomers;
-    console.log("additionalContacts", additionalContacts);
-    console.log("bookedByCustomer", bookedByCustomers);
-    const bookedByCustomerOptions = `${bookedByCustomers.map((customer) => `<option value="${customer.id}">${customer.name}</option>`).join("")}`;
-    $("#bookedByCustomer").html(`<option></option>${bookedByCustomerOptions}`);
-
-    // console.log('selectedCustomer', selectedCustomer);
+    // console.log("additionalContacts", additionalContacts);
+    const bookedByCustomerOptions = `${bookedByCustomers
+        .map((customer) => `<option value="${customer.name}" data-value="${customer.id}">${customer.name}</option>`)
+        .join("")}`;
+    $("#booked_by_customer_name").html(`<option></option>${bookedByCustomerOptions}`);
 });
 
 $(".hideElement").hide();
 
 // Booked by dom logic
 
-$("#bookedByCustomer").select2({
+$("#booked_by_customer_name").select2({
     tags: true,
 });
 
-$("#bookedByCustomer").on("change", function () {
-    const bookedByCustomer = selectedCustomer.people.find((person) => person.id == this.value);
+$("#booked_by_customer_name").on("change", function () {
+    const dataValue = $(this).find("option:selected").attr("data-value");
+    const bookedByCustomer = selectedCustomer.people.find((person) => person.id == dataValue);
     console.log("bookedByCustomer", bookedByCustomer);
-    $("#bookedByCustomerPhone").val(bookedByCustomer?.phone_no || "");
-    $("#bookedByCustomerEmail").val(bookedByCustomer?.email || "");
+    $("#booked_by_customer_id").val(bookedByCustomer?.id || "");
+    $("#booked_by_customer_phone").val(bookedByCustomer?.phone_no || "");
+    $("#booked_by_customer_email").val(bookedByCustomer?.email || "");
 });
 
-console.log("selectedCustomer", selectedCustomer);
 $(".toggleDivs").on("click", function () {
     $(".hideElement").show();
 });
@@ -125,10 +126,14 @@ function addContact(contact = {}) {
     let contactHtml = `
     <div class="row mb-3">
         <div class="col-md-3">
+            <input type="hidden" name="contacts[${contactIndex}][type]" value="contact">
+            <input type="hidden" name="contacts[${contactIndex}][id]" value="">
             <label for="" class="control-label">Additional Contact Name</label>
-            <select class="form-select border-bottom" name="contacts[${contactIndex}][id]" value="${contact.id || ""}" id="contacts_${contactIndex}">
+            <select class="form-select border-bottom" name="contacts[${contactIndex}][name]" value="${
+        contact.name || ""
+    }" id="contacts_${contactIndex}">
                 <option></option>
-                ${contacts.map((contact) => `<option value="${contact.id}">${contact.name}</option>`).join("")}
+                ${contacts.map((contact) => `<option value="${contact.name}" data-value="${contact.id}">${contact.name}</option>`).join("")}
             </select>
         </div>
         <div class="col-md-3">
@@ -156,7 +161,8 @@ function addContact(contact = {}) {
     contactContainer.appendChild(contactDiv);
     initializeSelect2(`#contacts_${contactIndex}`);
     $(`#contacts_${contactIndex}`).on("change", function () {
-        const selectedContact = additionalContactDetails.find((contact) => contact.id == this.value);
+        const dataValue = $(this).find("option:selected").attr("data-value");
+        const selectedContact = additionalContactDetails.find((contact) => contact.id == dataValue);
         const contactDiv = document.querySelector(`[contact-data-index="${contactIndex}"]`);
         contactDiv.querySelector('input[name="contacts[' + contactIndex + '][phone_no]"]').value = selectedContact?.phone_no || "";
         contactDiv.querySelector('input[name="contacts[' + contactIndex + '][email]"]').value = selectedContact?.email || "";
@@ -180,13 +186,17 @@ function addPassenger(passenger = {}) {
     <div class="row">
         <div class="col-md-3 mb-3">
             <div class="form-group">
+                <input type="hidden" name="passengers[${passengerIndex}][type]" value="passenger">
+                <input type="hidden" name="passengers[${passengerIndex}][id]" value="">
                 <label for="" class="control-label">Passenger Name <span></span></label>
                 <div class="awesomplete">
-                    <select class="form-select border-bottom passenger_name${passengerIndex}" name="passengers[${passengerIndex}][id]" value="${
-        passenger.id || ""
+                    <select class="form-select border-bottom passenger_name${passengerIndex}" name="passengers[${passengerIndex}][name]" value="${
+        passenger.name || ""
     }" id="passengers_${passengerIndex}">
                         <option></option>
-                        ${passengerDetails.map((passenger) => `<option value="${passenger.id}">${passenger.name}</option>`).join("")}
+                        ${passengerDetails
+                            .map((passenger) => `<option value="${passenger.name}" data-value="${passenger.id}">${passenger.name}</option>`)
+                            .join("")}
                     </select>
                     <span class="help-block"></span>
                 </div>
@@ -217,7 +227,8 @@ function addPassenger(passenger = {}) {
     passengerContainer.appendChild(passengerDiv);
     initializeSelect2(`#passengers_${passengerIndex}`);
     $(`#passengers_${passengerIndex}`).on("change", function () {
-        const selectedPassenger = passengerDetails.find((passenger) => passenger.id == this.value);
+        const dataValue = $(this).find("option:selected").attr("data-value");
+        const selectedPassenger = passengerDetails.find((passenger) => passenger.id == dataValue);
         const passengerDiv = document.querySelector(`[passenger-data-index="${passengerIndex}"]`);
         passengerDiv.querySelector('input[name="passengers[' + passengerIndex + '][phone_no]"]').value = selectedPassenger?.phone_no || "";
         passengerDiv.querySelector('input[name="passengers[' + passengerIndex + '][email]"]').value = selectedPassenger?.email || "";
@@ -264,3 +275,15 @@ $(document).ready(function () {
 $("#labels").select2({
     multiple: true,
 });
+
+// for company selection
+function selectCompany(companyId, companyName) {
+    selectedCompany = companyId;
+    $("#company_id").val(companyId);
+    $("#company_name").html(companyName);
+    // $("#sister-companies").modal("hide");
+    // $(".modal").modal("hide");
+    // $("body").removeAttr("style");
+    // $("body").removeClass("modal-open");
+    // $(".modal-backdrop").remove();
+}

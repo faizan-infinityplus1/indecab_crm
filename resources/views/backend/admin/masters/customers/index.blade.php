@@ -100,7 +100,7 @@
 
     <div class="card rounded-0 border-0 p-5">
         <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
-            <div class=>
+            <div>
                 <h4>Customers</h4>
             </div>
             <div class="text-end d-flex justify-content-end align-items-center gap-2">

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('mst_customers')->onDelete('cascade');
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('mst_my_companies')->onDelete('cascade');
             $table->string('from_service');
             $table->string('to_service');
             $table->string('vehicle_group');
@@ -29,15 +31,16 @@ return new class extends Migration
             $table->string('reporting_address')->nullable();
             $table->string('drop_address')->nullable();
             $table->string('short_reporting_address')->nullable();
-            $table->string('ticketNumber')->nullable();
+            $table->string('ticket_number')->nullable();
             $table->string('bill_to')->nullable();
             $table->integer('price');
             $table->integer('per_extra_km_rate')->nullable();
             $table->integer('per_extra_hr_rate')->nullable();
             $table->string('remarks')->nullable();
+            $table->string('driver_remark')->nullable();
             $table->string('operator_notes')->nullable();
             $table->string('labels')->nullable();
-            $table->boolean('isConfirmedBooking')->default(false);
+            $table->boolean('is_confirmed_booking')->default(false);
             $table->timestamps();
         });
     }

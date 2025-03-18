@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('gst_no')->nullable();
             $table->string('term_condition')->nullable();
             $table->boolean('is_active')->default(false);
+            $table->boolean('is_primary')->default(false);
             $table->boolean('is_inv_company')->default(false);
             $table->timestamps();
         });

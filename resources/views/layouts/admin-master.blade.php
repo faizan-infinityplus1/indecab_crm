@@ -51,20 +51,21 @@
                                 Duties
                             </a>
                             <ul class="dropdown-menu mt-2">
-                                <li><a class="dropdown-item" href="/booking/create">Add Booking</a></li>
-                                <li><a class="dropdown-item" href="#">Incoming</a></li>
-                                <li><a class="dropdown-item" href="#">Needs Attention</a></li>
+                                <li><a class="dropdown-item" href="{{ route('booking.create') }}">Add Booking</a></li>
+                                <li><a class="dropdown-item" href="{{ route('duties.incoming') }}">Incoming</a></li>
+                                <li><a class="dropdown-item" href="{{ route('duties.needsattention') }}">Needs
+                                        Attention</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Upcoming</a></li>
-                                <li><a class="dropdown-item" href="#">Booked</a></li>
-                                <li><a class="dropdown-item" href="#">Allotted</a></li>
-                                <li><a class="dropdown-item" href="#">Dispatched</a></li>
-                                <li><a class="dropdown-item" href="#">Completed</a></li>
-                                <li><a class="dropdown-item" href="#">Billed</a></li>
-                                <li><a class="dropdown-item" href="#">Cancelled</a></li>
-                                <li><a class="dropdown-item" href="#">All</a></li>
+                                <li><a class="dropdown-item" href="{{ route('duties.upcoming') }}">Upcoming</a></li>
+                                <li><a class="dropdown-item" href="{{ route('duties.booked') }}">Booked</a></li>
+                                <li><a class="dropdown-item" href="{{ route('duties.allotted') }}">Allotted</a></li>
+                                <li><a class="dropdown-item" href="{{ route('duties.dispatched') }}">Dispatched</a></li>
+                                <li><a class="dropdown-item" href="{{ route('duties.completed') }}">Completed</a></li>
+                                <li><a class="dropdown-item" href="{{ route('duties.billed') }}">Billed</a></li>
+                                <li><a class="dropdown-item" href="{{ route('duties.cancelled') }}">Cancelled</a></li>
+                                <li><a class="dropdown-item" href="{{ route('duties.all') }}">All</a></li>
                             </ul>
                         </li>
                         <li class="nav_menu_item dropdown">
@@ -75,7 +76,7 @@
                             </a>
                             <ul class="dropdown-menu mt-2">
                                 <li><a class="dropdown-item" href="#">Availability</a></li>
-                                <li><a class="dropdown-item" href="#">Bookings</a></li>
+                                <li><a class="dropdown-item" href="{{ route('bookings.all') }}">Bookings</a></li>
                                 <li><a class="dropdown-item" href="#">Billing</a></li>
                                 <li><a class="dropdown-item" href="#">Receipts</a></li>
                                 <li><a class="dropdown-item" href="#">Payment Gateway</a></li>
@@ -127,7 +128,8 @@
                                 </li>
                                 <li><a class="dropdown-item" href="{{ route('mydrivers.index') }}">My Drivers</a>
                                 </li>
-                                <li><a class="dropdown-item" href="{{ route('vehicles.index') }}">My Vehicles</a></li>
+                                <li><a class="dropdown-item" href="{{ route('vehicles.index') }}">My Vehicles</a>
+                                </li>
                                 <li><a class="dropdown-item" href="{{ route('dutysupporters.index') }}">Duty
                                         Supporters</a></li>
                                 <li><a class="dropdown-item" href="{{ route('labels.index') }}">Labels</a></li>

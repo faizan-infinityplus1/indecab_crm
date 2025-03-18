@@ -17,15 +17,20 @@
                 </div>
             </div>
 
-            <form action="" method="post">
+            <form action={{ route('booking.createOrUpdate', $bookingId) }} method="post" enctype="multipart/form-data">
                 {{-- Create booking for Mumbai Cab Service. Change  --}}
+                @csrf
+                <input type="number" hidden class="form-control  border-bottom" id="booking_id" name="booking_id"
+                    value="{{ old('booking_id', $booking->id ?? -1) }}">
+                <input type="number" hidden class="form-control  border-bottom" id="company_id" name="company_id"
+                    value="{{ old('company_id', $booking->company_id ?? $defaultCompanyId) }}">
                 <div class="row mb-3">
                     <div class="col-md-6 col-12">
                     </div>
                     <div class="col-md-6 col-12">
                         <p class="text-md-end text-center">
-                            Create booking for <b>Mumbai Cab Service</b>. <a href="" data-bs-toggle="modal"
-                                data-bs-target="#sister-companies">Change</a>
+                            Create booking for <b><span id="company_name">Mumbai Cab Service</span></b>. <button
+                                href="" data-bs-toggle="modal" data-bs-target="#sister-companies">Change</button>
                             <span class="help-block"></span>
                         </p>
                     </div>
@@ -36,7 +41,8 @@
                 <div class="row mb-3">
                     <div class="col-md-10 col-12">
                         <label for="name" class="control-label">Customer <span class="text-danger">*</span></label>
-                        <select class="form-select border-bottom" name="customer" id="customer">
+                        <select class="form-select border-bottom" name="customer_id" id="customer"
+                            value="{{ old('customer_id', $booking->customer_id ?? '') }}">
                             <option></option>
                             @foreach ($customers as $customer)
                                 <option value="{{ $customer->id }}" data-name="{{ $customer->name }}"
@@ -72,8 +78,14 @@
                         <div class="js-booking-form-bookedBy">
                             <div class="row mb-3">
                                 <div class="col-md-3">
+                                    <input type="hidden" name="type" value="bookedBy">
+                                    <input type="hidden" name="booked_by_customer_id" id="booked_by_customer_id">
+                                    <input type="hidden" name="booked_by_id" id="booked_by_id"
+                                        value="{{ old('id', $bookedByCustomer->id ?? '') }}">
                                     <label for="" class="control-label">Booked By Name</label>
-                                    <select class="form-select border-bottom" name="bookedByCustomer" id="bookedByCustomer">
+                                    <select class="form-select border-bottom" name="booked_by_customer_name"
+                                        id="booked_by_customer_name"
+                                        value="{{ old('booked_by_customer_name', $bookedByCustomer->booked_by_customer_name ?? '') }}">
 
                                     </select>
                                 </div>
@@ -81,8 +93,9 @@
                                     <div class="form-group">
                                         <label for="" class="control-label">Booked By Phone Number
                                             <span></span></label>
-                                        <input type="text" class="form-control" name="bookedByCustomerPhone"
-                                            id="bookedByCustomerPhone">
+                                        <input type="text" class="form-control" name="booked_by_customer_phone"
+                                            id="booked_by_customer_phone"
+                                            value="{{ old('booked_by_customer_phone', $bookedByCustomer->booked_by_customer_phone ?? '') }}">
                                         <span class="help-block"></span>
                                     </div>
                                 </div>
@@ -90,8 +103,9 @@
                                     <div class="form-group">
                                         <label for="" class="control-label">Booked By Email
                                             <span></span></label>
-                                        <input type="text" class="form-control" name="bookedByCustomerEmail"
-                                            id="bookedByCustomerEmail">
+                                        <input type="text" class="form-control" name="booked_by_customer_email"
+                                            id="booked_by_customer_email"
+                                            value="{{ old('booked_by_customer_email', $bookedByCustomer->booked_by_customer_email ?? '') }}">
                                         <span class="help-block"></span>
                                     </div>
                                 </div>
@@ -126,20 +140,23 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">From (Service Location) <span
                                     class="text-danger">*</span></label>
-                            <select class="form-select border-bottom" name="fromservice" id="fromservice">
+                            <select class="form-select border-bottom" name="from_service" id="fromservice"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}" required>
                             </select>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">To</label>
-                            <select class="form-select border-bottom" name="toservice" id="toservice">
+                            <select class="form-select border-bottom" name="to_service" id="toservice"
+                                value="{{ old('to_service', $booking->to_service ?? '') }}" required>
                             </select>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Vehicle Group <span
                                     class="text-danger">*</span></label>
-                            <select class="form-select border-bottom" name="vehicleGroup" id="vehicleGroup">
+                            <select class="form-select border-bottom" name="vehicle_group" id="vehicleGroup"
+                                value="{{ old('vehicle_group', $booking->vehicle_group ?? '') }}" required>
                                 <option value="">(Select one)</option>
                                 @foreach ($vehicleGroup as $vehicle)
                                     <option value="{{ $vehicle->id }}">{{ $vehicle->name }}</option>
@@ -150,7 +167,8 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Duty Type <span
                                     class="text-danger">*</span></label>
-                            <select class="form-select border-bottom" name="dutyType" id="dutyType">
+                            <select class="form-select border-bottom" name="duty_type" id="dutyType"
+                                value="{{ old('duty_type', $booking->duty_type ?? '') }}" required>
                                 <option value="">(Select one)</option>
                                 @foreach ($dutyTypes as $dutyType)
                                     <option value="{{ $dutyType->id }}">{{ $dutyType->duty_name }}</option>
@@ -163,13 +181,18 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Start Date <span
                                     class="text-danger">*</span></label>
-                            <input type="date" class="form-control  border-bottom">
+
+                            <input type="date" class="form-control  border-bottom" name="start_date"
+                                value="{{ old('start_date', $booking->start_date ?? now()->format('Y-m-d')) }}"
+                                min="<?= date('Y-m-d') ?>" required>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">End Date <span
                                     class="text-danger">*</span></label>
-                            <input type="date" class="form-control  border-bottom">
+                            <input type="date" class="form-control  border-bottom" name="end_date"
+                                value="{{ old('end_date', $booking->end_date ?? now()->format('Y-m-d')) }}"
+                                min="<?= date('Y-m-d') ?>" required>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-3">
@@ -178,7 +201,8 @@
                                     <label class="control-label">Rep. Time <span class="text-danger">*</span></label>
                                     {{-- <input type="text" class="form-control  border-bottom"> --}}
                                     <select class="form-select border-bottom" aria-label="Default select example"
-                                        name="" id="rep_time">
+                                        name="reporting_time" id="rep_time"
+                                        value="{{ old('from_service', $booking->from_service ?? '') }}" required>
 
                                     </select>
                                     <span class="help-block"></span>
@@ -187,7 +211,8 @@
                                     <label class="control-label">Est. Drop Time</label>
                                     {{-- <input type="text" class="form-control  border-bottom"> --}}
                                     <select class="form-select border-bottom" aria-label="Default select example"
-                                        name="" id="drop_time">
+                                        name="drop_time" id="drop_time"
+                                        value="{{ old('from_service', $booking->from_service ?? '') }}">
 
                                     </select>
                                     <span class="help-block"></span>
@@ -197,7 +222,9 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Start from garage before (in min) <span
                                     class="text-danger">*</span></label>
-                            <input type="number" class="form-control" min="0" max="1440" value="60">
+                            <input type="number" class="form-control" min="0" max="1440" value="60"
+                                name="garage_time" value="{{ old('from_service', $booking->from_service ?? '') }}"
+                                required>
                             <span class="help-block"></span>
                         </div>
                     </div>
@@ -205,12 +232,14 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="" class="control-label">Reporting Address <span></span></label>
-                            <textarea class="form-control" name="reportinAddress" id="reportinAddress" rows="4"></textarea>
+                            <textarea class="form-control" name="reporting_address" id="reportinAddress" rows="4"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}"></textarea>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="" class="control-label">Drop Address<span></span></label>
-                            <textarea class="form-control" name="dropAddress" id="dropAddress" rows="4"></textarea>
+                            <textarea class="form-control" name="drop_address" id="dropAddress" rows="4"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}"></textarea>
                             <span class="help-block"></span>
                         </div>
                     </div>
@@ -219,50 +248,49 @@
                         <div class="col-md-4 mb-3">
                             <label for="" class="control-label">Short Reporting Address (to be shown in duty
                                 listing)</label>
-                            <input type="text" name="" id="" class="form-control" maxlength="80">
+                            <input type="text" name="short_reporting_address" id="" class="form-control"
+                                maxlength="80" value="{{ old('from_service', $booking->from_service ?? '') }}" />
                             <div class="help-block"></div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="" class="control-label">Flight/Train Number</label>
-                            <input type="text" name="" id="" class="form-control" maxlength="80">
+                            <input type="text" name="ticket_number" id="" class="form-control"
+                                maxlength="80" value="{{ old('from_service', $booking->from_service ?? '') }}">
                             <div class="help-block"></div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="" class="control-label">No branches added.</label>
-                            {{-- <label for="" class="control-label">No branches added.</label> --}}
-                            {{-- <select class="form-select border-bottom" name="" id="">
-                                <option value=""> Company / Customer (Default)</option>
-                                <option value="">Company (Credit Card)</option>
-                                <option value="">Company (Direct Payment)</option>
-                                <option value="">Personal</option>
-                            </select> --}}
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Bill To </label>
-                            <select class="form-select border-bottom" name="" id="">
-                                <option value=""> Company / Customer (Default)</option>
-                                <option value="">Company (Credit Card)</option>
-                                <option value="">Company (Direct Payment)</option>
-                                <option value="">Personal</option>
+                            <select class="form-select border-bottom" name="bill_to" id=""
+                                value="{{ old('from_service', $booking->from_service ?? '') }}">
+                                <option value="Company / Customer (Default)">Company / Customer (Default)</option>
+                                <option value="Company (Credit Card)">Company (Credit Card)</option>
+                                <option value="Company (Direct Payment)">Company (Direct Payment)</option>
+                                <option value="Personal">Personal</option>
                             </select>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">Price <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" name="price"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}" required>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label for="" class="control-label">Per Extra KM Rate</label>
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" name="per_km_rate"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}">
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label for="" class="control-label">Per Extra Hr Rate</label>
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" name="per_extra_hr_rate"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}">
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-2 mb-3">
@@ -278,38 +306,48 @@
                     <div class="row ">
                         <div class="col-md-4 mb-3">
                             <label for="" class="from-label">Remarks</label>
-                            <textarea class="form-control" name="" id="" rows="4"></textarea>
+                            <textarea class="form-control" name="remarks" id="" rows="4"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}"></textarea>
                             <span class="help-block"></span>
                         </div>
-                        <div class="col-md-4 mb-3 hideElement">
+                        <div class="col-md-4 mb-3">
                             <label for="" class="from-label">Driver/Supplier Remarks </label>
-                            <textarea class="form-control" name="" id="" rows="4"></textarea>
+                            <textarea class="form-control" name="driver_remark" id="" rows="4"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}"></textarea>
                             <span class="help-block"></span>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="" class="control-label">Operator notes</label>
-                            <textarea class="form-control" name="" id="" rows="4"></textarea>
+                            <textarea class="form-control" name="operator_notes" id="" rows="4"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}"></textarea>
                             <span class="help-block"></span>
                         </div>
                     </div>
 
-                    <p class="mb-3">
-                        <a class="text-md-start text-center text-decoration-none toggleDivs cursor-pointer">Add
-                            separate remarks
-                            for
-                            driver/supplier.</a>
-                    </p>
                     <div class="row">
+                        {{-- <div class="col-md-4 mb-3">
+                            <b>Booking attachments:</b>
+                            <label for="booking_attachments" class="text-primary">Upload attachment</label>.
+                            <input type="file" name="booking_attachments[]" id="booking_attachments" class="d-none">
+                            <div>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                                <input type="button" id="removeImage1" value="x" class="btn-rmv1" />
+                            </div>
+                        </div> --}}
                         <div class="col-md-4 mb-3">
                             <b>Booking attachments:</b>
-                            <a class="text-md-start text-center text-decoration-none">Upload attachment.</a>
+                            <label for="booking_attachments" class="text-primary">Upload attachment</label>
+                            <input type="file" name="booking_attachments[]" id="booking_attachments" class="d-none"
+                                multiple>
+
+                            <div id="fileList"></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="" class="control-label">Labels</label>
-                            <select class="form-select border-bottom" name="labels[]" id="labels"
-                                multiple="multiple">
+                            <select class="form-select border-bottom" name="labels[]" id="labels" multiple="multiple"
+                                value="{{ old('from_service', $booking->from_service ?? '') }}">
                                 @foreach ($labels as $label)
                                     <option value="{{ $label->id }}">{{ $label->label_name }}</option>
                                 @endforeach
@@ -318,9 +356,10 @@
                     </div>
                     {{-- check-box --}}
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="1" name="is_gst_primary"
-                            id="is_gst_primary">
-                        <label class="form-check-label" for="is_gst_primary">
+                        <input class="form-check-input" type="checkbox"
+                            value="{{ old('from_service', $booking->from_service ?? 1) }}" name="is_confirmed_booking"
+                            id="is_confirmed_booking">
+                        <label class="form-check-label" for="is_confirmed_booking">
                             Mark as unconfirmed booking
                         </label>
                     </div>
@@ -329,7 +368,19 @@
                             class="text-decoration-none">support@indecab.com</a> to
                         learn how to enable this.
                     </div>
-                    <button type="submit" class="btn btn-primary rounded-1">SAVE</button>
+                    <div class="upload-section">
+                        <label for="fileUpload">Booking Attachments:</label>
+                        <!-- 'Upload Attachment' button triggers the hidden file input -->
+                        <label class="upload-btn" for="fileUpload">Upload Attachment</label>
+
+                        <!-- Multiple files allowed -->
+                        <input type="file" id="fileUpload" name="attachments[]" multiple>
+
+                        <!-- Display list of selected files -->
+                        <ul id="fileList" class="file-list"></ul>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary rounded-1">asdasdasd</button>
                 </div>
             </form>
         </div>
@@ -347,12 +398,12 @@
     </div>
 
     <!-- Sister Companies Modal Start-->
-    <div class="modal fade" id="sister-companies" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="sister-companies" tabindex="-1" aria-labelledby="sister-companiesLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
             <div class="modal-content rounded-0 border-0">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sister Companies</h1>
+                    <h1 class="modal-title fs-5" id="sister-companiesLabel">Sister Companies</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -372,7 +423,8 @@
                             </thead>
                             <tbody>
                                 @foreach ($mstMyCompany as $company)
-                                    <tr>
+                                    <tr onclick="selectCompany({{ $company->id }}, '{{ $company->name }}')"
+                                        data-bs-dismiss="modal">
                                         <td>
                                             {{ $company->name }}
                                         </td>
@@ -382,12 +434,7 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                            {{-- <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Phone Number</th>
-                                </tr>
-                            </tfoot> --}}
+
                         </table>
                     </div>
                     <div>
@@ -399,8 +446,6 @@
 
                 <div class="modal-footer justify-content-start position-sticky bottom-0  bg-white">
                     <div>
-                        <button type="button" class="btn btn-light border rounded-1"
-                            data-bs-dismiss="modal">Reset</button>
                         <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                     </div>
                     {{-- <button type="button" class="btn btn-light border border-secondary-subtle rounded-1" data-bs-dismiss="modal">Download Import Format</button> --}}
@@ -417,6 +462,9 @@
     <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script>
         const customers = {!! json_encode($customers) !!};
+        const booking = {!! json_encode($booking) !!};
+        const defaultCompanyId = {!! json_encode($defaultCompanyId) !!};
+        const companies = {!! json_encode($mstMyCompany) !!};
     </script>
     <script src="{{ asset('admin/js/bookingcab.js') }}"></script>
     <script>
@@ -425,5 +473,84 @@
                 responsive: true
             });
         });
+        // document.getElementById("booking_attachments").addEventListener("change", function(event) {
+        //     let fileListDiv = document.getElementById("fileList");
+
+        //     Array.from(event.target.files).forEach((file, index) => {
+        //         let fileWrapper = document.createElement("div");
+        //         fileWrapper.classList.add("booking-attachments-file-item");
+
+        //         let fileName = document.createElement("p");
+        //         fileName.classList.add("mb-0");
+        //         fileName.textContent = file.name;
+
+        //         let removeBtn = document.createElement("button");
+        //         removeBtn.textContent = "x";
+        //         removeBtn.classList.add("btn-rmv1");
+        //         removeBtn.onclick = function() {
+        //             fileWrapper.remove();
+        //         };
+
+        //         fileWrapper.appendChild(fileName);
+        //         fileWrapper.appendChild(removeBtn);
+        //         fileListDiv.appendChild(fileWrapper);
+        //     });
+
+        //     // Reset input to allow re-selection of the same files
+        //     event.target.value = "";
+        // });
+        const fileUpload = document.getElementById('fileUpload');
+        const fileList = document.getElementById('fileList');
+
+        // We'll maintain an array of selected files here
+        let selectedFiles = [];
+
+        // Listen for changes in the file input
+        fileUpload.addEventListener('change', (e) => {
+            // Convert the FileList to an array
+            const newFiles = Array.from(e.target.files);
+
+            // Merge newly selected files with previously selected files
+            selectedFiles = selectedFiles.concat(newFiles);
+
+            // Render the file list in the UI
+            renderFileList();
+        });
+
+        // Display file names and a "Remove" button for each
+        function renderFileList() {
+            fileList.innerHTML = '';
+
+            selectedFiles.forEach((file, index) => {
+                const li = document.createElement('li');
+                li.textContent = file.name;
+
+                // Remove button
+                const removeBtn = document.createElement('span');
+                removeBtn.textContent = 'Remove';
+                removeBtn.classList.add('remove-file');
+                removeBtn.addEventListener('click', () => removeFile(index));
+
+                li.appendChild(removeBtn);
+                fileList.appendChild(li);
+            });
+        }
+
+        // Remove file from the array and re-render
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            renderFileList();
+            rebuildFileInput();
+        }
+
+        // Rebuild the underlying FileList in the <input> after removing files
+        function rebuildFileInput() {
+            // Create a new DataTransfer to build the updated FileList
+            const dataTransfer = new DataTransfer();
+            selectedFiles.forEach(file => {
+                dataTransfer.items.add(file);
+            });
+            fileUpload.files = dataTransfer.files;
+        }
     </script>
 @endsection
