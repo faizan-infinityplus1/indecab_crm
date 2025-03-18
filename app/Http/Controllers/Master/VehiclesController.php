@@ -10,7 +10,9 @@ class VehiclesController extends Controller
 {
     public function index()
     {
-        return view('backend.admin.masters.vehicles.index');
+        $mstvehicles = MstVehicle::active()->get();
+
+        return view('backend.admin.masters.vehicles.index',compact('mstvehicles'));
     }
     public function manage(Request $request)
     {

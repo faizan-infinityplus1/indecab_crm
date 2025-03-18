@@ -103,15 +103,7 @@
                                                 <div class="panel border rounded">
                                                     <div class="panel-heading bg-light p-3">Addresses</div>
                                                     <div class="panel-body p-3">
-                                                        <div class="mb-3 validator-error">
-                                                            <label for="address_file_name" class="form-label">File Name
-                                                            </label>
-                                                            <input type="text" class="form-control  border-bottom"
-                                                                id="address_file_name"
-                                                                name="address_file_name_{{ $data->id }}_update"
-                                                                value="{{ old('address_file_name', $data->address_file_name ?? '') }}">
-                                                            <span class="warning-msg-block"></span>
-                                                        </div>
+                                                        
                                                         <div class="mb-3 validator-error">
                                                             <label for="address_type" class="form-label">Type</label>
                                                             <select class="form-select border-bottom"
@@ -713,13 +705,7 @@
                             <div class="panel border rounded">
                                 <div class="panel-heading bg-light p-3">Addresses</div>
                                 <div class="panel-body p-3">
-                                    <div class="mb-3 validator-error">
-                                        <label for="address_file_name${childCount}" class="form-label">File Name </label>
-                                        <input type="text" class="form-control  border-bottom"
-                                            id="address_file_name${childCount}" name="address_file_name_${childCount}_new"
-                                            data-index=${childCount} >
-                                        <span class="warning-msg-block"></span>
-                                    </div>
+                                    
                                     <div class="mb-3 validator-error">
                                         <label for="address_type${childCount}" class="form-label">Type</label>
                                         <select class="form-select border-bottom"
