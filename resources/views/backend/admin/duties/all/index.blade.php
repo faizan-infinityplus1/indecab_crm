@@ -171,7 +171,8 @@
                                                     data-bs-target="#details">Details</a>
                                             </li>
                                             <li><a class="dropdown-item" onclick="unconfirmDuty()">Unconfirm duty</a></li>
-                                            <li><a href="#" class="dropdown-item">Add/Remove labels</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
                                             <li><a href="#" class="dropdown-item">Edit duty</a></li>
                                             <li><a href="#" class="dropdown-item">Allot vehicle &amp; driver</a>
                                             </li>
@@ -427,7 +428,38 @@
             </div>
         </div>
     </div>
-    {{-- Create Corporate Account --}}
+    {{-- details close --}}
+    {{-- add remove lable --}}
+    <div class="modal fade" id="add-remove-lable" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5">
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="" class="control-label">Labels</label>
+                            <select class="form-select border-bottom" name="labels[]" id="labels" multiple>
+                                <option value="asdasdasdsd">asdasdasd</option>
+                                {{-- @foreach ($labels as $label)
+                                    <option value="{{ $label->id }}">{{ $label->label_name }}</option>
+                                @endforeach --}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start px-5">
+                    <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- add remove lable close --}}
 
 @endsection
 
@@ -435,6 +467,10 @@
 @section('extrajs')
     <script>
         $(document).ready(function() {
+            $("#labels").select2({
+                placeholder: "Select an Option",
+                allowClear: true
+            });
             $('.datatable').DataTable({
                 responsive: true
             });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Duties;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\MstLabel;
 use Illuminate\Http\Request;
 
 class DutyController extends Controller
@@ -89,7 +90,8 @@ class DutyController extends Controller
     public function allDuties()
     {
         $data = Booking::all();
-        return view("backend.admin.duties.all.index", compact('data'));
+        $labels = MstLabel::get();
+        return view("backend.admin.duties.all.index", compact('data', 'labels'));
     }
     // incomingDuties
     public function incomingDuties()

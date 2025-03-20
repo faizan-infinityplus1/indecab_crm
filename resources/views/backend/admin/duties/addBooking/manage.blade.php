@@ -345,7 +345,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <label for="" class="control-label">Labels</label>
+                            <label for="labels" class="control-label">Labels</label>
                             <select class="form-select border-bottom" name="labels[]" id="labels" multiple="multiple"
                                 value="{{ old('from_service', $booking->from_service ?? '') }}">
                                 @foreach ($labels as $label)
