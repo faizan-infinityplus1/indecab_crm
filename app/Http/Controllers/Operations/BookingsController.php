@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 
 class BookingsController extends Controller
 {
+    public function bookings()
+    {
+        return view("backend.admin.duties.booking.manage");
+    }
     public function allBookings()
     {
         $data = Booking::all();
