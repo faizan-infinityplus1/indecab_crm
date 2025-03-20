@@ -62,16 +62,22 @@ class MstCustomer extends Model
             }
         });
     }
-     // Define the relationship
+    // Define the relationship
     public function customerGroups()
     {
         return $this->hasMany(MstCustomerGroup::class, 'id'); // assuming 'customer_id' is the foreign key in MstCustomerGroup
     }
-    public function mstCustomerDutyType(){
+    public function mstCustomerDutyType()
+    {
         return $this->hasMany(MstCustomerDutyType::class, 'customer_id'); // assuming 'customer_id' is the foreign key in MstCustomerGroup
     }
     public function people()
     {
         return $this->hasMany(MstCustomerPeople::class, 'customer_id');
+    }
+
+    public function booking()
+    {
+        return $this->hasMany(Booking::class, 'customer_id');
     }
 }

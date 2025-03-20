@@ -48,8 +48,10 @@ class BookingController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
+        dd(vars: 'i m here');
         //
         try {
+            dd($request->attachments);
             // Validate request (handled by FormRequest)
             $validatedData = $request->validated();
             // dd($validatedData);
@@ -65,14 +67,15 @@ class BookingController extends Controller
             );
             // create booking customer relationships
             // dd($booking);
-            $bookedByCustomer = [[
-                'name' => $validatedData['booked_by_customer_name'],
-                'id' => $validatedData['booked_by_id'],
-                'phone' => $validatedData['booked_by_customer_phone'],
-                'email' => $validatedData['booked_by_customer_email'],
-                'type' => $validatedData['type'],
-            ]];
-
+            $bookedByCustomer = [
+                [
+                    'name' => $validatedData['booked_by_customer_name'],
+                    'id' => $validatedData['booked_by_id'],
+                    'phone' => $validatedData['booked_by_customer_phone'],
+                    'email' => $validatedData['booked_by_customer_email'],
+                    'type' => $validatedData['type'],
+                ]
+            ];
             $contacts = $validatedData['contacts'] ?? [];
             $passengers = $validatedData['passengers'] ?? [];
 

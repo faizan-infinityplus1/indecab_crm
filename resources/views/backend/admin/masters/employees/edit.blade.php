@@ -376,11 +376,7 @@
                                                 <div
                                                     class="panel-heading bg-light py-2 px-3 d-flex justify-content-between align-items-center">
                                                     <div>Files</div>
-                                                    <div>
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-id="{{ $data->id ?? '' }}"><i
-                                                                class="fa-solid fa-xmark"></i></button>
-                                                    </div>
+                                                   
                                                 </div>
                                                 <div class="panel-body p-3">
                                                     <div class="mb-3">

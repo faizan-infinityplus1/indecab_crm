@@ -151,8 +151,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($mstvehicles as $data)
                     <tr>
-                        <td>A Das</td>
+                        <td>{{$data->name}}</td>
                         <td>NA</td>
                         <td>9840729952</td>
                         <td>NA</td>
@@ -183,103 +184,9 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>A Das</td>
-                        <td>NA</td>
-                        <td>9840729952</td>
-                        <td>NA</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
-                                        data-bs-target="#activity-log"
-                                        data-id="1"
-                                        data-name="asdqwe"
-                                        data-created="asd"
-                                        data-updates="asd"
-                                        {{-- data-id="{{ $data->id }}"
-                                        data-name="{{ $data->duty_name }}"
-                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
-                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
-                                        >View Activity Logs</a></li>
-                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A Das</td>
-                        <td>NA</td>
-                        <td>9840729952</td>
-                        <td>NA</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
-                                        data-bs-target="#activity-log"
-                                        data-id="1"
-                                        data-name="asdqwe"
-                                        data-created="asd"
-                                        data-updates="asd"
-                                        {{-- data-id="{{ $data->id }}"
-                                        data-name="{{ $data->duty_name }}"
-                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
-                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
-                                        >View Activity Logs</a></li>
-                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A Das</td>
-                        <td>NA</td>
-                        <td>9840729952</td>
-                        <td>NA</td>
-                        <td>
-                            <div class="text-success">Active</div>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa-solid fa-gear"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" 
-                                        data-bs-target="#activity-log"
-                                        data-id="1"
-                                        data-name="asdqwe"
-                                        data-created="asd"
-                                        data-updates="asd"
-                                        {{-- data-id="{{ $data->id }}"
-                                        data-name="{{ $data->duty_name }}"
-                                        data-created="{{ $data->created_at->format('H:i d-m-Y') }}"
-                                        data-updates="{{ $data->updated_at->format('H:i d-m-Y') }}" --}}
-                                        >View Activity Logs</a></li>
-                                    <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-
+                @endforeach
+           
+               
                 </tbody>
                 <tfoot>
                     <tr>

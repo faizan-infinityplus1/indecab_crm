@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Duties;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 
 class DutyController extends Controller
@@ -87,7 +88,8 @@ class DutyController extends Controller
     // allDuties
     public function allDuties()
     {
-        return view("backend.admin.duties.all.index");
+        $data = Booking::all();
+        return view("backend.admin.duties.all.index", compact('data'));
     }
     // incomingDuties
     public function incomingDuties()
