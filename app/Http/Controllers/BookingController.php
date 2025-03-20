@@ -98,6 +98,14 @@ class BookingController extends Controller
                     $booking->bookedBy()->create($contact);
                 }
             }
+
+            // attachement logic
+
+            $filePath = '';
+            if ($request->hasFile("image")) {
+                $file = $request->file("image");
+                $filePath = $file->store('mydriver-images', 'public');
+            }
             if ($booking) {
                 connectify('success', 'Booking Added', 'Booking has been added successfully !');
             } else {
