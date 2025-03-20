@@ -443,13 +443,12 @@
                 </div>
                 <div class="modal-body px-5">
                     <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label for="" class="control-label">Labels</label>
-                            <select class="form-select border-bottom" name="labels[]" id="labels" multiple>
-                                <option value="asdasdasdsd">asdasdasd</option>
-                                {{-- @foreach ($labels as $label)
+                        <div class="mb-3">
+                            <label for="labels" class="control-label w-100">Labels</label>
+                            <select class="form-select border-bottom" name="labels[]" id="labels">
+                                @foreach ($labels as $label)
                                     <option value="{{ $label->id }}">{{ $label->label_name }}</option>
-                                @endforeach --}}
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -536,12 +535,227 @@
                     <div class="tab-content">
                         <!-- My Vehicles Tab Content -->
                         <div id="duty-my-vehicles" class="tab-pane fade show active">
-                            My Vehicles
+                            <select class="form-select border-bottom" name="vehicles[]" id="vehicles">
+                                <option value="asdasdasdsd">vehicle 1 </option>
+                                <option value="asdasdasdsd">vehicle 2 </option>
+                                <option value="asdasdasdsd">vehicle 3 </option>
+                            </select>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover datatable" style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Group</th>
+                                            <th>Driver</th>
+                                            <th>Availability</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Phone Number</td>
+                                            <td>Group</td>
+                                            <td>Driver</td>
+                                            <td><span class="text-success">Available</span></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Group</th>
+                                            <th>Driver</th>
+                                            <th>Availability</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
                         </div>
 
                         <!-- My Suppliers Tab Content -->
                         <div id="duty-my-suppliers" class="tab-pane fade">
-                            My Suppliers
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover datatable" style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Vehicle Number</th>
+                                            <th>Group</th>
+                                            <th>City</th>
+                                            <th>Document status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Phone Number</td>
+                                            <td>Vehicle Number</td>
+                                            <td>Group</td>
+                                            <td>City</td>
+                                            <td>Document status</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Vehicle Number</th>
+                                            <th>Group</th>
+                                            <th>City</th>
+                                            <th>Document status</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start px-5">
+                    <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Allot vehicle & driver close --}}
+    {{-- Allot vehicle & driver --}}
+    <div class="modal fade" id="allot-vehicle-driver" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Send Duty #67920002-1 to Network</h1>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5">
+                    <table class="table table-bordered table-striped table-hover">
+                        <tbody>
+                            <tr>
+                                <th class="fw-medium">ID</th>
+                                <td>#50249209-4</td>
+                                <th class="fw-medium">Status</th>
+                                <td> Booked</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">Start Date</th>
+                                <td>31-03-2025</td>
+                                <th class="fw-medium">End Date</th>
+                                <td>31-03-2025</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">Garage Start Time</th>
+                                <td> 07:00</td>
+                                <th class="fw-medium">Reporting Time</th>
+                                <td>08:00</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">From City</th>
+                                <td> Mumbai</td>
+                                <th class="fw-medium">To City</th>
+                                <td> Mumbai</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">Duty Type</th>
+                                <td colspan="3">8H 80KMs</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">Vehicle Group</th>
+                                <td colspan="3">Sedan</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">Reporting Address</th>
+                                <td colspan="3">Mumbai Airport T1</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">Drop Address</th>
+                                <td colspan="3"><span class="text-secondary">NA</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="reset" class="btn btn-light border">Select All Suppliers</button>
+
+                    <div class="tab-content">
+                        <!-- My Vehicles Tab Content -->
+                        <div id="duty-my-vehicles" class="tab-pane fade show active">
+                            <select class="form-select border-bottom" name="vehicles[]" id="vehicles">
+                                <option value="asdasdasdsd">vehicle 1 </option>
+                                <option value="asdasdasdsd">vehicle 2 </option>
+                                <option value="asdasdasdsd">vehicle 3 </option>
+                            </select>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover datatable" style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Group</th>
+                                            <th>Driver</th>
+                                            <th>Availability</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Phone Number</td>
+                                            <td>Group</td>
+                                            <td>Driver</td>
+                                            <td><span class="text-success">Available</span></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Group</th>
+                                            <th>Driver</th>
+                                            <th>Availability</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <!-- My Suppliers Tab Content -->
+                        <div id="duty-my-suppliers" class="tab-pane fade">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover datatable" style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Vehicle Number</th>
+                                            <th>Group</th>
+                                            <th>City</th>
+                                            <th>Document status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Phone Number</td>
+                                            <td>Vehicle Number</td>
+                                            <td>Group</td>
+                                            <td>City</td>
+                                            <td>Document status</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Phone Number</th>
+                                            <th>Vehicle Number</th>
+                                            <th>Group</th>
+                                            <th>City</th>
+                                            <th>Document status</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -560,7 +774,6 @@
     <script>
         $(document).ready(function() {
             $("#labels").select2({
-                placeholder: "Select an Option",
                 allowClear: true
             });
             $('.datatable').DataTable({

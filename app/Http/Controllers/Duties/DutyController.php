@@ -90,7 +90,7 @@ class DutyController extends Controller
     public function allDuties()
     {
         $data = Booking::all();
-        $labels = MstLabel::get();
+        $labels = MstLabel::all();
         return view("backend.admin.duties.all.index", compact('data', 'labels'));
     }
     // incomingDuties
