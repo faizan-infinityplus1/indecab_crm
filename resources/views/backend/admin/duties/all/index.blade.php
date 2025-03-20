@@ -174,7 +174,8 @@
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
                                             <li><a href="#" class="dropdown-item">Edit duty</a></li>
-                                            <li><a href="#" class="dropdown-item">Allot vehicle &amp; driver</a>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-vehicle-driver">Allot vehicle & driver</a>
                                             </li>
                                             <li><a href="#" class="dropdown-item">Send to Associate</a></li>
                                             <li><a href="#" class="dropdown-item">Allot supporters</a></li>
@@ -460,6 +461,97 @@
         </div>
     </div>
     {{-- add remove lable close --}}
+    {{-- Allot vehicle & driver --}}
+    <div class="modal fade" id="allot-vehicle-driver" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Allot Duty</h1>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5">
+                    <table class="table table-bordered table-striped table-hover">
+                        <tbody>
+                            <tr>
+                                <th class="fw-medium">ID</th>
+                                <td>#50249209-4</td>
+                                <th class="fw-medium">Status</th>
+                                <td> Booked</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">Start Date</th>
+                                <td>31-03-2025</td>
+                                <th class="fw-medium">End Date</th>
+                                <td>31-03-2025</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">Garage Start Time</th>
+                                <td> 07:00</td>
+                                <th class="fw-medium">Reporting Time</th>
+                                <td>08:00</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">From City</th>
+                                <td> Mumbai</td>
+                                <th class="fw-medium">To City</th>
+                                <td> Mumbai</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">Duty Type</th>
+                                <td colspan="3">8H 80KMs</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">Vehicle Group</th>
+                                <td colspan="3">Sedan</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">Reporting Address</th>
+                                <td colspan="3">Mumbai Airport T1</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-medium">Drop Address</th>
+                                <td colspan="3"><span class="text-secondary">NA</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="reset" class="btn btn-light border">Send to Associate</button>
+
+                    <ul class="nav nav-tabs border-0 w-100" id="tabs-nav">
+                        <!-- My Vehicles Tab Link -->
+                        <li class="nav-item w-50 mb-3 active" id="details-tab">
+                            <a href="#duty-my-vehicles"
+                                class="p-3 d-block text-center text-decoration-none duties-nav-tabs active"
+                                data-bs-toggle="tab">My Vehicles</a>
+                        </li>
+                        <!-- My Suppliers Tab Link -->
+                        <li class="nav-item w-50 mb-3" id="activity-tab">
+                            <a href="#duty-my-suppliers"
+                                class="p-3 d-block text-center text-decoration-none duties-nav-tabs"
+                                data-bs-toggle="tab">My Suppliers</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <!-- My Vehicles Tab Content -->
+                        <div id="duty-my-vehicles" class="tab-pane fade show active">
+                            My Vehicles
+                        </div>
+
+                        <!-- My Suppliers Tab Content -->
+                        <div id="duty-my-suppliers" class="tab-pane fade">
+                            My Suppliers
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start px-5">
+                    <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Allot vehicle & driver close --}}
 
 @endsection
 
