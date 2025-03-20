@@ -17,11 +17,6 @@ use Illuminate\Validation\ValidationException;
 
 class BookingsController extends Controller
 {
-<<<<<<< HEAD
-    public function bookings()
-    {
-        return view("backend.admin.duties.booking.manage");
-=======
 
 
     /**
@@ -160,7 +155,6 @@ class BookingsController extends Controller
     public function destroy(Booking $booking)
     {
         //
->>>>>>> 887108e573fdda51261d7d43f826e573ee842bd6
     }
     public function allBookings()
     {
