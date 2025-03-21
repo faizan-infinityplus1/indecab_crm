@@ -184,7 +184,8 @@
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#print-duty-slip">Print duty slip</a></li>
                                             <li><a href="#" class="dropdown-item">View Booking</a></li>
-                                            <li><a href="#" class="dropdown-item">Cancel Duty</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#cancel-duty">Cancel Duty</a></li>
                                         </ul>
                                         {{-- Details needed --}}
                                         <ul class="dropdown-menu dropdown-menu-right">
@@ -749,67 +750,67 @@
                     <div class="bg-light mb-3 p-3">
                         <form action="">
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="add_customer_name">
+                                <input class="form-check-input" type="checkbox" id="add_customer_name">
                                 <label class="form-check-label" for="add_customer_name">
                                     Add customer name
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="add_booked_by_name">
+                                <input class="form-check-input" type="checkbox" id="add_booked_by_name">
                                 <label class="form-check-label" for="add_booked_by_name">
                                     Add booked by name
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="add_all_passenger_names">
+                                <input class="form-check-input" type="checkbox" id="add_all_passenger_names">
                                 <label class="form-check-label" for="add_all_passenger_names">
                                     Add all passenger names and numbers
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="hide_duty_type_name">
+                                <input class="form-check-input" type="checkbox" id="hide_duty_type_name">
                                 <label class="form-check-label" for="hide_duty_type_name">
                                     Hide duty type name
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="hide_vehicle_group_name">
+                                <input class="form-check-input" type="checkbox" id="hide_vehicle_group_name">
                                 <label class="form-check-label" for="hide_vehicle_group_name">
                                     Hide vehicle group name
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="hide_vehicle_name">
+                                <input class="form-check-input" type="checkbox" id="hide_vehicle_name">
                                 <label class="form-check-label" for="hide_vehicle_name">
                                     Hide vehicle name
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="hide_remarks">
+                                <input class="form-check-input" type="checkbox" id="hide_remarks">
                                 <label class="form-check-label" for="hide_remarks">
                                     Hide remarks
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="add_garage_start_time">
+                                <input class="form-check-input" type="checkbox" id="add_garage_start_time">
                                 <label class="form-check-label" for="add_garage_start_time">
                                     Add garage start time
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="add_released_km_time">
+                                <input class="form-check-input" type="checkbox" id="add_released_km_time">
                                 <label class="form-check-label" for="add_released_km_time">
                                     Add released km/time section
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="add_entire_booking_date_range">
+                                <input class="form-check-input" type="checkbox" id="add_entire_booking_date_range">
                                 <label class="form-check-label" for="add_entire_booking_date_range">
                                     Add entire booking date range
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" value="" id="hide_business_letter_head">
+                                <input class="form-check-input" type="checkbox" id="hide_business_letter_head">
                                 <label class="form-check-label" for="hide_business_letter_head">
                                     Hide business letter head
                                 </label>
@@ -817,15 +818,17 @@
                             <p>Duty Slip Design</p>
                             <div class="row">
                                 <div class="col-6">
-                                    <button type="button" class="btn btn-light border w-100" id="compact">Compact</button>
+                                    <button type="button" class="btn btn-light border w-100"
+                                        id="compact">Compact</button>
                                 </div>
                                 <div class="col-6">
-                                    <button type="submit" class="btn btn-primary rounded-1 w-100" id="full-page">Full-page</button>
+                                    <button type="submit" class="btn btn-primary rounded-1 w-100"
+                                        id="full-page">Full-page</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    
+
 
                 </div>
                 <div class="modal-footer justify-content-start px-5">
@@ -836,6 +839,89 @@
         </div>
     </div>
     {{-- Print duty slip close --}}
+    {{-- Cancel duty --}}
+    <div class="modal fade" id="cancel-duty" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cancel Duty <span>#20608345-1</span>
+                        </h1>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5">
+                    <p class="text-danger mb-3">Are you sure you want to cancel this duty?</p>
+                    <p class="mb-3">Select phone numbers and emails you want to send cancellation information to:</p>
+                    <table class="w-100 table-bordered mb-3">
+                        <thead>
+                            <tr>
+                                <th class="p-1">Name</th>
+                                <th class="p-1">Send SMS</th>
+                                <th class="p-1">Send Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{-- component --}}
+                            <tr>
+                                <td class="p-1">Custom</td>
+                                <td class="p-1"><input type="text" class="form-control  border-bottom"
+                                        name="name" id="name"></td>
+                                <td class="p-1"><input type="text" class="form-control  border-bottom"
+                                        name="name" id="name"></td>
+                            </tr>
+                            {{-- component end here --}}
+                        </tbody>
+                    </table>
+                    <p>
+                        <span class="bg-danger text-white p-1 rounded-1">New</span> <i>Separate multiple email, phone &
+                            whatsapp numbers by comma [ , ] or semi-colon [ ; ] in custom row to send the details to all of
+                            them in one click.</i>
+                    </p>
+                    <p class="mb-1">Message</p>
+                    <div class="bg-light mb-3 p-3">
+                        <div class="bg-white p-3 shadow-sm rounded-1">
+                            <p class="mb-0">
+                                Booking cancelled
+                                <br>
+                                Name: ramesh
+                                <br>
+                                Date: 20/03/2025
+                                <br>
+                                Regards Travel (9870306295).
+                                <br>
+                                - Sent via Indecab
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="mb-3 d-flex justify-content-between">
+                        <button type="button" class="btn btn-light border mx-auto" id="">Copy SMS Text</button>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cancellation_reason" class="form-label">Cancellation reason </label>
+                        <textarea class="form-control" rows="3" name="cancellation_reason" id="cancellation_reason"></textarea>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="">
+                        <label class="form-check-label" for="">
+                            Send a single email to selected email IDs.
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between px-5">
+                    <div>
+                        <button type="button" class="btn btn-light border" id="">Copy Email</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel Duty</button>
+                        <button type="submit" class="btn btn-primary rounded-1">Keep Duty</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Cancel duty close --}}
 
 @endsection
 
@@ -866,9 +952,9 @@
 
             $('#add_entire_booking_date_range').change(function() {
                 if ($(this).prop('checked')) {
-                    $('#compact').prop('disabled', true);  
+                    $('#compact').prop('disabled', true);
                 } else {
-                    $('#compact').prop('disabled', false); 
+                    $('#compact').prop('disabled', false);
                 }
             });
 
