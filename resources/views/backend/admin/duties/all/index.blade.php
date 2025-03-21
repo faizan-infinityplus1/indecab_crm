@@ -177,9 +177,12 @@
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#allot-vehicle-driver">Allot vehicle & driver</a>
                                             </li>
-                                            <li><a href="#" class="dropdown-item">Send to Associate</a></li>
-                                            <li><a href="#" class="dropdown-item">Allot supporters</a></li>
-                                            <li><a href="#" class="dropdown-item">Print duty slip</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-send-to-associate">Send to Associate</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#print-duty-slip">Print duty slip</a></li>
                                             <li><a href="#" class="dropdown-item">View Booking</a></li>
                                             <li><a href="#" class="dropdown-item">Cancel Duty</a></li>
                                         </ul>
@@ -620,8 +623,8 @@
         </div>
     </div>
     {{-- Allot vehicle & driver close --}}
-    {{-- Allot vehicle & driver --}}
-    <div class="modal fade" id="allot-vehicle-driver" tabindex="-1" aria-labelledby="exampleModalLabel"
+    {{-- Send to Associate --}}
+    <div class="modal fade" id="allot-send-to-associate" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
             <div class="modal-content rounded-0 border-0">
@@ -676,103 +679,103 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button type="reset" class="btn btn-light border">Select All Suppliers</button>
-
-                    <div class="tab-content">
-                        <!-- My Vehicles Tab Content -->
-                        <div id="duty-my-vehicles" class="tab-pane fade show active">
-                            <select class="form-select border-bottom" name="vehicles[]" id="vehicles">
-                                <option value="asdasdasdsd">vehicle 1 </option>
-                                <option value="asdasdasdsd">vehicle 2 </option>
-                                <option value="asdasdasdsd">vehicle 3 </option>
-                            </select>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover datatable" style="width:100%;">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Phone Number</th>
-                                            <th>Group</th>
-                                            <th>Driver</th>
-                                            <th>Availability</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>Phone Number</td>
-                                            <td>Group</td>
-                                            <td>Driver</td>
-                                            <td><span class="text-success">Available</span></td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Phone Number</th>
-                                            <th>Group</th>
-                                            <th>Driver</th>
-                                            <th>Availability</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-
-                        </div>
-
-                        <!-- My Suppliers Tab Content -->
-                        <div id="duty-my-suppliers" class="tab-pane fade">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover datatable" style="width:100%;">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Phone Number</th>
-                                            <th>Vehicle Number</th>
-                                            <th>Group</th>
-                                            <th>City</th>
-                                            <th>Document status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>Phone Number</td>
-                                            <td>Vehicle Number</td>
-                                            <td>Group</td>
-                                            <td>City</td>
-                                            <td>Document status</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Phone Number</th>
-                                            <th>Vehicle Number</th>
-                                            <th>Group</th>
-                                            <th>City</th>
-                                            <th>Document status</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
+                    <div class="mb-3">
+                        <select class="form-select border-bottom" aria-label="Default select example" name="base_city"
+                            id="base_city">
+                            <option class="d-none" value="">Select an option</option>
+    
+                        </select>
                     </div>
+                    <button type="reset" class="btn btn-light border">Select All Suppliers</button>
+                    
                 </div>
-                <div class="modal-footer justify-content-start px-5">
-                    <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                <div class="modal-footer justify-content-between px-5">
+                    <div>
+                        <button type="submit" class="btn btn-primary rounded-1">Send Request</button>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-light border rounded-1"  data-bs-toggle="modal"
+                        data-bs-target="#allot-vehicle-driver">Allot My Driver/Supplier</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    {{-- Allot vehicle & driver close --}}
+    {{-- Send to Associate close --}}
+
+    {{-- Allot supporters --}}
+    <div class="modal fade" id="allot-supporters" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Supporters</h1>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5">
+                    <p>
+                        Showing supporters that can be booked for duty <span>#67920002-1</span>:
+                    </p>
+                    <div class="mb-3">
+                        <select class="form-select border-bottom" name=""
+                            id="">
+                            <option class="" value="">Select an option</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-start px-5">
+                    <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary rounded-1">Allot</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Allot supporters close --}}
+    {{-- Print duty slip --}}
+    <div class="modal fade" id="print-duty-slip" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Print Duty Slip for <span>#67920002-1</span></h1>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5">
+                    <p>
+                        Showing supporters that can be booked for duty <span>#67920002-1</span>:
+                    </p>
+                    <div class="mb-3">
+                        <select class="form-select border-bottom" name=""
+                            id="">
+                            <option class="" value="">Select an option</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-start px-5">
+                    <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary rounded-1">Allot</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Print duty slip close --}}
 
 @endsection
 
 
 @section('extrajs')
     <script>
-        $(document).ready(function() {
+            $(document).ready(function() {
+
+            document.getElementById("base_city").innerHTML = generateCityOptions();
+
             $("#labels").select2({
                 allowClear: true
             });
