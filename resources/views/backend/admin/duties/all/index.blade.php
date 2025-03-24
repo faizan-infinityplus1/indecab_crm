@@ -214,84 +214,99 @@
                                                     data-bs-target="#cancel-duty">Cancel Duty</a></li>
                                         </ul> --}}
                                         {{-- Allotted --}}
-                                        <ul class="dropdown-menu dropdown-menu-right">
+                                        {{-- <ul class="dropdown-menu dropdown-menu-right">
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#details">Details</a></li>
+                                                    data-bs-target="#details">Details</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-duty-to-supplier">Update Supplier Details</a></li>
+                                                    data-bs-target="#allot-duty-to-supplier">Update Supplier Details</a>
+                                            </li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#">Edit duty</a></li>
+                                                    data-bs-target="#">Edit duty</a></li>
 
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                                    data-bs-target="#allot-supporters">Allot supporters</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
+                                                    data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-send-to-associate">Send to Associate</a></li>
-                                            <li><a href="#" class="dropdown-item" onclick="clearAllotment()">Clear Allotment</a></li>
+                                                    data-bs-target="#allot-send-to-associate">Send to Associate</a></li>
+                                            <li><a href="#" class="dropdown-item" onclick="clearAllotment()">Clear
+                                                    Allotment</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#send-info">Send info</a></li>
+                                                    data-bs-target="#send-info">Send info</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#">Send driver/supplier location</a></li>
+                                                    data-bs-target="#">Send driver/supplier location</a></li>
 
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#">Mark as driver/supplier arrived</a></li>
+                                                    data-bs-target="#">Mark as driver/supplier arrived</a></li>
 
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#send-details-to-supplier">Send details to supplier</a></li>
+                                                    data-bs-target="#send-details-to-supplier">Send details to supplier</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                                    data-bs-target="#print-duty-slip">Print duty slip</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#create-placard">Create placard</a></li>
+                                                    data-bs-target="#create-placard">Create placard</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#">Mark as dispatched</a></li>
+                                                    data-bs-target="#">Mark as dispatched</a></li>
 
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#">Close Duty</a></li>
+                                                    data-bs-target="#close-duty">Close Duty</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#advance-purchase-payment">Add Advance Purchase Payment</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#">View Booking</a></li>
 
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#">Add Advance Purchase Payment</a></li>
-
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#">View Booking</a></li>
-
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#cancel-duty">Cancel Duty</a></li>
-                                        </ul>
+                                                    data-bs-target="#cancel-duty">Cancel Duty</a></li>
+                                        </ul> --}}
                                         {{-- Completed --}}
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="">Details</a></li>
-                                            <li><a href="#" class="">View duty slip</a></li>
-                                            <li><a href="#" class="">Edit duty slip</a></li>
-                                            <li><a href="#" class="">Clear duty slip</a></li>
-                                            <li><a href="#" class="">Add/Remove labels</a></li>
-                                            <li><a href="#" class="">Allot supporters</a></li>
-                                            <li><a href="#" class="">Print duty slip</a></li>
-                                            <li><a href="#" class="">Add Advance Purchase Payment</a></li>
-                                            <li><a href="#" class="">Request customer feedback</a></li>
-                                            <li><a href="#" class="">View Booking</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#details">Details</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#view-duty-slip">View duty slip</a></li>
+
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#">Edit duty slip</a></li>
+
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#">Clear duty slip</a></li>
+
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#advance-purchase-payment">Add Advance Purchase
+                                                    Payment</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#details">Request customer feedback</a></li>
+
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#details">View Booking</a></li>
                                         </ul>
                                         {{-- Billed --}}
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="">Details</a></li>
-                                            <li><a href="#" class="">View duty slip</a></li>
-                                            <li><a href="#" class="">Add/Remove labels</a></li>
-                                            <li><a href="#" class="">Allot supporters</a>
+                                            <li><a href="#" class="dropdown-item">Details</a></li>
+                                            <li><a href="#" class="dropdown-item">View duty slip</a></li>
+                                            <li><a href="#" class="dropdown-item">Add/Remove labels</a></li>
+                                            <li><a href="#" class="dropdown-item">Allot supporters</a>
                                             </li>
-                                            <li><a href="#" class="">Print duty slip</a></li>
-                                            <li><a href="#" class="">Add Advance Purchase
+                                            <li><a href="#" class="dropdown-item">Print duty slip</a></li>
+                                            <li><a href="#" class="dropdown-item">Add Advance Purchase
                                                     Payment</a></li>
-                                            <li><a href="#" class="">Add Petty Cash</a></li>
-                                            <li><a href="#" class="">View Booking</a></li>
-                                            <li><a href="#" class="">View Invoice</a></li>
+                                            <li><a href="#" class="dropdown-item">Add Petty Cash</a></li>
+                                            <li><a href="#" class="dropdown-item">View Booking</a></li>
+                                            <li><a href="#" class="dropdown-item">View Invoice</a></li>
                                         </ul>
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="">Details</a></li>
-                                            <li><a href="#" class="">Add/Remove labels</a></li>
-                                            <li><a href="#" class="">View Booking</a></li>
-                                            <li><a href="#" class="">Restore Duty</a></li>
+                                            <li><a href="#" class="dropdown-item">Details</a></li>
+                                            <li><a href="#" class="dropdown-item">Add/Remove labels</a></li>
+                                            <li><a href="#" class="dropdown-item">View Booking</a></li>
+                                            <li><a href="#" class="dropdown-item">Restore Duty</a></li>
                                         </ul>
                                         {{-- Cancelled --}}
                                         <ul class="dropdown-menu">
@@ -398,6 +413,13 @@
                                     <tr>
                                         <th class="fw-medium">Customer</th>
                                         <td colspan="3"> Vijay Vaidyanathan</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Supplier</th>
+                                        <td colspan="3">Shanu Shaikh - ( <i class="fa-solid fa-phone text-success"></i>
+                                            <a href="tel:+9619900011" class="text-decoration-none ">
+                                                9619900011 </a>)
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th class="fw-medium">Booked By</th>
@@ -1448,8 +1470,10 @@
                 </div>
                 <div class="modal-footer justify-content-between px-5">
                     <div>
-                        <button type="button" class="btn btn-primary rounded-1" id="placard-print"><i class="fa-solid fa-print"></i> Print</button>
-                        <button type="button" class="btn btn-primary rounded-1"><i class="fa-solid fa-envelope"></i> Send Email</button>
+                        <button type="button" class="btn btn-primary rounded-1" id="placard-print"><i
+                                class="fa-solid fa-print"></i> Print</button>
+                        <button type="button" class="btn btn-primary rounded-1"><i class="fa-solid fa-envelope"></i>
+                            Send Email</button>
                     </div>
                     <div>
                         <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
@@ -1466,7 +1490,8 @@
             <div class="modal-content rounded-0 border-0">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Send Notifications for <span> #16331828-5</span></h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Send Notifications for <span>
+                                #16331828-5</span></h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
@@ -1555,7 +1580,8 @@
                                         </td>
                                         <td class="p-1">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="" disabled>
+                                                <input class="form-check-input" type="checkbox" id=""
+                                                    disabled>
                                                 <label class="form-check-label" for="">
                                                     Invalid email
                                                 </label>
@@ -1617,7 +1643,8 @@
                     </div>
                     <hr>
                     <div class="mb-3 d-flex justify-content-between">
-                        <button type="button" class="btn btn-light border mx-auto" id="">Copy SMS Text</button>
+                        <button type="button" class="btn btn-light border mx-auto" id="">Copy SMS
+                            Text</button>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -1656,13 +1683,544 @@
                 </div>
                 <div class="modal-footer justify-content-end px-5">
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary rounded-1" >Send</button>
+                    <button type="button" class="btn btn-primary rounded-1">Send</button>
                 </div>
             </div>
         </div>
     </div>
     {{-- Send info close --}}
 
+    {{-- close duty --}}
+    <div class="modal fade" id="close-duty" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Close Duty - <span> #16331828-7</span></h1>
+                        <p>Use this in case if the driver doesn't have phone to generate digital duty slip, or in case of
+                            external suppliers.</p>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5">
+                    <p>You will be able to create custom duty slip for supplier once this duty slip is marked complete.</p>
+                    <table class="w-100 table-bordered mb-3">
+                        <thead>
+                            <tr>
+                                <th class="p-1">Customer</th>
+                                <td class="p-1" colspan="3">Mukund. H R Doshi</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{-- new component --}}
+                            <tr>
+                                <th class="p-1">
+                                    <p>
+                                        Vehicle
+                                    </p>
+                                </th>
+                                <td class="p-1">
+                                    <p>Innova Crysta (MH03EG3151)</p>
+                                    <small><i> Innova Crysta </i></small>
+                                </td>
+                                <th class="p-1">
+                                    <p>
+                                        driver
+                                    </p>
+                                </th>
+                                <td class="p-1">
+                                    <p>
+                                        ADIL PATEL
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="p-1">
+                                    <p>Price</p>
+                                </th>
+                                <td class="p-1">
+                                    <p>₹ 3,500.00</p>
+                                </td>
+                                <th class="p-1">
+                                    <p>Passenger</p>
+                                </th>
+                                <td class="p-1">
+                                    <p>Mukund. H R Doshi</p>
+                                    <p><a href="#" class="text-decoration-none">View customer notes</a></p>
+                                </td>
+                            </tr>
+                            {{-- new component end here --}}
+                        </tbody>
+                    </table>
+                    <form action="">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label"> Duty Start Date <span
+                                            class="text-danger">*</span> </label>
+                                    <input type="date" class="form-control  border-bottom" id="">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label"> Duty End Date <span
+                                            class="text-danger">*</span> </label>
+                                    <input type="date" class="form-control  border-bottom" id="">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label"> Duty Start Km <span
+                                            class="text-danger">*</span> </label>
+                                    <input type="number" class="form-control  border-bottom" id="">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label"> Duty Type <span
+                                            class="text-danger">*</span> </label>
+                                    <select class="form-select border-bottom" name="" id="">
+                                        <option value="">add time here</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label"> Duty Start Time <span
+                                            class="text-danger">*</span> </label>
+                                    <select class="form-select border-bottom" name="" id="">
+                                        <option value="">add time here</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label"> Duty End Time <span
+                                            class="text-danger">*</span> </label>
+                                    <select class="form-select border-bottom" name="" id="">
+                                        <option value="">add time here</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label"> Duty End Km <span
+                                            class="text-danger">*</span> </label>
+                                    <input type="number" class="form-control  border-bottom" id="">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label"> Vehicle Group <span
+                                            class="text-danger">*</span> </label>
+                                    <select class="form-select border-bottom" name="" id="">
+                                        <option value="">add time here</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        Auto-switch duty types
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label"> Price </label>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <input type="number" class="form-control border-bottom" id="">
+                                        </div>
+                                        <div class="col-4">
+                                            <button type="button" class="btn btn-light border w-100"
+                                                id="">Get Price</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label"> Per Extra KM Rate </label>
+                                    <input type="number" class="form-control  border-bottom" id="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label"> Per Extra Hr Rate </label>
+                                    <input type="number" class="form-control  border-bottom" id="">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="w-100 table-bordered mb-3">
+                        <thead>
+                            <tr>
+                                <th class="p-1">
+                                    T.Time
+                                </th>
+                                <th class="p-1">
+                                    Ex.Time
+                                </th>
+                                <th class="p-1">
+                                    Ex.Time Cost
+                                </th>
+                                <th class="p-1">
+                                    T.KM
+                                </th>
+                                <th class="p-1">
+                                    Ex.KM
+                                </th>
+                                <th class="p-1">
+                                    Ex.KM Cost
+                                </th>
+                                <th class="p-1">
+                                    Sub Total
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class="p-1"></td>
+                                <td class="p-1"></td>
+                                <td class="p-1">
+                                    <p class="mb-0">0.00</p>
+                                </td>
+                                <td class="p-1">
+                                    <p class="mb-0 ">
+                                        <span class="text-secondary">NA</span>
+                                    </p>
+                                </td>
+                                <td class="p-1"></td>
+                                <td class="p-1">0.00</td>
+                                <td class="p-1"></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                    <div class="panel border rounded mb-3">
+                        <div class="panel-heading bg-light p-3">Chargeable driver allowances</div>
+                        <div class="p-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Daily allowance</label>
+                                        <input type="number" class="form-control  border-bottom" id="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Over time</label>
+                                        <input type="number" class="form-control  border-bottom" id="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Outstation allowance</label>
+                                        <input type="number" class="form-control  border-bottom" id="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Outstation overnight allowance</label>
+                                        <input type="number" class="form-control  border-bottom" id="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Sunday allowance</label>
+                                        <input type="number" class="form-control  border-bottom" id="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Early start allowance</label>
+                                        <input type="number" class="form-control  border-bottom" id="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Night allowance</label>
+                                        <input type="number" class="form-control  border-bottom" id="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Extra duty allowance</label>
+                                        <input type="number" class="form-control  border-bottom" id="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Billing Items:</p>
+                    <table class="w-100 table mb-3 border-top">
+                        <thead>
+                            <tr>
+                                <th class="p-1">
+                                    Item
+                                </th>
+                                <th class="p-1">
+                                    Amount
+                                </th>
+                                <th class="p-1">
+                                    Image
+                                </th>
+                                <th class="p-1">
+
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="p-1">
+                                    <div class="mb-3">
+                                        <select class="form-select border-bottom" name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cancellation_reason" class="form-label">Description </label>
+                                        <textarea class="form-control" rows="3" name="" id=""></textarea>
+                                    </div>
+                                </td>
+                                <td class="p-1">
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control  border-bottom" id="">
+                                    </div>
+                                </td>
+                                <td class="p-1">
+                                    <div class="billing-items-image-container"></div>
+                                    <div class="mb-3">
+                                        <button type="button" class="btn btn-light border w-100"
+                                            id="">Choose file</button>
+                                    </div>
+                                </td>
+                                <td class="p-1">
+                                    <div class="mb-3">
+                                        <button type="button" class="btn btn-danger rounded-1">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-1">
+                                    <div class="mb-3">
+                                        <select class="form-select border-bottom" name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cancellation_reason" class="form-label">Description </label>
+                                        <textarea class="form-control" rows="3" name="" id=""></textarea>
+                                    </div>
+                                </td>
+                                <td class="p-1">
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control  border-bottom" id="">
+                                    </div>
+                                </td>
+                                <td class="p-1">
+                                    <div class="billing-items-image-container"></div>
+                                    <div class="mb-3">
+                                        <button type="button" class="btn btn-light border w-100"
+                                            id="">Choose file</button>
+                                    </div>
+                                </td>
+                                <td class="p-1">
+                                    <div class="mb-3">
+                                        <button type="button" class="btn btn-danger rounded-1">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" id="" class="btn btn-primary rounded-1 mb-3">Add another
+                        item</button>
+                    <p class="mb-2">
+                        Scanned Duty Slip
+                    </p>
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-light border" id="">Choose file</button>
+                    </div>
+                    <div class="mb-3 d-none">
+                        <div class="scanned-duty-Slip-image-container"></div>
+                        <button type="button" class="btn btn-light border" id="">Remove</button>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cancellation_reason" class="form-label">Remarks </label>
+                        <textarea class="form-control" rows="3" name="" id=""></textarea>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="">
+                        <label class="form-check-label" for="">
+                            Mark passenger did not show at reporting address
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-end px-5">
+                    <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary rounded-1" id="">Close & View Duty
+                        Slip</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- close duty close --}}
+    {{-- Advance Purchase Payment --}}
+    <div class="modal fade" id="create-placard" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Advance Purchase Payment</h1>
+                        <small>Booking Id: <span> #16331828-5</span></small>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5">
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Duty <span class="text-danger">*</span> </label>
+                        <input type="date" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Amount <span class="text-danger">*</span> </label>
+                        <input type="number" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cancellation_reason" class="form-label">Comment </label>
+                        <textarea class="form-control" rows="3" name="" id=""></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start px-5">
+                    <div>
+                        <button type="button" class="btn btn-primary rounded-1" id="">Save</button>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Advance Purchase Payment close --}}
+    {{-- View duty slip --}}
+    <div class="modal fade" id="view-duty-slip" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white d-flex justify-content-between">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Duty #86751150-2</h1>
+                        <small class="text-white bg-success p-1">Status: completed</small>
+                    </div>
+                    <button type="button" class="btn btn-light border" id="">Edit</button>
+                </div>
+                <div class="modal-body px-5">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>
+                                <b>Date</b>: 22-03-2025<br>
+                                <b>Reporting Time</b>: 10:30<br>
+                                <b>Customer</b>: Mukund. H R Doshi<br>
+                                <b>Booked By</b>: Mukund. H R Doshi
+                                (+65 9655 5052) <br>
+                                <b>Passengers</b>: Yeoh jo Ann (+6591914248) and Kon TSIN Zhen <br>
+                                <b>Reporting Address</b>: Mumbai Airport T2<br>
+                                <b>Drop Address</b>: Hayyat Juhu<br>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                <b>Duty Id</b>: #33240541-1<br>
+                                <b>Duty Type</b>: Transfer<br>
+                                <b>Vehicle Group</b>: Innova Crysta<br>
+                                <b>Vehicle</b>: Innova Crysta <mark>MH03DK2539</mark><br>
+                                <b>Driver</b>: Nadeem Shah<br>
+                            </p>
+                        </div>
+                    </div>
+                    <table class="w-100 table-bordered mb-3">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="p-1">
+                                    Start
+                                </th>
+                                <th class="p-1">
+                                    End
+                                </th>
+                                <th class="p-1">
+                                    Total
+                                </th>
+                                <th class="p-1">
+                                    Extra
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="p-1">KM</th>
+                                <td class="p-1">109359</td>
+                                <td class="p-1">109411</td>
+                                <td class="p-1">52</td>
+                                <td class="p-1">0</td>
+                            </tr>
+                            <tr>
+                                <th class="p-1">Time</th>
+                                <td class="p-1">0930 <span> 22/03</span></td>
+                                <td class="p-1">1230 <span> 22/03</span></td>
+                                <td class="p-1">03:00</td>
+                                <td class="p-1">00:00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="mb-3">
+                        Additional Charges:
+                    </p>
+                    <table class="w-50 table-bordered mb-3">
+                        <thead>
+                            <tr>
+                                <th class="p-1"><i class="fa-solid fa-camera"></i> Charges</th>
+                                <th class="p-1">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="p-1"><i class="fa-solid fa-camera"></i> Toll & Parking (T)</td>
+                                <td class="p-1">400.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="mb-3">
+                        <a href="#" class="text-decoration-none">
+                            View Scanned Duty Slip
+                        </a>
+                    </p>
+                    <p class="mb-3">Customer signature not available.</p>
+                    <div class="panel border rounded mb-3">
+                        <div class="panel-heading bg-light p-3 d-flex justify-content-between">
+                            <p class="m-0">Customer Feedback (via Feedback Form)</p>
+                            <a href="#" id="showFeedback">
+                                Show Feedback
+                            </a>
+                            <a href="#" id="hideFeedback" style="display: none;">
+                                Hide Feedback
+                            </a>
+                        </div>
+                        <div class="p-3">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start px-5">
+                    <div>
+                        <button type="button" class="btn btn-primary rounded-1" id="">Save</button>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- View duty slip close --}}
 
 @endsection
 
@@ -1704,6 +2262,18 @@
                     window.print();
                     console.log("btn clicked");
                 });
+            });
+
+            $('#showFeedback').click(function(e) {
+                e.preventDefault();
+                $('#showFeedback').hide(); // Hide Show Feedback link
+                $('#hideFeedback').show(); // Show Hide Feedback link
+            });
+
+            $('#hideFeedback').click(function(e) {
+                e.preventDefault();
+                $('#hideFeedback').hide(); // Hide Hide Feedback link
+                $('#showFeedback').show(); // Show Show Feedback link
             });
 
         });
