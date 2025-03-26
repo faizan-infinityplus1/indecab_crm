@@ -261,18 +261,15 @@
                                                     data-bs-target="#cancel-duty">Cancel Duty</a></li>
                                         </ul> --}}
                                         {{-- Completed --}}
-                                        <ul class="dropdown-menu dropdown-menu-right">
+                                        {{-- <ul class="dropdown-menu dropdown-menu-right">
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#details">Details</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#view-duty-slip">View duty slip</a></li>
-
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#">Edit duty slip</a></li>
-
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#">Clear duty slip</a></li>
-
+                                                    data-bs-target="#edit-duty-slip">Edit duty slip</a></li>
+                                            <li><a href="#" class="dropdown-item" onclick="clearDutySlip()">Clear
+                                                    duty slip</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
@@ -283,40 +280,45 @@
                                                     data-bs-target="#advance-purchase-payment">Add Advance Purchase
                                                     Payment</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#details">Request customer feedback</a></li>
-
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#details">View Booking</a></li>
-                                        </ul>
+                                                    data-bs-target="#request-customer-feedback">Request customer feedback</a></li>
+                                            <li><a href="#" class="dropdown-item">View Booking</a></li>
+                                        </ul> --}}
                                         {{-- Billed --}}
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="dropdown-item">Details</a></li>
-                                            <li><a href="#" class="dropdown-item">View duty slip</a></li>
-                                            <li><a href="#" class="dropdown-item">Add/Remove labels</a></li>
-                                            <li><a href="#" class="dropdown-item">Allot supporters</a>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#details">Details</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#view-duty-slip">View duty slip</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#allot-supporters">Allot supporters</a>
                                             </li>
-                                            <li><a href="#" class="dropdown-item">Print duty slip</a></li>
-                                            <li><a href="#" class="dropdown-item">Add Advance Purchase
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#advance-purchase-payment">Add Advance Purchase
                                                     Payment</a></li>
                                             <li><a href="#" class="dropdown-item">Add Petty Cash</a></li>
                                             <li><a href="#" class="dropdown-item">View Booking</a></li>
                                             <li><a href="#" class="dropdown-item">View Invoice</a></li>
                                         </ul>
+                                        {{-- Cancelled --}}
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="dropdown-item">Details</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#details">Details</a></li>
                                             <li><a href="#" class="dropdown-item">Add/Remove labels</a></li>
                                             <li><a href="#" class="dropdown-item">View Booking</a></li>
                                             <li><a href="#" class="dropdown-item">Restore Duty</a></li>
                                         </ul>
-                                        {{-- Cancelled --}}
-                                        <ul class="dropdown-menu">
+                                        {{-- <ul class="dropdown-menu">
                                             <li> <a class="dropdown-item" href="#">Edit</a> </li>
                                             <li><a class="dropdown-item" href="#">Manage people</a></li>
                                             <li><a class="dropdown-item" href="#">Custome fields</a></li>
                                             <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                     data-bs-target="#create-corporate-account">Create Corporate Account</a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </td>
                             </tr>
@@ -2064,7 +2066,7 @@
     </div>
     {{-- close duty close --}}
     {{-- Advance Purchase Payment --}}
-    <div class="modal fade" id="create-placard" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="advance-purchase-payment" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
             <div class="modal-content rounded-0 border-0">
@@ -2205,13 +2207,45 @@
                                 Hide Feedback
                             </a>
                         </div>
+                        <div class="p-3 panel-body" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="panel border rounded mb-3">
+                        <div class="panel-heading bg-light p-3">
+                            <p class="m-0">Print Settings</p>
+                        </div>
                         <div class="p-3">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="">
+                                <label class="form-check-label" for="">
+                                    Hide business letter head
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="">
+                                <label class="form-check-label" for="">
+                                    Hide billing items
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="">
+                                <label class="form-check-label" for="">
+                                    Hide allowances
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="">
+                                <label class="form-check-label" for="">
+                                    Hide remarks
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-start px-5">
                     <div>
-                        <button type="button" class="btn btn-primary rounded-1" id="">Save</button>
+                        <button type="button" class="btn btn-light border" id=""><i
+                                class="fa-solid fa-print"></i> Print</button>
                         <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                     </div>
                     <div>
@@ -2221,6 +2255,823 @@
         </div>
     </div>
     {{-- View duty slip close --}}
+    {{-- Edit duty slip --}}
+    <div class="modal fade" id="edit-duty-slip" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Close Duty - <span> #16331828-7</span></h1>
+                        <p>Use this in case if the driver doesn't have phone to generate digital duty slip, or in case of
+                            external suppliers.</p>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body ps-0 pe-2">
+                    <div class="d-flex justify-content-start">
+                        <div class="ps-5 pe-4" style="width: 900px">
+                            <div class="d-flex justify-content-end" style="height: 40px;">
+                                <p><a href="#" id="edit-supplier-duty-btn">Edit Supplier Duty <i
+                                            class="fa-solid fa-angle-right"></i></a></p>
+                            </div>
+                            <table class="w-100 table-bordered mb-3">
+                                <thead>
+                                    <tr>
+                                        <th class="p-1">Customer</th>
+                                        <td class="p-1" colspan="3">Mukund. H R Doshi</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{-- new component --}}
+                                    <tr>
+                                        <th class="p-1">
+                                            <p>
+                                                Vehicle
+                                            </p>
+                                        </th>
+                                        <td class="p-1">
+                                            <p>Innova Crysta (MH03EG3151)</p>
+                                            <small><i> Innova Crysta </i></small>
+                                        </td>
+                                        <th class="p-1">
+                                            <p>
+                                                driver
+                                            </p>
+                                        </th>
+                                        <td class="p-1">
+                                            <p>
+                                                ADIL PATEL
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="p-1">
+                                            <p>Price</p>
+                                        </th>
+                                        <td class="p-1">
+                                            <p>₹ 3,500.00</p>
+                                        </td>
+                                        <th class="p-1">
+                                            <p>Passenger</p>
+                                        </th>
+                                        <td class="p-1">
+                                            <p>Mukund. H R Doshi</p>
+                                            <p><a href="#" class="text-decoration-none">View customer notes</a>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    {{-- new component end here --}}
+                                </tbody>
+                            </table>
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty Start Date <span
+                                                    class="text-danger">*</span> </label>
+                                            <input type="date" class="form-control  border-bottom" id="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty End Date <span
+                                                    class="text-danger">*</span> </label>
+                                            <input type="date" class="form-control  border-bottom" id="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty Start Km <span
+                                                    class="text-danger">*</span> </label>
+                                            <input type="number" class="form-control  border-bottom" id="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty Type <span
+                                                    class="text-danger">*</span> </label>
+                                            <select class="form-select border-bottom" name="" id="">
+                                                <option value="">add time here</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty Start Time <span
+                                                    class="text-danger">*</span> </label>
+                                            <select class="form-select border-bottom" name="" id="">
+                                                <option value="">add time here</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty End Time <span
+                                                    class="text-danger">*</span> </label>
+                                            <select class="form-select border-bottom" name="" id="">
+                                                <option value="">add time here</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty End Km <span
+                                                    class="text-danger">*</span> </label>
+                                            <input type="number" class="form-control  border-bottom" id="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Vehicle Group <span
+                                                    class="text-danger">*</span> </label>
+                                            <select class="form-select border-bottom" name="" id="">
+                                                <option value="">add time here</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="">
+                                            <label class="form-check-label" for="">
+                                                Auto-switch duty types
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Price </label>
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <input type="number" class="form-control border-bottom"
+                                                        id="">
+                                                </div>
+                                                <div class="col-4">
+                                                    <button type="button" class="btn btn-light border w-100"
+                                                        id="">Get Price</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Per Extra KM Rate </label>
+                                            <input type="number" class="form-control  border-bottom" id="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Per Extra Hr Rate </label>
+                                            <input type="number" class="form-control  border-bottom" id="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <table class="w-100 table-bordered mb-3">
+                                <thead>
+                                    <tr>
+                                        <th class="p-1">
+                                            T.Time
+                                        </th>
+                                        <th class="p-1">
+                                            Ex.Time
+                                        </th>
+                                        <th class="p-1">
+                                            Ex.Time Cost
+                                        </th>
+                                        <th class="p-1">
+                                            T.KM
+                                        </th>
+                                        <th class="p-1">
+                                            Ex.KM
+                                        </th>
+                                        <th class="p-1">
+                                            Ex.KM Cost
+                                        </th>
+                                        <th class="p-1">
+                                            Sub Total
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-1"></td>
+                                        <td class="p-1"></td>
+                                        <td class="p-1">
+                                            <p class="mb-0">0.00</p>
+                                        </td>
+                                        <td class="p-1">
+                                            <p class="mb-0 ">
+                                                <span class="text-secondary">NA</span>
+                                            </p>
+                                        </td>
+                                        <td class="p-1"></td>
+                                        <td class="p-1">0.00</td>
+                                        <td class="p-1"></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Chargeable driver allowances</div>
+                                <div class="p-3">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Daily allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Over time</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Outstation allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Outstation overnight
+                                                    allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Sunday allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Early start allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Night allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Extra duty allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Billing Items:</p>
+                            <table class="w-100 table mb-3 border-top">
+                                <thead>
+                                    <tr>
+                                        <th class="p-1">
+                                            Item
+                                        </th>
+                                        <th class="p-1">
+                                            Amount
+                                        </th>
+                                        <th class="p-1">
+                                            Image
+                                        </th>
+                                        <th class="p-1">
+
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="p-1">
+                                            <div class="mb-3">
+                                                <select class="form-select border-bottom" name=""
+                                                    id="">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="cancellation_reason" class="form-label">Description </label>
+                                                <textarea class="form-control" rows="3" name="" id=""></textarea>
+                                            </div>
+                                        </td>
+                                        <td class="p-1">
+                                            <div class="mb-3">
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </td>
+                                        <td class="p-1">
+                                            <div class="billing-items-image-container"></div>
+                                            <div class="mb-3">
+                                                <button type="button" class="btn btn-light border w-100"
+                                                    id="">Choose file</button>
+                                            </div>
+                                        </td>
+                                        <td class="p-1">
+                                            <div class="mb-3">
+                                                <button type="button" class="btn btn-danger rounded-1">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-1">
+                                            <div class="mb-3">
+                                                <select class="form-select border-bottom" name=""
+                                                    id="">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="cancellation_reason" class="form-label">Description </label>
+                                                <textarea class="form-control" rows="3" name="" id=""></textarea>
+                                            </div>
+                                        </td>
+                                        <td class="p-1">
+                                            <div class="mb-3">
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </td>
+                                        <td class="p-1">
+                                            <div class="billing-items-image-container"></div>
+                                            <div class="mb-3">
+                                                <button type="button" class="btn btn-light border w-100"
+                                                    id="">Choose file</button>
+                                            </div>
+                                        </td>
+                                        <td class="p-1">
+                                            <div class="mb-3">
+                                                <button type="button" class="btn btn-danger rounded-1">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" id="" class="btn btn-primary rounded-1 mb-3">Add another
+                                item</button>
+                            <p class="mb-2">
+                                Scanned Duty Slip
+                            </p>
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-light border" id="">Choose
+                                    file</button>
+                            </div>
+                            <div class="mb-3 d-none">
+                                <div class="scanned-duty-Slip-image-container"></div>
+                                <button type="button" class="btn btn-light border" id="">Remove</button>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cancellation_reason" class="form-label">Remarks </label>
+                                <textarea class="form-control" rows="3" name="" id=""></textarea>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="">
+                                <label class="form-check-label" for="">
+                                    Mark passenger did not show at reporting address
+                                </label>
+                            </div>
+                            <p class="mb-3 text-warning">
+                                Changes made now will not affect the purchase duty slip. Please make changes to the purchase
+                                duty slip from the Purchase duties section as well, if needed.
+                            </p>
+                            <div class="modal-footer d-flex justify-content-between px-0">
+                                <div>
+                                    <button type="button" class="btn btn-light border w-100" id="">Clear
+                                        Duty Slip</button>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-danger rounded-1"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary rounded-1" id="">Update &
+                                        View Duty Slip</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="edit-supplier-duty-form" class="ps-4 pe-3 "
+                            style="display:none; width: 900px; border-left: 1px dashed black;">
+                            <div class="d-flex justify-content-end">
+                                <p><a href="#" id="close-supplier-duty-btn">Close Supplier Duty <i
+                                            class="fa-solid fa-angle-right"></i></a></p>
+                            </div>
+                            <table class="w-100 table-bordered border-secondary-subtle mb-3">
+                                <thead>
+                                    <tr>
+                                        <th class="p-1">Supplier</th>
+                                        <td class="p-1" colspan="3">Mukund. H R Doshi</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{-- new component --}}
+                                    <tr>
+                                        <th class="p-1">
+                                            <p>
+                                                Vehicle
+                                            </p>
+                                        </th>
+                                        <td class="p-1">
+                                            <p>Innova Crysta (MH03EG3151)</p>
+                                            <small><i> Innova Crysta </i></small>
+                                        </td>
+                                        <th class="p-1">
+                                            <p>
+                                                driver
+                                            </p>
+                                        </th>
+                                        <td class="p-1">
+                                            <p>
+                                                ADIL PATEL
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="p-1">
+                                            <p>Price</p>
+                                        </th>
+                                        <td class="p-1">
+                                            <p>₹ 3,500.00</p>
+                                        </td>
+                                        <th class="p-1">
+                                            <p>Passenger</p>
+                                        </th>
+                                        <td class="p-1">
+                                            <p>Mukund. H R Doshi</p>
+                                            <p><a href="#" class="text-decoration-none">View customer notes</a>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    {{-- new component end here --}}
+                                </tbody>
+                            </table>
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty Start Date <span
+                                                    class="text-danger">*</span> </label>
+                                            <input type="date" class="form-control  border-bottom" id="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty End Date <span
+                                                    class="text-danger">*</span> </label>
+                                            <input type="date" class="form-control  border-bottom" id="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty Start Km <span
+                                                    class="text-danger">*</span> </label>
+                                            <input type="number" class="form-control  border-bottom" id="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty Type <span
+                                                    class="text-danger">*</span> </label>
+                                            <select class="form-select border-bottom" name="" id="">
+                                                <option value="">add time here</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty Start Time <span
+                                                    class="text-danger">*</span> </label>
+                                            <select class="form-select border-bottom" name="" id="">
+                                                <option value="">add time here</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty End Time <span
+                                                    class="text-danger">*</span> </label>
+                                            <select class="form-select border-bottom" name="" id="">
+                                                <option value="">add time here</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Duty End Km <span
+                                                    class="text-danger">*</span> </label>
+                                            <input type="number" class="form-control  border-bottom" id="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Vehicle Group <span
+                                                    class="text-danger">*</span> </label>
+                                            <select class="form-select border-bottom" name="" id="">
+                                                <option value="">add time here</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="">
+                                            <label class="form-check-label" for="">
+                                                Auto-switch duty types
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Price </label>
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <input type="number" class="form-control border-bottom"
+                                                        id="">
+                                                </div>
+                                                <div class="col-4">
+                                                    <button type="button" class="btn btn-light border w-100"
+                                                        id="">Get Price</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Per Extra KM Rate </label>
+                                            <input type="number" class="form-control  border-bottom" id="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label"> Per Extra Hr Rate </label>
+                                            <input type="number" class="form-control  border-bottom" id="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <table class="w-100 table-bordered border-secondary-subtle mb-3">
+                                <thead>
+                                    <tr>
+                                        <th class="p-1">
+                                            T.Time
+                                        </th>
+                                        <th class="p-1">
+                                            Ex.Time
+                                        </th>
+                                        <th class="p-1">
+                                            Ex.Time Cost
+                                        </th>
+                                        <th class="p-1">
+                                            T.KM
+                                        </th>
+                                        <th class="p-1">
+                                            Ex.KM
+                                        </th>
+                                        <th class="p-1">
+                                            Ex.KM Cost
+                                        </th>
+                                        <th class="p-1">
+                                            Sub Total
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-1"></td>
+                                        <td class="p-1"></td>
+                                        <td class="p-1">
+                                            <p class="mb-0">0.00</p>
+                                        </td>
+                                        <td class="p-1">
+                                            <p class="mb-0 ">
+                                                <span class="text-secondary">NA</span>
+                                            </p>
+                                        </td>
+                                        <td class="p-1"></td>
+                                        <td class="p-1">0.00</td>
+                                        <td class="p-1"></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+
+                            <div class="panel border rounded mb-3">
+                                <div class="panel-heading bg-light p-3">Supplier allowances</div>
+                                <div class="p-3">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Daily allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Over time</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Outstation allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Outstation overnight
+                                                    allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Sunday allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Early start allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Night allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Extra duty allowance</label>
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Billing Items:</p>
+                            <table class="w-100 table mb-3 border-top">
+                                <thead>
+                                    <tr>
+                                        <th class="p-1">
+                                            Item
+                                        </th>
+                                        <th class="p-1">
+                                            Amount
+                                        </th>
+                                        <th class="p-1">
+                                            Image
+                                        </th>
+                                        <th class="p-1">
+
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="p-1">
+                                            <div class="mb-3">
+                                                <select class="form-select border-bottom" name=""
+                                                    id="">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="cancellation_reason" class="form-label">Description </label>
+                                                <textarea class="form-control" rows="3" name="" id=""></textarea>
+                                            </div>
+                                        </td>
+                                        <td class="p-1">
+                                            <div class="mb-3">
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </td>
+                                        <td class="p-1">
+                                            <div class="billing-items-image-container"></div>
+                                            <div class="mb-3">
+                                                <button type="button" class="btn btn-light border w-100"
+                                                    id="">Choose file</button>
+                                            </div>
+                                        </td>
+                                        <td class="p-1">
+                                            <div class="mb-3">
+                                                <button type="button" class="btn btn-danger rounded-1">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-1">
+                                            <div class="mb-3">
+                                                <select class="form-select border-bottom" name=""
+                                                    id="">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="cancellation_reason" class="form-label">Description </label>
+                                                <textarea class="form-control" rows="3" name="" id=""></textarea>
+                                            </div>
+                                        </td>
+                                        <td class="p-1">
+                                            <div class="mb-3">
+                                                <input type="number" class="form-control  border-bottom"
+                                                    id="">
+                                            </div>
+                                        </td>
+                                        <td class="p-1">
+                                            <div class="billing-items-image-container"></div>
+                                            <div class="mb-3">
+                                                <button type="button" class="btn btn-light border w-100"
+                                                    id="">Choose file</button>
+                                            </div>
+                                        </td>
+                                        <td class="p-1">
+                                            <div class="mb-3">
+                                                <button type="button" class="btn btn-danger rounded-1">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" id="" class="btn btn-primary rounded-1 mb-3">Add another
+                                item</button>
+                            <p class="mb-2">
+                                Scanned Duty Slip
+                            </p>
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-light border" id="">Choose
+                                    file</button>
+                            </div>
+                            <div class="mb-3 d-none">
+                                <div class="scanned-duty-Slip-image-container"></div>
+                                <button type="button" class="btn btn-light border" id="">Remove</button>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cancellation_reason" class="form-label">Remarks </label>
+                                <textarea class="form-control" rows="3" name="" id=""></textarea>
+                            </div>
+                            <div class="modal-footer justify-content-end px-0">
+                                <div>
+                                    <button type="button" class="btn btn-danger rounded-1"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary rounded-1" id="">Update &
+                                        View Duty Slip</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="modal-footer justify-content-end px-5">
+                    <div>
+                        <button type="button" class="btn btn-light border w-100" id="">Clear Duty Slip</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary rounded-1" id="">Update & View Duty Slip</button>
+                    </div>
+                </div> --}}
+            </div>
+        </div>
+    </div>
+    {{-- Edit duty slip close --}}
+
+    {{-- Request Customer Feedback --}}
+    <div class="modal fade" id="request-customer-feedback" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Request Customer Feedback for <span> #12359423-1</span></h1>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5">
+                    <p class="mb-3">
+                        Use this to send feedback form link to customer/passenger.
+                    </p>
+                    <div class="bg-light p-3 mb-3">
+                        <p class="mb-0 text-warning">
+                            Please set default feedback form in business settings to be able to send the feedback form.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Request Customer Feedback close --}}
 
 @endsection
 
@@ -2268,13 +3119,28 @@
                 e.preventDefault();
                 $('#showFeedback').hide(); // Hide Show Feedback link
                 $('#hideFeedback').show(); // Show Hide Feedback link
+                $('.panel-body').show();
             });
 
             $('#hideFeedback').click(function(e) {
                 e.preventDefault();
                 $('#hideFeedback').hide(); // Hide Hide Feedback link
                 $('#showFeedback').show(); // Show Show Feedback link
+                $('.panel-body').hide(); // Hide Hide Feedback link
             });
+            $("#edit-supplier-duty-btn").click(function(e) {
+                e.preventDefault();
+                $('#edit-supplier-duty-form').show();
+                $('#edit-supplier-duty-btn').hide();
+                $(".activity-logs-modal").css("min-width", "1600px");
+            })
+            $("#close-supplier-duty-btn").click(function(e) {
+                e.preventDefault();
+                $('#edit-supplier-duty-btn').show()
+                $('#edit-supplier-duty-form').hide()
+                $(".activity-logs-modal").css("min-width", "900px");
+            })
+            // .activity-logs-modal
 
         });
 
@@ -2289,9 +3155,19 @@
         }
 
         function clearAllotment() {
-            let unconfirmDuty = confirm("Are you sure you want to clear the allotment?");
-            if (unconfirmDuty == true) {
-                console.log('Unconfirm The Duty');
+            let clearAllotment = confirm("Are you sure you want to clear the allotment?");
+            if (clearAllotment == true) {
+                console.log('clear Allotment');
+
+            } else {
+                console.log('cancel');
+            }
+        }
+
+        function clearDutySlip() {
+            let clearDutySlip = confirm("Are you sure you want to clear this duty slip? This is irreverisble operation.");
+            if (clearDutySlip == true) {
+                console.log('clear Duty Slip');
 
             } else {
                 console.log('cancel');
