@@ -1,6 +1,5 @@
 @extends('layouts.admin-master')
 @section('content')
-
     <style>
         .page-header-sticky {
             margin-top: 0;
@@ -139,12 +138,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $data)
+                        @foreach ($bookings as $booking)
                             <tr>
                                 <td>
                                     <i class="fa-solid fa-phone text-success"></i>
                                 </td>
-                                <td>{{ $data->end_date }}</td>
+                                <td>{{ $booking->end_date }}</td>
                                 <td>Customer</td>
                                 <td>Passenger</td>
                                 <td>Vehicle Group</td>
@@ -158,7 +157,7 @@
                                 <td>City</td>
                                 <td>Rep.Time</td>
                                 <td>Labels</td>
-                                <td>Status</td>
+                                <td>{{ $booking->status }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -166,152 +165,206 @@
                                             <i class="fa-solid fa-gear"></i>
                                         </button>
                                         {{-- Booked --}}
-                                        {{-- <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#details">Details</a>
-                                            </li>
-                                            <li><a class="dropdown-item" onclick="unconfirmDuty()">Unconfirm duty</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                            <li><a href="#" class="dropdown-item">Edit duty</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-vehicle-driver">Allot vehicle & driver</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-send-to-associate">Send to Associate</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-supporters">Allot supporters</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                            <li><a href="#" class="dropdown-item">View Booking</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#cancel-duty">Cancel Duty</a></li>
-                                        </ul> --}}
-                                        {{-- Details needed --}}
-                                        {{-- <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#details">Details</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-duty-to-supplier">Add Supplier Details</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                            <li><a href="#" class="dropdown-item">Edit duty</a></li>
+                                        @if ($booking->status == 'booked')
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#details">Details</a>
+                                                </li>
+                                                <li><a class="dropdown-item" onclick="unconfirmDuty()">Unconfirm duty</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#edit-duty">Edit duty</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-vehicle-driver">Allot vehicle & driver</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-send-to-associate">Send to Associate</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                                <li><a href="#" class="dropdown-item">View Booking</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#cancel-duty">Cancel Duty</a></li>
+                                            </ul>
 
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-supporters">Allot supporters</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
-                                            <li><a class="dropdown-item" onclick="clearAllotment()">Clear Allotment</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#send-details-to-supplier">Send details to supplier</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#create-placard">Create placard</a></li>
-                                            <li><a href="#" class="dropdown-item">View Booking</a></li>
+                                            {{-- Details needed --}}
+                                        @elseif ($booking->status == 'details needed')
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#details">Details 3</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-duty-to-supplier">Add Supplier Details</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#edit-duty">Edit duty</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
+                                                <li><a class="dropdown-item" onclick="clearAllotment()">Clear
+                                                        Allotment</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#send-details-to-supplier">Send details to
+                                                        supplier</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#create-placard">Create placard</a></li>
+                                                <li><a href="#" class="dropdown-item">View Booking</a></li>
 
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#cancel-duty">Cancel Duty</a></li>
-                                        </ul> --}}
-                                        {{-- Allotted --}}
-                                        {{-- <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#details">Details</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-duty-to-supplier">Update Supplier Details</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#">Edit duty</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#cancel-duty">Cancel Duty</a></li>
+                                            </ul>
 
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-supporters">Allot supporters</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-send-to-associate">Send to Associate</a></li>
-                                            <li><a href="#" class="dropdown-item" onclick="clearAllotment()">Clear
-                                                    Allotment</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#send-info">Send info</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#">Send driver/supplier location</a></li>
+                                            {{-- Allotted --}}
+                                        @elseif ($booking->status == 'allotted')
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#details">Details</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-duty-to-supplier">Update Supplier
+                                                        Details</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#edit-duty">Edit duty</a></li>
 
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#">Mark as driver/supplier arrived</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-send-to-associate">Send to Associate</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item"
+                                                        onclick="clearAllotment()">Clear
+                                                        Allotment</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#send-info">Send info</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#">Send driver/supplier location</a></li>
 
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#send-details-to-supplier">Send details to supplier</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#create-placard">Create placard</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#">Mark as dispatched</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#">Mark as driver/supplier arrived</a></li>
 
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#close-duty">Close Duty</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#advance-purchase-payment">Add Advance Purchase Payment</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#">View Booking</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#send-details-to-supplier">Send details to
+                                                        supplier</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#create-placard">Create placard</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#">Mark as dispatched</a></li>
 
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#cancel-duty">Cancel Duty</a></li>
-                                        </ul> --}}
-                                        {{-- Completed --}}
-                                        {{-- <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#details">Details</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#view-duty-slip">View duty slip</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-duty-slip">Edit duty slip</a></li>
-                                            <li><a href="#" class="dropdown-item" onclick="clearDutySlip()">Clear
-                                                    duty slip</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-supporters">Allot supporters</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#advance-purchase-payment">Add Advance Purchase
-                                                    Payment</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#request-customer-feedback">Request customer feedback</a></li>
-                                            <li><a href="#" class="dropdown-item">View Booking</a></li>
-                                        </ul> --}}
-                                        {{-- Billed --}}
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#details">Details</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#view-duty-slip">View duty slip</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-supporters">Allot supporters</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#advance-purchase-payment">Add Advance Purchase
-                                                    Payment</a></li>
-                                            <li><a href="#" class="dropdown-item">Add Petty Cash</a></li>
-                                            <li><a href="#" class="dropdown-item">View Booking</a></li>
-                                            <li><a href="#" class="dropdown-item">View Invoice</a></li>
-                                        </ul>
-                                        {{-- Cancelled --}}
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#details">Details</a></li>
-                                            <li><a href="#" class="dropdown-item">Add/Remove labels</a></li>
-                                            <li><a href="#" class="dropdown-item">View Booking</a></li>
-                                            <li><a href="#" class="dropdown-item">Restore Duty</a></li>
-                                        </ul>
-                                        {{-- <ul class="dropdown-menu">
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#close-duty">Close Duty</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#advance-purchase-payment">Add Advance Purchase
+                                                        Payment</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#">View Booking</a></li>
+
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#cancel-duty">Cancel Duty</a></li>
+                                            </ul>
+
+                                            {{-- Completed --}}
+                                        @elseif ($booking->status == 'completed')
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#details">Details</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#view-duty-slip">View duty slip</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#edit-duty-slip">Edit duty slip</a></li>
+                                                <li><a href="#" class="dropdown-item"
+                                                        onclick="clearDutySlip()">Clear
+                                                        duty slip</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#advance-purchase-payment">Add Advance Purchase
+                                                        Payment</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#request-customer-feedback">Request customer
+                                                        feedback</a></li>
+                                                <li><a href="#" class="dropdown-item">View Booking</a></li>
+                                            </ul>
+                                            {{-- Billed --}}
+                                            {{-- @elseif ($booking->status == 'billed')
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#details">Details</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#view-duty-slip">View duty slip</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-supporters">Allot supporters</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#advance-purchase-payment">Add Advance Purchase
+                                                        Payment</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#add-petty-cash">Add Petty Cash</a></li>
+                                                <li><a href="#" class="dropdown-item">View Booking</a></li>
+                                                <li><a href="#" class="dropdown-item">View Invoice</a></li>
+                                            </ul> --}}
+
+
+                                            {{-- Cancelled --}}
+                                        @elseif ($booking->status == 'cancelled')
+                                            {{-- @else --}}
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#details">Details</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                                <li><a href="#" class="dropdown-item">View Booking</a></li>
+
+                                                <li><a href="#" class="dropdown-item"
+                                                        onclick="restoreDuty()">Restore Duty</a></li>
+                                            </ul>
+
+                                            {{-- @elseif ($booking->status == 'billed') --}}
+                                        @else
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#details">Details</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#view-duty-slip">View duty slip</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-supporters">Allot supporters</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#advance-purchase-payment">Add Advance Purchase
+                                                        Payment</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#add-petty-cash">Add Petty Cash</a></li>
+                                                <li><a href="#" class="dropdown-item">View Booking</a></li>
+                                                <li><a href="#" class="dropdown-item">View Invoice</a></li>
+                                            </ul>
+
+
+                                            {{-- <ul class="dropdown-menu">
                                             <li> <a class="dropdown-item" href="#">Edit</a> </li>
                                             <li><a class="dropdown-item" href="#">Manage people</a></li>
                                             <li><a class="dropdown-item" href="#">Custome fields</a></li>
@@ -319,6 +372,7 @@
                                                     data-bs-target="#create-corporate-account">Create Corporate Account</a>
                                             </li>
                                         </ul> --}}
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
@@ -523,6 +577,168 @@
         </div>
     </div>
     {{-- add remove lable close --}}
+    {{-- Edit Duty --}}
+    <div class="modal fade" id="edit-duty" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Duty <span> #18326801-1</span></h1>
+                        <small>Start Date: <span>07-04-2025</span></small>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="rep_time" class="form-label">Reporting time</label>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    id="rep_time" name="rep_time">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="drop_time" class="form-label">Estimated Drop-Off Time</label>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    id="drop_time" name="drop_time">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="drop_time" class="form-label">Start from garage before (in min)</label>
+                                <input type="number" class="form-control  border-bottom" id="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="" class="control-label w-100">Vehicle Group</label>
+                                <select class="form-select border-bottom" name="" id="">
+                                    <option value="">select vehicle group</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="" class="control-label w-100">Duty Type</label>
+                                <select class="form-select border-bottom" name="" id="">
+                                    <option value="">select Duty Type</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="" class="form-label"> Price</label>
+                                <input type="number" class="form-control  border-bottom" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="" class="form-label"> Per Extra KM Rate</label>
+                                <input type="number" class="form-control  border-bottom" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="" class="form-label"> Per Extra Hr Rate</label>
+                                <input type="number" class="form-control  border-bottom" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end">
+                            <div class="mb-3 w-100">
+                                <button type="reset" class="btn btn-light border w-100">Get Price</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="reporting_address" class="form-label w-100">Reporting Address
+                                </label>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    name="reporting_address[]" id="reporting_address" multiple="multiple">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="drop_address" class="form-label w-100">Drop Address</label>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    name="drop_address[]" id="drop_address" multiple="multiple">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Short Reporting Address (to be shown in duty
+                            listing)</label>
+                        <input type="text" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Remarks </label>
+                        <textarea class="form-control" rows="3" name="" id=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Flight/Train Number</label>
+                        <input type="text" class="form-control  border-bottom" id="">
+                    </div>
+                    <p class="mb-3">
+                        <a href="" class="text-decoration-none" id="supplierRemarksLink">
+                            Add separate remarks for driver/supplier.
+                        </a>
+                    </p>
+                    <div class="bg-light mb-3 p-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="control-label w-100">Vehicle Group</label>
+                                    <select class="form-select border-bottom" name="" id="">
+                                        <option value="">select vehicle group</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="control-label w-100">Duty Type</label>
+                                    <select class="form-select border-bottom" name="" id="">
+                                        <option value="">select Duty Type</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="" id="supplierRemarks" style="display: none;">
+                            <label for="" class="form-label">Driver/Supplier Remarks </label>
+                            <textarea class="form-control" rows="3" name="" id=""></textarea>
+                        </div>
+                    </div>
+                    <p class="text-danger mb-3">
+                        Please note: Above changes will only affect this duty and would not change/affect any other duty of
+                        this booking.
+                    </p>
+                </div>
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
+                    <div>
+                        <button type="button" class="btn btn-primary border" id="">Save</button>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Edit Duty close --}}
     {{-- Allot vehicle & driver --}}
     <div class="modal fade" id="allot-vehicle-driver" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -1272,7 +1488,8 @@
                     </div>
                     <hr>
                     <div class="mb-3 d-flex justify-content-between">
-                        <button type="button" class="btn btn-light border mx-auto" id="">Copy SMS Text</button>
+                        <button type="button" class="btn btn-light border mx-auto" id="">Copy SMS
+                            Text</button>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -1420,7 +1637,8 @@
     {{-- Send details to supplier close --}}
 
     {{-- Create placard --}}
-    <div class="modal fade" id="create-placard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="create-placard" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
             <div class="modal-content rounded-0 border-0">
                 <div class="modal-header px-5 sticky-top bg-white">
@@ -2248,8 +2466,6 @@
                                 class="fa-solid fa-print"></i> Print</button>
                         <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                     </div>
-                    <div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -3054,7 +3270,8 @@
             <div class="modal-content rounded-0 border-0">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Request Customer Feedback for <span> #12359423-1</span></h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Request Customer Feedback for <span>
+                                #12359423-1</span></h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
@@ -3073,15 +3290,93 @@
     </div>
     {{-- Request Customer Feedback close --}}
 
+    {{-- Add Petty Cash --}}
+    <div class="modal fade" id="add-petty-cash" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Petty Cash</h1>
+                        <small>Booking Id: <span> #50249209</span></small>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5">
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Petty Cash No: <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text rounded-0" id="basic-addon1">F-MC2526-</span>
+                            <input type="number" class="form-control" aria-describedby="basic-addon1"
+                                value="1" disabled>
+                            {{-- <input type="number" class="form-control  border-bottom" id=""> --}}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Date <span class="text-danger">*</span>
+                        </label>
+                        <input type="date" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Voucher Number</label>
+                        <input type="text" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Amount <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Transaction type? <span class="text-danger">*</span>
+                        </label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="isCredit" id="" checked>
+                            <label class="form-check-label" for="">
+                                Debit
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="isCredit" id="">
+                            <label class="form-check-label" for="">
+                                Credit
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Remarks </label>
+                        <textarea class="form-control" rows="3" name="" id=""></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
+                    <div>
+                        <button type="button" class="btn btn-primary border" id="">Submit</button>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Add Petty Cash close --}}
 @endsection
 
 
 @section('extrajs')
+    <script src="{{ asset('admin/js/options.js') }}"></script>
+    <script src="{{ asset('admin/js/timeslots.js') }}"></script>
     <script>
         $(document).ready(function() {
 
+            document.getElementById("rep_time").innerHTML = generateTimeSlots();
+            document.getElementById("drop_time").innerHTML = generateTimeSlots();
             // document.getElementById("base_city").innerHTML = generateCityOptions();
 
+            $("#reporting_address").select2({
+                placeholder: "",
+            });
+            $("#drop_address").select2({
+                placeholder: "",
+            });
             $("#labels").select2({
                 allowClear: true
             });
@@ -3106,6 +3401,11 @@
                 } else {
                     $('#compact').prop('disabled', false);
                 }
+            });
+            $('#supplierRemarksLink').click(function(e) {
+                e.preventDefault();
+                $('#supplierRemarksLink').hide(); // Hide Show Feedback link
+                $('#supplierRemarks').show(); // Show Hide Feedback link
             });
             // placard-print
             $('#create-placard').on('shown.bs.modal', function() {
@@ -3168,6 +3468,16 @@
             let clearDutySlip = confirm("Are you sure you want to clear this duty slip? This is irreverisble operation.");
             if (clearDutySlip == true) {
                 console.log('clear Duty Slip');
+
+            } else {
+                console.log('cancel');
+            }
+        }
+
+        function restoreDuty() {
+            let restoreDuty = confirm("Are you sure you want to restore the duty?");
+            if (restoreDuty == true) {
+                console.log('restore Duty');
 
             } else {
                 console.log('cancel');

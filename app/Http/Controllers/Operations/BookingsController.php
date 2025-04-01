@@ -190,4 +190,8 @@ class BookingsController extends Controller
     {
         return view("backend.admin.Operations.bookings.cancelled.index");
     }
+    public function specificBookings()
+    {
+        return view("backend.admin.operations.bookings.specificBookings.index");
+    }
 }
