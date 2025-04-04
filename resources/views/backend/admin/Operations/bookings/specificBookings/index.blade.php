@@ -118,12 +118,13 @@
                             </span>
                         </td>
                         <td>
-                            <span data-title="121 buena vista.  Gen bhonsle marg.  Building 12 th floor, Churchgate">
+                            <span data-title="121 buena vista.  Gen bhonsle marg.  Building 12 th floor, Churchgate"
+                                class="table-address-column">
                                 121 buena vista. Gen bhonsle marg. Building 12 th floor, Churchgate
                             </span>
                         </td>
                         <td>
-                            <span class="text-secondary">
+                            <span class="text-secondary table-address-column">
                                 NA
                             </span>
                         </td>
@@ -159,8 +160,8 @@
                         </td>
                         <td>
                             <div class="dropdown">
-                                <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <button class="btn border border-0 dropdown-toggle py-0" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-solid fa-gear"></i>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -223,6 +224,9 @@
                         <th>setting</th>
                     </tr>
                 </tfoot>
+                <div class="d-flex justify-content-end">
+                    <button></button>
+                </div>
             </table>
         </div>
         {{-- booking table end --}}
