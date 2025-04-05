@@ -275,3 +275,8 @@ ul.dropdown-menu.dropdown-menu-end {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.big-checkbox {
+    width: 20px;
+    height: 20px;
+}
