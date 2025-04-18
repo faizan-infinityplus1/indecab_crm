@@ -402,7 +402,7 @@
                                         <label for="visible_customers" class="form-label">Visible Customers (keep blank
                                             for
                                             all)</label>
-                                        <select class="form-select border-bottom" aria-label="Default select example"
+                                        <select class="form-select border-bottom" 
                                             name="customers_id[]" id="visible_customers" multiple="multiple">
                                             @foreach ($mstCustomer as $data )
                                             <option value="{{ $data->id }}" >{{$data->name}}</option>

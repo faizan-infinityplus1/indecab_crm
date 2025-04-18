@@ -444,11 +444,11 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="" class="control-label">Labels</label>
-                            <select class="form-select border-bottom" name="labels[]" id="labels" multiple>
+                            <select class="form-select border-bottom" name="labels[]" id="labels" multiple="multiple">
                                 <option value="asdasdasdsd">asdasdasd</option>
-                                {{-- @foreach ($labels as $label)
-                                    <option value="{{ $label->id }}">{{ $label->label_name }}</option>
-                                @endforeach --}}
+                                <option value="asdasdasdsd">asdasdasd</option>
+                                <option value="asdasdasdsd">asdasdasd</option>
+                                
                             </select>
                         </div>
                     </div>
