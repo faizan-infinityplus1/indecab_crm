@@ -199,6 +199,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get("/bookings/completed", [BookingsController::class, "completedBookings"])->name('bookings.completed');
     Route::get("/bookings/billed", [BookingsController::class, "billedBookings"])->name('bookings.billed');
     Route::get("/bookings/cancelled", [BookingsController::class, "cancelledBookings"])->name('bookings.cancelled');
+    Route::get("/bookings/show", [BookingsController::class, "specificBookings"])->name('bookings.specific-bookings');
     Route::get("/billed", [OperationController::class, "Billed"]);
     Route::get("/receipt", [OperationController::class, "Receipt"]);
     Route::get("/payment-gateway", [OperationController::class, "PaymentGateway"]);

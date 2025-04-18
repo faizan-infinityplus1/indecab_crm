@@ -17,7 +17,8 @@
         <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
             <h4>Duties</h4>
             <div class="text-end d-flex justify-content-end align-items-center gap-2">
-                <div class="btn-group" role="group"><a href="{{ route('booking.create') }}" class="btn btn-primary">Add Booking</a></div>
+                <div class="btn-group" role="group"><a href="{{ route('booking.create') }}" class="btn btn-primary">Add
+                        Booking</a></div>
                 <div class="dropdown">
                     <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -53,15 +54,18 @@
                 <li class=""><a href="{{ route('duties.cancelled') }}"
                         class="p-3 d-inline-block text-decoration-none duties-nav-tabs">Cancelled</a>
                 </li>
-                <li class=""><a href="{{ route('duties.all') }}" class="p-3 d-inline-block text-decoration-none duties-nav-tabs">All</a>
+                <li class=""><a href="{{ route('duties.all') }}"
+                        class="p-3 d-inline-block text-decoration-none duties-nav-tabs">All</a>
                 </li>
                 <li class="active">
-                    <a href="{{ route('duties.incoming') }}" class="p-3 d-inline-block text-decoration-none duties-nav-tabs">
+                    <a href="{{ route('duties.incoming') }}"
+                        class="p-3 d-inline-block text-decoration-none duties-nav-tabs">
                         Incoming
                     </a>
                 </li>
                 <li class="">
-                    <a href="{{ route('duties.needsattention') }}" class="p-3 d-inline-block text-decoration-none duties-nav-tabs">
+                    <a href="{{ route('duties.needsattention') }}"
+                        class="p-3 d-inline-block text-decoration-none duties-nav-tabs">
                         Needs Attention
                     </a>
                 </li>
@@ -74,8 +78,7 @@
                         <label for="" class="form-label position-absolute mb-1 bottom-0"><i
                                 class="fa-solid fa-magnifying-glass"></i></label>
                         <input type="text" name="" value="" class="form-control  border-bottom ps-4"
-                            id=""
-                            placeholder="Type here to filter by company name, city or request status...">
+                            id="" placeholder="Type here to filter by company name, city or request status...">
                     </div>
                 </div>
                 <div class="col-md-5 mb-3">
@@ -156,7 +159,7 @@
                             <td>Status</td>
                             <td>
                                 <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    <button class="btn dropdown-toggle py-0" type="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
                                         <i class="fa-solid fa-gear"></i>
                                     </button>

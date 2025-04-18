@@ -17,7 +17,8 @@
         <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
             <h4>Employees</h4>
             <div class="text-end d-flex justify-content-end align-items-center gap-2">
-                <div class="btn-group" role="group"><a href="{{ route('employeepermissions.index') }}" class="btn btn-light border">Permission profiles</a>
+                <div class="btn-group" role="group"><a href="{{ route('employeepermissions.index') }}"
+                        class="btn btn-light border">Permission profiles</a>
                 </div>
                 <div class="btn-group" role="group"><a href="{{ route('employees.create') }}" class="btn btn-primary">Add
                         Employee</a></div>
@@ -89,7 +90,7 @@
                                 </td>
                                 <td>
                                     <div class="dropdown">
-                                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        <button class="btn dropdown-toggle py-0" type="button" data-bs-toggle="dropdown"
                                             aria-expanded="false">
                                             <i class="fa-solid fa-gear"></i>
                                         </button>

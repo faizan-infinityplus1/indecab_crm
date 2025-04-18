@@ -1,3 +1,7 @@
+body {
+    font-size: 13px;
+}
+
 .nav_menu_container ul li {
     list-style-type: none;
 }
@@ -94,6 +98,16 @@ ul.dropdown-menu.dropdown-menu-end {
 
 .fa-angle-left {
     font-size: 24px;
+}
+
+.select2.select2-container {
+    width: 100% !important;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: none;
+    border-bottom: 1px solid blue;
+    background-color: transparent;
 }
 
 .select2-container--default .select2-selection--multiple {
@@ -208,4 +222,61 @@ ul.dropdown-menu.dropdown-menu-end {
 
 .fa-phone {
     font-size: 12px;
+}
+
+
+/* style for data-title  */
+[data-title]:hover:after {
+    opacity: 1;
+    transition: all 0.1s ease 0.5s;
+    visibility: visible;
+}
+
+[data-title]:after {
+    content: attr(data-title);
+    /* Get the value of the data-title attribute */
+    position: absolute;
+    text-align: center;
+    /* top: -30px; */
+    top: 100%;
+    /* Position the tooltip above the span */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    /* Tooltip background color */
+    color: #fff;
+    /* Tooltip text color */
+    padding: 5px;
+    font-size: 13px;
+    border-radius: 3px;
+    visibility: hidden;
+    /* Initially hidden */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    /* Smooth transition */
+    min-width: 100px;
+    /* Max width for tooltip */
+    word-wrap: break-word;
+    /* Ensure long words break and wrap */
+    white-space: normal;
+    /* Allow wrapping */
+    z-index: 9999;
+    /* Ensure the tooltip is on top */
+}
+
+[data-title] {
+    position: relative;
+}
+
+.table-address-column {
+    display: inline-block;
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.big-checkbox {
+    width: 20px;
+    height: 20px;
 }

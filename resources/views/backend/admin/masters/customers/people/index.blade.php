@@ -72,11 +72,13 @@
                                     {!! $people->isBookedBy ? '<span class="text-success">Yes</span>' : '<span class="text-danger">No</span>' !!}
                                 </td>
                                 <td>
-                                    {!! $people->isAdditionalContact ? '<span class="text-success">Yes</span>' : '<span class="text-danger">No</span>' !!}
-                                  </td>
+                                    {!! $people->isAdditionalContact
+                                        ? '<span class="text-success">Yes</span>'
+                                        : '<span class="text-danger">No</span>' !!}
+                                </td>
                                 <td>
                                     <div class="dropdown">
-                                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        <button class="btn dropdown-toggle py-0" type="button" data-bs-toggle="dropdown"
                                             aria-expanded="false">
                                             <i class="fa-solid fa-gear"></i>
                                         </button>
