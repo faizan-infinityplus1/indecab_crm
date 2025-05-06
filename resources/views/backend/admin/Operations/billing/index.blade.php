@@ -854,6 +854,161 @@
     Car Hire Charges
     Car Hire Charges (incl. Allowances)
     Duty Subtotal
+    Duty Subtotal + Taxes (As per Invoice)
+    Duty Subtotal (incl. Allowances)
+    Number Of Passengers
+    Cost Per Passenger
+    Duty Subtotal (incl. Allowances) + Taxes (As per Invoice)
+    Remarks
+    Flight/Train Number
+    Operator Notes
+    Labels
+    Petty Cash Amount
+    Advance Purchase Payment Amount
+    Advance Purchase Payment Date
+    Purchase Invoice Payment Numbers
+    Driver App Used (DDS)
+    Driver Slip Approved
+    Duty slip approved by
+    Garage Start Km
+    Reporting KM
+    Releasing KM
+    Garage End Km
+    Duty slip accepted by
+    Total KM
+    Booked KM
+    Speed-o-meter Start Km
+    Speed-o-meter End Km
+    Total Speed-o-meter Km
+    Dead KM
+    Verified Via
+    Actual Start Date
+    Actual Garage Start Time
+    Actual Reporting Time
+    Releasing Time
+    Garage End Time
+    Total Hours
+    Extra KM
+    Extra KM Charge
+    Customer Extra KM cost/KM
+    Extra Hours
+    Extra Hours Cost
+    Customer Extra Time cost/HR
+    Fuel Surcharge
+    Driver OT Hours
+    Chargeable Driver Daily Allowance
+    Chargeable Driver OT Allowance
+    Chargeable Outstation allowance
+    Chargeable Outstation overnight allowance
+    Chargeable Sunday allowance
+    Chargeable Early start allowance
+    Chargeable Night allowance
+    Chargeable Extra Duty allowance
+    Driver Daily Allowance
+    Driver OT Allowance
+    Outstation allowance
+    Outstation overnight allowance
+    Sunday allowance
+    Early start allowance
+    Night allowance
+    Extra Duty allowance
+    Duty Slip Closing Remarks
+    Duty Slip Rejection Reason
+    Billing Items
+    Chargeable Non-Taxable Billing Items Total
+    Chargeable Taxable Billing Items Total
+    Total Billing Items Amount
+    Scanned Duty Slip
+    Corrections (Diff.)
+    Invoice Number
+    Invoice Date
+    Invoice Customer Name
+    Invoice Customer Code
+    Invoice Print Customer Name
+    Invoice Customer GST Number
+    Total Fuel Surcharge
+    Custom Row Total (Taxable)
+    Custom Row Total (Non-Taxable)
+    Invoice Discount Amount
+    Invoice Discount Percent
+    Invoice Card Surcharge
+    Invoice Card Surcharge %
+    Invoice Amount
+    Invoice Payment Status
+    Invoice Payment Mode
+    Invoice Tax Amount
+    Supplier Name
+    Supplier Group
+    Supplier Code
+    Supplier Phone Number
+    Supplier Vehicle Group
+    Supplier Duty Type
+    Supplier Remarks
+    Supplier Base Price
+    Supplier estimated amount
+    Supplier estimated amount (with tax)
+    Supplier Car Hire Charges (incl. allowances)
+    Earnings From Supplier
+    Agent Commission amount
+    Car hire charges after commission
+    Supplier Extra KM cost/KM
+    Supplier Extra KM cost
+    Supplier Extra Time cost/HR
+    Supplier Extra Time cost
+    Supplier Reporting Time
+    Supplier Releasing Time
+    Supplier Total Time
+    Supplier Extra Time
+    Supplier Reporting KM
+    Supplier Releasing KM
+    Supplier Speed-o-meter Start Km
+    Supplier Speed-o-meter End Km
+    Supplier Total KM
+    Supplier Extra KM
+    Supplier Duty Slip Rejection Reason
+    Supplier Chargeable Driver Daily Allowance
+    Supplier Chargeable Driver OT Allowance
+    Supplier Chargeable Outstation allowance
+    Supplier Chargeable Outstation overnight allowance
+    Supplier Chargeable Sunday allowance
+    Supplier Chargeable Early start allowance
+    Supplier Chargeable Night allowance
+    Supplier Chargeable Extra Duty allowance
+    Supplier Billing Items
+    Supplier Individual Billing Items
+    Supplier Invoice - Submission status
+    Supplier Invoice - Submission date
+    Supplier Invoiced
+    Supplier Invoice - Billing Name
+    Purchase Invoice Number
+    Supplier Invoice Number
+    Supplier Invoice Date
+    Supplier Invoice - Tax Amount
+    Supplier Invoice - Total Amount
+    Supplier Invoice - Created By
+    Allotment By
+    Allotment Date
+    Reallotment Reason
+    Dispatched Date
+    Cancelled By
+    Cancelled On
+    Duty Slip - Approved by Passenger At
+    Duty Slip Entry Date
+    Feedback - Star Rating
+    Feedback - Comment
+    Feedback Form - Entries
+    Duty created at
+    Duty created by
+    Invoice Taxes
+    Supplier Invoice Taxes
+    Supplier Rejections - Name
+    Supplier Rejections - Time
+    Supplier Rejections - Reason
+    Estimated Drop-off Time
+    No Show
+    Business name
+    Non-Chargeable Invoice Tax Amount
+    Non-Chargeable Taxes
 @endsection
 @section('extrajs')
     <script>
