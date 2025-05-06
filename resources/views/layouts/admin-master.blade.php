@@ -77,7 +77,7 @@
                             <ul class="dropdown-menu mt-2">
                                 <li><a class="dropdown-item" href="#">Availability</a></li>
                                 <li><a class="dropdown-item" href="{{ route('bookings.all') }}">Bookings</a></li>
-                                <li><a class="dropdown-item" href="#">Billing</a></li>
+                                <li><a class="dropdown-item" href="{{ route('billing') }}">Billing</a></li>
                                 <li><a class="dropdown-item" href="#">Receipts</a></li>
                                 <li><a class="dropdown-item" href="#">Payment Gateway</a></li>
                                 <li>

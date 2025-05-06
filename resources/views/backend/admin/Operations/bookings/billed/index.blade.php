@@ -109,6 +109,7 @@
                             <th>Duty Type</th>
                             <th>Status</th>
                             <th>Duties</th>
+                            <th width="100">setting</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -121,6 +122,18 @@
                             <td>Duty Type</td>
                             <td>Status</td>
                             <td>Duties</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle py-0" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="fa-solid fa-gear"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View
+                                                Booking</a></li>
+                                    </ul>
+                                </div>
+                            </td>
                         </tr>
 
                     </tbody>
@@ -134,6 +147,7 @@
                             <th>Duty Type</th>
                             <th>Status</th>
                             <th>Duties</th>
+                            <th>setting</th>
                         </tr>
                     </tfoot>
                 </table>

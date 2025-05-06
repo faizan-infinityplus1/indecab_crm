@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\AdminAuth\LoginController;
 use App\Http\Controllers\Master\CustomersPeopleController;
+use App\Http\Controllers\Operations\BillingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookingController;
@@ -206,6 +207,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get("/purchased-duty", [OperationController::class, "PurchasedDuty"]);
     Route::get("/purchased-invoice", [OperationController::class, "PurchasedInvoice"]);
     Route::get("/purchased-payment", [OperationController::class, "PurchasedPayment"]);
+    Route::get("/billing", [BillingController::class, "billing"])->name('billing');
 
 });
 

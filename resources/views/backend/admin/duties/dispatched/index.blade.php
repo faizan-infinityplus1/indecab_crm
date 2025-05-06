@@ -242,13 +242,13 @@
                                         <li><a href="#" class="">View Booking</a></li>
                                         <li><a href="#" class="">View Invoice</a></li>
                                     </ul>
+                                    {{-- Cancelled --}}
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li><a href="#" class="">Details</a></li>
                                         <li><a href="#" class="">Add/Remove labels</a></li>
                                         <li><a href="#" class="">View Booking</a></li>
                                         <li><a href="#" class="">Restore Duty</a></li>
                                     </ul>
-                                    {{-- Cancelled --}}
                                     <ul class="dropdown-menu">
                                         <li> <a class="dropdown-item" href="#">Edit</a> </li>
                                         <li><a class="dropdown-item" href="#">Manage people</a></li>

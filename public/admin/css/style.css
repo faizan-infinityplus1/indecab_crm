@@ -280,3 +280,13 @@ ul.dropdown-menu.dropdown-menu-end {
     width: 20px;
     height: 20px;
 }
+
+.datatable input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+}
+
+#download-pdf input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+}

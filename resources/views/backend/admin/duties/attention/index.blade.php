@@ -174,7 +174,7 @@
                                         <li><a href="#" class="dropdown-item">Send to Associate</a></li>
                                         <li><a href="#" class="dropdown-item">Allot supporters</a></li>
                                         <li><a href="#" class="dropdown-item">Print duty slip</a></li>
-                                        <li><a href="#" class="dropdown-item">View Booking</a></li>
+                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
                                         <li><a href="#" class="dropdown-item">Cancel Duty</a></li>
                                     </ul>
                                     {{-- Details needed --}}
@@ -190,7 +190,7 @@
                                         <li><a href="#" class="dropdown-item">Send details to supplier</a></li>
                                         <li><a href="#" class="dropdown-item">Print duty slip</a></li>
                                         <li><a href="#" class="dropdown-item">Create placard</a></li>
-                                        <li><a href="#" class="dropdown-item">View Booking</a></li>
+                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
                                         <li><a href="#" class="dropdown-item">Cancel Duty</a></li>
                                     </ul>
                                     {{-- Allotted --}}
@@ -212,7 +212,7 @@
                                         <li><a href="#" class="">Mark as dispatched</a></li>
                                         <li><a href="#" class="">Close Duty</a></li>
                                         <li><a href="#" class="">Add Advance Purchase Payment</a></li>
-                                        <li><a href="#" class="">View Booking</a></li>
+                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="">View Booking</a></li>
                                         <li><a href="#" class="">Cancel Duty</a></li>
                                     </ul>
                                     {{-- Completed --}}
@@ -226,7 +226,7 @@
                                         <li><a href="#" class="">Print duty slip</a></li>
                                         <li><a href="#" class="">Add Advance Purchase Payment</a></li>
                                         <li><a href="#" class="">Request customer feedback</a></li>
-                                        <li><a href="#" class="">View Booking</a></li>
+                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="">View Booking</a></li>
                                     </ul>
                                     {{-- Billed --}}
                                     <ul class="dropdown-menu dropdown-menu-right">
@@ -239,24 +239,24 @@
                                         <li><a href="#" class="">Add Advance Purchase
                                                 Payment</a></li>
                                         <li><a href="#" class="">Add Petty Cash</a></li>
-                                        <li><a href="#" class="">View Booking</a></li>
+                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="">View Booking</a></li>
                                         <li><a href="#" class="">View Invoice</a></li>
                                     </ul>
+                                    {{-- Cancelled --}}
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li><a href="#" class="">Details</a></li>
                                         <li><a href="#" class="">Add/Remove labels</a></li>
-                                        <li><a href="#" class="">View Booking</a></li>
+                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="">View Booking</a></li>
                                         <li><a href="#" class="">Restore Duty</a></li>
                                     </ul>
-                                    {{-- Cancelled --}}
-                                    <ul class="dropdown-menu">
+                                    {{-- <ul class="dropdown-menu">
                                         <li> <a class="dropdown-item" href="#">Edit</a> </li>
                                         <li><a class="dropdown-item" href="#">Manage people</a></li>
                                         <li><a class="dropdown-item" href="#">Custome fields</a></li>
                                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                 data-bs-target="#create-corporate-account">Create Corporate Account</a>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                 </div>
                             </td>
                         </tr>
