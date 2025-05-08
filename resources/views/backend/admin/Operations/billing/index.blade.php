@@ -150,7 +150,7 @@
                                     </button>
                                     {{-- Booked --}}
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#" class="dropdown-item">View Invoice</a></li>
+                                        <li><a href="{{route('')}}" class="dropdown-item">View Invoice</a></li>
                                         <li><a href="#" class="dropdown-item">Edit Invoice</a></li>
                                         <li><a href="#" class="dropdown-item">Unapprove</a></li>
                                         <li><a href="#" class="dropdown-item">Approve</a></li>
@@ -162,7 +162,8 @@
                                         <li><a href="#" class="dropdown-item">Mark as dispatched</a></li>
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#cancel-invoice">Cancel Invoice</a></li>
-                                        <li><a href="#" class="dropdown-item">Export invoice duties</a></li>
+                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                        data-bs-target="#export-invoice-duties">Export invoice duties</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -800,215 +801,1952 @@
     </div>
     {{-- Mark As Dispatched close --}}
 
+    {{-- Export Invoice Duties --}}
+    <div class="modal fade" id="export-invoice-duties" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Export Duties - Invoice <span>MC2526-000199</span>
+                        </h1>
+                    </div>
+                </div>
+                <form action="">
+                    <div class="modal-body px-5">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Feedback Form</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Select Export Duties</option>
+                                        <option value="1">Export Duties 1</option>
+                                        <option value="1">Export Duties 1</option>
+                                        <option value="1">Export Duties 1</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Select Billing Items</label>
+                                    <select class="form-select border-bottom" aria-label="Default select example"
+                                        name="billing_item[]" id="billing-items" multiple="multiple">
+                                        <option value="qwe">qwe</option>
+                                        <option value="qwe">qwe</option>
+                                        <option value="qwe">qwe</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="d-flex justify-content-start align-items-center mb-3 gap-2">
+                                    <h3 class="modal-title fs-6" id="exampleModalLabel">Columns</h3>
+                                    <button type="button" class="btn btn-light border">Re-order</button>
+                                </div>
+                                <div>
+                                    <p>
+                                        <span class="bg-danger text-white p-1 rounded-1">New</span> Click on "Re-order" button
+                                        and drag/drop the column names to re-arrange them as you like.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="bg-light mb-3 p-3">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="Select Export Profile">[Select Export Profile]</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <button type="button" class="btn btn-light border w-100">Save as new</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty Id">
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Associate Duty Id">
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Customer">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Customer Code">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Customer Billing Name">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Customer GST Number">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Customer Group">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Booked by Name">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Booked by Number">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Booked by Email">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <span class="py-2 px-3 w-100 border-bottom fs-6">Booked by Fields</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Passengers">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Passenger Phone Numbers">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Passenger Emails">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <span class="py-2 px-3 w-100 border-bottom fs-6">Passenger Fields</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Additional Contacts Names">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Additional Contacts Phone Numbers">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Additional Contacts Emails">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Status">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Status Info">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Cancellation Reason">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="From city">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="To city">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Vehicle Group">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Garage Start Time">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Start Date">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="End Date">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Reporting Time">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Short Reporting Address">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Reporting Address">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Drop Address">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Dispatch Center">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Vehicle Number">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Vehicle Name">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Vehicle Code">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Vehicle Fuel type">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Vehicle CO2 per kg">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Driver">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Driver Phone Number">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Driver Code">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supporters">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supporters Phone Numbers">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty Type">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty Type Type">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Price">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Amount to collect">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Amount collected">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Quantity - Number of Days">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Total Price">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Car Hire Charges">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Car Hire Charges (incl. Allowances)">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty Subtotal">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty Subtotal + Taxes (As per Invoice)">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty Subtotal (incl. Allowances)">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Number Of Passengers">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Cost Per Passenger">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty Subtotal (incl. Allowances) + Taxes (As per Invoice)">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Remarks">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Flight/Train Number">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Operator Notes">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Labels">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Petty Cash Amount">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Advance Purchase Payment Amount">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Advance Purchase Payment Date">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Purchase Invoice Payment Numbers">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Driver App Used (DDS)">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Driver Slip Approved">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty slip approved by">
+                                    </label>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Garage Start Km">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Reporting KM">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Releasing KM">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Garage End Km">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty slip accepted by">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Total KM">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Booked KM">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Speed-o-meter Start Km">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Speed-o-meter End Km">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Total Speed-o-meter Km">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Dead KM">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Verified Via">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Actual Start Date">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Actual Garage Start Time">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Actual Reporting Time">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Releasing Time">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Garage End Time">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Total Hours">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Extra KM">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Extra KM Charge">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Customer Extra KM cost/KM">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Extra Hours">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Extra Hours Cost">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Customer Extra Time cost/HR">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Fuel Surcharge">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Driver OT Hours">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Chargeable Driver Daily Allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Chargeable Driver OT Allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Chargeable Outstation allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Chargeable Outstation overnight allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Chargeable Sunday allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Chargeable Early start allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Chargeable Night allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Chargeable Extra Duty allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Driver Daily Allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Driver OT Allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Outstation allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Outstation overnight allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Sunday allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Early start allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Night allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Extra Duty allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty Slip Closing Remarks">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty Slip Rejection Reason">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <span class="py-2 px-3 w-100 border-bottom fs-6">Billing Items</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Chargeable Non-Taxable Billing Items Total">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Chargeable Taxable Billing Items Total">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Total Billing Items Amount">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Scanned Duty Slip">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Invoice Number">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Invoice Date">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Invoice Customer Name">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Invoice Print Customer Name">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Invoice Customer GST Number">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Total Fuel Surcharge">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Custom Row Total (Taxable)">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Custom Row Total (Non-Taxable)">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Invoice Discount Amount">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Invoice Discount Percent">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Invoice Card Surcharge">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Invoice Card Surcharge %">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Invoice Amount">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Invoice Payment Status">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Invoice Payment Mode">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Invoice Tax Amount">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Name">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Group">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Code">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Phone Number">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Vehicle Group">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Duty Type">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Remarks">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Base Price">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier estimated amount">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier estimated amount (with tax)">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Car Hire Charges (incl. allowances)">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Earnings From Supplier">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Agent Commission amount">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Car hire charges after commission">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Extra KM cost/KM">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Extra KM cost">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Extra Time cost/HR">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Extra Time cost">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Reporting Time">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Releasing Time">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Total Time">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Extra Time">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Reporting KM">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Releasing KM">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Speed-o-meter Start Km">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Speed-o-meter End Km">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Total KM">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Extra KM">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Duty Slip Rejection Reason">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Chargeable Driver Daily Allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Chargeable Driver OT Allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Chargeable Outstation allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Chargeable Outstation overnight allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Chargeable Sunday allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Chargeable Early start allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Chargeable Night allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Chargeable Extra Duty allowance">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Billing Items">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <span class="py-2 px-3 w-100 border-bottom fs-6">Supplier Individual Billing
+                                            Items</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Invoice - Submission status">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Invoice - Submission date">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Invoiced">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Invoice - Billing Name">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Purchase Invoice Number">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Invoice Number">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Invoice Date">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Invoice - Tax Amount">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Invoice - Total Amount">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Invoice - Created By">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Allotment By">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Allotment Date">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Reallotment Reason">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Dispatched Date">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Cancelled By">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Cancelled On">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty Slip - Approved by Passenger At">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty Slip Entry Date">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Feedback - Star Rating">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Feedback - Comment">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Feedback Form - Entries">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty created at">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Duty created by">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <span class="py-2 px-3 w-100 border-bottom fs-6">Invoice Taxes</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <span class="py-2 px-3 w-100 border-bottom fs-6">Supplier Invoice Taxes</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Rejections - Name">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Rejections - Time">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Supplier Rejections - Reason">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Estimated Drop-off Time">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="No Show">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Business name">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <input type="text" name="" class="form-control" id=""
+                                            value="Non-Chargeable Invoice Tax Amount">
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <label class="form-check-label d-flex justify-content-start align-items-center"
+                                        for="">
+                                        <input class="form-check-input big-checkbox" type="checkbox" id="">
+                                        <span class="py-2 px-3 w-100 border-bottom fs-6">Non-Chargeable Taxes</span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer justify-content-between align-items-end px-5">
+                        <div class="col-md-5 mb-3">
+                            <div class="input-group">
+                                <div class="d-flex justify-content-center align-items-center me-2">
+                                    <i class="bi bi-search fs-5"></i>
+                                </div>
+                                <input type="text" class="form-control border-bottom" name="name" id="name"
+                                    placeholder="Type here to filter by name, number, city, duty type, company name or booking ID">
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-primary border">
+                                    <i class="fa-solid fa-download"></i> Get Statement
+                                </button>
+                                <button type="button" class="btn btn-success border">
+                                    <i class="fa-solid fa-file-import"></i> View
+                                </button>
+                                <button type="button" class="btn btn-light border "><i
+                                    class="fa-solid fa-upload"></i> Export</button>
+                            <button type="button" class="btn btn-danger"
+                                data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- Export Invoice Duties Close --}}
 
 
-    Duty Id
-    Associate Duty Id
-    Customer
-    Customer Code
-    Customer Billing Name
-    Customer GST Number
-    Customer Group
-    Booked by Name
-    Booked by Number
-    Booked by Email
-    Booked by Fields
-    Passengers
-    Passenger Phone Numbers
-    Passenger Emails
-    Passenger Fields
-    Additional Contacts Names
-    Additional Contacts Phone Numbers
-    Additional Contacts Emails
-    Status
-    Status Info
-    Cancellation Reason
-    From city
-    To city
-    Vehicle Group
-    Garage Start Time
-    Start Date
-    End Date
-    Reporting Time
-    Short Reporting Address
-    Reporting Address
-    Drop Address
-    Dispatch Center
-    Vehicle Number
-    Vehicle Name
-    Vehicle Code
-    Vehicle Fuel type
-    Vehicle CO2 per kg
-    Driver
-    Driver Phone Number
-    Driver Code
-    Supporters
-    Supporters Phone Numbers
-    Duty Type
-    Duty Type Type
-    Price
-    Amount to collect
-    Amount collected
-    Quantity - Number of Days
-    Total Price
-    Car Hire Charges
-    Car Hire Charges (incl. Allowances)
-    Duty Subtotal
-    Duty Subtotal + Taxes (As per Invoice)
-    Duty Subtotal (incl. Allowances)
-    Number Of Passengers
-    Cost Per Passenger
-    Duty Subtotal (incl. Allowances) + Taxes (As per Invoice)
-    Remarks
-    Flight/Train Number
-    Operator Notes
-    Labels
-    Petty Cash Amount
-    Advance Purchase Payment Amount
-    Advance Purchase Payment Date
-    Purchase Invoice Payment Numbers
-    Driver App Used (DDS)
-    Driver Slip Approved
-    Duty slip approved by
-    Garage Start Km
-    Reporting KM
-    Releasing KM
-    Garage End Km
-    Duty slip accepted by
-    Total KM
-    Booked KM
-    Speed-o-meter Start Km
-    Speed-o-meter End Km
-    Total Speed-o-meter Km
-    Dead KM
-    Verified Via
-    Actual Start Date
-    Actual Garage Start Time
-    Actual Reporting Time
-    Releasing Time
-    Garage End Time
-    Total Hours
-    Extra KM
-    Extra KM Charge
-    Customer Extra KM cost/KM
-    Extra Hours
-    Extra Hours Cost
-    Customer Extra Time cost/HR
-    Fuel Surcharge
-    Driver OT Hours
-    Chargeable Driver Daily Allowance
-    Chargeable Driver OT Allowance
-    Chargeable Outstation allowance
-    Chargeable Outstation overnight allowance
-    Chargeable Sunday allowance
-    Chargeable Early start allowance
-    Chargeable Night allowance
-    Chargeable Extra Duty allowance
-    Driver Daily Allowance
-    Driver OT Allowance
-    Outstation allowance
-    Outstation overnight allowance
-    Sunday allowance
-    Early start allowance
-    Night allowance
-    Extra Duty allowance
-    Duty Slip Closing Remarks
-    Duty Slip Rejection Reason
-    Billing Items
-    Chargeable Non-Taxable Billing Items Total
-    Chargeable Taxable Billing Items Total
-    Total Billing Items Amount
-    Scanned Duty Slip
-    Corrections (Diff.)
-    Invoice Number
-    Invoice Date
-    Invoice Customer Name
-    Invoice Customer Code
-    Invoice Print Customer Name
-    Invoice Customer GST Number
-    Total Fuel Surcharge
-    Custom Row Total (Taxable)
-    Custom Row Total (Non-Taxable)
-    Invoice Discount Amount
-    Invoice Discount Percent
-    Invoice Card Surcharge
-    Invoice Card Surcharge %
-    Invoice Amount
-    Invoice Payment Status
-    Invoice Payment Mode
-    Invoice Tax Amount
-    Supplier Name
-    Supplier Group
-    Supplier Code
-    Supplier Phone Number
-    Supplier Vehicle Group
-    Supplier Duty Type
-    Supplier Remarks
-    Supplier Base Price
-    Supplier estimated amount
-    Supplier estimated amount (with tax)
-    Supplier Car Hire Charges (incl. allowances)
-    Earnings From Supplier
-    Agent Commission amount
-    Car hire charges after commission
-    Supplier Extra KM cost/KM
-    Supplier Extra KM cost
-    Supplier Extra Time cost/HR
-    Supplier Extra Time cost
-    Supplier Reporting Time
-    Supplier Releasing Time
-    Supplier Total Time
-    Supplier Extra Time
-    Supplier Reporting KM
-    Supplier Releasing KM
-    Supplier Speed-o-meter Start Km
-    Supplier Speed-o-meter End Km
-    Supplier Total KM
-    Supplier Extra KM
-    Supplier Duty Slip Rejection Reason
-    Supplier Chargeable Driver Daily Allowance
-    Supplier Chargeable Driver OT Allowance
-    Supplier Chargeable Outstation allowance
-    Supplier Chargeable Outstation overnight allowance
-    Supplier Chargeable Sunday allowance
-    Supplier Chargeable Early start allowance
-    Supplier Chargeable Night allowance
-    Supplier Chargeable Extra Duty allowance
-    Supplier Billing Items
-    Supplier Individual Billing Items
-    Supplier Invoice - Submission status
-    Supplier Invoice - Submission date
-    Supplier Invoiced
-    Supplier Invoice - Billing Name
-    Purchase Invoice Number
-    Supplier Invoice Number
-    Supplier Invoice Date
-    Supplier Invoice - Tax Amount
-    Supplier Invoice - Total Amount
-    Supplier Invoice - Created By
-    Allotment By
-    Allotment Date
-    Reallotment Reason
-    Dispatched Date
-    Cancelled By
-    Cancelled On
-    Duty Slip - Approved by Passenger At
-    Duty Slip Entry Date
-    Feedback - Star Rating
-    Feedback - Comment
-    Feedback Form - Entries
-    Duty created at
-    Duty created by
-    Invoice Taxes
-    Supplier Invoice Taxes
-    Supplier Rejections - Name
-    Supplier Rejections - Time
-    Supplier Rejections - Reason
-    Estimated Drop-off Time
-    No Show
-    Business name
-    Non-Chargeable Invoice Tax Amount
-    Non-Chargeable Taxes
 @endsection
 @section('extrajs')
     <script>
@@ -1017,6 +2755,22 @@
                 responsive: true
             });
             $(".dropdown-toggle").dropdown();
+            $(document).ready(function() {
+            $("#billing-items").select2({
+                placeholder: "Select an Option",
+                allowClear: true
+            });
+            // code for details option from setting
+            $('.duties-nav-tabs').on('click', function() {
+                // Remove 'active' class from all <li> elements
+                $('#tabs-nav li').removeClass('active');
+
+                // Add 'active' class to the parent <li> of the clicked tab
+                $(this).closest('li').addClass('active');
+            });
+
+
+        });
 
         });
 
