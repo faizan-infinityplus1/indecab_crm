@@ -111,8 +111,8 @@ $(".toggleDivs").on("click", function () {
     $(".hideElement").show();
 });
 
-document.getElementById("rep_time").innerHTML = generateTimeSlots();
-document.getElementById("drop_time").innerHTML = generateTimeSlots();
+document.getElementById("rep_time").innerHTML = generateTimeSlots(repTime);
+document.getElementById("drop_time").innerHTML = generateTimeSlots(dropTime);
 
 // =========== Add Passenger Start ==============
 let contactIndex = 0;
@@ -241,7 +241,7 @@ function removePassenger(index) {
 // =========== Add Passenger End ==============
 
 $("#fromservice").html(generateCityOptions(fromService));
-$("#toservice").html(generateCityOptions());
+$("#toservice").html(generateCityOptions(toService));
 
 // function initializeSelect2(passengerIndex) {
 //     $(`.passenger_name${passengerIndex}`).select2({

@@ -20,7 +20,7 @@ function generateCitySelect2(selectedValues = []) {
         };
     });
 }
-function generateTimeSlots(selectedTime) {
+function generateTimeSlots(selectedTime = "") {
     return [
         `<option value="" disabled ${!selectedTime ? "selected" : ""}>-- Select a Time Slot --</option>`,
         ...timeSlots.map((slot) => `<option value="${slot.value}" ${slot.value === selectedTime ? "selected" : ""}>${slot.name}</option>`),
