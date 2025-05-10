@@ -240,7 +240,7 @@ function removePassenger(index) {
 }
 // =========== Add Passenger End ==============
 
-$("#fromservice").html(generateCityOptions());
+$("#fromservice").html(generateCityOptions(fromService));
 $("#toservice").html(generateCityOptions());
 
 // function initializeSelect2(passengerIndex) {
@@ -287,3 +287,5 @@ function selectCompany(companyId, companyName) {
     // $("body").removeClass("modal-open");
     // $(".modal-backdrop").remove();
 }
+
+$("#customer").trigger("change");

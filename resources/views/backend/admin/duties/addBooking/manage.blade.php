@@ -41,12 +41,15 @@
                 <div class="row mb-3">
                     <div class="col-md-10 col-12">
                         <label for="name" class="control-label">Customer <span class="text-danger">*</span></label>
+                        <div>{{ old('customer_id') }}</div>
                         <select class="form-select border-bottom" name="customer_id" id="customer"
                             value="{{ old('customer_id', $booking->customer_id ?? '') }}">
+
                             <option></option>
                             @foreach ($customers as $customer)
                                 <option value="{{ $customer->id }}" data-name="{{ $customer->name }}"
-                                    data-gstNo="{{ $customer->gst_no }}" data-address="{{ $customer->address }}">
+                                    data-gstNo="{{ $customer->gst_no }}" data-address="{{ $customer->address }}"
+                                    {{ $customer->id == old('customer_id', $booking->customer_id ?? '') ? 'selected' : '' }}>
                                     {{ $customer->name }}
                                 </option>
                             @endforeach
@@ -140,8 +143,10 @@
                         <div class="col-md-3 mb-3">
                             <label for="" class="control-label">From (Service Location) <span
                                     class="text-danger">*</span></label>
+                            <div>{{ old('from_service') }}</div>
                             <select class="form-select border-bottom" name="from_service" id="fromservice"
                                 value="{{ old('from_service', $booking->from_service ?? '') }}" required>
+
                             </select>
                             <span class="help-block"></span>
                         </div>
@@ -450,10 +455,20 @@
                     </div>
                     {{-- <button type="button" class="btn btn-light border border-secondary-subtle rounded-1" data-bs-dismiss="modal">Download Import Format</button> --}}
                 </div>
+
             </div>
         </div>
     </div>
     <!-- Activity logs Modal End-->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection
 
 @section('extrajs')
@@ -465,6 +480,7 @@
         const booking = {!! json_encode($booking) !!};
         const defaultCompanyId = {!! json_encode($defaultCompanyId) !!};
         const companies = {!! json_encode($mstMyCompany) !!};
+        const fromService = {!! json_encode(old('from_service')) !!};
     </script>
     <script src="{{ asset('admin/js/bookingcab.js') }}"></script>
     <script>

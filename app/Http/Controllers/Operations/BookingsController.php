@@ -55,7 +55,7 @@ class BookingsController extends Controller
         dd('i m here');
         //
         try {
-            dd($request->attachments);
+            // dd($request->attachments);
             // Validate request (handled by FormRequest)
             $validatedData = $request->validated();
             // dd($validatedData);

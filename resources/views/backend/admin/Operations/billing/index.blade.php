@@ -63,7 +63,9 @@
             </div>
         </form>
         <div class="d-flex">
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <p class="mb-0" id="info-text">Use checkboxes below to select multiple entries on this page and perform
+                actions.</p>
+            <div class="btn-group d-none" role="group" aria-label="Basic example" id="action-buttons">
                 <button type="button" class="btn btn-danger border"> X(Selected)</button>
                 <button type="button" class="btn btn-light border" data-bs-toggle="modal" data-bs-target="#download-pdf"><i
                         class="fa-regular fa-circle-down"></i>
@@ -150,7 +152,8 @@
                                     </button>
                                     {{-- Booked --}}
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="{{route('')}}" class="dropdown-item">View Invoice</a></li>
+                                        <li><a href="{{ route('invoice') }}" class="dropdown-item">View
+                                                Invoice</a></li>
                                         <li><a href="#" class="dropdown-item">Edit Invoice</a></li>
                                         <li><a href="#" class="dropdown-item">Unapprove</a></li>
                                         <li><a href="#" class="dropdown-item">Approve</a></li>
@@ -163,7 +166,7 @@
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#cancel-invoice">Cancel Invoice</a></li>
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                        data-bs-target="#export-invoice-duties">Export invoice duties</a></li>
+                                                data-bs-target="#export-invoice-duties">Export invoice duties</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -196,7 +199,8 @@
                                         <i class="fa-solid fa-gear"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#" class="dropdown-item">View Invoice</a></li>
+                                        <li><a href="{{ route('admin.dashboard') }}" class="dropdown-item">View
+                                                Invoice</a></li>
                                         <li><a href="#" class="dropdown-item">Remove Cancellation</a></li>
                                     </ul>
                                 </div>
@@ -808,7 +812,8 @@
             <div class="modal-content rounded-0 border-0">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Export Duties - Invoice <span>MC2526-000199</span>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Export Duties - Invoice
+                            <span>MC2526-000199</span>
                         </h1>
                     </div>
                 </div>
@@ -847,7 +852,8 @@
                                 </div>
                                 <div>
                                     <p>
-                                        <span class="bg-danger text-white p-1 rounded-1">New</span> Click on "Re-order" button
+                                        <span class="bg-danger text-white p-1 rounded-1">New</span> Click on "Re-order"
+                                        button
                                         and drag/drop the column names to re-arrange them as you like.
                                     </p>
                                 </div>
@@ -2721,7 +2727,8 @@
                                 <div class="d-flex justify-content-center align-items-center me-2">
                                     <i class="bi bi-search fs-5"></i>
                                 </div>
-                                <input type="text" class="form-control border-bottom" name="name" id="name"
+                                <input type="text" class="form-control border-bottom" name="name"
+                                    id="name"
                                     placeholder="Type here to filter by name, number, city, duty type, company name or booking ID">
                             </div>
                         </div>
@@ -2734,9 +2741,8 @@
                                     <i class="fa-solid fa-file-import"></i> View
                                 </button>
                                 <button type="button" class="btn btn-light border "><i
-                                    class="fa-solid fa-upload"></i> Export</button>
-                            <button type="button" class="btn btn-danger"
-                                data-bs-dismiss="modal">Cancel</button>
+                                        class="fa-solid fa-upload"></i> Export</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -2750,12 +2756,22 @@
 @endsection
 @section('extrajs')
     <script>
+        function updateActionDisplay() {
+            let anyChecked = $('.item:checked').length > 0;
+
+            if (anyChecked) {
+                $('#action-buttons').removeClass('d-none');
+                $('#info-text').addClass('d-none');
+            } else {
+                $('#action-buttons').addClass('d-none');
+                $('#info-text').removeClass('d-none');
+            }
+        }
         $(document).ready(function() {
             $('.datatable').DataTable({
                 responsive: true
             });
             $(".dropdown-toggle").dropdown();
-            $(document).ready(function() {
             $("#billing-items").select2({
                 placeholder: "Select an Option",
                 allowClear: true
@@ -2769,8 +2785,15 @@
                 $(this).closest('li').addClass('active');
             });
 
+            // Checkbox change event
+            $('.item').on('change', updateActionDisplay);
 
-        });
+            // "Select All" checkbox
+            $('input[title="Select All"]').on('change', function() {
+                let isChecked = $(this).is(':checked');
+                $('.item').prop('checked', isChecked);
+                updateActionDisplay();
+            });
 
         });
 

@@ -13,4 +13,8 @@ class BillingController extends Controller
     {
         return view("backend.admin.operations.billing.index");
     }
+    public function invoice()
+    {
+        return view("backend.admin.operations.billing.invoice");
+    }
 }

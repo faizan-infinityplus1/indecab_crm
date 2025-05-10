@@ -208,6 +208,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get("/purchased-invoice", [OperationController::class, "PurchasedInvoice"]);
     Route::get("/purchased-payment", [OperationController::class, "PurchasedPayment"]);
     Route::get("/billing", [BillingController::class, "billing"])->name('billing');
+    Route::get("/billing/invoice", [BillingController::class, "invoice"])->name('invoice');
 
 });
 

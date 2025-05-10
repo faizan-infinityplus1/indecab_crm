@@ -186,7 +186,8 @@
                                                         data-bs-target="#allot-supporters">Allot supporters</a></li>
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                                <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
+                                                <li><a href="{{ route('bookings.specific-bookings') }}"
+                                                        class="dropdown-item">View Booking</a></li>
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#cancel-duty">Cancel Duty</a></li>
                                             </ul>
@@ -216,13 +217,14 @@
                                                         data-bs-target="#print-duty-slip">Print duty slip</a></li>
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#create-placard">Create placard</a></li>
-                                                <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
+                                                <li><a href="{{ route('bookings.specific-bookings') }}"
+                                                        class="dropdown-item">View Booking</a></li>
 
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#cancel-duty">Cancel Duty</a></li>
                                             </ul>
 
-                                        {{-- Allotted --}}
+                                            {{-- Allotted --}}
                                         @elseif ($booking->status == 'allotted')
                                             <ul class="dropdown-menu dropdown-menu-right">
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
@@ -269,13 +271,14 @@
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#advance-purchase-payment">Add Advance Purchase
                                                         Payment</a></li>
-                                                <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
+                                                <li><a href="{{ route('bookings.specific-bookings') }}"
+                                                        class="dropdown-item">View Booking</a></li>
 
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#cancel-duty">Cancel Duty</a></li>
                                             </ul>
 
-                                        {{-- Completed --}}
+                                            {{-- Completed --}}
                                         @elseif ($booking->status == 'completed')
                                             <ul class="dropdown-menu dropdown-menu-right">
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
@@ -299,7 +302,8 @@
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#request-customer-feedback">Request customer
                                                         feedback</a></li>
-                                                <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
+                                                <li><a href="{{ route('bookings.specific-bookings') }}"
+                                                        class="dropdown-item">View Booking</a></li>
                                             </ul>
                                             {{-- Billed --}}
                                         @elseif ($booking->status == 'billed')
@@ -320,7 +324,8 @@
                                                         Payment</a></li>
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#add-petty-cash">Add Petty Cash</a></li>
-                                                <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
+                                                <li><a href="{{ route('bookings.specific-bookings') }}"
+                                                        class="dropdown-item">View Booking</a></li>
                                                 <li><a href="#" class="dropdown-item">View Invoice</a></li>
                                             </ul>
 
@@ -333,7 +338,8 @@
                                                         data-bs-target="#details">Details</a></li>
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                                <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
+                                                <li><a href="{{ route('bookings.specific-bookings') }}"
+                                                        class="dropdown-item">View Booking</a></li>
 
                                                 <li><a href="#" class="dropdown-item"
                                                         onclick="restoreDuty()">Restore Duty</a></li>

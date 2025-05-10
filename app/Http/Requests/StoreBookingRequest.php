@@ -8,6 +8,8 @@ use Illuminate\Validation\Validator;
 
 class StoreBookingRequest extends FormRequest
 {
+
+    protected $stopOnFirstFailure = true;
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -75,7 +77,7 @@ class StoreBookingRequest extends FormRequest
     {
         return [
             function (Validator $validator) {
-                dd(request()->all());
+                // dd(request()->all());
                 Log::info(['after' => $this->all(), 'errors' => $validator->errors()]);
                 // dd($validator->errors());
             }
