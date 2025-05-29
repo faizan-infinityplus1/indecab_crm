@@ -60,6 +60,18 @@ class Booking extends Model
 
     public function customers()
     {
-        return $this->hasMany(MstCustomer::class, 'id');
+        return $this->belongsTo(MstCustomer::class, 'customer_id', 'id');
     }
+
+    public function vehicleGroup()
+    {
+        return $this->belongsTo(MstCatVehGroup::class, 'vehicle_group', 'id');
+    }
+
+    public function dutyType()
+    {
+        return $this->belongsTo(MstDutyType::class, 'duty_type', 'id');
+    }
+
+    
 }

@@ -77,30 +77,38 @@
                     <div class="position-relative">
                         <label for="" class="form-label position-absolute mb-1 bottom-0"><i
                                 class="fa-solid fa-magnifying-glass"></i></label>
-                        <input type="text" name="" value="" class="form-control  border-bottom ps-4"
-                            id=""
+                        <input type="text" id="globalSearch" class="form-control"
                             placeholder="Type here to filter by name, number, city, duty type, company name or booking ID">
+
                     </div>
                 </div>
                 <div class="col-md-5 mb-3">
-                    <div class="row">
-                        <div class="col-md-8 d-flex align-items-end justify-content-around ">
-                            <div>
-                                <i class="fa-solid fa-angle-right"></i>
-                            </div>
-                            <input type="date" name="" id="">
-                            <i class="fa-solid fa-arrow-right"></i>
-                            <input type="date" name="" id="">
+                    <div class="row g-2 align-items-center">
 
-                            <div>
-                                <i class="fa-solid fa-angle-right"></i>
+                        <!-- Date Range & Icons -->
+                        <div class="col-md-8">
+                            <div class="d-flex align-items-center justify-content-between gap-2">
+
+                                <input type="text" id="min-date" class="form-control datepicker"
+                                    placeholder="DD/MM/YYYY">
+
+
+                                <input type="text" id="max-date" class="form-control datepicker"
+                                    placeholder="DD/MM/YYYY">
+
                             </div>
                         </div>
+
+                        <!-- Clear Filters Button -->
                         <div class="col-md-4">
-                            <button type="reset" class="btn btn-light border w-100">Clear Filters</button>
+                            <button type="reset" class="btn btn-light border w-100">
+                                Clear Filters
+                            </button>
                         </div>
+
                     </div>
                 </div>
+
             </div>
         </form>
         <div class="card-body px-0">
@@ -123,106 +131,103 @@
                             <th>Date</th>
                             <th>Customer</th>
                             <th>Passenger</th>
-                            <th>Vehicle Group</th>
                             <th>Vehicle</th>
                             <th>Driver/Supplier</th>
                             <th>Duty Type</th>
                             <th>Rep.Address</th>
-                            <th>Drop Address</th>
-                            <th>Remarks</th>
-                            <th>Operator Notes</th>
                             <th>City</th>
                             <th>Rep.Time</th>
-                            <th>Labels</th>
                             <th>Status</th>
                             <th>setting</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <i class="fa-solid fa-phone text-success"></i>
-                            </td>
-                            <td>Date</td>
-                            <td>Customer</td>
-                            <td>Passenger</td>
-                            <td>Vehicle Group</td>
-                            <td>Vehicle</td>
-                            <td>Driver/Supplier</td>
-                            <td>Duty Type</td>
-                            <td>Rep.Address</td>
-                            <td>Drop Address</td>
-                            <td>Remarks</td>
-                            <td>Operator Notes</td>
-                            <td>City</td>
-                            <td>Rep.Time</td>
-                            <td>Labels</td>
-                            <td>Status</td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle py-0" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="fa-solid fa-gear"></i>
-                                    </button>
-                                    {{-- Booked --}}
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#details">Details</a>
-                                        </li>
-                                        <li><a class="dropdown-item" onclick="unconfirmDuty()">Unconfirm duty</a>
-                                        </li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#edit-duty">Edit duty</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-vehicle-driver">Allot vehicle & driver</a>
-                                        </li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-send-to-associate">Send to Associate</a>
-                                        </li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-supporters">Allot supporters</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#cancel-duty">Cancel Duty</a></li>
-                                    </ul>
+                        @foreach ($booking as $data)
+                            <tr>
+                                <td>
+                                    <i class="fa-solid fa-phone text-success"></i>
+                                </td>
+                                <td>
+                                    {{ $data->end_date ? \Carbon\Carbon::parse($data->end_date)->format('d/m/Y') : 'N/A' }}
+                                </td>
+                                <td>{{ $data->customers->name }}</td>
+                                @foreach ($data->bookedBy as $bookedbyData)
+                                    <td>{{ $bookedbyData->name }}</td>
+                                @endforeach
+                                <td>{{ $data->vehicleGroup->name }}</td>
+                                <td>Driver/Supplier</td>
+                                <td>{{ $data->dutyType->duty_name }}</td>
+                                <td>{{$data->reporting_address}}</td>
+                                <td>{{$data->from_service}}</td>
+                                <td>{{$data->reporting_time}}</td>
+                                <td>{{$data->status}}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle py-0" type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="fa-solid fa-gear"></i>
+                                        </button>
+                                        {{-- Booked --}}
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#details">Details</a>
+                                            </li>
+                                            <li><a class="dropdown-item" onclick="unconfirmDuty()">Unconfirm duty</a>
+                                            </li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#edit-duty">Edit duty</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-vehicle-driver">Allot vehicle & driver</a>
+                                            </li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-send-to-associate">Send to Associate</a>
+                                            </li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                            <li><a href="{{ route('bookings.specific-bookings') }}"
+                                                    class="dropdown-item">View Booking</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#cancel-duty">Cancel Duty</a></li>
+                                        </ul>
 
-                                    {{-- Details needed --}}
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#details">Details 3</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-duty-to-supplier">Add Supplier Details</a>
-                                        </li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#edit-duty">Edit duty</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-supporters">Allot supporters</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
-                                        <li><a class="dropdown-item" onclick="clearAllotment()">Clear
-                                                Allotment</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#send-details-to-supplier">Send details to
-                                                supplier</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#create-placard">Create placard</a></li>
-                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
+                                        {{-- Details needed --}}
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#details">Details 3</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-duty-to-supplier">Add Supplier Details</a>
+                                            </li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#edit-duty">Edit duty</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
+                                            <li><a class="dropdown-item" onclick="clearAllotment()">Clear
+                                                    Allotment</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#send-details-to-supplier">Send details to
+                                                    supplier</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#create-placard">Create placard</a></li>
+                                            <li><a href="{{ route('bookings.specific-bookings') }}"
+                                                    class="dropdown-item">View Booking</a></li>
 
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#cancel-duty">Cancel Duty</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#cancel-duty">Cancel Duty</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
@@ -230,17 +235,12 @@
                             <th>Date</th>
                             <th>Customer</th>
                             <th>Passenger</th>
-                            <th>Vehicle Group</th>
                             <th>Vehicle</th>
                             <th>Driver/Supplier</th>
                             <th>Duty Type</th>
                             <th>Rep.Address</th>
-                            <th>Drop Address</th>
-                            <th>Remarks</th>
-                            <th>Operator Notes</th>
                             <th>City</th>
                             <th>Rep.Time</th>
-                            <th>Labels</th>
                             <th>Status</th>
                             <th>setting</th>
                         </tr>
@@ -1552,14 +1552,6 @@
 
 @section('extrajs')
     <script>
-        $(document).ready(function() {
-            $('.datatable').DataTable({
-                responsive: true
-            });
-            $(".dropdown-toggle").dropdown();
-
-        });
-
         function unconfirmDuty() {
             let unconfirmDuty = confirm("Are you sure you want to mark this duty as unconfirmed?");
             if (unconfirmDuty == true) {
@@ -1569,6 +1561,7 @@
                 console.log('cancel');
             }
         }
+
         function clearAllotment() {
             let clearAllotment = confirm("Are you sure you want to clear the allotment?");
             if (clearAllotment == true) {
@@ -1577,7 +1570,7 @@
                 console.log('cancel');
             }
         }
-        
+
         function confirmDelete(url) {
             if (confirm('Are you sure you want to delete this duty type?')) {
                 window.location.href = url; // Proceed with the delete action if confirmed

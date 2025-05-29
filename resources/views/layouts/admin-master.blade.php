@@ -249,7 +249,9 @@
     {{-- SweetAlert Js --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    {{-- <script src="{{asset('admin/js/datatables.2.2.1.js')}}"></script> --}}
+    <!-- jQuery UI for Datepicker -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
         function showAlert(type, message) {
             Swal.fire({

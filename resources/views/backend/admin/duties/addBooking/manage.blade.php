@@ -482,7 +482,7 @@
         </div>
     </div>
     <!-- Activity logs Modal End-->
-    @if ($errors->any())
+   {{-- @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -490,7 +490,7 @@
                 @endforeach
             </ul>
         </div>
-    @endif
+    @endif  --}} 
 @endsection
 
 @section('extrajs')
@@ -546,36 +546,76 @@
                     price: {
                         required: true,
                     },
+                },
+                messages: {
+                    customer_id: {
+                        required: "", // Do not show error text
+                    },
+                    from_service: {
+                        required: "From is required",
+                    },
+                    to_service: {
+                        required: "To is required",
+                    },
+                    vehicle_group: {
+                        required: "Vehicle Group is required",
+                    },
+                    duty_type: {
+                        required: "Duty Type is required",
+                    },
+                    start_date: {
+                        required: "Start Date is required",
+                    },
+                    end_date: {
+                        required: "End Date is required",
+                    },
+                    rep_time: {
+                        required: "Rep. Time is required",
+                    },
+                    garage_time: {
+                        required: "Start from garage before (in min) is required",
+                    },
+                    price: {
+                        required: "Price is required",
+                    },
+                },
+                errorElement: "div",
+                errorClass: "error-message text-danger",
+                highlight: function(element) {
+                    $(element).addClass("is-invalid");
+                    $(element).closest(".validator-error").find("label").css("color", "red");
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass("is-invalid");
+                    $(element).closest(".validator-error").find("label").css("color", "black");
+                },
+                showErrors: function(errorMap, errorList) {
+                    // Prevent displaying error message for customer_id
+                    errorList = errorList.filter(function(error) {
+                        return error.element.name !== "customer_id";
+                    });
+
+                    this.defaultShowErrors();
+                },
+                invalidHandler: function(event, validator) {
+                    if (validator.errorList.length) {
+                        const firstError = validator.errorList.find(e => e.element.name !==
+                            "customer_id");
+                        if (firstError) {
+                            showAlert('error', firstError.message);
+                        }
+                    }
+                },
+                submitHandler: function(form) {
+                    $('.btnSubmit').attr('disabled', 'disabled');
+                    $(".btnSubmit").html('<span class="fa fa-spinner fa-spin"></span> Loading...');
+                    form.submit();
                 }
-            })
+            });
+
 
         });
-        // document.getElementById("booking_attachments").addEventListener("change", function(event) {
-        //     let fileListDiv = document.getElementById("fileList");
-
-        //     Array.from(event.target.files).forEach((file, index) => {
-        //         let fileWrapper = document.createElement("div");
-        //         fileWrapper.classList.add("booking-attachments-file-item");
-
-        //         let fileName = document.createElement("p");
-        //         fileName.classList.add("mb-0");
-        //         fileName.textContent = file.name;
-
-        //         let removeBtn = document.createElement("button");
-        //         removeBtn.textContent = "x";
-        //         removeBtn.classList.add("btn-rmv1");
-        //         removeBtn.onclick = function() {
-        //             fileWrapper.remove();
-        //         };
-
-        //         fileWrapper.appendChild(fileName);
-        //         fileWrapper.appendChild(removeBtn);
-        //         fileListDiv.appendChild(fileWrapper);
-        //     });
-
-        //     // Reset input to allow re-selection of the same files
-        //     event.target.value = "";
-        // });
+      
         const fileUpload = document.getElementById('fileUpload');
         const fileList = document.getElementById('fileList');
 

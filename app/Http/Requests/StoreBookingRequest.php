@@ -56,8 +56,8 @@ class StoreBookingRequest extends FormRequest
             'reporting_time' => 'required|string|max:255',
             'drop_time' => 'string|max:255',
             'garage_time' => 'required|integer|max:600',
-            'reporting_address' => 'string|max:255',
-            'drop_address' => 'string|max:255',
+            // 'reporting_address' => 'string|max:255',
+            'drop_address' => 'nullable|string|max:255',
             'short_reporting_address' => 'nullable|string|max:255',
             'ticket_number' => 'nullable|string|max:255',
             'bill_to' => 'string|max:255',
@@ -67,7 +67,7 @@ class StoreBookingRequest extends FormRequest
             'remarks' => 'nullable|string|max:255',
             'driver_remark' => 'nullable|string|max:255',
             'operator_notes' => 'nullable|string|max:255',
-            'labels' => 'required|array',
+            'labels' => 'nullable|array',
             'labels.*' => 'integer|exists:mst_labels,id',
             'is_confirmed_booking' => 'boolean',
         ];
@@ -78,6 +78,8 @@ class StoreBookingRequest extends FormRequest
         return [
             function (Validator $validator) {
                 // dd(request()->all());
+                            connectify('error', 'Add Booking', $validator->errors()->first());
+
                 Log::info(['after' => $this->all(), 'errors' => $validator->errors()]);
                 // dd($validator->errors());
             }

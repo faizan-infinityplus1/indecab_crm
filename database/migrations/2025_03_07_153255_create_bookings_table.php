@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->date('start_date');
             $table->date('end_date');
             $table->string('reporting_time');
-            $table->string('drop_time');
+            $table->string('drop_time')->nullable();
             $table->integer('garage_time');
             $table->string('reporting_address')->nullable();
             $table->string('drop_address')->nullable();

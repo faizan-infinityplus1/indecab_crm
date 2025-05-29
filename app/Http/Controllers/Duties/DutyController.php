@@ -23,7 +23,8 @@ class DutyController extends Controller
     }
     public function Booked()
     {
-        return view("backend.admin.duties.booked.booked");
+        $booking = Booking::with('bookedBy')->where('status', 'booked')->get();
+        return view("backend.admin.duties.booked.index", compact('booking'));
     }
     public function DutyAlloted()
     {
@@ -59,7 +60,8 @@ class DutyController extends Controller
     // bookedDuties
     public function bookedDuties()
     {
-        return view("backend.admin.duties.booked.index");
+        $booking = Booking::with('bookedBy','customers','vehicleGroup','dutyType','')->where('status', 'booked')->get();
+        return view("backend.admin.duties.booked.index", compact('booking'));
     }
     // allottedDuties
     public function allottedDuties()

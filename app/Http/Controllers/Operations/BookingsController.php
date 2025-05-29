@@ -33,7 +33,6 @@ class BookingsController extends Controller
      */
     public function create()
     {
-        //
         $bookingId = $request->bookingId ?? -1;
         $booking = Booking::where('id', $bookingId)->with('bookedBy')->first();
         $customers = MstCustomer::where('is_active', true)->with('people')->get();
@@ -52,7 +51,6 @@ class BookingsController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
-        dd('i m here');
         //
         try {
             // dd($request->attachments);
