@@ -151,7 +151,11 @@
                                     {{ $data->end_date ? \Carbon\Carbon::parse($data->end_date)->format('d/m/Y') : 'N/A' }}
                                 </td>
                                 <td>{{ $data->customers->name }}</td>
-                                <td>asdasd</td>
+                                <td>
+                                    @foreach ($data->bookedBy as $bookedbyData)
+                                    {{ $bookedbyData->name }}
+                                    @endforeach
+                                </td>
                                 <td>{{ $data->vehicleGroup->name }}</td>
                                 <td>Driver/Supplier</td>
                                 <td>{{ $data->dutyType->duty_name }}</td>

@@ -57,7 +57,8 @@ $(document).ready(function () {
     });
 
     var table = $('.datatable').DataTable({
-        responsive: true
+        responsive: true,
+        pageLength: 50
     });
 
     // Global search
