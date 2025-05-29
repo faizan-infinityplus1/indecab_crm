@@ -151,16 +151,14 @@
                                     {{ $data->end_date ? \Carbon\Carbon::parse($data->end_date)->format('d/m/Y') : 'N/A' }}
                                 </td>
                                 <td>{{ $data->customers->name }}</td>
-                                @foreach ($data->bookedBy as $bookedbyData)
-                                    <td>{{ $bookedbyData->name }}</td>
-                                @endforeach
+                                <td>asdasd</td>
                                 <td>{{ $data->vehicleGroup->name }}</td>
                                 <td>Driver/Supplier</td>
                                 <td>{{ $data->dutyType->duty_name }}</td>
-                                <td>{{$data->reporting_address}}</td>
-                                <td>{{$data->from_service}}</td>
-                                <td>{{$data->reporting_time}}</td>
-                                <td>{{$data->status}}</td>
+                                <td>{{ $data->reporting_address }}</td>
+                                <td>{{ $data->from_service }}</td>
+                                <td>{{ $data->reporting_time }}</td>
+                                <td>{{ $data->status }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle py-0" type="button" data-bs-toggle="dropdown"
