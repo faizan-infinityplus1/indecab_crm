@@ -308,7 +308,7 @@
                         </div>
                         <div class="col-md-2 mb-3">
                             <label for="" class="control-label">Per Extra KM Rate</label>
-                            <input type="number" class="form-control" name="per_km_rate"
+                            <input type="number" class="form-control" name="per_extra_km_rate"
                                 value="{{ old('per_km_rate', $booking->per_km_rate ?? '') }}">
                             <span class="help-block"></span>
                         </div>

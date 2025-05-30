@@ -190,7 +190,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::get("/duties/all", [DutyController::class, "allDuties"])->name('duties.all');
     Route::get("/duties/incoming", [DutyController::class, "incomingDuties"])->name('duties.incoming');
     Route::get("/duties/need-attention", [DutyController::class, "needsattentionDuties"])->name('duties.needsattention');
-    ;
+    
+
+    // Booking Duties Data
+    Route::get('/get-duty-details/{id}', [DutyController::class, 'getDetails'])->name('duty.details');
+
 
     // Operations Routes
     Route::get("/availability", [OperationController::class, "Availability"]);

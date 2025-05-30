@@ -56,7 +56,7 @@ class StoreBookingRequest extends FormRequest
             'reporting_time' => 'required|string|max:255',
             'drop_time' => 'string|max:255',
             'garage_time' => 'required|integer|max:600',
-            // 'reporting_address' => 'string|max:255',
+            'reporting_address' => 'string|max:255',
             'drop_address' => 'nullable|string|max:255',
             'short_reporting_address' => 'nullable|string|max:255',
             'ticket_number' => 'nullable|string|max:255',

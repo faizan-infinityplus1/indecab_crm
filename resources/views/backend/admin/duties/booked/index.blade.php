@@ -153,7 +153,7 @@
                                 <td>{{ $data->customers->name }}</td>
                                 <td>
                                     @foreach ($data->bookedBy as $bookedbyData)
-                                    {{ $bookedbyData->name }}
+                                        {{ $bookedbyData->name }}
                                     @endforeach
                                 </td>
                                 <td>{{ $data->vehicleGroup->name }}</td>
@@ -171,8 +171,8 @@
                                         </button>
                                         {{-- Booked --}}
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#details">Details</a>
+                                            <li><a class="dropdown-item open-detail-modal" data-bs-toggle="modal"
+                                                    data-id="{{ $data->id }}">Details</a>
                                             </li>
                                             <li><a class="dropdown-item" onclick="unconfirmDuty()">Unconfirm duty</a>
                                             </li>
@@ -281,104 +281,7 @@
                     <div class="tab-content">
                         <!-- Details Tab Content -->
                         <div id="duty-detail-detail" class="tab-pane fade show active">
-                            <table class="table table-bordered table-striped table-hover">
-                                <tbody>
-                                    <tr>
-                                        <th class="fw-medium">ID</th>
-                                        <td>#50249209-4</td>
-                                        <th class="fw-medium">Status</th>
-                                        <td> Booked</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Start Date</th>
-                                        <td>31-03-2025</td>
-                                        <th class="fw-medium">End Date</th>
-                                        <td>31-03-2025</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Garage Start Time</th>
-                                        <td> 07:00</td>
-                                        <th class="fw-medium">Reporting Time</th>
-                                        <td>08:00</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">From City</th>
-                                        <td> Mumbai</td>
-                                        <th class="fw-medium">To City</th>
-                                        <td> Mumbai</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Duty Type</th>
-                                        <td colspan="3">8H 80KMs</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Vehicle Group</th>
-                                        <td colspan="3">Sedan</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Customer</th>
-                                        <td colspan="3"> Vijay Vaidyanathan</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Supplier</th>
-                                        <td colspan="3">Shanu Shaikh - ( <i class="fa-solid fa-phone text-success"></i>
-                                            <a href="tel:+9619900011" class="text-decoration-none ">
-                                                9619900011 </a>)
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Booked By</th>
-                                        <td colspan="3">Vijay Vaidyanathan ( <i
-                                                class="fa-solid fa-phone text-success"></i> <a href="tel:+9840872950"
-                                                class="text-decoration-none ">
-                                                98408 72950 </a>) </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Labels</th>
-                                        <td colspan="3">
-                                            <span class="py-1 px-3 rounded-5 bg-danger-subtle">
-                                                Cash Paid By Company
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Reporting Address</th>
-                                        <td colspan="3">Mumbai Airport T1</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Flight/Train Number</th>
-                                        <td colspan="3">6E-2215</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Drop Address</th>
-                                        <td colspan="3"><span class="text-secondary">NA</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Price</th>
-                                        <td>₹ 2,500.00</td>
-                                        <td><span class="fw-medium">Per Extra KM Rate: </span> ₹ 13.00</td>
-                                        <td><span class="fw-medium">Per Extra Hour Rate: </span> ₹ 150.00</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Operator Notes</th>
-                                        <td colspan="3"><span class="text-secondary">NA</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Remarks</th>
-                                        <td colspan="3"><span class="text-secondary">NA</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Passengers</th>
-                                        <td colspan="3">
-                                            <ol class="ps-3" style="list-style-type: decimal;">
-                                                <li>Vijay Vaidyanathan - <i class="fa-solid fa-phone text-success"></i> <a
-                                                        href="tel:+9840872950" class="text-decoration-none ">
-                                                        98408 72950 </a></li>
-                                            </ol>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
                         </div>
 
                         <!-- Activity Tab Content -->
@@ -1578,5 +1481,164 @@
                 window.location.href = url; // Proceed with the delete action if confirmed
             }
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.open-detail-modal').on('click', function() {
+                const dutyId = $(this).data('id');
+                console.log(dutyId, 'i m here open-detail-modal');
+
+                // Set the ID in the modal header
+                $('#exampleModalLabel').text(`Duty Details - #${dutyId}`);
+
+                // Clear previous content (optional)
+                $('#duty-detail-detail').html('<p>Loading...</p>');
+                var dutyDetailsUrl = "{{ route('duty.details', ['id' => ':id']) }}";
+                const fetchUrl = dutyDetailsUrl.replace(':id', dutyId);
+                // Show the modal
+                $('#details').modal('show');
+                // AJAX Request to fetch duty details
+                $.ajax({
+                    url: fetchUrl, // Adjust this route
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        // json = JSON.parse(response);
+                        console.log(response);
+                        // Replace content inside the modal with response data
+                        let bookedByList = '';
+
+                        if (Array.isArray(response.booked_by) && response.booked_by.length >
+                            0) {
+                            console.log(response.booked_by); // For debugging
+
+                            bookedByList = `
+                            <ol class="ps-3" style="list-style-type: decimal;">
+                        `;
+
+                            response.booked_by.forEach(person => {
+                                bookedByList += `
+                            <li>
+                                ${person.name ?? 'N/A'} 
+                                - <i class="fa-solid fa-phone text-success"></i> 
+                                <a href="tel:${person.phone_no ?? ''}" class="text-decoration-none">
+                                    ${person.phone_no ?? 'N/A'}
+                                </a>
+                            </li>
+                            `;
+                            });
+
+                            bookedByList += '</ol>';
+                        } else {
+                            bookedByList = '<span class="text-secondary">NA</span>';
+                        }
+
+
+                        let html = `
+                          <table class="table table-bordered table-striped table-hover">
+                                <tbody>
+                                    <tr>
+                                        <th class="fw-medium">ID</th>
+                                        <td>${dutyId}</td>
+                                        <th class="fw-medium">Status</th>
+                                        <td> ${response.status}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Start Date</th>
+                                        <td>${formatDate(response.start_date)}</td>
+                                        <th class="fw-medium">End Date</th>
+                                        <td>${formatDate(response.end_date)}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Garage Start Time</th>
+                                        <td> 07:00 Dummy</td>
+                                        <th class="fw-medium">Reporting Time</th>
+                                        <td>${response.reporting_time}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">From City</th>
+                                        <td> ${response.from_service}</td>
+                                        <th class="fw-medium">To City</th>
+                                        <td> ${response.to_service}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Duty Type</th>
+                                        <td colspan="3">${response.duty_type.duty_name ?? ''}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Vehicle Group</th>
+                                        <td colspan="3">${response.vehicle_group.name ?? ''}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Customer</th>
+                                        <td colspan="3"> ${response.customers.name ?? ''}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th class="fw-medium">Booked By</th>
+                                      <td colspan="3">
+                                        ${response.booked_by?.[0]?.name ?? ''} 
+                                       (<i class="fa-solid fa-phone text-success"></i> 
+                                        <a href="tel:${response.booked_by?.[0]?.phone_no ?? ''}" class="text-decoration-none ">
+                                        ${response.booked_by?.[0]?.phone_no ?? ''}
+                                        </a>)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Labels</th>
+                                        <td colspan="3">
+                                            ${
+                                                response.label_details && response.label_details.length > 0
+                                                ? response.label_details.map(label => `
+                                                        <span class="py-1 px-3 rounded-5 me-1"
+                                                            style="background-color:${label.label_color}; color:black;">
+                                                            ${label.label_name}
+                                                        </span>
+                                                    `).join('')
+                                                : '<span class="text-secondary">NA</span>'
+                                            }
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="fw-medium">Reporting Address</th>
+                                        <td colspan="3">${response.reporting_address ?? 'NA'}</td>
+                                    </tr>
+                                   
+                                    <tr>
+                                        <th class="fw-medium">Drop Address</th>
+                                        <td colspan="3"><span class="text-secondary">${response.per_extra_km_rate ?? 'NA'}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Price</th>
+                                        <td>₹ ${response.price ?? ''}</td>
+                                        <td><span class="fw-medium">Per Extra KM Rate: </span> ₹ ${response.per_extra_km_rate ?? 'NA'}</td>
+                                        <td><span class="fw-medium">Per Extra Hour Rate: </span> ₹ ${response.per_extra_hr_rate ?? 'NA'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Operator Notes</th>
+                                        <td colspan="3"><span class="text-secondary">${response.operator_notes ?? 'NA'}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Remarks</th>
+                                        <td colspan="3"><span class="text-secondary">${response.remarks ?? 'NA'}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Passengers</th>
+                                          <td colspan="3">${bookedByList}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                    `;
+                        $('#duty-detail-detail').html(html);
+                    },
+                    error: function() {
+                        $('#duty-detail-detail').html(
+                            '<p class="text-danger">Failed to load details.</p>');
+                    }
+                });
+            });
+        });
     </script>
 @endsection

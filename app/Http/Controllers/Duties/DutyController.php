@@ -105,4 +105,16 @@ class DutyController extends Controller
     {
         return view("backend.admin.duties.attention.index");
     }
+
+    public function getDetails($id)
+    {
+        $booking = Booking::with(['bookedBy', 'customers', 'vehicleGroup', 'dutyType'])
+            ->where('status', 'booked')
+            ->findOrFail($id);
+
+        return response()->json([
+            ...$booking->toArray(),
+            'label_details' => $booking->label_details,
+        ]);
+    }
 }
