@@ -210,7 +210,7 @@
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#advance-purchase-payment">Add Advance Purchase
                                                 Payment</a></li>
-                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
+                                        {{-- <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li> --}}
 
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#cancel-duty">Cancel Duty</a></li>

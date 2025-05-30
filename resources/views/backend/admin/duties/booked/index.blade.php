@@ -190,8 +190,12 @@
                                                     data-bs-target="#allot-supporters">Allot supporters</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                            <li><a href="{{ route('bookings.specific-bookings') }}"
-                                                    class="dropdown-item">View Booking</a></li>
+                                            <li>
+                                                <a href="{{ route('bookings.specific-bookings', ['id' => $data->id]) }}"
+                                                    class="dropdown-item">
+                                                    View Booking
+                                                </a>
+                                            </li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#cancel-duty">Cancel Duty</a></li>
                                         </ul>
@@ -220,8 +224,8 @@
                                                     data-bs-target="#print-duty-slip">Print duty slip</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#create-placard">Create placard</a></li>
-                                            <li><a href="{{ route('bookings.specific-bookings') }}"
-                                                    class="dropdown-item">View Booking</a></li>
+                                            {{-- <li><a href="{{ route('bookings.specific-bookings') }}"
+                                                    class="dropdown-item">View Booking</a></li> --}}
 
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#cancel-duty">Cancel Duty</a></li>
@@ -1590,11 +1594,11 @@
                                             ${
                                                 response.label_details && response.label_details.length > 0
                                                 ? response.label_details.map(label => `
-                                                        <span class="py-1 px-3 rounded-5 me-1"
-                                                            style="background-color:${label.label_color}; color:black;">
-                                                            ${label.label_name}
-                                                        </span>
-                                                    `).join('')
+                                                            <span class="py-1 px-3 rounded-5 me-1"
+                                                                style="background-color:${label.label_color}; color:black;">
+                                                                ${label.label_name}
+                                                            </span>
+                                                        `).join('')
                                                 : '<span class="text-secondary">NA</span>'
                                             }
                                         </td>

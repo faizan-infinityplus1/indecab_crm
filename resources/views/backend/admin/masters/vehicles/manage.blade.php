@@ -88,12 +88,12 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="" class="form-label required">Colour</label>
-                            <input type="text" class="form-control  border-bottom" id="" required>
+                            <input type="text" class="form-control  border-bottom" id="" >
                             <span class="warning-msg-block"></span>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label required">Assigned Driver</label>
-                            <select class="form-select border-bottom" aria-label="Default select example" name="" id="" required>
+                            <select class="form-select border-bottom" aria-label="Default select example" name="" id="" >
                                 <option value="">Select an option</option>
                                 <option value="">Umar Shaikh (7507170274)</option>
                             </select>
@@ -101,14 +101,14 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label required">Vehicle Code</label>
-                            <input type="text" class="form-control  border-bottom" id="" required>
+                            <input type="text" class="form-control  border-bottom" id="" >
                             <span class="warning-msg-block"></span>
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label required">Branches</label>
-                    <select class="form-select border-bottom" aria-label="Default select example" name="" id="" required>
+                    <select class="form-select border-bottom" aria-label="Default select example" name="" id="">
                         <option value="">Select an option</option>
                     </select>
                     <span class="warning-msg-block"></span>

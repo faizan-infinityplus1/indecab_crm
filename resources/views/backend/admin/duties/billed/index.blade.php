@@ -182,7 +182,7 @@
                                                 Payment</a></li>
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#add-petty-cash">Add Petty Cash</a></li>
-                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
+                                        {{-- <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li> --}}
                                         <li><a href="#" class="dropdown-item">View Invoice</a></li>
                                     </ul>
                                 </div>

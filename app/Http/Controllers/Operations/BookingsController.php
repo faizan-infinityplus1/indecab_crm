@@ -204,8 +204,15 @@ class BookingsController extends Controller
     {
         return view("backend.admin.Operations.bookings.cancelled.index");
     }
-    public function specificBookings()
+    public function specificBookings(Request $request)
     {
-        return view("backend.admin.operations.bookings.specificBookings.index");
+
+        $booking = Booking::with(['bookedBy', 'customers', 'vehicleGroup', 'dutyType'])
+            ->where('status', 'booked')
+            ->findOrFail($request->id);
+        $booking->getLabelDetailsAttribute = $booking->label_details; 
+
+
+        return view("backend.admin.operations.bookings.specificBookings.index", compact('booking'));
     }
 }

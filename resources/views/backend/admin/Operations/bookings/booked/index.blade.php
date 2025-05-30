@@ -132,8 +132,8 @@
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#add-advance-payment-receipt">Add Advance Payment
                                                 Receipt</a></li>
-                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View
-                                                Booking</a></li>
+                                        {{-- <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View
+                                                Booking</a></li> --}}
                                         <li><a href="#" class="dropdown-item">Edit Booking</a></li>
 
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
@@ -163,8 +163,8 @@
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#add-advance-payment-receipt">Add Advance Payment
                                                 Receipt</a></li>
-                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View
-                                                Booking</a></li>
+                                        {{-- <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View
+                                                Booking</a></li> --}}
                                         <li><a href="#" class="dropdown-item">Edit Booking</a></li>
 
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
@@ -194,9 +194,9 @@
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#add-advance-payment-receipt">Add Advance Payment
                                                 Receipt</a></li>
-                                        <li><a href="{{ route('bookings.specific-bookings') }}"
+                                        {{-- <li><a href="{{ route('bookings.specific-bookings') }}"
                                                 class="dropdown-item">View
-                                                Booking</a></li>
+                                                Booking</a></li> --}}
                                         <li><a href="#" class="dropdown-item">Edit Booking</a></li>
 
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
@@ -226,9 +226,9 @@
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#add-advance-payment-receipt">Add Advance Payment
                                                 Receipt</a></li>
-                                        <li><a href="{{ route('bookings.specific-bookings') }}"
+                                        {{-- <li><a href="{{ route('bookings.specific-bookings') }}"
                                                 class="dropdown-item">View
-                                                Booking</a></li>
+                                                Booking</a></li> --}}
                                         <li><a href="#" class="dropdown-item">Edit Booking</a></li>
 
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
@@ -258,9 +258,9 @@
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#add-advance-payment-receipt">Add Advance Payment
                                                 Receipt</a></li>
-                                        <li><a href="{{ route('bookings.specific-bookings') }}"
+                                        {{-- <li><a href="{{ route('bookings.specific-bookings') }}"
                                                 class="dropdown-item">View
-                                                Booking</a></li>
+                                                Booking</a></li> --}}
                                         <li><a href="#" class="dropdown-item">Edit Booking</a></li>
 
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"

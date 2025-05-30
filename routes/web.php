@@ -190,7 +190,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get("/duties/all", [DutyController::class, "allDuties"])->name('duties.all');
     Route::get("/duties/incoming", [DutyController::class, "incomingDuties"])->name('duties.incoming');
     Route::get("/duties/need-attention", [DutyController::class, "needsattentionDuties"])->name('duties.needsattention');
-    
+
 
     // Booking Duties Data
     Route::get('/get-duty-details/{id}', [DutyController::class, 'getDetails'])->name('duty.details');
@@ -204,7 +204,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get("/bookings/completed", [BookingsController::class, "completedBookings"])->name('bookings.completed');
     Route::get("/bookings/billed", [BookingsController::class, "billedBookings"])->name('bookings.billed');
     Route::get("/bookings/cancelled", [BookingsController::class, "cancelledBookings"])->name('bookings.cancelled');
-    Route::get("/bookings/show", [BookingsController::class, "specificBookings"])->name('bookings.specific-bookings');
+    Route::get("/bookings/show/{id}", [BookingsController::class, "specificBookings"])
+        ->name('bookings.specific-bookings');
     Route::get("/billed", [OperationController::class, "Billed"]);
     Route::get("/receipt", [OperationController::class, "Receipt"]);
     Route::get("/payment-gateway", [OperationController::class, "PaymentGateway"]);
@@ -213,7 +214,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::get("/purchased-payment", [OperationController::class, "PurchasedPayment"]);
     Route::get("/billing", [BillingController::class, "billing"])->name('billing');
     Route::get("/billing/invoice", [BillingController::class, "invoice"])->name('invoice');
-
 });
 
 
