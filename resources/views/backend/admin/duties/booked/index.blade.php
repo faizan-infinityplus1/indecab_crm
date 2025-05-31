@@ -77,30 +77,38 @@
                     <div class="position-relative">
                         <label for="" class="form-label position-absolute mb-1 bottom-0"><i
                                 class="fa-solid fa-magnifying-glass"></i></label>
-                        <input type="text" name="" value="" class="form-control  border-bottom ps-4"
-                            id=""
+                        <input type="text" id="globalSearch" class="form-control"
                             placeholder="Type here to filter by name, number, city, duty type, company name or booking ID">
+
                     </div>
                 </div>
                 <div class="col-md-5 mb-3">
-                    <div class="row">
-                        <div class="col-md-8 d-flex align-items-end justify-content-around ">
-                            <div>
-                                <i class="fa-solid fa-angle-right"></i>
-                            </div>
-                            <input type="date" name="" id="">
-                            <i class="fa-solid fa-arrow-right"></i>
-                            <input type="date" name="" id="">
+                    <div class="row g-2 align-items-center">
 
-                            <div>
-                                <i class="fa-solid fa-angle-right"></i>
+                        <!-- Date Range & Icons -->
+                        <div class="col-md-8">
+                            <div class="d-flex align-items-center justify-content-between gap-2">
+
+                                <input type="text" id="min-date" class="form-control datepicker"
+                                    placeholder="DD/MM/YYYY">
+
+
+                                <input type="text" id="max-date" class="form-control datepicker"
+                                    placeholder="DD/MM/YYYY">
+
                             </div>
                         </div>
+
+                        <!-- Clear Filters Button -->
                         <div class="col-md-4">
-                            <button type="reset" class="btn btn-light border w-100">Clear Filters</button>
+                            <button type="reset" class="btn btn-light border w-100">
+                                Clear Filters
+                            </button>
                         </div>
+
                     </div>
                 </div>
+
             </div>
         </form>
         <div class="card-body px-0">
@@ -123,106 +131,110 @@
                             <th>Date</th>
                             <th>Customer</th>
                             <th>Passenger</th>
-                            <th>Vehicle Group</th>
                             <th>Vehicle</th>
                             <th>Driver/Supplier</th>
                             <th>Duty Type</th>
                             <th>Rep.Address</th>
-                            <th>Drop Address</th>
-                            <th>Remarks</th>
-                            <th>Operator Notes</th>
                             <th>City</th>
                             <th>Rep.Time</th>
-                            <th>Labels</th>
                             <th>Status</th>
                             <th>setting</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <i class="fa-solid fa-phone text-success"></i>
-                            </td>
-                            <td>Date</td>
-                            <td>Customer</td>
-                            <td>Passenger</td>
-                            <td>Vehicle Group</td>
-                            <td>Vehicle</td>
-                            <td>Driver/Supplier</td>
-                            <td>Duty Type</td>
-                            <td>Rep.Address</td>
-                            <td>Drop Address</td>
-                            <td>Remarks</td>
-                            <td>Operator Notes</td>
-                            <td>City</td>
-                            <td>Rep.Time</td>
-                            <td>Labels</td>
-                            <td>Status</td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle py-0" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="fa-solid fa-gear"></i>
-                                    </button>
-                                    {{-- Booked --}}
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#details">Details</a>
-                                        </li>
-                                        <li><a class="dropdown-item" onclick="unconfirmDuty()">Unconfirm duty</a>
-                                        </li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#edit-duty">Edit duty</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-vehicle-driver">Allot vehicle & driver</a>
-                                        </li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-send-to-associate">Send to Associate</a>
-                                        </li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-supporters">Allot supporters</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#cancel-duty">Cancel Duty</a></li>
-                                    </ul>
+                        @foreach ($booking as $data)
+                            <tr>
+                                <td>
+                                    <i class="fa-solid fa-phone text-success"></i>
+                                </td>
+                                <td>
+                                    {{ $data->end_date ? \Carbon\Carbon::parse($data->end_date)->format('d/m/Y') : 'N/A' }}
+                                </td>
+                                <td>{{ $data->customers->name }}</td>
+                                <td>
+                                    @foreach ($data->bookedBy as $bookedbyData)
+                                        {{ $bookedbyData->name }}
+                                    @endforeach
+                                </td>
+                                <td>{{ $data->vehicleGroup->name }}</td>
+                                <td>Driver/Supplier</td>
+                                <td>{{ $data->dutyType->duty_name }}</td>
+                                <td>{{ $data->reporting_address }}</td>
+                                <td>{{ $data->from_service }}</td>
+                                <td>{{ $data->reporting_time }}</td>
+                                <td>{{ $data->status }}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle py-0" type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="fa-solid fa-gear"></i>
+                                        </button>
+                                        {{-- Booked --}}
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a class="dropdown-item open-detail-modal" data-bs-toggle="modal"
+                                                    data-id="{{ $data->id }}">Details</a>
+                                            </li>
+                                            <li><a class="dropdown-item" onclick="unconfirmDuty()">Unconfirm duty</a>
+                                            </li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                            <li><a href="#" class="dropdown-item edit-detail-modal"
+                                                    data-bs-toggle="modal" data-id="{{ $data->id }}">Edit duty</a>
+                                            </li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-vehicle-driver">Allot vehicle & driver</a>
+                                            </li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-send-to-associate">Send to Associate</a>
+                                            </li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                            <li>
+                                                <a href="{{ route('bookings.specific-bookings', ['id' => $data->id]) }}"
+                                                    class="dropdown-item">
+                                                    View Booking
+                                                </a>
+                                            </li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#cancel-duty">Cancel Duty</a></li>
+                                        </ul>
 
-                                    {{-- Details needed --}}
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#details">Details 3</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-duty-to-supplier">Add Supplier Details</a>
-                                        </li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#edit-duty">Edit duty</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-supporters">Allot supporters</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
-                                        <li><a class="dropdown-item" onclick="clearAllotment()">Clear
-                                                Allotment</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#send-details-to-supplier">Send details to
-                                                supplier</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#create-placard">Create placard</a></li>
-                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
+                                        {{-- Details needed --}}
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#details">Details 3</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-duty-to-supplier">Add Supplier Details</a>
+                                            </li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#edit-duty">Edit duty</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
+                                            <li><a class="dropdown-item" onclick="clearAllotment()">Clear
+                                                    Allotment</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#send-details-to-supplier">Send details to
+                                                    supplier</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#create-placard">Create placard</a></li>
+                                            {{-- <li><a href="{{ route('bookings.specific-bookings') }}"
+                                                    class="dropdown-item">View Booking</a></li> --}}
 
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#cancel-duty">Cancel Duty</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#cancel-duty">Cancel Duty</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
@@ -230,17 +242,12 @@
                             <th>Date</th>
                             <th>Customer</th>
                             <th>Passenger</th>
-                            <th>Vehicle Group</th>
                             <th>Vehicle</th>
                             <th>Driver/Supplier</th>
                             <th>Duty Type</th>
                             <th>Rep.Address</th>
-                            <th>Drop Address</th>
-                            <th>Remarks</th>
-                            <th>Operator Notes</th>
                             <th>City</th>
                             <th>Rep.Time</th>
-                            <th>Labels</th>
                             <th>Status</th>
                             <th>setting</th>
                         </tr>
@@ -279,104 +286,7 @@
                     <div class="tab-content">
                         <!-- Details Tab Content -->
                         <div id="duty-detail-detail" class="tab-pane fade show active">
-                            <table class="table table-bordered table-striped table-hover">
-                                <tbody>
-                                    <tr>
-                                        <th class="fw-medium">ID</th>
-                                        <td>#50249209-4</td>
-                                        <th class="fw-medium">Status</th>
-                                        <td> Booked</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Start Date</th>
-                                        <td>31-03-2025</td>
-                                        <th class="fw-medium">End Date</th>
-                                        <td>31-03-2025</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Garage Start Time</th>
-                                        <td> 07:00</td>
-                                        <th class="fw-medium">Reporting Time</th>
-                                        <td>08:00</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">From City</th>
-                                        <td> Mumbai</td>
-                                        <th class="fw-medium">To City</th>
-                                        <td> Mumbai</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Duty Type</th>
-                                        <td colspan="3">8H 80KMs</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Vehicle Group</th>
-                                        <td colspan="3">Sedan</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Customer</th>
-                                        <td colspan="3"> Vijay Vaidyanathan</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Supplier</th>
-                                        <td colspan="3">Shanu Shaikh - ( <i class="fa-solid fa-phone text-success"></i>
-                                            <a href="tel:+9619900011" class="text-decoration-none ">
-                                                9619900011 </a>)
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Booked By</th>
-                                        <td colspan="3">Vijay Vaidyanathan ( <i
-                                                class="fa-solid fa-phone text-success"></i> <a href="tel:+9840872950"
-                                                class="text-decoration-none ">
-                                                98408 72950 </a>) </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Labels</th>
-                                        <td colspan="3">
-                                            <span class="py-1 px-3 rounded-5 bg-danger-subtle">
-                                                Cash Paid By Company
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Reporting Address</th>
-                                        <td colspan="3">Mumbai Airport T1</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Flight/Train Number</th>
-                                        <td colspan="3">6E-2215</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Drop Address</th>
-                                        <td colspan="3"><span class="text-secondary">NA</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Price</th>
-                                        <td>₹ 2,500.00</td>
-                                        <td><span class="fw-medium">Per Extra KM Rate: </span> ₹ 13.00</td>
-                                        <td><span class="fw-medium">Per Extra Hour Rate: </span> ₹ 150.00</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Operator Notes</th>
-                                        <td colspan="3"><span class="text-secondary">NA</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Remarks</th>
-                                        <td colspan="3"><span class="text-secondary">NA</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="fw-medium">Passengers</th>
-                                        <td colspan="3">
-                                            <ol class="ps-3" style="list-style-type: decimal;">
-                                                <li>Vijay Vaidyanathan - <i class="fa-solid fa-phone text-success"></i> <a
-                                                        href="tel:+9840872950" class="text-decoration-none ">
-                                                        98408 72950 </a></li>
-                                            </ol>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
                         </div>
 
                         <!-- Activity Tab Content -->
@@ -425,163 +335,11 @@
     </div>
     {{-- add remove lable close --}}
     {{-- Edit Duty --}}
-    <div class="modal fade" id="edit-duty" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit-duty-detail" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
-                <div class="modal-header px-5 sticky-top bg-white">
-                    <div>
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Duty <span> #18326801-1</span></h1>
-                        <small>Start Date: <span>07-04-2025</span></small>
-                    </div>
-                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-                </div>
-                <div class="modal-body px-5">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="rep_time" class="form-label">Reporting time</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    id="rep_time" name="rep_time">
+            <div class="modal-content rounded-0 border-0" id="edit-duty-detail-content">
 
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="drop_time" class="form-label">Estimated Drop-Off Time</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    id="drop_time" name="drop_time">
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="drop_time" class="form-label">Start from garage before (in min)</label>
-                                <input type="number" class="form-control  border-bottom" id="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="" class="control-label w-100">Vehicle Group</label>
-                                <select class="form-select border-bottom" name="" id="">
-                                    <option value="">select vehicle group</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="" class="control-label w-100">Duty Type</label>
-                                <select class="form-select border-bottom" name="" id="">
-                                    <option value="">select Duty Type</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label for="" class="form-label"> Price</label>
-                                <input type="number" class="form-control  border-bottom" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label for="" class="form-label"> Per Extra KM Rate</label>
-                                <input type="number" class="form-control  border-bottom" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label for="" class="form-label"> Per Extra Hr Rate</label>
-                                <input type="number" class="form-control  border-bottom" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-3 d-flex align-items-end">
-                            <div class="mb-3 w-100">
-                                <button type="reset" class="btn btn-light border w-100">Get Price</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="reporting_address" class="form-label w-100">Reporting Address
-                                </label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="reporting_address[]" id="reporting_address" multiple="multiple">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="drop_address" class="form-label w-100">Drop Address</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="drop_address[]" id="drop_address" multiple="multiple">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="" class="form-label"> Short Reporting Address (to be shown in duty
-                            listing)</label>
-                        <input type="text" class="form-control  border-bottom" id="">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Remarks </label>
-                        <textarea class="form-control" rows="3" name="" id=""></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label"> Flight/Train Number</label>
-                        <input type="text" class="form-control  border-bottom" id="">
-                    </div>
-                    <p class="mb-3">
-                        <a href="" class="text-decoration-none" id="supplierRemarksLink">
-                            Add separate remarks for driver/supplier.
-                        </a>
-                    </p>
-                    <div class="bg-light mb-3 p-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="" class="control-label w-100">Vehicle Group</label>
-                                    <select class="form-select border-bottom" name="" id="">
-                                        <option value="">select vehicle group</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="" class="control-label w-100">Duty Type</label>
-                                    <select class="form-select border-bottom" name="" id="">
-                                        <option value="">select Duty Type</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="" id="supplierRemarks" style="display: none;">
-                            <label for="" class="form-label">Driver/Supplier Remarks </label>
-                            <textarea class="form-control" rows="3" name="" id=""></textarea>
-                        </div>
-                    </div>
-                    <p class="text-danger mb-3">
-                        Please note: Above changes will only affect this duty and would not change/affect any other duty of
-                        this booking.
-                    </p>
-                </div>
-                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
-                    <div>
-                        <button type="button" class="btn btn-primary border" id="">Save</button>
-                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -1480,8 +1238,7 @@
     </div>
     {{-- Send details to supplier close --}}
     {{-- Create placard --}}
-    <div class="modal fade" id="create-placard" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="create-placard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
             <div class="modal-content rounded-0 border-0">
                 <div class="modal-header px-5 sticky-top bg-white">
@@ -1551,15 +1308,10 @@
 
 
 @section('extrajs')
+    <script src="{{ asset('admin/js/timeslots.js') }}"></script>
+    <script src="{{ asset('admin/js/options.js') }}"></script>
+    <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $('.datatable').DataTable({
-                responsive: true
-            });
-            $(".dropdown-toggle").dropdown();
-
-        });
-
         function unconfirmDuty() {
             let unconfirmDuty = confirm("Are you sure you want to mark this duty as unconfirmed?");
             if (unconfirmDuty == true) {
@@ -1569,6 +1321,7 @@
                 console.log('cancel');
             }
         }
+
         function clearAllotment() {
             let clearAllotment = confirm("Are you sure you want to clear the allotment?");
             if (clearAllotment == true) {
@@ -1577,11 +1330,368 @@
                 console.log('cancel');
             }
         }
-        
+
         function confirmDelete(url) {
             if (confirm('Are you sure you want to delete this duty type?')) {
                 window.location.href = url; // Proceed with the delete action if confirmed
             }
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+
+            $('.open-detail-modal').on('click', function() {
+                const dutyId = $(this).data('id');
+                console.log(dutyId, 'i m here open-detail-modal');
+
+                // Set the ID in the modal header
+                $('#exampleModalLabel').text(`Duty Details - #${dutyId}`);
+
+                // Clear previous content (optional)
+                $('#duty-detail-detail').html('<p>Loading...</p>');
+                var dutyDetailsUrl = "{{ route('duty.details', ['id' => ':id']) }}";
+                const fetchUrl = dutyDetailsUrl.replace(':id', dutyId);
+                // Show the modal
+                $('#details').modal('show');
+                // AJAX Request to fetch duty details
+                $.ajax({
+                    url: fetchUrl, // Adjust this route
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        // json = JSON.parse(response);
+                        console.log(response);
+                        // Replace content inside the modal with response data
+                        let bookedByList = '';
+
+                        if (Array.isArray(response.booked_by) && response.booked_by.length >
+                            0) {
+                            console.log(response.booked_by); // For debugging
+
+                            bookedByList = `
+                            <ol class="ps-3" style="list-style-type: decimal;">
+                        `;
+
+                            response.booked_by.forEach(person => {
+                                bookedByList += `
+                            <li>
+                                ${person.name ?? 'N/A'} 
+                                - <i class="fa-solid fa-phone text-success"></i> 
+                                <a href="tel:${person.phone_no ?? ''}" class="text-decoration-none">
+                                    ${person.phone_no ?? 'N/A'}
+                                </a>
+                            </li>
+                            `;
+                            });
+
+                            bookedByList += '</ol>';
+                        } else {
+                            bookedByList = '<span class="text-secondary">NA</span>';
+                        }
+
+
+                        let html = `
+                          <table class="table table-bordered table-striped table-hover">
+                                <tbody>
+                                    <tr>
+                                        <th class="fw-medium">ID</th>
+                                        <td>${dutyId}</td>
+                                        <th class="fw-medium">Status</th>
+                                        <td> ${response.status}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Start Date</th>
+                                        <td>${formatDate(response.start_date)}</td>
+                                        <th class="fw-medium">End Date</th>
+                                        <td>${formatDate(response.end_date)}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Garage Start Time</th>
+                                        <td> 07:00 Dummy</td>
+                                        <th class="fw-medium">Reporting Time</th>
+                                        <td>${response.reporting_time}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">From City</th>
+                                        <td> ${response.from_service}</td>
+                                        <th class="fw-medium">To City</th>
+                                        <td> ${response.to_service}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Duty Type</th>
+                                        <td colspan="3">${response.duty_type.duty_name ?? ''}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Vehicle Group</th>
+                                        <td colspan="3">${response.vehicle_group.name ?? ''}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Customer</th>
+                                        <td colspan="3"> ${response.customers.name ?? ''}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th class="fw-medium">Booked By</th>
+                                      <td colspan="3">
+                                        ${response.booked_by?.[0]?.name ?? ''} 
+                                       (<i class="fa-solid fa-phone text-success"></i> 
+                                        <a href="tel:${response.booked_by?.[0]?.phone_no ?? ''}" class="text-decoration-none ">
+                                        ${response.booked_by?.[0]?.phone_no ?? ''}
+                                        </a>)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Labels</th>
+                                        <td colspan="3">
+                                            ${
+                                                response.label_details && response.label_details.length > 0
+                                                ? response.label_details.map(label => `
+                                                                                                                            <span class="py-1 px-3 rounded-5 me-1"
+                                                                                                                                style="background-color:${label.label_color}; color:black;">
+                                                                                                                                ${label.label_name}
+                                                                                                                            </span>
+                                                                                                                        `).join('')
+                                                : '<span class="text-secondary">NA</span>'
+                                            }
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="fw-medium">Reporting Address</th>
+                                        <td colspan="3">${response.reporting_address ?? 'NA'}</td>
+                                    </tr>
+                                   
+                                    <tr>
+                                        <th class="fw-medium">Drop Address</th>
+                                        <td colspan="3"><span class="text-secondary">${response.per_extra_km_rate ?? 'NA'}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Price</th>
+                                        <td>₹ ${response.price ?? ''}</td>
+                                        <td><span class="fw-medium">Per Extra KM Rate: </span> ₹ ${response.per_extra_km_rate ?? 'NA'}</td>
+                                        <td><span class="fw-medium">Per Extra Hour Rate: </span> ₹ ${response.per_extra_hr_rate ?? 'NA'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Operator Notes</th>
+                                        <td colspan="3"><span class="text-secondary">${response.operator_notes ?? 'NA'}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Remarks</th>
+                                        <td colspan="3"><span class="text-secondary">${response.remarks ?? 'NA'}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Passengers</th>
+                                          <td colspan="3">${bookedByList}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                    `;
+                        $('#duty-detail-detail').html(html);
+                    },
+                    error: function() {
+                        $('#duty-detail-detail').html(
+                            '<p class="text-danger">Failed to load details.</p>');
+                    }
+                });
+            });
+
+            $('.edit-detail-modal').on('click', function() {
+
+                const dutyId = $(this).data('id');
+                console.log(dutyId, 'i m here edit-detail-modal');
+
+                // Set the ID in the modal header
+                $('#edit-duty-detail').modal('show');
+
+                // Clear previous content (optional)
+                $('#edit-duty-detail-content').html('<p>Loading...</p>');
+                var dutyDetailsUrl = "{{ route('edit.details', ['id' => ':id']) }}";
+                const fetchUrl = dutyDetailsUrl.replace(':id', dutyId);
+                // Show the modal
+                // AJAX Request to fetch duty details
+                $.ajax({
+                    url: fetchUrl, // Adjust this route
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        // json = JSON.parse(response);
+                        console.log(response);
+
+
+                        let html = `
+                      <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">${response.customers.name} <span> #${response.id}</span></h1>
+                        <small>Start Date: <span>${formatDate(response.start_date)}</span></small>
+                    </div>
+                </div>
+                <div class="modal-body px-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                              <label class="control-label">Rep. Time <span class="text-danger">*</span></label>
+                                    
+                                    <select class="form-select border-bottom" aria-label="Default select example"
+                                        name="reporting_time" id="rep_time"
+                                       required>
+
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="drop_time" class="form-label">Estimated Drop-Off Time</label>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    id="drop_time" name="drop_time">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="drop_time" class="form-label">Start from garage before (in min)</label>
+                                <input type="number" class="form-control  border-bottom" id="" value="${response.garage_time}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="" class="control-label w-100">Vehicle Group</label>
+                                <select class="form-select border-bottom" name="" id="">
+                                    <option value="">select vehicle group</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="" class="control-label w-100">Duty Type</label>
+                                <select class="form-select border-bottom" name="" id="">
+                                    <option value="">select Duty Type</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="" class="form-label"> Price</label>
+                                <input type="number" class="form-control  border-bottom" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="" class="form-label"> Per Extra KM Rate</label>
+                                <input type="number" class="form-control  border-bottom" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="" class="form-label"> Per Extra Hr Rate</label>
+                                <input type="number" class="form-control  border-bottom" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end">
+                            <div class="mb-3 w-100">
+                                <button type="reset" class="btn btn-light border w-100">Get Price</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="reporting_address" class="form-label w-100">Reporting Address
+                                </label>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    name="reporting_address[]" id="reporting_address" multiple="multiple">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="drop_address" class="form-label w-100">Drop Address</label>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    name="drop_address[]" id="drop_address" multiple="multiple">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Short Reporting Address (to be shown in duty
+                            listing)</label>
+                        <input type="text" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Remarks </label>
+                        <textarea class="form-control" rows="3" name="" id=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Flight/Train Number</label>
+                        <input type="text" class="form-control  border-bottom" id="">
+                    </div>
+                    <p class="mb-3">
+                        <a href="" class="text-decoration-none" id="supplierRemarksLink">
+                            Add separate remarks for driver/supplier.
+                        </a>
+                    </p>
+                    <div class="bg-light mb-3 p-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="control-label w-100">Vehicle Group</label>
+                                    <select class="form-select border-bottom" name="" id="">
+                                        <option value="">select vehicle group</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="control-label w-100">Duty Type</label>
+                                    <select class="form-select border-bottom" name="" id="">
+                                        <option value="">select Duty Type</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="" id="supplierRemarks" style="display: none;">
+                            <label for="" class="form-label">Driver/Supplier Remarks </label>
+                            <textarea class="form-control" rows="3" name="" id=""></textarea>
+                        </div>
+                    </div>
+                    <p class="text-danger mb-3">
+                        Please note: Above changes will only affect this duty and would not change/affect any other duty of
+                        this booking.
+                    </p>
+                </div>
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
+                    <div>
+                        <button type="button" class="btn btn-primary border" id="">Save</button>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+                    `;
+                        $('#edit-duty-detail-content').html(html);
+                        // Now rep_time exists in the DOM
+                        const repTime = response.reporting_time;
+                        const dropTime = response.drop_time;
+
+                        document.getElementById("rep_time").innerHTML = generateTimeSlots(
+                            repTime);
+                        document.getElementById("drop_time").innerHTML = generateTimeSlots(
+                            dropTime);
+                    },
+                    error: function() {
+                        $('#edit-duty-detail-content').html(
+                            '<p class="text-danger">Failed to load details.</p>');
+                    }
+                });
+            });
+        });
     </script>
 @endsection

@@ -15,7 +15,7 @@ class BookingBookedBy extends Model
         'booking_id',
         'name',
         'email',
-        'phone',
+        'phone_no',
         'type',
     ];
 

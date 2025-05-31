@@ -9,7 +9,7 @@
                         <button type="button" class="btn" onclick="window.history.back()"><i
                                 class="fa-solid fa-angle-left"></i></button>
                     </div>
-                    <h1 class="h3 pb-3">Booking <span>#78866454</span></h1>
+                    <h1 class="h3 pb-3">Booking <span>#{{ $booking->id }}</span></h1>
                 </div>
                 <div class="d-flex gap-2 pb-3">
                     <div class="btn-group" role="group"><a href="#" class="btn btn-primary">Edit</a></div>
@@ -54,15 +54,12 @@
         {{-- page heading end --}}
         {{-- page content start --}}
         <div class="d-flex gap-2">
-            <span class="py-1 px-3 rounded-5 bg-success text-white">
-                Cash Duty
-            </span>
-            <span class="py-1 px-3 rounded-5 bg-success text-white">
-                Cash Duty
-            </span>
-            <span class="py-1 px-3 rounded-5 bg-success text-white">
-                Cash Duty
-            </span>
+            @foreach ($booking->getLabelDetailsAttribute as $bookingLabel)
+                <span class="py-1 px-3 rounded-5 {{ $bookingLabel->label_color }} text-white">
+                    {{ $bookingLabel->label_name }}
+                </span>
+            @endforeach
+
         </div>
 
         {{-- booking table start --}}
@@ -90,80 +87,81 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{-- {{ dd($booking) }} --}}
                     <tr>
                         <td>
                             <i class="fa-solid fa-phone text-success"></i>
                         </td>
                         <td>
-                            <span data-title="ends on 31-03">31-03</span>
+                            <span
+                                data-title="{{ $booking->end_date ? \Carbon\Carbon::parse($booking->end_date)->format('d/m/Y') : 'N/A' }}">{{ $booking->end_date ? \Carbon\Carbon::parse($booking->end_date)->format('d/m/Y') : 'N/A' }}</span>
                         </td>
                         <td>
-                            <span data-title="Vijay Vaidyanathan Booked by Vijay Vaidyanathan (98408 72950)">Vijay
-                                Vaidyanathan</span>
+                            <span data-title="{{ $booking->customers->name ?? 'NA' }}">
+                                {{ $booking->customers->name ?? 'NA' }}</span>
                         </td>
                         <td>
-                            <span data-title="Phone: 98408 72950">Vijay
-                                Vaidyanathan</span>
+                            <span
+                                data-title="{{ $booking->bookedBy[0]->name ?? 'NA' }}">{{ $booking->bookedBy[0]->name ?? 'NA' }}</span>
                         </td>
                         <td>
-                            <small>Sedan</small>
+                            <small>{{ $booking->vehicleGroup->name ?? 'NA' }}</small>
                         </td>
                         <td>
                             <span data-title="Vehicle Model: Swift Dzire">
-                                MH02FG2161
+                                MH02FG2161 Dummy
                             </span>
                         </td>
                         <td>
                             <span
                                 data-title="Supplier Driver Name: Dharam | Phone: 8552006559<br/>Supplier Phone: 9821651431">
-                                UTTAM SAW
+                                UTTAM SAW Dummy
                             </span>
                         </td>
                         <td>
-                            <span data-title="Within Mumbai">
-                                8H 80KMs
+                            <span data-title="{{ $booking->dutyType->duty_name ?? 'NA' }}">
+                                {{ $booking->dutyType->duty_name ?? 'NA' }}
                             </span>
                         </td>
                         <td>
-                            <span data-title="121 buena vista.  Gen bhonsle marg.  Building 12 th floor, Churchgate"
-                                class="table-address-column">
-                                121 buena vista. Gen bhonsle marg. Building 12 th floor, Churchgate
+                            <span data-title="{{ $booking->reporting_address ?? 'NA' }}" class="table-address-column">
+                                {{ $booking->reporting_address ?? 'NA' }}
                             </span>
                         </td>
                         <td>
                             <span class="text-secondary table-address-column">
-                                NA
+                                {{ $booking->drop_address ?? 'NA' }}
                             </span>
                         </td>
                         <td>
                             <span class="text-secondary">
-                                NA
+                                {{ $booking->remarks ?? 'NA' }}
+
                             </span>
                         </td>
-                        <td></td>
+                        <td>{{ $booking->operator_notes ?? 'NA' }}</td>
                         <td>
-                            <span data-title="City">
-                                Mumbai
+                            <span data-title="{{ $booking->from_service ?? 'NA' }}">
+                                {{ $booking->from_service ?? 'NA' }}
                             </span>
                         </td>
                         <td>
-                            <span data-title="Garage start time: 08:45">
-                                09:45
+                            <span data-title="Garage start time: {{ $booking->reporting_time ?? 'NA' }}">
+                                {{ $booking->reporting_time ?? 'NA' }}
                             </span>
                         </td>
                         <td>
                             <span data-title="Multi-Duty booking">
-                                MD
+                                MD Lack of logic
                             </span>
-                            <span class="py-1 px-3 rounded-5 bg-success text-white m-1">
-                                Cash Duty
-                            </span>
-                            <span class="py-1 px-3 rounded-5 bg-success text-white m-1">
-                                Cash Duty
-                            </span>
+                            @foreach ($booking->getLabelDetailsAttribute as $bookingLabel)
+                                <span class="py-1 px-3 rounded-5  text-white m-1 {{ $bookingLabel->label_color }} text-white">
+                                    {{ $bookingLabel->label_name }}
+                                </span>
+                            @endforeach
                         </td>
                         <td>
-                            <span class="text-warning">Allotted</span>
+                            <span class="text-warning">{{$booking->status}}</span>
                         </td>
                         <td>
                             <div class="dropdown">

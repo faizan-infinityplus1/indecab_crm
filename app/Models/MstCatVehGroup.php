@@ -29,4 +29,9 @@ class MstCatVehGroup extends Model
             }
         });
     }
+
+     public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'vehicle_group', 'id');
+    } 
 }

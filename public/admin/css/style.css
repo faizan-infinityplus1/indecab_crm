@@ -302,3 +302,7 @@ ul.dropdown-menu.dropdown-menu-end {
     color: #2f84d2;
     box-shadow: inset 0 -2px 0 #2f84d2;
 }
+
+#DataTables_Table_0_wrapper .dt-search {
+    display: none;
+}

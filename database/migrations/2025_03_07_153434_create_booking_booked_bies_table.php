@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
             $table->string('name');
             $table->string('email')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('phone_no')->nullable();
             $table->string('type');
             $table->timestamps();
         });

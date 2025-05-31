@@ -128,10 +128,10 @@
                                         aria-expanded="false">
                                         <i class="fa-solid fa-gear"></i>
                                     </button>
-                                    <ul class="dropdown-menu dropdown-menu-right">
+                                    {{-- <ul class="dropdown-menu dropdown-menu-right">
                                         <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View
                                                 Booking</a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </div>
                             </td>
                         </tr>

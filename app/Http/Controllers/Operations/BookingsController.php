@@ -15,6 +15,7 @@ use App\Models\MstLabel;
 use App\Models\MstMyCompany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class BookingsController extends Controller
@@ -35,7 +36,6 @@ class BookingsController extends Controller
      */
     public function create()
     {
-        //
         $bookingId = $request->bookingId ?? -1;
         $booking = Booking::where('id', $bookingId)->with('bookedBy')->first();
         $customers = MstCustomer::where('is_active', true)->with('people')->get();
@@ -54,61 +54,75 @@ class BookingsController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
-        // dd('i m here');
-        //
         try {
-            // dd($request->attachments);
             // Validate request (handled by FormRequest)
             $validatedData = $request->validated();
-            // dd($validatedData);
 
-            // If validation passes, dump the validated data
+            // Normalize labels
             $validatedData['labels'] = implode(',', $validatedData['labels'] ?? []);
-            // create booking
+
+            // Create or update booking
             $booking = Booking::updateOrCreate(
                 [
                     'id' => $request->booking_id,
                 ],
                 $validatedData
             );
-            // create booking customer relationships
-            // dd($booking);
+
+            // Prepare bookedByCustomer array
             $bookedByCustomer = [
                 [
                     'name' => $validatedData['booked_by_customer_name'],
                     'id' => $validatedData['booked_by_id'],
-                    'phone' => $validatedData['booked_by_customer_phone'],
+                    'phone_no' => $validatedData['booked_by_customer_phone'],
                     'email' => $validatedData['booked_by_customer_email'],
                     'type' => $validatedData['type'],
                 ]
             ];
+
             $contacts = $validatedData['contacts'] ?? [];
             $passengers = $validatedData['passengers'] ?? [];
 
+            // Normalize 'phone' to 'phone_no' in contacts and passengers
+            foreach ($contacts as &$contact) {
+                if (isset($contact['phone'])) {
+                    $contact['phone_no'] = $contact['phone'];
+                    unset($contact['phone']);
+                }
+            }
+
+            foreach ($passengers as &$passenger) {
+                if (isset($passenger['phone'])) {
+                    $passenger['phone_no'] = $passenger['phone'];
+                    unset($passenger['phone']);
+                }
+            }
+
             $mergedContacts = array_merge($bookedByCustomer, $contacts, $passengers);
 
+            // Assign booking_id to each contact
             foreach ($mergedContacts as $key => $contact) {
                 $mergedContacts[$key]['booking_id'] = $booking->id;
             }
 
-            // dd($mergedContacts);
+            Log::info('merge contacts: ', ['mergeContacts' => $mergedContacts]);
 
+            // Delete removed contacts
             $existingBookedByCustomer = $booking->bookedBy()->pluck('id')->toArray();
             $submittedBookedByCustomerIds = collect($mergedContacts)->pluck('id')->filter()->toArray();
             $bookedByToDelete = array_diff($existingBookedByCustomer, $submittedBookedByCustomerIds);
             BookingBookedBy::whereIn('id', $bookedByToDelete)->delete();
 
+            // Create or update contacts
             foreach ($mergedContacts as $contact) {
                 if (isset($contact['id'])) {
-                    // Update existing address
                     BookingBookedBy::where('id', $contact['id'])->update($contact);
                 } else {
-                    // Add new address
                     $booking->bookedBy()->create($contact);
                 }
             }
 
-            // attachement logic
+            // Attachment logic
 
             // $filePath = '';
             // if ($request->hasFile("booking_attachments")) {
@@ -155,17 +169,19 @@ class BookingsController extends Controller
                     ]);
                 }
             }
+
             if ($booking) {
-                connectify('success', 'Booking Added', 'Booking has been added successfully !');
+                connectify('success', 'Booking Added', 'Booking has been added successfully!');
             } else {
-                connectify('error', 'Booking Added', 'Booking has not been added successfully !');
+                connectify('error', 'Booking Error', 'Booking was not added!');
             }
+
             return redirect(route('admin.dashboard'));
         } catch (ValidationException $e) {
-            // Dump validation errors
-            dd($e->errors());
+            dd($e->errors()); // Dump validation errors
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -232,8 +248,15 @@ class BookingsController extends Controller
     {
         return view("backend.admin.Operations.bookings.cancelled.index");
     }
-    public function specificBookings()
+    public function specificBookings(Request $request)
     {
-        return view("backend.admin.operations.bookings.specificBookings.index");
+
+        $booking = Booking::with(['bookedBy', 'customers', 'vehicleGroup', 'dutyType'])
+            ->where('status', 'booked')
+            ->findOrFail($request->id);
+        $booking->getLabelDetailsAttribute = $booking->label_details;
+
+
+        return view("backend.admin.operations.bookings.specificBookings.index", compact('booking'));
     }
 }

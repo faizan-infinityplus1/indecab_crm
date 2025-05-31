@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use App\Models\MstLabel;
 
 class Booking extends Model
 {
@@ -60,6 +61,34 @@ class Booking extends Model
 
     public function customers()
     {
-        return $this->hasMany(MstCustomer::class, 'id');
+        return $this->belongsTo(MstCustomer::class, 'customer_id', 'id');
+    }
+
+    public function vehicleGroup()
+    {
+        return $this->belongsTo(MstCatVehGroup::class, 'vehicle_group', 'id');
+    }
+
+    public function dutyType()
+    {
+        return $this->belongsTo(MstDutyType::class, 'duty_type', 'id');
+    }
+
+    public function labels()
+    {
+        return $this->belongsTo(MstLabel::class, 'duty_type', 'id');
+    }
+
+    public function getLabelDetailsAttribute()
+    {
+        if (!$this->labels) return [];
+
+        $labelCache = \App\Providers\AppServiceProvider::getCachedLabels();
+
+        $ids = array_filter(explode(',', $this->labels));
+
+        return collect($ids)->map(function ($id) use ($labelCache) {
+            return $labelCache->get((int) $id);
+        })->filter()->values();
     }
 }

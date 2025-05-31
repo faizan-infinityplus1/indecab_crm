@@ -46,7 +46,7 @@ class MstSupplier extends Model
         'is_gst_tally',
         'is_active',
     ];
-    
+
 
     public function scopeActive($query)
     {
@@ -80,5 +80,7 @@ class MstSupplier extends Model
 
     public function mstSupplierCompanyDetail()
     {
-        return $this->hasOne(MstSupplierCompanyDetail::class, 'supplier_id', 'id');    }
+        return $this->hasOne(MstSupplierCompanyDetail::class, 'supplier_id', 'id');
+    }
+
 }

@@ -41,9 +41,14 @@ class MstDutyType extends Model
             }
         });
     }
-    public function mstCustomer(){
-        return $this->hasMany(MstCustomer::class, 'id'); // assuming 'customer_id' is the foreign key in MstCustomerGroup
 
+    public function mstCustomer()
+    {
+        return $this->hasMany(MstCustomer::class, 'id');
     }
- 
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'duty_type', 'id');
+    }
 }

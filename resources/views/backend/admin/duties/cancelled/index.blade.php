@@ -170,7 +170,7 @@
                                                 data-bs-target="#details">Details</a></li>
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                        <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li>
+                                        {{-- <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li> --}}
 
                                         <li><a href="#" class="dropdown-item"
                                                 onclick="restoreDuty()">Restore Duty</a></li>

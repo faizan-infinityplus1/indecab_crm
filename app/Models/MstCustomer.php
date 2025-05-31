@@ -75,9 +75,8 @@ class MstCustomer extends Model
     {
         return $this->hasMany(MstCustomerPeople::class, 'customer_id');
     }
-
-    public function booking()
+    public function bookings()
     {
-        return $this->hasMany(Booking::class, 'customer_id');
+        return $this->hasMany(Booking::class, 'customer_id', 'id');
     }
 }
