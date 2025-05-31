@@ -126,6 +126,7 @@ class BookingsController extends Controller
                 $filePath = $file->store('mydriver-images', 'public');
             }
 
+
             if ($booking) {
                 connectify('success', 'Booking Added', 'Booking has been added successfully!');
             } else {
@@ -210,7 +211,7 @@ class BookingsController extends Controller
         $booking = Booking::with(['bookedBy', 'customers', 'vehicleGroup', 'dutyType'])
             ->where('status', 'booked')
             ->findOrFail($request->id);
-        $booking->getLabelDetailsAttribute = $booking->label_details; 
+        $booking->getLabelDetailsAttribute = $booking->label_details;
 
 
         return view("backend.admin.operations.bookings.specificBookings.index", compact('booking'));
