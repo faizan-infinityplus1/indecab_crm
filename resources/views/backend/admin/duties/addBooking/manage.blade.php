@@ -353,7 +353,7 @@
                         <div class="col-md-4 mb-3">
                             <b>Booking attachments:</b>
                             <label for="fileUpload" class="text-primary">Upload attachment</label>
-                            <input type="file" class="d-none" id="fileUpload" name="attachments[]" multiple>
+                            <input type="file" class="d-none" id="fileUpload" name="attachments[]" multiple accept="jpg,jpeg,png">
 
                             <!-- Display list of selected files -->
                             <ul id="fileList" class="file-list"></ul>
@@ -471,7 +471,7 @@
                 @endforeach
             </ul>
         </div>
-    @endif  --}} 
+    @endif  --}}
 @endsection
 
 @section('extrajs')
@@ -596,7 +596,7 @@
 
 
         });
-      
+
         const fileUpload = document.getElementById('fileUpload');
         const fileList = document.getElementById('fileList');
 

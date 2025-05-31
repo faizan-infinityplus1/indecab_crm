@@ -26,6 +26,7 @@ class StoreBookingRequest extends FormRequest
     public function rules(): array
     {
         // dd($this->all());
+
         return [
             'customer_id' => 'required|integer|exists:mst_customers,id',
             'company_id' => 'required|integer|exists:mst_my_companies,id',

@@ -37,6 +37,7 @@ class Booking extends Model
         'operator_notes',
         'labels',
         'isConfirmedBooking',
+        'attachmentIds',
     ];
 
     public function scopeActive($query)
