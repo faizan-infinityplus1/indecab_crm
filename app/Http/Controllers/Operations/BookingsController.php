@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Operations;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
+use App\Models\Attachment;
 use App\Models\Booking;
+use App\Models\BookingAttachment;
 use App\Models\BookingBookedBy;
 use App\Models\MstCustomer;
 use App\Models\MstCatVehGroup;
@@ -13,6 +15,7 @@ use App\Models\MstDutyType;
 use App\Models\MstLabel;
 use App\Models\MstMyCompany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
@@ -103,7 +106,6 @@ class BookingsController extends Controller
                 $mergedContacts[$key]['booking_id'] = $booking->id;
             }
 
-            Log::info('merge contacts: ', ['mergeContacts' => $mergedContacts]);
 
             // Delete removed contacts
             $existingBookedByCustomer = $booking->bookedBy()->pluck('id')->toArray();
@@ -120,11 +122,26 @@ class BookingsController extends Controller
                 }
             }
 
-            // Attachment logic
-            if ($request->hasFile("image")) {
-                $file = $request->file("image");
-                $filePath = $file->store('mydriver-images', 'public');
+            $attachmentIds = array();
+            if ($request->hasFile("attachments")) {
+                foreach ($request->file("attachments") as $file) {
+                    // Store the file in the 'booking-attachment' directory within the 'public' disk
+                    $filePath = $file->store('booking-attachment', 'public');
+
+                    // Save file details to the booking_attachments table
+                    $attachment = Attachment::create([
+                        'file_name' => $file->getClientOriginalName(),
+                        'file_path' => $filePath,
+                        'file_size' => $file->getSize(),
+                        'file_type' => $file->getMimeType(),
+                    ]);
+                    array_push($attachmentIds, $attachment->id);
+                }
             }
+            $commaSeperatedAttachmentIds = implode(', ', $attachmentIds);
+            $booking->attachmentIds = $commaSeperatedAttachmentIds;
+            $booking->save();
+
 
 
             if ($booking) {

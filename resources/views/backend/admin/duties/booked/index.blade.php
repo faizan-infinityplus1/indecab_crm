@@ -178,8 +178,9 @@
                                             </li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-duty">Edit duty</a></li>
+                                            <li><a href="#" class="dropdown-item edit-detail-modal"
+                                                    data-bs-toggle="modal" data-id="{{ $data->id }}">Edit duty</a>
+                                            </li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#allot-vehicle-driver">Allot vehicle & driver</a>
                                             </li>
@@ -334,163 +335,11 @@
     </div>
     {{-- add remove lable close --}}
     {{-- Edit Duty --}}
-    <div class="modal fade" id="edit-duty" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit-duty-detail" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
-                <div class="modal-header px-5 sticky-top bg-white">
-                    <div>
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Duty <span> #18326801-1</span></h1>
-                        <small>Start Date: <span>07-04-2025</span></small>
-                    </div>
-                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-                </div>
-                <div class="modal-body px-5">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="rep_time" class="form-label">Reporting time</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    id="rep_time" name="rep_time">
+            <div class="modal-content rounded-0 border-0" id="edit-duty-detail-content">
 
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="drop_time" class="form-label">Estimated Drop-Off Time</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    id="drop_time" name="drop_time">
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="drop_time" class="form-label">Start from garage before (in min)</label>
-                                <input type="number" class="form-control  border-bottom" id="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="" class="control-label w-100">Vehicle Group</label>
-                                <select class="form-select border-bottom" name="" id="">
-                                    <option value="">select vehicle group</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="" class="control-label w-100">Duty Type</label>
-                                <select class="form-select border-bottom" name="" id="">
-                                    <option value="">select Duty Type</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label for="" class="form-label"> Price</label>
-                                <input type="number" class="form-control  border-bottom" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label for="" class="form-label"> Per Extra KM Rate</label>
-                                <input type="number" class="form-control  border-bottom" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label for="" class="form-label"> Per Extra Hr Rate</label>
-                                <input type="number" class="form-control  border-bottom" id="">
-                            </div>
-                        </div>
-                        <div class="col-md-3 d-flex align-items-end">
-                            <div class="mb-3 w-100">
-                                <button type="reset" class="btn btn-light border w-100">Get Price</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="reporting_address" class="form-label w-100">Reporting Address
-                                </label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="reporting_address[]" id="reporting_address" multiple="multiple">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="drop_address" class="form-label w-100">Drop Address</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="drop_address[]" id="drop_address" multiple="multiple">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="" class="form-label"> Short Reporting Address (to be shown in duty
-                            listing)</label>
-                        <input type="text" class="form-control  border-bottom" id="">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Remarks </label>
-                        <textarea class="form-control" rows="3" name="" id=""></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label"> Flight/Train Number</label>
-                        <input type="text" class="form-control  border-bottom" id="">
-                    </div>
-                    <p class="mb-3">
-                        <a href="" class="text-decoration-none" id="supplierRemarksLink">
-                            Add separate remarks for driver/supplier.
-                        </a>
-                    </p>
-                    <div class="bg-light mb-3 p-3">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="" class="control-label w-100">Vehicle Group</label>
-                                    <select class="form-select border-bottom" name="" id="">
-                                        <option value="">select vehicle group</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="" class="control-label w-100">Duty Type</label>
-                                    <select class="form-select border-bottom" name="" id="">
-                                        <option value="">select Duty Type</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="" id="supplierRemarks" style="display: none;">
-                            <label for="" class="form-label">Driver/Supplier Remarks </label>
-                            <textarea class="form-control" rows="3" name="" id=""></textarea>
-                        </div>
-                    </div>
-                    <p class="text-danger mb-3">
-                        Please note: Above changes will only affect this duty and would not change/affect any other duty of
-                        this booking.
-                    </p>
-                </div>
-                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
-                    <div>
-                        <button type="button" class="btn btn-primary border" id="">Save</button>
-                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -1389,8 +1238,7 @@
     </div>
     {{-- Send details to supplier close --}}
     {{-- Create placard --}}
-    <div class="modal fade" id="create-placard" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="create-placard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
             <div class="modal-content rounded-0 border-0">
                 <div class="modal-header px-5 sticky-top bg-white">
@@ -1460,6 +1308,9 @@
 
 
 @section('extrajs')
+    <script src="{{ asset('admin/js/timeslots.js') }}"></script>
+    <script src="{{ asset('admin/js/options.js') }}"></script>
+    <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script>
         function unconfirmDuty() {
             let unconfirmDuty = confirm("Are you sure you want to mark this duty as unconfirmed?");
@@ -1488,6 +1339,7 @@
     </script>
     <script>
         $(document).ready(function() {
+
             $('.open-detail-modal').on('click', function() {
                 const dutyId = $(this).data('id');
                 console.log(dutyId, 'i m here open-detail-modal');
@@ -1594,11 +1446,11 @@
                                             ${
                                                 response.label_details && response.label_details.length > 0
                                                 ? response.label_details.map(label => `
-                                                            <span class="py-1 px-3 rounded-5 me-1"
-                                                                style="background-color:${label.label_color}; color:black;">
-                                                                ${label.label_name}
-                                                            </span>
-                                                        `).join('')
+                                                                                                                            <span class="py-1 px-3 rounded-5 me-1"
+                                                                                                                                style="background-color:${label.label_color}; color:black;">
+                                                                                                                                ${label.label_name}
+                                                                                                                            </span>
+                                                                                                                        `).join('')
                                                 : '<span class="text-secondary">NA</span>'
                                             }
                                         </td>
@@ -1639,6 +1491,203 @@
                     },
                     error: function() {
                         $('#duty-detail-detail').html(
+                            '<p class="text-danger">Failed to load details.</p>');
+                    }
+                });
+            });
+
+            $('.edit-detail-modal').on('click', function() {
+
+                const dutyId = $(this).data('id');
+                console.log(dutyId, 'i m here edit-detail-modal');
+
+                // Set the ID in the modal header
+                $('#edit-duty-detail').modal('show');
+
+                // Clear previous content (optional)
+                $('#edit-duty-detail-content').html('<p>Loading...</p>');
+                var dutyDetailsUrl = "{{ route('edit.details', ['id' => ':id']) }}";
+                const fetchUrl = dutyDetailsUrl.replace(':id', dutyId);
+                // Show the modal
+                // AJAX Request to fetch duty details
+                $.ajax({
+                    url: fetchUrl, // Adjust this route
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        // json = JSON.parse(response);
+                        console.log(response);
+
+
+                        let html = `
+                      <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">${response.customers.name} <span> #${response.id}</span></h1>
+                        <small>Start Date: <span>${formatDate(response.start_date)}</span></small>
+                    </div>
+                </div>
+                <div class="modal-body px-5">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                              <label class="control-label">Rep. Time <span class="text-danger">*</span></label>
+                                    
+                                    <select class="form-select border-bottom" aria-label="Default select example"
+                                        name="reporting_time" id="rep_time"
+                                       required>
+
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="drop_time" class="form-label">Estimated Drop-Off Time</label>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    id="drop_time" name="drop_time">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="drop_time" class="form-label">Start from garage before (in min)</label>
+                                <input type="number" class="form-control  border-bottom" id="" value="${response.garage_time}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="" class="control-label w-100">Vehicle Group</label>
+                                <select class="form-select border-bottom" name="" id="">
+                                    <option value="">select vehicle group</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="" class="control-label w-100">Duty Type</label>
+                                <select class="form-select border-bottom" name="" id="">
+                                    <option value="">select Duty Type</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="" class="form-label"> Price</label>
+                                <input type="number" class="form-control  border-bottom" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="" class="form-label"> Per Extra KM Rate</label>
+                                <input type="number" class="form-control  border-bottom" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="" class="form-label"> Per Extra Hr Rate</label>
+                                <input type="number" class="form-control  border-bottom" id="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end">
+                            <div class="mb-3 w-100">
+                                <button type="reset" class="btn btn-light border w-100">Get Price</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="reporting_address" class="form-label w-100">Reporting Address
+                                </label>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    name="reporting_address[]" id="reporting_address" multiple="multiple">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="drop_address" class="form-label w-100">Drop Address</label>
+                                <select class="form-select border-bottom" aria-label="Default select example"
+                                    name="drop_address[]" id="drop_address" multiple="multiple">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Short Reporting Address (to be shown in duty
+                            listing)</label>
+                        <input type="text" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Remarks </label>
+                        <textarea class="form-control" rows="3" name="" id=""></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Flight/Train Number</label>
+                        <input type="text" class="form-control  border-bottom" id="">
+                    </div>
+                    <p class="mb-3">
+                        <a href="" class="text-decoration-none" id="supplierRemarksLink">
+                            Add separate remarks for driver/supplier.
+                        </a>
+                    </p>
+                    <div class="bg-light mb-3 p-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="control-label w-100">Vehicle Group</label>
+                                    <select class="form-select border-bottom" name="" id="">
+                                        <option value="">select vehicle group</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="control-label w-100">Duty Type</label>
+                                    <select class="form-select border-bottom" name="" id="">
+                                        <option value="">select Duty Type</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="" id="supplierRemarks" style="display: none;">
+                            <label for="" class="form-label">Driver/Supplier Remarks </label>
+                            <textarea class="form-control" rows="3" name="" id=""></textarea>
+                        </div>
+                    </div>
+                    <p class="text-danger mb-3">
+                        Please note: Above changes will only affect this duty and would not change/affect any other duty of
+                        this booking.
+                    </p>
+                </div>
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
+                    <div>
+                        <button type="button" class="btn btn-primary border" id="">Save</button>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+                    `;
+                        $('#edit-duty-detail-content').html(html);
+                        // Now rep_time exists in the DOM
+                        const repTime = response.reporting_time;
+                        const dropTime = response.drop_time;
+
+                        document.getElementById("rep_time").innerHTML = generateTimeSlots(
+                            repTime);
+                        document.getElementById("drop_time").innerHTML = generateTimeSlots(
+                            dropTime);
+                    },
+                    error: function() {
+                        $('#edit-duty-detail-content').html(
                             '<p class="text-danger">Failed to load details.</p>');
                     }
                 });

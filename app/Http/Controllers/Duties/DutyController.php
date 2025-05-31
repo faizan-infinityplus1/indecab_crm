@@ -111,6 +111,21 @@ class DutyController extends Controller
         $booking = Booking::with(['bookedBy', 'customers', 'vehicleGroup', 'dutyType'])
             ->where('status', 'booked')
             ->findOrFail($id);
+        $booking->getLabelDetailsAttribute = $booking->label_details; 
+
+        return response()->json([
+            ...$booking->toArray(),
+            'label_details' => $booking->label_details,
+        ]);
+    }
+
+    public function editDetails($id)
+    {
+        $booking = Booking::with(['bookedBy', 'customers', 'vehicleGroup', 'dutyType'])
+            ->where('status', 'booked')
+            ->findOrFail($id);
+
+          $booking->getLabelDetailsAttribute = $booking->label_details; 
 
         return response()->json([
             ...$booking->toArray(),

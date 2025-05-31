@@ -350,22 +350,13 @@
                     </div>
 
                     <div class="row">
-                        {{-- <div class="col-md-4 mb-3">
-                            <b>Booking attachments:</b>
-                            <label for="booking_attachments" class="text-primary">Upload attachment</label>.
-                            <input type="file" name="booking_attachments[]" id="booking_attachments" class="d-none">
-                            <div>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                                <input type="button" id="removeImage1" value="x" class="btn-rmv1" />
-                            </div>
-                        </div> --}}
                         <div class="col-md-4 mb-3">
                             <b>Booking attachments:</b>
-                            <label for="booking_attachments" class="text-primary">Upload attachment</label>
-                            <input type="file" name="booking_attachments[]" id="booking_attachments" class="d-none"
-                                multiple>
+                            <label for="fileUpload" class="text-primary">Upload attachment</label>
+                            <input type="file" class="d-none" id="fileUpload" name="attachments[]" multiple accept="jpg,jpeg,png">
 
-                            <div id="fileList"></div>
+                            <!-- Display list of selected files -->
+                            <ul id="fileList" class="file-list"></ul>
                         </div>
                     </div>
                     <div class="row">
@@ -395,17 +386,7 @@
                             class="text-decoration-none">support@infinityplus1.in</a> to
                         learn how to enable this.
                     </div>
-                    <div class="upload-section">
-                        <label for="fileUpload">Booking Attachments:</label>
-                        <!-- 'Upload Attachment' button triggers the hidden file input -->
-                        <label class="upload-btn" for="fileUpload">Upload Attachment</label>
 
-                        <!-- Multiple files allowed -->
-                        <input type="file" id="fileUpload" name="attachments[]" multiple>
-
-                        <!-- Display list of selected files -->
-                        <ul id="fileList" class="file-list"></ul>
-                    </div>
 
                     <button type="submit" class="btn btn-primary rounded-1">Submit</button>
                 </div>
@@ -490,7 +471,7 @@
                 @endforeach
             </ul>
         </div>
-    @endif  --}} 
+    @endif  --}}
 @endsection
 
 @section('extrajs')
@@ -615,7 +596,7 @@
 
 
         });
-      
+
         const fileUpload = document.getElementById('fileUpload');
         const fileList = document.getElementById('fileList');
 
