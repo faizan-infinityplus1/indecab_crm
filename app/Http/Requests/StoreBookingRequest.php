@@ -70,6 +70,8 @@ class StoreBookingRequest extends FormRequest
             'labels' => 'required|array',
             'labels.*' => 'integer|exists:mst_labels,id',
             'is_confirmed_booking' => 'boolean',
+            'attachments' => 'nullable|array', // Ensure attachments is an array
+            'attachments.*' => 'file|mimes:jpg,jpeg,png|max:2048', // Validate each file in the array
         ];
     }
 

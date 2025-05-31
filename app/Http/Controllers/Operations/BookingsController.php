@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
 use App\Models\Booking;
+use App\Models\BookingAttachment;
 use App\Models\BookingBookedBy;
 use App\Models\MstCustomer;
 use App\Models\MstCatVehGroup;
@@ -13,6 +14,7 @@ use App\Models\MstDutyType;
 use App\Models\MstLabel;
 use App\Models\MstMyCompany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class BookingsController extends Controller
@@ -52,7 +54,7 @@ class BookingsController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
-        dd('i m here');
+        // dd('i m here');
         //
         try {
             // dd($request->attachments);
@@ -108,10 +110,50 @@ class BookingsController extends Controller
 
             // attachement logic
 
-            $filePath = '';
-            if ($request->hasFile("image")) {
-                $file = $request->file("image");
-                $filePath = $file->store('mydriver-images', 'public');
+            // $filePath = '';
+            // if ($request->hasFile("booking_attachments")) {
+            //     $file = $request->file("booking_attachments");
+            //     $filePath = $file->store('mydriver-images', 'public');
+            // }
+
+
+            $attachment = BookingAttachment::where('booking_id', $booking->id)->first();
+
+            if ($attachment) {
+
+
+                // Delete the old file from storage
+                Storage::disk('public')->delete($attachment->file_path);
+
+                // Store the new file
+                $newFile = $request->file('file');
+                $newFilePath = $newFile->store('mydriver-images', 'public');
+
+                // Update the attachment details in the database
+                $attachment->update([
+                    'file_name' => $newFile->getClientOriginalName(),
+                    'file_path' => $newFilePath,
+                    'file_size' => $newFile->getSize(),
+                    'file_type' => $newFile->getMimeType(),
+                ]);
+
+                return response()->json(['success' => 'Attachment updated successfully.']);
+            }
+
+            if ($request->hasFile("attachments")) {
+                foreach ($request->file("attachments") as $file) {
+                    // Store the file in the 'mydriver-images' directory within the 'public' disk
+                    $filePath = $file->store('mydriver-images', 'public');
+
+                    // Save file details to the booking_attachments table
+                    BookingAttachment::create([
+                        'booking_id' => $booking->id, // Assuming $booking is the created/updated booking
+                        'file_name' => $file->getClientOriginalName(),
+                        'file_path' => $filePath,
+                        'file_size' => $file->getSize(),
+                        'file_type' => $file->getMimeType(),
+                    ]);
+                }
             }
             if ($booking) {
                 connectify('success', 'Booking Added', 'Booking has been added successfully !');
