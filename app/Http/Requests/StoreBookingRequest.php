@@ -30,7 +30,7 @@ class StoreBookingRequest extends FormRequest
             'customer_id' => 'required|integer|exists:mst_customers,id',
             'company_id' => 'required|integer|exists:mst_my_companies,id',
             'booked_by_id' => 'nullable|integer|exists:booking_booked_bies,id',
-            'booked_by_customer_id' => 'required|integer',
+            'booked_by_customer_id' => 'nullable|integer',
             'booked_by_customer_name' => 'required|string',
             'booked_by_customer_phone' => 'string|min:10|max:15',
             'booked_by_customer_email' => 'string|email|max:255',
