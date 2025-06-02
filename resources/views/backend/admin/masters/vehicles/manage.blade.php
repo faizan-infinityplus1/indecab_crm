@@ -28,7 +28,7 @@
                                 <label for="model_name" class="form-label required">Model Name <span
                                         class="text-danger">*</span></label>
                                 <input type="text" name="model_name" class="form-control border-bottom" id="model_name"
-                                    required>
+                                    value="{{ old('model_name', $model_name->model_name ?? '') }}" required>
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                                 <label for="vehicle_no" class="form-label required"> Vehicle Number <span
                                         class="text-danger">*</span></label>
                                 <input type="text" name="vehicle_no" class="form-control border-bottom" id="vehicle_no"
-                                    required>
+                                    value="{{ old('vehicle_no', $vehicle_no->vehicle_no ?? '') }}" required>
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
@@ -59,7 +59,8 @@
                                 <label for="seat_capacity" class="form-label required">Seating Capacity (including
                                     driver) <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control border-bottom" name="seat_capacity"
-                                    id="seat_capacity" required>
+                                    id="seat_capacity"
+                                    value="{{ old('seat_capacity', $seat_capacity->seat_capacity ?? '') }}" required>
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -68,10 +69,18 @@
                                 <select class="form-select border-bottom" aria-label="Default select example"
                                     name="fuel_type" id="fuel_type" required>
                                     <option value="selectOne">Select an option</option>
-                                    <option value="Petrol">Petrol</option>
-                                    <option value="Diesel">Diesel</option>
-                                    <option value="CNG">CNG</option>
-                                    <option value="Electric">Electric</option>
+                                    <option value="Petrol"
+                                        {{ old('fuel_type', $fuel_type->fuel_type ?? '') == 'Petrol' ? 'selected' : '' }}>
+                                        Petrol</option>
+                                    <option value="Diesel"
+                                        {{ old('fuel_type', $fuel_type->fule_type ?? '') == 'Diesel' ? 'selected' : '' }}>
+                                        Diesel</option>
+                                    <option value="CNG"
+                                        {{ old('fuel_type', $fuel_type->fule_type ?? '') == 'CNG' ? 'selected' : '' }}>CNG
+                                    </option>
+                                    <option value="Electric"
+                                        {{ old('fuel_type', $fuel_type->fule_type ?? '') == 'Electric' ? 'selected' : '' }}>
+                                        Electric</option>
                                 </select>
                                 <span class="warning-msg-block"></span>
                             </div>
@@ -89,7 +98,8 @@
                                     <option value="">New Shape Ertiga</option>
                                     <option value="">Honda City</option> --}}
                                     @foreach ($vehicleGroup as $vehicle)
-                                        <option value="{{ $vehicle->id }}">
+                                        <option value="{{ $vehicle->id }}"
+                                            {{ $vehicle->id == old('vehicle_group_id', $vehicle_group_id->vehicle_group_id ?? '') ? 'selected' : '' }}>
                                             {{ $vehicle->name }}</option>
                                     @endforeach
                                 </select>
@@ -99,7 +109,8 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="color" class="form-label required">Colour</label>
-                                <input type="text" class="form-control border-bottom" name="color" id="color">
+                                <input type="text" class="form-control border-bottom" name="color"
+                                    value="{{ old('color', $color->color ?? '') }}" id="color">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -108,7 +119,8 @@
                                     name="driver_id" id="driver_id">
                                     <option value="">Select an option</option>
                                     @foreach ($driver as $drv)
-                                        <option value="{{ $drv->id }}">
+                                        <option value="{{ $drv->id }}"
+                                            {{ $drv->id == old('driver_id', $booking->driver_id ?? '') ? 'selected' : '' }}>
                                             {{ $drv->name }} ({{ $drv->mobile_no }})
                                         </option>
                                     @endforeach
@@ -118,7 +130,8 @@
                             <div class="mb-3">
                                 <label for="vehicle_code" class="form-label required">Vehicle Code</label>
                                 <input type="text" class="form-control border-bottom" name="vehicle_code"
-                                    id="vehicle_code">
+                                    id="vehicle_code"
+                                    value="{{ old('vehicle_code', $vehicle_code->vehicle_code ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                         </div>
@@ -141,25 +154,28 @@
                                     <div class="mb-3">
                                         <label for="loan_emi_amt" class="form-label ">EMI Amount</label>
                                         <input type="number" class="form-control border-bottom" name="loan_emi_amt"
-                                            id="loan_emi_amt">
+                                            id="loan_emi_amt"
+                                            value="{{ old('loan_emi_amt', $loan_emi_amt->loan_emi_amt ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="loan_srt_date" class="form-label ">Start Date</label>
                                         <input type="date" class="form-control border-bottom" name="loan_srt_date"
-                                            id="loan_srt_date">
+                                            id="loan_srt_date"
+                                            value="{{ old('loan_srt_date', $loan_srt_date->loan_srt_date ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="loan_end_date" class="form-label ">End Date</label>
                                         <input type="date" class="form-control border-bottom" name="loan_end_date"
-                                            id="loan_end_date">
+                                            id="loan_end_date"
+                                            value="{{ old('loan_end_date', $loan_end_date->loan_end_date ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="bank_name" class="form-label ">Bank Name</label>
                                         <input type="text" class="form-control border-bottom" name="bank_name"
-                                            id="bank_name">
+                                            id="bank_name" value="{{ old('bank_name', $bank_name->bank_name ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
@@ -216,13 +232,14 @@
                                         <label for="reg_owner_name" class="form-label ">Registered Owner
                                             Name</label>
                                         <input type="text" class="form-control border-bottom" name="reg_owner_name"
-                                            id="reg_owner_name">
+                                            id="reg_owner_name"
+                                            value="{{ old('reg_owner_name', $reg_owner_name->reg_owner_name ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="reg_data" class="form-label ">Registration Date</label>
                                         <input type="date" class="form-control border-bottom" name="reg_data"
-                                            id="reg_data">
+                                            id="reg_data" value="{{ old('reg_data', $reg_data->reg_data ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -235,13 +252,15 @@
                                     <div class="mb-3">
                                         <label for="parts_chasis_no" class="form-label ">Chassis Number</label>
                                         <input type="text" class="form-control border-bottom" name="parts_chasis_no"
-                                            id="parts_chasis_no">
+                                            id="parts_chasis_no"
+                                            value="{{ old('parts_chasis_no', $parts_chasis_no->parts_chasis_no ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="parts_engine_no" class="form-label ">Engine Number</label>
                                         <input type="text" class="form-control border-bottom" name="parts_engine_no"
-                                            id="parts_engine_no">
+                                            id="parts_engine_no"
+                                            value="{{ old('parts_engine_no', $parts_engine_no->parts_engine_no ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -258,37 +277,43 @@
                                     <div class="mb-3">
                                         <label for="insaurance_company_name" class="form-label ">Company Name</label>
                                         <input type="text" class="form-control border-bottom"
-                                            name="insaurance_company_name" id="insaurance_company_name">
+                                            name="insaurance_company_name" id="insaurance_company_name"
+                                            value="{{ old('insaurance_company_name', $insaurance_company_name->insaurance_company_name ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="insaurance_policy_no" class="form-label ">Policy Number</label>
                                         <input type="text" class="form-control border-bottom"
-                                            name="insaurance_policy_no" id="insaurance_policy_no">
+                                            name="insaurance_policy_no" id="insaurance_policy_no"
+                                            value="{{ old('insaurance_policy_no', $insaurance_policy_no->insaurance_policy_no ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="insaurance_issue_date" class="form-label ">Issue Date</label>
                                         <input type="date" class="form-control border-bottom"
-                                            name="insaurance_issue_date" id="insaurance_issue_date">
+                                            name="insaurance_issue_date" id="insaurance_issue_date"
+                                            value="{{ old('insaurance_issue_date', $insaurance_issue_date->insaurance_issue_date ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="insaurance_due_date" class="form-label ">Due Date</label>
                                         <input type="date" class="form-control border-bottom"
-                                            name="insaurance_due_date" id="insaurance_due_date">
+                                            name="insaurance_due_date" id="insaurance_due_date"
+                                            value="{{ old('insaurance_due_date', $insaurance_due_date->insaurance_due_date ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="insaurance_prem_amt" class="form-label ">Premium Amount</label>
                                         <input type="number" class="form-control border-bottom"
-                                            name="insaurance_prem_amt" id="insaurance_prem_amt">
+                                            name="insaurance_prem_amt" id="insaurance_prem_amt"
+                                            value="{{ old('insaurance_prem_amt', $insaurance_prem_amt->insaurance_prem_amt ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="insaurance_cover_amt" class="form-label ">Cover Amount</label>
                                         <input type="number" class="form-control border-bottom"
-                                            class="insaurance_cover_amt" id="insaurance_cover_amt">
+                                            class="insaurance_cover_amt" id="insaurance_cover_amt"
+                                            value="{{ old('insaurance_cover_amt', $insaurance_cover_amt->insaurance_cover_amt ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -303,19 +328,21 @@
                                 <div class="p-3">
                                     <div class="mb-3">
                                         <label for="rto_address" class="form-label">Address </label>
-                                        <textarea class="form-control" name="rto_address" id="rto_address" rows="5"></textarea>
+                                        <textarea class="form-control" name="rto_address" id="rto_address" rows="5">{{ old('rto_address', $rto_address->rto_address ?? '') }}</textarea>
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="rto_tax_efficiency" class="form-label ">Tax Efficiency</label>
                                         <input type="number" class="form-control border-bottom"
-                                            name="rto_tax_efficiency" id="rto_tax_efficiency">
+                                            name="rto_tax_efficiency" id="rto_tax_efficiency"
+                                            value="{{ old('rto_tax_efficiency', $rto_tax_efficiency->rto_tax_efficiency ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="rto_exp_date" class="form-label ">Expiry Date</label>
                                         <input type="date" class="form-control border-bottom" name="rto_exp_date"
-                                            id="rto_exp_date">
+                                            id="rto_exp_date"
+                                            value="{{ old('rto_exp_date', $rto_exp_date->rto_exp_date ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -331,13 +358,15 @@
                                     <div class="mb-3">
                                         <label for="fitness_no" class="form-label ">Number</label>
                                         <input type="text" class="form-control border-bottom" name="fitness_no"
-                                            id="fitness_no">
+                                            id="fitness_no"
+                                            value="{{ old('fitness_no', $fitness_no->fitness_no ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="fitness_expiry_date" class="form-label">Expiry Date</label>
                                         <input type="date" class="form-control border-bottom"
-                                            name="fitness_expiry_date" id="fitness_expiry_date">
+                                            name="fitness_expiry_date" id="fitness_expiry_date"
+                                            value="{{ old('fitness_expiry_date', $fitness_expiry_date->fitness_expiry_date ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -350,13 +379,14 @@
                                     <div class="mb-3">
                                         <label for="auth_no" class="form-label ">Number</label>
                                         <input type="text" class="form-control border-bottom" name="auth_no"
-                                            id="auth_no">
+                                            id="auth_no" value="{{ old('auth_no', $auth_no->auth_no ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="auth_expiry_date" class="form-label ">Expiry Date</label>
                                         <input type="date" class="form-control border-bottom" name="auth_expiry_date"
-                                            id="auth_expiry_date">
+                                            id="auth_expiry_date"
+                                            value="{{ old('auth_expiry_date', $auth_expiry_date->auth_expiry_date ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -371,13 +401,15 @@
                                     <div class="mb-3">
                                         <label for="speed_details" class="form-label ">Details</label>
                                         <input type="text" class="form-control border-bottom" name="speed_details"
-                                            id="speed_details">
+                                            id="speed_details"
+                                            value="{{ old('speed_details', $speed_details->speed_details ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="speed_expiry_date" class="form-label ">Expiry Date</label>
                                         <input type="date" class="form-control border-bottom" name="speed_expiry_date"
-                                            id="speed_expiry_date">
+                                            id="speed_expiry_date"
+                                            value="{{ old('speed_expiry_date', $speed_expiry_date->speed_expiry_date ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -390,13 +422,14 @@
                                     <div class="mb-3">
                                         <label for="puc_no" class="form-label">Number</label>
                                         <input type="text" class="form-control border-bottom" name="puc_no"
-                                            id="puc_no">
+                                            id="puc_no" value="{{ old('puc_no', $puc_no->puc_no ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="puc_expiry_date" class="form-label">Expiry Date</label>
                                         <input type="date" class="form-control border-bottom" name="puc_expiry_date"
-                                            id="puc_expiry_date">
+                                            id="puc_expiry_date"
+                                            value="{{ old('puc_expiry_date', $puc_expiry_date->puc_expiry_date ?? '') }}">
                                         <span class="warning-msg-block"></span>
                                     </div>
                                 </div>
@@ -613,5 +646,81 @@
         function removeFile(index) {
             document.querySelector(`[file-data-index="${index}"]`).remove();
         }
+
+
+        $(document).ready(function() {
+            $("#formManageVehicle").validate({
+                rules: {
+                    model_name: {
+                        required: true
+                    },
+                    vehicle_no: {
+                        required: true
+                    },
+                    seat_capacity: {
+                        required: true
+                    },
+                    fuel_type: {
+                        required: true
+                    },
+                    vehicle_group_id: {
+                        required: true
+                    }
+                },
+                messages: {
+                    model_name: {
+                        required: "Please Fill Model Name"
+                    },
+                    vehicle_no: {
+                        required: "Please Fill Vehicle Number"
+                    },
+                    seat_capacity: {
+                        required: "Please Fill Seating Capacity"
+                    },
+                    fuel_type: {
+                        required: "Please Select Fuel Type"
+                    },
+                    vehicle_group_id: {
+                        required: "Please Select Category - Vehicle Group"
+                    },
+                    model_name: {
+                        required: function() {
+                            // showAlert('success', 'Please Enter Duty Type Name');
+                            showAlert('error', 'Please Enter Model Name');
+                            return "Please Enter Model Name";
+                        }
+                    },
+                    vehicle_no: {
+                        required: function() {
+                            // showAlert('success', 'Please Enter Duty Type Name');
+                            showAlert('error', 'Please Enter Vehicle Number');
+                            return "Please Enter Vehicle Number";
+                        }
+                    },
+                    seat_capacity: {
+                        required: function() {
+                            // showAlert('success', 'Please Enter Duty Type Name');
+                            showAlert('error', 'Please Enter Seating Capacity');
+                            return "Please Enter Seating Capacity";
+                        }
+                    }
+                },
+                errorElement: "div",
+                errorClass: "error-message text-danger",
+                highlight: function(element) {
+                    $(element).addClass("is-invalid");
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass("is-invalid");
+                },
+                submitHandler: function(form) {
+                    // This part ensures the form does not submit unless it's valid
+                    $('.btnSubmit').attr('disabled', 'disabled');
+                    $(".btnSubmit").html('<span class="fa fa-spinner fa-spin"></span> Loading...');
+                    form.submit();
+                }
+            });
+
+        });
     </script>
 @endsection

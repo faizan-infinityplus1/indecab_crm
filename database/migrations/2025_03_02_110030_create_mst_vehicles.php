@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('driver_id')->nullable();
             $table->unsignedBigInteger('vehicle_group_id')->nullable();
             $table->string('model_name');
-            $table->integer('vehicle_no')->nullable();
+            $table->string('vehicle_no')->nullable();
             $table->string('image')->nullable();
             $table->integer('seat_capacity');
             $table->string('color');

@@ -8,7 +8,7 @@
                     <div class="col-md-6 position-static" x-show="open">
                         <div class="position-absolute" style="top: 96px; left: 0px;">
                             <button type="button" class="btn" onclick="window.history.back()"><i
-                                class="fa-solid fa-angle-left"></i></button>
+                                    class="fa-solid fa-angle-left"></i></button>
                         </div>
                         <h1 class="h3 pb-3">New Supplier</h1>
                     </div>
@@ -20,18 +20,20 @@
             </div>
             {{-- page heading end --}}
             <div>
-                <form action="{{ route('suppliers.store') }}" method="post" enctype="multipart/form-data" id="formSupplier">
+                <form action="{{ route('suppliers.store') }}" method="post" enctype="multipart/form-data"
+                    id="formSupplier">
                     @csrf
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="name" class="form-label ">Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control  border-bottom" name="name" id="name">
+                                <input type="text" class="form-control  border-bottom" name="name" id="name"
+                                    value="{{ old('model_name', $model_name->model_name ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address </label>
-                                <textarea class="form-control" rows="10" name="address" id="address"></textarea>
+                                <textarea class="form-control" rows="10" name="address" id="address">{{ old('model_name', $model_name->model_name ?? '') }}</textarea>
                                 <span class="warning-msg-block"></span>
                             </div>
 
@@ -60,13 +62,13 @@
                                 billing details.
                                 <div class="mb-3">
                                     <label for="gst_name" class="form-label">Billing Name </label>
-                                    <input type="text" class="form-control  border-bottom" name="gst_name"
-                                        id="gst_name">
+                                    <input type="text" class="form-control  border-bottom" name="gst_name" id="gst_name"
+                                        value="{{ old('model_name', $model_name->model_name ?? '') }}">
                                     <span class="warning-msg-block"></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="gst_addr" class="form-label">Billing Address </label>
-                                    <textarea class="form-control" rows="10" name="gst_addr" id="gst_addr"></textarea>
+                                    <textarea class="form-control" rows="10" name="gst_addr" id="gst_addr">{{ old('model_name', $model_name->model_name ?? '') }}</textarea>
                                     <span class="warning-msg-block"></span>
                                 </div>
                                 <div class="mb-3">
@@ -92,18 +94,21 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="phone_no" class="form-label ">Phone Number</label>
-                                <input type="text" class="form-control  border-bottom" name="phone_no" id="phone_no">
+                                <input type="text" class="form-control  border-bottom" name="phone_no" id="phone_no"
+                                    value="{{ old('model_name', $model_name->model_name ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="email_id" class="form-label ">Email Address</label>
-                                <input type="email" class="form-control  border-bottom" name="email_id" id="email_id">
+                                <input type="email" class="form-control  border-bottom" name="email_id" id="email_id"
+                                    value="{{ old('model_name', $model_name->model_name ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
 
                             <div class="mb-3">
                                 <label for="gst_no" class="form-label ">GSTIN Number</label>
-                                <input type="text" class="form-control  border-bottom" name="gst_no" id="gst_no">
+                                <input type="text" class="form-control  border-bottom" name="gst_no" id="gst_no"
+                                    value="{{ old('model_name', $model_name->model_name ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -130,7 +135,7 @@
                             <div class="mb-3">
                                 <label for="revenue_share_per" class="form-label ">Revenue Share Percentage</label>
                                 <input type="text" class="form-control  border-bottom" name="revenue_share_per"
-                                    id="revenue_share_per">
+                                    id="revenue_share_per" value="{{ old('model_name', $model_name->model_name ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             {{-- <div class="mb-3">
@@ -146,13 +151,13 @@
                             <div class="mb-3">
                                 <label for="altern_phone_no" class="form-label ">Alternate Phone Number</label>
                                 <input type="number" class="form-control  border-bottom" name="altern_phone_no"
-                                    id="altern_phone_no">
+                                    id="altern_phone_no" value="{{ old('model_name', $model_name->model_name ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="altern_email_id" class="form-label ">Alternate email address</label>
                                 <input type="text" class="form-control  border-bottom" name="altern_email_id"
-                                    id="altern_email_id">
+                                    id="altern_email_id" value="{{ old('model_name', $model_name->model_name ?? '') }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">
@@ -217,7 +222,7 @@
                             <div class="mb-3">
                                 <label for="vehicle_model" class="form-label ">Vehicle Model</label>
                                 <input type="text" class="form-control  border-bottom" name="vehicle_model"
-                                    id="vehicle_model" value="{{$mstSupplierDriverCum->vehicle_model ?? ''}}">
+                                    id="vehicle_model" value="{{ $mstSupplierDriverCum->vehicle_model ?? '' }}">
                                 <span class="warning-msg-block"></span>
                             </div>
                             <div class="mb-3">

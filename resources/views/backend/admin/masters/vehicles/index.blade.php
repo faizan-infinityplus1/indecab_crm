@@ -154,7 +154,7 @@
                     <tbody>
                         @foreach ($mstvehicles as $data)
                             <tr>
-                                <td>{{ $data->name }}</td>
+                                <td>{{ $data->model_name }}</td>
                                 <td>NA</td>
                                 <td>9840729952</td>
                                 <td>NA</td>

@@ -14,6 +14,8 @@ class VehiclesController extends Controller
     public function index()
     {
         $mstvehicles = MstVehicle::active()->get();
+        $vehicleGroup = MstCatVehGroup::get();
+        // dd($mstvehicles);
 
         return view('backend.admin.masters.vehicles.index', compact('mstvehicles'));
     }
@@ -44,7 +46,7 @@ class VehiclesController extends Controller
             $request->all(),
             [
                 'model_name' => 'required|string',
-                'vehicle_no' => 'required|numeric',
+                'vehicle_no' => 'required|string',
                 'image' => 'nullable|string',
                 'seat_capacity' => 'required|numeric',
                 'fuel_type' => 'required|string',
