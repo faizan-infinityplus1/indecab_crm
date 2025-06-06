@@ -48,10 +48,14 @@ class MstMyDriver extends Model
         'is_covid_vacinated',
         'is_active'
     ];
+
     public function scopeActive($query)
     {
         return $query->where('admin_id', Auth::user()->id);
     }
+
+   
+
     protected static function boot()
     {
         parent::boot();

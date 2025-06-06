@@ -194,7 +194,8 @@ Route::middleware('auth:admin')->group(function () {
 
     // Booking Duties Data
     Route::get('/get-duty-details/{id}', [DutyController::class, 'getDetails'])->name('duty.details');
-    Route::get('/edit-duty-details/{id}', [DutyController::class, 'getDetails'])->name('edit.details');
+    Route::get('/edit-duty-details/{id}', [DutyController::class, 'editDetails'])->name('duty.edit.details');
+    Route::get('/allot-duty-details/{id}', [DutyController::class, 'allotDetials'])->name('duty.allot.details');
 
 
     // Operations Routes

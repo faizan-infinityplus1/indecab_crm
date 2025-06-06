@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Duties;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\MstCatVehGroup;
+use App\Models\MstDutyType;
 use App\Models\MstLabel;
+use App\Models\MstVehicle;
 use Illuminate\Http\Request;
 
 class DutyController extends Controller
@@ -111,7 +114,7 @@ class DutyController extends Controller
         $booking = Booking::with(['bookedBy', 'customers', 'vehicleGroup', 'dutyType'])
             ->where('status', 'booked')
             ->findOrFail($id);
-        $booking->getLabelDetailsAttribute = $booking->label_details; 
+        $booking->getLabelDetailsAttribute = $booking->label_details;
 
         return response()->json([
             ...$booking->toArray(),
@@ -121,15 +124,38 @@ class DutyController extends Controller
 
     public function editDetails($id)
     {
+
         $booking = Booking::with(['bookedBy', 'customers', 'vehicleGroup', 'dutyType'])
             ->where('status', 'booked')
             ->findOrFail($id);
 
-          $booking->getLabelDetailsAttribute = $booking->label_details; 
+        $vehicleGroups = MstCatVehGroup::get(['id', 'name']);
+        $mstdutyType = MstDutyType::get();
 
         return response()->json([
-            ...$booking->toArray(),
+            'booking' => $booking,
             'label_details' => $booking->label_details,
+            'all_vehicle_groups' => $vehicleGroups,
+            'mst_duty_type' => $mstdutyType,
+        ]);
+    }
+
+    public function allotDetials($id)
+    {
+
+        $booking = Booking::with(['bookedBy', 'customers', 'vehicleGroup', 'dutyType'])
+            ->where('status', 'booked')
+            ->findOrFail($id);
+
+        $vehicleGroups = MstCatVehGroup::get(['id', 'name']);
+        $mstdutyType = MstDutyType::get();
+        $vehicle = MstVehicle::with('mstCatVehGroup','mstDriver')->get();
+        return response()->json([
+            'booking' => $booking,
+            'label_details' => $booking->label_details,
+            'all_vehicle_groups' => $vehicleGroups,
+            'mst_duty_type' => $mstdutyType,
+            'vehicle' => $vehicle,
         ]);
     }
 }
