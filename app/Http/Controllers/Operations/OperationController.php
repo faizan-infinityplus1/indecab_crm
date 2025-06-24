@@ -19,9 +19,9 @@ class OperationController extends Controller
     {
         return view("backend.admin.Operations.billed.billed");
     }
-    public function Receipt()
+    public function receipt()
     {
-        return view("backend.admin.Operations.receipt.receipt");
+        return view("backend.admin.Operations.receipt.index");
     }
     public function PaymentGateway()
     {
