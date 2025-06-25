@@ -69,7 +69,10 @@ class DutyController extends Controller
     // allottedDuties
     public function allottedDuties()
     {
-        return view("backend.admin.duties.alloted.index");
+        $booking = Booking::with('bookedBy', 'customers', 'vehicleGroup', 'dutyType', 'label')->where('status', 'booked')->get();
+        // dd($booking);
+        dd($booking->label);
+        return view("backend.admin.duties.alloted.index",compact('booking'));
     }
     // dispatchedDuties
     public function dispatchedDuties()
