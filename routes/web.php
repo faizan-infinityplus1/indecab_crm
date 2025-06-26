@@ -217,7 +217,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get("/bookings/show/{id}", [BookingsController::class, "specificBookings"])
         ->name('bookings.specific-bookings');
     Route::get("/billed", [OperationController::class, "Billed"]);
-    Route::get("/receipt", [OperationController::class, "Receipt"]);
+    Route::get("/receipts", [OperationController::class, "receipt"])->name('receipts');
+    Route::get("/receipts/create", [OperationController::class, "create"])->name("receipts.create");
     Route::get("/payment-gateway", [OperationController::class, "PaymentGateway"]);
     Route::get("/purchased-duty", [OperationController::class, "PurchasedDuty"]);
     Route::get("/purchased-invoice", [OperationController::class, "PurchasedInvoice"]);
