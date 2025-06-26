@@ -137,8 +137,9 @@
                             <th>Rep.Address</th>
                             <th>City</th>
                             <th>Rep.Time</th>
+                            <th>Labels</th>
                             <th>Status</th>
-                            <th>setting</th>
+                            <th>Setting</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -162,6 +163,17 @@
                                 <td>{{ $data->reporting_address }}</td>
                                 <td>{{ $data->from_service }}</td>
                                 <td>{{ $data->reporting_time }}</td>
+                                <td>
+                                    @foreach (explode(',', $data->labels ?? '') as $labelId)
+                                        @php
+                                            $label = $labels->firstWhere('id', trim($labelId));
+                                        @endphp
+                                        @if ($label)
+                                            <span class="badge {{ $label->label_color }}">{{ $label->label_name }}</span>
+                                        @endif
+                                    @endforeach
+                                </td>
+
                                 <td>{{ $data->status }}</td>
                                 <td>
                                     <div class="dropdown">
@@ -177,7 +189,8 @@
                                             <li><a class="dropdown-item" onclick="unconfirmDuty()">Unconfirm duty</a>
                                             </li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                                    id="manageLabels" data-bs-target="#add-remove-lable"
+                                                    data-id="{{ $data->id }}">Add/Remove labels</a></li>
                                             <li><a href="#" class="dropdown-item edit-detail-modal"
                                                     data-bs-toggle="modal" data-id="{{ $data->id }}">Edit duty</a>
                                             </li>
@@ -304,6 +317,7 @@
             </div>
         </div>
     </div>
+
     {{-- details close --}}
     {{-- add remove lable --}}
     <div class="modal fade" id="add-remove-lable" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -314,21 +328,23 @@
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
                     </div>
-                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
                 <div class="modal-body px-5">
                     <div class="row">
+
                         <div class="mb-3">
                             <label for="labels" class="control-label w-100">Labels</label>
-                            <select class="form-select border-bottom" name="labels[]" id="labels">
-                                <option value="">label 1 </option>
-                                <option value="">label 2 </option>
-                                <option value="">label 3 </option>
+                            <select class="form-select border-bottom" name="labels[]" id="labelsDuty" multiple>
+                                @foreach ($labels as $labelData)
+                                    <option value="{{ $labelData->id }}">{{ $labelData->label_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-start px-5">
+                    <button type="button" class="btn btn-success rounded-1" data-bs-dismiss="modal"
+                        id="label_save">Save</button>
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -1190,6 +1206,93 @@
     </script>
     <script>
         $(document).ready(function() {
+            const csrfToken = "{{ csrf_token() }}";
+            // Duty Details Start Here
+            $(document).ready(function() {
+                let currentBookingId = null;
+
+                // ✅ Initialize Select2 once
+                $('#labelsDuty').select2({
+                    dropdownParent: $('#add-remove-lable'),
+                    placeholder: "Select an Option",
+                    allowClear: true
+                });
+
+                // ✅ On label manage button click
+                $(document).on('click', '#manageLabels', function() {
+                    const dutyId = $(this).data('id');
+                    console.log('Clicked label for duty:', dutyId);
+
+                    const fetchUrl = "{{ route('edit.duty.label', ['id' => ':id']) }}".replace(
+                        ':id', dutyId);
+
+                    $.ajax({
+                        url: fetchUrl,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log('Booking data:', response.booking);
+                            currentBookingId = response.booking.id;
+                            labelArray = response.booking.labels;
+                            // labelArray = JSON.parse(response.booking.labels);
+                            console.log('Parsed labelArray:', labelArray);
+                            labelArray = response.booking.labels ?
+                                response.booking.labels.split(',').map(label => label
+                                    .trim()) : [];
+                            // ✅ Set selected options
+                            $('#labelsDuty').val(labelArray).trigger('change');
+
+                            // ✅ Now show the modal
+                            $('#add-remove-lable').modal('show');
+                        },
+                        error: function() {
+                            $('#duty-detail-detail').html(
+                                '<p class="text-danger">Failed to load details.</p>'
+                            );
+                        }
+                    });
+                });
+
+                // ✅ On Save
+                $('#label_save').on('click', function() {
+                    console.log('Save clicked');
+
+                    if (!currentBookingId) {
+                        console.error('Booking ID is not set!');
+                        return;
+                    }
+
+                    const fetchUrl = "{{ route('update.duty.label', ['id' => ':id']) }}".replace(
+                        ':id', currentBookingId);
+                    const labelData = $('#labelsDuty').val();
+                    console.log(labelData);
+
+                    const payload = {
+                        _token: '{{ csrf_token() }}',
+                        booking_id: currentBookingId,
+                        labels: labelData
+                    };
+
+                    console.log('Sending payload:', payload);
+
+                    $.ajax({
+                        url: fetchUrl,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: payload,
+                        success: function(response) {
+                            console.log('Saved:', response);
+                            $('#add-remove-lable').modal('hide');
+                            setTimeout(() => window.location.reload(), 300);
+                        },
+                        error: function(xhr) {
+                            console.error('Save failed:', xhr.responseText);
+                        }
+                    });
+                });
+            });
+
+
 
             $('.open-detail-modal').on('click', function() {
                 const dutyId = $(this).data('id');
@@ -1218,10 +1321,8 @@
                         if (Array.isArray(response.booked_by) && response.booked_by.length >
                             0) {
                             console.log(response.booked_by); // For debugging
-
                             bookedByList = `
-                            <ol class="ps-3" style="list-style-type: decimal;">
-                        `;
+                            <ol class="ps-3" style="list-style-type: decimal;">`;
 
                             response.booked_by.forEach(person => {
                                 bookedByList += `
@@ -1297,11 +1398,11 @@
                                             ${
                                                 response.label_details && response.label_details.length > 0
                                                 ? response.label_details.map(label => `
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="py-1 px-3 rounded-5 me-1"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    style="background-color:${label.label_color}; color:black;">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ${label.label_name}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            `).join('')
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span class="py-1 px-3 rounded-5 me-1"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                style="background-color:${label.label_color}; color:black;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ${label.label_name}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        `).join('')
                                                 : '<span class="text-secondary">NA</span>'
                                             }
                                         </td>
@@ -1347,6 +1448,11 @@
                 });
             });
 
+
+
+            // Duty Details End Here
+
+            // Edit Duty Modal Start Here
             $('.edit-detail-modal').on('click', function() {
 
                 const dutyId = $(this).data('id');
@@ -1374,6 +1480,7 @@
                     </div>
                     </div>
                     <div class="modal-body px-5">
+                        <input type="hidden" id="booking_id_up" value="${response.booking.id}" />
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
@@ -1396,7 +1503,7 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="drop_time" class="form-label">Start from garage before (in min)</label>
-                                    <input type="number" class="form-control  border-bottom" id="" value="${response.booking.garage_time}">
+                                    <input type="number" class="form-control  border-bottom" id="garage_time" value="${response.booking.garage_time ?? ''}">
                                 </div>
                             </div>
                         </div>
@@ -1421,19 +1528,19 @@
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label for="" class="form-label"> Price</label>
-                                    <input type="number" class="form-control border-bottom" id="">
+                                    <input type="number" class="form-control border-bottom d-none" id="">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label for="km_rate" class="form-label"> Per Extra KM Rate</label>
-                                    <input type="number" class="form-control  border-bottom" id="km_rate" value="${response.booking.per_extra_km_rate}">
+                                    <input type="number" class="form-control  border-bottom" id="km_rate" value="${response.booking.per_extra_km_rate ?? ''}">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label for="hr_rate" class="form-label"> Per Extra Hr Rate</label>
-                                    <input type="number" class="form-control border-bottom" value="${response.booking.per_extra_hr_rate}" id="hr_rate">
+                                    <input type="number" class="form-control border-bottom" value="${response.booking.per_extra_hr_rate ?? ''}" id="hr_rate">
                                 </div>
                             </div>
                             <div class="col-md-3 d-flex align-items-end">
@@ -1447,13 +1554,13 @@
                                 <div class="mb-3">
                                     <label for="reporting_address" class="form-label w-100">Reporting Address
                                     </label>
-                                       <input type="text" class="form-control border-bottom" value="${response.booking.reporting_address}" id="reporting_address">
+                                       <input type="text" class="form-control border-bottom" value="${response.booking.reporting_address ?? ''}" id="reporting_address">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="drop_address" class="form-label w-100">Drop Address</label>
-                                  <input type="text" class="form-control border-bottom" value="${response.booking.drop_address}" id="reporting_address">
+                                  <input type="text" class="form-control border-bottom" id="drop_address_up" value="${response.booking.drop_address ?? ''}" >
                                 </div>
                             </div>
                         </div>
@@ -1461,15 +1568,15 @@
                         <div class="mb-3">
                             <label for="short_reporting_address" class="form-label"> Short Reporting Address (to be shown in duty
                                 listing)</label>
-                            <input type="text" class="form-control border-bottom" id="short_reporting_address" value="${response.booking.short_reporting_address}">
+                            <input type="text" class="form-control border-bottom" id="short_reporting_address" value="${response.booking.short_reporting_address ?? ''}">
                         </div>
                         <div class="mb-3">
                             <label for="remarks" class="form-label">Remarks </label>
-                            <textarea class="form-control" rows="3" name="remarks" id="remarks">${response.booking.remarks}</textarea>
+                            <textarea class="form-control" rows="3" name="remarks" id="remarks">${response.booking.remarks ?? ''}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="flight_train_number" class="form-label"> Flight/Train Number</label>
-                            <input type="text" class="form-control  border-bottom" id="flight_train_number" value="${response.booking.ticket_number}">
+                            <input type="text" class="form-control  border-bottom" id="flight_train_number" value="${response.booking.ticket_number ?? ''}">
                         </div>
                         <p class="mb-3">
                             <a href="" class="text-decoration-none" id="supplierRemarksLink">
@@ -1504,7 +1611,7 @@
                     </div>
                     <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                         <div>
-                            <button type="button" class="btn btn-primary border" id="">Save</button>
+                            <button type="button" class="btn btn-primary border" id="updateDutyDetail">Saves</button>
                             <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
                         </div>
                     </div>
@@ -1615,8 +1722,55 @@
                     }
                 });
             });
+            // Edit Duty Modal End Here
 
-            // Allot vehicle & driver
+            // Update Duty Details Start Here
+            $(document).on('click', '#updateDutyDetail', function() {
+                // alert("Button clicked");
+                const bookingId = $('#booking_id_up').val();
+                const payload = {
+                    _token: '{{ csrf_token() }}', // for Laravel
+                    reporting_time: $('#rep_time').val(),
+                    drop_time: $('#drop_time').val(),
+                    garage_time: $('#garage_time')
+                        .val(), // give this input a name="garage_time" in HTML
+                    vehicle_group: $('#vehicle_group').val(),
+                    duty_type: $('#duty_type').val(),
+                    per_extra_km_rate: $('#km_rate').val(),
+                    per_extra_hr_rate: $('#hr_rate').val(),
+                    reporting_address: $('#reporting_address').val(),
+                    drop_address: $('#drop_address_up').val(), // fix duplicate id in HTML
+                    short_reporting_address: $('#short_reporting_address').val(),
+                    remarks: $('#remarks').val(),
+                    ticket_number: $('#flight_train_number').val(),
+                    supplier_vehicle_group: $('#supplier_vehicle_group').val(),
+                    supplier_duty_type: $('#supplier_duty_type').val(),
+                    booking_id: bookingId,
+                    // Add more fields as needed
+                };
+                console.log(payload);
+                var updateDutyBooking = "{{ route('update.duty.booking', ['id' => ':id']) }}";
+                const particularDutyBooking = updateDutyBooking.replace(':id', bookingId);
+                $.ajax({
+                    url: particularDutyBooking, // Replace with your actual update route
+                    type: 'POST', // or PUT
+                    data: payload,
+                    success: function(response) {
+                        // alert('Duty details updated successfully.');
+                        $('#edit-duty-detail').modal('hide');
+                        window.location.reload();
+
+                        // Optional: Refresh list or update UI
+                    },
+                    error: function(xhr) {
+                        alert('Failed to update duty details.');
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+            // Update Duty Details End Here
+
+            // Allot vehicle, driver and supplier
             $('.open-allot-vehicle-driver-modal').on('click', function() {
                 console.log('i m at open-allot-vehicle');
                 const dutyId = $(this).data('id');
@@ -1711,22 +1865,28 @@
                                     <table class="table table-striped table-hover datatable" style="width:100%;">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Phone Number</th>
+                                                <th>Model</th>
+                                                <th>Vehicle No</th>
                                                 <th>Group</th>
                                                 <th>Driver</th>
                                                 <th>Availability</th>
-                                            </tr>
+                                                <th style="display:none">Vehicle Id</th>
+                                                <th style="display:none">Driver Id</th>
+                                                <th style="display:none">Vehicle Group Id</th>
+                                                </tr>
                                         </thead>
                                         <tbody></tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Phone Number</th>
+                                               <th>Model</th>
+                                                <th>Vehicle No</th>
                                                 <th>Group</th>
                                                 <th>Driver</th>
                                                 <th>Availability</th>
-                                            </tr>
+                                                <th style="display:none">Vehicle Id</th>
+                                                <th style="display:none">Driver Id</th>
+                                                <th style="display:none">Vehicle Group Id</th>                        
+                                             </tr>
                                         </tfoot>
                                     </table>
                                 </div>
@@ -1746,13 +1906,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th>Model</th>
-                                                <th>Vehicle No</th>
-                                                <th>Group</th>
-                                                <th>Driver</th>
-                                                <th>Availability</th>
-                                            </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -1782,6 +1935,11 @@
 
                         if (Array.isArray(response.vehicle)) {
                             response.vehicle.forEach(v => {
+                                console.log(v, 'response v', v.vehicle_group_id);
+                                const vehicleId = v.id ?? 'N/A';
+                                const driverId = v.driver_id ?? 'N/A';
+                                const vehiclegroupId = v.vehicle_group_id ?? 'N/A';
+
                                 // const vehicleNo = v.vehicle_no ?? 'N/A';
                                 // const vehicleNo = v.mst_cat_veh_group?.name ?? 'N/A';
                                 const modelName = v.model_name ?? 'N/A';
@@ -1797,13 +1955,16 @@
                                     `<option value="${v.id}">${groupName} (${modelName})</option>`;
 
                                 vehicleTableRows += `
-            <tr>
-                <td>${modelName}</td>
-                <td>${vehicleNo}</td>
-                <td>${groupName}</td>
-                <td>${driverName}</td>
-                <td>${availability}</td>
-            </tr>`;
+                                <tr data-id="${v.id}">
+                                    <td>${modelName}</td>
+                                    <td>${vehicleNo}</td>
+                                    <td>${groupName}</td>
+                                    <td>${driverName}</td>
+                                    <td>${availability}</td>
+                                    <td style="display:none">${vehicleId}</td>
+                                    <td style="display:none">${driverId}</td>
+                                    <td style="display:none">${vehiclegroupId}</td>
+                                </tr>`;
                             });
                         }
 
@@ -1828,7 +1989,6 @@
                         });
 
                         // Reinitialize DataTable
-                        let vehicleTable = $('#duty-my-vehicles table').DataTable();
 
                         // Filter table when select2 changes
                         $('#vehicles').on('change', function() {
@@ -1838,15 +1998,81 @@
                             // If nothing selected, reset search
                             if (!$(this).val()) {
                                 vehicleTable.columns(2).search('')
-                            .draw(); // clear group column filter
+                                    .draw(); // clear group column filter
                                 return;
                             }
 
                             // Extract only the group name (before the first '(')
                             const groupNameOnly = selectedText.split('(')[0].trim();
                             vehicleTable.columns(2).search(groupNameOnly)
-                        .draw(); // filter by group (column 2)
+                                .draw(); // filter by group (column 2)
                         });
+
+
+                        let vehicleTable = $('#duty-my-vehicles table').DataTable();
+
+                        $('#duty-my-vehicles table tbody').on('click', 'tr', function() {
+                            const storeVehicleDutyBaseUrl =
+                                "{{ route('store.vehicle.duty', ['id' => '___ID___']) }}";
+
+                            const bookingId = response.booking.id;
+                            const storeUrl = storeVehicleDutyBaseUrl.replace('___ID___',
+                                bookingId);
+
+                            const rowData = vehicleTable.row(this).data();
+                            console.log(rowData);
+                            if (!rowData) return;
+
+                            // Helper to extract text safely
+                            const getText = (cell) => {
+                                return typeof cell === 'object' && cell !== null ?
+                                    $(cell).text().trim() : String(cell).trim();
+                            };
+
+                            const model = getText(rowData[0]);
+                            const vehicleNo = getText(rowData[1]);
+                            const group = getText(rowData[2]);
+                            const driver = getText(rowData[3]);
+                            const availability = getText(rowData[4]).toLowerCase() ===
+                                "available" ? 1 : 0;
+
+                            // Hidden data columns
+                            const vehicleId = getText(rowData[5]);
+                            const driverId = getText(rowData[6]);
+                            const vehiclegroupId = getText(rowData[7]);
+
+                            console.log({
+                                vehicleId,
+                                driverId,
+                                vehiclegroupId
+                            }, 'i m data');
+
+                            // AJAX request (uncomment when ready)
+                            $.ajax({
+                                url: storeUrl,
+                                method: 'POST',
+                                data: {
+                                    _token: csrfToken,
+                                    // model: model,
+                                    // vehicle_no: vehicleNo,
+                                    // group: group,
+                                    // driver: driver,
+                                    // availability: availability,
+                                    vehicle_id: vehicleId,
+                                    driver_id: driverId,
+                                    vehicle_group_id: vehiclegroupId
+                                },
+                                success: function(response) {
+                                    window.location.reload();
+                                },
+                                error: function(xhr) {
+                                    alert('Failed to store vehicle');
+                                    console.log(xhr.responseText);
+                                }
+                            });
+                        });
+
+
 
                         $('#duty-my-vehicles table').DataTable();
                     },

@@ -38,6 +38,12 @@ class Booking extends Model
         'labels',
         'isConfirmedBooking',
         'attachmentIds',
+        'status',
+
+       'driver_id',
+       'vehicle_group_id',
+       'vehicle_id'
+
     ];
 
     public function scopeActive($query)

@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attachments', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('admin_id')->nullable();
-            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
-            $table->string('file_name');
-            $table->string('file_path');
-            $table->string('file_size');
-            $table->string('file_type');
-            $table->timestamps();
-        });
+        // Schema::create('attachments', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedBigInteger('admin_id')->nullable();
+        //     $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+        //     $table->string('file_name');
+        //     $table->string('file_path');
+        //     $table->string('file_size');
+        //     $table->string('file_type');
+        //     $table->timestamps();
+        // });
     }
 
     /**

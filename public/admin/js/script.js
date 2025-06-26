@@ -22,18 +22,18 @@ const dropdownmenu = document.querySelectorAll('.dropdown-menu');
 //     });
 // });
 
-navparentlink.forEach(link => {
-    link.addEventListener('mouseover', function () {
-        this.nextElementSibling.classList.add('show');
-        this.classList.add('show');
-    });
-    link.addEventListener('mouseout', function () {
-        if (!this.nextElementSibling.matches(':hover')) {
-            this.nextElementSibling.classList.remove('show');
-            this.classList.remove('show');
-        }
-    });
-});
+// navparentlink.forEach(link => {
+//     link.addEventListener('mouseover', function () {
+//         this.nextElementSibling.classList.add('show');
+//         this.classList.add('show');
+//     });
+//     link.addEventListener('mouseout', function () {
+//         if (!this.nextElementSibling.matches(':hover')) {
+//             this.nextElementSibling.classList.remove('show');
+//             this.classList.remove('show');
+//         }
+//     });
+// });
 
 dropdownmenu.forEach(menu => {
     menu.addEventListener('mouseover', function () {

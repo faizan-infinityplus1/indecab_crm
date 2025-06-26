@@ -64,7 +64,33 @@ class DutyController extends Controller
     public function bookedDuties()
     {
         $booking = Booking::with('bookedBy', 'customers', 'vehicleGroup', 'dutyType')->where('status', 'booked')->get();
-        return view("backend.admin.duties.booked.index", compact('booking'));
+        $labels = MstLabel::get();
+        return view("backend.admin.duties.booked.index", compact('booking', 'labels'));
+    }
+
+    // Manage Labels
+    public function editLabels($id)
+    {
+        $booking = Booking::with(['bookedBy', 'customers', 'vehicleGroup', 'dutyType'])
+            ->where('status', 'booked')
+            ->findOrFail($id);
+        return response()->json([
+            'booking' => $booking,
+        ]);
+    }
+    public function updateLabels(Request $request, $id)
+    {
+        $booking = Booking::findOrFail($id);
+        $labelsString = implode(',', $request->labels);
+        $booking->update([
+            'labels' => $labelsString,
+        ]);
+        connectify('success', 'Labels Modified', 'Duty labels was modified successfully');
+
+        return response()->json([
+            'message' => 'Vehicle duty updated successfully!',
+            'booking' => $booking, // or $booking->toArray()
+        ]);
     }
     // allottedDuties
     public function allottedDuties()
@@ -149,13 +175,58 @@ class DutyController extends Controller
 
         $vehicleGroups = MstCatVehGroup::get(['id', 'name']);
         $mstdutyType = MstDutyType::get();
-        $vehicle = MstVehicle::with('mstCatVehGroup','mstDriver')->get();
+        $vehicle = MstVehicle::with('mstCatVehGroup', 'mstDriver')->get();
         return response()->json([
             'booking' => $booking,
             'label_details' => $booking->label_details,
             'all_vehicle_groups' => $vehicleGroups,
             'mst_duty_type' => $mstdutyType,
             'vehicle' => $vehicle,
+        ]);
+    }
+
+    public function storeVehicleDuty(Request $request, $id)
+    {
+        $booking = Booking::findOrFail($id);
+
+        $booking->update([
+            'vehicle_id' => $request->vehicle_id,
+            'driver_id' => $request->driver_id,
+            'vehicle_group_id' => $request->vehicle_group_id,
+            'status'              => 'alloted',
+        ]);
+        connectify('success', 'Duty Alloted', 'Duty was allotted successfully.');
+
+        return response()->json([
+            'message' => 'Vehicle duty updated successfully!',
+            'booking' => $booking, // or $booking->toArray()
+        ]);
+    }
+
+
+    public function updateParticularDuty(Request $request, $id)
+    {
+        $booking = Booking::findOrFail($id);
+
+        $booking->update([
+            'reporting_time' => $request->reporting_time,
+            'drop_time' => $request->drop_time,
+            'garage_time' => $request->garage_time,
+            'vehicle_group' => $request->vehicle_group,
+            'duty_type' => $request->duty_type,
+            'per_extra_km_rate' => $request->per_extra_km_rate,
+            'per_extra_hr_rate' => $request->per_extra_hr_rate,
+            'reporting_address' => $request->reporting_address,
+            'drop_address' => $request->drop_address,
+            'short_reporting_address' => $request->short_reporting_address,
+            'remarks' => $request->remarks,
+            'ticket_number' => $request->ticket_number,
+        ]);
+        connectify('success', 'Booking Updated', 'Booking updated succesffully');
+
+        return response()->json([
+            'message' => 'Booking updated successfully!',
+            'booking' => $booking, // or $booking->toArray()
         ]);
     }
 }

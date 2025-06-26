@@ -196,7 +196,15 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/get-duty-details/{id}', [DutyController::class, 'getDetails'])->name('duty.details');
     Route::get('/edit-duty-details/{id}', [DutyController::class, 'editDetails'])->name('duty.edit.details');
     Route::get('/allot-duty-details/{id}', [DutyController::class, 'allotDetials'])->name('duty.allot.details');
+    Route::post('/update-vehicle-duty/{id}', [DutyController::class, 'updateParticularDuty'])->name('update.duty.booking');
 
+    // Store Allot Duties Data
+    Route::post('/store-vehicle-duty/{id}', [DutyController::class, 'storeVehicleDuty'])->name('store.vehicle.duty');
+
+
+    // Update Label
+    Route::get('/edit-labels/{id}', [DutyController::class, 'editLabels'])->name('edit.duty.label');
+    Route::post('/update-labels/{id}', [DutyController::class, 'updateLabels'])->name('update.duty.label');
 
     // Operations Routes
     Route::get("/availability", [OperationController::class, "Availability"]);

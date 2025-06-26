@@ -40,6 +40,17 @@ return new class extends Migration {
             $table->string('operator_notes')->nullable();
             $table->string('labels')->nullable();
             $table->boolean('is_confirmed_booking')->default(false);
+
+            // Vehicle Duty Data
+            // $table->string('duty_vehicle_model')->nullable();
+            // $table->string('duty_vehicle_no')->nullable();
+            // $table->string('duty_vehicle_group')->nullable();
+            // $table->string('duty_vehicle_driver')->nullable();
+            // $table->boolean('duty_vehicle_status')->default(false);
+            $table->integer('driver_id')->nullable();    
+            $table->integer('vehicle_group_id')->nullable();    
+            $table->integer('vehicle_id')->nullable();    
+
             $table->string('status')->default('booked');
             $table->timestamps();
         });
