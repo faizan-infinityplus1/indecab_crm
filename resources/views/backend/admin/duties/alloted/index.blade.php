@@ -135,7 +135,7 @@
                             <th>Rep.Time</th>
                             <th>Labels</th>
                             <th>Status</th>
-                            <th>setting</th>
+                            <th>Setting</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -144,8 +144,8 @@
                                 <td>
                                     <i class="fa-solid fa-phone text-success"></i>
                                 </td>
-                                <td>
-                                    {{ $data->start_date ? \Carbon\Carbon::parse($data->start_date)->format('d/m/Y') : 'N/A' }}
+                                <td data-toggle="tooltip" data-placement="bottom" title="End on {{ $data->end_date ? \Carbon\Carbon::parse($data->end_date)->format('d/m/Y') : 'N/A' }} ">
+                                    {{ $data->end_date ? \Carbon\Carbon::parse($data->end_date)->format('d/m/Y') : 'N/A' }}
                                 </td>
                                 <td>
                                     {{ $data->customers->name }}

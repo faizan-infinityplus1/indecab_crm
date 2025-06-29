@@ -198,8 +198,15 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/allot-duty-details/{id}', [DutyController::class, 'allotDetials'])->name('duty.allot.details');
     Route::post('/update-vehicle-duty/{id}', [DutyController::class, 'updateParticularDuty'])->name('update.duty.booking');
 
+    // Allot Supporters
+    Route::get('/allot-supporters/{id}', [DutyController::class, 'manageSupporters'])->name('duty.allot.supporters');
+    // Manage Supporters
+    Route::post('/update-supporters/{id}', [DutyController::class, 'updateSupporters'])->name('duty.update.supporters');
+
     // Store Allot Duties Data
     Route::post('/store-vehicle-duty/{id}', [DutyController::class, 'storeVehicleDuty'])->name('store.vehicle.duty');
+    Route::post('/duty-store-supplier/{id}', [DutyController::class, 'storeSupplierDuty'])->name('store.supplier.duty');
+
 
 
     // Update Label

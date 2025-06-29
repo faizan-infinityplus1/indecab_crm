@@ -50,6 +50,7 @@ return new class extends Migration {
             $table->integer('driver_id')->nullable();    
             $table->integer('vehicle_group_id')->nullable();    
             $table->integer('vehicle_id')->nullable();    
+            $table->integer('supplier_id')->nullable();    
 
             $table->string('status')->default('booked');
             $table->timestamps();

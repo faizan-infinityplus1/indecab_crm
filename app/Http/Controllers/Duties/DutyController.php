@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Duties;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\DutySupporter;
 use App\Models\MstCatVehGroup;
+use App\Models\MstDutySupporter;
 use App\Models\MstDutyType;
 use App\Models\MstLabel;
+use App\Models\MstSupplier;
 use App\Models\MstVehicle;
 use Illuminate\Http\Request;
 
@@ -63,7 +66,7 @@ class DutyController extends Controller
     // bookedDuties
     public function bookedDuties()
     {
-        $booking = Booking::with('bookedBy', 'customers', 'vehicleGroup', 'dutyType')->where('status', 'booked')->get();
+        $booking = Booking::with('bookedBy', 'customers', 'vehicleGroup', 'vehicleGroup.vehicles', 'dutyType')->whereIn('status', ['booked', 'details'])->get();
         $labels = MstLabel::get();
         return view("backend.admin.duties.booked.index", compact('booking', 'labels'));
     }
@@ -95,10 +98,8 @@ class DutyController extends Controller
     // allottedDuties
     public function allottedDuties()
     {
-        $booking = Booking::with('bookedBy', 'customers', 'vehicleGroup', 'dutyType', 'label')->where('status', 'booked')->get();
-        // dd($booking);
-        dd($booking->label);
-        return view("backend.admin.duties.alloted.index",compact('booking'));
+        $booking = Booking::with('bookedBy', 'customers', 'vehicleGroup', 'dutyType', 'label')->where('status', 'alotted')->get();
+        return view("backend.admin.duties.alloted.index", compact('booking'));
     }
     // dispatchedDuties
     public function dispatchedDuties()
@@ -179,13 +180,51 @@ class DutyController extends Controller
         $vehicleGroups = MstCatVehGroup::get(['id', 'name']);
         $mstdutyType = MstDutyType::get();
         $vehicle = MstVehicle::with('mstCatVehGroup', 'mstDriver')->get();
+        $supplier = MstSupplier::with('supplierGroups')->get();
+
         return response()->json([
             'booking' => $booking,
             'label_details' => $booking->label_details,
             'all_vehicle_groups' => $vehicleGroups,
             'mst_duty_type' => $mstdutyType,
             'vehicle' => $vehicle,
+            'supplier' => $supplier,
         ]);
+    }
+    public function manageSupporters(Request $request, $id)
+    {
+        $booking = Booking::with(['bookedBy', 'customers', 'vehicleGroup', 'dutyType'])
+            ->where('status', 'booked')
+            ->findOrFail($id);
+        $supporter = MstDutySupporter::get();
+        $supporterAssign = DutySupporter::where('booking_id', $id)->get();
+
+        return response()->json([
+            'booking' => $booking,
+            'supporter' => $supporter,
+            'supporterAssign' => $supporterAssign
+
+        ]);
+    }
+
+    public function updateSupporters(Request $request, $id)
+    {
+        $request->validate([
+            'booking_id' => 'required|exists:bookings,id',
+            'supporters' => 'array',
+        ]);
+        $bookingId = $request->booking_id;
+        $supporters = $request->supporters ?? [];
+        DutySupporter::where('booking_id', $bookingId)->delete();
+
+        foreach ($supporters as $supporterId) {
+            DutySupporter::create([
+                'booking_id' => $bookingId,
+                'supporter_id' => $supporterId,
+            ]);
+        }
+
+        return response()->json(['status' => 'success']);
     }
 
     public function storeVehicleDuty(Request $request, $id)
@@ -198,10 +237,26 @@ class DutyController extends Controller
             'vehicle_group_id' => $request->vehicle_group_id,
             'status'              => 'alloted',
         ]);
+
         connectify('success', 'Duty Alloted', 'Duty was allotted successfully.');
 
         return response()->json([
             'message' => 'Vehicle duty updated successfully!',
+            'booking' => $booking, // or $booking->toArray()
+        ]);
+    }
+
+    public function storeSupplierDuty(Request $request, $id)
+    {
+        $booking = Booking::findOrFail($id);
+        $booking->update([
+            'supplier_id' => $request->supplier_id,
+            'status' => 'details',
+        ]);
+        connectify('success', 'Supplier Alotted', 'Supplier was assigned successfully. Vehicles and driver details needed.');
+
+        return response()->json([
+            'message' => 'Supplier data updated successfully!',
             'booking' => $booking, // or $booking->toArray()
         ]);
     }
