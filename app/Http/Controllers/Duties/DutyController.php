@@ -60,7 +60,7 @@ class DutyController extends Controller
     // bookedDuties
     public function bookedDuties()
     {
-        $booking = Booking::with('bookedBy', 'customers', 'vehicleGroup', 'dutyType')->where('status', 'booked')->get();
+        $booking = Booking::with('bookedBy', 'customers', 'vehicleGroup', 'dutyType')->whereIn('status', ['booked', 'details needed'])->get();
         return view("backend.admin.duties.booked.index", compact('booking'));
     }
     // allottedDuties
@@ -111,7 +111,7 @@ class DutyController extends Controller
         $booking = Booking::with(['bookedBy', 'customers', 'vehicleGroup', 'dutyType'])
             ->where('status', 'booked')
             ->findOrFail($id);
-        $booking->getLabelDetailsAttribute = $booking->label_details; 
+        $booking->getLabelDetailsAttribute = $booking->label_details;
 
         return response()->json([
             ...$booking->toArray(),
@@ -125,7 +125,7 @@ class DutyController extends Controller
             ->where('status', 'booked')
             ->findOrFail($id);
 
-          $booking->getLabelDetailsAttribute = $booking->label_details; 
+        $booking->getLabelDetailsAttribute = $booking->label_details;
 
         return response()->json([
             ...$booking->toArray(),

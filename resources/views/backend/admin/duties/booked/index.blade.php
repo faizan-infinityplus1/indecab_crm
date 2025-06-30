@@ -170,67 +170,74 @@
                                             <i class="fa-solid fa-gear"></i>
                                         </button>
                                         {{-- Booked --}}
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a class="dropdown-item open-detail-modal" data-bs-toggle="modal"
-                                                    data-id="{{ $data->id }}">Details</a>
-                                            </li>
-                                            <li><a class="dropdown-item" onclick="unconfirmDuty()">Unconfirm duty</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                            <li><a href="#" class="dropdown-item edit-detail-modal"
-                                                    data-bs-toggle="modal" data-id="{{ $data->id }}">Edit duty</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-vehicle-driver">Allot vehicle & driver</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-send-to-associate">Send to Associate</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-supporters">Allot supporters</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                            <li>
-                                                <a href="{{ route('bookings.specific-bookings', ['id' => $data->id]) }}"
-                                                    class="dropdown-item">
-                                                    View Booking
-                                                </a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#cancel-duty">Cancel Duty</a></li>
-                                        </ul>
+                                        @if ($data->status == 'booked')
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a class="dropdown-item open-detail-modal" data-bs-toggle="modal"
+                                                        data-id="{{ $data->id }}">Details</a>
+                                                </li>
+                                                <li><a class="dropdown-item" onclick="unconfirmDuty()">Unconfirm duty</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                                <li><a href="#" class="dropdown-item edit-detail-modal"
+                                                        data-bs-toggle="modal" data-id="{{ $data->id }}">Edit
+                                                        duty</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-vehicle-driver">Allot vehicle & driver</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-send-to-associate">Send to Associate</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                                <li>
+                                                    <a href="{{ route('bookings.specific-bookings', ['id' => $data->id]) }}"
+                                                        class="dropdown-item">
+                                                        View Booking
+                                                    </a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#cancel-duty">Cancel Duty</a></li>
+                                            </ul>
 
-                                        {{-- Details needed --}}
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#details">Details 3</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-duty-to-supplier">Add Supplier Details</a>
-                                            </li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-duty">Edit duty</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-supporters">Allot supporters</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
-                                            <li><a class="dropdown-item" onclick="clearAllotment()">Clear
-                                                    Allotment</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#send-details-to-supplier">Send details to
-                                                    supplier</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#create-placard">Create placard</a></li>
-                                            {{-- <li><a href="{{ route('bookings.specific-bookings') }}"
-                                                    class="dropdown-item">View Booking</a></li> --}}
+                                            {{-- Details needed --}}
+                                        @elseif($data->status == 'details needed')
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a class="dropdown-item open-detail-modal" data-bs-toggle="modal"
+                                                        data-id="{{ $data->id }}">Details</a>
+                                                </li>
+                                                {{-- <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#details">Details</a></li> --}}
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-duty-to-supplier">Add Supplier Details</a>
+                                                </li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#edit-duty">Edit duty</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
+                                                <li><a class="dropdown-item" onclick="clearAllotment()">Clear
+                                                        Allotment</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#send-details-to-supplier">Send details to
+                                                        supplier</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#create-placard">Create placard</a></li>
+                                                {{-- <li><a href="{{ route('bookings.specific-bookings') }}"
+                                                        class="dropdown-item">View Booking</a></li> --}}
 
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#cancel-duty">Cancel Duty</a></li>
-                                        </ul>
+                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#cancel-duty">Cancel Duty</a></li>
+                                            </ul>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
@@ -1375,8 +1382,8 @@
                             response.booked_by.forEach(person => {
                                 bookedByList += `
                             <li>
-                                ${person.name ?? 'N/A'} 
-                                - <i class="fa-solid fa-phone text-success"></i> 
+                                ${person.name ?? 'N/A'}
+                                - <i class="fa-solid fa-phone text-success"></i>
                                 <a href="tel:${person.phone_no ?? ''}" class="text-decoration-none">
                                     ${person.phone_no ?? 'N/A'}
                                 </a>
@@ -1429,12 +1436,12 @@
                                         <th class="fw-medium">Customer</th>
                                         <td colspan="3"> ${response.customers.name ?? ''}</td>
                                     </tr>
-                                    
+
                                     <tr>
                                         <th class="fw-medium">Booked By</th>
                                       <td colspan="3">
-                                        ${response.booked_by?.[0]?.name ?? ''} 
-                                       (<i class="fa-solid fa-phone text-success"></i> 
+                                        ${response.booked_by?.[0]?.name ?? ''}
+                                       (<i class="fa-solid fa-phone text-success"></i>
                                         <a href="tel:${response.booked_by?.[0]?.phone_no ?? ''}" class="text-decoration-none ">
                                         ${response.booked_by?.[0]?.phone_no ?? ''}
                                         </a>)
@@ -1446,11 +1453,11 @@
                                             ${
                                                 response.label_details && response.label_details.length > 0
                                                 ? response.label_details.map(label => `
-                                                                                                                            <span class="py-1 px-3 rounded-5 me-1"
-                                                                                                                                style="background-color:${label.label_color}; color:black;">
-                                                                                                                                ${label.label_name}
-                                                                                                                            </span>
-                                                                                                                        `).join('')
+                                                                                                                                                                    <span class="py-1 px-3 rounded-5 me-1"
+                                                                                                                                                                        style="background-color:${label.label_color}; color:black;">
+                                                                                                                                                                        ${label.label_name}
+                                                                                                                                                                    </span>
+                                                                                                                                                                `).join('')
                                                 : '<span class="text-secondary">NA</span>'
                                             }
                                         </td>
@@ -1460,7 +1467,7 @@
                                         <th class="fw-medium">Reporting Address</th>
                                         <td colspan="3">${response.reporting_address ?? 'NA'}</td>
                                     </tr>
-                                   
+
                                     <tr>
                                         <th class="fw-medium">Drop Address</th>
                                         <td colspan="3"><span class="text-secondary">${response.per_extra_km_rate ?? 'NA'}</span></td>
@@ -1531,7 +1538,7 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                               <label class="control-label">Rep. Time <span class="text-danger">*</span></label>
-                                    
+
                                     <select class="form-select border-bottom" aria-label="Default select example"
                                         name="reporting_time" id="rep_time"
                                        required>
