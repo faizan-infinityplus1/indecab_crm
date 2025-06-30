@@ -8,7 +8,7 @@
                     <div class="col-md-6 position-static" x-show="open">
                         <div class="position-absolute" style="top: 96px; left: 0px;">
                             <button type="button" class="btn" onclick="window.history.back()"><i
-                                class="fa-solid fa-angle-left"></i></button>
+                                    class="fa-solid fa-angle-left"></i></button>
                         </div>
                         <h1 class="h3 pb-3">New Tax Type</h1>
                     </div>
@@ -28,30 +28,30 @@
                     <div class="mb-3">
                         <label for="name" class="form-label ">Tax Name <span class="text-danger">*</span></label>
                         <input type="text" class="form-control  border-bottom" name="name"
-                            value="{{ old('name', $data->name ?? '') }}" id="name" >
+                            value="{{ old('name', $data->name ?? '') }}" id="name">
                         <span class="warning-msg-block"></span>
                     </div>
 
-                    @if(optional($data)->name)
-                    <div class="mb-3">
-                        <label for="percentage" class="form-label ">Percentage % <span class="text-danger">*</span></label>
-                        <input type="hidden" class="form-control  border-bottom" name="percentage"
-                            value="{{$data->percentage }}" >
-                        <input type="number" class="form-control  border-bottom" name="percentage"
-                        value="{{$data->percentage}}"
-                        {{ old('percentage', $data->percentage ?? '') ? 'disabled' : '' }}
-                        id="percentage" >
-                    </div>
+                    @if (optional($data)->name)
+                        <div class="mb-3">
+                            <label for="percentage" class="form-label ">Percentage % <span
+                                    class="text-danger">*</span></label>
+                            <input type="hidden" class="form-control  border-bottom" name="percentage"
+                                value="{{ $data->percentage }}">
+                            <input type="number" class="form-control  border-bottom" name="percentage"
+                                value="{{ $data->percentage }}"
+                                {{ old('percentage', $data->percentage ?? '') ? 'disabled' : '' }} id="percentage">
+                        </div>
                         <input type="hidden" name="name" value="{{ $data->name }}">
                     @else
-                    <div class="mb-3">
-                        <label for="percentage" class="form-label ">Percentage % <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control  border-bottom" name="percentage"
-                            value="{{ old('percentage', $data->percentage ?? '') }}"
-                            {{ old('percentage', $data->percentage ?? '') ? 'disabled' : '' }}
-                            id="percentage" >
-                        <span class="warning-msg-block"></span>
-                    </div>
+                        <div class="mb-3">
+                            <label for="percentage" class="form-label ">Percentage % <span
+                                    class="text-danger">*</span></label>
+                            <input type="number" class="form-control  border-bottom" name="percentage"
+                                value="{{ old('percentage', $data->percentage ?? '') }}"
+                                {{ old('percentage', $data->percentage ?? '') ? 'disabled' : '' }} id="percentage">
+                            <span class="warning-msg-block"></span>
+                        </div>
                     @endif
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" id="active" name="active"
@@ -71,8 +71,6 @@
 
 @section('extrajs')
     <script>
-
-
         $(document).ready(function() {
             $("#formTaxes").validate({
                 rules: {
@@ -91,7 +89,21 @@
 
                     percentage: {
                         required: "Please Enter Tax Percentage"
-                    }
+                    },
+                    name: {
+                        required: function() {
+                            // showAlert('success', 'Please Enter Duty Type Name');
+                            showAlert('error', 'Please Enter Tax Name');
+                            return "Please Enter Tax Name";
+                        }
+                    },
+                    percentage: {
+                        required: function() {
+                            // showAlert('success', 'Please Enter Duty Type Name');
+                            showAlert('error', 'Please Enter Tax Name');
+                            return "Please Enter Tax Name";
+                        }
+                    },
                 },
                 errorElement: "div",
                 errorClass: "error-message text-danger",
