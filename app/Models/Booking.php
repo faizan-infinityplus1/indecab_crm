@@ -38,6 +38,13 @@ class Booking extends Model
         'labels',
         'isConfirmedBooking',
         'attachmentIds',
+        'status',
+
+       'driver_id',
+       'vehicle_group_id',
+       'supplier_id',
+       'vehicle_id'
+
     ];
 
     public function scopeActive($query)
@@ -75,7 +82,7 @@ class Booking extends Model
         return $this->belongsTo(MstDutyType::class, 'duty_type', 'id');
     }
 
-    public function labels()
+    public function label()
     {
         return $this->belongsTo(MstLabel::class, 'duty_type', 'id');
     }

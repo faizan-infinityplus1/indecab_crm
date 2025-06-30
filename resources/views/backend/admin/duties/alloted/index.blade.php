@@ -135,90 +135,107 @@
                             <th>Rep.Time</th>
                             <th>Labels</th>
                             <th>Status</th>
-                            <th>setting</th>
+                            <th>Setting</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <i class="fa-solid fa-phone text-success"></i>
-                            </td>
-                            <td>Date</td>
-                            <td>Customer</td>
-                            <td>Passenger</td>
-                            <td>Vehicle Group</td>
-                            <td>Vehicle</td>
-                            <td>Driver/Supplier</td>
-                            <td>Duty Type</td>
-                            <td>Rep.Address</td>
-                            <td>Drop Address</td>
-                            <td>Remarks</td>
-                            <td>Operator Notes</td>
-                            <td>City</td>
-                            <td>Rep.Time</td>
-                            <td>Labels</td>
-                            <td>Status</td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle py-0" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="fa-solid fa-gear"></i>
-                                    </button>
+                        @foreach ($booking as $data)
+                            <tr>
+                                <td>
+                                    <i class="fa-solid fa-phone text-success"></i>
+                                </td>
+                                <td data-toggle="tooltip" data-placement="bottom" title="End on {{ $data->end_date ? \Carbon\Carbon::parse($data->end_date)->format('d/m/Y') : 'N/A' }} ">
+                                    {{ $data->end_date ? \Carbon\Carbon::parse($data->end_date)->format('d/m/Y') : 'N/A' }}
+                                </td>
+                                <td>
+                                    {{ $data->customers->name }}
+                                </td>
+                                <td>
+                                    @foreach ($data->bookedBy as $bookedbyData)
+                                        {{ $bookedbyData->name }}
+                                    @endforeach
+                                </td>
+                                <td>
+                                    {{ $data->vehicleGroup->name }}
+                                </td>
+                                <td>Vehicle</td>
+                                <td>Driver/Supplier</td>
+                                <td>
+                                    {{ $data->dutyType->duty_name }}
+                                </td>
+                                <td>
+                                    {{ $data->reporting_address }}
+                                </td>
+                                <td>{{ $data->drop_address }}</td>
+                                <td>{{ $data->remarks }}</td>
+                                <td>{{ $data->operator_notes }}</td>
+                                <td>{{ $data->from_service }}</td>
+                                <td>{{ $data->reporting_time }}</td>
+                                <td>{{ $data->label->label_name }}</td>
+                                <td>
+                                    {{ $data->status }}
+                                </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle py-0" type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="fa-solid fa-gear"></i>
+                                        </button>
 
-                                    {{-- allotted --}}
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#details">Details</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-duty-to-supplier">Update Supplier
-                                                Details</a>
-                                        </li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#edit-duty">Edit duty</a></li>
+                                        {{-- allotted --}}
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#details">Details</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-duty-to-supplier">Update Supplier
+                                                    Details</a>
+                                            </li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#edit-duty">Edit duty</a></li>
 
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-supporters">Allot supporters</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#allot-send-to-associate">Send to Associate</a>
-                                        </li>
-                                        <li><a href="#" class="dropdown-item" onclick="clearAllotment()">Clear
-                                                Allotment</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#send-info">Send info</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#">Send driver/supplier location</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-supporters">Allot supporters</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-send-to-associate">Send to Associate</a>
+                                            </li>
+                                            <li><a href="#" class="dropdown-item" onclick="clearAllotment()">Clear
+                                                    Allotment</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#send-info">Send info</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#">Send driver/supplier location</a></li>
 
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#">Mark as driver/supplier arrived</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#">Mark as driver/supplier arrived</a></li>
 
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#send-details-to-supplier">Send details to
-                                                supplier</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#print-duty-slip">Print duty slip</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#create-placard">Create placard</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#">Mark as dispatched</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#send-details-to-supplier">Send details to
+                                                    supplier</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#print-duty-slip">Print duty slip</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#create-placard">Create placard</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#">Mark as dispatched</a></li>
 
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#close-duty">Close Duty</a></li>
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#advance-purchase-payment">Add Advance Purchase
-                                                Payment</a></li>
-                                        {{-- <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li> --}}
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#close-duty">Close Duty</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#advance-purchase-payment">Add Advance Purchase
+                                                    Payment</a></li>
+                                            {{-- <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li> --}}
 
-                                        <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#cancel-duty">Cancel Duty</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#cancel-duty">Cancel Duty</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>

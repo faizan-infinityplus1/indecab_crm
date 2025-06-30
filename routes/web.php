@@ -194,8 +194,24 @@ Route::middleware('auth:admin')->group(function () {
 
     // Booking Duties Data
     Route::get('/get-duty-details/{id}', [DutyController::class, 'getDetails'])->name('duty.details');
-    Route::get('/edit-duty-details/{id}', [DutyController::class, 'getDetails'])->name('edit.details');
+    Route::get('/edit-duty-details/{id}', [DutyController::class, 'editDetails'])->name('duty.edit.details');
+    Route::get('/allot-duty-details/{id}', [DutyController::class, 'allotDetials'])->name('duty.allot.details');
+    Route::post('/update-vehicle-duty/{id}', [DutyController::class, 'updateParticularDuty'])->name('update.duty.booking');
 
+    // Allot Supporters
+    Route::get('/allot-supporters/{id}', [DutyController::class, 'manageSupporters'])->name('duty.allot.supporters');
+    // Manage Supporters
+    Route::post('/update-supporters/{id}', [DutyController::class, 'updateSupporters'])->name('duty.update.supporters');
+
+    // Store Allot Duties Data
+    Route::post('/store-vehicle-duty/{id}', [DutyController::class, 'storeVehicleDuty'])->name('store.vehicle.duty');
+    Route::post('/duty-store-supplier/{id}', [DutyController::class, 'storeSupplierDuty'])->name('store.supplier.duty');
+
+
+
+    // Update Label
+    Route::get('/edit-labels/{id}', [DutyController::class, 'editLabels'])->name('edit.duty.label');
+    Route::post('/update-labels/{id}', [DutyController::class, 'updateLabels'])->name('update.duty.label');
 
     // Operations Routes
     Route::get("/availability", [OperationController::class, "Availability"]);
@@ -208,7 +224,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get("/bookings/show/{id}", [BookingsController::class, "specificBookings"])
         ->name('bookings.specific-bookings');
     Route::get("/billed", [OperationController::class, "Billed"]);
-    Route::get("/receipt", [OperationController::class, "Receipt"]);
+    Route::get("/receipts", [OperationController::class, "receipt"])->name('receipts');
+    Route::get("/receipts/create", [OperationController::class, "create"])->name("receipts.create");
     Route::get("/payment-gateway", [OperationController::class, "PaymentGateway"]);
     Route::get("/purchased-duty", [OperationController::class, "PurchasedDuty"]);
     Route::get("/purchased-invoice", [OperationController::class, "PurchasedInvoice"]);

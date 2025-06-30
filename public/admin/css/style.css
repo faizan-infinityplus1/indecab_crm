@@ -306,3 +306,7 @@ ul.dropdown-menu.dropdown-menu-end {
 #DataTables_Table_0_wrapper .dt-search {
     display: none;
 }
+
+.remove-file {
+    cursor: pointer;
+}

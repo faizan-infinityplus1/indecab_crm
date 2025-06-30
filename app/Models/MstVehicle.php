@@ -49,9 +49,22 @@ class MstVehicle extends Model
     ];
 
     protected $guarded = ['created_at', 'updated_at', 'admin_id'];
+
     public function scopeActive($query)
     {
         return $query->where('admin_id', Auth::user()->id);
+    }
+
+    public function mstCatVehGroup()
+    {
+    
+        return $this->belongsTo(MstCatVehGroup::class, 'vehicle_group_id', 'id');
+    }
+
+     public function mstDriver()
+    {
+    
+        return $this->belongsTo(MstMyDriver::class, 'driver_id', 'id');
     }
     protected static function boot()
     {
