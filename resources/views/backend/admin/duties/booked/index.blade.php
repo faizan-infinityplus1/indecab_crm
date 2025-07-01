@@ -123,7 +123,7 @@
                 </div>
             @endif
             <div class="table-responsive">
-                <table class="table table-striped table-hover datatable" style="width:100%;">
+                <table class="table table-striped table-hover" style="width:100%;" id="table_alotted">
                     <thead>
                         <tr>
                             <th></th>
@@ -191,7 +191,7 @@
                                             <i class="fa-solid fa-gear"></i>
                                         </button>
                                         {{-- Booked --}}
-                                        @if ($data->status == 'booked')
+                                        @if ($data->status == 'booked' || $data->status == 'details')
                                             <ul class="dropdown-menu dropdown-menu-right">
                                                 <li><a class="dropdown-item open-detail-modal" data-bs-toggle="modal"
                                                         data-id="{{ $data->id }}">Details</a>
@@ -1379,7 +1379,7 @@
 
             $('.open-detail-modal').on('click', function() {
                 const dutyId = $(this).data('id');
-
+                console.log('i m open-detail-modal');
                 // Set the ID in the modal header
                 $('#exampleModalLabel').text(`Duty Details - #${dutyId}`);
 
@@ -1480,11 +1480,11 @@
                                             ${
                                                 response.label_details && response.label_details.length > 0
                                                 ? response.label_details.map(label => `
-                                                                                                                                                                                <span class="py-1 px-3 rounded-5 me-1"
-                                                                                                                                                                                    style="background-color:${label.label_color}; color:black;">
-                                                                                                                                                                                    ${label.label_name}
-                                                                                                                                                                                </span>
-                                                                                                                                                                            `).join('')
+                                                                                                                                                                                            <span class="py-1 px-3 rounded-5 me-1"
+                                                                                                                                                                                                style="background-color:${label.label_color}; color:black;">
+                                                                                                                                                                                                ${label.label_name}
+                                                                                                                                                                                            </span>
+                                                                                                                                                                                        `).join('')
                                                 : '<span class="text-secondary">NA</span>'
                                             }
                                         </td>
@@ -1602,7 +1602,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="" class="control-label w-100">Duty Type</label>
-                                   <select class="form-select border-bottom" name="duty_type" id="duty_type">
+                                   <select class="form-select border-bottom" name="duty_type" id="duty_type"> </select>
                                 </div>
                             </div>
                         </div>

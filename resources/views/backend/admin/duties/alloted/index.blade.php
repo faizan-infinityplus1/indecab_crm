@@ -144,7 +144,8 @@
                                 <td>
                                     <i class="fa-solid fa-phone text-success"></i>
                                 </td>
-                                <td data-toggle="tooltip" data-placement="bottom" title="End on {{ $data->end_date ? \Carbon\Carbon::parse($data->end_date)->format('d/m/Y') : 'N/A' }} ">
+                                <td data-toggle="tooltip" data-placement="bottom"
+                                    title="End on {{ $data->end_date ? \Carbon\Carbon::parse($data->end_date)->format('d/m/Y') : 'N/A' }} ">
                                     {{ $data->end_date ? \Carbon\Carbon::parse($data->end_date)->format('d/m/Y') : 'N/A' }}
                                 </td>
                                 <td>
@@ -181,19 +182,21 @@
                                             aria-expanded="false">
                                             <i class="fa-solid fa-gear"></i>
                                         </button>
-
                                         {{-- allotted --}}
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#details">Details</a></li>
+                                            <li><a href="#" class="dropdown-item open-detail-modal"
+                                                    data-bs-toggle="modal" data-bs-target="#details"
+                                                    data-id="{{ $data->id }}">Details</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#allot-duty-to-supplier">Update Supplier
                                                     Details</a>
                                             </li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-duty">Edit duty</a></li>
+                                                    data-bs-target="#add-remove-lable" id="manageLabels"
+                                                    data-id="{{ $data->id }}">Add/Remove labels</a></li>
+                                            <li><a href="#" class="dropdown-item edit-detail-modal"
+                                                    data-bs-toggle="modal" data-bs-target="#edit-duty"
+                                                    data-id="{{ $data->id }}">Edit duty</a></li>
 
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#allot-supporters">Allot supporters</a></li>
@@ -560,15 +563,17 @@
                     <div class="row">
                         <div class="mb-3">
                             <label for="labels" class="control-label w-100">Labels</label>
-                            <select class="form-select border-bottom" name="labels[]" id="labels">
-                                <option value="">label 1</option>
-                                <option value="">label 2</option>
-                                <option value="">label 3</option>
+                            <select class="form-select border-bottom" name="labels[]" id="labelsDuty" multiple>
+                                @foreach ($labels as $labelData)
+                                    <option value="{{ $labelData->id }}">{{ $labelData->label_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-start px-5">
+                    <button type="button" class="btn btn-success rounded-1" data-bs-dismiss="modal"
+                        id="label_save">Save</button>
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -2181,15 +2186,9 @@
 
 
 @section('extrajs')
-    <script>
-        $(document).ready(function() {
-            $('.datatable').DataTable({
-                responsive: true
-            });
-            $(".dropdown-toggle").dropdown();
-
-        });
-    </script>
+    <script src="{{ asset('admin/js/timeslots.js') }}"></script>
+    <script src="{{ asset('admin/js/options.js') }}"></script>
+    <script src="{{ asset('admin/js/cities.js') }}"></script>
     <script>
         function confirmDelete(url) {
             if (confirm('Are you sure you want to delete this duty type?')) {
@@ -2206,5 +2205,514 @@
                 console.log('cancel');
             }
         }
+
+        $(document).ready(function() {
+            $('#labelsDuty').select2({
+                dropdownParent: $('#add-remove-lable'),
+                placeholder: "Select an Option",
+                allowClear: true
+            });
+            $('.open-detail-modal').on('click', function() {
+                const dutyId = $(this).data('id');
+                console.log(dutyId);
+                console.log('i m open-detail-modal');
+                // Set the ID in the modal header
+                $('#exampleModalLabel').text(`Duty Details - #${dutyId}`);
+
+                // Clear previous content (optional)
+                $('#duty-detail-detail').html('<p>Loading...</p>');
+                var dutyDetailsUrl = "{{ route('duty.details', ['id' => ':id']) }}";
+                const fetchUrl = dutyDetailsUrl.replace(':id', dutyId);
+                // Show the modal
+                $('#details').modal('show');
+                // AJAX Request to fetch duty details
+                $.ajax({
+                    url: fetchUrl, // Adjust this route
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        // json = JSON.parse(response);
+                        // console.log(response);
+                        // Replace content inside the modal with response data
+                        let bookedByList = '';
+
+                        if (Array.isArray(response.booked_by) && response.booked_by.length >
+                            0) {
+                            // console.log(response.booked_by); // For debugging
+                            bookedByList = `
+                            <ol class="ps-3" style="list-style-type: decimal;">`;
+
+                            response.booked_by.forEach(person => {
+                                bookedByList += `
+                            <li>
+                                ${person.name ?? 'N/A'}
+                                - <i class="fa-solid fa-phone text-success"></i>
+                                <a href="tel:${person.phone_no ?? ''}" class="text-decoration-none">
+                                    ${person.phone_no ?? 'N/A'}
+                                </a>
+                            </li>
+                            `;
+                            });
+
+                            bookedByList += '</ol>';
+                        } else {
+                            bookedByList = '<span class="text-secondary">NA</span>';
+                        }
+
+
+                        let html = `
+                          <table class="table table-bordered table-striped table-hover">
+                                <tbody>
+                                    <tr>
+                                        <th class="fw-medium">ID</th>
+                                        <td>${dutyId}</td>
+                                        <th class="fw-medium">Status</th>
+                                        <td> ${response.status}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Start Date</th>
+                                        <td>${formatDate(response.start_date)}</td>
+                                        <th class="fw-medium">End Date</th>
+                                        <td>${formatDate(response.end_date)}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Garage Start Time</th>
+                                        <td> 07:00 Dummy</td>
+                                        <th class="fw-medium">Reporting Time</th>
+                                        <td>${response.reporting_time}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">From City</th>
+                                        <td> ${response.from_service}</td>
+                                        <th class="fw-medium">To City</th>
+                                        <td> ${response.to_service}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Duty Type</th>
+                                        <td colspan="3">${response.duty_type.duty_name ?? ''}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Vehicle Group</th>
+                                        <td colspan="3">${response.vehicle_group.name ?? ''}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Customer</th>
+                                        <td colspan="3"> ${response.customers.name ?? ''}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="fw-medium">Booked By</th>
+                                      <td colspan="3">
+                                        ${response.booked_by?.[0]?.name ?? ''}
+                                       (<i class="fa-solid fa-phone text-success"></i>
+                                        <a href="tel:${response.booked_by?.[0]?.phone_no ?? ''}" class="text-decoration-none ">
+                                        ${response.booked_by?.[0]?.phone_no ?? ''}
+                                        </a>)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Labels</th>
+                                        <td colspan="3">
+                                            ${
+                                                response.label_details && response.label_details.length > 0
+                                                ? response.label_details.map(label => `
+                                                                                                                                                                                                                                                                                                                        <span class="py-1 px-3 rounded-5 me-1"
+                                                                                                                                                                                                                                                                                                                            style="background-color:${label.label_color}; color:black;">
+                                                                                                                                                                                                                                                                                                                            ${label.label_name}
+                                                                                                                                                                                                                                                                                                                        </span>
+                                                                                                                                                                                                                                                                                                                    `).join('')
+                                                : '<span class="text-secondary">NA</span>'
+                                            }
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="fw-medium">Reporting Address</th>
+                                        <td colspan="3">${response.reporting_address ?? 'NA'}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="fw-medium">Drop Address</th>
+                                        <td colspan="3"><span class="text-secondary">${response.per_extra_km_rate ?? 'NA'}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Price</th>
+                                        <td>₹ ${response.price ?? ''}</td>
+                                        <td><span class="fw-medium">Per Extra KM Rate: </span> ₹ ${response.per_extra_km_rate ?? 'NA'}</td>
+                                        <td><span class="fw-medium">Per Extra Hour Rate: </span> ₹ ${response.per_extra_hr_rate ?? 'NA'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Operator Notes</th>
+                                        <td colspan="3"><span class="text-secondary">${response.operator_notes ?? 'NA'}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Remarks</th>
+                                        <td colspan="3"><span class="text-secondary">${response.remarks ?? 'NA'}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Passengers</th>
+                                          <td colspan="3">${bookedByList}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                    `;
+                        $('#duty-detail-detail').html(html);
+                    },
+                    error: function() {
+                        $('#duty-detail-detail').html(
+                            '<p class="text-danger">Failed to load details.</p>');
+                    }
+                });
+            });
+
+            // Manage LabelsF
+            // ✅ On label manage button click
+            $(document).on('click', '#manageLabels', function() {
+                const dutyId = $(this).data('id');
+                // console.log('Clicked label for duty:', dutyId);
+
+                const fetchUrl = "{{ route('edit.duty.label', ['id' => ':id']) }}".replace(
+                    ':id', dutyId);
+
+                $.ajax({
+                    url: fetchUrl,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        // console.log('Booking data:', response.booking);
+                        currentBookingId = response.booking.id;
+                        labelArray = response.booking.labels;
+                        // labelArray = JSON.parse(response.booking.labels);
+                        // console.log('Parsed labelArray:', labelArray);
+                        labelArray = response.booking.labels ?
+                            response.booking.labels.split(',').map(label => label
+                                .trim()) : [];
+                        console.log(labelArray);
+                        // ✅ Set selected options
+                        $('#labelsDuty').val(labelArray).trigger('change');
+
+                        // ✅ Now show the modal
+                        $('#add-remove-lable').modal('show');
+                    },
+                    error: function() {
+                        $('#duty-detail-detail').html(
+                            '<p class="text-danger">Failed to load details.</p>'
+                        );
+                    }
+                });
+
+                // ✅ On Save
+                $('#label_save').on('click', function() {
+                    // console.log('Save clicked');
+
+                    if (!currentBookingId) {
+                        console.error('Booking ID is not set!');
+                        return;
+                    }
+
+                    const fetchUrl = "{{ route('update.duty.label', ['id' => ':id']) }}".replace(
+                        ':id', currentBookingId);
+                    const labelData = $('#labelsDuty').val();
+                    // console.log(labelData);
+
+                    const payload = {
+                        _token: '{{ csrf_token() }}',
+                        booking_id: currentBookingId,
+                        labels: labelData
+                    };
+
+                    // console.log('Sending payload:', payload);
+
+                    $.ajax({
+                        url: fetchUrl,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: payload,
+                        success: function(response) {
+                            // console.log('Saved:', response);
+                            $('#add-remove-lable').modal('hide');
+                            setTimeout(() => window.location.reload(), 300);
+                        },
+                        error: function(xhr) {
+                            console.error('Save failed:', xhr.responseText);
+                        }
+                    });
+                });
+            });
+
+            // Edit Duty Modal Start Here
+            $('.edit-detail-modal').on('click', function() {
+                console.log('i m here');
+                const dutyId = $(this).data('id');
+                console.log(dutyId);
+                // Set the ID in the modal header
+                $('#edit-duty-detail').modal('show');
+
+                // Clear previous content (optional)
+                $('#edit-duty-detail-content').html('<p>Loading...</p>');
+                var dutyDetailsUrl = "{{ route('duty.edit.details', ['id' => ':id']) }}";
+                const fetchUrl = dutyDetailsUrl.replace(':id', dutyId);
+                // Show the modal
+                // AJAX Request to fetch duty details
+                $.ajax({
+                    url: fetchUrl, // Adjust this route
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        let html = `
+                      <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">${response.booking.customers.name} <span> #${response.booking.id}</span></h1>
+                        <small>Start Date: <span>${formatDate(response.booking.start_date)}</span></small>
+                    </div>
+                    </div>
+                    <div class="modal-body px-5">
+                        <input type="hidden" id="booking_id_up" value="${response.booking.id}" />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                <label class="control-label">Rep. Time <span class="text-danger">*</span></label>
+                                        <select class="form-select border-bottom" aria-label="Default select example"
+                                            name="reporting_time" id="rep_time"
+                                        required>
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="drop_time" class="form-label">Estimated Drop-Off Time</label>
+                                    <select class="form-select border-bottom" aria-label="Default select example"
+                                        id="drop_time" name="drop_time">
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="drop_time" class="form-label">Start from garage before (in min)</label>
+                                    <input type="number" class="form-control  border-bottom" id="garage_time" value="${response.booking.garage_time ?? ''}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="control-label w-100">Vehicle Group</label>
+                                <select class="form-select border-bottom" name="vehicle_group" id="vehicle_group">
+                                    <option value="">select vehicle group</option>
+                                </select>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="" class="control-label w-100">Duty Type</label>
+                                   <select class="form-select border-bottom" name="duty_type" id="duty_type"> </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="" class="form-label"> Price</label>
+                                    <input type="number" class="form-control border-bottom d-none" id="">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="km_rate" class="form-label"> Per Extra KM Rate</label>
+                                    <input type="number" class="form-control  border-bottom" id="km_rate" value="${response.booking.per_extra_km_rate ?? ''}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="hr_rate" class="form-label"> Per Extra Hr Rate</label>
+                                    <input type="number" class="form-control border-bottom" value="${response.booking.per_extra_hr_rate ?? ''}" id="hr_rate">
+                                </div>
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end">
+                                <div class="mb-3 w-100">
+                                    <button type="reset" class="btn btn-light border w-100">Get Price</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="reporting_address" class="form-label w-100">Reporting Address
+                                    </label>
+                                       <input type="text" class="form-control border-bottom" value="${response.booking.reporting_address ?? ''}" id="reporting_address">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="drop_address" class="form-label w-100">Drop Address</label>
+                                  <input type="text" class="form-control border-bottom" id="drop_address_up" value="${response.booking.drop_address ?? ''}" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="short_reporting_address" class="form-label"> Short Reporting Address (to be shown in duty
+                                listing)</label>
+                            <input type="text" class="form-control border-bottom" id="short_reporting_address" value="${response.booking.short_reporting_address ?? ''}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="remarks" class="form-label">Remarks </label>
+                            <textarea class="form-control" rows="3" name="remarks" id="remarks">${response.booking.remarks ?? ''}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="flight_train_number" class="form-label"> Flight/Train Number</label>
+                            <input type="text" class="form-control  border-bottom" id="flight_train_number" value="${response.booking.ticket_number ?? ''}">
+                        </div>
+                        <p class="mb-3">
+                            <a href="" class="text-decoration-none" id="supplierRemarksLink">
+                                Add separate remarks for driver/supplier.
+                            </a>
+                        </p>
+                        <div class="bg-light mb-3 p-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                    <label class="control-label w-100">Supplier Vehicle Group</label>
+                                    <select class="form-select border-bottom" name="supplier_vehicle_group" id="supplier_vehicle_group"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label  class="control-label w-100">Supplier Duty Type</label>
+                                        <select class="form-select border-bottom" name="duty_type" id="duty_type">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="" id="supplierRemarks" style="display: none;">
+                                <label for="" class="form-label">Driver/Supplier Remarks </label>
+                                <textarea class="form-control" rows="3" name="" id=""></textarea>
+                            </div>
+                        </div>
+                        <p class="text-danger mb-3">
+                            Please note: Above changes will only affect this duty and would not change/affect any other duty of
+                            this booking.
+                        </p>
+                    </div>
+                    <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
+                        <div>
+                            <button type="button" class="btn btn-primary border" id="updateDutyDetail">Saves</button>
+                            <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                    `;
+                        $('#edit-duty-detail-content').html(html);
+                        // Now rep_time exists in the DOM
+                        const repTime = response.booking.reporting_time;
+                        const dropTime = response.booking.drop_time;
+
+                        document.getElementById("rep_time").innerHTML = generateTimeSlots(
+                            repTime);
+                        document.getElementById("drop_time").innerHTML = generateTimeSlots(
+                            dropTime);
+
+                        // Vehicle Group
+                        const vehicleGroupSelects = document.querySelectorAll(
+                            '#edit-duty-detail-content select[name="vehicle_group"]'
+                        );
+
+                        // Duty Type
+                        const dutytypeSelect = document.getElementById('duty_type');
+                        console.log(dutytypeSelect);
+                        if (dutytypeSelect && Array.isArray(response.mst_duty_type)) {
+                            dutytypeSelect.innerHTML =
+                                '<option value="">Select duty type</option>';
+
+                            const selectedDutyType = response.booking?.duty_type?.id || null;
+                            console.log(selectedDutyType);
+                            response.mst_duty_type.forEach(duty => {
+                                const option = document.createElement('option');
+                                option.value = duty.id;
+                                option.textContent = duty.duty_name;
+
+                                if (duty.id == selectedDutyType) {
+                                    option.selected = true;
+                                }
+                                Append = dutytypeSelect.appendChild(option);
+                                if (Append) {
+                                    // console.log(Append);
+                                }
+                            });
+                        } else {
+                            console.error('Select not found or invalid response');
+                        }
+
+                        if (vehicleGroupSelects.length > 0) {
+                            vehicleGroupSelects.forEach(vehicleGroupSelect => {
+                                if (
+                                    Array.isArray(response.all_vehicle_groups) &&
+                                    response.all_vehicle_groups.length > 0
+                                ) {
+                                    vehicleGroupSelect.innerHTML =
+                                        '<option value="">Select vehicle group</option>';
+
+                                    const selectedVehicleGroupId = response.booking
+                                        .vehicle_group.id || null;
+
+                                    response.all_vehicle_groups.forEach(group => {
+                                        const option = document.createElement(
+                                            'option');
+                                        option.value = group.id;
+                                        option.textContent = group.name;
+
+                                        // Preselect user's selected vehicle group
+                                        if (group.id ==
+                                            selectedVehicleGroupId) {
+                                            option.selected = true;
+                                        }
+
+                                        vehicleGroupSelect.appendChild(option);
+                                    });
+                                } else {
+                                    vehicleGroupSelect.innerHTML =
+                                        '<option value="">No vehicle group found</option>';
+                                }
+                            });
+                        } else {
+                            console.error('No vehicle_group selects found in DOM');
+                        }
+
+                        // Supplier Start Here
+                        const supplierdutytypeSelect = document.getElementById(
+                            'duty_type');
+                        const supplierDutyTypeId = response.booking?.duty_type?.id || null;
+
+                        const suppliervehicleGroup = document.getElementById(
+                            'supplier_vehicle_group');
+                        if (supplierDutyTypeSelect && Array.isArray(response.mst_duty_type)) {
+                            supplierDutyTypeSelect.innerHTML =
+                                '<option value="">Select duty type</option>';
+                            response.mst_duty_type.forEach(duty => {
+                                const option = document.createElement('option');
+                                option.value = duty.id;
+                                option.textContent = duty.duty_name;
+                                if (duty.id == supplierDutyTypeId) {
+                                    option.selected = true;
+                                }
+                                supplierDutyTypeSelect.appendChild(option);
+                            });
+                        } else {
+                            console.error('Supplier select not found or invalid response');
+                        }
+
+                    },
+                    error: function() {
+                        $('#edit-duty-detail-content').html(
+                            '<p class="text-danger">Failed to load details.</p>');
+                    }
+                });
+            });
+            // Edit Duty Modal End Here
+
+        });
     </script>
 @endsection
