@@ -170,16 +170,6 @@ Route::middleware('auth:admin')->group(function () {
     // Route::get('/bookingManage/{id?}', [AddBookController::class, 'manage'])->name('dutytype.manage');
     Route::get("/booking/create", [BookingsController::class, "create"])->name("booking.create");
     Route::post("/booking/createOrUpdate/{bookingId?}", [BookingsController::class, "store"])->name("booking.createOrUpdate");
-    // Route::get("/incoming/allotted", [DutyController::class, "allotted"]);
-    // Route::get("/need-attention", [DutyController::class, "Attention"]);
-    // Route::get("/duty-upcoming", [DutyController::class, "Upcoming"]);
-    // Route::get("/duty-booked", [DutyController::class, "Booked"]);
-    // Route::get("/duty-alloted", [DutyController::class, "DutyAlloted"]);
-    // Route::get("/duty-dispatched", [DutyController::class, "Dispatched"]);
-    // Route::get("/duty/completed", [DutyController::class, "Completed"]);
-    // Route::get("/duty/billed", [DutyController::class, "Billed"]);
-    // Route::get("/duty/cancelled", [DutyController::class, "Cancelled"]);
-    // Route::get("/duty/all", [DutyController::class, "All"]);
     Route::get("/duties/upcoming", [DutyController::class, "upcomingDuties"])->name('duties.upcoming');
     Route::get("/duties/booked", [DutyController::class, "bookedDuties"])->name('duties.booked');
     Route::get("/duties/allotted", [DutyController::class, "allottedDuties"])->name('duties.allotted');
@@ -205,6 +195,12 @@ Route::middleware('auth:admin')->group(function () {
 
     // Store Allot Duties Data
     Route::post('/store-vehicle-duty/{id}', [DutyController::class, 'storeVehicleDuty'])->name('store.vehicle.duty');
+    Route::post('/duty-store-supplier/{id}', [DutyController::class, 'storeSupplierDuty'])->name('store.supplier.duty');
+    
+    // Clear Allotment
+    Route::get('/clear-allotment/{id}', [DutyController::class, 'clearAllotment'])->name('duty.clear.allotment');
+
+
     Route::post('/duty-store-supplier/{id}', [DutyController::class, 'storeSupplierDuty'])->name('store.supplier.duty');
 
 

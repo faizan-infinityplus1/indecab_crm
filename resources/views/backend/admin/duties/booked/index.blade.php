@@ -167,7 +167,9 @@
                                         <span class="text-muted">No Vehicle Found</span>
                                     @endif
                                 </td>
-                                <td>Driver/Supplier</td>
+                                <td id="driver_supplier">
+                                    {{ $data->supplier->name ?? '' }}
+                                </td>
                                 <td>{{ $data->dutyType->duty_name }}</td>
                                 <td>{{ $data->reporting_address }}</td>
                                 <td>{{ $data->from_service }}</td>
@@ -191,21 +193,26 @@
                                             <i class="fa-solid fa-gear"></i>
                                         </button>
                                         {{-- Booked --}}
-                                        @if ($data->status == 'booked' || $data->status == 'details')
+                                        @if ($data->status == 'booked')
                                             <ul class="dropdown-menu dropdown-menu-right">
                                                 <li><a class="dropdown-item open-detail-modal" data-bs-toggle="modal"
                                                         data-id="{{ $data->id }}">Details</a>
                                                 </li>
-                                                <li><a class="dropdown-item" onclick="unconfirmDuty()">Unconfirm duty</a>
+                                                <li>
+                                                    <a class="dropdown-item" onclick="unconfirmDuty()">Unconfirm duty</a>
                                                 </li>
-                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                <li>
+                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         id="manageLabels" data-bs-target="#add-remove-lable"
-                                                        data-id="{{ $data->id }}">Add/Remove labels</a></li>
-                                                <li><a href="#" class="dropdown-item edit-detail-modal"
+                                                        data-id="{{ $data->id }}">Add/Remove labels</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item edit-detail-modal"
                                                         data-bs-toggle="modal" data-id="{{ $data->id }}">Edit
                                                         duty</a>
                                                 </li>
-                                                <li><a href="#"
+                                                <li>
+                                                    <a href="#"
                                                         class="dropdown-item open-allot-vehicle-driver-modal"
                                                         data-bs-toggle="modal" data-id="{{ $data->id }}">Allot
                                                         vehicle &
@@ -214,10 +221,12 @@
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#allot-send-to-associate">Send to Associate</a>
                                                 </li>
-                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                <li>
+                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#allot-supporters" id="allot_supporters"
                                                         data-id="{{ $data->id }}">Allot
-                                                        supporters</a></li>
+                                                        supporters</a>
+                                                </li>
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#print-duty-slip">Print duty slip</a></li>
                                                 <li>
@@ -233,21 +242,34 @@
                                             {{-- Details needed --}}
                                         @elseif($data->status == 'details')
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                        data-bs-target="#details">Details</a></li>
-                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                        data-bs-target="#allot-duty-to-supplier">Add Supplier Details</a>
+                                                <li><a class="dropdown-item open-detail-modal" data-bs-toggle="modal"
+                                                        data-id="{{ $data->id }}">Details</a></li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        id="allot-duty-supporter" data-bs-target="#allot-duty-to-supplier"
+                                                        data-id="{{ $data->id }}">Add Supplier Details</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        id="manageLabels" data-bs-target="#add-remove-lable"
+                                                        data-id="{{ $data->id }}">Add/Remove labels</a>
+                                                </li>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item edit-detail-modal"
+                                                        data-bs-toggle="modal" data-id="{{ $data->id }}">Edit
+                                                        duty</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#allot-supporters" id="allot_supporters"
+                                                        data-id="{{ $data->id }}">Allot
+                                                        supporters</a>
                                                 </li>
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                        data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
-                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                        data-bs-target="#edit-duty">Edit duty</a></li>
-                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                        data-bs-target="#allot-supporters"
-                                                        data-id="{{ $data->id }}">Allot supporters</a></li>
-                                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
-                                                <li><a class="dropdown-item" onclick="clearAllotment()">Clear
+                                                <li><a class="dropdown-item" onclick="clearAllotment(this)"
+                                                        data-id="{{ $data->id }}">Clear
                                                         Allotment</a></li>
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#send-details-to-supplier">Send details to
@@ -1188,14 +1210,33 @@
             }
         }
 
-        function clearAllotment() {
-            let clearAllotment = confirm("Are you sure you want to clear the allotment?");
-            if (clearAllotment == true) {
-                console.log('Clear The Allotment');
+        function clearAllotment(el) {
+            let confirmClear = confirm("Are you sure you want to clear the allotment?");
+            if (confirmClear) {
+                let dutyId = $(el).data('id');
+                console.log(dutyId);
+
+                const fetchUrl = "{{ route('duty.clear.allotment', ['id' => ':id']) }}"
+                    .replace(':id', dutyId);
+
+                $.ajax({
+                    url: fetchUrl,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log('Allotment cleared successfully');
+                        window.location.reload();
+                        // You can also show a toast/alert or update the UI accordingly here
+                    },
+                    error: function(xhr) {
+                        console.log('Error clearing allotment', xhr);
+                    }
+                });
             } else {
-                console.log('cancel');
+                console.log('Cancelled by user');
             }
         }
+
 
         function confirmDelete(url) {
             if (confirm('Are you sure you want to delete this duty type?')) {
@@ -1282,6 +1323,8 @@
                                             supporters: supporters
                                         },
                                         success: function(response) {
+                                            location.reload();
+
                                             console.log('i m here');
                                         }
                                     })
@@ -1327,6 +1370,7 @@
 
                             // ✅ Now show the modal
                             $('#add-remove-lable').modal('show');
+                            location.reload();
                         },
                         error: function() {
                             $('#duty-detail-detail').html(
@@ -1366,7 +1410,7 @@
                         success: function(response) {
                             // console.log('Saved:', response);
                             $('#add-remove-lable').modal('hide');
-                            setTimeout(() => window.location.reload(), 300);
+                            location.reload();
                         },
                         error: function(xhr) {
                             console.error('Save failed:', xhr.responseText);
@@ -1480,11 +1524,11 @@
                                             ${
                                                 response.label_details && response.label_details.length > 0
                                                 ? response.label_details.map(label => `
-                                                                                                                                                                                            <span class="py-1 px-3 rounded-5 me-1"
-                                                                                                                                                                                                style="background-color:${label.label_color}; color:black;">
-                                                                                                                                                                                                ${label.label_name}
-                                                                                                                                                                                            </span>
-                                                                                                                                                                                        `).join('')
+                                                                                                                                                                                                                                                                                                                                                        <span class="py-1 px-3 rounded-5 me-1"
+                                                                                                                                                                                                                                                                                                                                                            style="background-color:${label.label_color}; color:black;">
+                                                                                                                                                                                                                                                                                                                                                            ${label.label_name}
+                                                                                                                                                                                                                                                                                                                                                        </span>
+                                                                                                                                                                                                                                                                                                                                                    `).join('')
                                                 : '<span class="text-secondary">NA</span>'
                                             }
                                         </td>
@@ -1610,7 +1654,7 @@
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label for="" class="form-label"> Price</label>
-                                    <input type="number" class="form-control border-bottom d-none" id="">
+                                    <input type="number" class="form-control border-bottom" id="price">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -1715,7 +1759,7 @@
 
                         // Duty Type
                         const dutytypeSelect = document.getElementById('duty_type');
-
+                        console.log(dutytypeSelect);
                         if (dutytypeSelect && Array.isArray(response.mst_duty_type)) {
                             dutytypeSelect.innerHTML =
                                 '<option value="">Select duty type</option>';
@@ -2166,11 +2210,6 @@
                                 method: 'POST',
                                 data: {
                                     _token: csrfToken,
-                                    // model: model,
-                                    // vehicle_no: vehicleNo,
-                                    // group: group,
-                                    // driver: driver,
-                                    // availability: availability,
                                     vehicle_id: vehicleId,
                                     driver_id: driverId,
                                     vehicle_group_id: vehiclegroupId
@@ -2211,9 +2250,6 @@
                                 return typeof cell === 'object' && cell !== null ?
                                     $(cell).text().trim() : String(cell).trim();
                             };
-
-
-
                             // AJAX request (uncomment when ready)
                             $.ajax({
                                 url: storeSupplierUrl,
@@ -2223,7 +2259,23 @@
                                     supplier_id: dataId,
                                 },
                                 success: function(response) {
-                                    window.location.reload();
+                                    console.log(response);
+                                    if (response.supplier && response
+                                        .supplier.name) {
+                                        console.log('if');
+                                        driverSupplier = document
+                                            .getElementById(
+                                                'driver_supplier');
+                                        console.log(driverSupplier);
+                                        $('#driver_supplier').html(response
+                                            .supplier?.name ?? 'N/A');
+                                        location.reload();
+                                    } else {
+                                        console.log('else');
+                                        $('#driver_supplier').html(
+                                            '-');
+                                    }
+                                    // window.location.reload();
                                 },
                                 error: function(xhr) {
                                     alert('Failed to store vehicle');
