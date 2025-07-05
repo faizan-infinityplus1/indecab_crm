@@ -310,3 +310,15 @@ ul.dropdown-menu.dropdown-menu-end {
 .remove-file {
     cursor: pointer;
 }
+
+.duty-data-row:hover .duty-row-status span {
+    display: none;
+}
+
+.duty-data-row .duty-row-status button {
+    display: none;
+}
+
+.duty-data-row:hover .duty-row-status button {
+    display: block;
+}

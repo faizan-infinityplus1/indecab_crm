@@ -144,7 +144,7 @@
                     </thead>
                     <tbody>
                         @foreach ($booking as $data)
-                            <tr>
+                            <tr class="duty-data-row">
                                 <td>
                                     <i class="fa-solid fa-phone text-success"></i>
                                 </td>
@@ -183,7 +183,25 @@
                                     @endforeach
                                 </td>
 
-                                <td>{{ $data->status }}</td>
+                                <td class="duty-row-status">
+                                    @if ($data->status == 'booked')
+                                        <span>
+                                            {{ $data->status }}
+                                        </span>
+                                        <button class="btn btn-success py-0 px-2 " data-bs-toggle="modal"
+                                            data-bs-target="#allot-duty-to-supplier" data-id="{{ $data->id }}">
+                                            ALLOT
+                                        </button>
+                                    @elseif($data->status == 'details')
+                                        <span>
+                                            {{ $data->status }}
+                                        </span>
+                                        <button class="btn btn-success py-0 px-2" data-bs-toggle="modal"
+                                            data-bs-target="#allot-duty-to-supplier" data-id="{{ $data->id }}">
+                                            ADD DETAILS
+                                        </button>
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle py-0" type="button" data-bs-toggle="dropdown"
@@ -295,7 +313,7 @@
     {{-- details --}}
     <div class="modal fade" id="details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
@@ -343,7 +361,7 @@
     <div class="modal fade" id="add-remove-lable" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
@@ -1480,11 +1498,11 @@
                                             ${
                                                 response.label_details && response.label_details.length > 0
                                                 ? response.label_details.map(label => `
-                                                                                                                                                                                <span class="py-1 px-3 rounded-5 me-1"
-                                                                                                                                                                                    style="background-color:${label.label_color}; color:black;">
-                                                                                                                                                                                    ${label.label_name}
-                                                                                                                                                                                </span>
-                                                                                                                                                                            `).join('')
+                                                                                                                                                                                                                                                                                                                        <span class="py-1 px-3 rounded-5 me-1"
+                                                                                                                                                                                                                                                                                                                            style="background-color:${label.label_color}; color:black;">
+                                                                                                                                                                                                                                                                                                                            ${label.label_name}
+                                                                                                                                                                                                                                                                                                                        </span>
+                                                                                                                                                                                                                                                                                                                    `).join('')
                                                 : '<span class="text-secondary">NA</span>'
                                             }
                                         </td>
