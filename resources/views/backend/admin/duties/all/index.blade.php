@@ -393,11 +393,11 @@
             <div class="modal-content rounded-0 border-0">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-77</h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <ul class="nav nav-tabs border-0 w-100" id="tabs-nav">
                         <!-- Details Tab Link -->
                         <li class="nav-item w-50 mb-3 active" id="details-tab">
@@ -523,7 +523,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -3415,7 +3415,7 @@
                 e.preventDefault();
                 $('#edit-supplier-duty-form').show();
                 $('#edit-supplier-duty-btn').hide();
-                $(".activity-logs-modal").css("min-width", "1600px");
+                $(".activity-logs-modal").css("min-width", "1200px");
             })
             $("#close-supplier-duty-btn").click(function(e) {
                 e.preventDefault();

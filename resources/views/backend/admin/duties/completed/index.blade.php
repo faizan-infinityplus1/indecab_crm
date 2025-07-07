@@ -173,8 +173,7 @@
                                                 data-bs-target="#view-duty-slip">View duty slip</a></li>
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#edit-duty-slip">Edit duty slip</a></li>
-                                        <li><a href="#" class="dropdown-item"
-                                                onclick="clearDutySlip()">Clear
+                                        <li><a href="#" class="dropdown-item" onclick="clearDutySlip()">Clear
                                                 duty slip</a></li>
                                         <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
@@ -225,14 +224,14 @@
     {{-- details --}}
     <div class="modal fade" id="details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-77</h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <ul class="nav nav-tabs border-0 w-100" id="tabs-nav">
                         <!-- Details Tab Link -->
                         <li class="nav-item w-50 mb-3 active" id="details-tab">
@@ -358,7 +357,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -366,8 +365,7 @@
     </div>
     {{-- details close --}}
     {{-- View duty slip --}}
-    <div class="modal fade" id="view-duty-slip" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="view-duty-slip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
             <div class="modal-content rounded-0 border-0">
                 <div class="modal-header px-5 sticky-top bg-white d-flex justify-content-between">
@@ -377,7 +375,7 @@
                     </div>
                     <button type="button" class="btn btn-light border" id="">Edit</button>
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="row">
                         <div class="col-md-6">
                             <p>
@@ -504,7 +502,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <div>
                         <button type="button" class="btn btn-light border" id=""><i
                                 class="fa-solid fa-print"></i> Print</button>
@@ -516,25 +514,27 @@
     </div>
     {{-- View duty slip close --}}
     {{-- Edit duty slip --}}
-    <div class="modal fade" id="edit-duty-slip" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="edit-duty-slip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
             <div class="modal-content rounded-0 border-0">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Close Duty - <span> #16331828-7</span></h1>
-                        <p>Use this in case if the driver doesn't have phone to generate digital duty slip, or in case of
+                        <p class="mb-0">Use this in case if the driver doesn't have phone to generate digital duty slip,
+                            or in case of
                             external suppliers.</p>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
                 <div class="modal-body ps-0 pe-2">
+                    <div class="d-flex justify-content-end" style="height: 40px;">
+                        <p><a href="#" id="edit-supplier-duty-btn">Edit Supplier Duty <i
+                                    class="fa-solid fa-angle-right"></i></a></p>
+                        <p><a href="#" id="close-supplier-duty-btn">Close Supplier Duty <i
+                                    class="fa-solid fa-angle-left"></i></a></p>
+                    </div>
                     <div class="d-flex justify-content-start">
                         <div class="ps-5 pe-4" style="width: 900px">
-                            <div class="d-flex justify-content-end" style="height: 40px;">
-                                <p><a href="#" id="edit-supplier-duty-btn">Edit Supplier Duty <i
-                                            class="fa-solid fa-angle-right"></i></a></p>
-                            </div>
                             <table class="w-100 table-bordered mb-3">
                                 <thead>
                                     <tr>
@@ -652,11 +652,11 @@
                                         <div class="mb-3">
                                             <label for="" class="form-label"> Price </label>
                                             <div class="row">
-                                                <div class="col-8">
+                                                <div class="col-md-7 col-8">
                                                     <input type="number" class="form-control border-bottom"
                                                         id="">
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-md-5 col-4">
                                                     <button type="button" class="btn btn-light border w-100"
                                                         id="">Get Price</button>
                                                 </div>
@@ -731,58 +731,50 @@
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Daily allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Over time</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Outstation allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Outstation overnight
                                                     allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Sunday allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Early start allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Night allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Extra duty allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                     </div>
@@ -810,8 +802,7 @@
                                     <tr>
                                         <td class="p-1">
                                             <div class="mb-3">
-                                                <select class="form-select border-bottom" name=""
-                                                    id="">
+                                                <select class="form-select border-bottom" name="" id="">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
@@ -822,8 +813,7 @@
                                         </td>
                                         <td class="p-1">
                                             <div class="mb-3">
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </td>
                                         <td class="p-1">
@@ -844,8 +834,7 @@
                                     <tr>
                                         <td class="p-1">
                                             <div class="mb-3">
-                                                <select class="form-select border-bottom" name=""
-                                                    id="">
+                                                <select class="form-select border-bottom" name="" id="">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
@@ -856,8 +845,7 @@
                                         </td>
                                         <td class="p-1">
                                             <div class="mb-3">
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </td>
                                         <td class="p-1">
@@ -919,10 +907,10 @@
                         </div>
                         <div id="edit-supplier-duty-form" class="ps-4 pe-3 "
                             style="display:none; width: 900px; border-left: 1px dashed black;">
-                            <div class="d-flex justify-content-end">
+                            {{-- <div class="d-flex justify-content-end">
                                 <p><a href="#" id="close-supplier-duty-btn">Close Supplier Duty <i
                                             class="fa-solid fa-angle-right"></i></a></p>
-                            </div>
+                            </div> --}}
                             <table class="w-100 table-bordered border-secondary-subtle mb-3">
                                 <thead>
                                     <tr>
@@ -1040,11 +1028,11 @@
                                         <div class="mb-3">
                                             <label for="" class="form-label"> Price </label>
                                             <div class="row">
-                                                <div class="col-8">
+                                                <div class="col-md-7 col-8">
                                                     <input type="number" class="form-control border-bottom"
                                                         id="">
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-md-5 col-4">
                                                     <button type="button" class="btn btn-light border w-100"
                                                         id="">Get Price</button>
                                                 </div>
@@ -1119,58 +1107,50 @@
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Daily allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Over time</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Outstation allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Outstation overnight
                                                     allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Sunday allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Early start allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Night allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Extra duty allowance</label>
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </div>
                                     </div>
@@ -1198,8 +1178,7 @@
                                     <tr>
                                         <td class="p-1">
                                             <div class="mb-3">
-                                                <select class="form-select border-bottom" name=""
-                                                    id="">
+                                                <select class="form-select border-bottom" name="" id="">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
@@ -1210,8 +1189,7 @@
                                         </td>
                                         <td class="p-1">
                                             <div class="mb-3">
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </td>
                                         <td class="p-1">
@@ -1232,8 +1210,7 @@
                                     <tr>
                                         <td class="p-1">
                                             <div class="mb-3">
-                                                <select class="form-select border-bottom" name=""
-                                                    id="">
+                                                <select class="form-select border-bottom" name="" id="">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
@@ -1244,8 +1221,7 @@
                                         </td>
                                         <td class="p-1">
                                             <div class="mb-3">
-                                                <input type="number" class="form-control  border-bottom"
-                                                    id="">
+                                                <input type="number" class="form-control  border-bottom" id="">
                                             </div>
                                         </td>
                                         <td class="p-1">
@@ -1308,46 +1284,46 @@
     {{-- Edit duty slip close --}}
     {{-- add remove lable --}}
     <div class="modal fade" id="add-remove-lable" tabindex="-1" aria-labelledby="exampleModalLabel"
-       aria-hidden="true">
-       <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-           <div class="modal-content rounded-0 border-0">
-               <div class="modal-header px-5 sticky-top bg-white">
-                   <div>
-                       <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
-                   </div>
-                   {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-               </div>
-               <div class="modal-body px-5">
-                   <div class="row">
-                       <div class="mb-3">
-                           <label for="labels" class="control-label w-100">Labels</label>
-                           <select class="form-select border-bottom" name="labels[]" id="labels">
-                            <option value="">label 1</option>
-                            <option value="">label 2</option>
-                            <option value="">label 3</option>
-                           </select>
-                       </div>
-                   </div>
-               </div>
-               <div class="modal-footer justify-content-start px-5">
-                   <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
-               </div>
-           </div>
-       </div>
-   </div>
-   {{-- add remove lable close --}}
-   {{-- Allot supporters --}}
-   <div class="modal fade" id="allot-supporters" tabindex="-1" aria-labelledby="exampleModalLabel"
-   aria-hidden="true">
+        aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5 bg-white">
+                    <div class="row">
+                        <div class="mb-3">
+                            <label for="labels" class="control-label w-100">Labels</label>
+                            <select class="form-select border-bottom" name="labels[]" id="labels">
+                                <option value="">label 1</option>
+                                <option value="">label 2</option>
+                                <option value="">label 3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
+                    <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- add remove lable close --}}
+    {{-- Allot supporters --}}
+    <div class="modal fade" id="allot-supporters" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Supporters</h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <p>
                         Showing supporters that can be booked for duty <span>#67920002-1</span>:
                     </p>
@@ -1358,7 +1334,7 @@
                     </div>
 
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary rounded-1">Allot</button>
                 </div>
@@ -1369,7 +1345,7 @@
     {{-- Print duty slip --}}
     <div class="modal fade" id="print-duty-slip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Print Duty Slip for <span>#67920002-1</span>
@@ -1377,7 +1353,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="bg-light mb-3 p-3">
                         <form action="">
                             <div class="form-check mb-2">
@@ -1462,7 +1438,7 @@
 
 
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="submit" class="btn btn-primary rounded-1">Print</button>
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
@@ -1474,7 +1450,7 @@
     <div class="modal fade" id="advance-purchase-payment" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Add Advance Purchase Payment</h1>
@@ -1482,7 +1458,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="mb-3">
                         <label for="" class="form-label"> Duty <span class="text-danger">*</span> </label>
                         <input type="date" class="form-control  border-bottom" id="">
@@ -1496,7 +1472,7 @@
                         <textarea class="form-control" rows="3" name="" id=""></textarea>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <div>
                         <button type="button" class="btn btn-primary rounded-1" id="">Save</button>
                         <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
@@ -1520,7 +1496,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <p class="mb-3">
                         Use this to send feedback form link to customer/passenger.
                     </p>
@@ -1547,12 +1523,29 @@
             });
             $(".dropdown-toggle").dropdown();
 
+            $("#close-supplier-duty-btn").hide();
+            $("#edit-supplier-duty-btn").click(function(e) {
+                e.preventDefault();
+                $('#edit-supplier-duty-form').show();
+                $("#close-supplier-duty-btn").show();
+                $('#edit-supplier-duty-btn').hide();
+                $(".activity-logs-modal").css("min-width", "1200px");
+            })
+            $("#close-supplier-duty-btn").click(function(e) {
+                e.preventDefault();
+                $('#edit-supplier-duty-btn').show();
+                $("#close-supplier-duty-btn").hide();
+                $('#edit-supplier-duty-form').hide();
+                $(".activity-logs-modal").css("min-width", "900px");
+            })
         });
+
         function confirmDelete(url) {
             if (confirm('Are you sure you want to delete this duty type?')) {
                 window.location.href = url; // Proceed with the delete action if confirmed
             }
         }
+
         function clearDutySlip() {
             let clearDutySlip = confirm("Are you sure you want to clear this duty slip? This is irreverisble operation.");
             if (clearDutySlip == true) {
