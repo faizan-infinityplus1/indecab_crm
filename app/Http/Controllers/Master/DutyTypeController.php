@@ -17,7 +17,7 @@ class DutyTypeController extends Controller
     }
     public function manage($id = null)
     {
-        $data = $id ?MstDutyType::active()->find($id) : null; // Find the record or default to null
+        $data = $id ? MstDutyType::active()->find($id) : null; // Find the record or default to null
         return view('backend.admin.masters.dutytypes.manage', compact('data'));
     }
     public function store(Request $request)
@@ -74,7 +74,7 @@ class DutyTypeController extends Controller
             return redirect(route('dutytype.manage'));
         }
     }
-   
+
     public function update(Request $request)
     {
         // dd('i m here',$request->apply_outside_allowance);
@@ -133,7 +133,8 @@ class DutyTypeController extends Controller
         }
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         try {
             $dutyType = MstDutyType::findOrFail($request->id);
             $dutyType->delete();

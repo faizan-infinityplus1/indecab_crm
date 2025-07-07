@@ -417,7 +417,7 @@
                         </label><br>
                         <label class="form-check-label">
                             <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
-                            Send cancellation email & SMS to suppliers (for duties alotted to supplier)
+                            Send cancellation email & SMS to suppliers (for duties allotted  to supplier)
                         </label>
                         <label class="form-check-label">
                             <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">

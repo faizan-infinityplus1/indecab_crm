@@ -311,14 +311,14 @@ ul.dropdown-menu.dropdown-menu-end {
     cursor: pointer;
 }
 
-.duty-data-row:hover .duty-row-status span {
+.data-row:hover .booking-status-container span {
     display: none;
 }
 
-.duty-data-row .duty-row-status button {
+.data-row .booking-status-container button {
     display: none;
 }
 
-.duty-data-row:hover .duty-row-status button {
+.data-row:hover .booking-status-container button {
     display: block;
 }

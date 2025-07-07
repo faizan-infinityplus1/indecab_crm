@@ -40,10 +40,10 @@ class Booking extends Model
         'attachmentIds',
         'status',
 
-       'driver_id',
-       'vehicle_group_id',
-       'supplier_id',
-       'vehicle_id'
+        'driver_id',
+        'vehicle_group_id',
+        'supplier_id',
+        'vehicle_id'
 
     ];
 
@@ -98,5 +98,10 @@ class Booking extends Model
         return collect($ids)->map(function ($id) use ($labelCache) {
             return $labelCache->get((int) $id);
         })->filter()->values();
+    }
+
+    public function supplier()
+    {
+        return $this->belongsTo(MstSupplier::class, 'supplier_id', 'id');
     }
 }
