@@ -7,7 +7,7 @@
                 <div class="btn-group" role="group"><a href="/booking/create" class="btn btn-primary">ADD
                         BOOKING</a></div>
                 <div class="dropdown">
-                    <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    <button class="btn border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <i class="fa-solid fa-gear"></i>
                     </button>
@@ -91,7 +91,8 @@
             <div class="col-lg-5 col-md-6 col-12">
                 <div class="row g-2">
                     <div class="col-12 col-sm-1 text-center d-flex align-items-center justify-content-center">
-                        <span class="text-muted fs-5"><</span>
+                        <span class="text-muted fs-5">
+                            << /span>
                     </div>
                     <div class="col-12 col-sm-3">
                         <input class="form-control border-bottom" type="text" placeholder="DD/MM/YYYY" value="">
@@ -111,7 +112,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="well mb-3">
             <p class="text-center">No duties.</p>
         </div>

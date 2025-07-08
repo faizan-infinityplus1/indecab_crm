@@ -19,7 +19,7 @@
                 <div class="btn-group" role="group"><a href="{{ route('booking.create') }}" class="btn btn-primary">Add
                         Booking</a></div>
                 <div class="dropdown">
-                    <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    <button class="btn border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <i class="fa-solid fa-gear"></i>
                     </button>

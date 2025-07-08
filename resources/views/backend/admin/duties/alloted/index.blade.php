@@ -20,7 +20,7 @@
                 <div class="btn-group" role="group"><a href="{{ route('booking.create') }}" class="btn btn-primary">Add
                         Booking</a></div>
                 <div class="dropdown">
-                    <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    <button class="btn border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <i class="fa-solid fa-gear"></i>
                     </button>
@@ -211,7 +211,11 @@
                                                     driver</a>
                                             </li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#allot-supporters">Allot Supporters</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#allot-vehicle-driver">Re-allot</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#change-driver">Change Driver</a></li>
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#allot-send-to-associate">Send to Associate</a>
                                             </li>
@@ -240,6 +244,8 @@
                                             <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#advance-purchase-payment">Add Advance Purchase
                                                     Payment</a></li>
+                                            <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#add-petty-cash">Add Petty Cash</a></li>
                                             {{-- <li><a href="{{ route('bookings.specific-bookings') }}"
                                                     class="dropdown-item">View Booking</a></li> --}}
 
@@ -641,6 +647,88 @@
         </div>
     </div>
     {{-- Allot vehicle & driver close --}}
+    {{-- Change driver --}}
+    <div class="modal fade" id="change-driver" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0 h-100" id="change-driver-content">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Drivers</h1>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5 bg-white">
+
+                    <p>Showing drivers that can be booked for duty #91077273-1:</p>
+                    <div class="mb-3">
+                        <input type="text" class="form-control  border-bottom" id=""
+                            placeholder="Type here to filter by driver name or dispatch center">
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover datatable" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th class="fw-medium">Name</th>
+                                    <th class="fw-medium text-start">Phone</th>
+                                    <th class="fw-medium">Document status</th>
+                                </tr>
+                            </thead>
+                            {{-- <table class="table table-bordered table-striped table-hover"> --}}
+                            <tbody>
+                                <tr>
+                                    <td>Adil Patel</td>
+                                    <td class="text-start">7738373502</td>
+                                    <td>
+                                        <span class="text-success">Valid documents.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Adil Patel</td>
+                                    <td class="text-start">7738373502</td>
+                                    <td>
+                                        <span class="text-success">Valid documents.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Adil Patel</td>
+                                    <td class="text-start">7738373502</td>
+                                    <td>
+                                        <span class="text-success">Valid documents.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Adil Patel</td>
+                                    <td class="text-start">7738373502</td>
+                                    <td>
+                                        <span class="text-success">Valid documents.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Adil Patel</td>
+                                    <td class="text-start">7738373502</td>
+                                    <td>
+                                        <span class="text-success">Valid documents.</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="modal-footer sticky-bottom bg-white justify-content-between px-5">
+                    <div>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                    {{-- <div>
+                        <button type="button" class="btn btn-light border rounded-1" data-bs-toggle="modal"
+                            data-bs-target="#allot-vehicle-driver">Allot My Driver/Supplier</button>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Change driver close --}}
+
     {{-- Send to Associate --}}
     <div class="modal fade" id="allot-send-to-associate" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -1752,6 +1840,74 @@
         </div>
     </div>
     {{-- Advance Purchase Payment close --}}
+    {{-- Add Petty Cash --}}
+    <div class="modal fade" id="add-petty-cash" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0 h-100">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Petty Cash</h1>
+                        <small>Booking Id: <span> #50249209</span></small>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5">
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Petty Cash No: <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text rounded-0" id="basic-addon1">F-MC2526-</span>
+                            <input type="number" class="form-control" aria-describedby="basic-addon1"
+                                value="1" disabled>
+                            {{-- <input type="number" class="form-control  border-bottom" id=""> --}}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Date <span class="text-danger">*</span>
+                        </label>
+                        <input type="date" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Voucher Number</label>
+                        <input type="text" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Amount <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Transaction type? <span class="text-danger">*</span>
+                        </label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="isCredit" id="" checked>
+                            <label class="form-check-label" for="">
+                                Debit
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="isCredit" id="">
+                            <label class="form-check-label" for="">
+                                Credit
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Remarks </label>
+                        <textarea class="form-control" rows="3" name="" id=""></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
+                    <div>
+                        <button type="button" class="btn btn-primary border" id="">Submit</button>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Add Petty Cash close --}}
     {{-- Cancel duty --}}
     <div class="modal fade" id="cancel-duty" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -2024,11 +2180,11 @@
                                             ${
                                                 response.label_details && response.label_details.length > 0
                                                 ? response.label_details.map(label => `
-                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="py-1 px-3 rounded-5 me-1"
-                                                                                                                                                                                                                                                                                                                                                                                                                                    style="background-color:${label.label_color}; color:black;">
-                                                                                                                                                                                                                                                                                                                                                                                                                                    ${label.label_name}
-                                                                                                                                                                                                                                                                                                                                                                                                                                </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                            `).join('')
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="py-1 px-3 rounded-5 me-1"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="background-color:${label.label_color}; color:black;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ${label.label_name}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    `).join('')
                                                 : '<span class="text-secondary">NA</span>'
                                             }
                                         </td>
