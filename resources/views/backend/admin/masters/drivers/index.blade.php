@@ -159,6 +159,10 @@
                                                     data-bs-target="#activity-log">View Activity Logs</a>
                                             </li>
                                             <li>
+                                                <a class="dropdown-item" href="{{ route('mydrivers.show') }}">View
+                                                    Driver</a>
+                                            </li>
+                                            <li>
                                                 <a class="dropdown-item"
                                                     href="{{ route('mydrivers.edit', $data->id) }}">Edit</a>
                                             </li>

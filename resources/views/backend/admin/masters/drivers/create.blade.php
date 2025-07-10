@@ -29,10 +29,16 @@
                     </div>
                     <div class="mb-3 validator-error">
                         <label for="image" class="form-label">Avatar </label>
-                        <div>
-                            <label for="image" class="btn shadow-sm border rounded-1">Choose File</label>
+                        <div id="choose-file-wrapper">
+                            <label for="image" class="btn shadow-sm border rounded-1" id="choose-file-btn">Choose
+                                File</label>
                             <input type="file" name="image" id="image" class="form-control"
                                 accept="image/png, image/gif, image/jpeg" style="display: none;">
+                        </div>
+                        <div id="image-preview-container" style="margin-top:10px; display:none;">
+                            <img id="image-preview" src="" alt="Image Preview"
+                                style="max-width: 150px; max-height: 150px;" class="mb-3" />
+                            <button type="button" class="btn btn-danger btn-sm" id="remove-image-btn">Remove</button>
                         </div>
                     </div>
 
@@ -411,6 +417,27 @@
     <script>
         $(document).ready(function() {
 
+            // image preview
+            $('#image').on('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#image-preview').attr('src', e.target.result);
+                        $('#image-preview-container').show();
+                        $('#choose-file-wrapper').hide(); // Hide choose file button
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            $('#remove-image-btn').on('click', function() {
+                $('#image').val('');
+                $('#image-preview').attr('src', '');
+                $('#image-preview-container').hide();
+                $('#choose-file-wrapper').show(); // Show choose file button again
+            });
+
             $.validator.addMethod("validMobile", function(value, element) {
                 return this.optional(element) || /^[0-9]{10}$/.test(value);
             }, "Please enter a valid 10-digit number");
@@ -476,11 +503,13 @@
                 errorClass: "error-message text-danger",
                 highlight: function(element) {
                     $(element).addClass("is-invalid");
-                    $(element).closest(".validator-error").find("label").css("color", "red"); // Fixed selector
+                    $(element).closest(".validator-error").find("label").css("color",
+                        "red"); // Fixed selector
                 },
                 unhighlight: function(element) {
                     $(element).removeClass("is-invalid");
-                    $(element).closest(".validator-error").find("label").css("color", "black"); // Fixed selector
+                    $(element).closest(".validator-error").find("label").css("color",
+                        "black"); // Fixed selector
                 },
                 invalidHandler: function(event, validator) {
                     if (validator.errorList.length) {
@@ -523,7 +552,7 @@
                                             <div class="panel border rounded">
                                                 <div class="panel-heading bg-light p-3">Addresses</div>
                                                 <div class="panel-body p-3">
-                                                    
+
                                                     <div class="mb-3 validator-error">
                                                         <label for="address_type${childCount}" class="form-label">Type</label>
                                                         <select class="form-select border-bottom"

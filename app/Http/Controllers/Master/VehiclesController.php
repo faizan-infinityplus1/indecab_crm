@@ -41,6 +41,7 @@ class VehiclesController extends Controller
     // }
     public function createOrUpdate(Request $request)
     {
+        dd($request->all());
         $vehicleId = $request->vehicleId;
         $validator = Validator::make(
             $request->all(),

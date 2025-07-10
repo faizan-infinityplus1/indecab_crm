@@ -114,7 +114,7 @@ class MyDriversController extends Controller
                 'extra_duty_second' => $request->extra_duty_second,
                 'extra_duty_third' => $request->extra_duty_third,
                 'extra_duty_fourth' => $request->extra_duty_fourth,
-                'extra_duty_fifth' =>  $request->extra_duty_fifth,
+                'extra_duty_fifth' => $request->extra_duty_fifth,
                 'license_no' => $request->license_no,
                 'license_valid_upto' => $request->license_valid_upto,
                 'police_card_number' => $request->license_no,
@@ -189,7 +189,7 @@ class MyDriversController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
-                } 
+                }
             }
 
             MstDriverFile::insert($driverFileData);
@@ -212,7 +212,7 @@ class MyDriversController extends Controller
         $mstDriverDeduction = MstDriverDeduction::active()->with('mstDriver')->where('driver_id', $request->id)->get();
         $mstDriverFile = MstDriverFile::active()->with('mstDriver')->where('driver_id', $request->id)->get();
 
-        return view('backend.admin.masters.drivers.edit',compact('particularMstDriver','mstDriverAddress','mstDriverDeduction','mstDriverFile'));
+        return view('backend.admin.masters.drivers.edit', compact('particularMstDriver', 'mstDriverAddress', 'mstDriverDeduction', 'mstDriverFile'));
     }
 
     public function update(Request $request)
@@ -280,8 +280,8 @@ class MyDriversController extends Controller
                 $filePath = $file->store('mydriver-images', 'public');
             }
             $driverId = MstMyDriver::where('id', $request->id)->firstOrFail();
-          
-            
+
+
             $driverId->update([
                 'name' => $request->name,
                 'image' => $filePath,
@@ -307,7 +307,7 @@ class MyDriversController extends Controller
                 'extra_duty_second' => $request->extra_duty_second,
                 'extra_duty_third' => $request->extra_duty_third,
                 'extra_duty_fourth' => $request->extra_duty_fourth,
-                'extra_duty_fifth' =>  $request->extra_duty_fifth,
+                'extra_duty_fifth' => $request->extra_duty_fifth,
                 'license_no' => $request->license_no,
                 'license_valid_upto' => $request->license_valid_upto,
                 'police_card_number' => $request->license_no,
@@ -488,5 +488,10 @@ class MyDriversController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to delete data.'], 500);
         }
+    }
+
+    public function showDriver()
+    {
+        return view('backend.admin.masters.drivers.show');
     }
 }

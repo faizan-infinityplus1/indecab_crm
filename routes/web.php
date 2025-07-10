@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\AdminAuth\LoginController;
+use App\Http\Controllers\Business\BusinessSettingController;
 use App\Http\Controllers\Master\CustomersPeopleController;
 use App\Http\Controllers\Operations\BillingController;
 use App\Http\Controllers\ProfileController;
@@ -100,6 +101,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('/drivers/delete/addresses/{id}', [MyDriversController::class, 'deleteAddresses'])->name('mydrivers.delete.addresses');
     Route::delete('/drivers/delete/deductions/{id}', [MyDriversController::class, 'deleteDeductions'])->name('mydrivers.delete.deductions');
     Route::delete('/drivers/delete/files/{id}', [MyDriversController::class, 'deleteFiles'])->name('mydrivers.delete.files');
+    Route::get("/drivers/show", [MyDriversController::class, "showDriver"])
+        ->name('mydrivers.show');
 
 
     Route::get('/vehicles', [VehiclesController::class, 'index'])->name('vehicles.index');
@@ -196,7 +199,7 @@ Route::middleware('auth:admin')->group(function () {
     // Store Allot Duties Data
     Route::post('/store-vehicle-duty/{id}', [DutyController::class, 'storeVehicleDuty'])->name('store.vehicle.duty');
     Route::post('/duty-store-supplier/{id}', [DutyController::class, 'storeSupplierDuty'])->name('store.supplier.duty');
-    
+
     // Clear Allotment
     Route::get('/clear-allotment/{id}', [DutyController::class, 'clearAllotment'])->name('duty.clear.allotment');
 
@@ -228,6 +231,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::get("/purchased-payment", [OperationController::class, "PurchasedPayment"]);
     Route::get("/billing", [BillingController::class, "billing"])->name('billing');
     Route::get("/billing/invoice", [BillingController::class, "invoice"])->name('invoice');
+
+
+    Route::get('/business-setting', [BusinessSettingController::class, 'index'])->name('businessSetting.index');
 });
 
 
