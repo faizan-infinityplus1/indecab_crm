@@ -329,3 +329,15 @@ ul.dropdown-menu.dropdown-menu-end {
 .data-row:hover .booking-status-container button {
     display: block;
 }
+
+/* Hide print-section by default */
+#print-section {
+    display: none;
+}
+
+/* Show print-section only when printing */
+@media print {
+    #print-section {
+        display: block !important;
+    }
+}

@@ -1356,7 +1356,7 @@
 
                 </div>
                 <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
-                    <button type="submit" class="btn btn-primary rounded-1">Print</button>
+                    <button type="button" class="btn btn-primary rounded-1" id="print-btn">Print</button>
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -2046,6 +2046,11 @@
     {{-- Cancel duty close --}}
 
 
+    <div id="print-section">
+        hi
+    </div>
+
+
 @endsection
 
 
@@ -2070,7 +2075,23 @@
             }
         }
 
+
         $(document).ready(function() {
+            $('#print-btn').on('click', function() {
+                var printContents = document.getElementById('print-section').innerHTML;
+                var printWindow = window.open('', '', 'height=600,width=800');
+                printWindow.document.write('<html><head><title> </title>');
+                printWindow.document.write(
+                    '<link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">'
+                ); // Optional: add your CSS
+                printWindow.document.write('</head><body>');
+                printWindow.document.write(printContents);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+                printWindow.focus();
+                printWindow.print();
+                printWindow.close();
+            });
             $('#labelsDuty').select2({
                 dropdownParent: $('#add-remove-lable'),
                 placeholder: "Select an Option",
@@ -2180,11 +2201,11 @@
                                             ${
                                                 response.label_details && response.label_details.length > 0
                                                 ? response.label_details.map(label => `
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="py-1 px-3 rounded-5 me-1"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="background-color:${label.label_color}; color:black;">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ${label.label_name}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    `).join('')
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="py-1 px-3 rounded-5 me-1"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    style="background-color:${label.label_color}; color:black;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ${label.label_name}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            `).join('')
                                                 : '<span class="text-secondary">NA</span>'
                                             }
                                         </td>
