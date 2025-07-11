@@ -1293,8 +1293,8 @@
                                 </div>
                             </form>
                         </div>
+                        <!-- Purchase settings content here -->
                         <div role="tabpanel" class="tab-pane" id="settings-purchase">
-                            <!-- Purchase settings content here -->
                             <form action="" class="mt-3">
                                 <div class="form-group mb-3">
                                     <div class="checkbox">
@@ -1601,8 +1601,8 @@
                                 </div>
                             </form>
                         </div>
+                        <!-- Driver Allowance settings content here -->
                         <div role="tabpanel" class="tab-pane" id="settings-driver-allowance">
-                            <!-- Driver Allowance settings content here -->
                             <form action="" class="mt-3">
                                 <div class="row">
                                     <div class="col-12">
@@ -2254,8 +2254,8 @@
                                 </div>
                             </form>
                         </div>
+                        <!-- Notifications settings content here -->
                         <div role="tabpanel" class="tab-pane" id="settings-notifications">
-                            <!-- Notifications settings content here -->
                             <form action="" class="mt-3">
                                 <div class="row">
                                     <div class="col-12">
@@ -2397,21 +2397,300 @@
                                 </div>
                             </form>
                         </div>
+                        <!-- Email Templates settings content here -->
                         <div role="tabpanel" class="tab-pane" id="settings-email-templates">
-                            <!-- Email Templates settings content here -->
-                            h6
+                            <form action="" class="mt-3">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="panel border rounded mb-3">
+                                            <div class="panel-heading bg-light p-3">
+                                                Booking Confirmation
+                                            </div>
+                                            <div class="panel-body p-3 bg-body rounded">
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Header</label>
+                                                    <textarea id="summernote" name=""></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Footer</label>
+                                                    <textarea id="summernote1" name=""></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel border rounded mb-3">
+                                            <div class="panel-heading bg-light p-3">
+                                                Duty Allotment - To Customer
+                                            </div>
+                                            <div class="panel-body p-3 bg-body rounded">
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Header</label>
+                                                    <textarea id="summernote2" name=""></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Footer</label>
+                                                    <textarea id="summernote3" name=""></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel border rounded mb-3">
+                                            <div class="panel-heading bg-light p-3">
+                                                Duty Allotment - To Supplier
+                                            </div>
+                                            <div class="panel-body p-3 bg-body rounded">
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Header</label>
+                                                    <textarea id="summernote4" name=""></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Footer</label>
+                                                    <textarea id="summernote5" name=""></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel border rounded mb-3">
+                                            <div class="panel-heading bg-light p-3">
+                                                Duty/Booking Cancellation
+                                            </div>
+                                            <div class="panel-body p-3 bg-body rounded">
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Header</label>
+                                                    <textarea id="summernote6" name=""></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Footer</label>
+                                                    <textarea id="summernote7" name=""></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel border rounded mb-3">
+                                            <div class="panel-heading bg-light p-3">
+                                                Invoice To Customer
+                                            </div>
+                                            <div class="panel-body p-3 bg-body rounded">
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Header</label>
+                                                    <textarea id="summernote8" name=""></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Footer</label>
+                                                    <textarea id="summernote9" name=""></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel border rounded mb-3">
+                                            <div class="panel-heading bg-light p-3">
+                                                Payment Request
+                                            </div>
+                                            <div class="panel-body p-3 bg-body rounded">
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Header</label>
+                                                    <textarea id="summernote10" name=""></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Footer</label>
+                                                    <textarea id="summernote11" name=""></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel border rounded mb-3">
+                                            <div class="panel-heading bg-light p-3">
+                                                Receipt To Customer
+                                            </div>
+                                            <div class="panel-body p-3 bg-body rounded">
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Header</label>
+                                                    <textarea id="summernote12" name=""></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Footer</label>
+                                                    <textarea id="summernote13" name=""></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel border rounded mb-3">
+                                            <div class="panel-heading bg-light p-3">
+                                                Purchase Invoice To Supplier
+                                            </div>
+                                            <div class="panel-body p-3 bg-body rounded">
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Header</label>
+                                                    <textarea id="summernote14" name=""></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Footer</label>
+                                                    <textarea id="summernote15" name=""></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel border rounded mb-3">
+                                            <div class="panel-heading bg-light p-3">
+                                                Duty - Request Feedback
+                                            </div>
+                                            <div class="panel-body p-3 bg-body rounded">
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Header</label>
+                                                    <textarea id="summernote16" name=""></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Footer</label>
+                                                    <textarea id="summernote17" name=""></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="bg-light mb-3 p-3">
+                                            <p class="mb-3">
+                                                <strong>
+                                                    What is header/footer for email?
+                                                </strong>
+                                            </p>
+                                            <p>
+                                                While sending different types of email to your customer if you would like to
+                                                add the custom salutation, message etc, then use header/footer fields for
+                                                respective email types.
+                                            </p>
+                                            <p>
+                                                Below is the previw of where in email your custom header/footer would be
+                                                placed.
+                                            </p>
+                                            <img src="{{ asset('admin/images/email_template_explaination.jpg') }}"
+                                                alt="" class="mb-3">
+                                            <p>
+                                                <i>
+                                                    Default header/footer text in emails generated by Indecab are based on
+                                                    industry standard and have been tested across various segment of
+                                                    audiences.
+                                                </i>
+                                            </p>
+                                            <p class="mb-3">
+                                                <strong>
+                                                    Where should I add email signature?
+                                                </strong>
+                                            </p>
+                                            <p>
+                                                For different companies of yours, there might be different signature, hence
+                                                we encourage you to enter signature under <a href="#"
+                                                    class="text-decoration-none">company profiles over here</a>.
+                                            </p>
+                                            <p>
+                                                Please <strong>DO NOT</strong> add signature in the footer field.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-start gap-2">
+                                        <button type="submit" class="btn btn-primary rounded-1">
+                                            Save Changes
+                                        </button>
+                                        <button type="button" class="btn btn-danger rounded-1"
+                                            data-bs-dismiss="modal">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+                        <!-- SMS Templates settings content here -->
                         <div role="tabpanel" class="tab-pane" id="settings-sms-templates">
-                            <!-- SMS Templates settings content here -->
                             h7
                         </div>
+                        <!-- WhatsApp Templates settings content here -->
                         <div role="tabpanel" class="tab-pane" id="settings-wapp-templates">
-                            <!-- WhatsApp Templates settings content here -->
                             h8
                         </div>
+                        <!-- Others settings content here -->
                         <div role="tabpanel" class="tab-pane" id="settings-others">
-                            <!-- Others settings content here -->
                             <form action="" class="mt-3">
+                                <div class="form-group mb-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="true" name="" id="">
+                                            Force OTP verification while login for all members of the business
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="name" class="control-label">Default customer</label>
+                                    <select class="form-select border-bottom" name="customer_id" id="customer"
+                                        value="{{ old('customer_id', $booking->customer_id ?? '') }}">
+
+                                        <option>Select customer</option>
+                                        @foreach ($customers as $customer)
+                                            <option value="{{ $customer->id }}" data-name="{{ $customer->name }}"
+                                                {{ $customer->id == old('customer_id', $booking->customer_id ?? '') ? 'selected' : '' }}>
+                                                {{ $customer->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <div class="mb-3 validator-error">
+                                        <label for="" class="form-label">Default dispatch center</label>
+                                        <select class="form-select border-bottom" aria-label="Default select example"
+                                            name="" id="">
+                                            <option value="">(Select One)</option>
+                                        </select>
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="mb-3 validator-error">
+                                        <label for="" class="form-label">Default feedback form</label>
+                                        <select class="form-select border-bottom" aria-label="Default select example"
+                                            name="" id="">
+                                            <option value="">(Select One)</option>
+                                            <option value="automatic">Mumbai Cab Service </option>
+                                        </select>
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="mb-3 validator-error">
+                                        <label for="" class="form-label">Fuel dates & numbering</label>
+                                        <select class="form-select border-bottom" aria-label="Default select example"
+                                            name="" id="">
+                                            <option value="">(Select One)</option>
+                                            <option value="automatic">Automatic</option>
+                                            <option value="manual">Manual</option>
+                                        </select>
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="mb-3 validator-error">
+                                        <label for="" class="form-label">Petty Cash Numbering</label>
+                                        <select class="form-select border-bottom" aria-label="Default select example"
+                                            name="" id="">
+                                            <option value="">(Select One)</option>
+                                            <option value="automatic">Automatic</option>
+                                            <option value="manual">Manual</option>
+                                        </select>
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="mb-3 validator-error">
+                                        <label for="" class="form-label">Vehicle Expenses Numbering</label>
+                                        <select class="form-select border-bottom" aria-label="Default select example"
+                                            name="" id="">
+                                            <option value="">(Select One)</option>
+                                            <option value="automatic">Automatic</option>
+                                            <option value="manual">Manual</option>
+                                        </select>
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="true" name="" id="">
+                                            Auto select all contacts when sending sms/whatsapp/email
+                                        </label>
+                                    </div>
+                                </div>
 
                                 {{-- Auto CC emails --}}
                                 <div class="row">
@@ -2665,9 +2944,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-start gap-2">
-                                        <button type="submit" class="btn btn-primary rounded-1">Save Changes</button>
+                                        <button type="submit" class="btn btn-primary rounded-1">
+                                            Save Changes
+                                        </button>
                                         <button type="button" class="btn btn-danger rounded-1"
-                                            data-bs-dismiss="modal">Cancel</button>
+                                            data-bs-dismiss="modal">
+                                            Cancel
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -2693,7 +2976,18 @@
                 ]
             });
             $(".dropdown-toggle").dropdown();
-
+            for (let i = 0; i <= 17; i++) {
+                $('#summernote' + (i === 0 ? '' : i)).summernote({
+                    toolbar: [
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['media', ['picture', 'link']]
+                    ],
+                    placeholder: 'Type your text...',
+                    tabsize: 2,
+                    height: 80
+                });
+            }
         });
     </script>
 @endsection
