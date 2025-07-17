@@ -1274,70 +1274,62 @@
                     <div class="bg-light mb-3 p-3">
                         <form action="">
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Add customer name
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="show-customer"
+                                    value="customer">
+                                <label class="form-check-label" for="show-customer">Add customer name</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Add booked by name
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="show-bookedby"
+                                    value="bookedby">
+                                <label class="form-check-label" for="show-bookedby">Add booked by name</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Add all passenger names and numbers
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="show-passenger"
+                                    value="passenger">
+                                <label class="form-check-label" for="show-passenger">Add all passenger names and
+                                    numbers</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Hide duty type name
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="hide-dutytype"
+                                    value="hide-dutytype">
+                                <label class="form-check-label" for="hide-dutytype">Hide duty type name</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Hide vehicle group name
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="hide-vehgroup"
+                                    value="hide-vehgroup">
+                                <label class="form-check-label" for="hide-vehgroup">Hide vehicle group name</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Hide vehicle name
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="hide-vehicle"
+                                    value="hide-vehicle">
+                                <label class="form-check-label" for="hide-vehicle">Hide vehicle name</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Hide remarks
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="hide-remarks"
+                                    value="hide-remarks">
+                                <label class="form-check-label" for="hide-remarks">Hide remarks</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Add garage start time
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="show-garage-time"
+                                    value="garage-time">
+                                <label class="form-check-label" for="show-garage-time">Add garage start time</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Add released km/time section
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="show-released-km-time"
+                                    value="released-km-time">
+                                <label class="form-check-label" for="show-released-km-time">Add released km/time
+                                    section</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="add_entire_booking_date_range">
-                                <label class="form-check-label" for="add_entire_booking_date_range">
-                                    Add entire booking date range
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="show-booking-dates"
+                                    value="booking-dates">
+                                <label class="form-check-label" for="show-booking-dates">Add entire booking date
+                                    range</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Hide business letter head
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="hide-letterhead"
+                                    value="hide-letterhead">
+                                <label class="form-check-label" for="hide-letterhead">Hide business letter head</label>
                             </div>
                             <p>Duty Slip Design</p>
                             <div class="row">
@@ -2046,8 +2038,223 @@
     {{-- Cancel duty close --}}
 
 
+    <!-- This is the hidden duty slip -->
     <div id="print-section">
-        hi
+        <div class="print-option-letterhead">
+            <div class="d-flex justify-content-start align-items-center gap-5">
+                <div class="logo_container">
+                    <img src="{{ asset('admin/images/company_logo.jpeg') }}" alt="">
+                </div>
+                <div>
+                    <h1>
+                        Mumbai Cab Service
+                    </h1>
+                    <address>
+                        Plot No 8, Durga Sewa sang, Shivaji Nagar, Govandi, Mumbai - 400043
+                        Email: mumbaicabservice76@gmail.com | Phone: 9619900011
+                    </address>
+                </div>
+            </div>
+        </div>
+        <h4 class="heading">DUTY SLIP</h4>
+        <div class="row">
+            <div class="col-6">
+                <ul class="ps-0">
+                    <li class="print-option-customer">
+                        <b>
+                            Customer:
+                        </b>
+                        Muneer
+                    </li>
+                    <li class="print-option-bookedby">
+                        <b>
+                            Booked By:
+                        </b>
+                        Munner - 07304094851
+                    </li>
+                    <li class="print-option-passenger">
+                        <b>
+                            Passenger:
+                        </b>
+                        Munner - 07304094851
+                    </li>
+                    <li>
+                        <b>
+                            Date:
+                        </b>
+                        01-01-2024 to 01-01-2024
+                    </li>
+                    <li>
+                        <b>
+                            Reporting Time:
+                        </b>
+                        00:45
+                    </li>
+                    <li>
+                        <b>
+                            Reporting Address:
+                        </b>
+                        asdas
+                    </li>
+                    <li>
+                        <b>
+                            Drop Address:
+                        </b>
+                        dasdasdsad
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6">
+                <ul class="ps-0">
+                    <li>
+                        <b>
+                            Booking Id:
+                        </b>
+                        #91077273
+                    </li>
+                    <li class="print-option-dutytype">
+                        <b>
+                            Duty Type:
+                        </b>
+                        300KM per day ( Mumbai - Yavatmal )
+                    </li>
+                    <li class="print-option-vehgroup">
+                        <b>
+                            Vehicle Group:
+                        </b>
+                        Innova Crysta (yellow name plate)
+                    </li>
+                    <li class="print-option-vehicle">
+                        <b>
+                            Vehicle:
+                        </b>
+                        Innova Crysta MH03DK2539
+                    </li>
+                    <li>
+                        <b>
+                            Driver:
+                        </b>
+                        Test (8928113776)
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <table cellpadding="5" cellspacing="0" width="100%" class="mb-3">
+            <tr>
+                <th rowspan="2" style="text-align: left; vertical-align: bottom;">Reporting Date</th>
+                <th rowspan="2" style="text-align: left; vertical-align: bottom;">G. Time</th>
+                <th colspan="2">Start</th>
+                <th colspan="2">End</th>
+                <th colspan="2">Total</th>
+                <th colspan="2">Extra</th>
+                <th rowspan="2" style="vertical-align: bottom;">Signature</th>
+            </tr>
+            <tr>
+                <td>Kilometers</td>
+                <td>Time</td>
+                <td>Kilometers</td>
+                <td>Time</td>
+                <td>Kilometers</td>
+                <td>Time</td>
+                <td>Kilometers</td>
+                <td>Time</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><b>01/01/2024 to 01/01/2024</b></td>
+                <td style="text-align: left;">08:00 AM</td>
+                <td>100</td>
+                <td>08:30</td>
+                <td>180</td>
+                <td>17:00</td>
+                <td>80</td>
+                <td>8h 30m</td>
+                <td>10</td>
+                <td>1h</td>
+                <td></td>
+            </tr>
+        </table>
+
+        <table cellpadding="5" cellspacing="0" width="100%" class="mb-3">
+            <tr>
+                <th style="text-align: left;">Item</th>
+                <th style="text-align: left;">Amount</th>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Toll & Parking (T)</td>
+                <td style="text-align: left;"></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Toll & Parking</td>
+                <td style="text-align: left;"></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">worli sea link</td>
+                <td style="text-align: left;"></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">MCD</td>
+                <td style="text-align: left;"></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Toll</td>
+                <td style="text-align: left;"></td>
+            </tr>
+        </table>
+        <table cellpadding="5" cellspacing="0" width="100%" class="mb-3">
+            <tr>
+                <th colspan="5">Item</th>
+            </tr>
+            <tr>
+                <th style="text-align: left;">
+                    Date
+                </th>
+                <th>
+                    Reporting KM
+                </th>
+                <th>
+                    Reporting Time
+                </th>
+                <th>
+                    Released KM
+                </th>
+                <th>
+                    Released Time
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: left;">
+                    <b>
+                        01/01/2024 to 01/01/2024
+                    </b>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <table cellpadding="5" cellspacing="0" width="100%" class="mb-3">
+            <tr>
+                <td colspan="2" style="text-align: left;">
+                    <b> Feedback: </b>Very Poor / Poor / Good / Very Good / Excellent
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: left; vertical-align: top; height: 100px;">Remarks</th>
+                <th style="text-align: left; vertical-align: top; height: 100px;">Signature</th>
+            </tr>
+            <tr>
+                <th colspan="2" style="text-align: left; vertical-align: top; height: 100px;">
+                    Instructions for next day use:
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2" style="text-align: left;">
+                    Route:
+                </th>
+            </tr>
+        </table>
     </div>
 
 
@@ -2074,24 +2281,47 @@
                 console.log('cancel');
             }
         }
-
+        // document.getElementById('print-btn').addEventListener('click', function() {
+        //     window.print();
+        // });
 
         $(document).ready(function() {
+
+
             $('#print-btn').on('click', function() {
-                var printContents = document.getElementById('print-section').innerHTML;
-                var printWindow = window.open('', '', 'height=600,width=800');
-                printWindow.document.write('<html><head><title> </title>');
-                printWindow.document.write(
-                    '<link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">'
-                ); // Optional: add your CSS
-                printWindow.document.write('</head><body>');
-                printWindow.document.write(printContents);
-                printWindow.document.write('</body></html>');
-                printWindow.document.close();
-                printWindow.focus();
-                printWindow.print();
-                printWindow.close();
+                // Remove all print-show-* and print-hide-* classes
+                $('body').removeClass(function(index, className) {
+                    return (className.match(/(^|\s)print-show-\S+/g) || []).join(' ');
+                });
+                $('body').removeClass(function(index, className) {
+                    return (className.match(/(^|\s)print-hide-\S+/g) || []).join(' ');
+                });
+
+                // For each checkbox, add class if checked
+                $('.print-toggle').each(function() {
+                    var val = $(this).val();
+                    if ($(this).is(':checked')) {
+                        if (val.startsWith('hide-')) {
+                            $('body').addClass('print-hide-' + val.replace('hide-', ''));
+                        } else {
+                            $('body').addClass('print-show-' + val);
+                        }
+                    }
+                });
+
+                window.print();
+
+                setTimeout(function() {
+                    $('body').removeClass(function(index, className) {
+                        return (className.match(/(^|\s)print-show-\S+/g) || []).join(' ');
+                    });
+                    $('body').removeClass(function(index, className) {
+                        return (className.match(/(^|\s)print-hide-\S+/g) || []).join(' ');
+                    });
+                }, 1000);
             });
+
+
             $('#labelsDuty').select2({
                 dropdownParent: $('#add-remove-lable'),
                 placeholder: "Select an Option",
@@ -2201,11 +2431,11 @@
                                             ${
                                                 response.label_details && response.label_details.length > 0
                                                 ? response.label_details.map(label => `
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="py-1 px-3 rounded-5 me-1"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    style="background-color:${label.label_color}; color:black;">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ${label.label_name}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            `).join('')
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="py-1 px-3 rounded-5 me-1"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="background-color:${label.label_color}; color:black;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ${label.label_name}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    `).join('')
                                                 : '<span class="text-secondary">NA</span>'
                                             }
                                         </td>
