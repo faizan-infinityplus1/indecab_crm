@@ -16,6 +16,7 @@ class MstVehicle extends Model
         'vehicle_group_id',
         'color',
         'driver_id',
+        'supplier_id',
         'vehicle_code',
         'branches',
         'loan_emi_amt',

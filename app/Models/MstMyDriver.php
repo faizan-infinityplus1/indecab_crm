@@ -10,6 +10,7 @@ class MstMyDriver extends Model
     protected $fillable = [
         'name',
         'image',
+        'supplier_id',
         'mobile_no',
         'alternate_mobile_no',
         'pan_no',

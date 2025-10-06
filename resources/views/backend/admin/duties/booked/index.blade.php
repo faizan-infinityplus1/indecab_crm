@@ -158,15 +158,13 @@
                                     @endforeach
                                 </td>
                                 <td>{{ $data->vehicleGroup->name }}</td>
-                                <td>
-                                    @if ($data->vehicleGroup && $data->vehicleGroup->vehicles->count())
-                                        @foreach ($data->vehicleGroup->vehicles as $vehicle)
-                                            <div>{{ $vehicle->model_name ?? 'Unnamed Vehicle' }}</div>
-                                        @endforeach
-                                    @else
-                                        <span class="text-muted">No Vehicle Found</span>
-                                    @endif
-                                </td>
+                                @if ($data->allotVehicle != null)
+                                    <td>
+                                        {{ $data->allotVehicle->model_name }}
+                                    </td>
+                                @else
+                                    <td>-</td>
+                                @endif
                                 <td id="driver_supplier">
                                     {{ $data->supplier->name ?? '' }}
                                 </td>
@@ -246,7 +244,7 @@
                                                         data-id="{{ $data->id }}">Details</a></li>
                                                 <li>
                                                     <a href="#" class="dropdown-item" data-bs-toggle="modal"
-                                                        id="allot-duty-supporter" data-bs-target="#allot-duty-to-supplier"
+                                                        id="get_duty_supplier" data-bs-target="#allot-duty-to-supplier"
                                                         data-id="{{ $data->id }}">Add Supplier Details</a>
                                                 </li>
                                                 <li>
@@ -745,137 +743,8 @@
     <div class="modal fade" id="allot-duty-to-supplier" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
-                <div class="modal-header px-5 sticky-top bg-white">
-                    <div>
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Allot Duty To Supplier - <span> Apple Travels
-                                Solutions</span></h1>
-                    </div>
-                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-                </div>
-                <div class="modal-body px-5">
-                    <table class="table table-bordered table-striped table-hover">
-                        <tbody>
-                            <tr>
-                                <th class="fw-medium">ID</th>
-                                <td>#50249209-4</td>
-                                <th class="fw-medium">Status</th>
-                                <td> Booked</td>
-                            </tr>
-                            <tr>
-                                <th class="fw-medium">Start Date</th>
-                                <td>31-03-2025</td>
-                                <th class="fw-medium">End Date</th>
-                                <td>31-03-2025</td>
-                            </tr>
-                            <tr>
-                                <th class="fw-medium">Garage Start Time</th>
-                                <td> 07:00</td>
-                                <th class="fw-medium">Reporting Time</th>
-                                <td>08:00</td>
-                            </tr>
-                            <tr>
-                                <th class="fw-medium">From City</th>
-                                <td> Mumbai</td>
-                                <th class="fw-medium">To City</th>
-                                <td> Mumbai</td>
-                            </tr>
-                            <tr>
-                                <th class="fw-medium">Duty Type</th>
-                                <td colspan="3">8H 80KMs</td>
-                            </tr>
-                            <tr>
-                                <th class="fw-medium">Vehicle Group</th>
-                                <td colspan="3">Sedan</td>
-                            </tr>
-                            <tr>
-                                <th class="fw-medium">Reporting Address</th>
-                                <td colspan="3">Mumbai Airport T1</td>
-                            </tr>
-                            <tr>
-                                <th class="fw-medium">Drop Address</th>
-                                <td colspan="3"><span class="text-secondary">NA</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    {{-- <button type="reset" class="btn btn-light border">Send to Associate</button> --}}
-                    <p>Fill in the form below with details of supplier's driver and vehicle.</p>
-                    <form action="">
-                        <div class="bg-light mb-3 p-3">
-                            <p>Quick selection (based on your previous manual allotment history for selected supplier):</p>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="name" class="control-label mb-1">Supplier Vehicles</label>
-                                    <select class="form-select border-bottom" aria-label="Default select example"
-                                        name="base_city" id="base_city">
-                                        <option class="d-none" value="">Select an option</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="name" class="control-label mb-1">Supplier Drivers</label>
-                                    <select class="form-select border-bottom" aria-label="Default select example"
-                                        name="base_city" id="base_city">
-                                        <option class="d-none" value="">Select an option</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <label for="" class="form-label"> Vehicle Name</label>
-                                <input type="text" class="form-control  border-bottom" id="">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <label for="" class="form-label"> Vehicle Number</label>
-                                <input type="text" class="form-control  border-bottom" id="">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <label for="" class="form-label">Fuel Type</label>
-                                <select class="form-select border-bottom" aria-label="Default select example"
-                                    name="" id="">
-                                    <option value="selectOne">Select an option</option>
-                                    <option value="">Petrol</option>
-                                    <option value="">Diesel</option>
-                                    <option value="">CNG</option>
-                                    <option value="">Electric</option>
-                                </select>
-                                <span class="warning-msg-block"></span>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <label for="" class="form-label"> Driver Name</label>
-                                <input type="text" class="form-control  border-bottom" id="">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <label for="" class="form-label"> Driver Phone Number</label>
-                                <input type="text" class="form-control  border-bottom" id="">
-                                <span class="warning-msg-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="">
-                            <label class="form-check-label" for="">
-                                Copy same vehicle and driver details for all duties of this booking allotted to this
-                                supplier?
-                            </label>
-                        </div>
-                    </form>
+            <div class="modal-content rounded-0 border-0" id="allot_duty_supplier_content">
 
-                </div>
-                <div class="modal-footer justify-content-start px-5">
-                    <button type="button" class="btn btn-primary rounded-1">Allot</button>
-                    <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
-                </div>
             </div>
         </div>
     </div>
@@ -1248,28 +1117,28 @@
         $(document).ready(function() {
             const csrfToken = "{{ csrf_token() }}";
             // Duty Details Start Here
-            $(document).ready(function() {
-                let currentBookingId = null;
+            let currentBookingId = null;
 
-                // ✅ Initialize Select2 once
-                $('#labelsDuty').select2({
-                    dropdownParent: $('#add-remove-lable'),
-                    placeholder: "Select an Option",
-                    allowClear: true
-                });
-                $(document).on('click', '#allot_supporters', function() {
-                    // console.log('i m here');
-                    dutyId = $(this).data('id');
-                    console.log(dutyId);
-                    const fetchUrl = "{{ route('duty.allot.supporters', ['id' => ':id']) }}"
-                        .replace(
-                            ':id', dutyId);
-                    $.ajax({
-                        url: fetchUrl,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(response) {
-                            let html = `
+            // ✅ Initialize Select2 once
+            $('#labelsDuty').select2({
+                dropdownParent: $('#add-remove-lable'),
+                placeholder: "Select an Option",
+                allowClear: true
+            });
+
+            $(document).on('click', '#allot_supporters', function() {
+                // console.log('i m here');
+                dutyId = $(this).data('id');
+                console.log(dutyId);
+                const fetchUrl = "{{ route('duty.allot.supporters', ['id' => ':id']) }}"
+                    .replace(
+                        ':id', dutyId);
+                $.ajax({
+                    url: fetchUrl,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        let html = `
                                 <div class="modal-header px-5 sticky-top bg-white">
                         <div>
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Supporters</h1>
@@ -1291,135 +1160,133 @@
                         <button type="button" class="btn btn-primary rounded-1" id="allot_supporters_button">Allot</button>
                     </div>
                     `;
-                            $('#allot-supporters-content').html(html);
-                            let $select = $('#allot_supporters_s');
-                            const assignedIds = response.supporterAssign.map(s => s
-                                .supporter_id);
+                        $('#allot-supporters-content').html(html);
+                        let $select = $('#allot_supporters_s');
+                        const assignedIds = response.supporterAssign.map(s => s
+                            .supporter_id);
 
-                            // Append all supporters, mark selected if assigned
-                            response.supporter.forEach(function(supporter) {
-                                const isSelected = assignedIds.includes(
-                                    supporter.id) ? 'selected' : '';
-                                $select.append(
-                                    `<option value="${supporter.id}" ${isSelected}>${supporter.name}</option>`
-                                );
-                            });
-                            $(document).on('click', '#allot_supporters_button',
-                                function() {
-                                    console.log(dutyId, 'duty id');
-                                    const supporters = $('#allot_supporters_s')
-                                        .val();
-                                    const bookingId = dutyId;
-                                    const fetchUrl =
-                                        "{{ route('duty.update.supporters', ['id' => ':id']) }}"
-                                        .replace(
-                                            ':id', dutyId);
-                                    $.ajax({
-                                        url: fetchUrl,
-                                        type: 'POST',
-                                        data: {
-                                            _token: '{{ csrf_token() }}',
-                                            booking_id: bookingId,
-                                            supporters: supporters
-                                        },
-                                        success: function(response) {
-                                            location.reload();
-
-                                            console.log('i m here');
-                                        }
-                                    })
-                                });
-                            $('#allot_supporters_s').select2({
-                                dropdownParent: $('#allot-supporters'),
-                                placeholder: "Select an Option",
-                                allowClear: true
-                            });
-                        },
-                        error: function() {
-                            $('#duty-detail-detail').html(
-                                '<p class="text-danger">Failed to load details.</p>'
+                        // Append all supporters, mark selected if assigned
+                        response.supporter.forEach(function(supporter) {
+                            const isSelected = assignedIds.includes(
+                                supporter.id) ? 'selected' : '';
+                            $select.append(
+                                `<option value="${supporter.id}" ${isSelected}>${supporter.name}</option>`
                             );
-                        }
-                    });
+                        });
+                        $(document).on('click', '#allot_supporters_button',
+                            function() {
+                                console.log(dutyId, 'duty id');
+                                const supporters = $('#allot_supporters_s')
+                                    .val();
+                                const bookingId = dutyId;
+                                const fetchUrl =
+                                    "{{ route('duty.update.supporters', ['id' => ':id']) }}"
+                                    .replace(
+                                        ':id', dutyId);
+                                $.ajax({
+                                    url: fetchUrl,
+                                    type: 'POST',
+                                    data: {
+                                        _token: '{{ csrf_token() }}',
+                                        booking_id: bookingId,
+                                        supporters: supporters
+                                    },
+                                    success: function(response) {
+                                        location.reload();
 
-                });
-                // ✅ On label manage button click
-                $(document).on('click', '#manageLabels', function() {
-                    const dutyId = $(this).data('id');
-                    // console.log('Clicked label for duty:', dutyId);
-
-                    const fetchUrl = "{{ route('edit.duty.label', ['id' => ':id']) }}".replace(
-                        ':id', dutyId);
-
-                    $.ajax({
-                        url: fetchUrl,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(response) {
-                            // console.log('Booking data:', response.booking);
-                            currentBookingId = response.booking.id;
-                            labelArray = response.booking.labels;
-                            // labelArray = JSON.parse(response.booking.labels);
-                            // console.log('Parsed labelArray:', labelArray);
-                            labelArray = response.booking.labels ?
-                                response.booking.labels.split(',').map(label => label
-                                    .trim()) : [];
-                            console.log(labelArray);
-                            // ✅ Set selected options
-                            $('#labelsDuty').val(labelArray).trigger('change');
-
-                            // ✅ Now show the modal
-                            $('#add-remove-lable').modal('show');
-                            location.reload();
-                        },
-                        error: function() {
-                            $('#duty-detail-detail').html(
-                                '<p class="text-danger">Failed to load details.</p>'
-                            );
-                        }
-                    });
-                });
-
-                // ✅ On Save
-                $('#label_save').on('click', function() {
-                    // console.log('Save clicked');
-
-                    if (!currentBookingId) {
-                        console.error('Booking ID is not set!');
-                        return;
+                                        console.log('i m here');
+                                    }
+                                })
+                            });
+                        $('#allot_supporters_s').select2({
+                            dropdownParent: $('#allot-supporters'),
+                            placeholder: "Select an Option",
+                            allowClear: true
+                        });
+                    },
+                    error: function() {
+                        $('#duty-detail-detail').html(
+                            '<p class="text-danger">Failed to load details.</p>'
+                        );
                     }
+                });
 
-                    const fetchUrl = "{{ route('update.duty.label', ['id' => ':id']) }}".replace(
-                        ':id', currentBookingId);
-                    const labelData = $('#labelsDuty').val();
-                    // console.log(labelData);
+            });
 
-                    const payload = {
-                        _token: '{{ csrf_token() }}',
-                        booking_id: currentBookingId,
-                        labels: labelData
-                    };
+            // ✅ On label manage button click
+            $(document).on('click', '#manageLabels', function() {
+                const dutyId = $(this).data('id');
+                // console.log('Clicked label for duty:', dutyId);
 
-                    // console.log('Sending payload:', payload);
+                const fetchUrl = "{{ route('edit.duty.label', ['id' => ':id']) }}".replace(
+                    ':id', dutyId);
 
-                    $.ajax({
-                        url: fetchUrl,
-                        type: 'POST',
-                        dataType: 'json',
-                        data: payload,
-                        success: function(response) {
-                            // console.log('Saved:', response);
-                            $('#add-remove-lable').modal('hide');
-                            location.reload();
-                        },
-                        error: function(xhr) {
-                            console.error('Save failed:', xhr.responseText);
-                        }
-                    });
+                $.ajax({
+                    url: fetchUrl,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        // console.log('Booking data:', response.booking);
+                        currentBookingId = response.booking.id;
+                        labelArray = response.booking.labels;
+                        // labelArray = JSON.parse(response.booking.labels);
+                        // console.log('Parsed labelArray:', labelArray);
+                        labelArray = response.booking.labels ?
+                            response.booking.labels.split(',').map(label => label
+                                .trim()) : [];
+                        console.log(labelArray);
+                        // ✅ Set selected options
+                        $('#labelsDuty').val(labelArray).trigger('change');
+
+                        // ✅ Now show the modal
+                        $('#add-remove-lable').modal('show');
+                        location.reload();
+                    },
+                    error: function() {
+                        $('#duty-detail-detail').html(
+                            '<p class="text-danger">Failed to load details.</p>'
+                        );
+                    }
                 });
             });
 
+            // ✅ On Save
+            $('#label_save').on('click', function() {
+                // console.log('Save clicked');
 
+                if (!currentBookingId) {
+                    console.error('Booking ID is not set!');
+                    return;
+                }
+
+                const fetchUrl = "{{ route('update.duty.label', ['id' => ':id']) }}".replace(
+                    ':id', currentBookingId);
+                const labelData = $('#labelsDuty').val();
+                // console.log(labelData);
+
+                const payload = {
+                    _token: '{{ csrf_token() }}',
+                    booking_id: currentBookingId,
+                    labels: labelData
+                };
+
+                // console.log('Sending payload:', payload);
+
+                $.ajax({
+                    url: fetchUrl,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: payload,
+                    success: function(response) {
+                        // console.log('Saved:', response);
+                        $('#add-remove-lable').modal('hide');
+                        location.reload();
+                    },
+                    error: function(xhr) {
+                        console.error('Save failed:', xhr.responseText);
+                    }
+                });
+            });
 
             $('.open-detail-modal').on('click', function() {
                 const dutyId = $(this).data('id');
@@ -1524,11 +1391,9 @@
                                             ${
                                                 response.label_details && response.label_details.length > 0
                                                 ? response.label_details.map(label => `
-                                                                                                                                                                                                                                                                                                                                                        <span class="py-1 px-3 rounded-5 me-1"
-                                                                                                                                                                                                                                                                                                                                                            style="background-color:${label.label_color}; color:black;">
-                                                                                                                                                                                                                                                                                                                                                            ${label.label_name}
-                                                                                                                                                                                                                                                                                                                                                        </span>
-                                                                                                                                                                                                                                                                                                                                                    `).join('')
+                                                                                                                                                                                                                                                                                                                                                          <span class="py-1 px-3 rounded-5 me-1" style="background-color:${label.label_color}; color:black;">
+                                                                                                                                                                                                                                                                                                                                     ${label.label_name} </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        `).join('')
                                                 : '<span class="text-secondary">NA</span>'
                                             }
                                         </td>
@@ -1573,11 +1438,7 @@
                     }
                 });
             });
-
-
-
             // Duty Details End Here
-
             // Edit Duty Modal Start Here
             $('.edit-detail-modal').on('click', function() {
 
@@ -1763,13 +1624,11 @@
                         if (dutytypeSelect && Array.isArray(response.mst_duty_type)) {
                             dutytypeSelect.innerHTML =
                                 '<option value="">Select duty type</option>';
-
                             const selectedDutyType = response.booking?.duty_type?.id || null;
                             response.mst_duty_type.forEach(duty => {
                                 const option = document.createElement('option');
                                 option.value = duty.id;
                                 option.textContent = duty.duty_name;
-
                                 if (duty.id == selectedDutyType) {
                                     option.selected = true;
                                 }
@@ -1835,7 +1694,6 @@
                                     option.selected = true;
                                 }
                                 supplierdutytypeSelect.appendChild(option);
-
                             });
                         } else {
                             console.error('Select not found or invalid response');
@@ -1872,7 +1730,6 @@
                     supplier_vehicle_group: $('#supplier_vehicle_group').val(),
                     supplier_duty_type: $('#supplier_duty_type').val(),
                     booking_id: bookingId,
-                    // Add more fields as needed
                 };
                 // console.log(payload);
                 var updateDutyBooking = "{{ route('update.duty.booking', ['id' => ':id']) }}";
@@ -1991,11 +1848,11 @@
                                 <table class="table table-striped table-hover datatable" style="width:100%;">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Phone Number</th>
-                                            <th scope="col">Vehicle Number</th>
+                                            <th scope="col">Model</th>
+                                            <th scope="col">Vehicle No</th>
                                             <th scope="col">Group</th>
-                                            <th scope="col">City</th>
+                                            <th scope="col">Driver</th>
+                                            <th scope="col">Availability</th>
                                             <th style="display:none">Vehicle Id</th>
                                             <th style="display:none">Driver Id</th>
                                             <th style="display:none">Vehicle Group Id</th>
@@ -2006,11 +1863,11 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Phone Number</th>
-                                            <th>Vehicle Number</th>
-                                            <th>Group</th>
-                                            <th>City</th>
+                                            <th scope="col">Model</th>
+                                            <th scope="col">Vehicle No</th>
+                                            <th scope="col">Group</th>
+                                            <th scope="col">Driver</th>
+                                            <th scope="col">Availability</th>
                                             <th style="display:none">Vehicle Id</th>
                                             <th style="display:none">Driver Id</th>
                                             <th style="display:none">Vehicle Group Id</th>
@@ -2061,44 +1918,27 @@
             `;
 
                         $('#allot-duty-detail-content').html(html);
-
                         // Process vehicle data after modal HTML is ready
                         let vehicleOptions = '';
                         let vehicleTableRows = '';
                         let supplierOption = '';
                         let suppliervehicleTableRows = '';
                         // console.log(response);
-                        if (Array.isArray(response.supplier)) {
-                            response.supplier.forEach(s => {
-                                const supplierName = s.name ?? 'N/A';
-                                const phoneNo = s.phone_no ?? 'N/A';
-                                const vehNo = 'N/A';
-                                const supplierGroup = s.supplier_groups ?? 'N/A';
-                                const cities = s.cities ?? 'N/A';
-                                const documentStatus = 'N/A';
-                                // console.log(response.supplier, 'i m response supplier');
-                                suppliervehicleTableRows += `
-                                <tr data-id="${s.id}">
-                                    <td>${supplierName}</td>
-                                    <td>${phoneNo}</td>
-                                    <td>${vehNo}</td>
-                                    <td>${supplierGroup}</td>
-                                    <td>${cities}</td>
-                                    <td>${documentStatus}</td>
-                                </tr>`;
-                            });
-                        }
+                        console.log(response, 'My Vehicles Data');
+
+                        // Vehicle Data
                         if (Array.isArray(response.vehicle)) {
+                            console.log(response.vehicle);
                             response.vehicle.forEach(v => {
                                 // console.log(v, 'response v', v.vehicle_group_id);
                                 const vehicleId = v.id ?? 'N/A';
                                 const driverId = v.driver_id ?? 'N/A';
                                 const vehiclegroupId = v.vehicle_group_id ?? 'N/A';
-
                                 // const vehicleNo = v.vehicle_no ?? 'N/A';
                                 // const vehicleNo = v.mst_cat_veh_group?.name ?? 'N/A';
                                 const modelName = v.model_name ?? 'N/A';
                                 const driverName = v.mst_driver?.name ?? 'N/A';
+                                console.log(driverName);
                                 // const driverPhone = v.mst_driver?.mobile_no ?? 'N/A';
                                 const vehicleNo = v.vehicle_no ?? 'N/A';
                                 const groupName = v.mst_cat_veh_group?.name ?? 'N/A';
@@ -2119,6 +1959,28 @@
                                     <td style="display:none">${vehicleId}</td>
                                     <td style="display:none">${driverId}</td>
                                     <td style="display:none">${vehiclegroupId}</td>
+                                </tr>`;
+                            });
+                        }
+
+                        // Supplier Data
+                        if (Array.isArray(response.supplier)) {
+                            response.supplier.forEach(s => {
+                                const supplierName = s.name ?? 'N/A';
+                                const phoneNo = s.phone_no ?? 'N/A';
+                                const vehNo = 'N/A';
+                                const supplierGroup = s.supplier_groups ?? 'N/A';
+                                const cities = s.cities ?? 'N/A';
+                                const documentStatus = 'N/A';
+                                // console.log(response.supplier, 'i m response supplier');
+                                suppliervehicleTableRows += `
+                                <tr data-id="${s.id}">
+                                    <td>${supplierName}</td>
+                                    <td>${phoneNo}</td>
+                                    <td>${vehNo}</td>
+                                    <td>${supplierGroup}</td>
+                                    <td>${cities}</td>
+                                    <td>${documentStatus}</td>
                                 </tr>`;
                             });
                         }
@@ -2163,7 +2025,6 @@
                                     .draw(); // clear group column filter
                                 return;
                             }
-
                             // Extract only the group name (before the first '(')
                             const groupNameOnly = selectedText.split('(')[0].trim();
                             vehicleTable.columns(2).search(groupNameOnly)
@@ -2203,7 +2064,6 @@
                             const driverId = getText(rowData[6]);
                             const vehiclegroupId = getText(rowData[7]);
 
-
                             // AJAX request (uncomment when ready)
                             $.ajax({
                                 url: storeUrl,
@@ -2234,7 +2094,7 @@
                             const bookingId = response.booking.id;
 
                             const storeSupplierBaseUrl =
-                                "{{ route('store.supplier.duty', ['id' => '___ID___']) }}";
+                                "{{ route('store.supplier.duty.tr', ['id' => '___ID___']) }}";
 
                             const supplierId = response.supplier.id;
                             const storeSupplierUrl = storeSupplierBaseUrl.replace(
@@ -2242,6 +2102,7 @@
                                 bookingId);
 
                             const rowData = supplierTable.row(this).data();
+                            console.log(rowData, 'RowData');
                             // console.log(rowData, 'supplierTable');
                             if (!rowData) return;
 
@@ -2262,20 +2123,12 @@
                                     console.log(response);
                                     if (response.supplier && response
                                         .supplier.name) {
-                                        console.log('if');
-                                        driverSupplier = document
-                                            .getElementById(
-                                                'driver_supplier');
-                                        console.log(driverSupplier);
-                                        $('#driver_supplier').html(response
-                                            .supplier?.name ?? 'N/A');
                                         location.reload();
                                     } else {
                                         console.log('else');
                                         $('#driver_supplier').html(
                                             '-');
                                     }
-                                    // window.location.reload();
                                 },
                                 error: function(xhr) {
                                     alert('Failed to store vehicle');
@@ -2293,6 +2146,310 @@
                     }
                 });
             });
+
+            // Allot Duty Supplier
+            $(document).on('click', '#get_duty_supplier', function() {
+                dutyId = $(this).data('id');
+                console.log(dutyId);
+                const fetchUrl = "{{ route('get.duty.supplier', ['id' => ':id']) }}"
+                    .replace(
+                        ':id', dutyId);
+                $.ajax({
+                    url: fetchUrl,
+                    type: 'Get',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        supplierId = response.booking.supplier_id;
+
+                        let html = ` 
+                        <div class="modal-header px-5 sticky-top bg-white">
+                        <div>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Allot Duty To Suppliers - <span> ${response.booking?.supplier?.name ?? ''} </span></h1>
+                        </div>
+                        </div>
+                        <div class="modal-body px-5">
+                            <table class="table table-bordered table-striped table-hover">
+                                <tbody>
+                                    <tr>
+                                        <th class="fw-medium">ID</th>
+                                        <td>${response.booking.id}</td>
+                                        <th class="fw-medium">Status</th>
+<td> ${response.booking.status === 'details' ? 'Alotting' : response.booking.status}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Start Date</th>
+                                        <td>${formatDate(response.booking.start_date)}</td>
+                                        <th class="fw-medium">End Date</th>
+                                        <td>${formatDate(response.booking.end_date)}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Garage Start Time</th>
+                                        <td> ${response.booking.garage_time}</td>
+                                        <th class="fw-medium">Reporting Time</th>
+                                        <td>${response.booking.reporting_time}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">From City</th>
+                                        <td> ${response.booking.from_service}</td>
+                                        <th class="fw-medium">To City</th>
+                                        <td> ${response.booking.to_service}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Duty Type</th>
+                                        <td colspan="3">${response.booking.duty_type.duty_name}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Vehicle Group</th>
+                                        <td colspan="3">${response.booking.vehicle_group.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Reporting Address</th>
+                                        <td colspan="3">${response.booking.reporting_address}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="fw-medium">Drop Address</th>
+                                        <td colspan="3"><span class="text-secondary">${response.booking.drop_address}</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>Fill in the form below with details of supplier's driver and vehicle.</p>
+                            <form id="allot_duty_form">
+                                <div class="bg-light mb-3 p-3">
+                                    <p>Quick selection (based on your previous manual allotment history for selected supplier):</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="name" class="control-label mb-1">Supplier Vehicles</label>
+                                            <select class="form-select border-bottom" aria-label="Default select example"
+                                                name="supplier_vehicle" id="supplier_vehicle_data">
+                                                
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="name" class="control-label mb-1">Supplier Drivers</label>
+                                            <select class="form-select border-bottom" aria-label="Default select example"
+                                                name="supplier_driver" id="supplier_driver_data">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="vehicle_name" class="form-label"> Vehicle Name</label>
+                                        <input type="text" class="form-control  border-bottom" id="vehicle_name">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="vehicle_number" class="form-label"> Vehicle Number</label>
+                                        <input type="text" class="form-control border-bottom" id="vehicle_number">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="fuel_type" class="form-label">Fuel Type</label>
+                                        <select class="form-select border-bottom" aria-label="Default select example"
+                                            name="fuel_type" id="vehicle_fuel_type">
+                                            <option value="selectOne">Select an option</option>
+                                            <option value="Petrol">Petrol</option>
+                                            <option value="Diesel">Diesel</option>
+                                            <option value="CNG">CNG</option>
+                                            <option value="Electric">Electric</option>
+                                           </select>
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="driver_name" class="form-label"> Driver Name</label>
+                                        <input type="text" class="form-control  border-bottom" id="driver_name">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="driver_phone_no" class="form-label"> Driver Phone Number</label>
+                                        <input type="text" class="form-control  border-bottom" id="driver_phone_no">
+                                        <span class="warning-msg-block"></span>
+                                    </div>
+                                </div>
+                                 <!-- 
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="">
+                                    <label class="form-check-label" for="">
+                                        Copy same vehicle and driver details for all duties of this booking allotted to this
+                                        supplier?
+                                    </label>
+                                </div>
+                                 -->
+                            </form>
+
+                        </div>
+                        <div class="modal-footer justify-content-start px-5">
+                        <button type="button" class="btn btn-primary rounded-1" id="allot_duty_to_supplier">Allot</button>
+                        <button type="submit" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                        </div>`;
+                        $('#allot_duty_supplier_content').html(html);
+                        const supplierVehicleSelect = document.getElementById(
+                            'supplier_vehicle_data');
+                        console.log(response);
+
+                        if (supplierVehicleSelect && Array.isArray(response.vehicle)) {
+                            // Clear and set the default option
+                            supplierVehicleSelect.innerHTML =
+                                '<option value="">Select vehicle</option>';
+                            // Loop through the duty types and append them as options
+                            response.vehicle.forEach(supplier_vehicle => {
+                                const option = document.createElement('option');
+                                option.value = supplier_vehicle.id;
+                                option.textContent = supplier_vehicle.model_name;
+                                supplierVehicleSelect.appendChild(option);
+                            });
+                        } else {
+                            console.error(
+                                'Select element not found or mst_duty_type is not an array');
+                        }
+
+                        const supplierDriverSelect = document.getElementById(
+                            'supplier_driver_data');
+                        console.log(supplierDriverSelect);
+
+                        if (supplierDriverSelect && Array.isArray(response.driver)) {
+                            // Clear and set the default option
+                            supplierDriverSelect.innerHTML =
+                                '<option value="">Select driver</option>';
+                            // Loop through the duty types and append them as options
+                            response.driver.forEach(supplier_driver => {
+                                const option = document.createElement('option');
+                                option.value = supplier_driver.id;
+                                option.textContent = supplier_driver.name;
+                                supplierDriverSelect.appendChild(option);
+                            });
+                        } else {
+                            console.error(
+                                'Select element not found or mst_duty_type is not an array');
+                        }
+
+                        $(document).on('change', '#supplier_vehicle_data', function() {
+                            const selectedVehicleId = $(this).val();
+                            const fetchUrl =
+                                "{{ route('get.supplier.vehicle.details', ['id' => ':id']) }}"
+                                .replace(
+                                    ':id', selectedVehicleId);
+                            if (selectedVehicleId) {
+                                $.ajax({
+                                    url: fetchUrl,
+                                    type: 'GET',
+                                    dataType: 'json',
+                                    success: function(response) {
+                                        if (response.success) {
+                                            console.log("Vehicle details:",
+                                                response.vehicle);
+                                            $('#vehicle_name')
+                                                .val(response.vehicle
+                                                    .model_name)
+                                                .prop('disabled', true);
+
+                                            $('#vehicle_number')
+                                                .val(response.vehicle
+                                                    .vehicle_no)
+                                                .prop('disabled', true);
+
+                                            $('#vehicle_fuel_type')
+                                                .val(response.vehicle
+                                                    .fuel_type)
+                                                .prop('disabled', true);
+
+                                        } else {
+                                            console.warn(
+                                                "No vehicle data found."
+                                            );
+                                        }
+                                    },
+                                    error: function(xhr) {
+                                        console.error(
+                                            "Failed to fetch vehicle details",
+                                            xhr.responseText);
+                                    }
+                                });
+                            }
+                        });
+
+                        $(document).on('change', '#supplier_driver_data', function() {
+                            const selectedSupplierDriverId = $(this).val();
+                            const fetchUrl =
+                                "{{ route('get.supplier.driver.details', ['id' => ':id']) }}"
+                                .replace(
+                                    ':id', selectedSupplierDriverId);
+                            if (selectedSupplierDriverId) {
+                                $.ajax({
+                                    url: fetchUrl,
+                                    type: 'GET',
+                                    dataType: 'json',
+                                    success: function(response) {
+                                        console.log(response);
+                                        $('#driver_name')
+                                            .val(response.driver.name)
+                                            .prop('disabled', true);
+
+                                        $('#driver_phone_no')
+                                            .val(response.driver.mobile_no)
+                                            .prop('disabled', true);
+                                    },
+                                    error: function(xhr) {
+                                        console.error(
+                                            "Failed to fetch driver details",
+                                            xhr.responseText);
+                                    }
+                                });
+                            }
+                        });
+
+                        $(document).on('click', '#allot_duty_to_supplier', function() {
+                            const payload = {
+                                _token: '{{ csrf_token() }}', // for Laravel
+                                booking_id: dutyId,
+                                vehicle_name: $('#vehicle_name').val(),
+                                vehicle_number: $('#vehicle_number').val(),
+                                fuel_type: $('#vehicle_fuel_type').val(),
+                                driver_name: $('#driver_name').val(),
+                                driver_phone_no: $('#driver_phone_no').val(),
+                                supplier_id: supplierId,
+                                supplier_vehicle_id: $('#supplier_vehicle_data')
+                                    .val(),
+                                supplier_driver_id: $('#base_city').val(),
+                            };
+                            console.log(payload);
+                            var allotSupplier =
+                                "{{ route('store.supplier.duty.allot', ['id' => ':id']) }}";
+                            const allotSupplierDuty = allotSupplier.replace(
+                                ':id', dutyId);
+                            $.ajax({
+                                url: allotSupplierDuty, // Replace with your actual update route
+                                type: 'POST', // or PUT
+                                data: payload,
+                                success: function(response) {
+                                    console.log(response);
+                                    // alert('Duty details updated successfully.');
+                                    // $('#edit-duty-detail').modal('hide');
+                                    window.location.reload();
+
+                                    // Optional: Refresh list or update UI
+                                },
+                                error: function(xhr) {
+                                    alert('Failed to update duty details.');
+                                    console.error(xhr.responseText);
+                                }
+                            });
+                        });
+
+
+                    }
+
+                })
+            })
         });
     </script>
 @endsection

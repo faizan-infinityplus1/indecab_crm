@@ -104,4 +104,19 @@ class Booking extends Model
     {
         return $this->belongsTo(MstSupplier::class, 'supplier_id', 'id');
     }
+
+    public function mstVehicle()
+    {
+        return $this->belongsTo(mstVehicle::class, 'supplier_id', 'supplier_id');
+    }
+
+    public function mstDriver()
+    {
+        return $this->belongsTo(MstMyDriver::class, 'supplier_id', 'supplier_id');
+    }
+
+    public function allotVehicle()
+    {
+        return $this->belongsTo(mstVehicle::class, 'vehicle_id', 'id');
+    }
 }

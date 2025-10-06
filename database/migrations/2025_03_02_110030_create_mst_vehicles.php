@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->unsignedBigInteger('driver_id')->nullable();
             $table->unsignedBigInteger('vehicle_group_id')->nullable();
+            $table->unsignedBigInteger('supplier_id')->nullable();
             $table->string('model_name');
             $table->string('vehicle_no')->nullable();
             $table->string('image')->nullable();

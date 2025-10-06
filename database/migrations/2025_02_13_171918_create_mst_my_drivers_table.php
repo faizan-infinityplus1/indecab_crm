@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+            $table->unsignedBigInteger('supplier_id')->nullable();
             $table->string('name');
             $table->string('image')->nullable();
             $table->string('mobile_no');
@@ -54,7 +55,6 @@ return new class extends Migration
             $table->boolean('is_covid_vacinated')->nullable();
             $table->boolean('is_active')->nullable();
             $table->timestamps();
-            
         });
     }
 

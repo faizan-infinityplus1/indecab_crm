@@ -195,13 +195,17 @@ Route::middleware('auth:admin')->group(function () {
 
     // Store Allot Duties Data
     Route::post('/store-vehicle-duty/{id}', [DutyController::class, 'storeVehicleDuty'])->name('store.vehicle.duty');
-    Route::post('/duty-store-supplier/{id}', [DutyController::class, 'storeSupplierDuty'])->name('store.supplier.duty');
-    
+    Route::post('/duty-store-supplier/{id}', [DutyController::class, 'storeSupplierAllot'])->name('store.supplier.duty.tr');
+
     // Clear Allotment
     Route::get('/clear-allotment/{id}', [DutyController::class, 'clearAllotment'])->name('duty.clear.allotment');
 
-
-    Route::post('/duty-store-supplier/{id}', [DutyController::class, 'storeSupplierDuty'])->name('store.supplier.duty');
+    // Allot Duty to Supplier
+    Route::get('/get-duty-supplier/{id}', [DutyController::class, 'getDutySupplier'])->name('get.duty.supplier');
+    Route::post('/store-duty-supplier/{id}', [DutyController::class, 'storeSupplierDuty'])->name('store.supplier.duty.allot');
+    Route::get('/get-supplier-vehicle/{id}', [DutyController::class, 'getSupplierVehicle'])->name('get.supplier.vehicle.details');
+    Route::get('/get-supplier-driver/{id}', [DutyController::class, 'getSupplierDriver'])->name('get.supplier.driver.details');
+    Route::get('/allot-duty-supplier/{id}', [DutyController::class, 'allotDutySupplier'])->name('duty.allot.supplier');
 
 
 
