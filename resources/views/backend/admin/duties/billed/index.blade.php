@@ -20,7 +20,7 @@
                 <div class="btn-group" role="group"><a href="{{ route('booking.create') }}" class="btn btn-primary">Add
                         Booking</a></div>
                 <div class="dropdown">
-                    <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    <button class="btn border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <i class="fa-solid fa-gear"></i>
                     </button>
@@ -220,14 +220,14 @@
     {{-- details --}}
     <div class="modal fade" id="details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <ul class="nav nav-tabs border-0 w-100" id="tabs-nav">
                         <!-- Details Tab Link -->
                         <li class="nav-item w-50 mb-3 active" id="details-tab">
@@ -353,7 +353,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -361,10 +361,9 @@
     </div>
     {{-- details close --}}
     {{-- View duty slip --}}
-    <div class="modal fade" id="view-duty-slip" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="view-duty-slip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white d-flex justify-content-between">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty #86751150-2</h1>
@@ -372,7 +371,7 @@
                     </div>
                     <button type="button" class="btn btn-light border" id="">Edit</button>
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="row">
                         <div class="col-md-6">
                             <p>
@@ -499,7 +498,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <div>
                         <button type="button" class="btn btn-light border" id=""><i
                                 class="fa-solid fa-print"></i> Print</button>
@@ -514,14 +513,14 @@
     <div class="modal fade" id="add-remove-lable" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="row">
                         <div class="mb-3">
                             <label for="labels" class="control-label w-100">Labels</label>
@@ -533,7 +532,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -544,14 +543,14 @@
     <div class="modal fade" id="allot-supporters" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Supporters</h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <p>
                         Showing supporters that can be booked for duty <span>#67920002-1</span>:
                     </p>
@@ -562,7 +561,7 @@
                     </div>
 
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary rounded-1">Allot</button>
                 </div>
@@ -573,7 +572,7 @@
     {{-- Print duty slip --}}
     <div class="modal fade" id="print-duty-slip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Print Duty Slip for <span>#67920002-1</span>
@@ -581,7 +580,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="bg-light mb-3 p-3">
                         <form action="">
                             <div class="form-check mb-2">
@@ -666,7 +665,7 @@
 
 
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="submit" class="btn btn-primary rounded-1">Print</button>
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
@@ -678,7 +677,7 @@
     <div class="modal fade" id="advance-purchase-payment" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Add Advance Purchase Payment</h1>
@@ -686,7 +685,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="mb-3">
                         <label for="" class="form-label"> Duty <span class="text-danger">*</span> </label>
                         <input type="date" class="form-control  border-bottom" id="">
@@ -700,7 +699,7 @@
                         <textarea class="form-control" rows="3" name="" id=""></textarea>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <div>
                         <button type="button" class="btn btn-primary rounded-1" id="">Save</button>
                         <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
@@ -713,10 +712,9 @@
     </div>
     {{-- Advance Purchase Payment close --}}
     {{-- Add Petty Cash --}}
-    <div class="modal fade" id="add-petty-cash" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="add-petty-cash" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Add Petty Cash</h1>
@@ -724,14 +722,14 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="mb-3">
                         <label for="" class="form-label"> Petty Cash No: <span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
                             <span class="input-group-text rounded-0" id="basic-addon1">F-MC2526-</span>
-                            <input type="number" class="form-control" aria-describedby="basic-addon1"
-                                value="1" disabled>
+                            <input type="number" class="form-control" aria-describedby="basic-addon1" value="1"
+                                disabled>
                             {{-- <input type="number" class="form-control  border-bottom" id=""> --}}
                         </div>
                     </div>

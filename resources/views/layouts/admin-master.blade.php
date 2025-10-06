@@ -78,7 +78,7 @@
                                 <li><a class="dropdown-item" href="#">Availability</a></li>
                                 <li><a class="dropdown-item" href="{{ route('bookings.all') }}">Bookings</a></li>
                                 <li><a class="dropdown-item" href="{{ route('billing') }}">Billing</a></li>
-                                <li><a class="dropdown-item" href="{{route('receipts')}}">Receipts</a></li>
+                                <li><a class="dropdown-item" href="{{ route('receipts') }}">Receipts</a></li>
                                 <li><a class="dropdown-item" href="#">Payment Gateway</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -172,7 +172,8 @@
                         <li><a class="dropdown-item" href="#"><i class="fa-solid fa-building"></i> Your
                                 Account</a>
                         </li>
-                        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-sliders"></i> Business
+                        <li><a class="dropdown-item" href="{{ route('businessSetting.index') }}"><i
+                                    class="fa-solid fa-sliders"></i> Business
                                 Settings</a></li>
                         <li><a class="dropdown-item" href="#"><i class="fa-solid fa-file-export"></i> Export to
                                 Tally</a></li>

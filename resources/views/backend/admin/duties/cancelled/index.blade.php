@@ -172,8 +172,8 @@
                                                 data-bs-target="#add-remove-lable">Add/Remove labels</a></li>
                                         {{-- <li><a href="{{ route('bookings.specific-bookings') }}" class="dropdown-item">View Booking</a></li> --}}
 
-                                        <li><a href="#" class="dropdown-item"
-                                                onclick="restoreDuty()">Restore Duty</a></li>
+                                        <li><a href="#" class="dropdown-item" onclick="restoreDuty()">Restore
+                                                Duty</a></li>
                                     </ul>
                                     {{-- <ul class="dropdown-menu">
                                         <li> <a class="dropdown-item" href="#">Edit</a> </li>
@@ -218,14 +218,14 @@
     {{-- details --}}
     <div class="modal fade" id="details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <ul class="nav nav-tabs border-0 w-100" id="tabs-nav">
                         <!-- Details Tab Link -->
                         <li class="nav-item w-50 mb-3 active" id="details-tab">
@@ -351,7 +351,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -362,14 +362,14 @@
     <div class="modal fade" id="add-remove-lable" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="row">
                         <div class="mb-3">
                             <label for="labels" class="control-label w-100">Labels</label>
@@ -381,7 +381,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -402,11 +402,13 @@
             $(".dropdown-toggle").dropdown();
 
         });
+
         function confirmDelete(url) {
             if (confirm('Are you sure you want to delete this duty type?')) {
                 window.location.href = url; // Proceed with the delete action if confirmed
             }
         }
+
         function restoreDuty() {
             let restoreDuty = confirm("Are you sure you want to restore the duty?");
             if (restoreDuty == true) {

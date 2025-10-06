@@ -20,7 +20,7 @@
                 <div class="btn-group" role="group"><a href="{{ route('booking.create') }}" class="btn btn-primary">Add
                         Booking</a></div>
                 <div class="dropdown">
-                    <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    <button class="btn border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <i class="fa-solid fa-gear"></i>
                     </button>
@@ -140,7 +140,7 @@
                     </thead>
                     <tbody>
                         @foreach ($booking as $data)
-                            <tr>
+                            <tr class="data-row">
                                 <td>
                                     <i class="fa-solid fa-phone text-success"></i>
                                 </td>
@@ -173,8 +173,14 @@
                                 <td>{{ $data->from_service }}</td>
                                 <td>{{ $data->reporting_time }}</td>
                                 <td>{{ $data->label->label_name }}</td>
-                                <td>
-                                    {{ $data->status }}
+                                <td class="booking-status-container">
+                                    <span>
+                                        {{ $data->status }}
+                                    </span>
+                                    <button class="btn btn-success py-0 px-2" data-bs-toggle="modal"
+                                        data-bs-target="#send-info" data-id="{{ $data->id }}">
+                                        SEND INFO
+                                    </button>
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -279,14 +285,14 @@
     {{-- details --}}
     <div class="modal fade" id="details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <ul class="nav nav-tabs border-0 w-100" id="tabs-nav">
                         <!-- Details Tab Link -->
                         <li class="nav-item w-50 mb-3 active" id="details-tab">
@@ -412,7 +418,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -433,14 +439,14 @@
     <div class="modal fade" id="add-remove-lable" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="row">
                         <div class="mb-3">
                             <label for="labels" class="control-label w-100">Labels</label>
@@ -452,7 +458,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="button" class="btn btn-success rounded-1" data-bs-dismiss="modal"
                         id="label_save">Save</button>
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
@@ -491,18 +497,100 @@
         </div>
     </div>
     {{-- Allot vehicle & driver close --}}
+    {{-- Change driver --}}
+    <div class="modal fade" id="change-driver" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0 h-100" id="change-driver-content">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Drivers</h1>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5 bg-white">
+
+                    <p>Showing drivers that can be booked for duty #91077273-1:</p>
+                    <div class="mb-3">
+                        <input type="text" class="form-control  border-bottom" id=""
+                            placeholder="Type here to filter by driver name or dispatch center">
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover datatable" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th class="fw-medium">Name</th>
+                                    <th class="fw-medium text-start">Phone</th>
+                                    <th class="fw-medium">Document status</th>
+                                </tr>
+                            </thead>
+                            {{-- <table class="table table-bordered table-striped table-hover"> --}}
+                            <tbody>
+                                <tr>
+                                    <td>Adil Patel</td>
+                                    <td class="text-start">7738373502</td>
+                                    <td>
+                                        <span class="text-success">Valid documents.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Adil Patel</td>
+                                    <td class="text-start">7738373502</td>
+                                    <td>
+                                        <span class="text-success">Valid documents.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Adil Patel</td>
+                                    <td class="text-start">7738373502</td>
+                                    <td>
+                                        <span class="text-success">Valid documents.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Adil Patel</td>
+                                    <td class="text-start">7738373502</td>
+                                    <td>
+                                        <span class="text-success">Valid documents.</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Adil Patel</td>
+                                    <td class="text-start">7738373502</td>
+                                    <td>
+                                        <span class="text-success">Valid documents.</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="modal-footer sticky-bottom bg-white justify-content-between px-5">
+                    <div>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                    {{-- <div>
+                        <button type="button" class="btn btn-light border rounded-1" data-bs-toggle="modal"
+                            data-bs-target="#allot-vehicle-driver">Allot My Driver/Supplier</button>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Change driver close --}}
+
     {{-- Send to Associate --}}
     <div class="modal fade" id="allot-send-to-associate" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Send Duty #67920002-1 to Network</h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <table class="table table-bordered table-striped table-hover">
                         <tbody>
                             <tr>
@@ -557,7 +645,7 @@
                     <button type="reset" class="btn btn-light border">Select All Suppliers</button>
 
                 </div>
-                <div class="modal-footer justify-content-between px-5">
+                <div class="modal-footer sticky-bottom bg-white justify-content-between px-5">
                     <div>
                         <button type="submit" class="btn btn-primary rounded-1">Send Request</button>
                         <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
@@ -582,7 +670,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <p class="mb-3">Use this to send SMS and email notifications to driver and customer/passengers.</p>
                     <p><a href="#" class="text-decoration-none mb-3">View customer notes</a></p>
                     <ul class="nav nav-tabs border-0 w-100" id="tabs-nav">
@@ -767,7 +855,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-end px-5">
+                <div class="modal-footer sticky-bottom justify-content-end px-5 bg-white">
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary rounded-1">Send</button>
                 </div>
@@ -786,7 +874,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <p class="mb-3">Use this to send duty details to supplier for them to confirm.</p>
                     <table class="w-100 table-bordered mb-3">
                         <thead>
@@ -1011,7 +1099,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-end px-5">
+                <div class="modal-footer sticky-bottom justify-content-end px-5 bg-white">
                     <div>
                         <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary rounded-1">Send</button>
@@ -1024,7 +1112,7 @@
     {{-- Print duty slip --}}
     <div class="modal fade" id="print-duty-slip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Print Duty Slip for <span>#67920002-1</span>
@@ -1032,74 +1120,66 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="bg-light mb-3 p-3">
                         <form action="">
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Add customer name
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="show-customer"
+                                    value="customer">
+                                <label class="form-check-label" for="show-customer">Add customer name</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Add booked by name
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="show-bookedby"
+                                    value="bookedby">
+                                <label class="form-check-label" for="show-bookedby">Add booked by name</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Add all passenger names and numbers
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="show-passenger"
+                                    value="passenger">
+                                <label class="form-check-label" for="show-passenger">Add all passenger names and
+                                    numbers</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Hide duty type name
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="hide-dutytype"
+                                    value="hide-dutytype">
+                                <label class="form-check-label" for="hide-dutytype">Hide duty type name</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Hide vehicle group name
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="hide-vehgroup"
+                                    value="hide-vehgroup">
+                                <label class="form-check-label" for="hide-vehgroup">Hide vehicle group name</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Hide vehicle name
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="hide-vehicle"
+                                    value="hide-vehicle">
+                                <label class="form-check-label" for="hide-vehicle">Hide vehicle name</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Hide remarks
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="hide-remarks"
+                                    value="hide-remarks">
+                                <label class="form-check-label" for="hide-remarks">Hide remarks</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Add garage start time
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="show-garage-time"
+                                    value="garage-time">
+                                <label class="form-check-label" for="show-garage-time">Add garage start time</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Add released km/time section
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="show-released-km-time"
+                                    value="released-km-time">
+                                <label class="form-check-label" for="show-released-km-time">Add released km/time
+                                    section</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="add_entire_booking_date_range">
-                                <label class="form-check-label" for="add_entire_booking_date_range">
-                                    Add entire booking date range
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="show-booking-dates"
+                                    value="booking-dates">
+                                <label class="form-check-label" for="show-booking-dates">Add entire booking date
+                                    range</label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="">
-                                <label class="form-check-label" for="">
-                                    Hide business letter head
-                                </label>
+                                <input class="form-check-input print-toggle" type="checkbox" id="hide-letterhead"
+                                    value="hide-letterhead">
+                                <label class="form-check-label" for="hide-letterhead">Hide business letter head</label>
                             </div>
                             <p>Duty Slip Design</p>
                             <div class="row">
@@ -1117,8 +1197,8 @@
 
 
                 </div>
-                <div class="modal-footer justify-content-start px-5">
-                    <button type="submit" class="btn btn-primary rounded-1">Print</button>
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
+                    <button type="button" class="btn btn-primary rounded-1" id="print-btn">Print</button>
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -1128,7 +1208,7 @@
     {{-- Create placard --}}
     <div class="modal fade" id="create-placard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Generate Placard for Duty <span> #44158262-6
@@ -1136,7 +1216,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <table class="w-100 table-bordered mb-3">
                         <thead>
                             <tr>
@@ -1176,7 +1256,7 @@
                     </div>
                     <p><a href="#" class="text-decoration-none">View customer notes</a></p>
                 </div>
-                <div class="modal-footer justify-content-between px-5">
+                <div class="modal-footer sticky-bottom justify-content-between px-5 bg-white">
                     <div>
                         <button type="button" class="btn btn-primary rounded-1" id="placard-print"><i
                                 class="fa-solid fa-print"></i> Print</button>
@@ -1203,7 +1283,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <p>You will be able to create custom duty slip for supplier once this duty slip is marked complete.</p>
                     <table class="w-100 table-bordered mb-3">
                         <thead>
@@ -1555,7 +1635,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-end px-5">
+                <div class="modal-footer sticky-bottom justify-content-end px-5 bg-white">
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary rounded-1" id="">Close & View Duty
                         Slip</button>
@@ -1568,7 +1648,7 @@
     <div class="modal fade" id="advance-purchase-payment" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Add Advance Purchase Payment</h1>
@@ -1576,7 +1656,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="mb-3">
                         <label for="" class="form-label"> Duty <span class="text-danger">*</span> </label>
                         <input type="date" class="form-control  border-bottom" id="">
@@ -1590,7 +1670,7 @@
                         <textarea class="form-control" rows="3" name="" id=""></textarea>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <div>
                         <button type="button" class="btn btn-primary rounded-1" id="">Save</button>
                         <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
@@ -1602,6 +1682,74 @@
         </div>
     </div>
     {{-- Advance Purchase Payment close --}}
+    {{-- Add Petty Cash --}}
+    <div class="modal fade" id="add-petty-cash" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
+            <div class="modal-content rounded-0 border-0 h-100">
+                <div class="modal-header px-5 sticky-top bg-white">
+                    <div>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Petty Cash</h1>
+                        <small>Booking Id: <span> #50249209</span></small>
+                    </div>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body px-5">
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Petty Cash No: <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text rounded-0" id="basic-addon1">F-MC2526-</span>
+                            <input type="number" class="form-control" aria-describedby="basic-addon1"
+                                value="1" disabled>
+                            {{-- <input type="number" class="form-control  border-bottom" id=""> --}}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Date <span class="text-danger">*</span>
+                        </label>
+                        <input type="date" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Voucher Number</label>
+                        <input type="text" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Amount <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" class="form-control  border-bottom" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"> Transaction type? <span class="text-danger">*</span>
+                        </label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="isCredit" id="" checked>
+                            <label class="form-check-label" for="">
+                                Debit
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="isCredit" id="">
+                            <label class="form-check-label" for="">
+                                Credit
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Remarks </label>
+                        <textarea class="form-control" rows="3" name="" id=""></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
+                    <div>
+                        <button type="button" class="btn btn-primary border" id="">Submit</button>
+                        <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Add Petty Cash close --}}
     {{-- Cancel duty --}}
     <div class="modal fade" id="cancel-duty" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -1614,7 +1762,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <p class="text-danger mb-3">Are you sure you want to cancel this duty?</p>
                     <p class="mb-3">Select phone numbers and emails you want to send cancellation information to:</p>
                     <table class="w-100 table-bordered mb-3">
@@ -1724,7 +1872,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-between px-5">
+                <div class="modal-footer sticky-bottom justify-content-between px-5 bg-white">
                     <div>
                         <button type="button" class="btn btn-light border" id="">Copy Email</button>
                     </div>
@@ -1738,6 +1886,226 @@
         </div>
     </div>
     {{-- Cancel duty close --}}
+
+
+    <!-- This is the hidden duty slip -->
+    <div id="print-section">
+        <div class="print-option-letterhead">
+            <div class="d-flex justify-content-start align-items-center gap-5">
+                <div class="logo_container">
+                    <img src="{{ asset('admin/images/company_logo.jpeg') }}" alt="">
+                </div>
+                <div>
+                    <h1>
+                        Mumbai Cab Service
+                    </h1>
+                    <address>
+                        Plot No 8, Durga Sewa sang, Shivaji Nagar, Govandi, Mumbai - 400043
+                        Email: mumbaicabservice76@gmail.com | Phone: 9619900011
+                    </address>
+                </div>
+            </div>
+        </div>
+        <h4 class="heading">DUTY SLIP</h4>
+        <div class="row">
+            <div class="col-6">
+                <ul class="ps-0">
+                    <li class="print-option-customer">
+                        <b>
+                            Customer:
+                        </b>
+                        Muneer
+                    </li>
+                    <li class="print-option-bookedby">
+                        <b>
+                            Booked By:
+                        </b>
+                        Munner - 07304094851
+                    </li>
+                    <li class="print-option-passenger">
+                        <b>
+                            Passenger:
+                        </b>
+                        Munner - 07304094851
+                    </li>
+                    <li>
+                        <b>
+                            Date:
+                        </b>
+                        01-01-2024 to 01-01-2024
+                    </li>
+                    <li>
+                        <b>
+                            Reporting Time:
+                        </b>
+                        00:45
+                    </li>
+                    <li>
+                        <b>
+                            Reporting Address:
+                        </b>
+                        asdas
+                    </li>
+                    <li>
+                        <b>
+                            Drop Address:
+                        </b>
+                        dasdasdsad
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6">
+                <ul class="ps-0">
+                    <li>
+                        <b>
+                            Booking Id:
+                        </b>
+                        #91077273
+                    </li>
+                    <li class="print-option-dutytype">
+                        <b>
+                            Duty Type:
+                        </b>
+                        300KM per day ( Mumbai - Yavatmal )
+                    </li>
+                    <li class="print-option-vehgroup">
+                        <b>
+                            Vehicle Group:
+                        </b>
+                        Innova Crysta (yellow name plate)
+                    </li>
+                    <li class="print-option-vehicle">
+                        <b>
+                            Vehicle:
+                        </b>
+                        Innova Crysta MH03DK2539
+                    </li>
+                    <li>
+                        <b>
+                            Driver:
+                        </b>
+                        Test (8928113776)
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <table cellpadding="5" cellspacing="0" width="100%" class="mb-3">
+            <tr>
+                <th rowspan="2" style="text-align: left; vertical-align: bottom;">Reporting Date</th>
+                <th rowspan="2" style="text-align: left; vertical-align: bottom;">G. Time</th>
+                <th colspan="2">Start</th>
+                <th colspan="2">End</th>
+                <th colspan="2">Total</th>
+                <th colspan="2">Extra</th>
+                <th rowspan="2" style="vertical-align: bottom;">Signature</th>
+            </tr>
+            <tr>
+                <td>Kilometers</td>
+                <td>Time</td>
+                <td>Kilometers</td>
+                <td>Time</td>
+                <td>Kilometers</td>
+                <td>Time</td>
+                <td>Kilometers</td>
+                <td>Time</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;"><b>01/01/2024 to 01/01/2024</b></td>
+                <td style="text-align: left;">08:00 AM</td>
+                <td>100</td>
+                <td>08:30</td>
+                <td>180</td>
+                <td>17:00</td>
+                <td>80</td>
+                <td>8h 30m</td>
+                <td>10</td>
+                <td>1h</td>
+                <td></td>
+            </tr>
+        </table>
+
+        <table cellpadding="5" cellspacing="0" width="100%" class="mb-3">
+            <tr>
+                <th style="text-align: left;">Item</th>
+                <th style="text-align: left;">Amount</th>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Toll & Parking (T)</td>
+                <td style="text-align: left;"></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Toll & Parking</td>
+                <td style="text-align: left;"></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">worli sea link</td>
+                <td style="text-align: left;"></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">MCD</td>
+                <td style="text-align: left;"></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Toll</td>
+                <td style="text-align: left;"></td>
+            </tr>
+        </table>
+        <table cellpadding="5" cellspacing="0" width="100%" class="mb-3">
+            <tr>
+                <th colspan="5">Item</th>
+            </tr>
+            <tr>
+                <th style="text-align: left;">
+                    Date
+                </th>
+                <th>
+                    Reporting KM
+                </th>
+                <th>
+                    Reporting Time
+                </th>
+                <th>
+                    Released KM
+                </th>
+                <th>
+                    Released Time
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: left;">
+                    <b>
+                        01/01/2024 to 01/01/2024
+                    </b>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <table cellpadding="5" cellspacing="0" width="100%" class="mb-3">
+            <tr>
+                <td colspan="2" style="text-align: left;">
+                    <b> Feedback: </b>Very Poor / Poor / Good / Very Good / Excellent
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: left; vertical-align: top; height: 100px;">Remarks</th>
+                <th style="text-align: left; vertical-align: top; height: 100px;">Signature</th>
+            </tr>
+            <tr>
+                <th colspan="2" style="text-align: left; vertical-align: top; height: 100px;">
+                    Instructions for next day use:
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2" style="text-align: left;">
+                    Route:
+                </th>
+            </tr>
+        </table>
+    </div>
 
 
 @endsection
@@ -1757,6 +2125,9 @@
                 console.log('cancel');
             }
         }
+        // document.getElementById('print-btn').addEventListener('click', function() {
+        //     window.print();
+        // });
 
         function clearAllotment(el) {
             let confirmClear = confirm("Are you sure you want to clear the allotment?");
@@ -2367,7 +2738,7 @@
                         <small>Start Date: <span>${formatDate(response.booking.start_date)}</span></small>
                     </div>
                     </div>
-                    <div class="modal-body px-5">
+                    <div class="modal-body px-5 bg-white">
                         <input type="hidden" id="booking_id_up" value="${response.booking.id}" />
                         <div class="row">
                             <div class="col-md-4">
@@ -3148,7 +3519,10 @@
             });
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 63695d0a9bed1cd0f7762edf4dbc4b7220ac8d36
         });
     </script>
 @endsection

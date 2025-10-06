@@ -19,7 +19,7 @@
                 <div class="btn-group" role="group"><a href="{{ route('booking.create') }}" class="btn btn-primary">Add
                         Booking</a></div>
                 <div class="dropdown">
-                    <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    <button class="btn border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <i class="fa-solid fa-gear"></i>
                     </button>
@@ -138,13 +138,13 @@
                             <th>City</th>
                             <th>Rep.Time</th>
                             <th>Labels</th>
-                            <th>Status</th>
+                            <th width="154">Status</th>
                             <th>Setting</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($booking as $data)
-                            <tr>
+                            <tr class="data-row">
                                 <td>
                                     <i class="fa-solid fa-phone text-success"></i>
                                 </td>
@@ -183,7 +183,25 @@
                                     @endforeach
                                 </td>
 
-                                <td>{{ $data->status }}</td>
+                                <td class="booking-status-container">
+                                    @if ($data->status == 'booked')
+                                        <span>
+                                            {{ $data->status }}
+                                        </span>
+                                        <button class="btn btn-success py-0 px-2 " data-bs-toggle="modal"
+                                            data-bs-target="#allot-duty-to-supplier" data-id="{{ $data->id }}">
+                                            ALLOT
+                                        </button>
+                                    @elseif($data->status == 'details')
+                                        <span>
+                                            {{ $data->status }}
+                                        </span>
+                                        <button class="btn btn-success py-0 px-2" data-bs-toggle="modal"
+                                            data-bs-target="#allot-duty-to-supplier" data-id="{{ $data->id }}">
+                                            ADD DETAILS
+                                        </button>
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle py-0" type="button" data-bs-toggle="dropdown"
@@ -315,14 +333,14 @@
     {{-- details --}}
     <div class="modal fade" id="details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <ul class="nav nav-tabs border-0 w-100" id="tabs-nav">
                         <!-- Details Tab Link -->
                         <li class="nav-item w-50 mb-3 active" id="details-tab">
@@ -351,7 +369,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -363,13 +381,13 @@
     <div class="modal fade" id="add-remove-lable" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Details - #50249209-4</h1>
                     </div>
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="row">
 
                         <div class="mb-3">
@@ -382,7 +400,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="button" class="btn btn-success rounded-1" data-bs-dismiss="modal"
                         id="label_save">Save</button>
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
@@ -395,7 +413,7 @@
     <div class="modal fade" id="edit-duty-detail" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0" id="edit-duty-detail-content">
+            <div class="modal-content rounded-0 border-0 h-100" id="edit-duty-detail-content">
 
             </div>
         </div>
@@ -405,7 +423,7 @@
     <div class="modal fade" id="allot-vehicle-driver" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0" id="allot-duty-detail-content">
+            <div class="modal-content rounded-0 border-0 h-100" id="allot-duty-detail-content">
 
             </div>
         </div>
@@ -415,14 +433,14 @@
     <div class="modal fade" id="allot-send-to-associate" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Send Duty #67920002-1 to Network</h1>
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <table class="table table-bordered table-striped table-hover">
                         <tbody>
                             <tr>
@@ -504,7 +522,7 @@
     {{-- Print duty slip --}}
     <div class="modal fade" id="print-duty-slip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Print Duty Slip for <span>#67920002-1</span>
@@ -512,7 +530,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <div class="bg-light mb-3 p-3">
                         <form action="">
                             <div class="form-check mb-2">
@@ -597,7 +615,7 @@
 
 
                 </div>
-                <div class="modal-footer justify-content-start px-5">
+                <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                     <button type="submit" class="btn btn-primary rounded-1">Print</button>
                     <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                 </div>
@@ -608,7 +626,7 @@
     {{-- Cancel duty --}}
     <div class="modal fade" id="cancel-duty" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Cancel Duty <span>#20608345-1</span>
@@ -616,7 +634,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <p class="text-danger mb-3">Are you sure you want to cancel this duty?</p>
                     <p class="mb-3">Select phone numbers and emails you want to send cancellation information to:</p>
                     <table class="w-100 table-bordered mb-3">
@@ -760,7 +778,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <p class="mb-3">Use this to send duty details to supplier for them to confirm.</p>
                     <table class="w-100 table-bordered mb-3">
                         <thead>
@@ -985,7 +1003,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-end px-5">
+                <div class="modal-footer sticky-bottom justify-content-end px-5 bg-white">
                     <div>
                         <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary rounded-1">Send</button>
@@ -998,7 +1016,7 @@
     {{-- Create placard --}}
     <div class="modal fade" id="create-placard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog float-end activity-logs-modal my-0 h-100 bg-white">
-            <div class="modal-content rounded-0 border-0">
+            <div class="modal-content rounded-0 border-0 h-100">
                 <div class="modal-header px-5 sticky-top bg-white">
                     <div>
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Generate Placard for Duty <span> #44158262-6
@@ -1006,7 +1024,7 @@
                     </div>
                     {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                 </div>
-                <div class="modal-body px-5">
+                <div class="modal-body px-5 bg-white">
                     <table class="w-100 table-bordered mb-3">
                         <thead>
                             <tr>
@@ -1144,7 +1162,7 @@
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Duty Supporters</h1>
                         </div>
                     </div>
-                    <div class="modal-body px-5">
+                    <div class="modal-body px-5 bg-white">
                         <p>
                             Showing supporters that can be booked for duty <span>#${response.booking.id}</span>:
                         </p>
@@ -1155,7 +1173,7 @@
                         </div>
 
                     </div>
-                    <div class="modal-footer justify-content-start px-5">
+                    <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                         <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-primary rounded-1" id="allot_supporters_button">Allot</button>
                     </div>
@@ -1466,7 +1484,7 @@
                         <small>Start Date: <span>${formatDate(response.booking.start_date)}</span></small>
                     </div>
                     </div>
-                    <div class="modal-body px-5">
+                    <div class="modal-body px-5 bg-white">
                         <input type="hidden" id="booking_id_up" value="${response.booking.id}" />
                         <div class="row">
                             <div class="col-md-4">
@@ -1777,13 +1795,13 @@
 
                         // Create modal HTML content
                         let html = `
-                <div class="modal-content rounded-0 border-0">
+                <div class="modal-content rounded-0 border-0 h-100">
                     <div class="modal-header px-5 sticky-top bg-white">
                         <div>
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Allot Duty</h1>
                         </div>
                     </div>
-                    <div class="modal-body px-5">
+                    <div class="modal-body px-5 bg-white">
                         <table class="table table-bordered table-striped table-hover">
                             <tbody>
                                 <tr>
@@ -1911,7 +1929,7 @@
                     </div>
 
                     </div>
-                    <div class="modal-footer justify-content-start px-5">
+                    <div class="modal-footer sticky-bottom justify-content-start px-5 bg-white">
                         <button type="button" class="btn btn-danger rounded-1" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
