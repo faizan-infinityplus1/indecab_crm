@@ -1308,10 +1308,8 @@
 
             $('.open-detail-modal').on('click', function() {
                 const dutyId = $(this).data('id');
-                console.log('i m open-detail-modal');
                 // Set the ID in the modal header
                 $('#exampleModalLabel').text(`Duty Details - #${dutyId}`);
-
                 // Clear previous content (optional)
                 $('#duty-detail-detail').html('<p>Loading...</p>');
                 var dutyDetailsUrl = "{{ route('duty.details', ['id' => ':id']) }}";

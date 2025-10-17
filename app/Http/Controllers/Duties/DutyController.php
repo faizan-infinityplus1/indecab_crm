@@ -71,7 +71,12 @@ class DutyController extends Controller
         $labels = MstLabel::get();
         return view("backend.admin.duties.booked.index", compact('booking', 'labels'));
     }
-
+    public function bookingDetails($id){
+        $bookingDetails = Booking::with('customers','vehicleGroup','vehicleGroup.vehicles','supplier')->findOrFail($id);
+        return response()->json([
+            'booking_details' => $bookingDetails,
+        ]);
+    }
     // Manage Labels
     public function editLabels($id)
     {
@@ -112,7 +117,10 @@ class DutyController extends Controller
     // completedDuties
     public function completedDuties()
     {
-        return view("backend.admin.duties.completed.index");
+        $booking = Booking::with('bookedBy', 'customers', 'vehicleGroup', 'vehicleGroup.vehicles', 'dutyType', 'supplier', 'label','bookedBy')->whereIn('status', ['booked'])->get();
+        $labels = MstLabel::get();
+
+        return view("backend.admin.duties.completed.index", compact('booking','labels'));
     }
     // billedDuties
     public function billedDuties()
@@ -191,7 +199,7 @@ class DutyController extends Controller
     public function manageSupporters(Request $request, $id)
     {
         $booking = Booking::with(['bookedBy', 'customers', 'vehicleGroup', 'dutyType'])
-            ->whereIn('status', ['booked', 'details','allotted'])
+            ->whereIn('status', ['booked', 'details', 'allotted'])
             ->findOrFail($id);
         $supporter = MstDutySupporter::get();
         $supporterAssign = DutySupporter::where('booking_id', $id)->get();

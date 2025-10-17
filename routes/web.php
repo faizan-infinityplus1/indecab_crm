@@ -190,6 +190,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/edit-duty-details/{id}', [DutyController::class, 'editDetails'])->name('duty.edit.details');
     Route::get('/allot-duty-details/{id}', [DutyController::class, 'allotDetials'])->name('duty.allot.details');
     Route::post('/update-vehicle-duty/{id}', [DutyController::class, 'updateParticularDuty'])->name('update.duty.booking');
+    
+    Route::get('/booking-details/{id}', [DutyController::class, 'bookingDetails'])->name('duty.booking.details');
 
     // Allot Supporters
     Route::get('/allot-supporters/{id}', [DutyController::class, 'manageSupporters'])->name('duty.allot.supporters');
@@ -198,7 +200,7 @@ Route::middleware('auth:admin')->group(function () {
 
     // Store Allot Duties Data
     Route::post('/store-vehicle-duty/{id}', [DutyController::class, 'storeVehicleDuty'])->name('store.vehicle.duty');
-    Route::post('/duty-store-supplier/{id}', [DutyController::class, 'storeSupplierDuty'])->name('store.supplier.duty');
+    Route::post('/duty-store-supplier/{id}', [DutyController::class, 'storeSupplierDuty'])->name('store.supplier.duty.tr');
 
     // Clear Allotment
     Route::get('/clear-allotment/{id}', [DutyController::class, 'clearAllotment'])->name('duty.clear.allotment');

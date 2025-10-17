@@ -4,7 +4,7 @@
         <div class="card-header d-flex justify-content-between py-2 px-0 bg-transparent page-heading-container flex-wrap">
             <h4>Duties</h4>
             <div class="text-end d-flex justify-content-end align-items-center gap-2">
-                <div class="btn-group" role="group"><a href="/booking/create" class="btn btn-primary">ADD
+                <div class="btn-group" role="group"><a href="{{ route('booking.create') }}" class="btn btn-primary">ADD
                         BOOKING</a></div>
                 <div class="dropdown">
                     <button class="btn border border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
